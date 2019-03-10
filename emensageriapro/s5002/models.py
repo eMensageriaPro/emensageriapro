@@ -358,6 +358,14 @@ class s5002basesIrrf(SoftDeletionModel):
     class Meta:
         db_table = r's5002_basesirrf'       
         managed = True # s5002_basesirrf #
+        unique_together = (
+            #custom_unique_together_s5002_basesirrf#
+            
+        )
+        index_together = (
+            #custom_index_together_s5002_basesirrf
+            #index_together_s5002_basesirrf
+        )
         permissions = (
             ("can_view_s5002_basesirrf", "Can view s5002_basesirrf"),
             #custom_permissions_s5002_basesirrf
@@ -406,6 +414,14 @@ class s5002idePgtoExt(SoftDeletionModel):
     class Meta:
         db_table = r's5002_idepgtoext'       
         managed = True # s5002_idepgtoext #
+        unique_together = (
+            #custom_unique_together_s5002_idepgtoext#
+            
+        )
+        index_together = (
+            #custom_index_together_s5002_idepgtoext
+            #index_together_s5002_idepgtoext
+        )
         permissions = (
             ("can_view_s5002_idepgtoext", "Can view s5002_idepgtoext"),
             #custom_permissions_s5002_idepgtoext
@@ -446,6 +462,14 @@ class s5002infoDep(SoftDeletionModel):
     class Meta:
         db_table = r's5002_infodep'       
         managed = True # s5002_infodep #
+        unique_together = (
+            #custom_unique_together_s5002_infodep#
+            
+        )
+        index_together = (
+            #custom_index_together_s5002_infodep
+            #index_together_s5002_infodep
+        )
         permissions = (
             ("can_view_s5002_infodep", "Can view s5002_infodep"),
             #custom_permissions_s5002_infodep
@@ -487,6 +511,14 @@ class s5002infoIrrf(SoftDeletionModel):
     class Meta:
         db_table = r's5002_infoirrf'       
         managed = True # s5002_infoirrf #
+        unique_together = (
+            #custom_unique_together_s5002_infoirrf#
+            
+        )
+        index_together = (
+            #custom_index_together_s5002_infoirrf
+            #index_together_s5002_infoirrf
+        )
         permissions = (
             ("can_view_s5002_infoirrf", "Can view s5002_infoirrf"),
             #custom_permissions_s5002_infoirrf
@@ -528,6 +560,14 @@ class s5002irrf(SoftDeletionModel):
     class Meta:
         db_table = r's5002_irrf'       
         managed = True # s5002_irrf #
+        unique_together = (
+            #custom_unique_together_s5002_irrf#
+            
+        )
+        index_together = (
+            #custom_index_together_s5002_irrf
+            #index_together_s5002_irrf
+        )
         permissions = (
             ("can_view_s5002_irrf", "Can view s5002_irrf"),
             #custom_permissions_s5002_irrf

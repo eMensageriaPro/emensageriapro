@@ -21,3 +21,4 @@ clear_database.py
 emensageriapro.wsgi
 xsd/rename_xsds.py
 make_and_migrate_all_apps.py
+teste_cron.txt

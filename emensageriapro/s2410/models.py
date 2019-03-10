@@ -76,6 +76,14 @@ class s2410homologTC(SoftDeletionModel):
     class Meta:
         db_table = r's2410_homologtc'       
         managed = True # s2410_homologtc #
+        unique_together = (
+            #custom_unique_together_s2410_homologtc#
+            
+        )
+        index_together = (
+            #custom_index_together_s2410_homologtc
+            #index_together_s2410_homologtc
+        )
         permissions = (
             ("can_view_s2410_homologtc", "Can view s2410_homologtc"),
             #custom_permissions_s2410_homologtc
@@ -116,6 +124,14 @@ class s2410infoPenMorte(SoftDeletionModel):
     class Meta:
         db_table = r's2410_infopenmorte'       
         managed = True # s2410_infopenmorte #
+        unique_together = (
+            #custom_unique_together_s2410_infopenmorte#
+            
+        )
+        index_together = (
+            #custom_index_together_s2410_infopenmorte
+            #index_together_s2410_infopenmorte
+        )
         permissions = (
             ("can_view_s2410_infopenmorte", "Can view s2410_infopenmorte"),
             #custom_permissions_s2410_infopenmorte
@@ -158,6 +174,14 @@ class s2410instPenMorte(SoftDeletionModel):
     class Meta:
         db_table = r's2410_instpenmorte'       
         managed = True # s2410_instpenmorte #
+        unique_together = (
+            #custom_unique_together_s2410_instpenmorte#
+            
+        )
+        index_together = (
+            #custom_index_together_s2410_instpenmorte
+            #index_together_s2410_instpenmorte
+        )
         permissions = (
             ("can_view_s2410_instpenmorte", "Can view s2410_instpenmorte"),
             #custom_permissions_s2410_instpenmorte

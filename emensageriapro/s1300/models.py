@@ -74,6 +74,14 @@ class s1300contribSind(SoftDeletionModel):
     class Meta:
         db_table = r's1300_contribsind'       
         managed = True # s1300_contribsind #
+        unique_together = (
+            #custom_unique_together_s1300_contribsind#
+            
+        )
+        index_together = (
+            #custom_index_together_s1300_contribsind
+            #index_together_s1300_contribsind
+        )
         permissions = (
             ("can_view_s1300_contribsind", "Can view s1300_contribsind"),
             #custom_permissions_s1300_contribsind

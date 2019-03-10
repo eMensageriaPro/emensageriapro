@@ -171,6 +171,14 @@ class r1000alteracao(SoftDeletionModel):
     class Meta:
         db_table = r'r1000_alteracao'       
         managed = True # r1000_alteracao #
+        unique_together = (
+            #custom_unique_together_r1000_alteracao#
+            
+        )
+        index_together = (
+            #custom_index_together_r1000_alteracao
+            #index_together_r1000_alteracao
+        )
         permissions = (
             ("can_view_r1000_alteracao", "Can view r1000_alteracao"),
             #custom_permissions_r1000_alteracao
@@ -212,6 +220,14 @@ class r1000alteracaoinfoEFR(SoftDeletionModel):
     class Meta:
         db_table = r'r1000_alteracao_infoefr'       
         managed = True # r1000_alteracao_infoefr #
+        unique_together = (
+            #custom_unique_together_r1000_alteracao_infoefr#
+            
+        )
+        index_together = (
+            #custom_index_together_r1000_alteracao_infoefr
+            #index_together_r1000_alteracao_infoefr
+        )
         permissions = (
             ("can_view_r1000_alteracao_infoefr", "Can view r1000_alteracao_infoefr"),
             #custom_permissions_r1000_alteracao_infoefr
@@ -253,6 +269,14 @@ class r1000alteracaonovaValidade(SoftDeletionModel):
     class Meta:
         db_table = r'r1000_alteracao_novavalidade'       
         managed = True # r1000_alteracao_novavalidade #
+        unique_together = (
+            #custom_unique_together_r1000_alteracao_novavalidade#
+            
+        )
+        index_together = (
+            #custom_index_together_r1000_alteracao_novavalidade
+            #index_together_r1000_alteracao_novavalidade
+        )
         permissions = (
             ("can_view_r1000_alteracao_novavalidade", "Can view r1000_alteracao_novavalidade"),
             #custom_permissions_r1000_alteracao_novavalidade
@@ -297,6 +321,14 @@ class r1000alteracaosoftHouse(SoftDeletionModel):
     class Meta:
         db_table = r'r1000_alteracao_softhouse'       
         managed = True # r1000_alteracao_softhouse #
+        unique_together = (
+            #custom_unique_together_r1000_alteracao_softhouse#
+            
+        )
+        index_together = (
+            #custom_index_together_r1000_alteracao_softhouse
+            #index_together_r1000_alteracao_softhouse
+        )
         permissions = (
             ("can_view_r1000_alteracao_softhouse", "Can view r1000_alteracao_softhouse"),
             #custom_permissions_r1000_alteracao_softhouse
@@ -338,6 +370,14 @@ class r1000exclusao(SoftDeletionModel):
     class Meta:
         db_table = r'r1000_exclusao'       
         managed = True # r1000_exclusao #
+        unique_together = (
+            #custom_unique_together_r1000_exclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_r1000_exclusao
+            #index_together_r1000_exclusao
+        )
         permissions = (
             ("can_view_r1000_exclusao", "Can view r1000_exclusao"),
             #custom_permissions_r1000_exclusao
@@ -389,6 +429,14 @@ class r1000inclusao(SoftDeletionModel):
     class Meta:
         db_table = r'r1000_inclusao'       
         managed = True # r1000_inclusao #
+        unique_together = (
+            #custom_unique_together_r1000_inclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_r1000_inclusao
+            #index_together_r1000_inclusao
+        )
         permissions = (
             ("can_view_r1000_inclusao", "Can view r1000_inclusao"),
             #custom_permissions_r1000_inclusao
@@ -430,6 +478,14 @@ class r1000inclusaoinfoEFR(SoftDeletionModel):
     class Meta:
         db_table = r'r1000_inclusao_infoefr'       
         managed = True # r1000_inclusao_infoefr #
+        unique_together = (
+            #custom_unique_together_r1000_inclusao_infoefr#
+            
+        )
+        index_together = (
+            #custom_index_together_r1000_inclusao_infoefr
+            #index_together_r1000_inclusao_infoefr
+        )
         permissions = (
             ("can_view_r1000_inclusao_infoefr", "Can view r1000_inclusao_infoefr"),
             #custom_permissions_r1000_inclusao_infoefr
@@ -474,6 +530,14 @@ class r1000inclusaosoftHouse(SoftDeletionModel):
     class Meta:
         db_table = r'r1000_inclusao_softhouse'       
         managed = True # r1000_inclusao_softhouse #
+        unique_together = (
+            #custom_unique_together_r1000_inclusao_softhouse#
+            
+        )
+        index_together = (
+            #custom_index_together_r1000_inclusao_softhouse
+            #index_together_r1000_inclusao_softhouse
+        )
         permissions = (
             ("can_view_r1000_inclusao_softhouse", "Can view r1000_inclusao_softhouse"),
             #custom_permissions_r1000_inclusao_softhouse

@@ -81,6 +81,14 @@ class s5012infoCRContrib(SoftDeletionModel):
     class Meta:
         db_table = r's5012_infocrcontrib'       
         managed = True # s5012_infocrcontrib #
+        unique_together = (
+            #custom_unique_together_s5012_infocrcontrib#
+            
+        )
+        index_together = (
+            #custom_index_together_s5012_infocrcontrib
+            #index_together_s5012_infocrcontrib
+        )
         permissions = (
             ("can_view_s5012_infocrcontrib", "Can view s5012_infocrcontrib"),
             #custom_permissions_s5012_infocrcontrib

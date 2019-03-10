@@ -145,6 +145,14 @@ class r2070compJud(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_compjud'       
         managed = True # r2070_compjud #
+        unique_together = (
+            #custom_unique_together_r2070_compjud#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_compjud
+            #index_together_r2070_compjud
+        )
         permissions = (
             ("can_view_r2070_compjud", "Can view r2070_compjud"),
             #custom_permissions_r2070_compjud
@@ -185,6 +193,14 @@ class r2070depJudicial(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_depjudicial'       
         managed = True # r2070_depjudicial #
+        unique_together = (
+            #custom_unique_together_r2070_depjudicial#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_depjudicial
+            #index_together_r2070_depjudicial
+        )
         permissions = (
             ("can_view_r2070_depjudicial", "Can view r2070_depjudicial"),
             #custom_permissions_r2070_depjudicial
@@ -227,6 +243,14 @@ class r2070detCompet(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_detcompet'       
         managed = True # r2070_detcompet #
+        unique_together = (
+            #custom_unique_together_r2070_detcompet#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_detcompet
+            #index_together_r2070_detcompet
+        )
         permissions = (
             ("can_view_r2070_detcompet", "Can view r2070_detcompet"),
             #custom_permissions_r2070_detcompet
@@ -268,6 +292,14 @@ class r2070detDeducao(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_detdeducao'       
         managed = True # r2070_detdeducao #
+        unique_together = (
+            #custom_unique_together_r2070_detdeducao#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_detdeducao
+            #index_together_r2070_detdeducao
+        )
         permissions = (
             ("can_view_r2070_detdeducao", "Can view r2070_detdeducao"),
             #custom_permissions_r2070_detdeducao
@@ -309,6 +341,14 @@ class r2070ideEstab(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_ideestab'       
         managed = True # r2070_ideestab #
+        unique_together = (
+            #custom_unique_together_r2070_ideestab#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_ideestab
+            #index_together_r2070_ideestab
+        )
         permissions = (
             ("can_view_r2070_ideestab", "Can view r2070_ideestab"),
             #custom_permissions_r2070_ideestab
@@ -349,6 +389,14 @@ class r2070infoMolestia(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_infomolestia'       
         managed = True # r2070_infomolestia #
+        unique_together = (
+            #custom_unique_together_r2070_infomolestia#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_infomolestia
+            #index_together_r2070_infomolestia
+        )
         permissions = (
             ("can_view_r2070_infomolestia", "Can view r2070_infomolestia"),
             #custom_permissions_r2070_infomolestia
@@ -391,6 +439,14 @@ class r2070infoProcJud(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_infoprocjud'       
         managed = True # r2070_infoprocjud #
+        unique_together = (
+            #custom_unique_together_r2070_infoprocjud#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_infoprocjud
+            #index_together_r2070_infoprocjud
+        )
         permissions = (
             ("can_view_r2070_infoprocjud", "Can view r2070_infoprocjud"),
             #custom_permissions_r2070_infoprocjud
@@ -432,6 +488,14 @@ class r2070infoProcJuddespProcJud(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_infoprocjud_despprocjud'       
         managed = True # r2070_infoprocjud_despprocjud #
+        unique_together = (
+            #custom_unique_together_r2070_infoprocjud_despprocjud#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_infoprocjud_despprocjud
+            #index_together_r2070_infoprocjud_despprocjud
+        )
         permissions = (
             ("can_view_r2070_infoprocjud_despprocjud", "Can view r2070_infoprocjud_despprocjud"),
             #custom_permissions_r2070_infoprocjud_despprocjud
@@ -474,6 +538,14 @@ class r2070infoProcJudideAdvogado(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_infoprocjud_ideadvogado'       
         managed = True # r2070_infoprocjud_ideadvogado #
+        unique_together = (
+            #custom_unique_together_r2070_infoprocjud_ideadvogado#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_infoprocjud_ideadvogado
+            #index_together_r2070_infoprocjud_ideadvogado
+        )
         permissions = (
             ("can_view_r2070_infoprocjud_ideadvogado", "Can view r2070_infoprocjud_ideadvogado"),
             #custom_permissions_r2070_infoprocjud_ideadvogado
@@ -514,6 +586,14 @@ class r2070infoProcJudorigemRecursos(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_infoprocjud_origemrecursos'       
         managed = True # r2070_infoprocjud_origemrecursos #
+        unique_together = (
+            #custom_unique_together_r2070_infoprocjud_origemrecursos#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_infoprocjud_origemrecursos
+            #index_together_r2070_infoprocjud_origemrecursos
+        )
         permissions = (
             ("can_view_r2070_infoprocjud_origemrecursos", "Can view r2070_infoprocjud_origemrecursos"),
             #custom_permissions_r2070_infoprocjud_origemrecursos
@@ -558,6 +638,14 @@ class r2070infoRRA(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_inforra'       
         managed = True # r2070_inforra #
+        unique_together = (
+            #custom_unique_together_r2070_inforra#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_inforra
+            #index_together_r2070_inforra
+        )
         permissions = (
             ("can_view_r2070_inforra", "Can view r2070_inforra"),
             #custom_permissions_r2070_inforra
@@ -599,6 +687,14 @@ class r2070infoRRAdespProcJud(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_inforra_despprocjud'       
         managed = True # r2070_inforra_despprocjud #
+        unique_together = (
+            #custom_unique_together_r2070_inforra_despprocjud#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_inforra_despprocjud
+            #index_together_r2070_inforra_despprocjud
+        )
         permissions = (
             ("can_view_r2070_inforra_despprocjud", "Can view r2070_inforra_despprocjud"),
             #custom_permissions_r2070_inforra_despprocjud
@@ -641,6 +737,14 @@ class r2070infoRRAideAdvogado(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_inforra_ideadvogado'       
         managed = True # r2070_inforra_ideadvogado #
+        unique_together = (
+            #custom_unique_together_r2070_inforra_ideadvogado#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_inforra_ideadvogado
+            #index_together_r2070_inforra_ideadvogado
+        )
         permissions = (
             ("can_view_r2070_inforra_ideadvogado", "Can view r2070_inforra_ideadvogado"),
             #custom_permissions_r2070_inforra_ideadvogado
@@ -690,6 +794,14 @@ class r2070infoResidExt(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_inforesidext'       
         managed = True # r2070_inforesidext #
+        unique_together = (
+            #custom_unique_together_r2070_inforesidext#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_inforesidext
+            #index_together_r2070_inforesidext
+        )
         permissions = (
             ("can_view_r2070_inforesidext", "Can view r2070_inforesidext"),
             #custom_permissions_r2070_inforesidext
@@ -734,6 +846,14 @@ class r2070pgtoPF(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_pgtopf'       
         managed = True # r2070_pgtopf #
+        unique_together = (
+            #custom_unique_together_r2070_pgtopf#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_pgtopf
+            #index_together_r2070_pgtopf
+        )
         permissions = (
             ("can_view_r2070_pgtopf", "Can view r2070_pgtopf"),
             #custom_permissions_r2070_pgtopf
@@ -776,6 +896,14 @@ class r2070pgtoPJ(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_pgtopj'       
         managed = True # r2070_pgtopj #
+        unique_together = (
+            #custom_unique_together_r2070_pgtopj#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_pgtopj
+            #index_together_r2070_pgtopj
+        )
         permissions = (
             ("can_view_r2070_pgtopj", "Can view r2070_pgtopj"),
             #custom_permissions_r2070_pgtopj
@@ -817,6 +945,14 @@ class r2070pgtoPJdespProcJud(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_pgtopj_despprocjud'       
         managed = True # r2070_pgtopj_despprocjud #
+        unique_together = (
+            #custom_unique_together_r2070_pgtopj_despprocjud#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_pgtopj_despprocjud
+            #index_together_r2070_pgtopj_despprocjud
+        )
         permissions = (
             ("can_view_r2070_pgtopj_despprocjud", "Can view r2070_pgtopj_despprocjud"),
             #custom_permissions_r2070_pgtopj_despprocjud
@@ -859,6 +995,14 @@ class r2070pgtoPJideAdvogado(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_pgtopj_ideadvogado'       
         managed = True # r2070_pgtopj_ideadvogado #
+        unique_together = (
+            #custom_unique_together_r2070_pgtopj_ideadvogado#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_pgtopj_ideadvogado
+            #index_together_r2070_pgtopj_ideadvogado
+        )
         permissions = (
             ("can_view_r2070_pgtopj_ideadvogado", "Can view r2070_pgtopj_ideadvogado"),
             #custom_permissions_r2070_pgtopj_ideadvogado
@@ -901,6 +1045,14 @@ class r2070pgtoPJinfoProcJud(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_pgtopj_infoprocjud'       
         managed = True # r2070_pgtopj_infoprocjud #
+        unique_together = (
+            #custom_unique_together_r2070_pgtopj_infoprocjud#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_pgtopj_infoprocjud
+            #index_together_r2070_pgtopj_infoprocjud
+        )
         permissions = (
             ("can_view_r2070_pgtopj_infoprocjud", "Can view r2070_pgtopj_infoprocjud"),
             #custom_permissions_r2070_pgtopj_infoprocjud
@@ -941,6 +1093,14 @@ class r2070pgtoPJorigemRecursos(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_pgtopj_origemrecursos'       
         managed = True # r2070_pgtopj_origemrecursos #
+        unique_together = (
+            #custom_unique_together_r2070_pgtopj_origemrecursos#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_pgtopj_origemrecursos
+            #index_together_r2070_pgtopj_origemrecursos
+        )
         permissions = (
             ("can_view_r2070_pgtopj_origemrecursos", "Can view r2070_pgtopj_origemrecursos"),
             #custom_permissions_r2070_pgtopj_origemrecursos
@@ -985,6 +1145,14 @@ class r2070pgtoResidExt(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_pgtoresidext'       
         managed = True # r2070_pgtoresidext #
+        unique_together = (
+            #custom_unique_together_r2070_pgtoresidext#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_pgtoresidext
+            #index_together_r2070_pgtoresidext
+        )
         permissions = (
             ("can_view_r2070_pgtoresidext", "Can view r2070_pgtoresidext"),
             #custom_permissions_r2070_pgtoresidext
@@ -1027,6 +1195,14 @@ class r2070rendIsento(SoftDeletionModel):
     class Meta:
         db_table = r'r2070_rendisento'       
         managed = True # r2070_rendisento #
+        unique_together = (
+            #custom_unique_together_r2070_rendisento#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_rendisento
+            #index_together_r2070_rendisento
+        )
         permissions = (
             ("can_view_r2070_rendisento", "Can view r2070_rendisento"),
             #custom_permissions_r2070_rendisento

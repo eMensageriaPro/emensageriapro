@@ -459,11 +459,26 @@ class r1000evtInfoContri(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r1000_evtinfocontri_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r1000_evtinfocontri_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r1000_evtinfocontri'       
         managed = True # r1000_evtinfocontri #
+        unique_together = (
+            #custom_unique_together_r1000_evtinfocontri#
+            
+        )
+        index_together = (
+            #custom_index_together_r1000_evtinfocontri
+            #index_together_r1000_evtinfocontri
+        )
         permissions = (
             ("can_view_r1000_evtinfocontri", "Can view r1000_evtinfocontri"),
             #custom_permissions_r1000_evtinfocontri
@@ -519,11 +534,26 @@ class r1070evtTabProcesso(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r1070_evttabprocesso_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r1070_evttabprocesso_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r1070_evttabprocesso'       
         managed = True # r1070_evttabprocesso #
+        unique_together = (
+            #custom_unique_together_r1070_evttabprocesso#
+            
+        )
+        index_together = (
+            #custom_index_together_r1070_evttabprocesso
+            #index_together_r1070_evttabprocesso
+        )
         permissions = (
             ("can_view_r1070_evttabprocesso", "Can view r1070_evttabprocesso"),
             #custom_permissions_r1070_evttabprocesso
@@ -592,11 +622,26 @@ class r2010evtServTom(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.indobra) + ' - ' + unicode(self.cnpjprestador) + ' - ' + unicode(self.vlrtotalbruto) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc) + ' - ' + unicode(self.indcprb)
     #r2010_evtservtom_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r2010_evtservtom_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r2010_evtservtom'       
         managed = True # r2010_evtservtom #
+        unique_together = (
+            #custom_unique_together_r2010_evtservtom#
+            
+        )
+        index_together = (
+            #custom_index_together_r2010_evtservtom
+            #index_together_r2010_evtservtom
+        )
         permissions = (
             ("can_view_r2010_evtservtom", "Can view r2010_evtservtom"),
             #custom_permissions_r2010_evtservtom
@@ -665,11 +710,26 @@ class r2020evtServPrest(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestabprest) + ' - ' + unicode(self.nrinscestabprest) + ' - ' + unicode(self.tpinsctomador) + ' - ' + unicode(self.nrinsctomador) + ' - ' + unicode(self.indobra) + ' - ' + unicode(self.vlrtotalbruto) + ' - ' + unicode(self.vlrtotalbaseret) + ' - ' + unicode(self.vlrtotalretprinc)
     #r2020_evtservprest_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r2020_evtservprest_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r2020_evtservprest'       
         managed = True # r2020_evtservprest #
+        unique_together = (
+            #custom_unique_together_r2020_evtservprest#
+            
+        )
+        index_together = (
+            #custom_index_together_r2020_evtservprest
+            #index_together_r2020_evtservprest
+        )
         permissions = (
             ("can_view_r2020_evtservprest", "Can view r2020_evtservprest"),
             #custom_permissions_r2020_evtservprest
@@ -729,11 +789,26 @@ class r2030evtAssocDespRec(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab)
     #r2030_evtassocdesprec_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r2030_evtassocdesprec_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r2030_evtassocdesprec'       
         managed = True # r2030_evtassocdesprec #
+        unique_together = (
+            #custom_unique_together_r2030_evtassocdesprec#
+            
+        )
+        index_together = (
+            #custom_index_together_r2030_evtassocdesprec
+            #index_together_r2030_evtassocdesprec
+        )
         permissions = (
             ("can_view_r2030_evtassocdesprec", "Can view r2030_evtassocdesprec"),
             #custom_permissions_r2030_evtassocdesprec
@@ -793,11 +868,26 @@ class r2040evtAssocDespRep(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab)
     #r2040_evtassocdesprep_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r2040_evtassocdesprep_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r2040_evtassocdesprep'       
         managed = True # r2040_evtassocdesprep #
+        unique_together = (
+            #custom_unique_together_r2040_evtassocdesprep#
+            
+        )
+        index_together = (
+            #custom_index_together_r2040_evtassocdesprep
+            #index_together_r2040_evtassocdesprep
+        )
         permissions = (
             ("can_view_r2040_evtassocdesprep", "Can view r2040_evtassocdesprep"),
             #custom_permissions_r2040_evtassocdesprep
@@ -864,11 +954,26 @@ class r2050evtComProd(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrrecbrutatotal) + ' - ' + unicode(self.vlrcpapur) + ' - ' + unicode(self.vlrratapur) + ' - ' + unicode(self.vlrsenarapur)
     #r2050_evtcomprod_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r2050_evtcomprod_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r2050_evtcomprod'       
         managed = True # r2050_evtcomprod #
+        unique_together = (
+            #custom_unique_together_r2050_evtcomprod#
+            
+        )
+        index_together = (
+            #custom_index_together_r2050_evtcomprod
+            #index_together_r2050_evtcomprod
+        )
         permissions = (
             ("can_view_r2050_evtcomprod", "Can view r2050_evtcomprod"),
             #custom_permissions_r2050_evtcomprod
@@ -931,11 +1036,26 @@ class r2060evtCPRB(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrrecbrutatotal) + ' - ' + unicode(self.vlrcpapurtotal)
     #r2060_evtcprb_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r2060_evtcprb_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r2060_evtcprb'       
         managed = True # r2060_evtcprb #
+        unique_together = (
+            #custom_unique_together_r2060_evtcprb#
+            
+        )
+        index_together = (
+            #custom_index_together_r2060_evtcprb
+            #index_together_r2060_evtcprb
+        )
         permissions = (
             ("can_view_r2060_evtcprb", "Can view r2060_evtcprb"),
             #custom_permissions_r2060_evtcprb
@@ -997,11 +1117,26 @@ class r2070evtPgtosDivs(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codpgto) + ' - ' + unicode(self.nmrazaobenef)
     #r2070_evtpgtosdivs_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r2070_evtpgtosdivs_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r2070_evtpgtosdivs'       
         managed = True # r2070_evtpgtosdivs #
+        unique_together = (
+            #custom_unique_together_r2070_evtpgtosdivs#
+            
+        )
+        index_together = (
+            #custom_index_together_r2070_evtpgtosdivs
+            #index_together_r2070_evtpgtosdivs
+        )
         permissions = (
             ("can_view_r2070_evtpgtosdivs", "Can view r2070_evtpgtosdivs"),
             #custom_permissions_r2070_evtpgtosdivs
@@ -1057,11 +1192,26 @@ class r2098evtReabreEvPer(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #r2098_evtreabreevper_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r2098_evtreabreevper_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r2098_evtreabreevper'       
         managed = True # r2098_evtreabreevper #
+        unique_together = (
+            #custom_unique_together_r2098_evtreabreevper#
+            
+        )
+        index_together = (
+            #custom_index_together_r2098_evtreabreevper
+            #index_together_r2098_evtreabreevper
+        )
         permissions = (
             ("can_view_r2098_evtreabreevper", "Can view r2098_evtreabreevper"),
             #custom_permissions_r2098_evtreabreevper
@@ -1125,11 +1275,26 @@ class r2099evtFechaEvPer(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.evtservtm) + ' - ' + unicode(self.evtservpr) + ' - ' + unicode(self.evtassdesprec) + ' - ' + unicode(self.evtassdesprep) + ' - ' + unicode(self.evtcomprod) + ' - ' + unicode(self.evtcprb)
     #r2099_evtfechaevper_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r2099_evtfechaevper_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r2099_evtfechaevper'       
         managed = True # r2099_evtfechaevper #
+        unique_together = (
+            #custom_unique_together_r2099_evtfechaevper#
+            
+        )
+        index_together = (
+            #custom_index_together_r2099_evtfechaevper
+            #index_together_r2099_evtfechaevper
+        )
         permissions = (
             ("can_view_r2099_evtfechaevper", "Can view r2099_evtfechaevper"),
             #custom_permissions_r2099_evtfechaevper
@@ -1194,11 +1359,26 @@ class r3010evtEspDesportivo(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.dtapuracao) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscestab) + ' - ' + unicode(self.nrinscestab) + ' - ' + unicode(self.vlrreceitatotal) + ' - ' + unicode(self.vlrcp) + ' - ' + unicode(self.vlrreceitaclubes) + ' - ' + unicode(self.vlrretparc)
     #r3010_evtespdesportivo_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r3010_evtespdesportivo_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r3010_evtespdesportivo'       
         managed = True # r3010_evtespdesportivo #
+        unique_together = (
+            #custom_unique_together_r3010_evtespdesportivo#
+            
+        )
+        index_together = (
+            #custom_index_together_r3010_evtespdesportivo
+            #index_together_r3010_evtespdesportivo
+        )
         permissions = (
             ("can_view_r3010_evtespdesportivo", "Can view r3010_evtespdesportivo"),
             #custom_permissions_r3010_evtespdesportivo
@@ -1255,11 +1435,26 @@ class r5001evtTotal(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cdretorno) + ' - ' + unicode(self.descretorno) + ' - ' + unicode(self.dhprocess) + ' - ' + unicode(self.tpev) + ' - ' + unicode(self.idev) + ' - ' + unicode(self.hash)
     #r5001_evttotal_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r5001_evttotal_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r5001_evttotal'       
         managed = True # r5001_evttotal #
+        unique_together = (
+            #custom_unique_together_r5001_evttotal#
+            
+        )
+        index_together = (
+            #custom_index_together_r5001_evttotal
+            #index_together_r5001_evttotal
+        )
         permissions = (
             ("can_view_r5001_evttotal", "Can view r5001_evttotal"),
             #custom_permissions_r5001_evttotal
@@ -1316,11 +1511,26 @@ class r5011evtTotalContrib(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cdretorno) + ' - ' + unicode(self.descretorno) + ' - ' + unicode(self.nrprotentr) + ' - ' + unicode(self.dhprocess) + ' - ' + unicode(self.tpev) + ' - ' + unicode(self.idev) + ' - ' + unicode(self.hash)
     #r5011_evttotalcontrib_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r5011_evttotalcontrib_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r5011_evttotalcontrib'       
         managed = True # r5011_evttotalcontrib #
+        unique_together = (
+            #custom_unique_together_r5011_evttotalcontrib#
+            
+        )
+        index_together = (
+            #custom_index_together_r5011_evttotalcontrib
+            #index_together_r5011_evttotalcontrib
+        )
         permissions = (
             ("can_view_r5011_evttotalcontrib", "Can view r5011_evttotalcontrib"),
             #custom_permissions_r5011_evttotalcontrib
@@ -1378,11 +1588,26 @@ class r9000evtExclusao(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpevento) + ' - ' + unicode(self.nrrecevt) + ' - ' + unicode(self.perapur)
     #r9000_evtexclusao_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.efdreinf.views.r9000_evtexclusao_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r'r9000_evtexclusao'       
         managed = True # r9000_evtexclusao #
+        unique_together = (
+            #custom_unique_together_r9000_evtexclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_r9000_evtexclusao
+            #index_together_r9000_evtexclusao
+        )
         permissions = (
             ("can_view_r9000_evtexclusao", "Can view r9000_evtexclusao"),
             #custom_permissions_r9000_evtexclusao

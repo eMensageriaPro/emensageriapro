@@ -68,6 +68,14 @@ class r2099ideRespInf(SoftDeletionModel):
     class Meta:
         db_table = r'r2099_iderespinf'       
         managed = True # r2099_iderespinf #
+        unique_together = (
+            #custom_unique_together_r2099_iderespinf#
+            
+        )
+        index_together = (
+            #custom_index_together_r2099_iderespinf
+            #index_together_r2099_iderespinf
+        )
         permissions = (
             ("can_view_r2099_iderespinf", "Can view r2099_iderespinf"),
             #custom_permissions_r2099_iderespinf

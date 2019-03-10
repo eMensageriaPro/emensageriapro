@@ -83,6 +83,14 @@ class r5001RCPRB(SoftDeletionModel):
     class Meta:
         db_table = r'r5001_rcprb'       
         managed = True # r5001_rcprb #
+        unique_together = (
+            #custom_unique_together_r5001_rcprb#
+            
+        )
+        index_together = (
+            #custom_index_together_r5001_rcprb
+            #index_together_r5001_rcprb
+        )
         permissions = (
             ("can_view_r5001_rcprb", "Can view r5001_rcprb"),
             #custom_permissions_r5001_rcprb
@@ -125,6 +133,14 @@ class r5001RComl(SoftDeletionModel):
     class Meta:
         db_table = r'r5001_rcoml'       
         managed = True # r5001_rcoml #
+        unique_together = (
+            #custom_unique_together_r5001_rcoml#
+            
+        )
+        index_together = (
+            #custom_index_together_r5001_rcoml
+            #index_together_r5001_rcoml
+        )
         permissions = (
             ("can_view_r5001_rcoml", "Can view r5001_rcoml"),
             #custom_permissions_r5001_rcoml
@@ -171,6 +187,14 @@ class r5001RPrest(SoftDeletionModel):
     class Meta:
         db_table = r'r5001_rprest'       
         managed = True # r5001_rprest #
+        unique_together = (
+            #custom_unique_together_r5001_rprest#
+            
+        )
+        index_together = (
+            #custom_index_together_r5001_rprest
+            #index_together_r5001_rprest
+        )
         permissions = (
             ("can_view_r5001_rprest", "Can view r5001_rprest"),
             #custom_permissions_r5001_rprest
@@ -214,6 +238,14 @@ class r5001RRecEspetDesp(SoftDeletionModel):
     class Meta:
         db_table = r'r5001_rrecespetdesp'       
         managed = True # r5001_rrecespetdesp #
+        unique_together = (
+            #custom_unique_together_r5001_rrecespetdesp#
+            
+        )
+        index_together = (
+            #custom_index_together_r5001_rrecespetdesp
+            #index_together_r5001_rrecespetdesp
+        )
         permissions = (
             ("can_view_r5001_rrecespetdesp", "Can view r5001_rrecespetdesp"),
             #custom_permissions_r5001_rrecespetdesp
@@ -258,6 +290,14 @@ class r5001RRecRepAD(SoftDeletionModel):
     class Meta:
         db_table = r'r5001_rrecrepad'       
         managed = True # r5001_rrecrepad #
+        unique_together = (
+            #custom_unique_together_r5001_rrecrepad#
+            
+        )
+        index_together = (
+            #custom_index_together_r5001_rrecrepad
+            #index_together_r5001_rrecrepad
+        )
         permissions = (
             ("can_view_r5001_rrecrepad", "Can view r5001_rrecrepad"),
             #custom_permissions_r5001_rrecrepad
@@ -300,6 +340,14 @@ class r5001RTom(SoftDeletionModel):
     class Meta:
         db_table = r'r5001_rtom'       
         managed = True # r5001_rtom #
+        unique_together = (
+            #custom_unique_together_r5001_rtom#
+            
+        )
+        index_together = (
+            #custom_index_together_r5001_rtom
+            #index_together_r5001_rtom
+        )
         permissions = (
             ("can_view_r5001_rtom", "Can view r5001_rtom"),
             #custom_permissions_r5001_rtom
@@ -342,6 +390,14 @@ class r5001infoCRTom(SoftDeletionModel):
     class Meta:
         db_table = r'r5001_infocrtom'       
         managed = True # r5001_infocrtom #
+        unique_together = (
+            #custom_unique_together_r5001_infocrtom#
+            
+        )
+        index_together = (
+            #custom_index_together_r5001_infocrtom
+            #index_together_r5001_infocrtom
+        )
         permissions = (
             ("can_view_r5001_infocrtom", "Can view r5001_infocrtom"),
             #custom_permissions_r5001_infocrtom
@@ -384,6 +440,14 @@ class r5001infoTotal(SoftDeletionModel):
     class Meta:
         db_table = r'r5001_infototal'       
         managed = True # r5001_infototal #
+        unique_together = (
+            #custom_unique_together_r5001_infototal#
+            
+        )
+        index_together = (
+            #custom_index_together_r5001_infototal
+            #index_together_r5001_infototal
+        )
         permissions = (
             ("can_view_r5001_infototal", "Can view r5001_infototal"),
             #custom_permissions_r5001_infototal
@@ -427,6 +491,14 @@ class r5001regOcorrs(SoftDeletionModel):
     class Meta:
         db_table = r'r5001_regocorrs'       
         managed = True # r5001_regocorrs #
+        unique_together = (
+            #custom_unique_together_r5001_regocorrs#
+            
+        )
+        index_together = (
+            #custom_index_together_r5001_regocorrs
+            #index_together_r5001_regocorrs
+        )
         permissions = (
             ("can_view_r5001_regocorrs", "Can view r5001_regocorrs"),
             #custom_permissions_r5001_regocorrs

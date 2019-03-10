@@ -130,6 +130,14 @@ class s1050alteracao(SoftDeletionModel):
     class Meta:
         db_table = r's1050_alteracao'       
         managed = True # s1050_alteracao #
+        unique_together = (
+            #custom_unique_together_s1050_alteracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1050_alteracao
+            #index_together_s1050_alteracao
+        )
         permissions = (
             ("can_view_s1050_alteracao", "Can view s1050_alteracao"),
             #custom_permissions_s1050_alteracao
@@ -173,6 +181,14 @@ class s1050alteracaohorarioIntervalo(SoftDeletionModel):
     class Meta:
         db_table = r's1050_alteracao_horariointervalo'       
         managed = True # s1050_alteracao_horariointervalo #
+        unique_together = (
+            #custom_unique_together_s1050_alteracao_horariointervalo#
+            
+        )
+        index_together = (
+            #custom_index_together_s1050_alteracao_horariointervalo
+            #index_together_s1050_alteracao_horariointervalo
+        )
         permissions = (
             ("can_view_s1050_alteracao_horariointervalo", "Can view s1050_alteracao_horariointervalo"),
             #custom_permissions_s1050_alteracao_horariointervalo
@@ -214,6 +230,14 @@ class s1050alteracaonovaValidade(SoftDeletionModel):
     class Meta:
         db_table = r's1050_alteracao_novavalidade'       
         managed = True # s1050_alteracao_novavalidade #
+        unique_together = (
+            #custom_unique_together_s1050_alteracao_novavalidade#
+            
+        )
+        index_together = (
+            #custom_index_together_s1050_alteracao_novavalidade
+            #index_together_s1050_alteracao_novavalidade
+        )
         permissions = (
             ("can_view_s1050_alteracao_novavalidade", "Can view s1050_alteracao_novavalidade"),
             #custom_permissions_s1050_alteracao_novavalidade
@@ -256,6 +280,14 @@ class s1050exclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1050_exclusao'       
         managed = True # s1050_exclusao #
+        unique_together = (
+            #custom_unique_together_s1050_exclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1050_exclusao
+            #index_together_s1050_exclusao
+        )
         permissions = (
             ("can_view_s1050_exclusao", "Can view s1050_exclusao"),
             #custom_permissions_s1050_exclusao
@@ -302,6 +334,14 @@ class s1050inclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1050_inclusao'       
         managed = True # s1050_inclusao #
+        unique_together = (
+            #custom_unique_together_s1050_inclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1050_inclusao
+            #index_together_s1050_inclusao
+        )
         permissions = (
             ("can_view_s1050_inclusao", "Can view s1050_inclusao"),
             #custom_permissions_s1050_inclusao
@@ -345,6 +385,14 @@ class s1050inclusaohorarioIntervalo(SoftDeletionModel):
     class Meta:
         db_table = r's1050_inclusao_horariointervalo'       
         managed = True # s1050_inclusao_horariointervalo #
+        unique_together = (
+            #custom_unique_together_s1050_inclusao_horariointervalo#
+            
+        )
+        index_together = (
+            #custom_index_together_s1050_inclusao_horariointervalo
+            #index_together_s1050_inclusao_horariointervalo
+        )
         permissions = (
             ("can_view_s1050_inclusao_horariointervalo", "Can view s1050_inclusao_horariointervalo"),
             #custom_permissions_s1050_inclusao_horariointervalo

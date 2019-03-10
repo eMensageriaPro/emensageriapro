@@ -358,6 +358,14 @@ class s2200CNH(SoftDeletionModel):
     class Meta:
         db_table = r's2200_cnh'       
         managed = True # s2200_cnh #
+        unique_together = (
+            #custom_unique_together_s2200_cnh#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_cnh
+            #index_together_s2200_cnh
+        )
         permissions = (
             ("can_view_s2200_cnh", "Can view s2200_cnh"),
             #custom_permissions_s2200_cnh
@@ -400,6 +408,14 @@ class s2200CTPS(SoftDeletionModel):
     class Meta:
         db_table = r's2200_ctps'       
         managed = True # s2200_ctps #
+        unique_together = (
+            #custom_unique_together_s2200_ctps#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_ctps
+            #index_together_s2200_ctps
+        )
         permissions = (
             ("can_view_s2200_ctps", "Can view s2200_ctps"),
             #custom_permissions_s2200_ctps
@@ -443,6 +459,14 @@ class s2200OC(SoftDeletionModel):
     class Meta:
         db_table = r's2200_oc'       
         managed = True # s2200_oc #
+        unique_together = (
+            #custom_unique_together_s2200_oc#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_oc
+            #index_together_s2200_oc
+        )
         permissions = (
             ("can_view_s2200_oc", "Can view s2200_oc"),
             #custom_permissions_s2200_oc
@@ -485,6 +509,14 @@ class s2200RG(SoftDeletionModel):
     class Meta:
         db_table = r's2200_rg'       
         managed = True # s2200_rg #
+        unique_together = (
+            #custom_unique_together_s2200_rg#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_rg
+            #index_together_s2200_rg
+        )
         permissions = (
             ("can_view_s2200_rg", "Can view s2200_rg"),
             #custom_permissions_s2200_rg
@@ -527,6 +559,14 @@ class s2200RIC(SoftDeletionModel):
     class Meta:
         db_table = r's2200_ric'       
         managed = True # s2200_ric #
+        unique_together = (
+            #custom_unique_together_s2200_ric#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_ric
+            #index_together_s2200_ric
+        )
         permissions = (
             ("can_view_s2200_ric", "Can view s2200_ric"),
             #custom_permissions_s2200_ric
@@ -569,6 +609,14 @@ class s2200RNE(SoftDeletionModel):
     class Meta:
         db_table = r's2200_rne'       
         managed = True # s2200_rne #
+        unique_together = (
+            #custom_unique_together_s2200_rne#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_rne
+            #index_together_s2200_rne
+        )
         permissions = (
             ("can_view_s2200_rne", "Can view s2200_rne"),
             #custom_permissions_s2200_rne
@@ -610,6 +658,14 @@ class s2200afastamento(SoftDeletionModel):
     class Meta:
         db_table = r's2200_afastamento'       
         managed = True # s2200_afastamento #
+        unique_together = (
+            #custom_unique_together_s2200_afastamento#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_afastamento
+            #index_together_s2200_afastamento
+        )
         permissions = (
             ("can_view_s2200_afastamento", "Can view s2200_afastamento"),
             #custom_permissions_s2200_afastamento
@@ -650,6 +706,14 @@ class s2200alvaraJudicial(SoftDeletionModel):
     class Meta:
         db_table = r's2200_alvarajudicial'       
         managed = True # s2200_alvarajudicial #
+        unique_together = (
+            #custom_unique_together_s2200_alvarajudicial#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_alvarajudicial
+            #index_together_s2200_alvarajudicial
+        )
         permissions = (
             ("can_view_s2200_alvarajudicial", "Can view s2200_alvarajudicial"),
             #custom_permissions_s2200_alvarajudicial
@@ -690,6 +754,14 @@ class s2200aposentadoria(SoftDeletionModel):
     class Meta:
         db_table = r's2200_aposentadoria'       
         managed = True # s2200_aposentadoria #
+        unique_together = (
+            #custom_unique_together_s2200_aposentadoria#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_aposentadoria
+            #index_together_s2200_aposentadoria
+        )
         permissions = (
             ("can_view_s2200_aposentadoria", "Can view s2200_aposentadoria"),
             #custom_permissions_s2200_aposentadoria
@@ -731,6 +803,14 @@ class s2200aprend(SoftDeletionModel):
     class Meta:
         db_table = r's2200_aprend'       
         managed = True # s2200_aprend #
+        unique_together = (
+            #custom_unique_together_s2200_aprend#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_aprend
+            #index_together_s2200_aprend
+        )
         permissions = (
             ("can_view_s2200_aprend", "Can view s2200_aprend"),
             #custom_permissions_s2200_aprend
@@ -778,6 +858,14 @@ class s2200brasil(SoftDeletionModel):
     class Meta:
         db_table = r's2200_brasil'       
         managed = True # s2200_brasil #
+        unique_together = (
+            #custom_unique_together_s2200_brasil#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_brasil
+            #index_together_s2200_brasil
+        )
         permissions = (
             ("can_view_s2200_brasil", "Can view s2200_brasil"),
             #custom_permissions_s2200_brasil
@@ -818,6 +906,14 @@ class s2200cessao(SoftDeletionModel):
     class Meta:
         db_table = r's2200_cessao'       
         managed = True # s2200_cessao #
+        unique_together = (
+            #custom_unique_together_s2200_cessao#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_cessao
+            #index_together_s2200_cessao
+        )
         permissions = (
             ("can_view_s2200_cessao", "Can view s2200_cessao"),
             #custom_permissions_s2200_cessao
@@ -861,6 +957,14 @@ class s2200contato(SoftDeletionModel):
     class Meta:
         db_table = r's2200_contato'       
         managed = True # s2200_contato #
+        unique_together = (
+            #custom_unique_together_s2200_contato#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_contato
+            #index_together_s2200_contato
+        )
         permissions = (
             ("can_view_s2200_contato", "Can view s2200_contato"),
             #custom_permissions_s2200_contato
@@ -909,6 +1013,14 @@ class s2200dependente(SoftDeletionModel):
     class Meta:
         db_table = r's2200_dependente'       
         managed = True # s2200_dependente #
+        unique_together = (
+            #custom_unique_together_s2200_dependente#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_dependente
+            #index_together_s2200_dependente
+        )
         permissions = (
             ("can_view_s2200_dependente", "Can view s2200_dependente"),
             #custom_permissions_s2200_dependente
@@ -949,6 +1061,14 @@ class s2200desligamento(SoftDeletionModel):
     class Meta:
         db_table = r's2200_desligamento'       
         managed = True # s2200_desligamento #
+        unique_together = (
+            #custom_unique_together_s2200_desligamento#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_desligamento
+            #index_together_s2200_desligamento
+        )
         permissions = (
             ("can_view_s2200_desligamento", "Can view s2200_desligamento"),
             #custom_permissions_s2200_desligamento
@@ -995,6 +1115,14 @@ class s2200exterior(SoftDeletionModel):
     class Meta:
         db_table = r's2200_exterior'       
         managed = True # s2200_exterior #
+        unique_together = (
+            #custom_unique_together_s2200_exterior#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_exterior
+            #index_together_s2200_exterior
+        )
         permissions = (
             ("can_view_s2200_exterior", "Can view s2200_exterior"),
             #custom_permissions_s2200_exterior
@@ -1035,6 +1163,14 @@ class s2200filiacaoSindical(SoftDeletionModel):
     class Meta:
         db_table = r's2200_filiacaosindical'       
         managed = True # s2200_filiacaosindical #
+        unique_together = (
+            #custom_unique_together_s2200_filiacaosindical#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_filiacaosindical
+            #index_together_s2200_filiacaosindical
+        )
         permissions = (
             ("can_view_s2200_filiacaosindical", "Can view s2200_filiacaosindical"),
             #custom_permissions_s2200_filiacaosindical
@@ -1078,6 +1214,14 @@ class s2200horContratual(SoftDeletionModel):
     class Meta:
         db_table = r's2200_horcontratual'       
         managed = True # s2200_horcontratual #
+        unique_together = (
+            #custom_unique_together_s2200_horcontratual#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_horcontratual
+            #index_together_s2200_horcontratual
+        )
         permissions = (
             ("can_view_s2200_horcontratual", "Can view s2200_horcontratual"),
             #custom_permissions_s2200_horcontratual
@@ -1119,6 +1263,14 @@ class s2200horario(SoftDeletionModel):
     class Meta:
         db_table = r's2200_horario'       
         managed = True # s2200_horario #
+        unique_together = (
+            #custom_unique_together_s2200_horario#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_horario
+            #index_together_s2200_horario
+        )
         permissions = (
             ("can_view_s2200_horario", "Can view s2200_horario"),
             #custom_permissions_s2200_horario
@@ -1160,6 +1312,14 @@ class s2200ideEstabVinc(SoftDeletionModel):
     class Meta:
         db_table = r's2200_ideestabvinc'       
         managed = True # s2200_ideestabvinc #
+        unique_together = (
+            #custom_unique_together_s2200_ideestabvinc#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_ideestabvinc
+            #index_together_s2200_ideestabvinc
+        )
         permissions = (
             ("can_view_s2200_ideestabvinc", "Can view s2200_ideestabvinc"),
             #custom_permissions_s2200_ideestabvinc
@@ -1200,6 +1360,14 @@ class s2200ideTrabSubstituido(SoftDeletionModel):
     class Meta:
         db_table = r's2200_idetrabsubstituido'       
         managed = True # s2200_idetrabsubstituido #
+        unique_together = (
+            #custom_unique_together_s2200_idetrabsubstituido#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_idetrabsubstituido
+            #index_together_s2200_idetrabsubstituido
+        )
         permissions = (
             ("can_view_s2200_idetrabsubstituido", "Can view s2200_idetrabsubstituido"),
             #custom_permissions_s2200_idetrabsubstituido
@@ -1248,6 +1416,14 @@ class s2200infoCeletista(SoftDeletionModel):
     class Meta:
         db_table = r's2200_infoceletista'       
         managed = True # s2200_infoceletista #
+        unique_together = (
+            #custom_unique_together_s2200_infoceletista#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_infoceletista
+            #index_together_s2200_infoceletista
+        )
         permissions = (
             ("can_view_s2200_infoceletista", "Can view s2200_infoceletista"),
             #custom_permissions_s2200_infoceletista
@@ -1288,6 +1464,14 @@ class s2200infoDecJud(SoftDeletionModel):
     class Meta:
         db_table = r's2200_infodecjud'       
         managed = True # s2200_infodecjud #
+        unique_together = (
+            #custom_unique_together_s2200_infodecjud#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_infodecjud
+            #index_together_s2200_infodecjud
+        )
         permissions = (
             ("can_view_s2200_infodecjud", "Can view s2200_infodecjud"),
             #custom_permissions_s2200_infodecjud
@@ -1335,6 +1519,14 @@ class s2200infoDeficiencia(SoftDeletionModel):
     class Meta:
         db_table = r's2200_infodeficiencia'       
         managed = True # s2200_infodeficiencia #
+        unique_together = (
+            #custom_unique_together_s2200_infodeficiencia#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_infodeficiencia
+            #index_together_s2200_infodeficiencia
+        )
         permissions = (
             ("can_view_s2200_infodeficiencia", "Can view s2200_infodeficiencia"),
             #custom_permissions_s2200_infodeficiencia
@@ -1386,6 +1578,14 @@ class s2200infoEstatutario(SoftDeletionModel):
     class Meta:
         db_table = r's2200_infoestatutario'       
         managed = True # s2200_infoestatutario #
+        unique_together = (
+            #custom_unique_together_s2200_infoestatutario#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_infoestatutario
+            #index_together_s2200_infoestatutario
+        )
         permissions = (
             ("can_view_s2200_infoestatutario", "Can view s2200_infoestatutario"),
             #custom_permissions_s2200_infoestatutario
@@ -1433,6 +1633,14 @@ class s2200localTrabDom(SoftDeletionModel):
     class Meta:
         db_table = r's2200_localtrabdom'       
         managed = True # s2200_localtrabdom #
+        unique_together = (
+            #custom_unique_together_s2200_localtrabdom#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_localtrabdom
+            #index_together_s2200_localtrabdom
+        )
         permissions = (
             ("can_view_s2200_localtrabdom", "Can view s2200_localtrabdom"),
             #custom_permissions_s2200_localtrabdom
@@ -1475,6 +1683,14 @@ class s2200localTrabGeral(SoftDeletionModel):
     class Meta:
         db_table = r's2200_localtrabgeral'       
         managed = True # s2200_localtrabgeral #
+        unique_together = (
+            #custom_unique_together_s2200_localtrabgeral#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_localtrabgeral
+            #index_together_s2200_localtrabgeral
+        )
         permissions = (
             ("can_view_s2200_localtrabgeral", "Can view s2200_localtrabgeral"),
             #custom_permissions_s2200_localtrabgeral
@@ -1518,6 +1734,14 @@ class s2200mudancaCPF(SoftDeletionModel):
     class Meta:
         db_table = r's2200_mudancacpf'       
         managed = True # s2200_mudancacpf #
+        unique_together = (
+            #custom_unique_together_s2200_mudancacpf#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_mudancacpf
+            #index_together_s2200_mudancacpf
+        )
         permissions = (
             ("can_view_s2200_mudancacpf", "Can view s2200_mudancacpf"),
             #custom_permissions_s2200_mudancacpf
@@ -1558,6 +1782,14 @@ class s2200observacoes(SoftDeletionModel):
     class Meta:
         db_table = r's2200_observacoes'       
         managed = True # s2200_observacoes #
+        unique_together = (
+            #custom_unique_together_s2200_observacoes#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_observacoes
+            #index_together_s2200_observacoes
+        )
         permissions = (
             ("can_view_s2200_observacoes", "Can view s2200_observacoes"),
             #custom_permissions_s2200_observacoes
@@ -1602,6 +1834,14 @@ class s2200sucessaoVinc(SoftDeletionModel):
     class Meta:
         db_table = r's2200_sucessaovinc'       
         managed = True # s2200_sucessaovinc #
+        unique_together = (
+            #custom_unique_together_s2200_sucessaovinc#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_sucessaovinc
+            #index_together_s2200_sucessaovinc
+        )
         permissions = (
             ("can_view_s2200_sucessaovinc", "Can view s2200_sucessaovinc"),
             #custom_permissions_s2200_sucessaovinc
@@ -1645,6 +1885,14 @@ class s2200trabEstrangeiro(SoftDeletionModel):
     class Meta:
         db_table = r's2200_trabestrangeiro'       
         managed = True # s2200_trabestrangeiro #
+        unique_together = (
+            #custom_unique_together_s2200_trabestrangeiro#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_trabestrangeiro
+            #index_together_s2200_trabestrangeiro
+        )
         permissions = (
             ("can_view_s2200_trabestrangeiro", "Can view s2200_trabestrangeiro"),
             #custom_permissions_s2200_trabestrangeiro
@@ -1689,6 +1937,14 @@ class s2200trabTemporario(SoftDeletionModel):
     class Meta:
         db_table = r's2200_trabtemporario'       
         managed = True # s2200_trabtemporario #
+        unique_together = (
+            #custom_unique_together_s2200_trabtemporario#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_trabtemporario
+            #index_together_s2200_trabtemporario
+        )
         permissions = (
             ("can_view_s2200_trabtemporario", "Can view s2200_trabtemporario"),
             #custom_permissions_s2200_trabtemporario
@@ -1731,6 +1987,14 @@ class s2200transfDom(SoftDeletionModel):
     class Meta:
         db_table = r's2200_transfdom'       
         managed = True # s2200_transfdom #
+        unique_together = (
+            #custom_unique_together_s2200_transfdom#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_transfdom
+            #index_together_s2200_transfdom
+        )
         permissions = (
             ("can_view_s2200_transfdom", "Can view s2200_transfdom"),
             #custom_permissions_s2200_transfdom

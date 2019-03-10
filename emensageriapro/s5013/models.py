@@ -140,6 +140,14 @@ class s5013basePerAntE(SoftDeletionModel):
     class Meta:
         db_table = r's5013_baseperante'       
         managed = True # s5013_baseperante #
+        unique_together = (
+            #custom_unique_together_s5013_baseperante#
+            
+        )
+        index_together = (
+            #custom_index_together_s5013_baseperante
+            #index_together_s5013_baseperante
+        )
         permissions = (
             ("can_view_s5013_baseperante", "Can view s5013_baseperante"),
             #custom_permissions_s5013_baseperante
@@ -181,6 +189,14 @@ class s5013basePerApur(SoftDeletionModel):
     class Meta:
         db_table = r's5013_baseperapur'       
         managed = True # s5013_baseperapur #
+        unique_together = (
+            #custom_unique_together_s5013_baseperapur#
+            
+        )
+        index_together = (
+            #custom_index_together_s5013_baseperapur
+            #index_together_s5013_baseperapur
+        )
         permissions = (
             ("can_view_s5013_baseperapur", "Can view s5013_baseperapur"),
             #custom_permissions_s5013_baseperapur
@@ -222,6 +238,14 @@ class s5013dpsPerAntE(SoftDeletionModel):
     class Meta:
         db_table = r's5013_dpsperante'       
         managed = True # s5013_dpsperante #
+        unique_together = (
+            #custom_unique_together_s5013_dpsperante#
+            
+        )
+        index_together = (
+            #custom_index_together_s5013_dpsperante
+            #index_together_s5013_dpsperante
+        )
         permissions = (
             ("can_view_s5013_dpsperante", "Can view s5013_dpsperante"),
             #custom_permissions_s5013_dpsperante
@@ -263,6 +287,14 @@ class s5013dpsPerApur(SoftDeletionModel):
     class Meta:
         db_table = r's5013_dpsperapur'       
         managed = True # s5013_dpsperapur #
+        unique_together = (
+            #custom_unique_together_s5013_dpsperapur#
+            
+        )
+        index_together = (
+            #custom_index_together_s5013_dpsperapur
+            #index_together_s5013_dpsperapur
+        )
         permissions = (
             ("can_view_s5013_dpsperapur", "Can view s5013_dpsperapur"),
             #custom_permissions_s5013_dpsperapur
@@ -303,6 +335,14 @@ class s5013infoBasePerAntE(SoftDeletionModel):
     class Meta:
         db_table = r's5013_infobaseperante'       
         managed = True # s5013_infobaseperante #
+        unique_together = (
+            #custom_unique_together_s5013_infobaseperante#
+            
+        )
+        index_together = (
+            #custom_index_together_s5013_infobaseperante
+            #index_together_s5013_infobaseperante
+        )
         permissions = (
             ("can_view_s5013_infobaseperante", "Can view s5013_infobaseperante"),
             #custom_permissions_s5013_infobaseperante
@@ -343,6 +383,14 @@ class s5013infoDpsPerAntE(SoftDeletionModel):
     class Meta:
         db_table = r's5013_infodpsperante'       
         managed = True # s5013_infodpsperante #
+        unique_together = (
+            #custom_unique_together_s5013_infodpsperante#
+            
+        )
+        index_together = (
+            #custom_index_together_s5013_infodpsperante
+            #index_together_s5013_infodpsperante
+        )
         permissions = (
             ("can_view_s5013_infodpsperante", "Can view s5013_infodpsperante"),
             #custom_permissions_s5013_infodpsperante

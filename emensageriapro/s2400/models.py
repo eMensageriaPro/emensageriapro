@@ -122,6 +122,14 @@ class s2400brasil(SoftDeletionModel):
     class Meta:
         db_table = r's2400_brasil'       
         managed = True # s2400_brasil #
+        unique_together = (
+            #custom_unique_together_s2400_brasil#
+            
+        )
+        index_together = (
+            #custom_index_together_s2400_brasil
+            #index_together_s2400_brasil
+        )
         permissions = (
             ("can_view_s2400_brasil", "Can view s2400_brasil"),
             #custom_permissions_s2400_brasil
@@ -169,6 +177,14 @@ class s2400dependente(SoftDeletionModel):
     class Meta:
         db_table = r's2400_dependente'       
         managed = True # s2400_dependente #
+        unique_together = (
+            #custom_unique_together_s2400_dependente#
+            
+        )
+        index_together = (
+            #custom_index_together_s2400_dependente
+            #index_together_s2400_dependente
+        )
         permissions = (
             ("can_view_s2400_dependente", "Can view s2400_dependente"),
             #custom_permissions_s2400_dependente
@@ -215,6 +231,14 @@ class s2400exterior(SoftDeletionModel):
     class Meta:
         db_table = r's2400_exterior'       
         managed = True # s2400_exterior #
+        unique_together = (
+            #custom_unique_together_s2400_exterior#
+            
+        )
+        index_together = (
+            #custom_index_together_s2400_exterior
+            #index_together_s2400_exterior
+        )
         permissions = (
             ("can_view_s2400_exterior", "Can view s2400_exterior"),
             #custom_permissions_s2400_exterior

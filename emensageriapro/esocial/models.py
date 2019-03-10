@@ -2001,11 +2001,26 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1000_evtinfoempregador_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1000_evtinfoempregador_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1000_evtinfoempregador'       
         managed = True # s1000_evtinfoempregador #
+        unique_together = (
+            #custom_unique_together_s1000_evtinfoempregador#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_evtinfoempregador
+            #index_together_s1000_evtinfoempregador
+        )
         permissions = (
             ("can_view_s1000_evtinfoempregador", "Can view s1000_evtinfoempregador"),
             #custom_permissions_s1000_evtinfoempregador
@@ -2056,11 +2071,26 @@ class s1005evtTabEstab(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1005_evttabestab_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1005_evttabestab_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1005_evttabestab'       
         managed = True # s1005_evttabestab #
+        unique_together = (
+            #custom_unique_together_s1005_evttabestab#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_evttabestab
+            #index_together_s1005_evttabestab
+        )
         permissions = (
             ("can_view_s1005_evttabestab", "Can view s1005_evttabestab"),
             #custom_permissions_s1005_evttabestab
@@ -2111,11 +2141,26 @@ class s1010evtTabRubrica(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1010_evttabrubrica_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1010_evttabrubrica_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1010_evttabrubrica'       
         managed = True # s1010_evttabrubrica #
+        unique_together = (
+            #custom_unique_together_s1010_evttabrubrica#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_evttabrubrica
+            #index_together_s1010_evttabrubrica
+        )
         permissions = (
             ("can_view_s1010_evttabrubrica", "Can view s1010_evttabrubrica"),
             #custom_permissions_s1010_evttabrubrica
@@ -2166,11 +2211,26 @@ class s1020evtTabLotacao(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1020_evttablotacao_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1020_evttablotacao_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1020_evttablotacao'       
         managed = True # s1020_evttablotacao #
+        unique_together = (
+            #custom_unique_together_s1020_evttablotacao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1020_evttablotacao
+            #index_together_s1020_evttablotacao
+        )
         permissions = (
             ("can_view_s1020_evttablotacao", "Can view s1020_evttablotacao"),
             #custom_permissions_s1020_evttablotacao
@@ -2221,11 +2281,26 @@ class s1030evtTabCargo(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1030_evttabcargo_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1030_evttabcargo_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1030_evttabcargo'       
         managed = True # s1030_evttabcargo #
+        unique_together = (
+            #custom_unique_together_s1030_evttabcargo#
+            
+        )
+        index_together = (
+            #custom_index_together_s1030_evttabcargo
+            #index_together_s1030_evttabcargo
+        )
         permissions = (
             ("can_view_s1030_evttabcargo", "Can view s1030_evttabcargo"),
             #custom_permissions_s1030_evttabcargo
@@ -2276,11 +2351,26 @@ class s1035evtTabCarreira(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1035_evttabcarreira_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1035_evttabcarreira_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1035_evttabcarreira'       
         managed = True # s1035_evttabcarreira #
+        unique_together = (
+            #custom_unique_together_s1035_evttabcarreira#
+            
+        )
+        index_together = (
+            #custom_index_together_s1035_evttabcarreira
+            #index_together_s1035_evttabcarreira
+        )
         permissions = (
             ("can_view_s1035_evttabcarreira", "Can view s1035_evttabcarreira"),
             #custom_permissions_s1035_evttabcarreira
@@ -2331,11 +2421,26 @@ class s1040evtTabFuncao(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1040_evttabfuncao_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1040_evttabfuncao_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1040_evttabfuncao'       
         managed = True # s1040_evttabfuncao #
+        unique_together = (
+            #custom_unique_together_s1040_evttabfuncao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1040_evttabfuncao
+            #index_together_s1040_evttabfuncao
+        )
         permissions = (
             ("can_view_s1040_evttabfuncao", "Can view s1040_evttabfuncao"),
             #custom_permissions_s1040_evttabfuncao
@@ -2386,11 +2491,26 @@ class s1050evtTabHorTur(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1050_evttabhortur_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1050_evttabhortur_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1050_evttabhortur'       
         managed = True # s1050_evttabhortur #
+        unique_together = (
+            #custom_unique_together_s1050_evttabhortur#
+            
+        )
+        index_together = (
+            #custom_index_together_s1050_evttabhortur
+            #index_together_s1050_evttabhortur
+        )
         permissions = (
             ("can_view_s1050_evttabhortur", "Can view s1050_evttabhortur"),
             #custom_permissions_s1050_evttabhortur
@@ -2441,11 +2561,26 @@ class s1060evtTabAmbiente(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1060_evttabambiente_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1060_evttabambiente_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1060_evttabambiente'       
         managed = True # s1060_evttabambiente #
+        unique_together = (
+            #custom_unique_together_s1060_evttabambiente#
+            
+        )
+        index_together = (
+            #custom_index_together_s1060_evttabambiente
+            #index_together_s1060_evttabambiente
+        )
         permissions = (
             ("can_view_s1060_evttabambiente", "Can view s1060_evttabambiente"),
             #custom_permissions_s1060_evttabambiente
@@ -2496,11 +2631,26 @@ class s1070evtTabProcesso(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1070_evttabprocesso_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1070_evttabprocesso_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1070_evttabprocesso'       
         managed = True # s1070_evttabprocesso #
+        unique_together = (
+            #custom_unique_together_s1070_evttabprocesso#
+            
+        )
+        index_together = (
+            #custom_index_together_s1070_evttabprocesso
+            #index_together_s1070_evttabprocesso
+        )
         permissions = (
             ("can_view_s1070_evttabprocesso", "Can view s1070_evttabprocesso"),
             #custom_permissions_s1070_evttabprocesso
@@ -2551,11 +2701,26 @@ class s1080evtTabOperPort(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1080_evttaboperport_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1080_evttaboperport_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1080_evttaboperport'       
         managed = True # s1080_evttaboperport #
+        unique_together = (
+            #custom_unique_together_s1080_evttaboperport#
+            
+        )
+        index_together = (
+            #custom_index_together_s1080_evttaboperport
+            #index_together_s1080_evttaboperport
+        )
         permissions = (
             ("can_view_s1080_evttaboperport", "Can view s1080_evttaboperport"),
             #custom_permissions_s1080_evttaboperport
@@ -2611,11 +2776,26 @@ class s1200evtRemun(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s1200_evtremun_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1200_evtremun_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1200_evtremun'       
         managed = True # s1200_evtremun #
+        unique_together = (
+            #custom_unique_together_s1200_evtremun#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_evtremun
+            #index_together_s1200_evtremun
+        )
         permissions = (
             ("can_view_s1200_evtremun", "Can view s1200_evtremun"),
             #custom_permissions_s1200_evtremun
@@ -2672,11 +2852,26 @@ class s1202evtRmnRPPS(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s1202_evtrmnrpps_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1202_evtrmnrpps_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1202_evtrmnrpps'       
         managed = True # s1202_evtrmnrpps #
+        unique_together = (
+            #custom_unique_together_s1202_evtrmnrpps#
+            
+        )
+        index_together = (
+            #custom_index_together_s1202_evtrmnrpps
+            #index_together_s1202_evtrmnrpps
+        )
         permissions = (
             ("can_view_s1202_evtrmnrpps", "Can view s1202_evtrmnrpps"),
             #custom_permissions_s1202_evtrmnrpps
@@ -2731,11 +2926,26 @@ class s1207evtBenPrRP(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef)
     #s1207_evtbenprrp_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1207_evtbenprrp_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1207_evtbenprrp'       
         managed = True # s1207_evtbenprrp #
+        unique_together = (
+            #custom_unique_together_s1207_evtbenprrp#
+            
+        )
+        index_together = (
+            #custom_index_together_s1207_evtbenprrp
+            #index_together_s1207_evtbenprrp
+        )
         permissions = (
             ("can_view_s1207_evtbenprrp", "Can view s1207_evtbenprrp"),
             #custom_permissions_s1207_evtbenprrp
@@ -2790,11 +3000,26 @@ class s1210evtPgtos(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef)
     #s1210_evtpgtos_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1210_evtpgtos_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1210_evtpgtos'       
         managed = True # s1210_evtpgtos #
+        unique_together = (
+            #custom_unique_together_s1210_evtpgtos#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_evtpgtos
+            #index_together_s1210_evtpgtos
+        )
         permissions = (
             ("can_view_s1210_evtpgtos", "Can view s1210_evtpgtos"),
             #custom_permissions_s1210_evtpgtos
@@ -2850,11 +3075,26 @@ class s1250evtAqProd(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpinscadq) + ' - ' + unicode(self.nrinscadq)
     #s1250_evtaqprod_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1250_evtaqprod_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1250_evtaqprod'       
         managed = True # s1250_evtaqprod #
+        unique_together = (
+            #custom_unique_together_s1250_evtaqprod#
+            
+        )
+        index_together = (
+            #custom_index_together_s1250_evtaqprod
+            #index_together_s1250_evtaqprod
+        )
         permissions = (
             ("can_view_s1250_evtaqprod", "Can view s1250_evtaqprod"),
             #custom_permissions_s1250_evtaqprod
@@ -2909,11 +3149,26 @@ class s1260evtComProd(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrinscestabrural)
     #s1260_evtcomprod_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1260_evtcomprod_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1260_evtcomprod'       
         managed = True # s1260_evtcomprod #
+        unique_together = (
+            #custom_unique_together_s1260_evtcomprod#
+            
+        )
+        index_together = (
+            #custom_index_together_s1260_evtcomprod
+            #index_together_s1260_evtcomprod
+        )
         permissions = (
             ("can_view_s1260_evtcomprod", "Can view s1260_evtcomprod"),
             #custom_permissions_s1260_evtcomprod
@@ -2967,11 +3222,26 @@ class s1270evtContratAvNP(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1270_evtcontratavnp_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1270_evtcontratavnp_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1270_evtcontratavnp'       
         managed = True # s1270_evtcontratavnp #
+        unique_together = (
+            #custom_unique_together_s1270_evtcontratavnp#
+            
+        )
+        index_together = (
+            #custom_index_together_s1270_evtcontratavnp
+            #index_together_s1270_evtcontratavnp
+        )
         permissions = (
             ("can_view_s1270_evtcontratavnp", "Can view s1270_evtcontratavnp"),
             #custom_permissions_s1270_evtcontratavnp
@@ -3025,11 +3295,26 @@ class s1280evtInfoComplPer(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1280_evtinfocomplper_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1280_evtinfocomplper_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1280_evtinfocomplper'       
         managed = True # s1280_evtinfocomplper #
+        unique_together = (
+            #custom_unique_together_s1280_evtinfocomplper#
+            
+        )
+        index_together = (
+            #custom_index_together_s1280_evtinfocomplper
+            #index_together_s1280_evtinfocomplper
+        )
         permissions = (
             ("can_view_s1280_evtinfocomplper", "Can view s1280_evtinfocomplper"),
             #custom_permissions_s1280_evtinfocomplper
@@ -3081,11 +3366,26 @@ class s1295evtTotConting(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1295_evttotconting_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1295_evttotconting_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1295_evttotconting'       
         managed = True # s1295_evttotconting #
+        unique_together = (
+            #custom_unique_together_s1295_evttotconting#
+            
+        )
+        index_together = (
+            #custom_index_together_s1295_evttotconting
+            #index_together_s1295_evttotconting
+        )
         permissions = (
             ("can_view_s1295_evttotconting", "Can view s1295_evttotconting"),
             #custom_permissions_s1295_evttotconting
@@ -3137,11 +3437,26 @@ class s1298evtReabreEvPer(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1298_evtreabreevper_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1298_evtreabreevper_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1298_evtreabreevper'       
         managed = True # s1298_evtreabreevper #
+        unique_together = (
+            #custom_unique_together_s1298_evtreabreevper#
+            
+        )
+        index_together = (
+            #custom_index_together_s1298_evtreabreevper
+            #index_together_s1298_evtreabreevper
+        )
         permissions = (
             ("can_view_s1298_evtreabreevper", "Can view s1298_evtreabreevper"),
             #custom_permissions_s1298_evtreabreevper
@@ -3200,11 +3515,26 @@ class s1299evtFechaEvPer(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.evtremun) + ' - ' + unicode(self.evtpgtos) + ' - ' + unicode(self.evtaqprod) + ' - ' + unicode(self.evtcomprod) + ' - ' + unicode(self.evtcontratavnp) + ' - ' + unicode(self.evtinfocomplper)
     #s1299_evtfechaevper_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1299_evtfechaevper_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1299_evtfechaevper'       
         managed = True # s1299_evtfechaevper #
+        unique_together = (
+            #custom_unique_together_s1299_evtfechaevper#
+            
+        )
+        index_together = (
+            #custom_index_together_s1299_evtfechaevper
+            #index_together_s1299_evtfechaevper
+        )
         permissions = (
             ("can_view_s1299_evtfechaevper", "Can view s1299_evtfechaevper"),
             #custom_permissions_s1299_evtfechaevper
@@ -3258,11 +3588,26 @@ class s1300evtContrSindPatr(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc)
     #s1300_evtcontrsindpatr_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s1300_evtcontrsindpatr_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's1300_evtcontrsindpatr'       
         managed = True # s1300_evtcontrsindpatr #
+        unique_together = (
+            #custom_unique_together_s1300_evtcontrsindpatr#
+            
+        )
+        index_together = (
+            #custom_index_together_s1300_evtcontrsindpatr
+            #index_together_s1300_evtcontrsindpatr
+        )
         permissions = (
             ("can_view_s1300_evtcontrsindpatr", "Can view s1300_evtcontrsindpatr"),
             #custom_permissions_s1300_evtcontrsindpatr
@@ -3315,11 +3660,26 @@ class s2190evtAdmPrelim(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.dtadm)
     #s2190_evtadmprelim_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2190_evtadmprelim_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2190_evtadmprelim'       
         managed = True # s2190_evtadmprelim #
+        unique_together = (
+            #custom_unique_together_s2190_evtadmprelim#
+            
+        )
+        index_together = (
+            #custom_index_together_s2190_evtadmprelim
+            #index_together_s2190_evtadmprelim
+        )
         permissions = (
             ("can_view_s2190_evtadmprelim", "Can view s2190_evtadmprelim"),
             #custom_permissions_s2190_evtadmprelim
@@ -3405,11 +3765,26 @@ class s2200evtAdmissao(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.tpregtrab) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.tpcontr)
     #s2200_evtadmissao_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2200_evtadmissao_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2200_evtadmissao'       
         managed = True # s2200_evtadmissao #
+        unique_together = (
+            #custom_unique_together_s2200_evtadmissao#
+            
+        )
+        index_together = (
+            #custom_index_together_s2200_evtadmissao
+            #index_together_s2200_evtadmissao
+        )
         permissions = (
             ("can_view_s2200_evtadmissao", "Can view s2200_evtadmissao"),
             #custom_permissions_s2200_evtadmissao
@@ -3477,11 +3852,26 @@ class s2205evtAltCadastral(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac)
     #s2205_evtaltcadastral_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2205_evtaltcadastral_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2205_evtaltcadastral'       
         managed = True # s2205_evtaltcadastral #
+        unique_together = (
+            #custom_unique_together_s2205_evtaltcadastral#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_evtaltcadastral
+            #index_together_s2205_evtaltcadastral
+        )
         permissions = (
             ("can_view_s2205_evtaltcadastral", "Can view s2205_evtaltcadastral"),
             #custom_permissions_s2205_evtaltcadastral
@@ -3551,11 +3941,26 @@ class s2206evtAltContratual(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.tpregprev) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo) + ' - ' + unicode(self.tpcontr)
     #s2206_evtaltcontratual_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2206_evtaltcontratual_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2206_evtaltcontratual'       
         managed = True # s2206_evtaltcontratual #
+        unique_together = (
+            #custom_unique_together_s2206_evtaltcontratual#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_evtaltcontratual
+            #index_together_s2206_evtaltcontratual
+        )
         permissions = (
             ("can_view_s2206_evtaltcontratual", "Can view s2206_evtaltcontratual"),
             #custom_permissions_s2206_evtaltcontratual
@@ -3636,11 +4041,26 @@ class s2210evtCAT(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtacid) + ' - ' + unicode(self.tpacid) + ' - ' + unicode(self.hrstrabantesacid) + ' - ' + unicode(self.tpcat) + ' - ' + unicode(self.indcatobito) + ' - ' + unicode(self.indcomunpolicia) + ' - ' + unicode(self.codsitgeradora) + ' - ' + unicode(self.iniciatcat) + ' - ' + unicode(self.tplocal) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd)
     #s2210_evtcat_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2210_evtcat_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2210_evtcat'       
         managed = True # s2210_evtcat #
+        unique_together = (
+            #custom_unique_together_s2210_evtcat#
+            
+        )
+        index_together = (
+            #custom_index_together_s2210_evtcat
+            #index_together_s2210_evtcat
+        )
         permissions = (
             ("can_view_s2210_evtcat", "Can view s2210_evtcat"),
             #custom_permissions_s2210_evtcat
@@ -3712,11 +4132,26 @@ class s2220evtMonit(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.tpexameocup) + ' - ' + unicode(self.dtaso) + ' - ' + unicode(self.tpaso) + ' - ' + unicode(self.resaso) + ' - ' + unicode(self.nmmed) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm) + ' - ' + unicode(self.nisresp) + ' - ' + unicode(self.nrconsclasse) + ' - ' + unicode(self.nmresp) + ' - ' + unicode(self.nrcrm) + ' - ' + unicode(self.ufcrm)
     #s2220_evtmonit_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2220_evtmonit_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2220_evtmonit'       
         managed = True # s2220_evtmonit #
+        unique_together = (
+            #custom_unique_together_s2220_evtmonit#
+            
+        )
+        index_together = (
+            #custom_index_together_s2220_evtmonit
+            #index_together_s2220_evtmonit
+        )
         permissions = (
             ("can_view_s2220_evtmonit", "Can view s2220_evtmonit"),
             #custom_permissions_s2220_evtmonit
@@ -3779,11 +4214,26 @@ class s2221evtToxic(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtexame) + ' - ' + unicode(self.indrecusa)
     #s2221_evttoxic_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2221_evttoxic_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2221_evttoxic'       
         managed = True # s2221_evttoxic #
+        unique_together = (
+            #custom_unique_together_s2221_evttoxic#
+            
+        )
+        index_together = (
+            #custom_index_together_s2221_evttoxic
+            #index_together_s2221_evttoxic
+        )
         permissions = (
             ("can_view_s2221_evttoxic", "Can view s2221_evttoxic"),
             #custom_permissions_s2221_evttoxic
@@ -3839,11 +4289,26 @@ class s2230evtAfastTemp(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s2230_evtafasttemp_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2230_evtafasttemp_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2230_evtafasttemp'       
         managed = True # s2230_evtafasttemp #
+        unique_together = (
+            #custom_unique_together_s2230_evtafasttemp#
+            
+        )
+        index_together = (
+            #custom_index_together_s2230_evtafasttemp
+            #index_together_s2230_evtafasttemp
+        )
         permissions = (
             ("can_view_s2230_evtafasttemp", "Can view s2230_evtafasttemp"),
             #custom_permissions_s2230_evtafasttemp
@@ -3898,11 +4363,26 @@ class s2231evtCessao(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
     #s2231_evtcessao_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2231_evtcessao_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2231_evtcessao'       
         managed = True # s2231_evtcessao #
+        unique_together = (
+            #custom_unique_together_s2231_evtcessao#
+            
+        )
+        index_together = (
+            #custom_index_together_s2231_evtcessao
+            #index_together_s2231_evtcessao
+        )
         permissions = (
             ("can_view_s2231_evtcessao", "Can view s2231_evtcessao"),
             #custom_permissions_s2231_evtcessao
@@ -3961,11 +4441,26 @@ class s2240evtExpRisco(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.dtinicondicao) + ' - ' + unicode(self.dscativdes)
     #s2240_evtexprisco_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2240_evtexprisco_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2240_evtexprisco'       
         managed = True # s2240_evtexprisco #
+        unique_together = (
+            #custom_unique_together_s2240_evtexprisco#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_evtexprisco
+            #index_together_s2240_evtexprisco
+        )
         permissions = (
             ("can_view_s2240_evtexprisco", "Can view s2240_evtexprisco"),
             #custom_permissions_s2240_evtexprisco
@@ -4021,11 +4516,26 @@ class s2241evtInsApo(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s2241_evtinsapo_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2241_evtinsapo_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2241_evtinsapo'       
         managed = True # s2241_evtinsapo #
+        unique_together = (
+            #custom_unique_together_s2241_evtinsapo#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_evtinsapo
+            #index_together_s2241_evtinsapo
+        )
         permissions = (
             ("can_view_s2241_evtinsapo", "Can view s2241_evtinsapo"),
             #custom_permissions_s2241_evtinsapo
@@ -4085,11 +4595,26 @@ class s2245evtTreiCap(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.codtreicap)
     #s2245_evttreicap_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2245_evttreicap_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2245_evttreicap'       
         managed = True # s2245_evttreicap #
+        unique_together = (
+            #custom_unique_together_s2245_evttreicap#
+            
+        )
+        index_together = (
+            #custom_index_together_s2245_evttreicap
+            #index_together_s2245_evttreicap
+        )
         permissions = (
             ("can_view_s2245_evttreicap", "Can view s2245_evttreicap"),
             #custom_permissions_s2245_evttreicap
@@ -4144,11 +4669,26 @@ class s2250evtAvPrevio(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula)
     #s2250_evtavprevio_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2250_evtavprevio_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2250_evtavprevio'       
         managed = True # s2250_evtavprevio #
+        unique_together = (
+            #custom_unique_together_s2250_evtavprevio#
+            
+        )
+        index_together = (
+            #custom_index_together_s2250_evtavprevio
+            #index_together_s2250_evtavprevio
+        )
         permissions = (
             ("can_view_s2250_evtavprevio", "Can view s2250_evtavprevio"),
             #custom_permissions_s2250_evtavprevio
@@ -4210,11 +4750,26 @@ class s2260evtConvInterm(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.codconv) + ' - ' + unicode(self.dtinicio) + ' - ' + unicode(self.dtfim) + ' - ' + unicode(self.dtprevpgto) + ' - ' + unicode(self.indlocal)
     #s2260_evtconvinterm_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2260_evtconvinterm_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2260_evtconvinterm'       
         managed = True # s2260_evtconvinterm #
+        unique_together = (
+            #custom_unique_together_s2260_evtconvinterm#
+            
+        )
+        index_together = (
+            #custom_index_together_s2260_evtconvinterm
+            #index_together_s2260_evtconvinterm
+        )
         permissions = (
             ("can_view_s2260_evtconvinterm", "Can view s2260_evtconvinterm"),
             #custom_permissions_s2260_evtconvinterm
@@ -4275,11 +4830,26 @@ class s2298evtReintegr(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.tpreint) + ' - ' + unicode(self.dtefetretorno) + ' - ' + unicode(self.dtefeito) + ' - ' + unicode(self.indpagtojuizo)
     #s2298_evtreintegr_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2298_evtreintegr_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2298_evtreintegr'       
         managed = True # s2298_evtreintegr #
+        unique_together = (
+            #custom_unique_together_s2298_evtreintegr#
+            
+        )
+        index_together = (
+            #custom_index_together_s2298_evtreintegr
+            #index_together_s2298_evtreintegr
+        )
         permissions = (
             ("can_view_s2298_evtreintegr", "Can view s2298_evtreintegr"),
             #custom_permissions_s2298_evtreintegr
@@ -4345,11 +4915,26 @@ class s2299evtDeslig(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nistrab) + ' - ' + unicode(self.matricula) + ' - ' + unicode(self.mtvdeslig) + ' - ' + unicode(self.dtdeslig) + ' - ' + unicode(self.indpagtoapi) + ' - ' + unicode(self.pensalim) + ' - ' + unicode(self.indcumprparc)
     #s2299_evtdeslig_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2299_evtdeslig_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2299_evtdeslig'       
         managed = True # s2299_evtdeslig #
+        unique_together = (
+            #custom_unique_together_s2299_evtdeslig#
+            
+        )
+        index_together = (
+            #custom_index_together_s2299_evtdeslig
+            #index_together_s2299_evtdeslig
+        )
         permissions = (
             ("can_view_s2299_evtdeslig", "Can view s2299_evtdeslig"),
             #custom_permissions_s2299_evtdeslig
@@ -4420,11 +5005,26 @@ class s2300evtTSVInicio(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.nmtrab) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.grauinstr) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnascto) + ' - ' + unicode(self.paisnac) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtinicio)
     #s2300_evttsvinicio_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2300_evttsvinicio_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2300_evttsvinicio'       
         managed = True # s2300_evttsvinicio #
+        unique_together = (
+            #custom_unique_together_s2300_evttsvinicio#
+            
+        )
+        index_together = (
+            #custom_index_together_s2300_evttsvinicio
+            #index_together_s2300_evttsvinicio
+        )
         permissions = (
             ("can_view_s2300_evttsvinicio", "Can view s2300_evttsvinicio"),
             #custom_permissions_s2300_evttsvinicio
@@ -4481,11 +5081,26 @@ class s2306evtTSVAltContr(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtalteracao)
     #s2306_evttsvaltcontr_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2306_evttsvaltcontr_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2306_evttsvaltcontr'       
         managed = True # s2306_evttsvaltcontr #
+        unique_together = (
+            #custom_unique_together_s2306_evttsvaltcontr#
+            
+        )
+        index_together = (
+            #custom_index_together_s2306_evttsvaltcontr
+            #index_together_s2306_evttsvaltcontr
+        )
         permissions = (
             ("can_view_s2306_evttsvaltcontr", "Can view s2306_evttsvaltcontr"),
             #custom_permissions_s2306_evttsvaltcontr
@@ -4545,11 +5160,26 @@ class s2399evtTSVTermino(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab) + ' - ' + unicode(self.codcateg) + ' - ' + unicode(self.dtterm)
     #s2399_evttsvtermino_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2399_evttsvtermino_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2399_evttsvtermino'       
         managed = True # s2399_evttsvtermino #
+        unique_together = (
+            #custom_unique_together_s2399_evttsvtermino#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_evttsvtermino
+            #index_together_s2399_evttsvtermino
+        )
         permissions = (
             ("can_view_s2399_evttsvtermino", "Can view s2399_evttsvtermino"),
             #custom_permissions_s2399_evttsvtermino
@@ -4617,11 +5247,26 @@ class s2400evtCdBenefIn(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.dtinicio) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.paisnac)
     #s2400_evtcdbenefin_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2400_evtcdbenefin_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2400_evtcdbenefin'       
         managed = True # s2400_evtcdbenefin #
+        unique_together = (
+            #custom_unique_together_s2400_evtcdbenefin#
+            
+        )
+        index_together = (
+            #custom_index_together_s2400_evtcdbenefin
+            #index_together_s2400_evtcdbenefin
+        )
         permissions = (
             ("can_view_s2400_evtcdbenefin", "Can view s2400_evtcdbenefin"),
             #custom_permissions_s2400_evtcdbenefin
@@ -4685,11 +5330,26 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.dtalteracao) + ' - ' + unicode(self.nmbenefic) + ' - ' + unicode(self.sexo) + ' - ' + unicode(self.racacor) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.paisnac)
     #s2405_evtcdbenefalt_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2405_evtcdbenefalt_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2405_evtcdbenefalt'       
         managed = True # s2405_evtcdbenefalt #
+        unique_together = (
+            #custom_unique_together_s2405_evtcdbenefalt#
+            
+        )
+        index_together = (
+            #custom_index_together_s2405_evtcdbenefalt
+            #index_together_s2405_evtcdbenefalt
+        )
         permissions = (
             ("can_view_s2405_evtcdbenefalt", "Can view s2405_evtcdbenefalt"),
             #custom_permissions_s2405_evtcdbenefalt
@@ -4753,11 +5413,26 @@ class s2410evtCdBenIn(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.cadini) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dtinibeneficio) + ' - ' + unicode(self.tpbeneficio) + ' - ' + unicode(self.vrbeneficio) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.inddecjud) + ' - ' + unicode(self.indhomologtc)
     #s2410_evtcdbenin_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2410_evtcdbenin_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2410_evtcdbenin'       
         managed = True # s2410_evtcdbenin #
+        unique_together = (
+            #custom_unique_together_s2410_evtcdbenin#
+            
+        )
+        index_together = (
+            #custom_index_together_s2410_evtcdbenin
+            #index_together_s2410_evtcdbenin
+        )
         permissions = (
             ("can_view_s2410_evtcdbenin", "Can view s2410_evtcdbenin"),
             #custom_permissions_s2410_evtcdbenin
@@ -4819,11 +5494,26 @@ class s2416evtCdBenAlt(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dtaltbeneficio) + ' - ' + unicode(self.tpbeneficio) + ' - ' + unicode(self.tpplanrp) + ' - ' + unicode(self.inddecjud) + ' - ' + unicode(self.indhomologtc) + ' - ' + unicode(self.indsuspensao)
     #s2416_evtcdbenalt_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2416_evtcdbenalt_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2416_evtcdbenalt'       
         managed = True # s2416_evtcdbenalt #
+        unique_together = (
+            #custom_unique_together_s2416_evtcdbenalt#
+            
+        )
+        index_together = (
+            #custom_index_together_s2416_evtcdbenalt
+            #index_together_s2416_evtcdbenalt
+        )
         permissions = (
             ("can_view_s2416_evtcdbenalt", "Can view s2416_evtcdbenalt"),
             #custom_permissions_s2416_evtcdbenalt
@@ -4880,11 +5570,26 @@ class s2420evtCdBenTerm(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indretif) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpfbenef) + ' - ' + unicode(self.nrbeneficio) + ' - ' + unicode(self.dttermbeneficio) + ' - ' + unicode(self.mtvtermino)
     #s2420_evtcdbenterm_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s2420_evtcdbenterm_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's2420_evtcdbenterm'       
         managed = True # s2420_evtcdbenterm #
+        unique_together = (
+            #custom_unique_together_s2420_evtcdbenterm#
+            
+        )
+        index_together = (
+            #custom_index_together_s2420_evtcdbenterm
+            #index_together_s2420_evtcdbenterm
+        )
         permissions = (
             ("can_view_s2420_evtcdbenterm", "Can view s2420_evtcdbenterm"),
             #custom_permissions_s2420_evtcdbenterm
@@ -4936,11 +5641,26 @@ class s3000evtExclusao(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.tpamb) + ' - ' + unicode(self.procemi) + ' - ' + unicode(self.verproc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.tpevento) + ' - ' + unicode(self.nrrecevt)
     #s3000_evtexclusao_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s3000_evtexclusao_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's3000_evtexclusao'       
         managed = True # s3000_evtexclusao #
+        unique_together = (
+            #custom_unique_together_s3000_evtexclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s3000_evtexclusao
+            #index_together_s3000_evtexclusao
+        )
         permissions = (
             ("can_view_s3000_evtexclusao", "Can view s3000_evtexclusao"),
             #custom_permissions_s3000_evtexclusao
@@ -4991,11 +5711,26 @@ class s5001evtBasesTrab(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s5001_evtbasestrab_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s5001_evtbasestrab_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's5001_evtbasestrab'       
         managed = True # s5001_evtbasestrab #
+        unique_together = (
+            #custom_unique_together_s5001_evtbasestrab#
+            
+        )
+        index_together = (
+            #custom_index_together_s5001_evtbasestrab
+            #index_together_s5001_evtbasestrab
+        )
         permissions = (
             ("can_view_s5001_evtbasestrab", "Can view s5001_evtbasestrab"),
             #custom_permissions_s5001_evtbasestrab
@@ -5045,11 +5780,26 @@ class s5002evtIrrfBenef(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s5002_evtirrfbenef_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s5002_evtirrfbenef_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's5002_evtirrfbenef'       
         managed = True # s5002_evtirrfbenef #
+        unique_together = (
+            #custom_unique_together_s5002_evtirrfbenef#
+            
+        )
+        index_together = (
+            #custom_index_together_s5002_evtirrfbenef
+            #index_together_s5002_evtirrfbenef
+        )
         permissions = (
             ("can_view_s5002_evtirrfbenef", "Can view s5002_evtirrfbenef"),
             #custom_permissions_s5002_evtirrfbenef
@@ -5100,11 +5850,26 @@ class s5003evtBasesFGTS(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.cpftrab)
     #s5003_evtbasesfgts_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s5003_evtbasesfgts_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's5003_evtbasesfgts'       
         managed = True # s5003_evtbasesfgts #
+        unique_together = (
+            #custom_unique_together_s5003_evtbasesfgts#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_evtbasesfgts
+            #index_together_s5003_evtbasesfgts
+        )
         permissions = (
             ("can_view_s5003_evtbasesfgts", "Can view s5003_evtbasesfgts"),
             #custom_permissions_s5003_evtbasesfgts
@@ -5156,11 +5921,26 @@ class s5011evtCS(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indexistinfo) + ' - ' + unicode(self.classtrib)
     #s5011_evtcs_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s5011_evtcs_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's5011_evtcs'       
         managed = True # s5011_evtcs #
+        unique_together = (
+            #custom_unique_together_s5011_evtcs#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_evtcs
+            #index_together_s5011_evtcs
+        )
         permissions = (
             ("can_view_s5011_evtcs", "Can view s5011_evtcs"),
             #custom_permissions_s5011_evtcs
@@ -5210,11 +5990,26 @@ class s5012evtIrrf(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indexistinfo)
     #s5012_evtirrf_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s5012_evtirrf_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's5012_evtirrf'       
         managed = True # s5012_evtirrf #
+        unique_together = (
+            #custom_unique_together_s5012_evtirrf#
+            
+        )
+        index_together = (
+            #custom_index_together_s5012_evtirrf
+            #index_together_s5012_evtirrf
+        )
         permissions = (
             ("can_view_s5012_evtirrf", "Can view s5012_evtirrf"),
             #custom_permissions_s5012_evtirrf
@@ -5264,11 +6059,26 @@ class s5013evtFGTS(SoftDeletionModel):
     def __unicode__(self):
         return unicode(self.identidade) + ' - ' + unicode(self.perapur) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.nrrecarqbase) + ' - ' + unicode(self.indexistinfo)
     #s5013_evtfgts_custom#
-    def evento(self): return self.__dict__
+    
+    def evento(self): 
+        return self.__dict__
 
+    def validar(self):
+        from emensageriapro.esocial.views.s5013_evtfgts_verificar import validar_evento_funcao
+        validar_evento_funcao(self.id, 'default')
+
+    
     class Meta:
         db_table = r's5013_evtfgts'       
         managed = True # s5013_evtfgts #
+        unique_together = (
+            #custom_unique_together_s5013_evtfgts#
+            
+        )
+        index_together = (
+            #custom_index_together_s5013_evtfgts
+            #index_together_s5013_evtfgts
+        )
         permissions = (
             ("can_view_s5013_evtfgts", "Can view s5013_evtfgts"),
             #custom_permissions_s5013_evtfgts

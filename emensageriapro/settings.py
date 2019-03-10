@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_cron',
 
     'emensageriapro.controle_de_acesso',
     'emensageriapro.r1000',
@@ -168,6 +169,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
 )
+
+CRON_CLASSES = [
+    'emensageriapro.cron.MyCronJob',
+]
 
 
 ROOT_URLCONF = 'emensageriapro.urls'
@@ -277,7 +282,7 @@ FORCE_PRODUCAO_RESTRITA = env('FORCE_PRODUCAO_RESTRITA')
 
 # Endereços login e logout
 
-LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mapa-processamento/esocial/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
+LOGIN_REDIRECT_URL = LINK_WEBSITE + 'mapa-processamento/visao-geral/eyJpZCI6ICIwIiwgInByaW50IjogIjAifQ==/'
 LOGOUT_REDIRECT_URL = LINK_WEBSITE
 
 # Static files

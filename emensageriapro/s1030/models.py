@@ -158,6 +158,14 @@ class s1030alteracao(SoftDeletionModel):
     class Meta:
         db_table = r's1030_alteracao'       
         managed = True # s1030_alteracao #
+        unique_together = (
+            #custom_unique_together_s1030_alteracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1030_alteracao
+            #index_together_s1030_alteracao
+        )
         permissions = (
             ("can_view_s1030_alteracao", "Can view s1030_alteracao"),
             #custom_permissions_s1030_alteracao
@@ -204,6 +212,14 @@ class s1030alteracaocargoPublico(SoftDeletionModel):
     class Meta:
         db_table = r's1030_alteracao_cargopublico'       
         managed = True # s1030_alteracao_cargopublico #
+        unique_together = (
+            #custom_unique_together_s1030_alteracao_cargopublico#
+            
+        )
+        index_together = (
+            #custom_index_together_s1030_alteracao_cargopublico
+            #index_together_s1030_alteracao_cargopublico
+        )
         permissions = (
             ("can_view_s1030_alteracao_cargopublico", "Can view s1030_alteracao_cargopublico"),
             #custom_permissions_s1030_alteracao_cargopublico
@@ -245,6 +261,14 @@ class s1030alteracaonovaValidade(SoftDeletionModel):
     class Meta:
         db_table = r's1030_alteracao_novavalidade'       
         managed = True # s1030_alteracao_novavalidade #
+        unique_together = (
+            #custom_unique_together_s1030_alteracao_novavalidade#
+            
+        )
+        index_together = (
+            #custom_index_together_s1030_alteracao_novavalidade
+            #index_together_s1030_alteracao_novavalidade
+        )
         permissions = (
             ("can_view_s1030_alteracao_novavalidade", "Can view s1030_alteracao_novavalidade"),
             #custom_permissions_s1030_alteracao_novavalidade
@@ -287,6 +311,14 @@ class s1030exclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1030_exclusao'       
         managed = True # s1030_exclusao #
+        unique_together = (
+            #custom_unique_together_s1030_exclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1030_exclusao
+            #index_together_s1030_exclusao
+        )
         permissions = (
             ("can_view_s1030_exclusao", "Can view s1030_exclusao"),
             #custom_permissions_s1030_exclusao
@@ -331,6 +363,14 @@ class s1030inclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1030_inclusao'       
         managed = True # s1030_inclusao #
+        unique_together = (
+            #custom_unique_together_s1030_inclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1030_inclusao
+            #index_together_s1030_inclusao
+        )
         permissions = (
             ("can_view_s1030_inclusao", "Can view s1030_inclusao"),
             #custom_permissions_s1030_inclusao
@@ -377,6 +417,14 @@ class s1030inclusaocargoPublico(SoftDeletionModel):
     class Meta:
         db_table = r's1030_inclusao_cargopublico'       
         managed = True # s1030_inclusao_cargopublico #
+        unique_together = (
+            #custom_unique_together_s1030_inclusao_cargopublico#
+            
+        )
+        index_together = (
+            #custom_index_together_s1030_inclusao_cargopublico
+            #index_together_s1030_inclusao_cargopublico
+        )
         permissions = (
             ("can_view_s1030_inclusao_cargopublico", "Can view s1030_inclusao_cargopublico"),
             #custom_permissions_s1030_inclusao_cargopublico

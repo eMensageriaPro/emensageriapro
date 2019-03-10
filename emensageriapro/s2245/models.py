@@ -94,6 +94,14 @@ class s2245ideProfResp(SoftDeletionModel):
     class Meta:
         db_table = r's2245_ideprofresp'       
         managed = True # s2245_ideprofresp #
+        unique_together = (
+            #custom_unique_together_s2245_ideprofresp#
+            
+        )
+        index_together = (
+            #custom_index_together_s2245_ideprofresp
+            #index_together_s2245_ideprofresp
+        )
         permissions = (
             ("can_view_s2245_ideprofresp", "Can view s2245_ideprofresp"),
             #custom_permissions_s2245_ideprofresp
@@ -137,6 +145,14 @@ class s2245infoComplem(SoftDeletionModel):
     class Meta:
         db_table = r's2245_infocomplem'       
         managed = True # s2245_infocomplem #
+        unique_together = (
+            #custom_unique_together_s2245_infocomplem#
+            
+        )
+        index_together = (
+            #custom_index_together_s2245_infocomplem
+            #index_together_s2245_infocomplem
+        )
         permissions = (
             ("can_view_s2245_infocomplem", "Can view s2245_infocomplem"),
             #custom_permissions_s2245_infocomplem

@@ -81,6 +81,14 @@ class r2050infoProc(SoftDeletionModel):
     class Meta:
         db_table = r'r2050_infoproc'       
         managed = True # r2050_infoproc #
+        unique_together = (
+            #custom_unique_together_r2050_infoproc#
+            
+        )
+        index_together = (
+            #custom_index_together_r2050_infoproc
+            #index_together_r2050_infoproc
+        )
         permissions = (
             ("can_view_r2050_infoproc", "Can view r2050_infoproc"),
             #custom_permissions_r2050_infoproc
@@ -122,6 +130,14 @@ class r2050tipoCom(SoftDeletionModel):
     class Meta:
         db_table = r'r2050_tipocom'       
         managed = True # r2050_tipocom #
+        unique_together = (
+            #custom_unique_together_r2050_tipocom#
+            
+        )
+        index_together = (
+            #custom_index_together_r2050_tipocom
+            #index_together_r2050_tipocom
+        )
         permissions = (
             ("can_view_r2050_tipocom", "Can view r2050_tipocom"),
             #custom_permissions_r2050_tipocom

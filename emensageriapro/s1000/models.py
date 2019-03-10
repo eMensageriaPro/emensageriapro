@@ -391,6 +391,14 @@ class s1000alteracao(SoftDeletionModel):
     class Meta:
         db_table = r's1000_alteracao'       
         managed = True # s1000_alteracao #
+        unique_together = (
+            #custom_unique_together_s1000_alteracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_alteracao
+            #index_together_s1000_alteracao
+        )
         permissions = (
             ("can_view_s1000_alteracao", "Can view s1000_alteracao"),
             #custom_permissions_s1000_alteracao
@@ -438,6 +446,14 @@ class s1000alteracaodadosIsencao(SoftDeletionModel):
     class Meta:
         db_table = r's1000_alteracao_dadosisencao'       
         managed = True # s1000_alteracao_dadosisencao #
+        unique_together = (
+            #custom_unique_together_s1000_alteracao_dadosisencao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_alteracao_dadosisencao
+            #index_together_s1000_alteracao_dadosisencao
+        )
         permissions = (
             ("can_view_s1000_alteracao_dadosisencao", "Can view s1000_alteracao_dadosisencao"),
             #custom_permissions_s1000_alteracao_dadosisencao
@@ -481,6 +497,14 @@ class s1000alteracaoinfoEFR(SoftDeletionModel):
     class Meta:
         db_table = r's1000_alteracao_infoefr'       
         managed = True # s1000_alteracao_infoefr #
+        unique_together = (
+            #custom_unique_together_s1000_alteracao_infoefr#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_alteracao_infoefr
+            #index_together_s1000_alteracao_infoefr
+        )
         permissions = (
             ("can_view_s1000_alteracao_infoefr", "Can view s1000_alteracao_infoefr"),
             #custom_permissions_s1000_alteracao_infoefr
@@ -526,6 +550,14 @@ class s1000alteracaoinfoEnte(SoftDeletionModel):
     class Meta:
         db_table = r's1000_alteracao_infoente'       
         managed = True # s1000_alteracao_infoente #
+        unique_together = (
+            #custom_unique_together_s1000_alteracao_infoente#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_alteracao_infoente
+            #index_together_s1000_alteracao_infoente
+        )
         permissions = (
             ("can_view_s1000_alteracao_infoente", "Can view s1000_alteracao_infoente"),
             #custom_permissions_s1000_alteracao_infoente
@@ -572,6 +604,14 @@ class s1000alteracaoinfoOP(SoftDeletionModel):
     class Meta:
         db_table = r's1000_alteracao_infoop'       
         managed = True # s1000_alteracao_infoop #
+        unique_together = (
+            #custom_unique_together_s1000_alteracao_infoop#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_alteracao_infoop
+            #index_together_s1000_alteracao_infoop
+        )
         permissions = (
             ("can_view_s1000_alteracao_infoop", "Can view s1000_alteracao_infoop"),
             #custom_permissions_s1000_alteracao_infoop
@@ -612,6 +652,14 @@ class s1000alteracaoinfoOrgInternacional(SoftDeletionModel):
     class Meta:
         db_table = r's1000_alteracao_infoorginternacional'       
         managed = True # s1000_alteracao_infoorginternacional #
+        unique_together = (
+            #custom_unique_together_s1000_alteracao_infoorginternacional#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_alteracao_infoorginternacional
+            #index_together_s1000_alteracao_infoorginternacional
+        )
         permissions = (
             ("can_view_s1000_alteracao_infoorginternacional", "Can view s1000_alteracao_infoorginternacional"),
             #custom_permissions_s1000_alteracao_infoorginternacional
@@ -653,6 +701,14 @@ class s1000alteracaonovaValidade(SoftDeletionModel):
     class Meta:
         db_table = r's1000_alteracao_novavalidade'       
         managed = True # s1000_alteracao_novavalidade #
+        unique_together = (
+            #custom_unique_together_s1000_alteracao_novavalidade#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_alteracao_novavalidade
+            #index_together_s1000_alteracao_novavalidade
+        )
         permissions = (
             ("can_view_s1000_alteracao_novavalidade", "Can view s1000_alteracao_novavalidade"),
             #custom_permissions_s1000_alteracao_novavalidade
@@ -693,6 +749,14 @@ class s1000alteracaosituacaoPF(SoftDeletionModel):
     class Meta:
         db_table = r's1000_alteracao_situacaopf'       
         managed = True # s1000_alteracao_situacaopf #
+        unique_together = (
+            #custom_unique_together_s1000_alteracao_situacaopf#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_alteracao_situacaopf
+            #index_together_s1000_alteracao_situacaopf
+        )
         permissions = (
             ("can_view_s1000_alteracao_situacaopf", "Can view s1000_alteracao_situacaopf"),
             #custom_permissions_s1000_alteracao_situacaopf
@@ -733,6 +797,14 @@ class s1000alteracaosituacaoPJ(SoftDeletionModel):
     class Meta:
         db_table = r's1000_alteracao_situacaopj'       
         managed = True # s1000_alteracao_situacaopj #
+        unique_together = (
+            #custom_unique_together_s1000_alteracao_situacaopj#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_alteracao_situacaopj
+            #index_together_s1000_alteracao_situacaopj
+        )
         permissions = (
             ("can_view_s1000_alteracao_situacaopj", "Can view s1000_alteracao_situacaopj"),
             #custom_permissions_s1000_alteracao_situacaopj
@@ -777,6 +849,14 @@ class s1000alteracaosoftwareHouse(SoftDeletionModel):
     class Meta:
         db_table = r's1000_alteracao_softwarehouse'       
         managed = True # s1000_alteracao_softwarehouse #
+        unique_together = (
+            #custom_unique_together_s1000_alteracao_softwarehouse#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_alteracao_softwarehouse
+            #index_together_s1000_alteracao_softwarehouse
+        )
         permissions = (
             ("can_view_s1000_alteracao_softwarehouse", "Can view s1000_alteracao_softwarehouse"),
             #custom_permissions_s1000_alteracao_softwarehouse
@@ -818,6 +898,14 @@ class s1000exclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1000_exclusao'       
         managed = True # s1000_exclusao #
+        unique_together = (
+            #custom_unique_together_s1000_exclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_exclusao
+            #index_together_s1000_exclusao
+        )
         permissions = (
             ("can_view_s1000_exclusao", "Can view s1000_exclusao"),
             #custom_permissions_s1000_exclusao
@@ -875,6 +963,14 @@ class s1000inclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1000_inclusao'       
         managed = True # s1000_inclusao #
+        unique_together = (
+            #custom_unique_together_s1000_inclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_inclusao
+            #index_together_s1000_inclusao
+        )
         permissions = (
             ("can_view_s1000_inclusao", "Can view s1000_inclusao"),
             #custom_permissions_s1000_inclusao
@@ -922,6 +1018,14 @@ class s1000inclusaodadosIsencao(SoftDeletionModel):
     class Meta:
         db_table = r's1000_inclusao_dadosisencao'       
         managed = True # s1000_inclusao_dadosisencao #
+        unique_together = (
+            #custom_unique_together_s1000_inclusao_dadosisencao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_inclusao_dadosisencao
+            #index_together_s1000_inclusao_dadosisencao
+        )
         permissions = (
             ("can_view_s1000_inclusao_dadosisencao", "Can view s1000_inclusao_dadosisencao"),
             #custom_permissions_s1000_inclusao_dadosisencao
@@ -965,6 +1069,14 @@ class s1000inclusaoinfoEFR(SoftDeletionModel):
     class Meta:
         db_table = r's1000_inclusao_infoefr'       
         managed = True # s1000_inclusao_infoefr #
+        unique_together = (
+            #custom_unique_together_s1000_inclusao_infoefr#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_inclusao_infoefr
+            #index_together_s1000_inclusao_infoefr
+        )
         permissions = (
             ("can_view_s1000_inclusao_infoefr", "Can view s1000_inclusao_infoefr"),
             #custom_permissions_s1000_inclusao_infoefr
@@ -1010,6 +1122,14 @@ class s1000inclusaoinfoEnte(SoftDeletionModel):
     class Meta:
         db_table = r's1000_inclusao_infoente'       
         managed = True # s1000_inclusao_infoente #
+        unique_together = (
+            #custom_unique_together_s1000_inclusao_infoente#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_inclusao_infoente
+            #index_together_s1000_inclusao_infoente
+        )
         permissions = (
             ("can_view_s1000_inclusao_infoente", "Can view s1000_inclusao_infoente"),
             #custom_permissions_s1000_inclusao_infoente
@@ -1056,6 +1176,14 @@ class s1000inclusaoinfoOP(SoftDeletionModel):
     class Meta:
         db_table = r's1000_inclusao_infoop'       
         managed = True # s1000_inclusao_infoop #
+        unique_together = (
+            #custom_unique_together_s1000_inclusao_infoop#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_inclusao_infoop
+            #index_together_s1000_inclusao_infoop
+        )
         permissions = (
             ("can_view_s1000_inclusao_infoop", "Can view s1000_inclusao_infoop"),
             #custom_permissions_s1000_inclusao_infoop
@@ -1096,6 +1224,14 @@ class s1000inclusaoinfoOrgInternacional(SoftDeletionModel):
     class Meta:
         db_table = r's1000_inclusao_infoorginternacional'       
         managed = True # s1000_inclusao_infoorginternacional #
+        unique_together = (
+            #custom_unique_together_s1000_inclusao_infoorginternacional#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_inclusao_infoorginternacional
+            #index_together_s1000_inclusao_infoorginternacional
+        )
         permissions = (
             ("can_view_s1000_inclusao_infoorginternacional", "Can view s1000_inclusao_infoorginternacional"),
             #custom_permissions_s1000_inclusao_infoorginternacional
@@ -1136,6 +1272,14 @@ class s1000inclusaosituacaoPF(SoftDeletionModel):
     class Meta:
         db_table = r's1000_inclusao_situacaopf'       
         managed = True # s1000_inclusao_situacaopf #
+        unique_together = (
+            #custom_unique_together_s1000_inclusao_situacaopf#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_inclusao_situacaopf
+            #index_together_s1000_inclusao_situacaopf
+        )
         permissions = (
             ("can_view_s1000_inclusao_situacaopf", "Can view s1000_inclusao_situacaopf"),
             #custom_permissions_s1000_inclusao_situacaopf
@@ -1176,6 +1320,14 @@ class s1000inclusaosituacaoPJ(SoftDeletionModel):
     class Meta:
         db_table = r's1000_inclusao_situacaopj'       
         managed = True # s1000_inclusao_situacaopj #
+        unique_together = (
+            #custom_unique_together_s1000_inclusao_situacaopj#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_inclusao_situacaopj
+            #index_together_s1000_inclusao_situacaopj
+        )
         permissions = (
             ("can_view_s1000_inclusao_situacaopj", "Can view s1000_inclusao_situacaopj"),
             #custom_permissions_s1000_inclusao_situacaopj
@@ -1220,6 +1372,14 @@ class s1000inclusaosoftwareHouse(SoftDeletionModel):
     class Meta:
         db_table = r's1000_inclusao_softwarehouse'       
         managed = True # s1000_inclusao_softwarehouse #
+        unique_together = (
+            #custom_unique_together_s1000_inclusao_softwarehouse#
+            
+        )
+        index_together = (
+            #custom_index_together_s1000_inclusao_softwarehouse
+            #index_together_s1000_inclusao_softwarehouse
+        )
         permissions = (
             ("can_view_s1000_inclusao_softwarehouse", "Can view s1000_inclusao_softwarehouse"),
             #custom_permissions_s1000_inclusao_softwarehouse

@@ -235,6 +235,14 @@ class s1005alteracao(SoftDeletionModel):
     class Meta:
         db_table = r's1005_alteracao'       
         managed = True # s1005_alteracao #
+        unique_together = (
+            #custom_unique_together_s1005_alteracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_alteracao
+            #index_together_s1005_alteracao
+        )
         permissions = (
             ("can_view_s1005_alteracao", "Can view s1005_alteracao"),
             #custom_permissions_s1005_alteracao
@@ -275,6 +283,14 @@ class s1005alteracaoinfoCaepf(SoftDeletionModel):
     class Meta:
         db_table = r's1005_alteracao_infocaepf'       
         managed = True # s1005_alteracao_infocaepf #
+        unique_together = (
+            #custom_unique_together_s1005_alteracao_infocaepf#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_alteracao_infocaepf
+            #index_together_s1005_alteracao_infocaepf
+        )
         permissions = (
             ("can_view_s1005_alteracao_infocaepf", "Can view s1005_alteracao_infocaepf"),
             #custom_permissions_s1005_alteracao_infocaepf
@@ -315,6 +331,14 @@ class s1005alteracaoinfoEntEduc(SoftDeletionModel):
     class Meta:
         db_table = r's1005_alteracao_infoenteduc'       
         managed = True # s1005_alteracao_infoenteduc #
+        unique_together = (
+            #custom_unique_together_s1005_alteracao_infoenteduc#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_alteracao_infoenteduc
+            #index_together_s1005_alteracao_infoenteduc
+        )
         permissions = (
             ("can_view_s1005_alteracao_infoenteduc", "Can view s1005_alteracao_infoenteduc"),
             #custom_permissions_s1005_alteracao_infoenteduc
@@ -355,6 +379,14 @@ class s1005alteracaoinfoObra(SoftDeletionModel):
     class Meta:
         db_table = r's1005_alteracao_infoobra'       
         managed = True # s1005_alteracao_infoobra #
+        unique_together = (
+            #custom_unique_together_s1005_alteracao_infoobra#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_alteracao_infoobra
+            #index_together_s1005_alteracao_infoobra
+        )
         permissions = (
             ("can_view_s1005_alteracao_infoobra", "Can view s1005_alteracao_infoobra"),
             #custom_permissions_s1005_alteracao_infoobra
@@ -396,6 +428,14 @@ class s1005alteracaoinfoPCD(SoftDeletionModel):
     class Meta:
         db_table = r's1005_alteracao_infopcd'       
         managed = True # s1005_alteracao_infopcd #
+        unique_together = (
+            #custom_unique_together_s1005_alteracao_infopcd#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_alteracao_infopcd
+            #index_together_s1005_alteracao_infopcd
+        )
         permissions = (
             ("can_view_s1005_alteracao_infopcd", "Can view s1005_alteracao_infopcd"),
             #custom_permissions_s1005_alteracao_infopcd
@@ -437,6 +477,14 @@ class s1005alteracaonovaValidade(SoftDeletionModel):
     class Meta:
         db_table = r's1005_alteracao_novavalidade'       
         managed = True # s1005_alteracao_novavalidade #
+        unique_together = (
+            #custom_unique_together_s1005_alteracao_novavalidade#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_alteracao_novavalidade
+            #index_together_s1005_alteracao_novavalidade
+        )
         permissions = (
             ("can_view_s1005_alteracao_novavalidade", "Can view s1005_alteracao_novavalidade"),
             #custom_permissions_s1005_alteracao_novavalidade
@@ -479,6 +527,14 @@ class s1005alteracaoprocAdmJudFap(SoftDeletionModel):
     class Meta:
         db_table = r's1005_alteracao_procadmjudfap'       
         managed = True # s1005_alteracao_procadmjudfap #
+        unique_together = (
+            #custom_unique_together_s1005_alteracao_procadmjudfap#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_alteracao_procadmjudfap
+            #index_together_s1005_alteracao_procadmjudfap
+        )
         permissions = (
             ("can_view_s1005_alteracao_procadmjudfap", "Can view s1005_alteracao_procadmjudfap"),
             #custom_permissions_s1005_alteracao_procadmjudfap
@@ -521,6 +577,14 @@ class s1005alteracaoprocAdmJudRat(SoftDeletionModel):
     class Meta:
         db_table = r's1005_alteracao_procadmjudrat'       
         managed = True # s1005_alteracao_procadmjudrat #
+        unique_together = (
+            #custom_unique_together_s1005_alteracao_procadmjudrat#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_alteracao_procadmjudrat
+            #index_together_s1005_alteracao_procadmjudrat
+        )
         permissions = (
             ("can_view_s1005_alteracao_procadmjudrat", "Can view s1005_alteracao_procadmjudrat"),
             #custom_permissions_s1005_alteracao_procadmjudrat
@@ -564,6 +628,14 @@ class s1005exclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1005_exclusao'       
         managed = True # s1005_exclusao #
+        unique_together = (
+            #custom_unique_together_s1005_exclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_exclusao
+            #index_together_s1005_exclusao
+        )
         permissions = (
             ("can_view_s1005_exclusao", "Can view s1005_exclusao"),
             #custom_permissions_s1005_exclusao
@@ -615,6 +687,14 @@ class s1005inclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1005_inclusao'       
         managed = True # s1005_inclusao #
+        unique_together = (
+            #custom_unique_together_s1005_inclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_inclusao
+            #index_together_s1005_inclusao
+        )
         permissions = (
             ("can_view_s1005_inclusao", "Can view s1005_inclusao"),
             #custom_permissions_s1005_inclusao
@@ -655,6 +735,14 @@ class s1005inclusaoinfoCaepf(SoftDeletionModel):
     class Meta:
         db_table = r's1005_inclusao_infocaepf'       
         managed = True # s1005_inclusao_infocaepf #
+        unique_together = (
+            #custom_unique_together_s1005_inclusao_infocaepf#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_inclusao_infocaepf
+            #index_together_s1005_inclusao_infocaepf
+        )
         permissions = (
             ("can_view_s1005_inclusao_infocaepf", "Can view s1005_inclusao_infocaepf"),
             #custom_permissions_s1005_inclusao_infocaepf
@@ -695,6 +783,14 @@ class s1005inclusaoinfoEntEduc(SoftDeletionModel):
     class Meta:
         db_table = r's1005_inclusao_infoenteduc'       
         managed = True # s1005_inclusao_infoenteduc #
+        unique_together = (
+            #custom_unique_together_s1005_inclusao_infoenteduc#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_inclusao_infoenteduc
+            #index_together_s1005_inclusao_infoenteduc
+        )
         permissions = (
             ("can_view_s1005_inclusao_infoenteduc", "Can view s1005_inclusao_infoenteduc"),
             #custom_permissions_s1005_inclusao_infoenteduc
@@ -735,6 +831,14 @@ class s1005inclusaoinfoObra(SoftDeletionModel):
     class Meta:
         db_table = r's1005_inclusao_infoobra'       
         managed = True # s1005_inclusao_infoobra #
+        unique_together = (
+            #custom_unique_together_s1005_inclusao_infoobra#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_inclusao_infoobra
+            #index_together_s1005_inclusao_infoobra
+        )
         permissions = (
             ("can_view_s1005_inclusao_infoobra", "Can view s1005_inclusao_infoobra"),
             #custom_permissions_s1005_inclusao_infoobra
@@ -776,6 +880,14 @@ class s1005inclusaoinfoPCD(SoftDeletionModel):
     class Meta:
         db_table = r's1005_inclusao_infopcd'       
         managed = True # s1005_inclusao_infopcd #
+        unique_together = (
+            #custom_unique_together_s1005_inclusao_infopcd#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_inclusao_infopcd
+            #index_together_s1005_inclusao_infopcd
+        )
         permissions = (
             ("can_view_s1005_inclusao_infopcd", "Can view s1005_inclusao_infopcd"),
             #custom_permissions_s1005_inclusao_infopcd
@@ -818,6 +930,14 @@ class s1005inclusaoprocAdmJudFap(SoftDeletionModel):
     class Meta:
         db_table = r's1005_inclusao_procadmjudfap'       
         managed = True # s1005_inclusao_procadmjudfap #
+        unique_together = (
+            #custom_unique_together_s1005_inclusao_procadmjudfap#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_inclusao_procadmjudfap
+            #index_together_s1005_inclusao_procadmjudfap
+        )
         permissions = (
             ("can_view_s1005_inclusao_procadmjudfap", "Can view s1005_inclusao_procadmjudfap"),
             #custom_permissions_s1005_inclusao_procadmjudfap
@@ -860,6 +980,14 @@ class s1005inclusaoprocAdmJudRat(SoftDeletionModel):
     class Meta:
         db_table = r's1005_inclusao_procadmjudrat'       
         managed = True # s1005_inclusao_procadmjudrat #
+        unique_together = (
+            #custom_unique_together_s1005_inclusao_procadmjudrat#
+            
+        )
+        index_together = (
+            #custom_index_together_s1005_inclusao_procadmjudrat
+            #index_together_s1005_inclusao_procadmjudrat
+        )
         permissions = (
             ("can_view_s1005_inclusao_procadmjudrat", "Can view s1005_inclusao_procadmjudrat"),
             #custom_permissions_s1005_inclusao_procadmjudrat

@@ -437,6 +437,14 @@ class s1010alteracao(SoftDeletionModel):
     class Meta:
         db_table = r's1010_alteracao'       
         managed = True # s1010_alteracao #
+        unique_together = (
+            #custom_unique_together_s1010_alteracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_alteracao
+            #index_together_s1010_alteracao
+        )
         permissions = (
             ("can_view_s1010_alteracao", "Can view s1010_alteracao"),
             #custom_permissions_s1010_alteracao
@@ -480,6 +488,14 @@ class s1010alteracaoideProcessoCP(SoftDeletionModel):
     class Meta:
         db_table = r's1010_alteracao_ideprocessocp'       
         managed = True # s1010_alteracao_ideprocessocp #
+        unique_together = (
+            #custom_unique_together_s1010_alteracao_ideprocessocp#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_alteracao_ideprocessocp
+            #index_together_s1010_alteracao_ideprocessocp
+        )
         permissions = (
             ("can_view_s1010_alteracao_ideprocessocp", "Can view s1010_alteracao_ideprocessocp"),
             #custom_permissions_s1010_alteracao_ideprocessocp
@@ -522,6 +538,14 @@ class s1010alteracaoideProcessoCPRP(SoftDeletionModel):
     class Meta:
         db_table = r's1010_alteracao_ideprocessocprp'       
         managed = True # s1010_alteracao_ideprocessocprp #
+        unique_together = (
+            #custom_unique_together_s1010_alteracao_ideprocessocprp#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_alteracao_ideprocessocprp
+            #index_together_s1010_alteracao_ideprocessocprp
+        )
         permissions = (
             ("can_view_s1010_alteracao_ideprocessocprp", "Can view s1010_alteracao_ideprocessocprp"),
             #custom_permissions_s1010_alteracao_ideprocessocprp
@@ -562,6 +586,14 @@ class s1010alteracaoideProcessoFGTS(SoftDeletionModel):
     class Meta:
         db_table = r's1010_alteracao_ideprocessofgts'       
         managed = True # s1010_alteracao_ideprocessofgts #
+        unique_together = (
+            #custom_unique_together_s1010_alteracao_ideprocessofgts#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_alteracao_ideprocessofgts
+            #index_together_s1010_alteracao_ideprocessofgts
+        )
         permissions = (
             ("can_view_s1010_alteracao_ideprocessofgts", "Can view s1010_alteracao_ideprocessofgts"),
             #custom_permissions_s1010_alteracao_ideprocessofgts
@@ -603,6 +635,14 @@ class s1010alteracaoideProcessoIRRF(SoftDeletionModel):
     class Meta:
         db_table = r's1010_alteracao_ideprocessoirrf'       
         managed = True # s1010_alteracao_ideprocessoirrf #
+        unique_together = (
+            #custom_unique_together_s1010_alteracao_ideprocessoirrf#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_alteracao_ideprocessoirrf
+            #index_together_s1010_alteracao_ideprocessoirrf
+        )
         permissions = (
             ("can_view_s1010_alteracao_ideprocessoirrf", "Can view s1010_alteracao_ideprocessoirrf"),
             #custom_permissions_s1010_alteracao_ideprocessoirrf
@@ -643,6 +683,14 @@ class s1010alteracaoideProcessoSIND(SoftDeletionModel):
     class Meta:
         db_table = r's1010_alteracao_ideprocessosind'       
         managed = True # s1010_alteracao_ideprocessosind #
+        unique_together = (
+            #custom_unique_together_s1010_alteracao_ideprocessosind#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_alteracao_ideprocessosind
+            #index_together_s1010_alteracao_ideprocessosind
+        )
         permissions = (
             ("can_view_s1010_alteracao_ideprocessosind", "Can view s1010_alteracao_ideprocessosind"),
             #custom_permissions_s1010_alteracao_ideprocessosind
@@ -684,6 +732,14 @@ class s1010alteracaonovaValidade(SoftDeletionModel):
     class Meta:
         db_table = r's1010_alteracao_novavalidade'       
         managed = True # s1010_alteracao_novavalidade #
+        unique_together = (
+            #custom_unique_together_s1010_alteracao_novavalidade#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_alteracao_novavalidade
+            #index_together_s1010_alteracao_novavalidade
+        )
         permissions = (
             ("can_view_s1010_alteracao_novavalidade", "Can view s1010_alteracao_novavalidade"),
             #custom_permissions_s1010_alteracao_novavalidade
@@ -727,6 +783,14 @@ class s1010exclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1010_exclusao'       
         managed = True # s1010_exclusao #
+        unique_together = (
+            #custom_unique_together_s1010_exclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_exclusao
+            #index_together_s1010_exclusao
+        )
         permissions = (
             ("can_view_s1010_exclusao", "Can view s1010_exclusao"),
             #custom_permissions_s1010_exclusao
@@ -780,6 +844,14 @@ class s1010inclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1010_inclusao'       
         managed = True # s1010_inclusao #
+        unique_together = (
+            #custom_unique_together_s1010_inclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_inclusao
+            #index_together_s1010_inclusao
+        )
         permissions = (
             ("can_view_s1010_inclusao", "Can view s1010_inclusao"),
             #custom_permissions_s1010_inclusao
@@ -823,6 +895,14 @@ class s1010inclusaoideProcessoCP(SoftDeletionModel):
     class Meta:
         db_table = r's1010_inclusao_ideprocessocp'       
         managed = True # s1010_inclusao_ideprocessocp #
+        unique_together = (
+            #custom_unique_together_s1010_inclusao_ideprocessocp#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_inclusao_ideprocessocp
+            #index_together_s1010_inclusao_ideprocessocp
+        )
         permissions = (
             ("can_view_s1010_inclusao_ideprocessocp", "Can view s1010_inclusao_ideprocessocp"),
             #custom_permissions_s1010_inclusao_ideprocessocp
@@ -865,6 +945,14 @@ class s1010inclusaoideProcessoCPRP(SoftDeletionModel):
     class Meta:
         db_table = r's1010_inclusao_ideprocessocprp'       
         managed = True # s1010_inclusao_ideprocessocprp #
+        unique_together = (
+            #custom_unique_together_s1010_inclusao_ideprocessocprp#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_inclusao_ideprocessocprp
+            #index_together_s1010_inclusao_ideprocessocprp
+        )
         permissions = (
             ("can_view_s1010_inclusao_ideprocessocprp", "Can view s1010_inclusao_ideprocessocprp"),
             #custom_permissions_s1010_inclusao_ideprocessocprp
@@ -905,6 +993,14 @@ class s1010inclusaoideProcessoFGTS(SoftDeletionModel):
     class Meta:
         db_table = r's1010_inclusao_ideprocessofgts'       
         managed = True # s1010_inclusao_ideprocessofgts #
+        unique_together = (
+            #custom_unique_together_s1010_inclusao_ideprocessofgts#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_inclusao_ideprocessofgts
+            #index_together_s1010_inclusao_ideprocessofgts
+        )
         permissions = (
             ("can_view_s1010_inclusao_ideprocessofgts", "Can view s1010_inclusao_ideprocessofgts"),
             #custom_permissions_s1010_inclusao_ideprocessofgts
@@ -946,6 +1042,14 @@ class s1010inclusaoideProcessoIRRF(SoftDeletionModel):
     class Meta:
         db_table = r's1010_inclusao_ideprocessoirrf'       
         managed = True # s1010_inclusao_ideprocessoirrf #
+        unique_together = (
+            #custom_unique_together_s1010_inclusao_ideprocessoirrf#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_inclusao_ideprocessoirrf
+            #index_together_s1010_inclusao_ideprocessoirrf
+        )
         permissions = (
             ("can_view_s1010_inclusao_ideprocessoirrf", "Can view s1010_inclusao_ideprocessoirrf"),
             #custom_permissions_s1010_inclusao_ideprocessoirrf
@@ -986,6 +1090,14 @@ class s1010inclusaoideProcessoSIND(SoftDeletionModel):
     class Meta:
         db_table = r's1010_inclusao_ideprocessosind'       
         managed = True # s1010_inclusao_ideprocessosind #
+        unique_together = (
+            #custom_unique_together_s1010_inclusao_ideprocessosind#
+            
+        )
+        index_together = (
+            #custom_index_together_s1010_inclusao_ideprocessosind
+            #index_together_s1010_inclusao_ideprocessosind
+        )
         permissions = (
             ("can_view_s1010_inclusao_ideprocessosind", "Can view s1010_inclusao_ideprocessosind"),
             #custom_permissions_s1010_inclusao_ideprocessosind

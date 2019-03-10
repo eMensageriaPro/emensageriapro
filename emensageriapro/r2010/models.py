@@ -78,6 +78,14 @@ class r2010infoProcRetAd(SoftDeletionModel):
     class Meta:
         db_table = r'r2010_infoprocretad'       
         managed = True # r2010_infoprocretad #
+        unique_together = (
+            #custom_unique_together_r2010_infoprocretad#
+            
+        )
+        index_together = (
+            #custom_index_together_r2010_infoprocretad
+            #index_together_r2010_infoprocretad
+        )
         permissions = (
             ("can_view_r2010_infoprocretad", "Can view r2010_infoprocretad"),
             #custom_permissions_r2010_infoprocretad
@@ -121,6 +129,14 @@ class r2010infoProcRetPr(SoftDeletionModel):
     class Meta:
         db_table = r'r2010_infoprocretpr'       
         managed = True # r2010_infoprocretpr #
+        unique_together = (
+            #custom_unique_together_r2010_infoprocretpr#
+            
+        )
+        index_together = (
+            #custom_index_together_r2010_infoprocretpr
+            #index_together_r2010_infoprocretpr
+        )
         permissions = (
             ("can_view_r2010_infoprocretpr", "Can view r2010_infoprocretpr"),
             #custom_permissions_r2010_infoprocretpr
@@ -170,6 +186,14 @@ class r2010infoTpServ(SoftDeletionModel):
     class Meta:
         db_table = r'r2010_infotpserv'       
         managed = True # r2010_infotpserv #
+        unique_together = (
+            #custom_unique_together_r2010_infotpserv#
+            
+        )
+        index_together = (
+            #custom_index_together_r2010_infotpserv
+            #index_together_r2010_infotpserv
+        )
         permissions = (
             ("can_view_r2010_infotpserv", "Can view r2010_infotpserv"),
             #custom_permissions_r2010_infotpserv
@@ -214,6 +238,14 @@ class r2010nfs(SoftDeletionModel):
     class Meta:
         db_table = r'r2010_nfs'       
         managed = True # r2010_nfs #
+        unique_together = (
+            #custom_unique_together_r2010_nfs#
+            
+        )
+        index_together = (
+            #custom_index_together_r2010_nfs
+            #index_together_r2010_nfs
+        )
         permissions = (
             ("can_view_r2010_nfs", "Can view r2010_nfs"),
             #custom_permissions_r2010_nfs

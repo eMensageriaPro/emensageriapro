@@ -188,6 +188,14 @@ class s1020alteracao(SoftDeletionModel):
     class Meta:
         db_table = r's1020_alteracao'       
         managed = True # s1020_alteracao #
+        unique_together = (
+            #custom_unique_together_s1020_alteracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1020_alteracao
+            #index_together_s1020_alteracao
+        )
         permissions = (
             ("can_view_s1020_alteracao", "Can view s1020_alteracao"),
             #custom_permissions_s1020_alteracao
@@ -231,6 +239,14 @@ class s1020alteracaoinfoEmprParcial(SoftDeletionModel):
     class Meta:
         db_table = r's1020_alteracao_infoemprparcial'       
         managed = True # s1020_alteracao_infoemprparcial #
+        unique_together = (
+            #custom_unique_together_s1020_alteracao_infoemprparcial#
+            
+        )
+        index_together = (
+            #custom_index_together_s1020_alteracao_infoemprparcial
+            #index_together_s1020_alteracao_infoemprparcial
+        )
         permissions = (
             ("can_view_s1020_alteracao_infoemprparcial", "Can view s1020_alteracao_infoemprparcial"),
             #custom_permissions_s1020_alteracao_infoemprparcial
@@ -272,6 +288,14 @@ class s1020alteracaonovaValidade(SoftDeletionModel):
     class Meta:
         db_table = r's1020_alteracao_novavalidade'       
         managed = True # s1020_alteracao_novavalidade #
+        unique_together = (
+            #custom_unique_together_s1020_alteracao_novavalidade#
+            
+        )
+        index_together = (
+            #custom_index_together_s1020_alteracao_novavalidade
+            #index_together_s1020_alteracao_novavalidade
+        )
         permissions = (
             ("can_view_s1020_alteracao_novavalidade", "Can view s1020_alteracao_novavalidade"),
             #custom_permissions_s1020_alteracao_novavalidade
@@ -314,6 +338,14 @@ class s1020alteracaoprocJudTerceiro(SoftDeletionModel):
     class Meta:
         db_table = r's1020_alteracao_procjudterceiro'       
         managed = True # s1020_alteracao_procjudterceiro #
+        unique_together = (
+            #custom_unique_together_s1020_alteracao_procjudterceiro#
+            
+        )
+        index_together = (
+            #custom_index_together_s1020_alteracao_procjudterceiro
+            #index_together_s1020_alteracao_procjudterceiro
+        )
         permissions = (
             ("can_view_s1020_alteracao_procjudterceiro", "Can view s1020_alteracao_procjudterceiro"),
             #custom_permissions_s1020_alteracao_procjudterceiro
@@ -356,6 +388,14 @@ class s1020exclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1020_exclusao'       
         managed = True # s1020_exclusao #
+        unique_together = (
+            #custom_unique_together_s1020_exclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1020_exclusao
+            #index_together_s1020_exclusao
+        )
         permissions = (
             ("can_view_s1020_exclusao", "Can view s1020_exclusao"),
             #custom_permissions_s1020_exclusao
@@ -404,6 +444,14 @@ class s1020inclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1020_inclusao'       
         managed = True # s1020_inclusao #
+        unique_together = (
+            #custom_unique_together_s1020_inclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1020_inclusao
+            #index_together_s1020_inclusao
+        )
         permissions = (
             ("can_view_s1020_inclusao", "Can view s1020_inclusao"),
             #custom_permissions_s1020_inclusao
@@ -447,6 +495,14 @@ class s1020inclusaoinfoEmprParcial(SoftDeletionModel):
     class Meta:
         db_table = r's1020_inclusao_infoemprparcial'       
         managed = True # s1020_inclusao_infoemprparcial #
+        unique_together = (
+            #custom_unique_together_s1020_inclusao_infoemprparcial#
+            
+        )
+        index_together = (
+            #custom_index_together_s1020_inclusao_infoemprparcial
+            #index_together_s1020_inclusao_infoemprparcial
+        )
         permissions = (
             ("can_view_s1020_inclusao_infoemprparcial", "Can view s1020_inclusao_infoemprparcial"),
             #custom_permissions_s1020_inclusao_infoemprparcial
@@ -489,6 +545,14 @@ class s1020inclusaoprocJudTerceiro(SoftDeletionModel):
     class Meta:
         db_table = r's1020_inclusao_procjudterceiro'       
         managed = True # s1020_inclusao_procjudterceiro #
+        unique_together = (
+            #custom_unique_together_s1020_inclusao_procjudterceiro#
+            
+        )
+        index_together = (
+            #custom_index_together_s1020_inclusao_procjudterceiro
+            #index_together_s1020_inclusao_procjudterceiro
+        )
         permissions = (
             ("can_view_s1020_inclusao_procjudterceiro", "Can view s1020_inclusao_procjudterceiro"),
             #custom_permissions_s1020_inclusao_procjudterceiro

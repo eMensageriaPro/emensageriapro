@@ -108,6 +108,14 @@ class s1040alteracao(SoftDeletionModel):
     class Meta:
         db_table = r's1040_alteracao'       
         managed = True # s1040_alteracao #
+        unique_together = (
+            #custom_unique_together_s1040_alteracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1040_alteracao
+            #index_together_s1040_alteracao
+        )
         permissions = (
             ("can_view_s1040_alteracao", "Can view s1040_alteracao"),
             #custom_permissions_s1040_alteracao
@@ -149,6 +157,14 @@ class s1040alteracaonovaValidade(SoftDeletionModel):
     class Meta:
         db_table = r's1040_alteracao_novavalidade'       
         managed = True # s1040_alteracao_novavalidade #
+        unique_together = (
+            #custom_unique_together_s1040_alteracao_novavalidade#
+            
+        )
+        index_together = (
+            #custom_index_together_s1040_alteracao_novavalidade
+            #index_together_s1040_alteracao_novavalidade
+        )
         permissions = (
             ("can_view_s1040_alteracao_novavalidade", "Can view s1040_alteracao_novavalidade"),
             #custom_permissions_s1040_alteracao_novavalidade
@@ -191,6 +207,14 @@ class s1040exclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1040_exclusao'       
         managed = True # s1040_exclusao #
+        unique_together = (
+            #custom_unique_together_s1040_exclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1040_exclusao
+            #index_together_s1040_exclusao
+        )
         permissions = (
             ("can_view_s1040_exclusao", "Can view s1040_exclusao"),
             #custom_permissions_s1040_exclusao
@@ -235,6 +259,14 @@ class s1040inclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1040_inclusao'       
         managed = True # s1040_inclusao #
+        unique_together = (
+            #custom_unique_together_s1040_inclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1040_inclusao
+            #index_together_s1040_inclusao
+        )
         permissions = (
             ("can_view_s1040_inclusao", "Can view s1040_inclusao"),
             #custom_permissions_s1040_inclusao

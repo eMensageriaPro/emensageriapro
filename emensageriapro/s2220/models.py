@@ -90,6 +90,14 @@ class s2220exame(SoftDeletionModel):
     class Meta:
         db_table = r's2220_exame'       
         managed = True # s2220_exame #
+        unique_together = (
+            #custom_unique_together_s2220_exame#
+            
+        )
+        index_together = (
+            #custom_index_together_s2220_exame
+            #index_together_s2220_exame
+        )
         permissions = (
             ("can_view_s2220_exame", "Can view s2220_exame"),
             #custom_permissions_s2220_exame

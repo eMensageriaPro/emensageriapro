@@ -81,6 +81,14 @@ class s1270remunAvNP(SoftDeletionModel):
     class Meta:
         db_table = r's1270_remunavnp'       
         managed = True # s1270_remunavnp #
+        unique_together = (
+            #custom_unique_together_s1270_remunavnp#
+            
+        )
+        index_together = (
+            #custom_index_together_s1270_remunavnp
+            #index_together_s1270_remunavnp
+        )
         permissions = (
             ("can_view_s1270_remunavnp", "Can view s1270_remunavnp"),
             #custom_permissions_s1270_remunavnp

@@ -114,6 +114,14 @@ class s2399detOper(SoftDeletionModel):
     class Meta:
         db_table = r's2399_detoper'       
         managed = True # s2399_detoper #
+        unique_together = (
+            #custom_unique_together_s2399_detoper#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_detoper
+            #index_together_s2399_detoper
+        )
         permissions = (
             ("can_view_s2399_detoper", "Can view s2399_detoper"),
             #custom_permissions_s2399_detoper
@@ -158,6 +166,14 @@ class s2399detPlano(SoftDeletionModel):
     class Meta:
         db_table = r's2399_detplano'       
         managed = True # s2399_detplano #
+        unique_together = (
+            #custom_unique_together_s2399_detplano#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_detplano
+            #index_together_s2399_detplano
+        )
         permissions = (
             ("can_view_s2399_detplano", "Can view s2399_detplano"),
             #custom_permissions_s2399_detplano
@@ -203,6 +219,14 @@ class s2399detVerbas(SoftDeletionModel):
     class Meta:
         db_table = r's2399_detverbas'       
         managed = True # s2399_detverbas #
+        unique_together = (
+            #custom_unique_together_s2399_detverbas#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_detverbas
+            #index_together_s2399_detverbas
+        )
         permissions = (
             ("can_view_s2399_detverbas", "Can view s2399_detverbas"),
             #custom_permissions_s2399_detverbas
@@ -243,6 +267,14 @@ class s2399dmDev(SoftDeletionModel):
     class Meta:
         db_table = r's2399_dmdev'       
         managed = True # s2399_dmdev #
+        unique_together = (
+            #custom_unique_together_s2399_dmdev#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_dmdev
+            #index_together_s2399_dmdev
+        )
         permissions = (
             ("can_view_s2399_dmdev", "Can view s2399_dmdev"),
             #custom_permissions_s2399_dmdev
@@ -285,6 +317,14 @@ class s2399ideEstabLot(SoftDeletionModel):
     class Meta:
         db_table = r's2399_ideestablot'       
         managed = True # s2399_ideestablot #
+        unique_together = (
+            #custom_unique_together_s2399_ideestablot#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_ideestablot
+            #index_together_s2399_ideestablot
+        )
         permissions = (
             ("can_view_s2399_ideestablot", "Can view s2399_ideestablot"),
             #custom_permissions_s2399_ideestablot
@@ -325,6 +365,14 @@ class s2399infoAgNocivo(SoftDeletionModel):
     class Meta:
         db_table = r's2399_infoagnocivo'       
         managed = True # s2399_infoagnocivo #
+        unique_together = (
+            #custom_unique_together_s2399_infoagnocivo#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_infoagnocivo
+            #index_together_s2399_infoagnocivo
+        )
         permissions = (
             ("can_view_s2399_infoagnocivo", "Can view s2399_infoagnocivo"),
             #custom_permissions_s2399_infoagnocivo
@@ -365,6 +413,14 @@ class s2399infoMV(SoftDeletionModel):
     class Meta:
         db_table = r's2399_infomv'       
         managed = True # s2399_infomv #
+        unique_together = (
+            #custom_unique_together_s2399_infomv#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_infomv
+            #index_together_s2399_infomv
+        )
         permissions = (
             ("can_view_s2399_infomv", "Can view s2399_infomv"),
             #custom_permissions_s2399_infomv
@@ -405,6 +461,14 @@ class s2399infoSimples(SoftDeletionModel):
     class Meta:
         db_table = r's2399_infosimples'       
         managed = True # s2399_infosimples #
+        unique_together = (
+            #custom_unique_together_s2399_infosimples#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_infosimples
+            #index_together_s2399_infosimples
+        )
         permissions = (
             ("can_view_s2399_infosimples", "Can view s2399_infosimples"),
             #custom_permissions_s2399_infosimples
@@ -445,6 +509,14 @@ class s2399mudancaCPF(SoftDeletionModel):
     class Meta:
         db_table = r's2399_mudancacpf'       
         managed = True # s2399_mudancacpf #
+        unique_together = (
+            #custom_unique_together_s2399_mudancacpf#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_mudancacpf
+            #index_together_s2399_mudancacpf
+        )
         permissions = (
             ("can_view_s2399_mudancacpf", "Can view s2399_mudancacpf"),
             #custom_permissions_s2399_mudancacpf
@@ -487,6 +559,14 @@ class s2399procJudTrab(SoftDeletionModel):
     class Meta:
         db_table = r's2399_procjudtrab'       
         managed = True # s2399_procjudtrab #
+        unique_together = (
+            #custom_unique_together_s2399_procjudtrab#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_procjudtrab
+            #index_together_s2399_procjudtrab
+        )
         permissions = (
             ("can_view_s2399_procjudtrab", "Can view s2399_procjudtrab"),
             #custom_permissions_s2399_procjudtrab
@@ -527,6 +607,14 @@ class s2399quarentena(SoftDeletionModel):
     class Meta:
         db_table = r's2399_quarentena'       
         managed = True # s2399_quarentena #
+        unique_together = (
+            #custom_unique_together_s2399_quarentena#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_quarentena
+            #index_together_s2399_quarentena
+        )
         permissions = (
             ("can_view_s2399_quarentena", "Can view s2399_quarentena"),
             #custom_permissions_s2399_quarentena
@@ -570,6 +658,14 @@ class s2399remunOutrEmpr(SoftDeletionModel):
     class Meta:
         db_table = r's2399_remunoutrempr'       
         managed = True # s2399_remunoutrempr #
+        unique_together = (
+            #custom_unique_together_s2399_remunoutrempr#
+            
+        )
+        index_together = (
+            #custom_index_together_s2399_remunoutrempr
+            #index_together_s2399_remunoutrempr
+        )
         permissions = (
             ("can_view_s2399_remunoutrempr", "Can view s2399_remunoutrempr"),
             #custom_permissions_s2399_remunoutrempr

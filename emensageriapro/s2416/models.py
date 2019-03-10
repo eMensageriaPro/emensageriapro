@@ -75,6 +75,14 @@ class s2416homologTC(SoftDeletionModel):
     class Meta:
         db_table = r's2416_homologtc'       
         managed = True # s2416_homologtc #
+        unique_together = (
+            #custom_unique_together_s2416_homologtc#
+            
+        )
+        index_together = (
+            #custom_index_together_s2416_homologtc
+            #index_together_s2416_homologtc
+        )
         permissions = (
             ("can_view_s2416_homologtc", "Can view s2416_homologtc"),
             #custom_permissions_s2416_homologtc
@@ -115,6 +123,14 @@ class s2416infoPenMorte(SoftDeletionModel):
     class Meta:
         db_table = r's2416_infopenmorte'       
         managed = True # s2416_infopenmorte #
+        unique_together = (
+            #custom_unique_together_s2416_infopenmorte#
+            
+        )
+        index_together = (
+            #custom_index_together_s2416_infopenmorte
+            #index_together_s2416_infopenmorte
+        )
         permissions = (
             ("can_view_s2416_infopenmorte", "Can view s2416_infopenmorte"),
             #custom_permissions_s2416_infopenmorte
@@ -156,6 +172,14 @@ class s2416suspensao(SoftDeletionModel):
     class Meta:
         db_table = r's2416_suspensao'       
         managed = True # s2416_suspensao #
+        unique_together = (
+            #custom_unique_together_s2416_suspensao#
+            
+        )
+        index_together = (
+            #custom_index_together_s2416_suspensao
+            #index_together_s2416_suspensao
+        )
         permissions = (
             ("can_view_s2416_suspensao", "Can view s2416_suspensao"),
             #custom_permissions_s2416_suspensao

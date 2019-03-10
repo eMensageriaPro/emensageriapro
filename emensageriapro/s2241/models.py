@@ -65,6 +65,14 @@ class s2241altAposentEsp(SoftDeletionModel):
     class Meta:
         db_table = r's2241_altaposentesp'       
         managed = True # s2241_altaposentesp #
+        unique_together = (
+            #custom_unique_together_s2241_altaposentesp#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_altaposentesp
+            #index_together_s2241_altaposentesp
+        )
         permissions = (
             ("can_view_s2241_altaposentesp", "Can view s2241_altaposentesp"),
             #custom_permissions_s2241_altaposentesp
@@ -105,6 +113,14 @@ class s2241altAposentEspfatRisco(SoftDeletionModel):
     class Meta:
         db_table = r's2241_altaposentesp_fatrisco'       
         managed = True # s2241_altaposentesp_fatrisco #
+        unique_together = (
+            #custom_unique_together_s2241_altaposentesp_fatrisco#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_altaposentesp_fatrisco
+            #index_together_s2241_altaposentesp_fatrisco
+        )
         permissions = (
             ("can_view_s2241_altaposentesp_fatrisco", "Can view s2241_altaposentesp_fatrisco"),
             #custom_permissions_s2241_altaposentesp_fatrisco
@@ -145,6 +161,14 @@ class s2241altAposentEspinfoamb(SoftDeletionModel):
     class Meta:
         db_table = r's2241_altaposentesp_infoamb'       
         managed = True # s2241_altaposentesp_infoamb #
+        unique_together = (
+            #custom_unique_together_s2241_altaposentesp_infoamb#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_altaposentesp_infoamb
+            #index_together_s2241_altaposentesp_infoamb
+        )
         permissions = (
             ("can_view_s2241_altaposentesp_infoamb", "Can view s2241_altaposentesp_infoamb"),
             #custom_permissions_s2241_altaposentesp_infoamb
@@ -185,6 +209,14 @@ class s2241altInsalPeric(SoftDeletionModel):
     class Meta:
         db_table = r's2241_altinsalperic'       
         managed = True # s2241_altinsalperic #
+        unique_together = (
+            #custom_unique_together_s2241_altinsalperic#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_altinsalperic
+            #index_together_s2241_altinsalperic
+        )
         permissions = (
             ("can_view_s2241_altinsalperic", "Can view s2241_altinsalperic"),
             #custom_permissions_s2241_altinsalperic
@@ -225,6 +257,14 @@ class s2241altInsalPericfatRisco(SoftDeletionModel):
     class Meta:
         db_table = r's2241_altinsalperic_fatrisco'       
         managed = True # s2241_altinsalperic_fatrisco #
+        unique_together = (
+            #custom_unique_together_s2241_altinsalperic_fatrisco#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_altinsalperic_fatrisco
+            #index_together_s2241_altinsalperic_fatrisco
+        )
         permissions = (
             ("can_view_s2241_altinsalperic_fatrisco", "Can view s2241_altinsalperic_fatrisco"),
             #custom_permissions_s2241_altinsalperic_fatrisco
@@ -265,6 +305,14 @@ class s2241altInsalPericinfoamb(SoftDeletionModel):
     class Meta:
         db_table = r's2241_altinsalperic_infoamb'       
         managed = True # s2241_altinsalperic_infoamb #
+        unique_together = (
+            #custom_unique_together_s2241_altinsalperic_infoamb#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_altinsalperic_infoamb
+            #index_together_s2241_altinsalperic_infoamb
+        )
         permissions = (
             ("can_view_s2241_altinsalperic_infoamb", "Can view s2241_altinsalperic_infoamb"),
             #custom_permissions_s2241_altinsalperic_infoamb
@@ -305,6 +353,14 @@ class s2241fimAposentEsp(SoftDeletionModel):
     class Meta:
         db_table = r's2241_fimaposentesp'       
         managed = True # s2241_fimaposentesp #
+        unique_together = (
+            #custom_unique_together_s2241_fimaposentesp#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_fimaposentesp
+            #index_together_s2241_fimaposentesp
+        )
         permissions = (
             ("can_view_s2241_fimaposentesp", "Can view s2241_fimaposentesp"),
             #custom_permissions_s2241_fimaposentesp
@@ -345,6 +401,14 @@ class s2241fimAposentEspinfoAmb(SoftDeletionModel):
     class Meta:
         db_table = r's2241_fimaposentesp_infoamb'       
         managed = True # s2241_fimaposentesp_infoamb #
+        unique_together = (
+            #custom_unique_together_s2241_fimaposentesp_infoamb#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_fimaposentesp_infoamb
+            #index_together_s2241_fimaposentesp_infoamb
+        )
         permissions = (
             ("can_view_s2241_fimaposentesp_infoamb", "Can view s2241_fimaposentesp_infoamb"),
             #custom_permissions_s2241_fimaposentesp_infoamb
@@ -385,6 +449,14 @@ class s2241fimInsalPeric(SoftDeletionModel):
     class Meta:
         db_table = r's2241_fiminsalperic'       
         managed = True # s2241_fiminsalperic #
+        unique_together = (
+            #custom_unique_together_s2241_fiminsalperic#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_fiminsalperic
+            #index_together_s2241_fiminsalperic
+        )
         permissions = (
             ("can_view_s2241_fiminsalperic", "Can view s2241_fiminsalperic"),
             #custom_permissions_s2241_fiminsalperic
@@ -425,6 +497,14 @@ class s2241fimInsalPericinfoAmb(SoftDeletionModel):
     class Meta:
         db_table = r's2241_fiminsalperic_infoamb'       
         managed = True # s2241_fiminsalperic_infoamb #
+        unique_together = (
+            #custom_unique_together_s2241_fiminsalperic_infoamb#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_fiminsalperic_infoamb
+            #index_together_s2241_fiminsalperic_infoamb
+        )
         permissions = (
             ("can_view_s2241_fiminsalperic_infoamb", "Can view s2241_fiminsalperic_infoamb"),
             #custom_permissions_s2241_fiminsalperic_infoamb
@@ -465,6 +545,14 @@ class s2241iniAposentEsp(SoftDeletionModel):
     class Meta:
         db_table = r's2241_iniaposentesp'       
         managed = True # s2241_iniaposentesp #
+        unique_together = (
+            #custom_unique_together_s2241_iniaposentesp#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_iniaposentesp
+            #index_together_s2241_iniaposentesp
+        )
         permissions = (
             ("can_view_s2241_iniaposentesp", "Can view s2241_iniaposentesp"),
             #custom_permissions_s2241_iniaposentesp
@@ -505,6 +593,14 @@ class s2241iniAposentEspfatRisco(SoftDeletionModel):
     class Meta:
         db_table = r's2241_iniaposentesp_fatrisco'       
         managed = True # s2241_iniaposentesp_fatrisco #
+        unique_together = (
+            #custom_unique_together_s2241_iniaposentesp_fatrisco#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_iniaposentesp_fatrisco
+            #index_together_s2241_iniaposentesp_fatrisco
+        )
         permissions = (
             ("can_view_s2241_iniaposentesp_fatrisco", "Can view s2241_iniaposentesp_fatrisco"),
             #custom_permissions_s2241_iniaposentesp_fatrisco
@@ -545,6 +641,14 @@ class s2241iniAposentEspinfoAmb(SoftDeletionModel):
     class Meta:
         db_table = r's2241_iniaposentesp_infoamb'       
         managed = True # s2241_iniaposentesp_infoamb #
+        unique_together = (
+            #custom_unique_together_s2241_iniaposentesp_infoamb#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_iniaposentesp_infoamb
+            #index_together_s2241_iniaposentesp_infoamb
+        )
         permissions = (
             ("can_view_s2241_iniaposentesp_infoamb", "Can view s2241_iniaposentesp_infoamb"),
             #custom_permissions_s2241_iniaposentesp_infoamb
@@ -585,6 +689,14 @@ class s2241iniInsalPeric(SoftDeletionModel):
     class Meta:
         db_table = r's2241_iniinsalperic'       
         managed = True # s2241_iniinsalperic #
+        unique_together = (
+            #custom_unique_together_s2241_iniinsalperic#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_iniinsalperic
+            #index_together_s2241_iniinsalperic
+        )
         permissions = (
             ("can_view_s2241_iniinsalperic", "Can view s2241_iniinsalperic"),
             #custom_permissions_s2241_iniinsalperic
@@ -625,6 +737,14 @@ class s2241iniInsalPericfatRisco(SoftDeletionModel):
     class Meta:
         db_table = r's2241_iniinsalperic_fatrisco'       
         managed = True # s2241_iniinsalperic_fatrisco #
+        unique_together = (
+            #custom_unique_together_s2241_iniinsalperic_fatrisco#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_iniinsalperic_fatrisco
+            #index_together_s2241_iniinsalperic_fatrisco
+        )
         permissions = (
             ("can_view_s2241_iniinsalperic_fatrisco", "Can view s2241_iniinsalperic_fatrisco"),
             #custom_permissions_s2241_iniinsalperic_fatrisco
@@ -665,6 +785,14 @@ class s2241iniInsalPericinfoAmb(SoftDeletionModel):
     class Meta:
         db_table = r's2241_iniinsalperic_infoamb'       
         managed = True # s2241_iniinsalperic_infoamb #
+        unique_together = (
+            #custom_unique_together_s2241_iniinsalperic_infoamb#
+            
+        )
+        index_together = (
+            #custom_index_together_s2241_iniinsalperic_infoamb
+            #index_together_s2241_iniinsalperic_infoamb
+        )
         permissions = (
             ("can_view_s2241_iniinsalperic_infoamb", "Can view s2241_iniinsalperic_infoamb"),
             #custom_permissions_s2241_iniinsalperic_infoamb

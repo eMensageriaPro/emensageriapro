@@ -167,6 +167,14 @@ class s2206alvaraJudicial(SoftDeletionModel):
     class Meta:
         db_table = r's2206_alvarajudicial'       
         managed = True # s2206_alvarajudicial #
+        unique_together = (
+            #custom_unique_together_s2206_alvarajudicial#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_alvarajudicial
+            #index_together_s2206_alvarajudicial
+        )
         permissions = (
             ("can_view_s2206_alvarajudicial", "Can view s2206_alvarajudicial"),
             #custom_permissions_s2206_alvarajudicial
@@ -208,6 +216,14 @@ class s2206aprend(SoftDeletionModel):
     class Meta:
         db_table = r's2206_aprend'       
         managed = True # s2206_aprend #
+        unique_together = (
+            #custom_unique_together_s2206_aprend#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_aprend
+            #index_together_s2206_aprend
+        )
         permissions = (
             ("can_view_s2206_aprend", "Can view s2206_aprend"),
             #custom_permissions_s2206_aprend
@@ -248,6 +264,14 @@ class s2206filiacaoSindical(SoftDeletionModel):
     class Meta:
         db_table = r's2206_filiacaosindical'       
         managed = True # s2206_filiacaosindical #
+        unique_together = (
+            #custom_unique_together_s2206_filiacaosindical#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_filiacaosindical
+            #index_together_s2206_filiacaosindical
+        )
         permissions = (
             ("can_view_s2206_filiacaosindical", "Can view s2206_filiacaosindical"),
             #custom_permissions_s2206_filiacaosindical
@@ -291,6 +315,14 @@ class s2206horContratual(SoftDeletionModel):
     class Meta:
         db_table = r's2206_horcontratual'       
         managed = True # s2206_horcontratual #
+        unique_together = (
+            #custom_unique_together_s2206_horcontratual#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_horcontratual
+            #index_together_s2206_horcontratual
+        )
         permissions = (
             ("can_view_s2206_horcontratual", "Can view s2206_horcontratual"),
             #custom_permissions_s2206_horcontratual
@@ -332,6 +364,14 @@ class s2206horario(SoftDeletionModel):
     class Meta:
         db_table = r's2206_horario'       
         managed = True # s2206_horario #
+        unique_together = (
+            #custom_unique_together_s2206_horario#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_horario
+            #index_together_s2206_horario
+        )
         permissions = (
             ("can_view_s2206_horario", "Can view s2206_horario"),
             #custom_permissions_s2206_horario
@@ -375,6 +415,14 @@ class s2206infoCeletista(SoftDeletionModel):
     class Meta:
         db_table = r's2206_infoceletista'       
         managed = True # s2206_infoceletista #
+        unique_together = (
+            #custom_unique_together_s2206_infoceletista#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_infoceletista
+            #index_together_s2206_infoceletista
+        )
         permissions = (
             ("can_view_s2206_infoceletista", "Can view s2206_infoceletista"),
             #custom_permissions_s2206_infoceletista
@@ -418,6 +466,14 @@ class s2206infoEstatutario(SoftDeletionModel):
     class Meta:
         db_table = r's2206_infoestatutario'       
         managed = True # s2206_infoestatutario #
+        unique_together = (
+            #custom_unique_together_s2206_infoestatutario#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_infoestatutario
+            #index_together_s2206_infoestatutario
+        )
         permissions = (
             ("can_view_s2206_infoestatutario", "Can view s2206_infoestatutario"),
             #custom_permissions_s2206_infoestatutario
@@ -465,6 +521,14 @@ class s2206localTrabDom(SoftDeletionModel):
     class Meta:
         db_table = r's2206_localtrabdom'       
         managed = True # s2206_localtrabdom #
+        unique_together = (
+            #custom_unique_together_s2206_localtrabdom#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_localtrabdom
+            #index_together_s2206_localtrabdom
+        )
         permissions = (
             ("can_view_s2206_localtrabdom", "Can view s2206_localtrabdom"),
             #custom_permissions_s2206_localtrabdom
@@ -507,6 +571,14 @@ class s2206localTrabGeral(SoftDeletionModel):
     class Meta:
         db_table = r's2206_localtrabgeral'       
         managed = True # s2206_localtrabgeral #
+        unique_together = (
+            #custom_unique_together_s2206_localtrabgeral#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_localtrabgeral
+            #index_together_s2206_localtrabgeral
+        )
         permissions = (
             ("can_view_s2206_localtrabgeral", "Can view s2206_localtrabgeral"),
             #custom_permissions_s2206_localtrabgeral
@@ -547,6 +619,14 @@ class s2206observacoes(SoftDeletionModel):
     class Meta:
         db_table = r's2206_observacoes'       
         managed = True # s2206_observacoes #
+        unique_together = (
+            #custom_unique_together_s2206_observacoes#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_observacoes
+            #index_together_s2206_observacoes
+        )
         permissions = (
             ("can_view_s2206_observacoes", "Can view s2206_observacoes"),
             #custom_permissions_s2206_observacoes
@@ -587,6 +667,14 @@ class s2206servPubl(SoftDeletionModel):
     class Meta:
         db_table = r's2206_servpubl'       
         managed = True # s2206_servpubl #
+        unique_together = (
+            #custom_unique_together_s2206_servpubl#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_servpubl
+            #index_together_s2206_servpubl
+        )
         permissions = (
             ("can_view_s2206_servpubl", "Can view s2206_servpubl"),
             #custom_permissions_s2206_servpubl
@@ -627,6 +715,14 @@ class s2206trabTemp(SoftDeletionModel):
     class Meta:
         db_table = r's2206_trabtemp'       
         managed = True # s2206_trabtemp #
+        unique_together = (
+            #custom_unique_together_s2206_trabtemp#
+            
+        )
+        index_together = (
+            #custom_index_together_s2206_trabtemp
+            #index_together_s2206_trabtemp
+        )
         permissions = (
             ("can_view_s2206_trabtemp", "Can view s2206_trabtemp"),
             #custom_permissions_s2206_trabtemp

@@ -456,6 +456,14 @@ class s2210agenteCausador(SoftDeletionModel):
     class Meta:
         db_table = r's2210_agentecausador'       
         managed = True # s2210_agentecausador #
+        unique_together = (
+            #custom_unique_together_s2210_agentecausador#
+            
+        )
+        index_together = (
+            #custom_index_together_s2210_agentecausador
+            #index_together_s2210_agentecausador
+        )
         permissions = (
             ("can_view_s2210_agentecausador", "Can view s2210_agentecausador"),
             #custom_permissions_s2210_agentecausador
@@ -510,6 +518,14 @@ class s2210atestado(SoftDeletionModel):
     class Meta:
         db_table = r's2210_atestado'       
         managed = True # s2210_atestado #
+        unique_together = (
+            #custom_unique_together_s2210_atestado#
+            
+        )
+        index_together = (
+            #custom_index_together_s2210_atestado
+            #index_together_s2210_atestado
+        )
         permissions = (
             ("can_view_s2210_atestado", "Can view s2210_atestado"),
             #custom_permissions_s2210_atestado
@@ -551,6 +567,14 @@ class s2210catOrigem(SoftDeletionModel):
     class Meta:
         db_table = r's2210_catorigem'       
         managed = True # s2210_catorigem #
+        unique_together = (
+            #custom_unique_together_s2210_catorigem#
+            
+        )
+        index_together = (
+            #custom_index_together_s2210_catorigem
+            #index_together_s2210_catorigem
+        )
         permissions = (
             ("can_view_s2210_catorigem", "Can view s2210_catorigem"),
             #custom_permissions_s2210_catorigem
@@ -592,6 +616,14 @@ class s2210ideLocalAcid(SoftDeletionModel):
     class Meta:
         db_table = r's2210_idelocalacid'       
         managed = True # s2210_idelocalacid #
+        unique_together = (
+            #custom_unique_together_s2210_idelocalacid#
+            
+        )
+        index_together = (
+            #custom_index_together_s2210_idelocalacid
+            #index_together_s2210_idelocalacid
+        )
         permissions = (
             ("can_view_s2210_idelocalacid", "Can view s2210_idelocalacid"),
             #custom_permissions_s2210_idelocalacid
@@ -633,6 +665,14 @@ class s2210parteAtingida(SoftDeletionModel):
     class Meta:
         db_table = r's2210_parteatingida'       
         managed = True # s2210_parteatingida #
+        unique_together = (
+            #custom_unique_together_s2210_parteatingida#
+            
+        )
+        index_together = (
+            #custom_index_together_s2210_parteatingida
+            #index_together_s2210_parteatingida
+        )
         permissions = (
             ("can_view_s2210_parteatingida", "Can view s2210_parteatingida"),
             #custom_permissions_s2210_parteatingida

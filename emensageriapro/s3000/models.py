@@ -71,6 +71,14 @@ class s3000ideFolhaPagto(SoftDeletionModel):
     class Meta:
         db_table = r's3000_idefolhapagto'       
         managed = True # s3000_idefolhapagto #
+        unique_together = (
+            #custom_unique_together_s3000_idefolhapagto#
+            
+        )
+        index_together = (
+            #custom_index_together_s3000_idefolhapagto
+            #index_together_s3000_idefolhapagto
+        )
         permissions = (
             ("can_view_s3000_idefolhapagto", "Can view s3000_idefolhapagto"),
             #custom_permissions_s3000_idefolhapagto
@@ -112,6 +120,14 @@ class s3000ideTrabalhador(SoftDeletionModel):
     class Meta:
         db_table = r's3000_idetrabalhador'       
         managed = True # s3000_idetrabalhador #
+        unique_together = (
+            #custom_unique_together_s3000_idetrabalhador#
+            
+        )
+        index_together = (
+            #custom_index_together_s3000_idetrabalhador
+            #index_together_s3000_idetrabalhador
+        )
         permissions = (
             ("can_view_s3000_idetrabalhador", "Can view s3000_idetrabalhador"),
             #custom_permissions_s3000_idetrabalhador

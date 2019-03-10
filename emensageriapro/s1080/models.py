@@ -121,6 +121,14 @@ class s1080alteracao(SoftDeletionModel):
     class Meta:
         db_table = r's1080_alteracao'       
         managed = True # s1080_alteracao #
+        unique_together = (
+            #custom_unique_together_s1080_alteracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1080_alteracao
+            #index_together_s1080_alteracao
+        )
         permissions = (
             ("can_view_s1080_alteracao", "Can view s1080_alteracao"),
             #custom_permissions_s1080_alteracao
@@ -162,6 +170,14 @@ class s1080alteracaonovaValidade(SoftDeletionModel):
     class Meta:
         db_table = r's1080_alteracao_novavalidade'       
         managed = True # s1080_alteracao_novavalidade #
+        unique_together = (
+            #custom_unique_together_s1080_alteracao_novavalidade#
+            
+        )
+        index_together = (
+            #custom_index_together_s1080_alteracao_novavalidade
+            #index_together_s1080_alteracao_novavalidade
+        )
         permissions = (
             ("can_view_s1080_alteracao_novavalidade", "Can view s1080_alteracao_novavalidade"),
             #custom_permissions_s1080_alteracao_novavalidade
@@ -204,6 +220,14 @@ class s1080exclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1080_exclusao'       
         managed = True # s1080_exclusao #
+        unique_together = (
+            #custom_unique_together_s1080_exclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1080_exclusao
+            #index_together_s1080_exclusao
+        )
         permissions = (
             ("can_view_s1080_exclusao", "Can view s1080_exclusao"),
             #custom_permissions_s1080_exclusao
@@ -249,6 +273,14 @@ class s1080inclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1080_inclusao'       
         managed = True # s1080_inclusao #
+        unique_together = (
+            #custom_unique_together_s1080_inclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1080_inclusao
+            #index_together_s1080_inclusao
+        )
         permissions = (
             ("can_view_s1080_inclusao", "Can view s1080_inclusao"),
             #custom_permissions_s1080_inclusao

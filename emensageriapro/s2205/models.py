@@ -216,6 +216,14 @@ class s2205CNH(SoftDeletionModel):
     class Meta:
         db_table = r's2205_cnh'       
         managed = True # s2205_cnh #
+        unique_together = (
+            #custom_unique_together_s2205_cnh#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_cnh
+            #index_together_s2205_cnh
+        )
         permissions = (
             ("can_view_s2205_cnh", "Can view s2205_cnh"),
             #custom_permissions_s2205_cnh
@@ -258,6 +266,14 @@ class s2205CTPS(SoftDeletionModel):
     class Meta:
         db_table = r's2205_ctps'       
         managed = True # s2205_ctps #
+        unique_together = (
+            #custom_unique_together_s2205_ctps#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_ctps
+            #index_together_s2205_ctps
+        )
         permissions = (
             ("can_view_s2205_ctps", "Can view s2205_ctps"),
             #custom_permissions_s2205_ctps
@@ -301,6 +317,14 @@ class s2205OC(SoftDeletionModel):
     class Meta:
         db_table = r's2205_oc'       
         managed = True # s2205_oc #
+        unique_together = (
+            #custom_unique_together_s2205_oc#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_oc
+            #index_together_s2205_oc
+        )
         permissions = (
             ("can_view_s2205_oc", "Can view s2205_oc"),
             #custom_permissions_s2205_oc
@@ -343,6 +367,14 @@ class s2205RG(SoftDeletionModel):
     class Meta:
         db_table = r's2205_rg'       
         managed = True # s2205_rg #
+        unique_together = (
+            #custom_unique_together_s2205_rg#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_rg
+            #index_together_s2205_rg
+        )
         permissions = (
             ("can_view_s2205_rg", "Can view s2205_rg"),
             #custom_permissions_s2205_rg
@@ -385,6 +417,14 @@ class s2205RIC(SoftDeletionModel):
     class Meta:
         db_table = r's2205_ric'       
         managed = True # s2205_ric #
+        unique_together = (
+            #custom_unique_together_s2205_ric#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_ric
+            #index_together_s2205_ric
+        )
         permissions = (
             ("can_view_s2205_ric", "Can view s2205_ric"),
             #custom_permissions_s2205_ric
@@ -427,6 +467,14 @@ class s2205RNE(SoftDeletionModel):
     class Meta:
         db_table = r's2205_rne'       
         managed = True # s2205_rne #
+        unique_together = (
+            #custom_unique_together_s2205_rne#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_rne
+            #index_together_s2205_rne
+        )
         permissions = (
             ("can_view_s2205_rne", "Can view s2205_rne"),
             #custom_permissions_s2205_rne
@@ -467,6 +515,14 @@ class s2205aposentadoria(SoftDeletionModel):
     class Meta:
         db_table = r's2205_aposentadoria'       
         managed = True # s2205_aposentadoria #
+        unique_together = (
+            #custom_unique_together_s2205_aposentadoria#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_aposentadoria
+            #index_together_s2205_aposentadoria
+        )
         permissions = (
             ("can_view_s2205_aposentadoria", "Can view s2205_aposentadoria"),
             #custom_permissions_s2205_aposentadoria
@@ -514,6 +570,14 @@ class s2205brasil(SoftDeletionModel):
     class Meta:
         db_table = r's2205_brasil'       
         managed = True # s2205_brasil #
+        unique_together = (
+            #custom_unique_together_s2205_brasil#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_brasil
+            #index_together_s2205_brasil
+        )
         permissions = (
             ("can_view_s2205_brasil", "Can view s2205_brasil"),
             #custom_permissions_s2205_brasil
@@ -557,6 +621,14 @@ class s2205contato(SoftDeletionModel):
     class Meta:
         db_table = r's2205_contato'       
         managed = True # s2205_contato #
+        unique_together = (
+            #custom_unique_together_s2205_contato#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_contato
+            #index_together_s2205_contato
+        )
         permissions = (
             ("can_view_s2205_contato", "Can view s2205_contato"),
             #custom_permissions_s2205_contato
@@ -605,6 +677,14 @@ class s2205dependente(SoftDeletionModel):
     class Meta:
         db_table = r's2205_dependente'       
         managed = True # s2205_dependente #
+        unique_together = (
+            #custom_unique_together_s2205_dependente#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_dependente
+            #index_together_s2205_dependente
+        )
         permissions = (
             ("can_view_s2205_dependente", "Can view s2205_dependente"),
             #custom_permissions_s2205_dependente
@@ -651,6 +731,14 @@ class s2205exterior(SoftDeletionModel):
     class Meta:
         db_table = r's2205_exterior'       
         managed = True # s2205_exterior #
+        unique_together = (
+            #custom_unique_together_s2205_exterior#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_exterior
+            #index_together_s2205_exterior
+        )
         permissions = (
             ("can_view_s2205_exterior", "Can view s2205_exterior"),
             #custom_permissions_s2205_exterior
@@ -698,6 +786,14 @@ class s2205infoDeficiencia(SoftDeletionModel):
     class Meta:
         db_table = r's2205_infodeficiencia'       
         managed = True # s2205_infodeficiencia #
+        unique_together = (
+            #custom_unique_together_s2205_infodeficiencia#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_infodeficiencia
+            #index_together_s2205_infodeficiencia
+        )
         permissions = (
             ("can_view_s2205_infodeficiencia", "Can view s2205_infodeficiencia"),
             #custom_permissions_s2205_infodeficiencia
@@ -741,6 +837,14 @@ class s2205trabEstrangeiro(SoftDeletionModel):
     class Meta:
         db_table = r's2205_trabestrangeiro'       
         managed = True # s2205_trabestrangeiro #
+        unique_together = (
+            #custom_unique_together_s2205_trabestrangeiro#
+            
+        )
+        index_together = (
+            #custom_index_together_s2205_trabestrangeiro
+            #index_together_s2205_trabestrangeiro
+        )
         permissions = (
             ("can_view_s2205_trabestrangeiro", "Can view s2205_trabestrangeiro"),
             #custom_permissions_s2205_trabestrangeiro

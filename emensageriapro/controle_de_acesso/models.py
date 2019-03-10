@@ -85,6 +85,14 @@ class Auditoria(SoftDeletionModel):
     class Meta:
         db_table = r'auditoria'       
         managed = True # auditoria #
+        unique_together = (
+            #custom_unique_together_auditoria#
+            
+        )
+        index_together = (
+            #custom_index_together_auditoria
+            #index_together_auditoria
+        )
         permissions = (
             ("can_view_auditoria", "Can view auditoria"),
             #custom_permissions_auditoria
@@ -126,6 +134,14 @@ class ConfigModulos(SoftDeletionModel):
     class Meta:
         db_table = r'config_modulos'       
         managed = True # config_modulos #
+        unique_together = (
+            #custom_unique_together_config_modulos#
+            
+        )
+        index_together = (
+            #custom_index_together_config_modulos
+            #index_together_config_modulos
+        )
         permissions = (
             ("can_view_config_modulos", "Can view config_modulos"),
             #custom_permissions_config_modulos
@@ -169,6 +185,14 @@ class ConfigPaginas(SoftDeletionModel):
     class Meta:
         db_table = r'config_paginas'       
         managed = True # config_paginas #
+        unique_together = (
+            #custom_unique_together_config_paginas#
+            
+        )
+        index_together = (
+            #custom_index_together_config_paginas
+            #index_together_config_paginas
+        )
         permissions = (
             ("can_view_config_paginas", "Can view config_paginas"),
             #custom_permissions_config_paginas
@@ -209,6 +233,14 @@ class ConfigPerfis(SoftDeletionModel):
     class Meta:
         db_table = r'config_perfis'       
         managed = True # config_perfis #
+        unique_together = (
+            #custom_unique_together_config_perfis#
+            
+        )
+        index_together = (
+            #custom_index_together_config_perfis
+            #index_together_config_perfis
+        )
         permissions = (
             ("can_view_config_perfis", "Can view config_perfis"),
             #custom_permissions_config_perfis
@@ -254,6 +286,14 @@ class ConfigPermissoes(SoftDeletionModel):
     class Meta:
         db_table = r'config_permissoes'       
         managed = True # config_permissoes #
+        unique_together = (
+            #custom_unique_together_config_permissoes#
+            
+        )
+        index_together = (
+            #custom_index_together_config_permissoes
+            #index_together_config_permissoes
+        )
         permissions = (
             ("can_view_config_permissoes", "Can view config_permissoes"),
             #custom_permissions_config_permissoes
@@ -319,6 +359,14 @@ class Usuarios(SoftDeletionModel):
     class Meta:
         db_table = r'usuarios'       
         managed = True # usuarios #
+        unique_together = (
+            #custom_unique_together_usuarios#
+            
+        )
+        index_together = (
+            #custom_index_together_usuarios
+            #index_together_usuarios
+        )
         permissions = (
             ("can_view_usuarios", "Can view usuarios"),
             #custom_permissions_usuarios

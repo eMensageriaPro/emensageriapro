@@ -158,6 +158,14 @@ class s1200dmDev(SoftDeletionModel):
     class Meta:
         db_table = r's1200_dmdev'       
         managed = True # s1200_dmdev #
+        unique_together = (
+            #custom_unique_together_s1200_dmdev#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_dmdev
+            #index_together_s1200_dmdev
+        )
         permissions = (
             ("can_view_s1200_dmdev", "Can view s1200_dmdev"),
             #custom_permissions_s1200_dmdev
@@ -199,6 +207,14 @@ class s1200infoComplem(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infocomplem'       
         managed = True # s1200_infocomplem #
+        unique_together = (
+            #custom_unique_together_s1200_infocomplem#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infocomplem
+            #index_together_s1200_infocomplem
+        )
         permissions = (
             ("can_view_s1200_infocomplem", "Can view s1200_infocomplem"),
             #custom_permissions_s1200_infocomplem
@@ -239,6 +255,14 @@ class s1200infoInterm(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infointerm'       
         managed = True # s1200_infointerm #
+        unique_together = (
+            #custom_unique_together_s1200_infointerm#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infointerm
+            #index_together_s1200_infointerm
+        )
         permissions = (
             ("can_view_s1200_infointerm", "Can view s1200_infointerm"),
             #custom_permissions_s1200_infointerm
@@ -279,6 +303,14 @@ class s1200infoMV(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infomv'       
         managed = True # s1200_infomv #
+        unique_together = (
+            #custom_unique_together_s1200_infomv#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infomv
+            #index_together_s1200_infomv
+        )
         permissions = (
             ("can_view_s1200_infomv", "Can view s1200_infomv"),
             #custom_permissions_s1200_infomv
@@ -324,6 +356,14 @@ class s1200infoPerAntideADC(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperant_ideadc'       
         managed = True # s1200_infoperant_ideadc #
+        unique_together = (
+            #custom_unique_together_s1200_infoperant_ideadc#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperant_ideadc
+            #index_together_s1200_infoperant_ideadc
+        )
         permissions = (
             ("can_view_s1200_infoperant_ideadc", "Can view s1200_infoperant_ideadc"),
             #custom_permissions_s1200_infoperant_ideadc
@@ -366,6 +406,14 @@ class s1200infoPerAntideEstabLot(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperant_ideestablot'       
         managed = True # s1200_infoperant_ideestablot #
+        unique_together = (
+            #custom_unique_together_s1200_infoperant_ideestablot#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperant_ideestablot
+            #index_together_s1200_infoperant_ideestablot
+        )
         permissions = (
             ("can_view_s1200_infoperant_ideestablot", "Can view s1200_infoperant_ideestablot"),
             #custom_permissions_s1200_infoperant_ideestablot
@@ -406,6 +454,14 @@ class s1200infoPerAntidePeriodo(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperant_ideperiodo'       
         managed = True # s1200_infoperant_ideperiodo #
+        unique_together = (
+            #custom_unique_together_s1200_infoperant_ideperiodo#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperant_ideperiodo
+            #index_together_s1200_infoperant_ideperiodo
+        )
         permissions = (
             ("can_view_s1200_infoperant_ideperiodo", "Can view s1200_infoperant_ideperiodo"),
             #custom_permissions_s1200_infoperant_ideperiodo
@@ -446,6 +502,14 @@ class s1200infoPerAntinfoAgNocivo(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperant_infoagnocivo'       
         managed = True # s1200_infoperant_infoagnocivo #
+        unique_together = (
+            #custom_unique_together_s1200_infoperant_infoagnocivo#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperant_infoagnocivo
+            #index_together_s1200_infoperant_infoagnocivo
+        )
         permissions = (
             ("can_view_s1200_infoperant_infoagnocivo", "Can view s1200_infoperant_infoagnocivo"),
             #custom_permissions_s1200_infoperant_infoagnocivo
@@ -488,6 +552,14 @@ class s1200infoPerAntinfoComplCont(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperant_infocomplcont'       
         managed = True # s1200_infoperant_infocomplcont #
+        unique_together = (
+            #custom_unique_together_s1200_infoperant_infocomplcont#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperant_infocomplcont
+            #index_together_s1200_infoperant_infocomplcont
+        )
         permissions = (
             ("can_view_s1200_infoperant_infocomplcont", "Can view s1200_infoperant_infocomplcont"),
             #custom_permissions_s1200_infoperant_infocomplcont
@@ -528,6 +600,14 @@ class s1200infoPerAntinfoTrabInterm(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperant_infotrabinterm'       
         managed = True # s1200_infoperant_infotrabinterm #
+        unique_together = (
+            #custom_unique_together_s1200_infoperant_infotrabinterm#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperant_infotrabinterm
+            #index_together_s1200_infoperant_infotrabinterm
+        )
         permissions = (
             ("can_view_s1200_infoperant_infotrabinterm", "Can view s1200_infoperant_infotrabinterm"),
             #custom_permissions_s1200_infoperant_infotrabinterm
@@ -573,6 +653,14 @@ class s1200infoPerAntitensRemun(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperant_itensremun'       
         managed = True # s1200_infoperant_itensremun #
+        unique_together = (
+            #custom_unique_together_s1200_infoperant_itensremun#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperant_itensremun
+            #index_together_s1200_infoperant_itensremun
+        )
         permissions = (
             ("can_view_s1200_infoperant_itensremun", "Can view s1200_infoperant_itensremun"),
             #custom_permissions_s1200_infoperant_itensremun
@@ -614,6 +702,14 @@ class s1200infoPerAntremunPerAnt(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperant_remunperant'       
         managed = True # s1200_infoperant_remunperant #
+        unique_together = (
+            #custom_unique_together_s1200_infoperant_remunperant#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperant_remunperant
+            #index_together_s1200_infoperant_remunperant
+        )
         permissions = (
             ("can_view_s1200_infoperant_remunperant", "Can view s1200_infoperant_remunperant"),
             #custom_permissions_s1200_infoperant_remunperant
@@ -656,6 +752,14 @@ class s1200infoPerApurdetOper(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperapur_detoper'       
         managed = True # s1200_infoperapur_detoper #
+        unique_together = (
+            #custom_unique_together_s1200_infoperapur_detoper#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperapur_detoper
+            #index_together_s1200_infoperapur_detoper
+        )
         permissions = (
             ("can_view_s1200_infoperapur_detoper", "Can view s1200_infoperapur_detoper"),
             #custom_permissions_s1200_infoperapur_detoper
@@ -700,6 +804,14 @@ class s1200infoPerApurdetPlano(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperapur_detplano'       
         managed = True # s1200_infoperapur_detplano #
+        unique_together = (
+            #custom_unique_together_s1200_infoperapur_detplano#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperapur_detplano
+            #index_together_s1200_infoperapur_detplano
+        )
         permissions = (
             ("can_view_s1200_infoperapur_detplano", "Can view s1200_infoperapur_detplano"),
             #custom_permissions_s1200_infoperapur_detplano
@@ -743,6 +855,14 @@ class s1200infoPerApurideEstabLot(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperapur_ideestablot'       
         managed = True # s1200_infoperapur_ideestablot #
+        unique_together = (
+            #custom_unique_together_s1200_infoperapur_ideestablot#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperapur_ideestablot
+            #index_together_s1200_infoperapur_ideestablot
+        )
         permissions = (
             ("can_view_s1200_infoperapur_ideestablot", "Can view s1200_infoperapur_ideestablot"),
             #custom_permissions_s1200_infoperapur_ideestablot
@@ -783,6 +903,14 @@ class s1200infoPerApurinfoAgNocivo(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperapur_infoagnocivo'       
         managed = True # s1200_infoperapur_infoagnocivo #
+        unique_together = (
+            #custom_unique_together_s1200_infoperapur_infoagnocivo#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperapur_infoagnocivo
+            #index_together_s1200_infoperapur_infoagnocivo
+        )
         permissions = (
             ("can_view_s1200_infoperapur_infoagnocivo", "Can view s1200_infoperapur_infoagnocivo"),
             #custom_permissions_s1200_infoperapur_infoagnocivo
@@ -823,6 +951,14 @@ class s1200infoPerApurinfoTrabInterm(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperapur_infotrabinterm'       
         managed = True # s1200_infoperapur_infotrabinterm #
+        unique_together = (
+            #custom_unique_together_s1200_infoperapur_infotrabinterm#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperapur_infotrabinterm
+            #index_together_s1200_infoperapur_infotrabinterm
+        )
         permissions = (
             ("can_view_s1200_infoperapur_infotrabinterm", "Can view s1200_infoperapur_infotrabinterm"),
             #custom_permissions_s1200_infoperapur_infotrabinterm
@@ -868,6 +1004,14 @@ class s1200infoPerApuritensRemun(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperapur_itensremun'       
         managed = True # s1200_infoperapur_itensremun #
+        unique_together = (
+            #custom_unique_together_s1200_infoperapur_itensremun#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperapur_itensremun
+            #index_together_s1200_infoperapur_itensremun
+        )
         permissions = (
             ("can_view_s1200_infoperapur_itensremun", "Can view s1200_infoperapur_itensremun"),
             #custom_permissions_s1200_infoperapur_itensremun
@@ -909,6 +1053,14 @@ class s1200infoPerApurremunPerApur(SoftDeletionModel):
     class Meta:
         db_table = r's1200_infoperapur_remunperapur'       
         managed = True # s1200_infoperapur_remunperapur #
+        unique_together = (
+            #custom_unique_together_s1200_infoperapur_remunperapur#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_infoperapur_remunperapur
+            #index_together_s1200_infoperapur_remunperapur
+        )
         permissions = (
             ("can_view_s1200_infoperapur_remunperapur", "Can view s1200_infoperapur_remunperapur"),
             #custom_permissions_s1200_infoperapur_remunperapur
@@ -951,6 +1103,14 @@ class s1200procJudTrab(SoftDeletionModel):
     class Meta:
         db_table = r's1200_procjudtrab'       
         managed = True # s1200_procjudtrab #
+        unique_together = (
+            #custom_unique_together_s1200_procjudtrab#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_procjudtrab
+            #index_together_s1200_procjudtrab
+        )
         permissions = (
             ("can_view_s1200_procjudtrab", "Can view s1200_procjudtrab"),
             #custom_permissions_s1200_procjudtrab
@@ -994,6 +1154,14 @@ class s1200remunOutrEmpr(SoftDeletionModel):
     class Meta:
         db_table = r's1200_remunoutrempr'       
         managed = True # s1200_remunoutrempr #
+        unique_together = (
+            #custom_unique_together_s1200_remunoutrempr#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_remunoutrempr
+            #index_together_s1200_remunoutrempr
+        )
         permissions = (
             ("can_view_s1200_remunoutrempr", "Can view s1200_remunoutrempr"),
             #custom_permissions_s1200_remunoutrempr
@@ -1038,6 +1206,14 @@ class s1200sucessaoVinc(SoftDeletionModel):
     class Meta:
         db_table = r's1200_sucessaovinc'       
         managed = True # s1200_sucessaovinc #
+        unique_together = (
+            #custom_unique_together_s1200_sucessaovinc#
+            
+        )
+        index_together = (
+            #custom_index_together_s1200_sucessaovinc
+            #index_together_s1200_sucessaovinc
+        )
         permissions = (
             ("can_view_s1200_sucessaovinc", "Can view s1200_sucessaovinc"),
             #custom_permissions_s1200_sucessaovinc

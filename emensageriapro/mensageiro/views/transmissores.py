@@ -181,8 +181,8 @@ def listar(request, hash):
         if request.method == 'POST':
             post = True
             dict_fields = {
-                'contribuinte_nrinsc': 'contribuinte_nrinsc',
-                'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains',
+                'contribuinte_nrinsc__icontains': 'contribuinte_nrinsc__icontains',
+                'contribuinte_tpinsc': 'contribuinte_tpinsc',
                 'data_abertura__range': 'data_abertura__range',
                 'eSocial': 'eSocial',
                 'efdreinf': 'efdreinf',
@@ -192,8 +192,8 @@ def listar(request, hash):
                 'efdreinf_tempo_prox_envio': 'efdreinf_tempo_prox_envio',
                 'efdreinf_timeout': 'efdreinf_timeout',
                 'empregador_dados': 'empregador_dados',
-                'empregador_nrinsc': 'empregador_nrinsc',
-                'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
+                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
+                'empregador_tpinsc': 'empregador_tpinsc',
                 'endereco_completo__icontains': 'endereco_completo__icontains',
                 'envio_automatico': 'envio_automatico',
                 'esocial_intervalo': 'esocial_intervalo',
@@ -214,8 +214,8 @@ def listar(request, hash):
                 show_fields[a] = request.POST.get(a or None)
             if request.method == 'POST':
                 dict_fields = {
-                'contribuinte_nrinsc': 'contribuinte_nrinsc',
-                'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains',
+                'contribuinte_nrinsc__icontains': 'contribuinte_nrinsc__icontains',
+                'contribuinte_tpinsc': 'contribuinte_tpinsc',
                 'data_abertura__range': 'data_abertura__range',
                 'eSocial': 'eSocial',
                 'efdreinf': 'efdreinf',
@@ -225,8 +225,8 @@ def listar(request, hash):
                 'efdreinf_tempo_prox_envio': 'efdreinf_tempo_prox_envio',
                 'efdreinf_timeout': 'efdreinf_timeout',
                 'empregador_dados': 'empregador_dados',
-                'empregador_nrinsc': 'empregador_nrinsc',
-                'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
+                'empregador_nrinsc__icontains': 'empregador_nrinsc__icontains',
+                'empregador_tpinsc': 'empregador_tpinsc',
                 'endereco_completo__icontains': 'endereco_completo__icontains',
                 'envio_automatico': 'envio_automatico',
                 'esocial_intervalo': 'esocial_intervalo',

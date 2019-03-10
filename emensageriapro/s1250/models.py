@@ -71,6 +71,14 @@ class s1250ideProdutor(SoftDeletionModel):
     class Meta:
         db_table = r's1250_ideprodutor'       
         managed = True # s1250_ideprodutor #
+        unique_together = (
+            #custom_unique_together_s1250_ideprodutor#
+            
+        )
+        index_together = (
+            #custom_index_together_s1250_ideprodutor
+            #index_together_s1250_ideprodutor
+        )
         permissions = (
             ("can_view_s1250_ideprodutor", "Can view s1250_ideprodutor"),
             #custom_permissions_s1250_ideprodutor
@@ -115,6 +123,14 @@ class s1250infoProcJ(SoftDeletionModel):
     class Meta:
         db_table = r's1250_infoprocj'       
         managed = True # s1250_infoprocj #
+        unique_together = (
+            #custom_unique_together_s1250_infoprocj#
+            
+        )
+        index_together = (
+            #custom_index_together_s1250_infoprocj
+            #index_together_s1250_infoprocj
+        )
         permissions = (
             ("can_view_s1250_infoprocj", "Can view s1250_infoprocj"),
             #custom_permissions_s1250_infoprocj
@@ -159,6 +175,14 @@ class s1250infoProcJud(SoftDeletionModel):
     class Meta:
         db_table = r's1250_infoprocjud'       
         managed = True # s1250_infoprocjud #
+        unique_together = (
+            #custom_unique_together_s1250_infoprocjud#
+            
+        )
+        index_together = (
+            #custom_index_together_s1250_infoprocjud
+            #index_together_s1250_infoprocjud
+        )
         permissions = (
             ("can_view_s1250_infoprocjud", "Can view s1250_infoprocjud"),
             #custom_permissions_s1250_infoprocjud
@@ -205,6 +229,14 @@ class s1250nfs(SoftDeletionModel):
     class Meta:
         db_table = r's1250_nfs'       
         managed = True # s1250_nfs #
+        unique_together = (
+            #custom_unique_together_s1250_nfs#
+            
+        )
+        index_together = (
+            #custom_index_together_s1250_nfs
+            #index_together_s1250_nfs
+        )
         permissions = (
             ("can_view_s1250_nfs", "Can view s1250_nfs"),
             #custom_permissions_s1250_nfs
@@ -246,6 +278,14 @@ class s1250tpAquis(SoftDeletionModel):
     class Meta:
         db_table = r's1250_tpaquis'       
         managed = True # s1250_tpaquis #
+        unique_together = (
+            #custom_unique_together_s1250_tpaquis#
+            
+        )
+        index_together = (
+            #custom_index_together_s1250_tpaquis
+            #index_together_s1250_tpaquis
+        )
         permissions = (
             ("can_view_s1250_tpaquis", "Can view s1250_tpaquis"),
             #custom_permissions_s1250_tpaquis

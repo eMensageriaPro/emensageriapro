@@ -140,6 +140,14 @@ class s5003basePerAntE(SoftDeletionModel):
     class Meta:
         db_table = r's5003_baseperante'       
         managed = True # s5003_baseperante #
+        unique_together = (
+            #custom_unique_together_s5003_baseperante#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_baseperante
+            #index_together_s5003_baseperante
+        )
         permissions = (
             ("can_view_s5003_baseperante", "Can view s5003_baseperante"),
             #custom_permissions_s5003_baseperante
@@ -181,6 +189,14 @@ class s5003basePerApur(SoftDeletionModel):
     class Meta:
         db_table = r's5003_baseperapur'       
         managed = True # s5003_baseperapur #
+        unique_together = (
+            #custom_unique_together_s5003_baseperapur#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_baseperapur
+            #index_together_s5003_baseperapur
+        )
         permissions = (
             ("can_view_s5003_baseperapur", "Can view s5003_baseperapur"),
             #custom_permissions_s5003_baseperapur
@@ -222,6 +238,14 @@ class s5003dpsPerAntE(SoftDeletionModel):
     class Meta:
         db_table = r's5003_dpsperante'       
         managed = True # s5003_dpsperante #
+        unique_together = (
+            #custom_unique_together_s5003_dpsperante#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_dpsperante
+            #index_together_s5003_dpsperante
+        )
         permissions = (
             ("can_view_s5003_dpsperante", "Can view s5003_dpsperante"),
             #custom_permissions_s5003_dpsperante
@@ -263,6 +287,14 @@ class s5003dpsPerApur(SoftDeletionModel):
     class Meta:
         db_table = r's5003_dpsperapur'       
         managed = True # s5003_dpsperapur #
+        unique_together = (
+            #custom_unique_together_s5003_dpsperapur#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_dpsperapur
+            #index_together_s5003_dpsperapur
+        )
         permissions = (
             ("can_view_s5003_dpsperapur", "Can view s5003_dpsperapur"),
             #custom_permissions_s5003_dpsperapur
@@ -305,6 +337,14 @@ class s5003ideEstabLot(SoftDeletionModel):
     class Meta:
         db_table = r's5003_ideestablot'       
         managed = True # s5003_ideestablot #
+        unique_together = (
+            #custom_unique_together_s5003_ideestablot#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_ideestablot
+            #index_together_s5003_ideestablot
+        )
         permissions = (
             ("can_view_s5003_ideestablot", "Can view s5003_ideestablot"),
             #custom_permissions_s5003_ideestablot
@@ -345,6 +385,14 @@ class s5003infoBasePerAntE(SoftDeletionModel):
     class Meta:
         db_table = r's5003_infobaseperante'       
         managed = True # s5003_infobaseperante #
+        unique_together = (
+            #custom_unique_together_s5003_infobaseperante#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_infobaseperante
+            #index_together_s5003_infobaseperante
+        )
         permissions = (
             ("can_view_s5003_infobaseperante", "Can view s5003_infobaseperante"),
             #custom_permissions_s5003_infobaseperante
@@ -385,6 +433,14 @@ class s5003infoDpsPerAntE(SoftDeletionModel):
     class Meta:
         db_table = r's5003_infodpsperante'       
         managed = True # s5003_infodpsperante #
+        unique_together = (
+            #custom_unique_together_s5003_infodpsperante#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_infodpsperante
+            #index_together_s5003_infodpsperante
+        )
         permissions = (
             ("can_view_s5003_infodpsperante", "Can view s5003_infodpsperante"),
             #custom_permissions_s5003_infodpsperante
@@ -425,6 +481,14 @@ class s5003infoFGTS(SoftDeletionModel):
     class Meta:
         db_table = r's5003_infofgts'       
         managed = True # s5003_infofgts #
+        unique_together = (
+            #custom_unique_together_s5003_infofgts#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_infofgts
+            #index_together_s5003_infofgts
+        )
         permissions = (
             ("can_view_s5003_infofgts", "Can view s5003_infofgts"),
             #custom_permissions_s5003_infofgts
@@ -466,6 +530,14 @@ class s5003infoTrabDps(SoftDeletionModel):
     class Meta:
         db_table = r's5003_infotrabdps'       
         managed = True # s5003_infotrabdps #
+        unique_together = (
+            #custom_unique_together_s5003_infotrabdps#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_infotrabdps
+            #index_together_s5003_infotrabdps
+        )
         permissions = (
             ("can_view_s5003_infotrabdps", "Can view s5003_infotrabdps"),
             #custom_permissions_s5003_infotrabdps
@@ -513,6 +585,14 @@ class s5003infoTrabFGTS(SoftDeletionModel):
     class Meta:
         db_table = r's5003_infotrabfgts'       
         managed = True # s5003_infotrabfgts #
+        unique_together = (
+            #custom_unique_together_s5003_infotrabfgts#
+            
+        )
+        index_together = (
+            #custom_index_together_s5003_infotrabfgts
+            #index_together_s5003_infotrabfgts
+        )
         permissions = (
             ("can_view_s5003_infotrabfgts", "Can view s5003_infotrabfgts"),
             #custom_permissions_s5003_infotrabfgts

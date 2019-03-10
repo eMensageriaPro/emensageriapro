@@ -92,6 +92,14 @@ class r2060infoProc(SoftDeletionModel):
     class Meta:
         db_table = r'r2060_infoproc'       
         managed = True # r2060_infoproc #
+        unique_together = (
+            #custom_unique_together_r2060_infoproc#
+            
+        )
+        index_together = (
+            #custom_index_together_r2060_infoproc
+            #index_together_r2060_infoproc
+        )
         permissions = (
             ("can_view_r2060_infoproc", "Can view r2060_infoproc"),
             #custom_permissions_r2060_infoproc
@@ -136,6 +144,14 @@ class r2060tipoAjuste(SoftDeletionModel):
     class Meta:
         db_table = r'r2060_tipoajuste'       
         managed = True # r2060_tipoajuste #
+        unique_together = (
+            #custom_unique_together_r2060_tipoajuste#
+            
+        )
+        index_together = (
+            #custom_index_together_r2060_tipoajuste
+            #index_together_r2060_tipoajuste
+        )
         permissions = (
             ("can_view_r2060_tipoajuste", "Can view r2060_tipoajuste"),
             #custom_permissions_r2060_tipoajuste
@@ -181,6 +197,14 @@ class r2060tipoCod(SoftDeletionModel):
     class Meta:
         db_table = r'r2060_tipocod'       
         managed = True # r2060_tipocod #
+        unique_together = (
+            #custom_unique_together_r2060_tipocod#
+            
+        )
+        index_together = (
+            #custom_index_together_r2060_tipocod
+            #index_together_r2060_tipocod
+        )
         permissions = (
             ("can_view_r2060_tipocod", "Can view r2060_tipocod"),
             #custom_permissions_r2060_tipocod

@@ -213,6 +213,14 @@ class Arquivos(SoftDeletionModel):
     class Meta:
         db_table = r'arquivos'       
         managed = True # arquivos #
+        unique_together = (
+            #custom_unique_together_arquivos#
+            
+        )
+        index_together = (
+            #custom_index_together_arquivos
+            #index_together_arquivos
+        )
         permissions = (
             ("can_view_arquivos", "Can view arquivos"),
             #custom_permissions_arquivos
@@ -258,6 +266,14 @@ class ImportacaoArquivos(SoftDeletionModel):
     class Meta:
         db_table = r'importacao_arquivos'       
         managed = True # importacao_arquivos #
+        unique_together = (
+            #custom_unique_together_importacao_arquivos#
+            
+        )
+        index_together = (
+            #custom_index_together_importacao_arquivos
+            #index_together_importacao_arquivos
+        )
         permissions = (
             ("can_view_importacao_arquivos", "Can view importacao_arquivos"),
             #custom_permissions_importacao_arquivos
@@ -304,6 +320,14 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
     class Meta:
         db_table = r'importacao_arquivos_eventos'       
         managed = True # importacao_arquivos_eventos #
+        unique_together = (
+            #custom_unique_together_importacao_arquivos_eventos#
+            
+        )
+        index_together = (
+            #custom_index_together_importacao_arquivos_eventos
+            #index_together_importacao_arquivos_eventos
+        )
         permissions = (
             ("can_view_importacao_arquivos_eventos", "Can view importacao_arquivos_eventos"),
             #custom_permissions_importacao_arquivos_eventos
@@ -356,6 +380,14 @@ class RegrasDeValidacao(SoftDeletionModel):
     class Meta:
         db_table = r'regras_validacao'       
         managed = True # regras_validacao #
+        unique_together = (
+            #custom_unique_together_regras_validacao#
+            
+        )
+        index_together = (
+            #custom_index_together_regras_validacao
+            #index_together_regras_validacao
+        )
         permissions = (
             ("can_view_regras_validacao", "Can view regras_validacao"),
             #custom_permissions_regras_validacao
@@ -392,6 +424,14 @@ class Relatorios(SoftDeletionModel):
     class Meta:
         db_table = r'relatorios'       
         managed = True # relatorios #
+        unique_together = (
+            #custom_unique_together_relatorios#
+            
+        )
+        index_together = (
+            #custom_index_together_relatorios
+            #index_together_relatorios
+        )
         permissions = (
             ("can_view_relatorios", "Can view relatorios"),
             #custom_permissions_relatorios
@@ -475,6 +515,14 @@ class RetornosEventos(SoftDeletionModel):
     class Meta:
         db_table = r'retornos_eventos'       
         managed = True # retornos_eventos #
+        unique_together = (
+            #custom_unique_together_retornos_eventos#
+            
+        )
+        index_together = (
+            #custom_index_together_retornos_eventos
+            #index_together_retornos_eventos
+        )
         permissions = (
             ("can_view_retornos_eventos", "Can view retornos_eventos"),
             #custom_permissions_retornos_eventos
@@ -517,6 +565,14 @@ class RetornosEventosHorarios(SoftDeletionModel):
     class Meta:
         db_table = r'retornos_eventos_horarios'       
         managed = True # retornos_eventos_horarios #
+        unique_together = (
+            #custom_unique_together_retornos_eventos_horarios#
+            
+        )
+        index_together = (
+            #custom_index_together_retornos_eventos_horarios
+            #index_together_retornos_eventos_horarios
+        )
         permissions = (
             ("can_view_retornos_eventos_horarios", "Can view retornos_eventos_horarios"),
             #custom_permissions_retornos_eventos_horarios
@@ -556,6 +612,14 @@ class RetornosEventosIntervalos(SoftDeletionModel):
     class Meta:
         db_table = r'retornos_eventos_intervalos'       
         managed = True # retornos_eventos_intervalos #
+        unique_together = (
+            #custom_unique_together_retornos_eventos_intervalos#
+            
+        )
+        index_together = (
+            #custom_index_together_retornos_eventos_intervalos
+            #index_together_retornos_eventos_intervalos
+        )
         permissions = (
             ("can_view_retornos_eventos_intervalos", "Can view retornos_eventos_intervalos"),
             #custom_permissions_retornos_eventos_intervalos
@@ -595,6 +659,14 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
     class Meta:
         db_table = r'retornos_eventos_ocorrencias'       
         managed = True # retornos_eventos_ocorrencias #
+        unique_together = (
+            #custom_unique_together_retornos_eventos_ocorrencias#
+            
+        )
+        index_together = (
+            #custom_index_together_retornos_eventos_ocorrencias
+            #index_together_retornos_eventos_ocorrencias
+        )
         permissions = (
             ("can_view_retornos_eventos_ocorrencias", "Can view retornos_eventos_ocorrencias"),
             #custom_permissions_retornos_eventos_ocorrencias
@@ -618,15 +690,15 @@ class RetornosEventosOcorrenciasSerializer(ModelSerializer):
 class TransmissorLote(SoftDeletionModel):
     transmissor_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO)
     transmissor_nrinsc = models.CharField(max_length=20)
-    nome_empresa = models.CharField(max_length=200, unique=True)
+    nome_empresa = models.CharField(max_length=200)
     data_abertura = models.DateField()
     validar_eventos = models.IntegerField(choices=SIM_NAO)
     verificar_predecessao = models.IntegerField(choices=SIM_NAO)
     envio_automatico = models.IntegerField(choices=SIM_NAO)
     logotipo = models.FileField(upload_to="logotipo", blank=True, null=True)
     endereco_completo = models.TextField()
-    empregador_tpinsc = models.CharField(max_length=20)
-    empregador_nrinsc = models.IntegerField(choices=TIPO_INSCRICAO)
+    empregador_nrinsc = models.CharField(max_length=20)
+    empregador_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO)
     esocial_lote_min = models.IntegerField()
     esocial_lote_max = models.IntegerField()
     esocial_timeout = models.DecimalField(max_digits=15, decimal_places=2)
@@ -635,8 +707,8 @@ class TransmissorLote(SoftDeletionModel):
     esocial_certificado = models.FileField(upload_to="esocial_certificado", blank=True, null=True)
     esocial_senha = models.CharField(max_length=20, blank=True, null=True)
     esocial_pasta = models.CharField(max_length=200, blank=True, null=True)
-    contribuinte_tpinsc = models.CharField(max_length=20)
-    contribuinte_nrinsc = models.IntegerField(choices=TIPO_INSCRICAO)
+    contribuinte_nrinsc = models.CharField(max_length=20)
+    contribuinte_tpinsc = models.IntegerField(choices=TIPO_INSCRICAO)
     efdreinf_lote_min = models.IntegerField()
     efdreinf_lote_max = models.IntegerField()
     efdreinf_timeout = models.DecimalField(max_digits=15, decimal_places=2)
@@ -653,12 +725,20 @@ class TransmissorLote(SoftDeletionModel):
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
     def __unicode__(self):
-        return unicode(self.transmissor_nrinsc) + ' - ' + unicode(self.nome_empresa) + ' - ' + unicode(self.empregador_tpinsc) + ' - ' + unicode(self.contribuinte_tpinsc)
+        return unicode(self.transmissor_nrinsc) + ' - ' + unicode(self.nome_empresa) + ' - ' + unicode(self.empregador_nrinsc) + ' - ' + unicode(self.contribuinte_nrinsc)
     #transmissores_custom#
 
     class Meta:
         db_table = r'transmissores'       
         managed = True # transmissores #
+        unique_together = (
+            #custom_unique_together_transmissores#
+            ('nome_empresa', 'excluido'), 
+        )
+        index_together = (
+            #custom_index_together_transmissores
+            #index_together_transmissores
+        )
         permissions = (
             ("can_view_transmissores", "Can view transmissores"),
             #custom_permissions_transmissores
@@ -712,6 +792,14 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
     class Meta:
         db_table = r'transmissor_lote_efdreinf'       
         managed = True # transmissor_lote_efdreinf #
+        unique_together = (
+            #custom_unique_together_transmissor_lote_efdreinf#
+            
+        )
+        index_together = (
+            #custom_index_together_transmissor_lote_efdreinf
+            #index_together_transmissor_lote_efdreinf
+        )
         permissions = (
             ("can_view_transmissor_lote_efdreinf", "Can view transmissor_lote_efdreinf"),
             #custom_permissions_transmissor_lote_efdreinf
@@ -751,6 +839,14 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
     class Meta:
         db_table = r'transmissor_lote_efdreinf_ocorrencias'       
         managed = True # transmissor_lote_efdreinf_ocorrencias #
+        unique_together = (
+            #custom_unique_together_transmissor_lote_efdreinf_ocorrencias#
+            
+        )
+        index_together = (
+            #custom_index_together_transmissor_lote_efdreinf_ocorrencias
+            #index_together_transmissor_lote_efdreinf_ocorrencias
+        )
         permissions = (
             ("can_view_transmissor_lote_efdreinf_ocorrencias", "Can view transmissor_lote_efdreinf_ocorrencias"),
             #custom_permissions_transmissor_lote_efdreinf_ocorrencias
@@ -802,6 +898,14 @@ class TransmissorLoteEsocial(SoftDeletionModel):
     class Meta:
         db_table = r'transmissor_lote_esocial'       
         managed = True # transmissor_lote_esocial #
+        unique_together = (
+            #custom_unique_together_transmissor_lote_esocial#
+            
+        )
+        index_together = (
+            #custom_index_together_transmissor_lote_esocial
+            #index_together_transmissor_lote_esocial
+        )
         permissions = (
             ("can_view_transmissor_lote_esocial", "Can view transmissor_lote_esocial"),
             #custom_permissions_transmissor_lote_esocial
@@ -841,6 +945,14 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
     class Meta:
         db_table = r'transmissor_lote_esocial_ocorrencias'       
         managed = True # transmissor_lote_esocial_ocorrencias #
+        unique_together = (
+            #custom_unique_together_transmissor_lote_esocial_ocorrencias#
+            
+        )
+        index_together = (
+            #custom_index_together_transmissor_lote_esocial_ocorrencias
+            #index_together_transmissor_lote_esocial_ocorrencias
+        )
         permissions = (
             ("can_view_transmissor_lote_esocial_ocorrencias", "Can view transmissor_lote_esocial_ocorrencias"),
             #custom_permissions_transmissor_lote_esocial_ocorrencias

@@ -147,6 +147,14 @@ class s5011basesAquis(SoftDeletionModel):
     class Meta:
         db_table = r's5011_basesaquis'       
         managed = True # s5011_basesaquis #
+        unique_together = (
+            #custom_unique_together_s5011_basesaquis#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_basesaquis
+            #index_together_s5011_basesaquis
+        )
         permissions = (
             ("can_view_s5011_basesaquis", "Can view s5011_basesaquis"),
             #custom_permissions_s5011_basesaquis
@@ -193,6 +201,14 @@ class s5011basesAvNPort(SoftDeletionModel):
     class Meta:
         db_table = r's5011_basesavnport'       
         managed = True # s5011_basesavnport #
+        unique_together = (
+            #custom_unique_together_s5011_basesavnport#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_basesavnport
+            #index_together_s5011_basesavnport
+        )
         permissions = (
             ("can_view_s5011_basesavnport", "Can view s5011_basesavnport"),
             #custom_permissions_s5011_basesavnport
@@ -237,6 +253,14 @@ class s5011basesComerc(SoftDeletionModel):
     class Meta:
         db_table = r's5011_basescomerc'       
         managed = True # s5011_basescomerc #
+        unique_together = (
+            #custom_unique_together_s5011_basescomerc#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_basescomerc
+            #index_together_s5011_basescomerc
+        )
         permissions = (
             ("can_view_s5011_basescomerc", "Can view s5011_basescomerc"),
             #custom_permissions_s5011_basescomerc
@@ -292,6 +316,14 @@ class s5011basesRemun(SoftDeletionModel):
     class Meta:
         db_table = r's5011_basesremun'       
         managed = True # s5011_basesremun #
+        unique_together = (
+            #custom_unique_together_s5011_basesremun#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_basesremun
+            #index_together_s5011_basesremun
+        )
         permissions = (
             ("can_view_s5011_basesremun", "Can view s5011_basesremun"),
             #custom_permissions_s5011_basesremun
@@ -335,6 +367,14 @@ class s5011dadosOpPort(SoftDeletionModel):
     class Meta:
         db_table = r's5011_dadosopport'       
         managed = True # s5011_dadosopport #
+        unique_together = (
+            #custom_unique_together_s5011_dadosopport#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_dadosopport
+            #index_together_s5011_dadosopport
+        )
         permissions = (
             ("can_view_s5011_dadosopport", "Can view s5011_dadosopport"),
             #custom_permissions_s5011_dadosopport
@@ -376,6 +416,14 @@ class s5011ideEstab(SoftDeletionModel):
     class Meta:
         db_table = r's5011_ideestab'       
         managed = True # s5011_ideestab #
+        unique_together = (
+            #custom_unique_together_s5011_ideestab#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_ideestab
+            #index_together_s5011_ideestab
+        )
         permissions = (
             ("can_view_s5011_ideestab", "Can view s5011_ideestab"),
             #custom_permissions_s5011_ideestab
@@ -419,6 +467,14 @@ class s5011ideLotacao(SoftDeletionModel):
     class Meta:
         db_table = r's5011_idelotacao'       
         managed = True # s5011_idelotacao #
+        unique_together = (
+            #custom_unique_together_s5011_idelotacao#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_idelotacao
+            #index_together_s5011_idelotacao
+        )
         permissions = (
             ("can_view_s5011_idelotacao", "Can view s5011_idelotacao"),
             #custom_permissions_s5011_idelotacao
@@ -460,6 +516,14 @@ class s5011infoAtConc(SoftDeletionModel):
     class Meta:
         db_table = r's5011_infoatconc'       
         managed = True # s5011_infoatconc #
+        unique_together = (
+            #custom_unique_together_s5011_infoatconc#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_infoatconc
+            #index_together_s5011_infoatconc
+        )
         permissions = (
             ("can_view_s5011_infoatconc", "Can view s5011_infoatconc"),
             #custom_permissions_s5011_infoatconc
@@ -501,6 +565,14 @@ class s5011infoCPSeg(SoftDeletionModel):
     class Meta:
         db_table = r's5011_infocpseg'       
         managed = True # s5011_infocpseg #
+        unique_together = (
+            #custom_unique_together_s5011_infocpseg#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_infocpseg
+            #index_together_s5011_infocpseg
+        )
         permissions = (
             ("can_view_s5011_infocpseg", "Can view s5011_infocpseg"),
             #custom_permissions_s5011_infocpseg
@@ -543,6 +615,14 @@ class s5011infoCRContrib(SoftDeletionModel):
     class Meta:
         db_table = r's5011_infocrcontrib'       
         managed = True # s5011_infocrcontrib #
+        unique_together = (
+            #custom_unique_together_s5011_infocrcontrib#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_infocrcontrib
+            #index_together_s5011_infocrcontrib
+        )
         permissions = (
             ("can_view_s5011_infocrcontrib", "Can view s5011_infocrcontrib"),
             #custom_permissions_s5011_infocrcontrib
@@ -585,6 +665,14 @@ class s5011infoCREstab(SoftDeletionModel):
     class Meta:
         db_table = r's5011_infocrestab'       
         managed = True # s5011_infocrestab #
+        unique_together = (
+            #custom_unique_together_s5011_infocrestab#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_infocrestab
+            #index_together_s5011_infocrestab
+        )
         permissions = (
             ("can_view_s5011_infocrestab", "Can view s5011_infocrestab"),
             #custom_permissions_s5011_infocrestab
@@ -625,6 +713,14 @@ class s5011infoComplObra(SoftDeletionModel):
     class Meta:
         db_table = r's5011_infocomplobra'       
         managed = True # s5011_infocomplobra #
+        unique_together = (
+            #custom_unique_together_s5011_infocomplobra#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_infocomplobra
+            #index_together_s5011_infocomplobra
+        )
         permissions = (
             ("can_view_s5011_infocomplobra", "Can view s5011_infocomplobra"),
             #custom_permissions_s5011_infocomplobra
@@ -668,6 +764,14 @@ class s5011infoEmprParcial(SoftDeletionModel):
     class Meta:
         db_table = r's5011_infoemprparcial'       
         managed = True # s5011_infoemprparcial #
+        unique_together = (
+            #custom_unique_together_s5011_infoemprparcial#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_infoemprparcial
+            #index_together_s5011_infoemprparcial
+        )
         permissions = (
             ("can_view_s5011_infoemprparcial", "Can view s5011_infoemprparcial"),
             #custom_permissions_s5011_infoemprparcial
@@ -711,6 +815,14 @@ class s5011infoEstab(SoftDeletionModel):
     class Meta:
         db_table = r's5011_infoestab'       
         managed = True # s5011_infoestab #
+        unique_together = (
+            #custom_unique_together_s5011_infoestab#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_infoestab
+            #index_together_s5011_infoestab
+        )
         permissions = (
             ("can_view_s5011_infoestab", "Can view s5011_infoestab"),
             #custom_permissions_s5011_infoestab
@@ -754,6 +866,14 @@ class s5011infoPJ(SoftDeletionModel):
     class Meta:
         db_table = r's5011_infopj'       
         managed = True # s5011_infopj #
+        unique_together = (
+            #custom_unique_together_s5011_infopj#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_infopj
+            #index_together_s5011_infopj
+        )
         permissions = (
             ("can_view_s5011_infopj", "Can view s5011_infopj"),
             #custom_permissions_s5011_infopj
@@ -794,6 +914,14 @@ class s5011infoSubstPatrOpPort(SoftDeletionModel):
     class Meta:
         db_table = r's5011_infosubstpatropport'       
         managed = True # s5011_infosubstpatropport #
+        unique_together = (
+            #custom_unique_together_s5011_infosubstpatropport#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_infosubstpatropport
+            #index_together_s5011_infosubstpatropport
+        )
         permissions = (
             ("can_view_s5011_infosubstpatropport", "Can view s5011_infosubstpatropport"),
             #custom_permissions_s5011_infosubstpatropport
@@ -834,6 +962,14 @@ class s5011infoTercSusp(SoftDeletionModel):
     class Meta:
         db_table = r's5011_infotercsusp'       
         managed = True # s5011_infotercsusp #
+        unique_together = (
+            #custom_unique_together_s5011_infotercsusp#
+            
+        )
+        index_together = (
+            #custom_index_together_s5011_infotercsusp
+            #index_together_s5011_infotercsusp
+        )
         permissions = (
             ("can_view_s5011_infotercsusp", "Can view s5011_infotercsusp"),
             #custom_permissions_s5011_infotercsusp

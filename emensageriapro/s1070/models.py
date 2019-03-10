@@ -236,6 +236,14 @@ class s1070alteracao(SoftDeletionModel):
     class Meta:
         db_table = r's1070_alteracao'       
         managed = True # s1070_alteracao #
+        unique_together = (
+            #custom_unique_together_s1070_alteracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1070_alteracao
+            #index_together_s1070_alteracao
+        )
         permissions = (
             ("can_view_s1070_alteracao", "Can view s1070_alteracao"),
             #custom_permissions_s1070_alteracao
@@ -278,6 +286,14 @@ class s1070alteracaodadosProcJud(SoftDeletionModel):
     class Meta:
         db_table = r's1070_alteracao_dadosprocjud'       
         managed = True # s1070_alteracao_dadosprocjud #
+        unique_together = (
+            #custom_unique_together_s1070_alteracao_dadosprocjud#
+            
+        )
+        index_together = (
+            #custom_index_together_s1070_alteracao_dadosprocjud
+            #index_together_s1070_alteracao_dadosprocjud
+        )
         permissions = (
             ("can_view_s1070_alteracao_dadosprocjud", "Can view s1070_alteracao_dadosprocjud"),
             #custom_permissions_s1070_alteracao_dadosprocjud
@@ -321,6 +337,14 @@ class s1070alteracaoinfoSusp(SoftDeletionModel):
     class Meta:
         db_table = r's1070_alteracao_infosusp'       
         managed = True # s1070_alteracao_infosusp #
+        unique_together = (
+            #custom_unique_together_s1070_alteracao_infosusp#
+            
+        )
+        index_together = (
+            #custom_index_together_s1070_alteracao_infosusp
+            #index_together_s1070_alteracao_infosusp
+        )
         permissions = (
             ("can_view_s1070_alteracao_infosusp", "Can view s1070_alteracao_infosusp"),
             #custom_permissions_s1070_alteracao_infosusp
@@ -362,6 +386,14 @@ class s1070alteracaonovaValidade(SoftDeletionModel):
     class Meta:
         db_table = r's1070_alteracao_novavalidade'       
         managed = True # s1070_alteracao_novavalidade #
+        unique_together = (
+            #custom_unique_together_s1070_alteracao_novavalidade#
+            
+        )
+        index_together = (
+            #custom_index_together_s1070_alteracao_novavalidade
+            #index_together_s1070_alteracao_novavalidade
+        )
         permissions = (
             ("can_view_s1070_alteracao_novavalidade", "Can view s1070_alteracao_novavalidade"),
             #custom_permissions_s1070_alteracao_novavalidade
@@ -405,6 +437,14 @@ class s1070exclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1070_exclusao'       
         managed = True # s1070_exclusao #
+        unique_together = (
+            #custom_unique_together_s1070_exclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1070_exclusao
+            #index_together_s1070_exclusao
+        )
         permissions = (
             ("can_view_s1070_exclusao", "Can view s1070_exclusao"),
             #custom_permissions_s1070_exclusao
@@ -451,6 +491,14 @@ class s1070inclusao(SoftDeletionModel):
     class Meta:
         db_table = r's1070_inclusao'       
         managed = True # s1070_inclusao #
+        unique_together = (
+            #custom_unique_together_s1070_inclusao#
+            
+        )
+        index_together = (
+            #custom_index_together_s1070_inclusao
+            #index_together_s1070_inclusao
+        )
         permissions = (
             ("can_view_s1070_inclusao", "Can view s1070_inclusao"),
             #custom_permissions_s1070_inclusao
@@ -493,6 +541,14 @@ class s1070inclusaodadosProcJud(SoftDeletionModel):
     class Meta:
         db_table = r's1070_inclusao_dadosprocjud'       
         managed = True # s1070_inclusao_dadosprocjud #
+        unique_together = (
+            #custom_unique_together_s1070_inclusao_dadosprocjud#
+            
+        )
+        index_together = (
+            #custom_index_together_s1070_inclusao_dadosprocjud
+            #index_together_s1070_inclusao_dadosprocjud
+        )
         permissions = (
             ("can_view_s1070_inclusao_dadosprocjud", "Can view s1070_inclusao_dadosprocjud"),
             #custom_permissions_s1070_inclusao_dadosprocjud
@@ -536,6 +592,14 @@ class s1070inclusaoinfoSusp(SoftDeletionModel):
     class Meta:
         db_table = r's1070_inclusao_infosusp'       
         managed = True # s1070_inclusao_infosusp #
+        unique_together = (
+            #custom_unique_together_s1070_inclusao_infosusp#
+            
+        )
+        index_together = (
+            #custom_index_together_s1070_inclusao_infosusp
+            #index_together_s1070_inclusao_infosusp
+        )
         permissions = (
             ("can_view_s1070_inclusao_infosusp", "Can view s1070_inclusao_infosusp"),
             #custom_permissions_s1070_inclusao_infosusp

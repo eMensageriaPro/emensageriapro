@@ -102,6 +102,14 @@ class s2260localTrabInterm(SoftDeletionModel):
     class Meta:
         db_table = r's2260_localtrabinterm'       
         managed = True # s2260_localtrabinterm #
+        unique_together = (
+            #custom_unique_together_s2260_localtrabinterm#
+            
+        )
+        index_together = (
+            #custom_index_together_s2260_localtrabinterm
+            #index_together_s2260_localtrabinterm
+        )
         permissions = (
             ("can_view_s2260_localtrabinterm", "Can view s2260_localtrabinterm"),
             #custom_permissions_s2260_localtrabinterm

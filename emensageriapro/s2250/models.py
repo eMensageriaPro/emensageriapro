@@ -81,6 +81,14 @@ class s2250cancAvPrevio(SoftDeletionModel):
     class Meta:
         db_table = r's2250_cancavprevio'       
         managed = True # s2250_cancavprevio #
+        unique_together = (
+            #custom_unique_together_s2250_cancavprevio#
+            
+        )
+        index_together = (
+            #custom_index_together_s2250_cancavprevio
+            #index_together_s2250_cancavprevio
+        )
         permissions = (
             ("can_view_s2250_cancavprevio", "Can view s2250_cancavprevio"),
             #custom_permissions_s2250_cancavprevio
@@ -124,6 +132,14 @@ class s2250detAvPrevio(SoftDeletionModel):
     class Meta:
         db_table = r's2250_detavprevio'       
         managed = True # s2250_detavprevio #
+        unique_together = (
+            #custom_unique_together_s2250_detavprevio#
+            
+        )
+        index_together = (
+            #custom_index_together_s2250_detavprevio
+            #index_together_s2250_detavprevio
+        )
         permissions = (
             ("can_view_s2250_detavprevio", "Can view s2250_detavprevio"),
             #custom_permissions_s2250_detavprevio

@@ -81,6 +81,14 @@ class r2030infoProc(SoftDeletionModel):
     class Meta:
         db_table = r'r2030_infoproc'       
         managed = True # r2030_infoproc #
+        unique_together = (
+            #custom_unique_together_r2030_infoproc#
+            
+        )
+        index_together = (
+            #custom_index_together_r2030_infoproc
+            #index_together_r2030_infoproc
+        )
         permissions = (
             ("can_view_r2030_infoproc", "Can view r2030_infoproc"),
             #custom_permissions_r2030_infoproc
@@ -124,6 +132,14 @@ class r2030infoRecurso(SoftDeletionModel):
     class Meta:
         db_table = r'r2030_inforecurso'       
         managed = True # r2030_inforecurso #
+        unique_together = (
+            #custom_unique_together_r2030_inforecurso#
+            
+        )
+        index_together = (
+            #custom_index_together_r2030_inforecurso
+            #index_together_r2030_inforecurso
+        )
         permissions = (
             ("can_view_r2030_inforecurso", "Can view r2030_inforecurso"),
             #custom_permissions_r2030_inforecurso
@@ -167,6 +183,14 @@ class r2030recursosRec(SoftDeletionModel):
     class Meta:
         db_table = r'r2030_recursosrec'       
         managed = True # r2030_recursosrec #
+        unique_together = (
+            #custom_unique_together_r2030_recursosrec#
+            
+        )
+        index_together = (
+            #custom_index_together_r2030_recursosrec
+            #index_together_r2030_recursosrec
+        )
         permissions = (
             ("can_view_r2030_recursosrec", "Can view r2030_recursosrec"),
             #custom_permissions_r2030_recursosrec

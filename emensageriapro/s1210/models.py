@@ -407,6 +407,14 @@ class s1210deps(SoftDeletionModel):
     class Meta:
         db_table = r's1210_deps'       
         managed = True # s1210_deps #
+        unique_together = (
+            #custom_unique_together_s1210_deps#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_deps
+            #index_together_s1210_deps
+        )
         permissions = (
             ("can_view_s1210_deps", "Can view s1210_deps"),
             #custom_permissions_s1210_deps
@@ -447,6 +455,14 @@ class s1210detPgtoAnt(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtoant'       
         managed = True # s1210_detpgtoant #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtoant#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtoant
+            #index_together_s1210_detpgtoant
+        )
         permissions = (
             ("can_view_s1210_detpgtoant", "Can view s1210_detpgtoant"),
             #custom_permissions_s1210_detpgtoant
@@ -488,6 +504,14 @@ class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtoant_infopgtoant'       
         managed = True # s1210_detpgtoant_infopgtoant #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtoant_infopgtoant#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtoant_infopgtoant
+            #index_together_s1210_detpgtoant_infopgtoant
+        )
         permissions = (
             ("can_view_s1210_detpgtoant_infopgtoant", "Can view s1210_detpgtoant_infopgtoant"),
             #custom_permissions_s1210_detpgtoant_infopgtoant
@@ -531,6 +555,14 @@ class s1210detPgtoBenPr(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtobenpr'       
         managed = True # s1210_detpgtobenpr #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtobenpr#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtobenpr
+            #index_together_s1210_detpgtobenpr
+        )
         permissions = (
             ("can_view_s1210_detpgtobenpr", "Can view s1210_detpgtobenpr"),
             #custom_permissions_s1210_detpgtobenpr
@@ -576,6 +608,14 @@ class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtobenpr_infopgtoparc'       
         managed = True # s1210_detpgtobenpr_infopgtoparc #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtobenpr_infopgtoparc#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtobenpr_infopgtoparc
+            #index_together_s1210_detpgtobenpr_infopgtoparc
+        )
         permissions = (
             ("can_view_s1210_detpgtobenpr_infopgtoparc", "Can view s1210_detpgtobenpr_infopgtoparc"),
             #custom_permissions_s1210_detpgtobenpr_infopgtoparc
@@ -621,6 +661,14 @@ class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtobenpr_retpgtotot'       
         managed = True # s1210_detpgtobenpr_retpgtotot #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtobenpr_retpgtotot#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtobenpr_retpgtotot
+            #index_together_s1210_detpgtobenpr_retpgtotot
+        )
         permissions = (
             ("can_view_s1210_detpgtobenpr_retpgtotot", "Can view s1210_detpgtobenpr_retpgtotot"),
             #custom_permissions_s1210_detpgtobenpr_retpgtotot
@@ -665,6 +713,14 @@ class s1210detPgtoFer(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtofer'       
         managed = True # s1210_detpgtofer #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtofer#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtofer
+            #index_together_s1210_detpgtofer
+        )
         permissions = (
             ("can_view_s1210_detpgtofer", "Can view s1210_detpgtofer"),
             #custom_permissions_s1210_detpgtofer
@@ -710,6 +766,14 @@ class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtofer_detrubrfer'       
         managed = True # s1210_detpgtofer_detrubrfer #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtofer_detrubrfer#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtofer_detrubrfer
+            #index_together_s1210_detpgtofer_detrubrfer
+        )
         permissions = (
             ("can_view_s1210_detpgtofer_detrubrfer", "Can view s1210_detpgtofer_detrubrfer"),
             #custom_permissions_s1210_detpgtofer_detrubrfer
@@ -753,6 +817,14 @@ class s1210detPgtoFerpenAlim(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtofer_penalim'       
         managed = True # s1210_detpgtofer_penalim #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtofer_penalim#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtofer_penalim
+            #index_together_s1210_detpgtofer_penalim
+        )
         permissions = (
             ("can_view_s1210_detpgtofer_penalim", "Can view s1210_detpgtofer_penalim"),
             #custom_permissions_s1210_detpgtofer_penalim
@@ -797,6 +869,14 @@ class s1210detPgtoFl(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtofl'       
         managed = True # s1210_detpgtofl #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtofl#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtofl
+            #index_together_s1210_detpgtofl
+        )
         permissions = (
             ("can_view_s1210_detpgtofl", "Can view s1210_detpgtofl"),
             #custom_permissions_s1210_detpgtofl
@@ -843,6 +923,14 @@ class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtofl_infopgtoparc'       
         managed = True # s1210_detpgtofl_infopgtoparc #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtofl_infopgtoparc#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtofl_infopgtoparc
+            #index_together_s1210_detpgtofl_infopgtoparc
+        )
         permissions = (
             ("can_view_s1210_detpgtofl_infopgtoparc", "Can view s1210_detpgtofl_infopgtoparc"),
             #custom_permissions_s1210_detpgtofl_infopgtoparc
@@ -886,6 +974,14 @@ class s1210detPgtoFlpenAlim(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtofl_penalim'       
         managed = True # s1210_detpgtofl_penalim #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtofl_penalim#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtofl_penalim
+            #index_together_s1210_detpgtofl_penalim
+        )
         permissions = (
             ("can_view_s1210_detpgtofl_penalim", "Can view s1210_detpgtofl_penalim"),
             #custom_permissions_s1210_detpgtofl_penalim
@@ -931,6 +1027,14 @@ class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
     class Meta:
         db_table = r's1210_detpgtofl_retpgtotot'       
         managed = True # s1210_detpgtofl_retpgtotot #
+        unique_together = (
+            #custom_unique_together_s1210_detpgtofl_retpgtotot#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_detpgtofl_retpgtotot
+            #index_together_s1210_detpgtofl_retpgtotot
+        )
         permissions = (
             ("can_view_s1210_detpgtofl_retpgtotot", "Can view s1210_detpgtofl_retpgtotot"),
             #custom_permissions_s1210_detpgtofl_retpgtotot
@@ -979,6 +1083,14 @@ class s1210idePgtoExt(SoftDeletionModel):
     class Meta:
         db_table = r's1210_idepgtoext'       
         managed = True # s1210_idepgtoext #
+        unique_together = (
+            #custom_unique_together_s1210_idepgtoext#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_idepgtoext
+            #index_together_s1210_idepgtoext
+        )
         permissions = (
             ("can_view_s1210_idepgtoext", "Can view s1210_idepgtoext"),
             #custom_permissions_s1210_idepgtoext
@@ -1021,6 +1133,14 @@ class s1210infoPgto(SoftDeletionModel):
     class Meta:
         db_table = r's1210_infopgto'       
         managed = True # s1210_infopgto #
+        unique_together = (
+            #custom_unique_together_s1210_infopgto#
+            
+        )
+        index_together = (
+            #custom_index_together_s1210_infopgto
+            #index_together_s1210_infopgto
+        )
         permissions = (
             ("can_view_s1210_infopgto", "Can view s1210_infopgto"),
             #custom_permissions_s1210_infopgto

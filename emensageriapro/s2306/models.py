@@ -131,6 +131,14 @@ class s2306ageIntegracao(SoftDeletionModel):
     class Meta:
         db_table = r's2306_ageintegracao'       
         managed = True # s2306_ageintegracao #
+        unique_together = (
+            #custom_unique_together_s2306_ageintegracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s2306_ageintegracao
+            #index_together_s2306_ageintegracao
+        )
         permissions = (
             ("can_view_s2306_ageintegracao", "Can view s2306_ageintegracao"),
             #custom_permissions_s2306_ageintegracao
@@ -172,6 +180,14 @@ class s2306cargoFuncao(SoftDeletionModel):
     class Meta:
         db_table = r's2306_cargofuncao'       
         managed = True # s2306_cargofuncao #
+        unique_together = (
+            #custom_unique_together_s2306_cargofuncao#
+            
+        )
+        index_together = (
+            #custom_index_together_s2306_cargofuncao
+            #index_together_s2306_cargofuncao
+        )
         permissions = (
             ("can_view_s2306_cargofuncao", "Can view s2306_cargofuncao"),
             #custom_permissions_s2306_cargofuncao
@@ -225,6 +241,14 @@ class s2306infoEstagiario(SoftDeletionModel):
     class Meta:
         db_table = r's2306_infoestagiario'       
         managed = True # s2306_infoestagiario #
+        unique_together = (
+            #custom_unique_together_s2306_infoestagiario#
+            
+        )
+        index_together = (
+            #custom_index_together_s2306_infoestagiario
+            #index_together_s2306_infoestagiario
+        )
         permissions = (
             ("can_view_s2306_infoestagiario", "Can view s2306_infoestagiario"),
             #custom_permissions_s2306_infoestagiario
@@ -265,6 +289,14 @@ class s2306infoTrabCedido(SoftDeletionModel):
     class Meta:
         db_table = r's2306_infotrabcedido'       
         managed = True # s2306_infotrabcedido #
+        unique_together = (
+            #custom_unique_together_s2306_infotrabcedido#
+            
+        )
+        index_together = (
+            #custom_index_together_s2306_infotrabcedido
+            #index_together_s2306_infotrabcedido
+        )
         permissions = (
             ("can_view_s2306_infotrabcedido", "Can view s2306_infotrabcedido"),
             #custom_permissions_s2306_infotrabcedido
@@ -307,6 +339,14 @@ class s2306remuneracao(SoftDeletionModel):
     class Meta:
         db_table = r's2306_remuneracao'       
         managed = True # s2306_remuneracao #
+        unique_together = (
+            #custom_unique_together_s2306_remuneracao#
+            
+        )
+        index_together = (
+            #custom_index_together_s2306_remuneracao
+            #index_together_s2306_remuneracao
+        )
         permissions = (
             ("can_view_s2306_remuneracao", "Can view s2306_remuneracao"),
             #custom_permissions_s2306_remuneracao
@@ -348,6 +388,14 @@ class s2306supervisorEstagio(SoftDeletionModel):
     class Meta:
         db_table = r's2306_supervisorestagio'       
         managed = True # s2306_supervisorestagio #
+        unique_together = (
+            #custom_unique_together_s2306_supervisorestagio#
+            
+        )
+        index_together = (
+            #custom_index_together_s2306_supervisorestagio
+            #index_together_s2306_supervisorestagio
+        )
         permissions = (
             ("can_view_s2306_supervisorestagio", "Can view s2306_supervisorestagio"),
             #custom_permissions_s2306_supervisorestagio

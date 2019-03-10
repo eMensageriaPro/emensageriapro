@@ -78,6 +78,14 @@ class r2020infoProcRetAd(SoftDeletionModel):
     class Meta:
         db_table = r'r2020_infoprocretad'       
         managed = True # r2020_infoprocretad #
+        unique_together = (
+            #custom_unique_together_r2020_infoprocretad#
+            
+        )
+        index_together = (
+            #custom_index_together_r2020_infoprocretad
+            #index_together_r2020_infoprocretad
+        )
         permissions = (
             ("can_view_r2020_infoprocretad", "Can view r2020_infoprocretad"),
             #custom_permissions_r2020_infoprocretad
@@ -121,6 +129,14 @@ class r2020infoProcRetPr(SoftDeletionModel):
     class Meta:
         db_table = r'r2020_infoprocretpr'       
         managed = True # r2020_infoprocretpr #
+        unique_together = (
+            #custom_unique_together_r2020_infoprocretpr#
+            
+        )
+        index_together = (
+            #custom_index_together_r2020_infoprocretpr
+            #index_together_r2020_infoprocretpr
+        )
         permissions = (
             ("can_view_r2020_infoprocretpr", "Can view r2020_infoprocretpr"),
             #custom_permissions_r2020_infoprocretpr
@@ -170,6 +186,14 @@ class r2020infoTpServ(SoftDeletionModel):
     class Meta:
         db_table = r'r2020_infotpserv'       
         managed = True # r2020_infotpserv #
+        unique_together = (
+            #custom_unique_together_r2020_infotpserv#
+            
+        )
+        index_together = (
+            #custom_index_together_r2020_infotpserv
+            #index_together_r2020_infotpserv
+        )
         permissions = (
             ("can_view_r2020_infotpserv", "Can view r2020_infotpserv"),
             #custom_permissions_r2020_infotpserv
@@ -214,6 +238,14 @@ class r2020nfs(SoftDeletionModel):
     class Meta:
         db_table = r'r2020_nfs'       
         managed = True # r2020_nfs #
+        unique_together = (
+            #custom_unique_together_r2020_nfs#
+            
+        )
+        index_together = (
+            #custom_index_together_r2020_nfs
+            #index_together_r2020_nfs
+        )
         permissions = (
             ("can_view_r2020_nfs", "Can view r2020_nfs"),
             #custom_permissions_r2020_nfs

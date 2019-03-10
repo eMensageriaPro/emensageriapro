@@ -241,6 +241,14 @@ class s2240altExpRisco(SoftDeletionModel):
     class Meta:
         db_table = r's2240_altexprisco'       
         managed = True # s2240_altexprisco #
+        unique_together = (
+            #custom_unique_together_s2240_altexprisco#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_altexprisco
+            #index_together_s2240_altexprisco
+        )
         permissions = (
             ("can_view_s2240_altexprisco", "Can view s2240_altexprisco"),
             #custom_permissions_s2240_altexprisco
@@ -282,6 +290,14 @@ class s2240altExpRiscoepc(SoftDeletionModel):
     class Meta:
         db_table = r's2240_altexprisco_epc'       
         managed = True # s2240_altexprisco_epc #
+        unique_together = (
+            #custom_unique_together_s2240_altexprisco_epc#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_altexprisco_epc
+            #index_together_s2240_altexprisco_epc
+        )
         permissions = (
             ("can_view_s2240_altexprisco_epc", "Can view s2240_altexprisco_epc"),
             #custom_permissions_s2240_altexprisco_epc
@@ -328,6 +344,14 @@ class s2240altExpRiscoepi(SoftDeletionModel):
     class Meta:
         db_table = r's2240_altexprisco_epi'       
         managed = True # s2240_altexprisco_epi #
+        unique_together = (
+            #custom_unique_together_s2240_altexprisco_epi#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_altexprisco_epi
+            #index_together_s2240_altexprisco_epi
+        )
         permissions = (
             ("can_view_s2240_altexprisco_epi", "Can view s2240_altexprisco_epi"),
             #custom_permissions_s2240_altexprisco_epi
@@ -372,6 +396,14 @@ class s2240altExpRiscofatRisco(SoftDeletionModel):
     class Meta:
         db_table = r's2240_altexprisco_fatrisco'       
         managed = True # s2240_altexprisco_fatrisco #
+        unique_together = (
+            #custom_unique_together_s2240_altexprisco_fatrisco#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_altexprisco_fatrisco
+            #index_together_s2240_altexprisco_fatrisco
+        )
         permissions = (
             ("can_view_s2240_altexprisco_fatrisco", "Can view s2240_altexprisco_fatrisco"),
             #custom_permissions_s2240_altexprisco_fatrisco
@@ -413,6 +445,14 @@ class s2240altExpRiscoinfoAmb(SoftDeletionModel):
     class Meta:
         db_table = r's2240_altexprisco_infoamb'       
         managed = True # s2240_altexprisco_infoamb #
+        unique_together = (
+            #custom_unique_together_s2240_altexprisco_infoamb#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_altexprisco_infoamb
+            #index_together_s2240_altexprisco_infoamb
+        )
         permissions = (
             ("can_view_s2240_altexprisco_infoamb", "Can view s2240_altexprisco_infoamb"),
             #custom_permissions_s2240_altexprisco_infoamb
@@ -453,6 +493,14 @@ class s2240fimExpRisco(SoftDeletionModel):
     class Meta:
         db_table = r's2240_fimexprisco'       
         managed = True # s2240_fimexprisco #
+        unique_together = (
+            #custom_unique_together_s2240_fimexprisco#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_fimexprisco
+            #index_together_s2240_fimexprisco
+        )
         permissions = (
             ("can_view_s2240_fimexprisco", "Can view s2240_fimexprisco"),
             #custom_permissions_s2240_fimexprisco
@@ -493,6 +541,14 @@ class s2240fimExpRiscoinfoAmb(SoftDeletionModel):
     class Meta:
         db_table = r's2240_fimexprisco_infoamb'       
         managed = True # s2240_fimexprisco_infoamb #
+        unique_together = (
+            #custom_unique_together_s2240_fimexprisco_infoamb#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_fimexprisco_infoamb
+            #index_together_s2240_fimexprisco_infoamb
+        )
         permissions = (
             ("can_view_s2240_fimexprisco_infoamb", "Can view s2240_fimexprisco_infoamb"),
             #custom_permissions_s2240_fimexprisco_infoamb
@@ -537,6 +593,14 @@ class s2240fimExpRiscorespReg(SoftDeletionModel):
     class Meta:
         db_table = r's2240_fimexprisco_respreg'       
         managed = True # s2240_fimexprisco_respreg #
+        unique_together = (
+            #custom_unique_together_s2240_fimexprisco_respreg#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_fimexprisco_respreg
+            #index_together_s2240_fimexprisco_respreg
+        )
         permissions = (
             ("can_view_s2240_fimexprisco_respreg", "Can view s2240_fimexprisco_respreg"),
             #custom_permissions_s2240_fimexprisco_respreg
@@ -577,6 +641,14 @@ class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
     class Meta:
         db_table = r's2240_iniexprisco_ativpericinsal'       
         managed = True # s2240_iniexprisco_ativpericinsal #
+        unique_together = (
+            #custom_unique_together_s2240_iniexprisco_ativpericinsal#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_iniexprisco_ativpericinsal
+            #index_together_s2240_iniexprisco_ativpericinsal
+        )
         permissions = (
             ("can_view_s2240_iniexprisco_ativpericinsal", "Can view s2240_iniexprisco_ativpericinsal"),
             #custom_permissions_s2240_iniexprisco_ativpericinsal
@@ -619,6 +691,14 @@ class s2240iniExpRiscoepc(SoftDeletionModel):
     class Meta:
         db_table = r's2240_iniexprisco_epc'       
         managed = True # s2240_iniexprisco_epc #
+        unique_together = (
+            #custom_unique_together_s2240_iniexprisco_epc#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_iniexprisco_epc
+            #index_together_s2240_iniexprisco_epc
+        )
         permissions = (
             ("can_view_s2240_iniexprisco_epc", "Can view s2240_iniexprisco_epc"),
             #custom_permissions_s2240_iniexprisco_epc
@@ -667,6 +747,14 @@ class s2240iniExpRiscoepi(SoftDeletionModel):
     class Meta:
         db_table = r's2240_iniexprisco_epi'       
         managed = True # s2240_iniexprisco_epi #
+        unique_together = (
+            #custom_unique_together_s2240_iniexprisco_epi#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_iniexprisco_epi
+            #index_together_s2240_iniexprisco_epi
+        )
         permissions = (
             ("can_view_s2240_iniexprisco_epi", "Can view s2240_iniexprisco_epi"),
             #custom_permissions_s2240_iniexprisco_epi
@@ -718,6 +806,14 @@ class s2240iniExpRiscofatRisco(SoftDeletionModel):
     class Meta:
         db_table = r's2240_iniexprisco_fatrisco'       
         managed = True # s2240_iniexprisco_fatrisco #
+        unique_together = (
+            #custom_unique_together_s2240_iniexprisco_fatrisco#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_iniexprisco_fatrisco
+            #index_together_s2240_iniexprisco_fatrisco
+        )
         permissions = (
             ("can_view_s2240_iniexprisco_fatrisco", "Can view s2240_iniexprisco_fatrisco"),
             #custom_permissions_s2240_iniexprisco_fatrisco
@@ -758,6 +854,14 @@ class s2240iniExpRiscoinfoAmb(SoftDeletionModel):
     class Meta:
         db_table = r's2240_iniexprisco_infoamb'       
         managed = True # s2240_iniexprisco_infoamb #
+        unique_together = (
+            #custom_unique_together_s2240_iniexprisco_infoamb#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_iniexprisco_infoamb
+            #index_together_s2240_iniexprisco_infoamb
+        )
         permissions = (
             ("can_view_s2240_iniexprisco_infoamb", "Can view s2240_iniexprisco_infoamb"),
             #custom_permissions_s2240_iniexprisco_infoamb
@@ -800,6 +904,14 @@ class s2240iniExpRiscoobs(SoftDeletionModel):
     class Meta:
         db_table = r's2240_iniexprisco_obs'       
         managed = True # s2240_iniexprisco_obs #
+        unique_together = (
+            #custom_unique_together_s2240_iniexprisco_obs#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_iniexprisco_obs
+            #index_together_s2240_iniexprisco_obs
+        )
         permissions = (
             ("can_view_s2240_iniexprisco_obs", "Can view s2240_iniexprisco_obs"),
             #custom_permissions_s2240_iniexprisco_obs
@@ -846,6 +958,14 @@ class s2240iniExpRiscorespReg(SoftDeletionModel):
     class Meta:
         db_table = r's2240_iniexprisco_respreg'       
         managed = True # s2240_iniexprisco_respreg #
+        unique_together = (
+            #custom_unique_together_s2240_iniexprisco_respreg#
+            
+        )
+        index_together = (
+            #custom_index_together_s2240_iniexprisco_respreg
+            #index_together_s2240_iniexprisco_respreg
+        )
         permissions = (
             ("can_view_s2240_iniexprisco_respreg", "Can view s2240_iniexprisco_respreg"),
             #custom_permissions_s2240_iniexprisco_respreg

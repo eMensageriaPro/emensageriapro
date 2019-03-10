@@ -150,6 +150,14 @@ class CBO(SoftDeletionModel):
     class Meta:
         db_table = r'cbo'       
         managed = True # cbo #
+        unique_together = (
+            #custom_unique_together_cbo#
+            
+        )
+        index_together = (
+            #custom_index_together_cbo
+            #index_together_cbo
+        )
         permissions = (
             ("can_view_cbo", "Can view cbo"),
             #custom_permissions_cbo
@@ -191,6 +199,14 @@ class CID(SoftDeletionModel):
     class Meta:
         db_table = r'cid'       
         managed = True # cid #
+        unique_together = (
+            #custom_unique_together_cid#
+            
+        )
+        index_together = (
+            #custom_index_together_cid
+            #index_together_cid
+        )
         permissions = (
             ("can_view_cid", "Can view cid"),
             #custom_permissions_cid
@@ -232,6 +248,14 @@ class CNAE(SoftDeletionModel):
     class Meta:
         db_table = r'cnae'       
         managed = True # cnae #
+        unique_together = (
+            #custom_unique_together_cnae#
+            
+        )
+        index_together = (
+            #custom_index_together_cnae
+            #index_together_cnae
+        )
         permissions = (
             ("can_view_cnae", "Can view cnae"),
             #custom_permissions_cnae
@@ -270,6 +294,14 @@ class EFDReinfClassificacaoServicosPrestados(SoftDeletionModel):
     class Meta:
         db_table = r'efdreinf_classificacao_servicos_prestados'       
         managed = True # efdreinf_classificacao_servicos_prestados #
+        unique_together = (
+            #custom_unique_together_efdreinf_classificacao_servicos_prestados#
+            
+        )
+        index_together = (
+            #custom_index_together_efdreinf_classificacao_servicos_prestados
+            #index_together_efdreinf_classificacao_servicos_prestados
+        )
         permissions = (
             ("can_view_efdreinf_classificacao_servicos_prestados", "Can view efdreinf_classificacao_servicos_prestados"),
             #custom_permissions_efdreinf_classificacao_servicos_prestados
@@ -308,6 +340,14 @@ class EFDReinfClassificacaoTributaria(SoftDeletionModel):
     class Meta:
         db_table = r'efdreinf_classificacao_tributaria'       
         managed = True # efdreinf_classificacao_tributaria #
+        unique_together = (
+            #custom_unique_together_efdreinf_classificacao_tributaria#
+            
+        )
+        index_together = (
+            #custom_index_together_efdreinf_classificacao_tributaria
+            #index_together_efdreinf_classificacao_tributaria
+        )
         permissions = (
             ("can_view_efdreinf_classificacao_tributaria", "Can view efdreinf_classificacao_tributaria"),
             #custom_permissions_efdreinf_classificacao_tributaria
@@ -352,6 +392,14 @@ class EFDReinfCodigosAtividadesProdutosServicosCPRB(SoftDeletionModel):
     class Meta:
         db_table = r'efdreinf_codigos_atividades_produtos_servicos_cprb'       
         managed = True # efdreinf_codigos_atividades_produtos_servicos_cprb #
+        unique_together = (
+            #custom_unique_together_efdreinf_codigos_atividades_produtos_servicos_cprb#
+            
+        )
+        index_together = (
+            #custom_index_together_efdreinf_codigos_atividades_produtos_servicos_cprb
+            #index_together_efdreinf_codigos_atividades_produtos_servicos_cprb
+        )
         permissions = (
             ("can_view_efdreinf_codigos_atividades_produtos_servicos_cprb", "Can view efdreinf_codigos_atividades_produtos_servicos_cprb"),
             #custom_permissions_efdreinf_codigos_atividades_produtos_servicos_cprb
@@ -390,6 +438,14 @@ class EFDReinfEventos(SoftDeletionModel):
     class Meta:
         db_table = r'efdreinf_eventos'       
         managed = True # efdreinf_eventos #
+        unique_together = (
+            #custom_unique_together_efdreinf_eventos#
+            
+        )
+        index_together = (
+            #custom_index_together_efdreinf_eventos
+            #index_together_efdreinf_eventos
+        )
         permissions = (
             ("can_view_efdreinf_eventos", "Can view efdreinf_eventos"),
             #custom_permissions_efdreinf_eventos
@@ -428,6 +484,14 @@ class EFDReinfInformacoesBeneficiariosExterior(SoftDeletionModel):
     class Meta:
         db_table = r'efdreinf_informacoes_beneficiarios_exterior'       
         managed = True # efdreinf_informacoes_beneficiarios_exterior #
+        unique_together = (
+            #custom_unique_together_efdreinf_informacoes_beneficiarios_exterior#
+            
+        )
+        index_together = (
+            #custom_index_together_efdreinf_informacoes_beneficiarios_exterior
+            #index_together_efdreinf_informacoes_beneficiarios_exterior
+        )
         permissions = (
             ("can_view_efdreinf_informacoes_beneficiarios_exterior", "Can view efdreinf_informacoes_beneficiarios_exterior"),
             #custom_permissions_efdreinf_informacoes_beneficiarios_exterior
@@ -469,6 +533,14 @@ class EFDReinfPagamentosCodigos(SoftDeletionModel):
     class Meta:
         db_table = r'efdreinf_pagamentos_codigos'       
         managed = True # efdreinf_pagamentos_codigos #
+        unique_together = (
+            #custom_unique_together_efdreinf_pagamentos_codigos#
+            
+        )
+        index_together = (
+            #custom_index_together_efdreinf_pagamentos_codigos
+            #index_together_efdreinf_pagamentos_codigos
+        )
         permissions = (
             ("can_view_efdreinf_pagamentos_codigos", "Can view efdreinf_pagamentos_codigos"),
             #custom_permissions_efdreinf_pagamentos_codigos
@@ -507,6 +579,14 @@ class EFDReinfPaises(SoftDeletionModel):
     class Meta:
         db_table = r'efdreinf_paises'       
         managed = True # efdreinf_paises #
+        unique_together = (
+            #custom_unique_together_efdreinf_paises#
+            
+        )
+        index_together = (
+            #custom_index_together_efdreinf_paises
+            #index_together_efdreinf_paises
+        )
         permissions = (
             ("can_view_efdreinf_paises", "Can view efdreinf_paises"),
             #custom_permissions_efdreinf_paises
@@ -551,6 +631,14 @@ class EFDReinfRegrasPagamentosCodigos(SoftDeletionModel):
     class Meta:
         db_table = r'efdreinf_regras_pagamentos_codigos'       
         managed = True # efdreinf_regras_pagamentos_codigos #
+        unique_together = (
+            #custom_unique_together_efdreinf_regras_pagamentos_codigos#
+            
+        )
+        index_together = (
+            #custom_index_together_efdreinf_regras_pagamentos_codigos
+            #index_together_efdreinf_regras_pagamentos_codigos
+        )
         permissions = (
             ("can_view_efdreinf_regras_pagamentos_codigos", "Can view efdreinf_regras_pagamentos_codigos"),
             #custom_permissions_efdreinf_regras_pagamentos_codigos
@@ -589,6 +677,14 @@ class EFDReinfRendimentosBeneficiariosExterior(SoftDeletionModel):
     class Meta:
         db_table = r'efdreinf_rendimentos_beneficiarios_exterior'       
         managed = True # efdreinf_rendimentos_beneficiarios_exterior #
+        unique_together = (
+            #custom_unique_together_efdreinf_rendimentos_beneficiarios_exterior#
+            
+        )
+        index_together = (
+            #custom_index_together_efdreinf_rendimentos_beneficiarios_exterior
+            #index_together_efdreinf_rendimentos_beneficiarios_exterior
+        )
         permissions = (
             ("can_view_efdreinf_rendimentos_beneficiarios_exterior", "Can view efdreinf_rendimentos_beneficiarios_exterior"),
             #custom_permissions_efdreinf_rendimentos_beneficiarios_exterior
@@ -627,6 +723,14 @@ class EFDReinfRendimentosBeneficiariosExteriorTributacao(SoftDeletionModel):
     class Meta:
         db_table = r'efdreinf_rendimentos_beneficiarios_exterior_tributacao'       
         managed = True # efdreinf_rendimentos_beneficiarios_exterior_tributacao #
+        unique_together = (
+            #custom_unique_together_efdreinf_rendimentos_beneficiarios_exterior_tributacao#
+            
+        )
+        index_together = (
+            #custom_index_together_efdreinf_rendimentos_beneficiarios_exterior_tributacao
+            #index_together_efdreinf_rendimentos_beneficiarios_exterior_tributacao
+        )
         permissions = (
             ("can_view_efdreinf_rendimentos_beneficiarios_exterior_tributacao", "Can view efdreinf_rendimentos_beneficiarios_exterior_tributacao"),
             #custom_permissions_efdreinf_rendimentos_beneficiarios_exterior_tributacao
@@ -665,6 +769,14 @@ class Municipios(SoftDeletionModel):
     class Meta:
         db_table = r'municipios'       
         managed = True # municipios #
+        unique_together = (
+            #custom_unique_together_municipios#
+            
+        )
+        index_together = (
+            #custom_index_together_municipios
+            #index_together_municipios
+        )
         permissions = (
             ("can_view_municipios", "Can view municipios"),
             #custom_permissions_municipios
@@ -703,6 +815,14 @@ class eSocialAcidentesSituacoesGeradoras(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_acidentes_situacoes_geradoras'       
         managed = True # esocial_acidentes_situacoes_geradoras #
+        unique_together = (
+            #custom_unique_together_esocial_acidentes_situacoes_geradoras#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_acidentes_situacoes_geradoras
+            #index_together_esocial_acidentes_situacoes_geradoras
+        )
         permissions = (
             ("can_view_esocial_acidentes_situacoes_geradoras", "Can view esocial_acidentes_situacoes_geradoras"),
             #custom_permissions_esocial_acidentes_situacoes_geradoras
@@ -743,6 +863,14 @@ class eSocialAfastamentosMotivos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_afastamentos_motivos'       
         managed = True # esocial_afastamentos_motivos #
+        unique_together = (
+            #custom_unique_together_esocial_afastamentos_motivos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_afastamentos_motivos
+            #index_together_esocial_afastamentos_motivos
+        )
         permissions = (
             ("can_view_esocial_afastamentos_motivos", "Can view esocial_afastamentos_motivos"),
             #custom_permissions_esocial_afastamentos_motivos
@@ -781,6 +909,14 @@ class eSocialAgentesCausadoresAcidentesTrabalho(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_agentes_causadores_acidentes_trabalho'       
         managed = True # esocial_agentes_causadores_acidentes_trabalho #
+        unique_together = (
+            #custom_unique_together_esocial_agentes_causadores_acidentes_trabalho#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_agentes_causadores_acidentes_trabalho
+            #index_together_esocial_agentes_causadores_acidentes_trabalho
+        )
         permissions = (
             ("can_view_esocial_agentes_causadores_acidentes_trabalho", "Can view esocial_agentes_causadores_acidentes_trabalho"),
             #custom_permissions_esocial_agentes_causadores_acidentes_trabalho
@@ -819,6 +955,14 @@ class eSocialAgentesCausadoresDoencasProfissionais(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_agentes_causadores_doencas_profissionais'       
         managed = True # esocial_agentes_causadores_doencas_profissionais #
+        unique_together = (
+            #custom_unique_together_esocial_agentes_causadores_doencas_profissionais#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_agentes_causadores_doencas_profissionais
+            #index_together_esocial_agentes_causadores_doencas_profissionais
+        )
         permissions = (
             ("can_view_esocial_agentes_causadores_doencas_profissionais", "Can view esocial_agentes_causadores_doencas_profissionais"),
             #custom_permissions_esocial_agentes_causadores_doencas_profissionais
@@ -857,6 +1001,14 @@ class eSocialArquivosEsocialTipos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_arquivos_esocial_tipos'       
         managed = True # esocial_arquivos_esocial_tipos #
+        unique_together = (
+            #custom_unique_together_esocial_arquivos_esocial_tipos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_arquivos_esocial_tipos
+            #index_together_esocial_arquivos_esocial_tipos
+        )
         permissions = (
             ("can_view_esocial_arquivos_esocial_tipos", "Can view esocial_arquivos_esocial_tipos"),
             #custom_permissions_esocial_arquivos_esocial_tipos
@@ -896,6 +1048,14 @@ class eSocialAtividadesPericulosasInsalubresEspeciais(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_atividades_periculosas_insalubres_especiais'       
         managed = True # esocial_atividades_periculosas_insalubres_especiais #
+        unique_together = (
+            #custom_unique_together_esocial_atividades_periculosas_insalubres_especiais#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_atividades_periculosas_insalubres_especiais
+            #index_together_esocial_atividades_periculosas_insalubres_especiais
+        )
         permissions = (
             ("can_view_esocial_atividades_periculosas_insalubres_especiais", "Can view esocial_atividades_periculosas_insalubres_especiais"),
             #custom_permissions_esocial_atividades_periculosas_insalubres_especiais
@@ -934,6 +1094,14 @@ class eSocialBeneficiosPrevidenciariosCessacaoMotivos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_beneficios_previdenciarios_cessacao_motivos'       
         managed = True # esocial_beneficios_previdenciarios_cessacao_motivos #
+        unique_together = (
+            #custom_unique_together_esocial_beneficios_previdenciarios_cessacao_motivos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_beneficios_previdenciarios_cessacao_motivos
+            #index_together_esocial_beneficios_previdenciarios_cessacao_motivos
+        )
         permissions = (
             ("can_view_esocial_beneficios_previdenciarios_cessacao_motivos", "Can view esocial_beneficios_previdenciarios_cessacao_motivos"),
             #custom_permissions_esocial_beneficios_previdenciarios_cessacao_motivos
@@ -973,6 +1141,14 @@ class eSocialBeneficiosPrevidenciariosTipos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_beneficios_previdenciarios_tipos'       
         managed = True # esocial_beneficios_previdenciarios_tipos #
+        unique_together = (
+            #custom_unique_together_esocial_beneficios_previdenciarios_tipos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_beneficios_previdenciarios_tipos
+            #index_together_esocial_beneficios_previdenciarios_tipos
+        )
         permissions = (
             ("can_view_esocial_beneficios_previdenciarios_tipos", "Can view esocial_beneficios_previdenciarios_tipos"),
             #custom_permissions_esocial_beneficios_previdenciarios_tipos
@@ -1011,6 +1187,14 @@ class eSocialClassificacoesTributarias(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_classificacoes_tributarias'       
         managed = True # esocial_classificacoes_tributarias #
+        unique_together = (
+            #custom_unique_together_esocial_classificacoes_tributarias#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_classificacoes_tributarias
+            #index_together_esocial_classificacoes_tributarias
+        )
         permissions = (
             ("can_view_esocial_classificacoes_tributarias", "Can view esocial_classificacoes_tributarias"),
             #custom_permissions_esocial_classificacoes_tributarias
@@ -1049,6 +1233,14 @@ class eSocialCodificacoesAcidenteTrabalho(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_codificacoes_acidente_trabalho'       
         managed = True # esocial_codificacoes_acidente_trabalho #
+        unique_together = (
+            #custom_unique_together_esocial_codificacoes_acidente_trabalho#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_codificacoes_acidente_trabalho
+            #index_together_esocial_codificacoes_acidente_trabalho
+        )
         permissions = (
             ("can_view_esocial_codificacoes_acidente_trabalho", "Can view esocial_codificacoes_acidente_trabalho"),
             #custom_permissions_esocial_codificacoes_acidente_trabalho
@@ -1093,6 +1285,14 @@ class eSocialCodigoAliquotasFPASTerceiros(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_codigo_aliquotas_fpas_terceiros'       
         managed = True # esocial_codigo_aliquotas_fpas_terceiros #
+        unique_together = (
+            #custom_unique_together_esocial_codigo_aliquotas_fpas_terceiros#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_codigo_aliquotas_fpas_terceiros
+            #index_together_esocial_codigo_aliquotas_fpas_terceiros
+        )
         permissions = (
             ("can_view_esocial_codigo_aliquotas_fpas_terceiros", "Can view esocial_codigo_aliquotas_fpas_terceiros"),
             #custom_permissions_esocial_codigo_aliquotas_fpas_terceiros
@@ -1145,6 +1345,14 @@ class eSocialCompatibilidadesCategoriasClassificacoesLotacoes(SoftDeletionModel)
     class Meta:
         db_table = r'esocial_compatibilidades_categorias_classificacoes_lotacoes'       
         managed = True # esocial_compatibilidades_categorias_classificacoes_lotacoes #
+        unique_together = (
+            #custom_unique_together_esocial_compatibilidades_categorias_classificacoes_lotacoes#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_compatibilidades_categorias_classificacoes_lotacoes
+            #index_together_esocial_compatibilidades_categorias_classificacoes_lotacoes
+        )
         permissions = (
             ("can_view_esocial_compatibilidades_categorias_classificacoes_lotacoes", "Can view esocial_compatibilidades_categorias_classificacoes_lotacoes"),
             #custom_permissions_esocial_compatibilidades_categorias_classificacoes_lotacoes
@@ -1201,6 +1409,14 @@ class eSocialCompatibilidadesFPASClassificacoesTributarias(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_compatibilidades_fpas_classificacoes_tributarias'       
         managed = True # esocial_compatibilidades_fpas_classificacoes_tributarias #
+        unique_together = (
+            #custom_unique_together_esocial_compatibilidades_fpas_classificacoes_tributarias#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_compatibilidades_fpas_classificacoes_tributarias
+            #index_together_esocial_compatibilidades_fpas_classificacoes_tributarias
+        )
         permissions = (
             ("can_view_esocial_compatibilidades_fpas_classificacoes_tributarias", "Can view esocial_compatibilidades_fpas_classificacoes_tributarias"),
             #custom_permissions_esocial_compatibilidades_fpas_classificacoes_tributarias
@@ -1257,6 +1473,14 @@ class eSocialCompatibilidadesLotacoesClassificacoes(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_compatibilidades_lotacoes_classificacoes'       
         managed = True # esocial_compatibilidades_lotacoes_classificacoes #
+        unique_together = (
+            #custom_unique_together_esocial_compatibilidades_lotacoes_classificacoes#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_compatibilidades_lotacoes_classificacoes
+            #index_together_esocial_compatibilidades_lotacoes_classificacoes
+        )
         permissions = (
             ("can_view_esocial_compatibilidades_lotacoes_classificacoes", "Can view esocial_compatibilidades_lotacoes_classificacoes"),
             #custom_permissions_esocial_compatibilidades_lotacoes_classificacoes
@@ -1295,6 +1519,14 @@ class eSocialDependentesTipos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_dependentes_tipos'       
         managed = True # esocial_dependentes_tipos #
+        unique_together = (
+            #custom_unique_together_esocial_dependentes_tipos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_dependentes_tipos
+            #index_together_esocial_dependentes_tipos
+        )
         permissions = (
             ("can_view_esocial_dependentes_tipos", "Can view esocial_dependentes_tipos"),
             #custom_permissions_esocial_dependentes_tipos
@@ -1335,6 +1567,14 @@ class eSocialDesligamentosMotivos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_desligamentos_motivos'       
         managed = True # esocial_desligamentos_motivos #
+        unique_together = (
+            #custom_unique_together_esocial_desligamentos_motivos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_desligamentos_motivos
+            #index_together_esocial_desligamentos_motivos
+        )
         permissions = (
             ("can_view_esocial_desligamentos_motivos", "Can view esocial_desligamentos_motivos"),
             #custom_permissions_esocial_desligamentos_motivos
@@ -1374,6 +1614,14 @@ class eSocialFatoresRisco(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_fatores_risco'       
         managed = True # esocial_fatores_risco #
+        unique_together = (
+            #custom_unique_together_esocial_fatores_risco#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_fatores_risco
+            #index_together_esocial_fatores_risco
+        )
         permissions = (
             ("can_view_esocial_fatores_risco", "Can view esocial_fatores_risco"),
             #custom_permissions_esocial_fatores_risco
@@ -1412,6 +1660,14 @@ class eSocialFinanciamentosAposentadoriasEspeciais(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_financiamentos_aposentadorias_especiais'       
         managed = True # esocial_financiamentos_aposentadorias_especiais #
+        unique_together = (
+            #custom_unique_together_esocial_financiamentos_aposentadorias_especiais#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_financiamentos_aposentadorias_especiais
+            #index_together_esocial_financiamentos_aposentadorias_especiais
+        )
         permissions = (
             ("can_view_esocial_financiamentos_aposentadorias_especiais", "Can view esocial_financiamentos_aposentadorias_especiais"),
             #custom_permissions_esocial_financiamentos_aposentadorias_especiais
@@ -1450,6 +1706,14 @@ class eSocialInscricoesTipos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_inscricoes_tipos'       
         managed = True # esocial_inscricoes_tipos #
+        unique_together = (
+            #custom_unique_together_esocial_inscricoes_tipos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_inscricoes_tipos
+            #index_together_esocial_inscricoes_tipos
+        )
         permissions = (
             ("can_view_esocial_inscricoes_tipos", "Can view esocial_inscricoes_tipos"),
             #custom_permissions_esocial_inscricoes_tipos
@@ -1488,6 +1752,14 @@ class eSocialLogradourosTipos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_logradouros_tipos'       
         managed = True # esocial_logradouros_tipos #
+        unique_together = (
+            #custom_unique_together_esocial_logradouros_tipos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_logradouros_tipos
+            #index_together_esocial_logradouros_tipos
+        )
         permissions = (
             ("can_view_esocial_logradouros_tipos", "Can view esocial_logradouros_tipos"),
             #custom_permissions_esocial_logradouros_tipos
@@ -1527,6 +1799,14 @@ class eSocialLotacoesTributariasTipos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_lotacoes_tributarias_tipos'       
         managed = True # esocial_lotacoes_tributarias_tipos #
+        unique_together = (
+            #custom_unique_together_esocial_lotacoes_tributarias_tipos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_lotacoes_tributarias_tipos
+            #index_together_esocial_lotacoes_tributarias_tipos
+        )
         permissions = (
             ("can_view_esocial_lotacoes_tributarias_tipos", "Can view esocial_lotacoes_tributarias_tipos"),
             #custom_permissions_esocial_lotacoes_tributarias_tipos
@@ -1566,6 +1846,14 @@ class eSocialNaturezasJuridicas(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_naturezas_juridicas'       
         managed = True # esocial_naturezas_juridicas #
+        unique_together = (
+            #custom_unique_together_esocial_naturezas_juridicas#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_naturezas_juridicas
+            #index_together_esocial_naturezas_juridicas
+        )
         permissions = (
             ("can_view_esocial_naturezas_juridicas", "Can view esocial_naturezas_juridicas"),
             #custom_permissions_esocial_naturezas_juridicas
@@ -1604,6 +1892,14 @@ class eSocialNaturezasLesoes(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_naturezas_lesoes'       
         managed = True # esocial_naturezas_lesoes #
+        unique_together = (
+            #custom_unique_together_esocial_naturezas_lesoes#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_naturezas_lesoes
+            #index_together_esocial_naturezas_lesoes
+        )
         permissions = (
             ("can_view_esocial_naturezas_lesoes", "Can view esocial_naturezas_lesoes"),
             #custom_permissions_esocial_naturezas_lesoes
@@ -1645,6 +1941,14 @@ class eSocialNaturezasRubricas(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_naturezas_rubricas'       
         managed = True # esocial_naturezas_rubricas #
+        unique_together = (
+            #custom_unique_together_esocial_naturezas_rubricas#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_naturezas_rubricas
+            #index_together_esocial_naturezas_rubricas
+        )
         permissions = (
             ("can_view_esocial_naturezas_rubricas", "Can view esocial_naturezas_rubricas"),
             #custom_permissions_esocial_naturezas_rubricas
@@ -1685,6 +1989,14 @@ class eSocialPaises(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_paises'       
         managed = True # esocial_paises #
+        unique_together = (
+            #custom_unique_together_esocial_paises#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_paises
+            #index_together_esocial_paises
+        )
         permissions = (
             ("can_view_esocial_paises", "Can view esocial_paises"),
             #custom_permissions_esocial_paises
@@ -1723,6 +2035,14 @@ class eSocialPartesCorpoAtingidas(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_partes_corpo_atingidas'       
         managed = True # esocial_partes_corpo_atingidas #
+        unique_together = (
+            #custom_unique_together_esocial_partes_corpo_atingidas#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_partes_corpo_atingidas
+            #index_together_esocial_partes_corpo_atingidas
+        )
         permissions = (
             ("can_view_esocial_partes_corpo_atingidas", "Can view esocial_partes_corpo_atingidas"),
             #custom_permissions_esocial_partes_corpo_atingidas
@@ -1761,6 +2081,14 @@ class eSocialProcedimentosDiagnosticos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_procedimentos_diagnosticos'       
         managed = True # esocial_procedimentos_diagnosticos #
+        unique_together = (
+            #custom_unique_together_esocial_procedimentos_diagnosticos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_procedimentos_diagnosticos
+            #index_together_esocial_procedimentos_diagnosticos
+        )
         permissions = (
             ("can_view_esocial_procedimentos_diagnosticos", "Can view esocial_procedimentos_diagnosticos"),
             #custom_permissions_esocial_procedimentos_diagnosticos
@@ -1799,6 +2127,14 @@ class eSocialProgramasPlanosDocumentos(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_programas_planos_documentos'       
         managed = True # esocial_programas_planos_documentos #
+        unique_together = (
+            #custom_unique_together_esocial_programas_planos_documentos#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_programas_planos_documentos
+            #index_together_esocial_programas_planos_documentos
+        )
         permissions = (
             ("can_view_esocial_programas_planos_documentos", "Can view esocial_programas_planos_documentos"),
             #custom_permissions_esocial_programas_planos_documentos
@@ -1838,6 +2174,14 @@ class eSocialTrabalhadoresCategorias(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_trabalhadores_categorias'       
         managed = True # esocial_trabalhadores_categorias #
+        unique_together = (
+            #custom_unique_together_esocial_trabalhadores_categorias#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_trabalhadores_categorias
+            #index_together_esocial_trabalhadores_categorias
+        )
         permissions = (
             ("can_view_esocial_trabalhadores_categorias", "Can view esocial_trabalhadores_categorias"),
             #custom_permissions_esocial_trabalhadores_categorias
@@ -1876,6 +2220,14 @@ class eSocialTreinamentosCapacitacoesExerciciosSimulados(SoftDeletionModel):
     class Meta:
         db_table = r'esocial_treinamentos_capacitacoes_exercicios_simulados'       
         managed = True # esocial_treinamentos_capacitacoes_exercicios_simulados #
+        unique_together = (
+            #custom_unique_together_esocial_treinamentos_capacitacoes_exercicios_simulados#
+            
+        )
+        index_together = (
+            #custom_index_together_esocial_treinamentos_capacitacoes_exercicios_simulados
+            #index_together_esocial_treinamentos_capacitacoes_exercicios_simulados
+        )
         permissions = (
             ("can_view_esocial_treinamentos_capacitacoes_exercicios_simulados", "Can view esocial_treinamentos_capacitacoes_exercicios_simulados"),
             #custom_permissions_esocial_treinamentos_capacitacoes_exercicios_simulados

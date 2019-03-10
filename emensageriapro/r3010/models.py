@@ -139,6 +139,14 @@ class r3010boletim(SoftDeletionModel):
     class Meta:
         db_table = r'r3010_boletim'       
         managed = True # r3010_boletim #
+        unique_together = (
+            #custom_unique_together_r3010_boletim#
+            
+        )
+        index_together = (
+            #custom_index_together_r3010_boletim
+            #index_together_r3010_boletim
+        )
         permissions = (
             ("can_view_r3010_boletim", "Can view r3010_boletim"),
             #custom_permissions_r3010_boletim
@@ -182,6 +190,14 @@ class r3010infoProc(SoftDeletionModel):
     class Meta:
         db_table = r'r3010_infoproc'       
         managed = True # r3010_infoproc #
+        unique_together = (
+            #custom_unique_together_r3010_infoproc#
+            
+        )
+        index_together = (
+            #custom_index_together_r3010_infoproc
+            #index_together_r3010_infoproc
+        )
         permissions = (
             ("can_view_r3010_infoproc", "Can view r3010_infoproc"),
             #custom_permissions_r3010_infoproc
@@ -224,6 +240,14 @@ class r3010outrasReceitas(SoftDeletionModel):
     class Meta:
         db_table = r'r3010_outrasreceitas'       
         managed = True # r3010_outrasreceitas #
+        unique_together = (
+            #custom_unique_together_r3010_outrasreceitas#
+            
+        )
+        index_together = (
+            #custom_index_together_r3010_outrasreceitas
+            #index_together_r3010_outrasreceitas
+        )
         permissions = (
             ("can_view_r3010_outrasreceitas", "Can view r3010_outrasreceitas"),
             #custom_permissions_r3010_outrasreceitas
@@ -270,6 +294,14 @@ class r3010receitaIngressos(SoftDeletionModel):
     class Meta:
         db_table = r'r3010_receitaingressos'       
         managed = True # r3010_receitaingressos #
+        unique_together = (
+            #custom_unique_together_r3010_receitaingressos#
+            
+        )
+        index_together = (
+            #custom_index_together_r3010_receitaingressos
+            #index_together_r3010_receitaingressos
+        )
         permissions = (
             ("can_view_r3010_receitaingressos", "Can view r3010_receitaingressos"),
             #custom_permissions_r3010_receitaingressos

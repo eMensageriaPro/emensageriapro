@@ -172,6 +172,14 @@ class s2230emitente(SoftDeletionModel):
     class Meta:
         db_table = r's2230_emitente'       
         managed = True # s2230_emitente #
+        unique_together = (
+            #custom_unique_together_s2230_emitente#
+            
+        )
+        index_together = (
+            #custom_index_together_s2230_emitente
+            #index_together_s2230_emitente
+        )
         permissions = (
             ("can_view_s2230_emitente", "Can view s2230_emitente"),
             #custom_permissions_s2230_emitente
@@ -212,6 +220,14 @@ class s2230fimAfastamento(SoftDeletionModel):
     class Meta:
         db_table = r's2230_fimafastamento'       
         managed = True # s2230_fimafastamento #
+        unique_together = (
+            #custom_unique_together_s2230_fimafastamento#
+            
+        )
+        index_together = (
+            #custom_index_together_s2230_fimafastamento
+            #index_together_s2230_fimafastamento
+        )
         permissions = (
             ("can_view_s2230_fimafastamento", "Can view s2230_fimafastamento"),
             #custom_permissions_s2230_fimafastamento
@@ -253,6 +269,14 @@ class s2230infoAtestado(SoftDeletionModel):
     class Meta:
         db_table = r's2230_infoatestado'       
         managed = True # s2230_infoatestado #
+        unique_together = (
+            #custom_unique_together_s2230_infoatestado#
+            
+        )
+        index_together = (
+            #custom_index_together_s2230_infoatestado
+            #index_together_s2230_infoatestado
+        )
         permissions = (
             ("can_view_s2230_infoatestado", "Can view s2230_infoatestado"),
             #custom_permissions_s2230_infoatestado
@@ -294,6 +318,14 @@ class s2230infoCessao(SoftDeletionModel):
     class Meta:
         db_table = r's2230_infocessao'       
         managed = True # s2230_infocessao #
+        unique_together = (
+            #custom_unique_together_s2230_infocessao#
+            
+        )
+        index_together = (
+            #custom_index_together_s2230_infocessao
+            #index_together_s2230_infocessao
+        )
         permissions = (
             ("can_view_s2230_infocessao", "Can view s2230_infocessao"),
             #custom_permissions_s2230_infocessao
@@ -335,6 +367,14 @@ class s2230infoMandSind(SoftDeletionModel):
     class Meta:
         db_table = r's2230_infomandsind'       
         managed = True # s2230_infomandsind #
+        unique_together = (
+            #custom_unique_together_s2230_infomandsind#
+            
+        )
+        index_together = (
+            #custom_index_together_s2230_infomandsind
+            #index_together_s2230_infomandsind
+        )
         permissions = (
             ("can_view_s2230_infomandsind", "Can view s2230_infomandsind"),
             #custom_permissions_s2230_infomandsind
@@ -377,6 +417,14 @@ class s2230infoRetif(SoftDeletionModel):
     class Meta:
         db_table = r's2230_inforetif'       
         managed = True # s2230_inforetif #
+        unique_together = (
+            #custom_unique_together_s2230_inforetif#
+            
+        )
+        index_together = (
+            #custom_index_together_s2230_inforetif
+            #index_together_s2230_inforetif
+        )
         permissions = (
             ("can_view_s2230_inforetif", "Can view s2230_inforetif"),
             #custom_permissions_s2230_inforetif
@@ -421,6 +469,14 @@ class s2230iniAfastamento(SoftDeletionModel):
     class Meta:
         db_table = r's2230_iniafastamento'       
         managed = True # s2230_iniafastamento #
+        unique_together = (
+            #custom_unique_together_s2230_iniafastamento#
+            
+        )
+        index_together = (
+            #custom_index_together_s2230_iniafastamento
+            #index_together_s2230_iniafastamento
+        )
         permissions = (
             ("can_view_s2230_iniafastamento", "Can view s2230_iniafastamento"),
             #custom_permissions_s2230_iniafastamento

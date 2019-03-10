@@ -83,6 +83,14 @@ class r5011RCPRB(SoftDeletionModel):
     class Meta:
         db_table = r'r5011_rcprb'       
         managed = True # r5011_rcprb #
+        unique_together = (
+            #custom_unique_together_r5011_rcprb#
+            
+        )
+        index_together = (
+            #custom_index_together_r5011_rcprb
+            #index_together_r5011_rcprb
+        )
         permissions = (
             ("can_view_r5011_rcprb", "Can view r5011_rcprb"),
             #custom_permissions_r5011_rcprb
@@ -125,6 +133,14 @@ class r5011RComl(SoftDeletionModel):
     class Meta:
         db_table = r'r5011_rcoml'       
         managed = True # r5011_rcoml #
+        unique_together = (
+            #custom_unique_together_r5011_rcoml#
+            
+        )
+        index_together = (
+            #custom_index_together_r5011_rcoml
+            #index_together_r5011_rcoml
+        )
         permissions = (
             ("can_view_r5011_rcoml", "Can view r5011_rcoml"),
             #custom_permissions_r5011_rcoml
@@ -171,6 +187,14 @@ class r5011RPrest(SoftDeletionModel):
     class Meta:
         db_table = r'r5011_rprest'       
         managed = True # r5011_rprest #
+        unique_together = (
+            #custom_unique_together_r5011_rprest#
+            
+        )
+        index_together = (
+            #custom_index_together_r5011_rprest
+            #index_together_r5011_rprest
+        )
         permissions = (
             ("can_view_r5011_rprest", "Can view r5011_rprest"),
             #custom_permissions_r5011_rprest
@@ -215,6 +239,14 @@ class r5011RRecRepAD(SoftDeletionModel):
     class Meta:
         db_table = r'r5011_rrecrepad'       
         managed = True # r5011_rrecrepad #
+        unique_together = (
+            #custom_unique_together_r5011_rrecrepad#
+            
+        )
+        index_together = (
+            #custom_index_together_r5011_rrecrepad
+            #index_together_r5011_rrecrepad
+        )
         permissions = (
             ("can_view_r5011_rrecrepad", "Can view r5011_rrecrepad"),
             #custom_permissions_r5011_rrecrepad
@@ -257,6 +289,14 @@ class r5011RTom(SoftDeletionModel):
     class Meta:
         db_table = r'r5011_rtom'       
         managed = True # r5011_rtom #
+        unique_together = (
+            #custom_unique_together_r5011_rtom#
+            
+        )
+        index_together = (
+            #custom_index_together_r5011_rtom
+            #index_together_r5011_rtom
+        )
         permissions = (
             ("can_view_r5011_rtom", "Can view r5011_rtom"),
             #custom_permissions_r5011_rtom
@@ -299,6 +339,14 @@ class r5011infoCRTom(SoftDeletionModel):
     class Meta:
         db_table = r'r5011_infocrtom'       
         managed = True # r5011_infocrtom #
+        unique_together = (
+            #custom_unique_together_r5011_infocrtom#
+            
+        )
+        index_together = (
+            #custom_index_together_r5011_infocrtom
+            #index_together_r5011_infocrtom
+        )
         permissions = (
             ("can_view_r5011_infocrtom", "Can view r5011_infocrtom"),
             #custom_permissions_r5011_infocrtom
@@ -340,6 +388,14 @@ class r5011infoTotalContrib(SoftDeletionModel):
     class Meta:
         db_table = r'r5011_infototalcontrib'       
         managed = True # r5011_infototalcontrib #
+        unique_together = (
+            #custom_unique_together_r5011_infototalcontrib#
+            
+        )
+        index_together = (
+            #custom_index_together_r5011_infototalcontrib
+            #index_together_r5011_infototalcontrib
+        )
         permissions = (
             ("can_view_r5011_infototalcontrib", "Can view r5011_infototalcontrib"),
             #custom_permissions_r5011_infototalcontrib
@@ -383,6 +439,14 @@ class r5011regOcorrs(SoftDeletionModel):
     class Meta:
         db_table = r'r5011_regocorrs'       
         managed = True # r5011_regocorrs #
+        unique_together = (
+            #custom_unique_together_r5011_regocorrs#
+            
+        )
+        index_together = (
+            #custom_index_together_r5011_regocorrs
+            #index_together_r5011_regocorrs
+        )
         permissions = (
             ("can_view_r5011_regocorrs", "Can view r5011_regocorrs"),
             #custom_permissions_r5011_regocorrs

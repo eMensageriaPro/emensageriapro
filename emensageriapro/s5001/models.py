@@ -121,6 +121,14 @@ class s5001calcTerc(SoftDeletionModel):
     class Meta:
         db_table = r's5001_calcterc'       
         managed = True # s5001_calcterc #
+        unique_together = (
+            #custom_unique_together_s5001_calcterc#
+            
+        )
+        index_together = (
+            #custom_index_together_s5001_calcterc
+            #index_together_s5001_calcterc
+        )
         permissions = (
             ("can_view_s5001_calcterc", "Can view s5001_calcterc"),
             #custom_permissions_s5001_calcterc
@@ -163,6 +171,14 @@ class s5001ideEstabLot(SoftDeletionModel):
     class Meta:
         db_table = r's5001_ideestablot'       
         managed = True # s5001_ideestablot #
+        unique_together = (
+            #custom_unique_together_s5001_ideestablot#
+            
+        )
+        index_together = (
+            #custom_index_together_s5001_ideestablot
+            #index_together_s5001_ideestablot
+        )
         permissions = (
             ("can_view_s5001_ideestablot", "Can view s5001_ideestablot"),
             #custom_permissions_s5001_ideestablot
@@ -205,6 +221,14 @@ class s5001infoBaseCS(SoftDeletionModel):
     class Meta:
         db_table = r's5001_infobasecs'       
         managed = True # s5001_infobasecs #
+        unique_together = (
+            #custom_unique_together_s5001_infobasecs#
+            
+        )
+        index_together = (
+            #custom_index_together_s5001_infobasecs
+            #index_together_s5001_infobasecs
+        )
         permissions = (
             ("can_view_s5001_infobasecs", "Can view s5001_infobasecs"),
             #custom_permissions_s5001_infobasecs
@@ -247,6 +271,14 @@ class s5001infoCategIncid(SoftDeletionModel):
     class Meta:
         db_table = r's5001_infocategincid'       
         managed = True # s5001_infocategincid #
+        unique_together = (
+            #custom_unique_together_s5001_infocategincid#
+            
+        )
+        index_together = (
+            #custom_index_together_s5001_infocategincid
+            #index_together_s5001_infocategincid
+        )
         permissions = (
             ("can_view_s5001_infocategincid", "Can view s5001_infocategincid"),
             #custom_permissions_s5001_infocategincid
@@ -289,6 +321,14 @@ class s5001infoCpCalc(SoftDeletionModel):
     class Meta:
         db_table = r's5001_infocpcalc'       
         managed = True # s5001_infocpcalc #
+        unique_together = (
+            #custom_unique_together_s5001_infocpcalc#
+            
+        )
+        index_together = (
+            #custom_index_together_s5001_infocpcalc
+            #index_together_s5001_infocpcalc
+        )
         permissions = (
             ("can_view_s5001_infocpcalc", "Can view s5001_infocpcalc"),
             #custom_permissions_s5001_infocpcalc
@@ -330,6 +370,14 @@ class s5001procJudTrab(SoftDeletionModel):
     class Meta:
         db_table = r's5001_procjudtrab'       
         managed = True # s5001_procjudtrab #
+        unique_together = (
+            #custom_unique_together_s5001_procjudtrab#
+            
+        )
+        index_together = (
+            #custom_index_together_s5001_procjudtrab
+            #index_together_s5001_procjudtrab
+        )
         permissions = (
             ("can_view_s5001_procjudtrab", "Can view s5001_procjudtrab"),
             #custom_permissions_s5001_procjudtrab

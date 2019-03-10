@@ -78,6 +78,14 @@ class s2231fimCessao(SoftDeletionModel):
     class Meta:
         db_table = r's2231_fimcessao'       
         managed = True # s2231_fimcessao #
+        unique_together = (
+            #custom_unique_together_s2231_fimcessao#
+            
+        )
+        index_together = (
+            #custom_index_together_s2231_fimcessao
+            #index_together_s2231_fimcessao
+        )
         permissions = (
             ("can_view_s2231_fimcessao", "Can view s2231_fimcessao"),
             #custom_permissions_s2231_fimcessao
@@ -122,6 +130,14 @@ class s2231iniCessao(SoftDeletionModel):
     class Meta:
         db_table = r's2231_inicessao'       
         managed = True # s2231_inicessao #
+        unique_together = (
+            #custom_unique_together_s2231_inicessao#
+            
+        )
+        index_together = (
+            #custom_index_together_s2231_inicessao
+            #index_together_s2231_inicessao
+        )
         permissions = (
             ("can_view_s2231_inicessao", "Can view s2231_inicessao"),
             #custom_permissions_s2231_inicessao

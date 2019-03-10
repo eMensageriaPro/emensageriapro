@@ -122,6 +122,14 @@ class s2405brasil(SoftDeletionModel):
     class Meta:
         db_table = r's2405_brasil'       
         managed = True # s2405_brasil #
+        unique_together = (
+            #custom_unique_together_s2405_brasil#
+            
+        )
+        index_together = (
+            #custom_index_together_s2405_brasil
+            #index_together_s2405_brasil
+        )
         permissions = (
             ("can_view_s2405_brasil", "Can view s2405_brasil"),
             #custom_permissions_s2405_brasil
@@ -169,6 +177,14 @@ class s2405dependente(SoftDeletionModel):
     class Meta:
         db_table = r's2405_dependente'       
         managed = True # s2405_dependente #
+        unique_together = (
+            #custom_unique_together_s2405_dependente#
+            
+        )
+        index_together = (
+            #custom_index_together_s2405_dependente
+            #index_together_s2405_dependente
+        )
         permissions = (
             ("can_view_s2405_dependente", "Can view s2405_dependente"),
             #custom_permissions_s2405_dependente
@@ -215,6 +231,14 @@ class s2405exterior(SoftDeletionModel):
     class Meta:
         db_table = r's2405_exterior'       
         managed = True # s2405_exterior #
+        unique_together = (
+            #custom_unique_together_s2405_exterior#
+            
+        )
+        index_together = (
+            #custom_index_together_s2405_exterior
+            #index_together_s2405_exterior
+        )
         permissions = (
             ("can_view_s2405_exterior", "Can view s2405_exterior"),
             #custom_permissions_s2405_exterior

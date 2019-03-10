@@ -68,6 +68,14 @@ class s1295ideRespInf(SoftDeletionModel):
     class Meta:
         db_table = r's1295_iderespinf'       
         managed = True # s1295_iderespinf #
+        unique_together = (
+            #custom_unique_together_s1295_iderespinf#
+            
+        )
+        index_together = (
+            #custom_index_together_s1295_iderespinf
+            #index_together_s1295_iderespinf
+        )
         permissions = (
             ("can_view_s1295_iderespinf", "Can view s1295_iderespinf"),
             #custom_permissions_s1295_iderespinf

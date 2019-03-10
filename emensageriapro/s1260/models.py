@@ -87,6 +87,14 @@ class s1260ideAdquir(SoftDeletionModel):
     class Meta:
         db_table = r's1260_ideadquir'       
         managed = True # s1260_ideadquir #
+        unique_together = (
+            #custom_unique_together_s1260_ideadquir#
+            
+        )
+        index_together = (
+            #custom_index_together_s1260_ideadquir
+            #index_together_s1260_ideadquir
+        )
         permissions = (
             ("can_view_s1260_ideadquir", "Can view s1260_ideadquir"),
             #custom_permissions_s1260_ideadquir
@@ -132,6 +140,14 @@ class s1260infoProcJud(SoftDeletionModel):
     class Meta:
         db_table = r's1260_infoprocjud'       
         managed = True # s1260_infoprocjud #
+        unique_together = (
+            #custom_unique_together_s1260_infoprocjud#
+            
+        )
+        index_together = (
+            #custom_index_together_s1260_infoprocjud
+            #index_together_s1260_infoprocjud
+        )
         permissions = (
             ("can_view_s1260_infoprocjud", "Can view s1260_infoprocjud"),
             #custom_permissions_s1260_infoprocjud
@@ -178,6 +194,14 @@ class s1260nfs(SoftDeletionModel):
     class Meta:
         db_table = r's1260_nfs'       
         managed = True # s1260_nfs #
+        unique_together = (
+            #custom_unique_together_s1260_nfs#
+            
+        )
+        index_together = (
+            #custom_index_together_s1260_nfs
+            #index_together_s1260_nfs
+        )
         permissions = (
             ("can_view_s1260_nfs", "Can view s1260_nfs"),
             #custom_permissions_s1260_nfs
@@ -219,6 +243,14 @@ class s1260tpComerc(SoftDeletionModel):
     class Meta:
         db_table = r's1260_tpcomerc'       
         managed = True # s1260_tpcomerc #
+        unique_together = (
+            #custom_unique_together_s1260_tpcomerc#
+            
+        )
+        index_together = (
+            #custom_index_together_s1260_tpcomerc
+            #index_together_s1260_tpcomerc
+        )
         permissions = (
             ("can_view_s1260_tpcomerc", "Can view s1260_tpcomerc"),
             #custom_permissions_s1260_tpcomerc

@@ -71,6 +71,14 @@ class s1280infoAtivConcom(SoftDeletionModel):
     class Meta:
         db_table = r's1280_infoativconcom'       
         managed = True # s1280_infoativconcom #
+        unique_together = (
+            #custom_unique_together_s1280_infoativconcom#
+            
+        )
+        index_together = (
+            #custom_index_together_s1280_infoativconcom
+            #index_together_s1280_infoativconcom
+        )
         permissions = (
             ("can_view_s1280_infoativconcom", "Can view s1280_infoativconcom"),
             #custom_permissions_s1280_infoativconcom
@@ -112,6 +120,14 @@ class s1280infoSubstPatr(SoftDeletionModel):
     class Meta:
         db_table = r's1280_infosubstpatr'       
         managed = True # s1280_infosubstpatr #
+        unique_together = (
+            #custom_unique_together_s1280_infosubstpatr#
+            
+        )
+        index_together = (
+            #custom_index_together_s1280_infosubstpatr
+            #index_together_s1280_infosubstpatr
+        )
         permissions = (
             ("can_view_s1280_infosubstpatr", "Can view s1280_infosubstpatr"),
             #custom_permissions_s1280_infosubstpatr
@@ -152,6 +168,14 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
     class Meta:
         db_table = r's1280_infosubstpatropport'       
         managed = True # s1280_infosubstpatropport #
+        unique_together = (
+            #custom_unique_together_s1280_infosubstpatropport#
+            
+        )
+        index_together = (
+            #custom_index_together_s1280_infosubstpatropport
+            #index_together_s1280_infosubstpatropport
+        )
         permissions = (
             ("can_view_s1280_infosubstpatropport", "Can view s1280_infosubstpatropport"),
             #custom_permissions_s1280_infosubstpatropport
