@@ -185,7 +185,8 @@ def enviar(request, hash=None):
             (3, u'3 - Eventos Periódicos'),
         )
 
-        lista = model.objects.using('default').all()
+        lista = model.objects.using('default').filter(status=STATUS_EVENTO_AGUARD_ENVIO,
+                                                      transmissor_lote_efdreinf=None).all()
 
         numero_evento = int(model._meta.db_table[1:5])
 
@@ -232,15 +233,15 @@ def enviar(request, hash=None):
                         return Response(data, status=HTTP_200_OK)
 
                 else:
-                    #CRIAR TRANMISSOR_efdreinf
+
                     dados = {}
-                    dados['transmissor'] = transmissor[0].id
+                    dados['transmissor_id'] = transmissor[0].id
                     dados['contribuinte_tpinsc'] = transmissor[0].contribuinte_tpinsc
                     dados['contribuinte_nrinsc'] = transmissor[0].contribuinte_nrinsc
                     dados['grupo'] = grupo
                     dados['status'] = 0
-                    transmissor_efdreinf = TransmissorLoteEfdreinf()
-                    transmissor_efdreinf.save(**dados)
+                    transmissor_efdreinf = TransmissorLoteEfdreinf(**dados)
+                    transmissor_efdreinf.save()
 
             transmissor_efdreinf_lista = TransmissorLoteEfdreinf.objects.using('default').filter(
                 status=0,

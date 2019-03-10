@@ -8,6 +8,7 @@ Controle de Acesso|controle_de_acesso|Perfis|config_perfis
 Controle de Acesso|controle_de_acesso|Permissões|config_permissoes
 Controle de Acesso|controle_de_acesso|Usuários|usuarios
 Controle de Acesso|controle_de_acesso|Auditoria|auditoria
+Mapa de Processamento|mapa_processamento|Visão Geral|visao_geral
 Mapa de Processamento|mapa_processamento|Importações|mapa_importacoes
 Mapa de Processamento|mapa_processamento|eSocial|mapa_esocial
 Mapa de Processamento|mapa_processamento|EFDReinf|mapa_efdreinf

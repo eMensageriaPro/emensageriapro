@@ -183,7 +183,7 @@ def enviar(request, hash=None):
 
         STATUS = [
             STATUS_EVENTO_AGUARD_ENVIO,
-            STATUS_EVENTO_VALIDADO
+            #STATUS_EVENTO_VALIDADO
         ]
 
         EVENTOS_GRUPOS = (
@@ -192,7 +192,8 @@ def enviar(request, hash=None):
             (3, u'3 - Eventos Periódicos'),
         )
 
-        lista = model.objects.using('default').all()
+        lista = model.objects.using('default').filter(status=STATUS_EVENTO_AGUARD_ENVIO,
+                                                      transmissor_lote_esocial=None).all()
 
         numero_evento = int(model._meta.db_table[1:5])
 
@@ -217,8 +218,6 @@ def enviar(request, hash=None):
                     empregador_nrinsc=a.nrinsc,
                     empregador_tpinsc=a.tpinsc).all()
 
-                print transmissor.query
-
                 if not transmissor:
 
                     txt = u'Cadastre um Transmissor para o empregador %s!' % a.nrinsc
@@ -231,6 +230,7 @@ def enviar(request, hash=None):
                         return Response(data, status=HTTP_200_OK)
 
                 elif len(transmissor) > 1:
+
                     txt = u'Existe mais de um transmissor cadastrado o empregador %s, cadastre apenas um!' % a.nrinsc
 
                     if hash:
@@ -241,15 +241,15 @@ def enviar(request, hash=None):
                         return Response(data, status=HTTP_200_OK)
 
                 else:
-                    #CRIAR TRANMISSOR_ESOCIAL
+
                     dados = {}
-                    dados['transmissor'] = transmissor[0].id
+                    dados['transmissor_id'] = transmissor[0].id
                     dados['empregador_tpinsc'] = transmissor[0].empregador_tpinsc
                     dados['empregador_nrinsc'] = transmissor[0].empregador_nrinsc
                     dados['grupo'] = grupo
                     dados['status'] = 0
-                    transmissor_esocial = TransmissorLoteEsocial()
-                    transmissor_esocial.save(**dados)
+                    transmissor_esocial = TransmissorLoteEsocial(**dados)
+                    transmissor_esocial.save()
 
             transmissor_esocial_lista = TransmissorLoteEsocial.objects.using('default').filter(
                 status=0,
@@ -262,7 +262,7 @@ def enviar(request, hash=None):
                 eventos_lista = TransmissorEventosEsocial.objects.using('default').filter(
                     transmissor_lote_esocial=te.id).all()
 
-                if len(eventos_lista) < te.transmissor_lote_esocial.transmissor.esocial_lote_max:
+                if len(eventos_lista) < te.transmissor.esocial_lote_max:
                     model.objects.using('default').filter(id=a.id).update(transmissor_lote_esocial=te)
 
                 txt = 'Evento vinculado com sucesso!'
