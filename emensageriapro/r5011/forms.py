@@ -82,7 +82,6 @@ class form_r5011_rcprb(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -125,7 +124,6 @@ class form_r5011_rcoml(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -173,7 +171,6 @@ class form_r5011_rprest(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -218,7 +215,6 @@ class form_r5011_rrecrepad(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -260,7 +256,6 @@ class form_r5011_rtom(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -302,7 +297,6 @@ class form_r5011_infocrtom(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -341,7 +335,6 @@ class form_r5011_infototalcontrib(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -384,7 +377,6 @@ class form_r5011_regocorrs(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 

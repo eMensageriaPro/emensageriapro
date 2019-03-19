@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_classificacoes_tributarias_id:
-            esocial_classificacoes_tributarias_form = form_esocial_classificacoes_tributarias(request.POST or None, instance = esocial_classificacoes_tributarias, slug = db_slug)
+            esocial_classificacoes_tributarias_form = form_esocial_classificacoes_tributarias(request.POST or None,
+                                         instance = esocial_classificacoes_tributarias,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            esocial_classificacoes_tributarias_form = form_esocial_classificacoes_tributarias(request.POST or None, slug = db_slug, initial={})
+            esocial_classificacoes_tributarias_form = form_esocial_classificacoes_tributarias(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_classificacoes_tributarias_form.is_valid():
 

@@ -69,6 +69,7 @@ class s3000ideFolhaPagto(SoftDeletionModel):
     #s3000_idefolhapagto_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica a qual folha de pagamento pertence o evento que será excluído'
         db_table = r's3000_idefolhapagto'       
         managed = True # s3000_idefolhapagto #
         unique_together = (
@@ -118,6 +119,7 @@ class s3000ideTrabalhador(SoftDeletionModel):
     #s3000_idetrabalhador_custom#
 
     class Meta:
+        # verbose_name = u'Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.'
         db_table = r's3000_idetrabalhador'       
         managed = True # s3000_idetrabalhador #
         unique_together = (

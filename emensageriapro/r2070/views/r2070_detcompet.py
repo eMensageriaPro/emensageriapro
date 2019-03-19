@@ -312,9 +312,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2070_detcompet_id:
-            r2070_detcompet_form = form_r2070_detcompet(request.POST or None, instance = r2070_detcompet, slug = db_slug)
+            r2070_detcompet_form = form_r2070_detcompet(request.POST or None,
+                                         instance = r2070_detcompet,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r2070_detcompet_form = form_r2070_detcompet(request.POST or None, slug = db_slug, initial={})
+            r2070_detcompet_form = form_r2070_detcompet(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r2070_detcompet_form.is_valid():
 

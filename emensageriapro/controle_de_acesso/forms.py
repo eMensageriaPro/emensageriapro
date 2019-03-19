@@ -79,7 +79,6 @@ class form_config_modulos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -123,7 +122,6 @@ class form_config_paginas(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -161,7 +159,6 @@ class form_config_perfis(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'permissoes',
             'modulos_permitidos',
             'paginas_permitidas',
@@ -210,7 +207,6 @@ class form_config_permissoes(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -297,7 +293,6 @@ class form_usuarios(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'password',
             'is_staff',
             'is_active',
@@ -357,7 +352,6 @@ class form_auditoria(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 

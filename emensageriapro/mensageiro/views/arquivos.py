@@ -269,9 +269,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if arquivos_id:
-            arquivos_form = form_arquivos(request.POST or None, instance = arquivos, slug = db_slug)
+            arquivos_form = form_arquivos(request.POST or None,
+                                instance = arquivos,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         else:
-            arquivos_form = form_arquivos(request.POST or None, slug = db_slug, initial={})
+            arquivos_form = form_arquivos(request.POST or None,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         if request.method == 'POST':
             if arquivos_form.is_valid():
                 #arquivos_campos_multiple_passo1

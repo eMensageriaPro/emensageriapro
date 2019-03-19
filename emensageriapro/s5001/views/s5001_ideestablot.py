@@ -312,9 +312,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s5001_ideestablot_id:
-            s5001_ideestablot_form = form_s5001_ideestablot(request.POST or None, instance = s5001_ideestablot, slug = db_slug)
+            s5001_ideestablot_form = form_s5001_ideestablot(request.POST or None,
+                                         instance = s5001_ideestablot,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s5001_ideestablot_form = form_s5001_ideestablot(request.POST or None, slug = db_slug, initial={})
+            s5001_ideestablot_form = form_s5001_ideestablot(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s5001_ideestablot_form.is_valid():
 

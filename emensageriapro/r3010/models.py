@@ -137,6 +137,7 @@ class r3010boletim(SoftDeletionModel):
     #r3010_boletim_custom#
 
     class Meta:
+        # verbose_name = u'Boletim do Espetáculo Desportivo'
         db_table = r'r3010_boletim'       
         managed = True # r3010_boletim #
         unique_together = (
@@ -188,6 +189,7 @@ class r3010infoProc(SoftDeletionModel):
     #r3010_infoproc_custom#
 
     class Meta:
+        # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
         db_table = r'r3010_infoproc'       
         managed = True # r3010_infoproc #
         unique_together = (
@@ -238,6 +240,7 @@ class r3010outrasReceitas(SoftDeletionModel):
     #r3010_outrasreceitas_custom#
 
     class Meta:
+        # verbose_name = u'Outras receitas do espetáculo'
         db_table = r'r3010_outrasreceitas'       
         managed = True # r3010_outrasreceitas #
         unique_together = (
@@ -292,6 +295,7 @@ class r3010receitaIngressos(SoftDeletionModel):
     #r3010_receitaingressos_custom#
 
     class Meta:
+        # verbose_name = u'Receita da Venda de Ingressos'
         db_table = r'r3010_receitaingressos'       
         managed = True # r3010_receitaingressos #
         unique_together = (

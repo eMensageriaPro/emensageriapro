@@ -356,6 +356,7 @@ class s2200CNH(SoftDeletionModel):
     #s2200_cnh_custom#
 
     class Meta:
+        # verbose_name = u'Informações da Carteira Nacional de Habilitação (CNH)'
         db_table = r's2200_cnh'       
         managed = True # s2200_cnh #
         unique_together = (
@@ -406,6 +407,7 @@ class s2200CTPS(SoftDeletionModel):
     #s2200_ctps_custom#
 
     class Meta:
+        # verbose_name = u'Informações da Carteira de Trabalho e Previdência Social'
         db_table = r's2200_ctps'       
         managed = True # s2200_ctps #
         unique_together = (
@@ -457,6 +459,7 @@ class s2200OC(SoftDeletionModel):
     #s2200_oc_custom#
 
     class Meta:
+        # verbose_name = u'Informações do número de registro em Órgão de Classe (OC)'
         db_table = r's2200_oc'       
         managed = True # s2200_oc #
         unique_together = (
@@ -507,6 +510,7 @@ class s2200RG(SoftDeletionModel):
     #s2200_rg_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Registro Geral (RG)'
         db_table = r's2200_rg'       
         managed = True # s2200_rg #
         unique_together = (
@@ -557,6 +561,7 @@ class s2200RIC(SoftDeletionModel):
     #s2200_ric_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)'
         db_table = r's2200_ric'       
         managed = True # s2200_ric #
         unique_together = (
@@ -607,6 +612,7 @@ class s2200RNE(SoftDeletionModel):
     #s2200_rne_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Registro Nacional de Estrangeiro'
         db_table = r's2200_rne'       
         managed = True # s2200_rne #
         unique_together = (
@@ -656,6 +662,7 @@ class s2200afastamento(SoftDeletionModel):
     #s2200_afastamento_custom#
 
     class Meta:
+        # verbose_name = u'Informações de afastamento do trabalhador'
         db_table = r's2200_afastamento'       
         managed = True # s2200_afastamento #
         unique_together = (
@@ -704,6 +711,7 @@ class s2200alvaraJudicial(SoftDeletionModel):
     #s2200_alvarajudicial_custom#
 
     class Meta:
+        # verbose_name = u'Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de "Aprendiz".'
         db_table = r's2200_alvarajudicial'       
         managed = True # s2200_alvarajudicial #
         unique_together = (
@@ -752,6 +760,7 @@ class s2200aposentadoria(SoftDeletionModel):
     #s2200_aposentadoria_custom#
 
     class Meta:
+        # verbose_name = u'Informação de aposentadoria do trabalhador'
         db_table = r's2200_aposentadoria'       
         managed = True # s2200_aposentadoria #
         unique_together = (
@@ -801,6 +810,7 @@ class s2200aprend(SoftDeletionModel):
     #s2200_aprend_custom#
 
     class Meta:
+        # verbose_name = u'Informações para identificação do empregador contratante de aprendiz'
         db_table = r's2200_aprend'       
         managed = True # s2200_aprend #
         unique_together = (
@@ -856,6 +866,7 @@ class s2200brasil(SoftDeletionModel):
     #s2200_brasil_custom#
 
     class Meta:
+        # verbose_name = u'Preenchimento obrigatório para trabalhador residente no Brasil.'
         db_table = r's2200_brasil'       
         managed = True # s2200_brasil #
         unique_together = (
@@ -904,6 +915,7 @@ class s2200cessao(SoftDeletionModel):
     #s2200_cessao_custom#
 
     class Meta:
+        # verbose_name = u'Informações de cessão/exercício em outro órgão do trabalhador'
         db_table = r's2200_cessao'       
         managed = True # s2200_cessao #
         unique_together = (
@@ -955,6 +967,7 @@ class s2200contato(SoftDeletionModel):
     #s2200_contato_custom#
 
     class Meta:
+        # verbose_name = u'Informações de contato'
         db_table = r's2200_contato'       
         managed = True # s2200_contato #
         unique_together = (
@@ -1011,6 +1024,7 @@ class s2200dependente(SoftDeletionModel):
     #s2200_dependente_custom#
 
     class Meta:
+        # verbose_name = u'Informações dos dependentes'
         db_table = r's2200_dependente'       
         managed = True # s2200_dependente #
         unique_together = (
@@ -1059,6 +1073,7 @@ class s2200desligamento(SoftDeletionModel):
     #s2200_desligamento_custom#
 
     class Meta:
+        # verbose_name = u'Informações do desligamento do trabalhador. Registro preenchido exclusivamente caso seja necessário enviar cadastramento inicial referente a trabalhador que já tenha sido desligado da empresa antes do início do eSocial (ex: envio para pagamento de diferenç (...)'
         db_table = r's2200_desligamento'       
         managed = True # s2200_desligamento #
         unique_together = (
@@ -1113,6 +1128,7 @@ class s2200exterior(SoftDeletionModel):
     #s2200_exterior_custom#
 
     class Meta:
+        # verbose_name = u'Preenchido em caso de trabalhador residente no exterior.'
         db_table = r's2200_exterior'       
         managed = True # s2200_exterior #
         unique_together = (
@@ -1161,6 +1177,7 @@ class s2200filiacaoSindical(SoftDeletionModel):
     #s2200_filiacaosindical_custom#
 
     class Meta:
+        # verbose_name = u'Filiação Sindical do Trabalhador'
         db_table = r's2200_filiacaosindical'       
         managed = True # s2200_filiacaosindical #
         unique_together = (
@@ -1212,6 +1229,7 @@ class s2200horContratual(SoftDeletionModel):
     #s2200_horcontratual_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].'
         db_table = r's2200_horcontratual'       
         managed = True # s2200_horcontratual #
         unique_together = (
@@ -1261,6 +1279,7 @@ class s2200horario(SoftDeletionModel):
     #s2200_horario_custom#
 
     class Meta:
+        # verbose_name = u'Informações diárias do horário contratual'
         db_table = r's2200_horario'       
         managed = True # s2200_horario #
         unique_together = (
@@ -1310,6 +1329,7 @@ class s2200ideEstabVinc(SoftDeletionModel):
     #s2200_ideestabvinc_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do estabelecimento ao qual o trabalhador temporário está vinculado. Se o local da efetiva prestação do serviço não possuir inscrição deverá ser informado o CNPJ/CPF ao qual o local da efetiva prestação está vinculado. O preenchimento é obriga (...)'
         db_table = r's2200_ideestabvinc'       
         managed = True # s2200_ideestabvinc #
         unique_together = (
@@ -1358,6 +1378,7 @@ class s2200ideTrabSubstituido(SoftDeletionModel):
     #s2200_idetrabsubstituido_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do(s) trabalhador(es) substituído(s)'
         db_table = r's2200_idetrabsubstituido'       
         managed = True # s2200_idetrabsubstituido #
         unique_together = (
@@ -1414,6 +1435,7 @@ class s2200infoCeletista(SoftDeletionModel):
     #s2200_infoceletista_custom#
 
     class Meta:
+        # verbose_name = u'Informações de Trabalhador Celetista'
         db_table = r's2200_infoceletista'       
         managed = True # s2200_infoceletista #
         unique_together = (
@@ -1462,6 +1484,7 @@ class s2200infoDecJud(SoftDeletionModel):
     #s2200_infodecjud_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre os dados da decisão judicial'
         db_table = r's2200_infodecjud'       
         managed = True # s2200_infodecjud #
         unique_together = (
@@ -1517,6 +1540,7 @@ class s2200infoDeficiencia(SoftDeletionModel):
     #s2200_infodeficiencia_custom#
 
     class Meta:
+        # verbose_name = u'Pessoa com Deficiência'
         db_table = r's2200_infodeficiencia'       
         managed = True # s2200_infodeficiencia #
         unique_together = (
@@ -1576,6 +1600,7 @@ class s2200infoEstatutario(SoftDeletionModel):
     #s2200_infoestatutario_custom#
 
     class Meta:
+        # verbose_name = u'Informações de Trabalhador Estatutário'
         db_table = r's2200_infoestatutario'       
         managed = True # s2200_infoestatutario #
         unique_together = (
@@ -1631,6 +1656,7 @@ class s2200localTrabDom(SoftDeletionModel):
     #s2200_localtrabdom_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.'
         db_table = r's2200_localtrabdom'       
         managed = True # s2200_localtrabdom #
         unique_together = (
@@ -1681,6 +1707,7 @@ class s2200localTrabGeral(SoftDeletionModel):
     #s2200_localtrabgeral_custom#
 
     class Meta:
+        # verbose_name = u'Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio empregado (...)'
         db_table = r's2200_localtrabgeral'       
         managed = True # s2200_localtrabgeral #
         unique_together = (
@@ -1732,6 +1759,7 @@ class s2200mudancaCPF(SoftDeletionModel):
     #s2200_mudancacpf_custom#
 
     class Meta:
+        # verbose_name = u'Informações de mudança de CPF do trabalhador.'
         db_table = r's2200_mudancacpf'       
         managed = True # s2200_mudancacpf #
         unique_together = (
@@ -1780,6 +1808,7 @@ class s2200observacoes(SoftDeletionModel):
     #s2200_observacoes_custom#
 
     class Meta:
+        # verbose_name = u'Observações do contrato de trabalho'
         db_table = r's2200_observacoes'       
         managed = True # s2200_observacoes #
         unique_together = (
@@ -1832,6 +1861,7 @@ class s2200sucessaoVinc(SoftDeletionModel):
     #s2200_sucessaovinc_custom#
 
     class Meta:
+        # verbose_name = u'Grupo de informações da sucessão de vínculo trabalhista/estatutário'
         db_table = r's2200_sucessaovinc'       
         managed = True # s2200_sucessaovinc #
         unique_together = (
@@ -1883,6 +1913,7 @@ class s2200trabEstrangeiro(SoftDeletionModel):
     #s2200_trabestrangeiro_custom#
 
     class Meta:
+        # verbose_name = u'Grupo de informações do Trabalhador Estrangeiro'
         db_table = r's2200_trabestrangeiro'       
         managed = True # s2200_trabestrangeiro #
         unique_together = (
@@ -1935,6 +1966,7 @@ class s2200trabTemporario(SoftDeletionModel):
     #s2200_trabtemporario_custom#
 
     class Meta:
+        # verbose_name = u'Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.'
         db_table = r's2200_trabtemporario'       
         managed = True # s2200_trabtemporario #
         unique_together = (
@@ -1985,6 +2017,7 @@ class s2200transfDom(SoftDeletionModel):
     #s2200_transfdom_custom#
 
     class Meta:
+        # verbose_name = u'Informações do empregado doméstico transferido de outro representante da mesma unidade familiar'
         db_table = r's2200_transfdom'       
         managed = True # s2200_transfdom #
         unique_together = (

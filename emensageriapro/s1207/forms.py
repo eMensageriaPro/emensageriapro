@@ -81,7 +81,6 @@ class form_s1207_dmdev(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -122,7 +121,6 @@ class form_s1207_infoperant_ideadc(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -163,7 +161,6 @@ class form_s1207_infoperant_ideestab(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -203,7 +200,6 @@ class form_s1207_infoperant_ideperiodo(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -249,7 +245,6 @@ class form_s1207_infoperant_itensremun(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -290,7 +285,6 @@ class form_s1207_infoperapur_ideestab(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -336,7 +330,6 @@ class form_s1207_infoperapur_itensremun(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -379,7 +372,6 @@ class form_s1207_itens(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -420,7 +412,6 @@ class form_s1207_procjudtrab(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 

@@ -80,7 +80,6 @@ class form_s2230_emitente(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -119,7 +118,6 @@ class form_s2230_fimafastamento(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -159,7 +157,6 @@ class form_s2230_infoatestado(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -199,7 +196,6 @@ class form_s2230_infocessao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -239,7 +235,6 @@ class form_s2230_infomandsind(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -278,7 +273,6 @@ class form_s2230_inforetif(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -318,7 +312,6 @@ class form_s2230_iniafastamento(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 

@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_financiamentos_aposentadorias_especiais_id:
-            esocial_financiamentos_aposentadorias_especiais_form = form_esocial_financiamentos_aposentadorias_especiais(request.POST or None, instance = esocial_financiamentos_aposentadorias_especiais, slug = db_slug)
+            esocial_financiamentos_aposentadorias_especiais_form = form_esocial_financiamentos_aposentadorias_especiais(request.POST or None,
+                                         instance = esocial_financiamentos_aposentadorias_especiais,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            esocial_financiamentos_aposentadorias_especiais_form = form_esocial_financiamentos_aposentadorias_especiais(request.POST or None, slug = db_slug, initial={})
+            esocial_financiamentos_aposentadorias_especiais_form = form_esocial_financiamentos_aposentadorias_especiais(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_financiamentos_aposentadorias_especiais_form.is_valid():
 

@@ -81,6 +81,7 @@ class r5011RCPRB(SoftDeletionModel):
     #r5011_rcprb_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060'
         db_table = r'r5011_rcprb'       
         managed = True # r5011_rcprb #
         unique_together = (
@@ -131,6 +132,7 @@ class r5011RComl(SoftDeletionModel):
     #r5011_rcoml_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050'
         db_table = r'r5011_rcoml'       
         managed = True # r5011_rcoml #
         unique_together = (
@@ -185,6 +187,7 @@ class r5011RPrest(SoftDeletionModel):
     #r5011_rprest_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020'
         db_table = r'r5011_rprest'       
         managed = True # r5011_rprest #
         unique_together = (
@@ -237,6 +240,7 @@ class r5011RRecRepAD(SoftDeletionModel):
     #r5011_rrecrepad_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040'
         db_table = r'r5011_rrecrepad'       
         managed = True # r5011_rrecrepad #
         unique_together = (
@@ -287,6 +291,7 @@ class r5011RTom(SoftDeletionModel):
     #r5011_rtom_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010'
         db_table = r'r5011_rtom'       
         managed = True # r5011_rtom #
         unique_together = (
@@ -337,6 +342,7 @@ class r5011infoCRTom(SoftDeletionModel):
     #r5011_infocrtom_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador das retenções de contribuição previdenciária sobre serviços tomados'
         db_table = r'r5011_infocrtom'       
         managed = True # r5011_infocrtom #
         unique_together = (
@@ -386,6 +392,7 @@ class r5011infoTotalContrib(SoftDeletionModel):
     #r5011_infototalcontrib_custom#
 
     class Meta:
+        # verbose_name = u'Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos'
         db_table = r'r5011_infototalcontrib'       
         managed = True # r5011_infototalcontrib #
         unique_together = (
@@ -437,6 +444,7 @@ class r5011regOcorrs(SoftDeletionModel):
     #r5011_regocorrs_custom#
 
     class Meta:
+        # verbose_name = u'Informações de ocorrências registradas'
         db_table = r'r5011_regocorrs'       
         managed = True # r5011_regocorrs #
         unique_together = (

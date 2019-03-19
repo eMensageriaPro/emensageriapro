@@ -69,6 +69,7 @@ class s1250ideProdutor(SoftDeletionModel):
     #s1250_ideprodutor_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.'
         db_table = r's1250_ideprodutor'       
         managed = True # s1250_ideprodutor #
         unique_together = (
@@ -121,6 +122,7 @@ class s1250infoProcJ(SoftDeletionModel):
     #s1250_infoprocj_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre (...)'
         db_table = r's1250_infoprocj'       
         managed = True # s1250_infoprocj #
         unique_together = (
@@ -173,6 +175,7 @@ class s1250infoProcJud(SoftDeletionModel):
     #s1250_infoprocjud_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições inciden (...)'
         db_table = r's1250_infoprocjud'       
         managed = True # s1250_infoprocjud #
         unique_together = (
@@ -227,6 +230,7 @@ class s1250nfs(SoftDeletionModel):
     #s1250_nfs_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.'
         db_table = r's1250_nfs'       
         managed = True # s1250_nfs #
         unique_together = (
@@ -276,6 +280,7 @@ class s1250tpAquis(SoftDeletionModel):
     #s1250_tpaquis_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física. O registro também deve ser preenchido nas seguintes situações: - Por PF, quando a mesma adqu (...)'
         db_table = r's1250_tpaquis'       
         managed = True # s1250_tpaquis #
         unique_together = (

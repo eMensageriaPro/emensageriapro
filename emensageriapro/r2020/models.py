@@ -76,6 +76,7 @@ class r2020infoProcRetAd(SoftDeletionModel):
     #r2020_infoprocretad_custom#
 
     class Meta:
+        # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária adicional'
         db_table = r'r2020_infoprocretad'       
         managed = True # r2020_infoprocretad #
         unique_together = (
@@ -127,6 +128,7 @@ class r2020infoProcRetPr(SoftDeletionModel):
     #r2020_infoprocretpr_custom#
 
     class Meta:
+        # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
         db_table = r'r2020_infoprocretpr'       
         managed = True # r2020_infoprocretpr #
         unique_together = (
@@ -184,6 +186,7 @@ class r2020infoTpServ(SoftDeletionModel):
     #r2020_infotpserv_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre os tipos de Serviços constantes da Nota Fiscal'
         db_table = r'r2020_infotpserv'       
         managed = True # r2020_infotpserv #
         unique_together = (
@@ -236,6 +239,7 @@ class r2020nfs(SoftDeletionModel):
     #r2020_nfs_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior'
         db_table = r'r2020_nfs'       
         managed = True # r2020_nfs #
         unique_together = (

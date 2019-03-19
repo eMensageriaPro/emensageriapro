@@ -88,7 +88,6 @@ class form_s1010_alteracao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -131,7 +130,6 @@ class form_s1010_alteracao_ideprocessocp(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -173,7 +171,6 @@ class form_s1010_alteracao_ideprocessocprp(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -213,7 +210,6 @@ class form_s1010_alteracao_ideprocessofgts(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -254,7 +250,6 @@ class form_s1010_alteracao_ideprocessoirrf(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -294,7 +289,6 @@ class form_s1010_alteracao_ideprocessosind(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -333,7 +327,6 @@ class form_s1010_alteracao_novavalidade(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -374,7 +367,6 @@ class form_s1010_exclusao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -422,7 +414,6 @@ class form_s1010_inclusao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -465,7 +456,6 @@ class form_s1010_inclusao_ideprocessocp(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -507,7 +497,6 @@ class form_s1010_inclusao_ideprocessocprp(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -547,7 +536,6 @@ class form_s1010_inclusao_ideprocessofgts(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -588,7 +576,6 @@ class form_s1010_inclusao_ideprocessoirrf(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -628,7 +615,6 @@ class form_s1010_inclusao_ideprocessosind(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 

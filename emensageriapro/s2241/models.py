@@ -63,6 +63,7 @@ class s2241altAposentEsp(SoftDeletionModel):
     #s2241_altaposentesp_custom#
 
     class Meta:
+        # verbose_name = u'Condições do ambiente de trabalho que ensejam aposentadoria especial - Alteração'
         db_table = r's2241_altaposentesp'       
         managed = True # s2241_altaposentesp #
         unique_together = (
@@ -111,6 +112,7 @@ class s2241altAposentEspfatRisco(SoftDeletionModel):
     #s2241_altaposentesp_fatrisco_custom#
 
     class Meta:
+        # verbose_name = u'Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente'
         db_table = r's2241_altaposentesp_fatrisco'       
         managed = True # s2241_altaposentesp_fatrisco #
         unique_together = (
@@ -159,6 +161,7 @@ class s2241altAposentEspinfoamb(SoftDeletionModel):
     #s2241_altaposentesp_infoamb_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ambiente de trabalho'
         db_table = r's2241_altaposentesp_infoamb'       
         managed = True # s2241_altaposentesp_infoamb #
         unique_together = (
@@ -207,6 +210,7 @@ class s2241altInsalPeric(SoftDeletionModel):
     #s2241_altinsalperic_custom#
 
     class Meta:
+        # verbose_name = u'Condições do ambiente de trabalho insalubre/periculoso - Alteração'
         db_table = r's2241_altinsalperic'       
         managed = True # s2241_altinsalperic #
         unique_together = (
@@ -255,6 +259,7 @@ class s2241altInsalPericfatRisco(SoftDeletionModel):
     #s2241_altinsalperic_fatrisco_custom#
 
     class Meta:
+        # verbose_name = u'Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente'
         db_table = r's2241_altinsalperic_fatrisco'       
         managed = True # s2241_altinsalperic_fatrisco #
         unique_together = (
@@ -303,6 +308,7 @@ class s2241altInsalPericinfoamb(SoftDeletionModel):
     #s2241_altinsalperic_infoamb_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ambiente de trabalho'
         db_table = r's2241_altinsalperic_infoamb'       
         managed = True # s2241_altinsalperic_infoamb #
         unique_together = (
@@ -351,6 +357,7 @@ class s2241fimAposentEsp(SoftDeletionModel):
     #s2241_fimaposentesp_custom#
 
     class Meta:
+        # verbose_name = u'Condições do ambiente de trabalho que ensejam aposentadoria especial - Término'
         db_table = r's2241_fimaposentesp'       
         managed = True # s2241_fimaposentesp #
         unique_together = (
@@ -399,6 +406,7 @@ class s2241fimAposentEspinfoAmb(SoftDeletionModel):
     #s2241_fimaposentesp_infoamb_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ambiente de trabalho'
         db_table = r's2241_fimaposentesp_infoamb'       
         managed = True # s2241_fimaposentesp_infoamb #
         unique_together = (
@@ -447,6 +455,7 @@ class s2241fimInsalPeric(SoftDeletionModel):
     #s2241_fiminsalperic_custom#
 
     class Meta:
+        # verbose_name = u'Condições do ambiente de trabalho insalubre/periculoso - Fim'
         db_table = r's2241_fiminsalperic'       
         managed = True # s2241_fiminsalperic #
         unique_together = (
@@ -495,6 +504,7 @@ class s2241fimInsalPericinfoAmb(SoftDeletionModel):
     #s2241_fiminsalperic_infoamb_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ambiente de trabalho'
         db_table = r's2241_fiminsalperic_infoamb'       
         managed = True # s2241_fiminsalperic_infoamb #
         unique_together = (
@@ -543,6 +553,7 @@ class s2241iniAposentEsp(SoftDeletionModel):
     #s2241_iniaposentesp_custom#
 
     class Meta:
+        # verbose_name = u'Condições do ambiente de trabalho que ensejam aposentadoria especial - Início'
         db_table = r's2241_iniaposentesp'       
         managed = True # s2241_iniaposentesp #
         unique_together = (
@@ -591,6 +602,7 @@ class s2241iniAposentEspfatRisco(SoftDeletionModel):
     #s2241_iniaposentesp_fatrisco_custom#
 
     class Meta:
+        # verbose_name = u'Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente'
         db_table = r's2241_iniaposentesp_fatrisco'       
         managed = True # s2241_iniaposentesp_fatrisco #
         unique_together = (
@@ -639,6 +651,7 @@ class s2241iniAposentEspinfoAmb(SoftDeletionModel):
     #s2241_iniaposentesp_infoamb_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ambiente de trabalho'
         db_table = r's2241_iniaposentesp_infoamb'       
         managed = True # s2241_iniaposentesp_infoamb #
         unique_together = (
@@ -687,6 +700,7 @@ class s2241iniInsalPeric(SoftDeletionModel):
     #s2241_iniinsalperic_custom#
 
     class Meta:
+        # verbose_name = u'Condições do ambiente de trabalho insalubre/periculoso - Início'
         db_table = r's2241_iniinsalperic'       
         managed = True # s2241_iniinsalperic #
         unique_together = (
@@ -735,6 +749,7 @@ class s2241iniInsalPericfatRisco(SoftDeletionModel):
     #s2241_iniinsalperic_fatrisco_custom#
 
     class Meta:
+        # verbose_name = u'Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente'
         db_table = r's2241_iniinsalperic_fatrisco'       
         managed = True # s2241_iniinsalperic_fatrisco #
         unique_together = (
@@ -783,6 +798,7 @@ class s2241iniInsalPericinfoAmb(SoftDeletionModel):
     #s2241_iniinsalperic_infoamb_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ambiente de trabalho'
         db_table = r's2241_iniinsalperic_infoamb'       
         managed = True # s2241_iniinsalperic_infoamb #
         unique_together = (

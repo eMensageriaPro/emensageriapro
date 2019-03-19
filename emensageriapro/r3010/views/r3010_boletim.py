@@ -342,9 +342,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r3010_boletim_id:
-            r3010_boletim_form = form_r3010_boletim(request.POST or None, instance = r3010_boletim, slug = db_slug)
+            r3010_boletim_form = form_r3010_boletim(request.POST or None,
+                                         instance = r3010_boletim,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r3010_boletim_form = form_r3010_boletim(request.POST or None, slug = db_slug, initial={})
+            r3010_boletim_form = form_r3010_boletim(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r3010_boletim_form.is_valid():
 

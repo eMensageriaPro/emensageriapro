@@ -358,7 +358,10 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2040_evtassocdesprep_id:
-            r2040_evtassocdesprep_form = form_r2040_evtassocdesprep(request.POST or None, instance = r2040_evtassocdesprep, slug = db_slug)
+            r2040_evtassocdesprep_form = form_r2040_evtassocdesprep(request.POST or None,
+                                         instance = r2040_evtassocdesprep,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
             r2040_evtassocdesprep_form = form_r2040_evtassocdesprep(request.POST or None,
                                          slug = db_slug,
@@ -366,7 +369,8 @@ def salvar(request, hash):
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,
                                                   'procemi': 1,
-                                                  'verproc': VERSAO_EMENSAGERIA})
+                                                  'verproc': VERSAO_EMENSAGERIA,
+                                                  'excluido': False})
         if request.method == 'POST':
             if r2040_evtassocdesprep_form.is_valid():
 

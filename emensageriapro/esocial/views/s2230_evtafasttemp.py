@@ -361,7 +361,10 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2230_evtafasttemp_id:
-            s2230_evtafasttemp_form = form_s2230_evtafasttemp(request.POST or None, instance = s2230_evtafasttemp, slug = db_slug)
+            s2230_evtafasttemp_form = form_s2230_evtafasttemp(request.POST or None,
+                                         instance = s2230_evtafasttemp,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
             s2230_evtafasttemp_form = form_s2230_evtafasttemp(request.POST or None,
                                          slug = db_slug,
@@ -369,7 +372,8 @@ def salvar(request, hash):
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,
                                                   'procemi': 1,
-                                                  'verproc': VERSAO_EMENSAGERIA})
+                                                  'verproc': VERSAO_EMENSAGERIA,
+                                                  'excluido': False})
         if request.method == 'POST':
             if s2230_evtafasttemp_form.is_valid():
 

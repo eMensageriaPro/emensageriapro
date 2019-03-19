@@ -362,9 +362,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_trabalhadores_categorias_id:
-            esocial_trabalhadores_categorias_form = form_esocial_trabalhadores_categorias(request.POST or None, instance = esocial_trabalhadores_categorias, slug = db_slug)
+            esocial_trabalhadores_categorias_form = form_esocial_trabalhadores_categorias(request.POST or None,
+                                         instance = esocial_trabalhadores_categorias,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            esocial_trabalhadores_categorias_form = form_esocial_trabalhadores_categorias(request.POST or None, slug = db_slug, initial={})
+            esocial_trabalhadores_categorias_form = form_esocial_trabalhadores_categorias(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_trabalhadores_categorias_form.is_valid():
 

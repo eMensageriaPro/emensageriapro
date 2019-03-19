@@ -79,6 +79,7 @@ class s5012infoCRContrib(SoftDeletionModel):
     #s5012_infocrcontrib_custom#
 
     class Meta:
+        # verbose_name = u'Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.'
         db_table = r's5012_infocrcontrib'       
         managed = True # s5012_infocrcontrib #
         unique_together = (

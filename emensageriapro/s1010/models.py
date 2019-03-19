@@ -435,6 +435,7 @@ class s1010alteracao(SoftDeletionModel):
     #s1010_alteracao_custom#
 
     class Meta:
+        # verbose_name = u'Alteração das informações'
         db_table = r's1010_alteracao'       
         managed = True # s1010_alteracao #
         unique_together = (
@@ -486,6 +487,7 @@ class s1010alteracaoideProcessoCP(SoftDeletionModel):
     #s1010_alteracao_ideprocessocp_custom#
 
     class Meta:
+        # verbose_name = u'Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detal (...)'
         db_table = r's1010_alteracao_ideprocessocp'       
         managed = True # s1010_alteracao_ideprocessocp #
         unique_together = (
@@ -536,6 +538,7 @@ class s1010alteracaoideProcessoCPRP(SoftDeletionModel):
     #s1010_alteracao_ideprocessocprp_custom#
 
     class Meta:
+        # verbose_name = u'Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste reg (...)'
         db_table = r's1010_alteracao_ideprocessocprp'       
         managed = True # s1010_alteracao_ideprocessocprp #
         unique_together = (
@@ -584,6 +587,7 @@ class s1010alteracaoideProcessoFGTS(SoftDeletionModel):
     #s1010_alteracao_ideprocessofgts_custom#
 
     class Meta:
+        # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado a (...)'
         db_table = r's1010_alteracao_ideprocessofgts'       
         managed = True # s1010_alteracao_ideprocessofgts #
         unique_together = (
@@ -633,6 +637,7 @@ class s1010alteracaoideProcessoIRRF(SoftDeletionModel):
     #s1010_alteracao_ideprocessoirrf_custom#
 
     class Meta:
+        # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá se (...)'
         db_table = r's1010_alteracao_ideprocessoirrf'       
         managed = True # s1010_alteracao_ideprocessoirrf #
         unique_together = (
@@ -681,6 +686,7 @@ class s1010alteracaoideProcessoSIND(SoftDeletionModel):
     #s1010_alteracao_ideprocessosind_custom#
 
     class Meta:
+        # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deve (...)'
         db_table = r's1010_alteracao_ideprocessosind'       
         managed = True # s1010_alteracao_ideprocessosind #
         unique_together = (
@@ -730,6 +736,7 @@ class s1010alteracaonovaValidade(SoftDeletionModel):
     #s1010_alteracao_novavalidade_custom#
 
     class Meta:
+        # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1010_alteracao_novavalidade'       
         managed = True # s1010_alteracao_novavalidade #
         unique_together = (
@@ -781,6 +788,7 @@ class s1010exclusao(SoftDeletionModel):
     #s1010_exclusao_custom#
 
     class Meta:
+        # verbose_name = u'Exclusão das informações'
         db_table = r's1010_exclusao'       
         managed = True # s1010_exclusao #
         unique_together = (
@@ -842,6 +850,7 @@ class s1010inclusao(SoftDeletionModel):
     #s1010_inclusao_custom#
 
     class Meta:
+        # verbose_name = u'Inclusão de novas informações'
         db_table = r's1010_inclusao'       
         managed = True # s1010_inclusao #
         unique_together = (
@@ -893,6 +902,7 @@ class s1010inclusaoideProcessoCP(SoftDeletionModel):
     #s1010_inclusao_ideprocessocp_custom#
 
     class Meta:
+        # verbose_name = u'Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detal (...)'
         db_table = r's1010_inclusao_ideprocessocp'       
         managed = True # s1010_inclusao_ideprocessocp #
         unique_together = (
@@ -943,6 +953,7 @@ class s1010inclusaoideProcessoCPRP(SoftDeletionModel):
     #s1010_inclusao_ideprocessocprp_custom#
 
     class Meta:
+        # verbose_name = u'Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste reg (...)'
         db_table = r's1010_inclusao_ideprocessocprp'       
         managed = True # s1010_inclusao_ideprocessocprp #
         unique_together = (
@@ -991,6 +1002,7 @@ class s1010inclusaoideProcessoFGTS(SoftDeletionModel):
     #s1010_inclusao_ideprocessofgts_custom#
 
     class Meta:
+        # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado a (...)'
         db_table = r's1010_inclusao_ideprocessofgts'       
         managed = True # s1010_inclusao_ideprocessofgts #
         unique_together = (
@@ -1040,6 +1052,7 @@ class s1010inclusaoideProcessoIRRF(SoftDeletionModel):
     #s1010_inclusao_ideprocessoirrf_custom#
 
     class Meta:
+        # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá se (...)'
         db_table = r's1010_inclusao_ideprocessoirrf'       
         managed = True # s1010_inclusao_ideprocessoirrf #
         unique_together = (
@@ -1088,6 +1101,7 @@ class s1010inclusaoideProcessoSIND(SoftDeletionModel):
     #s1010_inclusao_ideprocessosind_custom#
 
     class Meta:
+        # verbose_name = u'Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deve (...)'
         db_table = r's1010_inclusao_ideprocessosind'       
         managed = True # s1010_inclusao_ideprocessosind #
         unique_together = (

@@ -138,6 +138,7 @@ class s5013basePerAntE(SoftDeletionModel):
     #s5013_baseperante_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre bases de cálculo do FGTS referentes à remuneração de períodos anteriores quando {tpAcConv} = [E]. Origem: S-1200 ou S-2299.'
         db_table = r's5013_baseperante'       
         managed = True # s5013_baseperante #
         unique_together = (
@@ -187,6 +188,7 @@ class s5013basePerApur(SoftDeletionModel):
     #s5013_baseperapur_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre bases de cálculo do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-1200, S-2299 ou S-2399.'
         db_table = r's5013_baseperapur'       
         managed = True # s5013_baseperapur #
         unique_together = (
@@ -236,6 +238,7 @@ class s5013dpsPerAntE(SoftDeletionModel):
     #s5013_dpsperante_custom#
 
     class Meta:
+        # verbose_name = u'Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].'
         db_table = r's5013_dpsperante'       
         managed = True # s5013_dpsperante #
         unique_together = (
@@ -285,6 +288,7 @@ class s5013dpsPerApur(SoftDeletionModel):
     #s5013_dpsperapur_custom#
 
     class Meta:
+        # verbose_name = u'Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].'
         db_table = r's5013_dpsperapur'       
         managed = True # s5013_dpsperapur #
         unique_together = (
@@ -333,6 +337,7 @@ class s5013infoBasePerAntE(SoftDeletionModel):
     #s5013_infobaseperante_custom#
 
     class Meta:
+        # verbose_name = u'Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E].'
         db_table = r's5013_infobaseperante'       
         managed = True # s5013_infobaseperante #
         unique_together = (
@@ -381,6 +386,7 @@ class s5013infoDpsPerAntE(SoftDeletionModel):
     #s5013_infodpsperante_custom#
 
     class Meta:
+        # verbose_name = u'Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E].'
         db_table = r's5013_infodpsperante'       
         managed = True # s5013_infodpsperante #
         unique_together = (

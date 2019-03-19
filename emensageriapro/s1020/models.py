@@ -186,6 +186,7 @@ class s1020alteracao(SoftDeletionModel):
     #s1020_alteracao_custom#
 
     class Meta:
+        # verbose_name = u'Alteração das informações'
         db_table = r's1020_alteracao'       
         managed = True # s1020_alteracao #
         unique_together = (
@@ -237,6 +238,7 @@ class s1020alteracaoinfoEmprParcial(SoftDeletionModel):
     #s1020_alteracao_infoemprparcial_custom#
 
     class Meta:
+        # verbose_name = u'Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} seja igua (...)'
         db_table = r's1020_alteracao_infoemprparcial'       
         managed = True # s1020_alteracao_infoemprparcial #
         unique_together = (
@@ -286,6 +288,7 @@ class s1020alteracaonovaValidade(SoftDeletionModel):
     #s1020_alteracao_novavalidade_custom#
 
     class Meta:
+        # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1020_alteracao_novavalidade'       
         managed = True # s1020_alteracao_novavalidade #
         unique_together = (
@@ -336,6 +339,7 @@ class s1020alteracaoprocJudTerceiro(SoftDeletionModel):
     #s1020_alteracao_procjudterceiro_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do Processo Judicial'
         db_table = r's1020_alteracao_procjudterceiro'       
         managed = True # s1020_alteracao_procjudterceiro #
         unique_together = (
@@ -386,6 +390,7 @@ class s1020exclusao(SoftDeletionModel):
     #s1020_exclusao_custom#
 
     class Meta:
+        # verbose_name = u'Exclusão das informações'
         db_table = r's1020_exclusao'       
         managed = True # s1020_exclusao #
         unique_together = (
@@ -442,6 +447,7 @@ class s1020inclusao(SoftDeletionModel):
     #s1020_inclusao_custom#
 
     class Meta:
+        # verbose_name = u'Inclusão de novas informações'
         db_table = r's1020_inclusao'       
         managed = True # s1020_inclusao #
         unique_together = (
@@ -493,6 +499,7 @@ class s1020inclusaoinfoEmprParcial(SoftDeletionModel):
     #s1020_inclusao_infoemprparcial_custom#
 
     class Meta:
+        # verbose_name = u'Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} seja igua (...)'
         db_table = r's1020_inclusao_infoemprparcial'       
         managed = True # s1020_inclusao_infoemprparcial #
         unique_together = (
@@ -543,6 +550,7 @@ class s1020inclusaoprocJudTerceiro(SoftDeletionModel):
     #s1020_inclusao_procjudterceiro_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do Processo Judicial'
         db_table = r's1020_inclusao_procjudterceiro'       
         managed = True # s1020_inclusao_procjudterceiro #
         unique_together = (

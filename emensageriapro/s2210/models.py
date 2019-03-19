@@ -454,6 +454,7 @@ class s2210agenteCausador(SoftDeletionModel):
     #s2210_agentecausador_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento do(s) agente(s) causador(es) do acidente de trabalho'
         db_table = r's2210_agentecausador'       
         managed = True # s2210_agentecausador #
         unique_together = (
@@ -516,6 +517,7 @@ class s2210atestado(SoftDeletionModel):
     #s2210_atestado_custom#
 
     class Meta:
+        # verbose_name = u'Atestado Médico'
         db_table = r's2210_atestado'       
         managed = True # s2210_atestado #
         unique_together = (
@@ -565,6 +567,7 @@ class s2210catOrigem(SoftDeletionModel):
     #s2210_catorigem_custom#
 
     class Meta:
+        # verbose_name = u'Registro obrigatório que indica a CAT de origem, preenchido quando tratar-se de CAT de reabertura ou de comunicação de óbito.'
         db_table = r's2210_catorigem'       
         managed = True # s2210_catorigem #
         unique_together = (
@@ -614,6 +617,7 @@ class s2210ideLocalAcid(SoftDeletionModel):
     #s2210_idelocalacid_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do local onde ocorreu o acidente'
         db_table = r's2210_idelocalacid'       
         managed = True # s2210_idelocalacid #
         unique_together = (
@@ -663,6 +667,7 @@ class s2210parteAtingida(SoftDeletionModel):
     #s2210_parteatingida_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento da(s) parte(s) atingida(s) pelo acidente de trabalho.'
         db_table = r's2210_parteatingida'       
         managed = True # s2210_parteatingida #
         unique_together = (

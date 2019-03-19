@@ -318,9 +318,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r1070_exclusao_id:
-            r1070_exclusao_form = form_r1070_exclusao(request.POST or None, instance = r1070_exclusao, slug = db_slug)
+            r1070_exclusao_form = form_r1070_exclusao(request.POST or None,
+                                         instance = r1070_exclusao,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r1070_exclusao_form = form_r1070_exclusao(request.POST or None, slug = db_slug, initial={})
+            r1070_exclusao_form = form_r1070_exclusao(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r1070_exclusao_form.is_valid():
 

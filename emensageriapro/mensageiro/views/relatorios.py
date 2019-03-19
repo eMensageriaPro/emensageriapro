@@ -269,9 +269,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if relatorios_id:
-            relatorios_form = form_relatorios(request.POST or None, instance = relatorios, slug = db_slug)
+            relatorios_form = form_relatorios(request.POST or None,
+                                instance = relatorios,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         else:
-            relatorios_form = form_relatorios(request.POST or None, slug = db_slug, initial={})
+            relatorios_form = form_relatorios(request.POST or None,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         if request.method == 'POST':
             if relatorios_form.is_valid():
                 #relatorios_campos_multiple_passo1

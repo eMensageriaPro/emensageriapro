@@ -79,6 +79,7 @@ class s2250cancAvPrevio(SoftDeletionModel):
     #s2250_cancavprevio_custom#
 
     class Meta:
+        # verbose_name = u'Cancelamento do Aviso Prévio'
         db_table = r's2250_cancavprevio'       
         managed = True # s2250_cancavprevio #
         unique_together = (
@@ -130,6 +131,7 @@ class s2250detAvPrevio(SoftDeletionModel):
     #s2250_detavprevio_custom#
 
     class Meta:
+        # verbose_name = u'Detalha as informações do evento trabalhista'
         db_table = r's2250_detavprevio'       
         managed = True # s2250_detavprevio #
         unique_together = (

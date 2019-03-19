@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if efdreinf_classificacao_tributaria_id:
-            efdreinf_classificacao_tributaria_form = form_efdreinf_classificacao_tributaria(request.POST or None, instance = efdreinf_classificacao_tributaria, slug = db_slug)
+            efdreinf_classificacao_tributaria_form = form_efdreinf_classificacao_tributaria(request.POST or None,
+                                         instance = efdreinf_classificacao_tributaria,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            efdreinf_classificacao_tributaria_form = form_efdreinf_classificacao_tributaria(request.POST or None, slug = db_slug, initial={})
+            efdreinf_classificacao_tributaria_form = form_efdreinf_classificacao_tributaria(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if efdreinf_classificacao_tributaria_form.is_valid():
 

@@ -315,9 +315,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2099_iderespinf_id:
-            r2099_iderespinf_form = form_r2099_iderespinf(request.POST or None, instance = r2099_iderespinf, slug = db_slug)
+            r2099_iderespinf_form = form_r2099_iderespinf(request.POST or None,
+                                         instance = r2099_iderespinf,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r2099_iderespinf_form = form_r2099_iderespinf(request.POST or None, slug = db_slug, initial={})
+            r2099_iderespinf_form = form_r2099_iderespinf(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r2099_iderespinf_form.is_valid():
 

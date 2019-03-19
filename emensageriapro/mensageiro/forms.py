@@ -78,7 +78,6 @@ class form_relatorios(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -141,7 +140,6 @@ class form_transmissores(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'esocial_certificado',
             'esocial_senha',
             'esocial_pasta',
@@ -207,7 +205,6 @@ class form_regras_validacao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -261,7 +258,6 @@ class form_importacao_arquivos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'quant_processado',
  
         ]
@@ -318,7 +314,6 @@ class form_importacao_arquivos_eventos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -373,7 +368,6 @@ class form_transmissor_lote_esocial(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'resposta_descricao',
             'arquivo_header',
             'arquivo_request',
@@ -423,7 +417,6 @@ class form_transmissor_lote_esocial_ocorrencias(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'descricao',
  
         ]
@@ -483,7 +476,6 @@ class form_transmissor_lote_efdreinf(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retorno_descricao',
             'arquivo_header',
             'arquivo_request',
@@ -533,7 +525,6 @@ class form_transmissor_lote_efdreinf_ocorrencias(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'descricao',
  
         ]
@@ -574,7 +565,6 @@ class form_arquivos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -707,7 +697,6 @@ class form_retornos_eventos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -753,7 +742,6 @@ class form_retornos_eventos_ocorrencias(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'descricao',
  
         ]
@@ -792,7 +780,6 @@ class form_retornos_eventos_horarios(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -830,7 +817,6 @@ class form_retornos_eventos_intervalos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 

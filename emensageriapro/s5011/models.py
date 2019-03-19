@@ -145,6 +145,7 @@ class s5011basesAquis(SoftDeletionModel):
     #s5011_basesaquis_custom#
 
     class Meta:
+        # verbose_name = u'Informações de bases de cálculo relativas a aquisição de produção rural'
         db_table = r's5011_basesaquis'       
         managed = True # s5011_basesaquis #
         unique_together = (
@@ -199,6 +200,7 @@ class s5011basesAvNPort(SoftDeletionModel):
     #s5011_basesavnport_custom#
 
     class Meta:
+        # verbose_name = u'Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários'
         db_table = r's5011_basesavnport'       
         managed = True # s5011_basesavnport #
         unique_together = (
@@ -251,6 +253,7 @@ class s5011basesComerc(SoftDeletionModel):
     #s5011_basescomerc_custom#
 
     class Meta:
+        # verbose_name = u'Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física. Informações desse grupo conforme informado pelo contribuinte em S-1260.'
         db_table = r's5011_basescomerc'       
         managed = True # s5011_basescomerc #
         unique_together = (
@@ -314,6 +317,7 @@ class s5011basesRemun(SoftDeletionModel):
     #s5011_basesremun_custom#
 
     class Meta:
+        # verbose_name = u'Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.'
         db_table = r's5011_basesremun'       
         managed = True # s5011_basesremun #
         unique_together = (
@@ -365,6 +369,7 @@ class s5011dadosOpPort(SoftDeletionModel):
     #s5011_dadosopport_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).'
         db_table = r's5011_dadosopport'       
         managed = True # s5011_dadosopport #
         unique_together = (
@@ -414,6 +419,7 @@ class s5011ideEstab(SoftDeletionModel):
     #s5011_ideestab_custom#
 
     class Meta:
+        # verbose_name = u'Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas'
         db_table = r's5011_ideestab'       
         managed = True # s5011_ideestab #
         unique_together = (
@@ -465,6 +471,7 @@ class s5011ideLotacao(SoftDeletionModel):
     #s5011_idelotacao_custom#
 
     class Meta:
+        # verbose_name = u'Informações de identificação da lotação e validade das informações que estão sendo incluídas'
         db_table = r's5011_idelotacao'       
         managed = True # s5011_idelotacao #
         unique_together = (
@@ -514,6 +521,7 @@ class s5011infoAtConc(SoftDeletionModel):
     #s5011_infoatconc_custom#
 
     class Meta:
+        # verbose_name = u'Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.'
         db_table = r's5011_infoatconc'       
         managed = True # s5011_infoatconc #
         unique_together = (
@@ -563,6 +571,7 @@ class s5011infoCPSeg(SoftDeletionModel):
     #s5011_infocpseg_custom#
 
     class Meta:
+        # verbose_name = u'Informações de contribuição previdenciária do Segurado'
         db_table = r's5011_infocpseg'       
         managed = True # s5011_infocpseg #
         unique_together = (
@@ -613,6 +622,7 @@ class s5011infoCRContrib(SoftDeletionModel):
     #s5011_infocrcontrib_custom#
 
     class Meta:
+        # verbose_name = u'Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.'
         db_table = r's5011_infocrcontrib'       
         managed = True # s5011_infocrcontrib #
         unique_together = (
@@ -663,6 +673,7 @@ class s5011infoCREstab(SoftDeletionModel):
     #s5011_infocrestab_custom#
 
     class Meta:
+        # verbose_name = u'Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.'
         db_table = r's5011_infocrestab'       
         managed = True # s5011_infocrestab #
         unique_together = (
@@ -711,6 +722,7 @@ class s5011infoComplObra(SoftDeletionModel):
     #s5011_infocomplobra_custom#
 
     class Meta:
+        # verbose_name = u'Informações complementares relativas a obras de construção civil'
         db_table = r's5011_infocomplobra'       
         managed = True # s5011_infocomplobra #
         unique_together = (
@@ -762,6 +774,7 @@ class s5011infoEmprParcial(SoftDeletionModel):
     #s5011_infoemprparcial_custom#
 
     class Meta:
+        # verbose_name = u'Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} seja igua (...)'
         db_table = r's5011_infoemprparcial'       
         managed = True # s5011_infoemprparcial #
         unique_together = (
@@ -813,6 +826,7 @@ class s5011infoEstab(SoftDeletionModel):
     #s5011_infoestab_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Estabelecimento ou obra'
         db_table = r's5011_infoestab'       
         managed = True # s5011_infoestab #
         unique_together = (
@@ -864,6 +878,7 @@ class s5011infoPJ(SoftDeletionModel):
     #s5011_infopj_custom#
 
     class Meta:
+        # verbose_name = u'Informações complementares, exclusivas da Pessoa Jurídica.'
         db_table = r's5011_infopj'       
         managed = True # s5011_infopj #
         unique_together = (
@@ -912,6 +927,7 @@ class s5011infoSubstPatrOpPort(SoftDeletionModel):
     #s5011_infosubstpatropport_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.'
         db_table = r's5011_infosubstpatropport'       
         managed = True # s5011_infosubstpatropport #
         unique_together = (
@@ -960,6 +976,7 @@ class s5011infoTercSusp(SoftDeletionModel):
     #s5011_infotercsusp_custom#
 
     class Meta:
+        # verbose_name = u'Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).'
         db_table = r's5011_infotercsusp'       
         managed = True # s5011_infotercsusp #
         unique_together = (

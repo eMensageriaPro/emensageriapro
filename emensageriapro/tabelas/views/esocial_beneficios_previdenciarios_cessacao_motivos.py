@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_beneficios_previdenciarios_cessacao_motivos_id:
-            esocial_beneficios_previdenciarios_cessacao_motivos_form = form_esocial_beneficios_previdenciarios_cessacao_motivos(request.POST or None, instance = esocial_beneficios_previdenciarios_cessacao_motivos, slug = db_slug)
+            esocial_beneficios_previdenciarios_cessacao_motivos_form = form_esocial_beneficios_previdenciarios_cessacao_motivos(request.POST or None,
+                                         instance = esocial_beneficios_previdenciarios_cessacao_motivos,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            esocial_beneficios_previdenciarios_cessacao_motivos_form = form_esocial_beneficios_previdenciarios_cessacao_motivos(request.POST or None, slug = db_slug, initial={})
+            esocial_beneficios_previdenciarios_cessacao_motivos_form = form_esocial_beneficios_previdenciarios_cessacao_motivos(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_beneficios_previdenciarios_cessacao_motivos_form.is_valid():
 

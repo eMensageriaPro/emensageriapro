@@ -405,6 +405,7 @@ class s1210deps(SoftDeletionModel):
     #s1210_deps_custom#
 
     class Meta:
+        # verbose_name = u'Informações de dependentes do beneficiário do pagamento'
         db_table = r's1210_deps'       
         managed = True # s1210_deps #
         unique_together = (
@@ -453,6 +454,7 @@ class s1210detPgtoAnt(SoftDeletionModel):
     #s1210_detpgtoant_custom#
 
     class Meta:
+        # verbose_name = u'Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial'
         db_table = r's1210_detpgtoant'       
         managed = True # s1210_detpgtoant #
         unique_together = (
@@ -502,6 +504,7 @@ class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
     #s1210_detpgtoant_infopgtoant_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento do pagamento'
         db_table = r's1210_detpgtoant_infopgtoant'       
         managed = True # s1210_detpgtoant_infopgtoant #
         unique_together = (
@@ -553,6 +556,7 @@ class s1210detPgtoBenPr(SoftDeletionModel):
     #s1210_detpgtobenpr_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento de pagamentos relativos a benefícios previdenciários'
         db_table = r's1210_detpgtobenpr'       
         managed = True # s1210_detpgtobenpr #
         unique_together = (
@@ -606,6 +610,7 @@ class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
     #s1210_detpgtobenpr_infopgtoparc_custom#
 
     class Meta:
+        # verbose_name = u'Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.'
         db_table = r's1210_detpgtobenpr_infopgtoparc'       
         managed = True # s1210_detpgtobenpr_infopgtoparc #
         unique_together = (
@@ -659,6 +664,7 @@ class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
     #s1210_detpgtobenpr_retpgtotot_custom#
 
     class Meta:
+        # verbose_name = u'Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.'
         db_table = r's1210_detpgtobenpr_retpgtotot'       
         managed = True # s1210_detpgtobenpr_retpgtotot #
         unique_together = (
@@ -711,6 +717,7 @@ class s1210detPgtoFer(SoftDeletionModel):
     #s1210_detpgtofer_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento dos pagamentos efetuados relativos a férias'
         db_table = r's1210_detpgtofer'       
         managed = True # s1210_detpgtofer #
         unique_together = (
@@ -764,6 +771,7 @@ class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
     #s1210_detpgtofer_detrubrfer_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das rubricas do Recibo Antecipado de Férias'
         db_table = r's1210_detpgtofer_detrubrfer'       
         managed = True # s1210_detpgtofer_detrubrfer #
         unique_together = (
@@ -815,6 +823,7 @@ class s1210detPgtoFerpenAlim(SoftDeletionModel):
     #s1210_detpgtofer_penalim_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre beneficiários de pensão alimentícia.'
         db_table = r's1210_detpgtofer_penalim'       
         managed = True # s1210_detpgtofer_penalim #
         unique_together = (
@@ -867,6 +876,7 @@ class s1210detPgtoFl(SoftDeletionModel):
     #s1210_detpgtofl_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399'
         db_table = r's1210_detpgtofl'       
         managed = True # s1210_detpgtofl #
         unique_together = (
@@ -921,6 +931,7 @@ class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
     #s1210_detpgtofl_infopgtoparc_custom#
 
     class Meta:
+        # verbose_name = u'Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo.'
         db_table = r's1210_detpgtofl_infopgtoparc'       
         managed = True # s1210_detpgtofl_infopgtoparc #
         unique_together = (
@@ -972,6 +983,7 @@ class s1210detPgtoFlpenAlim(SoftDeletionModel):
     #s1210_detpgtofl_penalim_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre beneficiários de pensão alimentícia.'
         db_table = r's1210_detpgtofl_penalim'       
         managed = True # s1210_detpgtofl_penalim #
         unique_together = (
@@ -1025,6 +1037,7 @@ class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
     #s1210_detpgtofl_retpgtotot_custom#
 
     class Meta:
+        # verbose_name = u'Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.'
         db_table = r's1210_detpgtofl_retpgtotot'       
         managed = True # s1210_detpgtofl_retpgtotot #
         unique_together = (
@@ -1081,6 +1094,7 @@ class s1210idePgtoExt(SoftDeletionModel):
     #s1210_idepgtoext_custom#
 
     class Meta:
+        # verbose_name = u'Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.'
         db_table = r's1210_idepgtoext'       
         managed = True # s1210_idepgtoext #
         unique_together = (
@@ -1131,6 +1145,7 @@ class s1210infoPgto(SoftDeletionModel):
     #s1210_infopgto_custom#
 
     class Meta:
+        # verbose_name = u'Informações dos pagamentos efetuados'
         db_table = r's1210_infopgto'       
         managed = True # s1210_infopgto #
         unique_together = (

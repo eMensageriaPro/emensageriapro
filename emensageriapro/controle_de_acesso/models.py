@@ -83,6 +83,7 @@ class Auditoria(SoftDeletionModel):
     #auditoria_custom#
 
     class Meta:
+        # verbose_name = u'Auditoria'
         db_table = r'auditoria'       
         managed = True # auditoria #
         unique_together = (
@@ -132,6 +133,7 @@ class ConfigModulos(SoftDeletionModel):
     #config_modulos_custom#
 
     class Meta:
+        # verbose_name = u'Módulos'
         db_table = r'config_modulos'       
         managed = True # config_modulos #
         unique_together = (
@@ -183,6 +185,7 @@ class ConfigPaginas(SoftDeletionModel):
     #config_paginas_custom#
 
     class Meta:
+        # verbose_name = u'Páginas'
         db_table = r'config_paginas'       
         managed = True # config_paginas #
         unique_together = (
@@ -231,6 +234,7 @@ class ConfigPerfis(SoftDeletionModel):
     #config_perfis_custom#
 
     class Meta:
+        # verbose_name = u'Perfis'
         db_table = r'config_perfis'       
         managed = True # config_perfis #
         unique_together = (
@@ -284,6 +288,7 @@ class ConfigPermissoes(SoftDeletionModel):
     #config_permissoes_custom#
 
     class Meta:
+        # verbose_name = u'Permissões'
         db_table = r'config_permissoes'       
         managed = True # config_permissoes #
         unique_together = (
@@ -357,6 +362,7 @@ class Usuarios(SoftDeletionModel):
     #usuarios_custom#
 
     class Meta:
+        # verbose_name = u'Usuários'
         db_table = r'usuarios'       
         managed = True # usuarios #
         unique_together = (

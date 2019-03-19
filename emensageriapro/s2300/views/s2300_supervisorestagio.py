@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2300_supervisorestagio_id:
-            s2300_supervisorestagio_form = form_s2300_supervisorestagio(request.POST or None, instance = s2300_supervisorestagio, slug = db_slug)
+            s2300_supervisorestagio_form = form_s2300_supervisorestagio(request.POST or None,
+                                         instance = s2300_supervisorestagio,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s2300_supervisorestagio_form = form_s2300_supervisorestagio(request.POST or None, slug = db_slug, initial={})
+            s2300_supervisorestagio_form = form_s2300_supervisorestagio(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s2300_supervisorestagio_form.is_valid():
 

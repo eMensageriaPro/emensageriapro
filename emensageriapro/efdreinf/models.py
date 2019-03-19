@@ -469,6 +469,7 @@ class r1000evtInfoContri(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-1000 - Informações do Contribuinte'
         db_table = r'r1000_evtinfocontri'       
         managed = True # r1000_evtinfocontri #
         unique_together = (
@@ -544,6 +545,7 @@ class r1070evtTabProcesso(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-1070 - Tabela de Processos Administrativos/Judiciais'
         db_table = r'r1070_evttabprocesso'       
         managed = True # r1070_evttabprocesso #
         unique_together = (
@@ -632,6 +634,7 @@ class r2010evtServTom(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados'
         db_table = r'r2010_evtservtom'       
         managed = True # r2010_evtservtom #
         unique_together = (
@@ -720,6 +723,7 @@ class r2020evtServPrest(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados'
         db_table = r'r2020_evtservprest'       
         managed = True # r2020_evtservprest #
         unique_together = (
@@ -799,6 +803,7 @@ class r2030evtAssocDespRec(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-2030 - Recursos Recebidos por Associação Desportiva'
         db_table = r'r2030_evtassocdesprec'       
         managed = True # r2030_evtassocdesprec #
         unique_together = (
@@ -878,6 +883,7 @@ class r2040evtAssocDespRep(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-2040 - Recursos Repassados para Associação Desportiva'
         db_table = r'r2040_evtassocdesprep'       
         managed = True # r2040_evtassocdesprep #
         unique_together = (
@@ -964,6 +970,7 @@ class r2050evtComProd(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria'
         db_table = r'r2050_evtcomprod'       
         managed = True # r2050_evtcomprod #
         unique_together = (
@@ -1046,6 +1053,7 @@ class r2060evtCPRB(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB'
         db_table = r'r2060_evtcprb'       
         managed = True # r2060_evtcprb #
         unique_together = (
@@ -1127,6 +1135,7 @@ class r2070evtPgtosDivs(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP'
         db_table = r'r2070_evtpgtosdivs'       
         managed = True # r2070_evtpgtosdivs #
         unique_together = (
@@ -1202,6 +1211,7 @@ class r2098evtReabreEvPer(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-2098 - Reabertura dos Eventos Periódicos'
         db_table = r'r2098_evtreabreevper'       
         managed = True # r2098_evtreabreevper #
         unique_together = (
@@ -1285,6 +1295,7 @@ class r2099evtFechaEvPer(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-2099 - Fechamento dos Eventos Periódicos'
         db_table = r'r2099_evtfechaevper'       
         managed = True # r2099_evtfechaevper #
         unique_together = (
@@ -1369,6 +1380,7 @@ class r3010evtEspDesportivo(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-3010 - Receita de Espetáculo Desportivo'
         db_table = r'r3010_evtespdesportivo'       
         managed = True # r3010_evtespdesportivo #
         unique_together = (
@@ -1445,6 +1457,7 @@ class r5001evtTotal(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-5001 - Informações de bases e tributos por evento'
         db_table = r'r5001_evttotal'       
         managed = True # r5001_evttotal #
         unique_together = (
@@ -1521,6 +1534,7 @@ class r5011evtTotalContrib(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-5011 - Informações de bases e tributos consolidadas por período de apuração'
         db_table = r'r5011_evttotalcontrib'       
         managed = True # r5011_evttotalcontrib #
         unique_together = (
@@ -1598,6 +1612,7 @@ class r9000evtExclusao(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'R-9000 - Exclusão de Eventos'
         db_table = r'r9000_evtexclusao'       
         managed = True # r9000_evtexclusao #
         unique_together = (

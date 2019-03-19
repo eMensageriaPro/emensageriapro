@@ -76,6 +76,7 @@ class s2231fimCessao(SoftDeletionModel):
     #s2231_fimcessao_custom#
 
     class Meta:
+        # verbose_name = u'Informações de término da cessão/exercício em outro órgão'
         db_table = r's2231_fimcessao'       
         managed = True # s2231_fimcessao #
         unique_together = (
@@ -128,6 +129,7 @@ class s2231iniCessao(SoftDeletionModel):
     #s2231_inicessao_custom#
 
     class Meta:
+        # verbose_name = u'Informações de início da cessão/exercício em outro órgão'
         db_table = r's2231_inicessao'       
         managed = True # s2231_inicessao #
         unique_together = (

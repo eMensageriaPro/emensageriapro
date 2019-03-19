@@ -389,6 +389,7 @@ class s1000alteracao(SoftDeletionModel):
     #s1000_alteracao_custom#
 
     class Meta:
+        # verbose_name = u'Alteração das informações'
         db_table = r's1000_alteracao'       
         managed = True # s1000_alteracao #
         unique_together = (
@@ -444,6 +445,7 @@ class s1000alteracaodadosIsencao(SoftDeletionModel):
     #s1000_alteracao_dadosisencao_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares - Empresas Isentas - Dados da Isenção'
         db_table = r's1000_alteracao_dadosisencao'       
         managed = True # s1000_alteracao_dadosisencao #
         unique_together = (
@@ -495,6 +497,7 @@ class s1000alteracaoinfoEFR(SoftDeletionModel):
     #s1000_alteracao_infoefr_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a Ente Federativo Responsável - EFR'
         db_table = r's1000_alteracao_infoefr'       
         managed = True # s1000_alteracao_infoefr #
         unique_together = (
@@ -548,6 +551,7 @@ class s1000alteracaoinfoEnte(SoftDeletionModel):
     #s1000_alteracao_infoente_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ente federativo estadual, distrital ou municipal'
         db_table = r's1000_alteracao_infoente'       
         managed = True # s1000_alteracao_infoente #
         unique_together = (
@@ -602,6 +606,7 @@ class s1000alteracaoinfoOP(SoftDeletionModel):
     #s1000_alteracao_infoop_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a Órgãos Públicos'
         db_table = r's1000_alteracao_infoop'       
         managed = True # s1000_alteracao_infoop #
         unique_together = (
@@ -650,6 +655,7 @@ class s1000alteracaoinfoOrgInternacional(SoftDeletionModel):
     #s1000_alteracao_infoorginternacional_custom#
 
     class Meta:
+        # verbose_name = u'Informações exclusivas de organismos internacionais e outras instituições extraterritoriais'
         db_table = r's1000_alteracao_infoorginternacional'       
         managed = True # s1000_alteracao_infoorginternacional #
         unique_together = (
@@ -699,6 +705,7 @@ class s1000alteracaonovaValidade(SoftDeletionModel):
     #s1000_alteracao_novavalidade_custom#
 
     class Meta:
+        # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1000_alteracao_novavalidade'       
         managed = True # s1000_alteracao_novavalidade #
         unique_together = (
@@ -747,6 +754,7 @@ class s1000alteracaosituacaoPF(SoftDeletionModel):
     #s1000_alteracao_situacaopf_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares - Pessoa Física'
         db_table = r's1000_alteracao_situacaopf'       
         managed = True # s1000_alteracao_situacaopf #
         unique_together = (
@@ -795,6 +803,7 @@ class s1000alteracaosituacaoPJ(SoftDeletionModel):
     #s1000_alteracao_situacaopj_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares - Pessoa Jurídica'
         db_table = r's1000_alteracao_situacaopj'       
         managed = True # s1000_alteracao_situacaopj #
         unique_together = (
@@ -847,6 +856,7 @@ class s1000alteracaosoftwareHouse(SoftDeletionModel):
     #s1000_alteracao_softwarehouse_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao desenvolvedor do software que gerou o arquivo xml.'
         db_table = r's1000_alteracao_softwarehouse'       
         managed = True # s1000_alteracao_softwarehouse #
         unique_together = (
@@ -896,6 +906,7 @@ class s1000exclusao(SoftDeletionModel):
     #s1000_exclusao_custom#
 
     class Meta:
+        # verbose_name = u'Exclusão das informações'
         db_table = r's1000_exclusao'       
         managed = True # s1000_exclusao #
         unique_together = (
@@ -961,6 +972,7 @@ class s1000inclusao(SoftDeletionModel):
     #s1000_inclusao_custom#
 
     class Meta:
+        # verbose_name = u'Inclusão de novas informações'
         db_table = r's1000_inclusao'       
         managed = True # s1000_inclusao #
         unique_together = (
@@ -1016,6 +1028,7 @@ class s1000inclusaodadosIsencao(SoftDeletionModel):
     #s1000_inclusao_dadosisencao_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares - Empresas Isentas - Dados da Isenção'
         db_table = r's1000_inclusao_dadosisencao'       
         managed = True # s1000_inclusao_dadosisencao #
         unique_together = (
@@ -1067,6 +1080,7 @@ class s1000inclusaoinfoEFR(SoftDeletionModel):
     #s1000_inclusao_infoefr_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a Ente Federativo Responsável - EFR'
         db_table = r's1000_inclusao_infoefr'       
         managed = True # s1000_inclusao_infoefr #
         unique_together = (
@@ -1120,6 +1134,7 @@ class s1000inclusaoinfoEnte(SoftDeletionModel):
     #s1000_inclusao_infoente_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ente federativo estadual, distrital ou municipal'
         db_table = r's1000_inclusao_infoente'       
         managed = True # s1000_inclusao_infoente #
         unique_together = (
@@ -1174,6 +1189,7 @@ class s1000inclusaoinfoOP(SoftDeletionModel):
     #s1000_inclusao_infoop_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a Órgãos Públicos'
         db_table = r's1000_inclusao_infoop'       
         managed = True # s1000_inclusao_infoop #
         unique_together = (
@@ -1222,6 +1238,7 @@ class s1000inclusaoinfoOrgInternacional(SoftDeletionModel):
     #s1000_inclusao_infoorginternacional_custom#
 
     class Meta:
+        # verbose_name = u'Informações exclusivas de organismos internacionais e outras instituições extraterritoriais'
         db_table = r's1000_inclusao_infoorginternacional'       
         managed = True # s1000_inclusao_infoorginternacional #
         unique_together = (
@@ -1270,6 +1287,7 @@ class s1000inclusaosituacaoPF(SoftDeletionModel):
     #s1000_inclusao_situacaopf_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares - Pessoa Física'
         db_table = r's1000_inclusao_situacaopf'       
         managed = True # s1000_inclusao_situacaopf #
         unique_together = (
@@ -1318,6 +1336,7 @@ class s1000inclusaosituacaoPJ(SoftDeletionModel):
     #s1000_inclusao_situacaopj_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares - Pessoa Jurídica'
         db_table = r's1000_inclusao_situacaopj'       
         managed = True # s1000_inclusao_situacaopj #
         unique_together = (
@@ -1370,6 +1389,7 @@ class s1000inclusaosoftwareHouse(SoftDeletionModel):
     #s1000_inclusao_softwarehouse_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao desenvolvedor do software que gerou o arquivo xml.'
         db_table = r's1000_inclusao_softwarehouse'       
         managed = True # s1000_inclusao_softwarehouse #
         unique_together = (

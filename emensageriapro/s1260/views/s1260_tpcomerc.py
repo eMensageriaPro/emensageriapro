@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1260_tpcomerc_id:
-            s1260_tpcomerc_form = form_s1260_tpcomerc(request.POST or None, instance = s1260_tpcomerc, slug = db_slug)
+            s1260_tpcomerc_form = form_s1260_tpcomerc(request.POST or None,
+                                         instance = s1260_tpcomerc,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s1260_tpcomerc_form = form_s1260_tpcomerc(request.POST or None, slug = db_slug, initial={})
+            s1260_tpcomerc_form = form_s1260_tpcomerc(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s1260_tpcomerc_form.is_valid():
 

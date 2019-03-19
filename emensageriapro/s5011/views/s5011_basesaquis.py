@@ -336,9 +336,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s5011_basesaquis_id:
-            s5011_basesaquis_form = form_s5011_basesaquis(request.POST or None, instance = s5011_basesaquis, slug = db_slug)
+            s5011_basesaquis_form = form_s5011_basesaquis(request.POST or None,
+                                         instance = s5011_basesaquis,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s5011_basesaquis_form = form_s5011_basesaquis(request.POST or None, slug = db_slug, initial={})
+            s5011_basesaquis_form = form_s5011_basesaquis(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s5011_basesaquis_form.is_valid():
 

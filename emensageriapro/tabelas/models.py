@@ -148,6 +148,7 @@ class CBO(SoftDeletionModel):
     #cbo_custom#
 
     class Meta:
+        # verbose_name = u'CBO'
         db_table = r'cbo'       
         managed = True # cbo #
         unique_together = (
@@ -197,6 +198,7 @@ class CID(SoftDeletionModel):
     #cid_custom#
 
     class Meta:
+        # verbose_name = u'CID'
         db_table = r'cid'       
         managed = True # cid #
         unique_together = (
@@ -246,6 +248,7 @@ class CNAE(SoftDeletionModel):
     #cnae_custom#
 
     class Meta:
+        # verbose_name = u'CNAE'
         db_table = r'cnae'       
         managed = True # cnae #
         unique_together = (
@@ -292,6 +295,7 @@ class EFDReinfClassificacaoServicosPrestados(SoftDeletionModel):
     #efdreinf_classificacao_servicos_prestados_custom#
 
     class Meta:
+        # verbose_name = u'EFD-Reinf 06 – Classificação de Serviços Prestados mediante cessão de mão de obra/Empreitada'
         db_table = r'efdreinf_classificacao_servicos_prestados'       
         managed = True # efdreinf_classificacao_servicos_prestados #
         unique_together = (
@@ -338,6 +342,7 @@ class EFDReinfClassificacaoTributaria(SoftDeletionModel):
     #efdreinf_classificacao_tributaria_custom#
 
     class Meta:
+        # verbose_name = u'EFD-Reinf 08 - Classificação Tributária'
         db_table = r'efdreinf_classificacao_tributaria'       
         managed = True # efdreinf_classificacao_tributaria #
         unique_together = (
@@ -390,6 +395,7 @@ class EFDReinfCodigosAtividadesProdutosServicosCPRB(SoftDeletionModel):
     #efdreinf_codigos_atividades_produtos_servicos_cprb_custom#
 
     class Meta:
+        # verbose_name = u'EFD-Reinf 09 – Código de Atividades, Produtos e Serviços Sujeitos à CPRB'
         db_table = r'efdreinf_codigos_atividades_produtos_servicos_cprb'       
         managed = True # efdreinf_codigos_atividades_produtos_servicos_cprb #
         unique_together = (
@@ -436,6 +442,7 @@ class EFDReinfEventos(SoftDeletionModel):
     #efdreinf_eventos_custom#
 
     class Meta:
+        # verbose_name = u'EFD-Reinf 10 - Eventos da EFD-Reinf'
         db_table = r'efdreinf_eventos'       
         managed = True # efdreinf_eventos #
         unique_together = (
@@ -482,6 +489,7 @@ class EFDReinfInformacoesBeneficiariosExterior(SoftDeletionModel):
     #efdreinf_informacoes_beneficiarios_exterior_custom#
 
     class Meta:
+        # verbose_name = u'EFD-Reinf 05 - Informações sobre os beneficiários de Rendimentos no Exterior'
         db_table = r'efdreinf_informacoes_beneficiarios_exterior'       
         managed = True # efdreinf_informacoes_beneficiarios_exterior #
         unique_together = (
@@ -531,6 +539,7 @@ class EFDReinfPagamentosCodigos(SoftDeletionModel):
     #efdreinf_pagamentos_codigos_custom#
 
     class Meta:
+        # verbose_name = u'EFD-Reinf 01 – Códigos de Pagamentos'
         db_table = r'efdreinf_pagamentos_codigos'       
         managed = True # efdreinf_pagamentos_codigos #
         unique_together = (
@@ -577,6 +586,7 @@ class EFDReinfPaises(SoftDeletionModel):
     #efdreinf_paises_custom#
 
     class Meta:
+        # verbose_name = u'EFD-Reinf 07 – Países'
         db_table = r'efdreinf_paises'       
         managed = True # efdreinf_paises #
         unique_together = (
@@ -629,6 +639,7 @@ class EFDReinfRegrasPagamentosCodigos(SoftDeletionModel):
     #efdreinf_regras_pagamentos_codigos_custom#
 
     class Meta:
+        # verbose_name = u'EFD-Reinf 02 - Regras para utilização dos códigos de pagamento a Pessoas Físicas'
         db_table = r'efdreinf_regras_pagamentos_codigos'       
         managed = True # efdreinf_regras_pagamentos_codigos #
         unique_together = (
@@ -675,6 +686,7 @@ class EFDReinfRendimentosBeneficiariosExterior(SoftDeletionModel):
     #efdreinf_rendimentos_beneficiarios_exterior_custom#
 
     class Meta:
+        # verbose_name = u'EFD-Reinf 03 – Rendimentos de Beneficiários no Exterior'
         db_table = r'efdreinf_rendimentos_beneficiarios_exterior'       
         managed = True # efdreinf_rendimentos_beneficiarios_exterior #
         unique_together = (
@@ -721,6 +733,7 @@ class EFDReinfRendimentosBeneficiariosExteriorTributacao(SoftDeletionModel):
     #efdreinf_rendimentos_beneficiarios_exterior_tributacao_custom#
 
     class Meta:
+        # verbose_name = u'EFD-Reinf 04 - Forma de Tributação para rendimentos de beneficiários no Exterior'
         db_table = r'efdreinf_rendimentos_beneficiarios_exterior_tributacao'       
         managed = True # efdreinf_rendimentos_beneficiarios_exterior_tributacao #
         unique_together = (
@@ -767,6 +780,7 @@ class Municipios(SoftDeletionModel):
     #municipios_custom#
 
     class Meta:
+        # verbose_name = u'Municipios'
         db_table = r'municipios'       
         managed = True # municipios #
         unique_together = (
@@ -813,6 +827,7 @@ class eSocialAcidentesSituacoesGeradoras(SoftDeletionModel):
     #esocial_acidentes_situacoes_geradoras_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 16 - Situação Geradora do Acidente de Trabalho'
         db_table = r'esocial_acidentes_situacoes_geradoras'       
         managed = True # esocial_acidentes_situacoes_geradoras #
         unique_together = (
@@ -861,6 +876,7 @@ class eSocialAfastamentosMotivos(SoftDeletionModel):
     #esocial_afastamentos_motivos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 18 - Motivos de Afastamento'
         db_table = r'esocial_afastamentos_motivos'       
         managed = True # esocial_afastamentos_motivos #
         unique_together = (
@@ -907,6 +923,7 @@ class eSocialAgentesCausadoresAcidentesTrabalho(SoftDeletionModel):
     #esocial_agentes_causadores_acidentes_trabalho_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 14 - Agente Causador do Acidente de Trabalho'
         db_table = r'esocial_agentes_causadores_acidentes_trabalho'       
         managed = True # esocial_agentes_causadores_acidentes_trabalho #
         unique_together = (
@@ -953,6 +970,7 @@ class eSocialAgentesCausadoresDoencasProfissionais(SoftDeletionModel):
     #esocial_agentes_causadores_doencas_profissionais_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 15 - Agente Causador / Situação Geradora de Doença Profissional'
         db_table = r'esocial_agentes_causadores_doencas_profissionais'       
         managed = True # esocial_agentes_causadores_doencas_profissionais #
         unique_together = (
@@ -999,6 +1017,7 @@ class eSocialArquivosEsocialTipos(SoftDeletionModel):
     #esocial_arquivos_esocial_tipos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 09 - Tipos de Arquivo do eSocial'
         db_table = r'esocial_arquivos_esocial_tipos'       
         managed = True # esocial_arquivos_esocial_tipos #
         unique_together = (
@@ -1046,6 +1065,7 @@ class eSocialAtividadesPericulosasInsalubresEspeciais(SoftDeletionModel):
     #esocial_atividades_periculosas_insalubres_especiais_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 28 - Atividades Periculosas, Insalubres e/ou Especiais'
         db_table = r'esocial_atividades_periculosas_insalubres_especiais'       
         managed = True # esocial_atividades_periculosas_insalubres_especiais #
         unique_together = (
@@ -1092,6 +1112,7 @@ class eSocialBeneficiosPrevidenciariosCessacaoMotivos(SoftDeletionModel):
     #esocial_beneficios_previdenciarios_cessacao_motivos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 26 - Motivos de Cessação de Benefícios'
         db_table = r'esocial_beneficios_previdenciarios_cessacao_motivos'       
         managed = True # esocial_beneficios_previdenciarios_cessacao_motivos #
         unique_together = (
@@ -1139,6 +1160,7 @@ class eSocialBeneficiosPrevidenciariosTipos(SoftDeletionModel):
     #esocial_beneficios_previdenciarios_tipos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 25 - Tipos de Benefícios'
         db_table = r'esocial_beneficios_previdenciarios_tipos'       
         managed = True # esocial_beneficios_previdenciarios_tipos #
         unique_together = (
@@ -1185,6 +1207,7 @@ class eSocialClassificacoesTributarias(SoftDeletionModel):
     #esocial_classificacoes_tributarias_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 08 - Classificação Tributária'
         db_table = r'esocial_classificacoes_tributarias'       
         managed = True # esocial_classificacoes_tributarias #
         unique_together = (
@@ -1231,6 +1254,7 @@ class eSocialCodificacoesAcidenteTrabalho(SoftDeletionModel):
     #esocial_codificacoes_acidente_trabalho_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 24 - Codificação de Acidente de Trabalho'
         db_table = r'esocial_codificacoes_acidente_trabalho'       
         managed = True # esocial_codificacoes_acidente_trabalho #
         unique_together = (
@@ -1283,6 +1307,7 @@ class eSocialCodigoAliquotasFPASTerceiros(SoftDeletionModel):
     #esocial_codigo_aliquotas_fpas_terceiros_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 04 - Códigos e Alíquotas de FPAS/Terceiros'
         db_table = r'esocial_codigo_aliquotas_fpas_terceiros'       
         managed = True # esocial_codigo_aliquotas_fpas_terceiros #
         unique_together = (
@@ -1343,6 +1368,7 @@ class eSocialCompatibilidadesCategoriasClassificacoesLotacoes(SoftDeletionModel)
     #esocial_compatibilidades_categorias_classificacoes_lotacoes_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 11 - Compatibilidade entre Categoria de Trabalhadores, Classif. Tributária e Tipos de Lotação'
         db_table = r'esocial_compatibilidades_categorias_classificacoes_lotacoes'       
         managed = True # esocial_compatibilidades_categorias_classificacoes_lotacoes #
         unique_together = (
@@ -1407,6 +1433,7 @@ class eSocialCompatibilidadesFPASClassificacoesTributarias(SoftDeletionModel):
     #esocial_compatibilidades_fpas_classificacoes_tributarias_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 22 - Compatibilidade entre FPAS e Classificação Tributária'
         db_table = r'esocial_compatibilidades_fpas_classificacoes_tributarias'       
         managed = True # esocial_compatibilidades_fpas_classificacoes_tributarias #
         unique_together = (
@@ -1471,6 +1498,7 @@ class eSocialCompatibilidadesLotacoesClassificacoes(SoftDeletionModel):
     #esocial_compatibilidades_lotacoes_classificacoes_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 12 - Compatibilidade entre Tipos de Lotação e Classificação Tributária'
         db_table = r'esocial_compatibilidades_lotacoes_classificacoes'       
         managed = True # esocial_compatibilidades_lotacoes_classificacoes #
         unique_together = (
@@ -1517,6 +1545,7 @@ class eSocialDependentesTipos(SoftDeletionModel):
     #esocial_dependentes_tipos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 07 - Tipos de Dependente'
         db_table = r'esocial_dependentes_tipos'       
         managed = True # esocial_dependentes_tipos #
         unique_together = (
@@ -1565,6 +1594,7 @@ class eSocialDesligamentosMotivos(SoftDeletionModel):
     #esocial_desligamentos_motivos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 19 - Motivos de Desligamento'
         db_table = r'esocial_desligamentos_motivos'       
         managed = True # esocial_desligamentos_motivos #
         unique_together = (
@@ -1612,6 +1642,7 @@ class eSocialFatoresRisco(SoftDeletionModel):
     #esocial_fatores_risco_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 23 - Fatores de Riscos do Meio Ambiente do Trabalho'
         db_table = r'esocial_fatores_risco'       
         managed = True # esocial_fatores_risco #
         unique_together = (
@@ -1658,6 +1689,7 @@ class eSocialFinanciamentosAposentadoriasEspeciais(SoftDeletionModel):
     #esocial_financiamentos_aposentadorias_especiais_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 02 - Financiamento da Aposent. Especial e Redução do Tempo de Contrib.'
         db_table = r'esocial_financiamentos_aposentadorias_especiais'       
         managed = True # esocial_financiamentos_aposentadorias_especiais #
         unique_together = (
@@ -1704,6 +1736,7 @@ class eSocialInscricoesTipos(SoftDeletionModel):
     #esocial_inscricoes_tipos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 05 - Tipos de Inscrição'
         db_table = r'esocial_inscricoes_tipos'       
         managed = True # esocial_inscricoes_tipos #
         unique_together = (
@@ -1750,6 +1783,7 @@ class eSocialLogradourosTipos(SoftDeletionModel):
     #esocial_logradouros_tipos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 20 - Tipos de Logradouro'
         db_table = r'esocial_logradouros_tipos'       
         managed = True # esocial_logradouros_tipos #
         unique_together = (
@@ -1797,6 +1831,7 @@ class eSocialLotacoesTributariasTipos(SoftDeletionModel):
     #esocial_lotacoes_tributarias_tipos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 10 - Tipos de Lotação Tributária'
         db_table = r'esocial_lotacoes_tributarias_tipos'       
         managed = True # esocial_lotacoes_tributarias_tipos #
         unique_together = (
@@ -1844,6 +1879,7 @@ class eSocialNaturezasJuridicas(SoftDeletionModel):
     #esocial_naturezas_juridicas_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 21 - Natureza Jurídica'
         db_table = r'esocial_naturezas_juridicas'       
         managed = True # esocial_naturezas_juridicas #
         unique_together = (
@@ -1890,6 +1926,7 @@ class eSocialNaturezasLesoes(SoftDeletionModel):
     #esocial_naturezas_lesoes_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 17 - Descrição da Natureza da Lesão'
         db_table = r'esocial_naturezas_lesoes'       
         managed = True # esocial_naturezas_lesoes #
         unique_together = (
@@ -1939,6 +1976,7 @@ class eSocialNaturezasRubricas(SoftDeletionModel):
     #esocial_naturezas_rubricas_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 03 - Natureza das Rubricas da Folha de Pagamento'
         db_table = r'esocial_naturezas_rubricas'       
         managed = True # esocial_naturezas_rubricas #
         unique_together = (
@@ -1987,6 +2025,7 @@ class eSocialPaises(SoftDeletionModel):
     #esocial_paises_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 06 - Países'
         db_table = r'esocial_paises'       
         managed = True # esocial_paises #
         unique_together = (
@@ -2033,6 +2072,7 @@ class eSocialPartesCorpoAtingidas(SoftDeletionModel):
     #esocial_partes_corpo_atingidas_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 13 - Parte do corpo atingida'
         db_table = r'esocial_partes_corpo_atingidas'       
         managed = True # esocial_partes_corpo_atingidas #
         unique_together = (
@@ -2079,6 +2119,7 @@ class eSocialProcedimentosDiagnosticos(SoftDeletionModel):
     #esocial_procedimentos_diagnosticos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 27 - Procedimentos Diagnósticos'
         db_table = r'esocial_procedimentos_diagnosticos'       
         managed = True # esocial_procedimentos_diagnosticos #
         unique_together = (
@@ -2125,6 +2166,7 @@ class eSocialProgramasPlanosDocumentos(SoftDeletionModel):
     #esocial_programas_planos_documentos_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 30 - Programas, Planos e Documentos'
         db_table = r'esocial_programas_planos_documentos'       
         managed = True # esocial_programas_planos_documentos #
         unique_together = (
@@ -2172,6 +2214,7 @@ class eSocialTrabalhadoresCategorias(SoftDeletionModel):
     #esocial_trabalhadores_categorias_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 01 - Categorias de Trabalhadores'
         db_table = r'esocial_trabalhadores_categorias'       
         managed = True # esocial_trabalhadores_categorias #
         unique_together = (
@@ -2218,6 +2261,7 @@ class eSocialTreinamentosCapacitacoesExerciciosSimulados(SoftDeletionModel):
     #esocial_treinamentos_capacitacoes_exercicios_simulados_custom#
 
     class Meta:
+        # verbose_name = u'eSocial 29 - Treinamentos, Capacitações e Exercícios Simulados'
         db_table = r'esocial_treinamentos_capacitacoes_exercicios_simulados'       
         managed = True # esocial_treinamentos_capacitacoes_exercicios_simulados #
         unique_together = (

@@ -69,6 +69,7 @@ class s1280infoAtivConcom(SoftDeletionModel):
     #s1280_infoativconcom_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.'
         db_table = r's1280_infoativconcom'       
         managed = True # s1280_infoativconcom #
         unique_together = (
@@ -118,6 +119,7 @@ class s1280infoSubstPatr(SoftDeletionModel):
     #s1280_infosubstpatr_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente por empresa enquadrada nos artigos 7 a 9 da Lei 12.546/2011, conforme classificação tributária indicada no evento de Informações Cadastrais do Empregador.'
         db_table = r's1280_infosubstpatr'       
         managed = True # s1280_infosubstpatr #
         unique_together = (
@@ -166,6 +168,7 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
     #s1280_infosubstpatropport_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.'
         db_table = r's1280_infosubstpatropport'       
         managed = True # s1280_infosubstpatropport #
         unique_together = (

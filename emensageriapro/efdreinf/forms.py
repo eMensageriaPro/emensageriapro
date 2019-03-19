@@ -92,7 +92,6 @@ class form_r1000_evtinfocontri(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -155,7 +154,6 @@ class form_r1070_evttabprocesso(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -233,7 +231,6 @@ class form_r2010_evtservtom(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -311,7 +308,6 @@ class form_r2020_evtservprest(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -377,7 +373,6 @@ class form_r2030_evtassocdesprec(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -443,7 +438,6 @@ class form_r2040_evtassocdesprep(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -520,7 +514,6 @@ class form_r2050_evtcomprod(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -591,7 +584,6 @@ class form_r2060_evtcprb(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -657,7 +649,6 @@ class form_r2070_evtpgtosdivs(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -720,7 +711,6 @@ class form_r2098_evtreabreevper(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -789,7 +779,6 @@ class form_r2099_evtfechaevper(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -864,7 +853,6 @@ class form_r3010_evtespdesportivo(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -927,7 +915,6 @@ class form_r5001_evttotal(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -988,7 +975,6 @@ class form_r5011_evttotalcontrib(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',
@@ -1050,7 +1036,6 @@ class form_r9000_evtexclusao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_evttotal',
             'retornos_evttotalcontrib',
             'ocorrencias',

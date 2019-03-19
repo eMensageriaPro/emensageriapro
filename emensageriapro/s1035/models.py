@@ -120,6 +120,7 @@ class s1035alteracao(SoftDeletionModel):
     #s1035_alteracao_custom#
 
     class Meta:
+        # verbose_name = u'Alteração das informações'
         db_table = r's1035_alteracao'       
         managed = True # s1035_alteracao #
         unique_together = (
@@ -169,6 +170,7 @@ class s1035alteracaonovaValidade(SoftDeletionModel):
     #s1035_alteracao_novavalidade_custom#
 
     class Meta:
+        # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1035_alteracao_novavalidade'       
         managed = True # s1035_alteracao_novavalidade #
         unique_together = (
@@ -219,6 +221,7 @@ class s1035exclusao(SoftDeletionModel):
     #s1035_exclusao_custom#
 
     class Meta:
+        # verbose_name = u'Exclusão das informações'
         db_table = r's1035_exclusao'       
         managed = True # s1035_exclusao #
         unique_together = (
@@ -273,6 +276,7 @@ class s1035inclusao(SoftDeletionModel):
     #s1035_inclusao_custom#
 
     class Meta:
+        # verbose_name = u'Inclusão de novas informações'
         db_table = r's1035_inclusao'       
         managed = True # s1035_inclusao #
         unique_together = (

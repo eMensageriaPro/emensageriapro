@@ -85,6 +85,7 @@ class s1260ideAdquir(SoftDeletionModel):
     #s1260_ideadquir_custom#
 
     class Meta:
+        # verbose_name = u'Identificação dos Adquirentes da Produção.'
         db_table = r's1260_ideadquir'       
         managed = True # s1260_ideadquir #
         unique_together = (
@@ -138,6 +139,7 @@ class s1260infoProcJud(SoftDeletionModel):
     #s1260_infoprocjud_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições inciden (...)'
         db_table = r's1260_infoprocjud'       
         managed = True # s1260_infoprocjud #
         unique_together = (
@@ -192,6 +194,7 @@ class s1260nfs(SoftDeletionModel):
     #s1260_nfs_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.'
         db_table = r's1260_nfs'       
         managed = True # s1260_nfs #
         unique_together = (
@@ -241,6 +244,7 @@ class s1260tpComerc(SoftDeletionModel):
     #s1260_tpcomerc_custom#
 
     class Meta:
+        # verbose_name = u'Registro que apresenta o valor total da comercialização por "tipo" de comercialização'
         db_table = r's1260_tpcomerc'       
         managed = True # s1260_tpcomerc #
         unique_together = (

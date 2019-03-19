@@ -72,6 +72,7 @@ class s1300contribSind(SoftDeletionModel):
     #s1300_contribsind_custom#
 
     class Meta:
+        # verbose_name = u'Informações da contribuição sindical patronal'
         db_table = r's1300_contribsind'       
         managed = True # s1300_contribsind #
         unique_together = (

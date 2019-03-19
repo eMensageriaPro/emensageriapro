@@ -306,9 +306,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2070_pgtopj_origemrecursos_id:
-            r2070_pgtopj_origemrecursos_form = form_r2070_pgtopj_origemrecursos(request.POST or None, instance = r2070_pgtopj_origemrecursos, slug = db_slug)
+            r2070_pgtopj_origemrecursos_form = form_r2070_pgtopj_origemrecursos(request.POST or None,
+                                         instance = r2070_pgtopj_origemrecursos,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r2070_pgtopj_origemrecursos_form = form_r2070_pgtopj_origemrecursos(request.POST or None, slug = db_slug, initial={})
+            r2070_pgtopj_origemrecursos_form = form_r2070_pgtopj_origemrecursos(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r2070_pgtopj_origemrecursos_form.is_valid():
 

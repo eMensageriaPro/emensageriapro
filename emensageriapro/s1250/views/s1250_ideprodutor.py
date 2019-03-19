@@ -324,9 +324,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1250_ideprodutor_id:
-            s1250_ideprodutor_form = form_s1250_ideprodutor(request.POST or None, instance = s1250_ideprodutor, slug = db_slug)
+            s1250_ideprodutor_form = form_s1250_ideprodutor(request.POST or None,
+                                         instance = s1250_ideprodutor,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s1250_ideprodutor_form = form_s1250_ideprodutor(request.POST or None, slug = db_slug, initial={})
+            s1250_ideprodutor_form = form_s1250_ideprodutor(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s1250_ideprodutor_form.is_valid():
 

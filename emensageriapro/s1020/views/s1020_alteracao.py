@@ -339,9 +339,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1020_alteracao_id:
-            s1020_alteracao_form = form_s1020_alteracao(request.POST or None, instance = s1020_alteracao, slug = db_slug)
+            s1020_alteracao_form = form_s1020_alteracao(request.POST or None,
+                                         instance = s1020_alteracao,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s1020_alteracao_form = form_s1020_alteracao(request.POST or None, slug = db_slug, initial={})
+            s1020_alteracao_form = form_s1020_alteracao(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s1020_alteracao_form.is_valid():
 

@@ -306,9 +306,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2241_fiminsalperic_id:
-            s2241_fiminsalperic_form = form_s2241_fiminsalperic(request.POST or None, instance = s2241_fiminsalperic, slug = db_slug)
+            s2241_fiminsalperic_form = form_s2241_fiminsalperic(request.POST or None,
+                                         instance = s2241_fiminsalperic,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s2241_fiminsalperic_form = form_s2241_fiminsalperic(request.POST or None, slug = db_slug, initial={})
+            s2241_fiminsalperic_form = form_s2241_fiminsalperic(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s2241_fiminsalperic_form.is_valid():
 

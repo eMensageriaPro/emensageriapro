@@ -112,6 +112,7 @@ class s2399detOper(SoftDeletionModel):
     #s2399_detoper_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento dos valores pagos a Operadoras de Planos de Saúde.'
         db_table = r's2399_detoper'       
         managed = True # s2399_detoper #
         unique_together = (
@@ -164,6 +165,7 @@ class s2399detPlano(SoftDeletionModel):
     #s2399_detplano_custom#
 
     class Meta:
+        # verbose_name = u'Informações do dependente do plano privado de saúde.'
         db_table = r's2399_detplano'       
         managed = True # s2399_detplano #
         unique_together = (
@@ -217,6 +219,7 @@ class s2399detVerbas(SoftDeletionModel):
     #s2399_detverbas_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das verbas rescisórias devidas ao trabalhador. Deve haver, pelo menos uma rubrica de folha, mesmo que o valor líquido a ser pago ao trabalhador seja 0 (zero) em função de descontos.'
         db_table = r's2399_detverbas'       
         managed = True # s2399_detverbas #
         unique_together = (
@@ -265,6 +268,7 @@ class s2399dmDev(SoftDeletionModel):
     #s2399_dmdev_custom#
 
     class Meta:
+        # verbose_name = u'Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF'
         db_table = r's2399_dmdev'       
         managed = True # s2399_dmdev #
         unique_together = (
@@ -315,6 +319,7 @@ class s2399ideEstabLot(SoftDeletionModel):
     #s2399_ideestablot_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)'
         db_table = r's2399_ideestablot'       
         managed = True # s2399_ideestablot #
         unique_together = (
@@ -363,6 +368,7 @@ class s2399infoAgNocivo(SoftDeletionModel):
     #s2399_infoagnocivo_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a coopera (...)'
         db_table = r's2399_infoagnocivo'       
         managed = True # s2399_infoagnocivo #
         unique_together = (
@@ -411,6 +417,7 @@ class s2399infoMV(SoftDeletionModel):
     #s2399_infomv_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.'
         db_table = r's2399_infomv'       
         managed = True # s2399_infomv #
         unique_together = (
@@ -459,6 +466,7 @@ class s2399infoSimples(SoftDeletionModel):
     #s2399_infosimples_custom#
 
     class Meta:
+        # verbose_name = u'Informação relativa a empresas enquadradas no Regime de Tributação Simples'
         db_table = r's2399_infosimples'       
         managed = True # s2399_infosimples #
         unique_together = (
@@ -507,6 +515,7 @@ class s2399mudancaCPF(SoftDeletionModel):
     #s2399_mudancacpf_custom#
 
     class Meta:
+        # verbose_name = u'Informações de mudança de CPF do trabalhador.'
         db_table = r's2399_mudancacpf'       
         managed = True # s2399_mudancacpf #
         unique_together = (
@@ -557,6 +566,7 @@ class s2399procJudTrab(SoftDeletionModel):
     #s2399_procjudtrab_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.'
         db_table = r's2399_procjudtrab'       
         managed = True # s2399_procjudtrab #
         unique_together = (
@@ -605,6 +615,7 @@ class s2399quarentena(SoftDeletionModel):
     #s2399_quarentena_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre a "quarentena" remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.'
         db_table = r's2399_quarentena'       
         managed = True # s2399_quarentena #
         unique_together = (
@@ -656,6 +667,7 @@ class s2399remunOutrEmpr(SoftDeletionModel):
     #s2399_remunoutrempr_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores reco (...)'
         db_table = r's2399_remunoutrempr'       
         managed = True # s2399_remunoutrempr #
         unique_together = (

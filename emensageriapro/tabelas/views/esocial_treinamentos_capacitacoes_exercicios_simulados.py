@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_treinamentos_capacitacoes_exercicios_simulados_id:
-            esocial_treinamentos_capacitacoes_exercicios_simulados_form = form_esocial_treinamentos_capacitacoes_exercicios_simulados(request.POST or None, instance = esocial_treinamentos_capacitacoes_exercicios_simulados, slug = db_slug)
+            esocial_treinamentos_capacitacoes_exercicios_simulados_form = form_esocial_treinamentos_capacitacoes_exercicios_simulados(request.POST or None,
+                                         instance = esocial_treinamentos_capacitacoes_exercicios_simulados,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            esocial_treinamentos_capacitacoes_exercicios_simulados_form = form_esocial_treinamentos_capacitacoes_exercicios_simulados(request.POST or None, slug = db_slug, initial={})
+            esocial_treinamentos_capacitacoes_exercicios_simulados_form = form_esocial_treinamentos_capacitacoes_exercicios_simulados(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_treinamentos_capacitacoes_exercicios_simulados_form.is_valid():
 

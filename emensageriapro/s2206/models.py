@@ -165,6 +165,7 @@ class s2206alvaraJudicial(SoftDeletionModel):
     #s2206_alvarajudicial_custom#
 
     class Meta:
+        # verbose_name = u'Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de "Aprendiz".'
         db_table = r's2206_alvarajudicial'       
         managed = True # s2206_alvarajudicial #
         unique_together = (
@@ -214,6 +215,7 @@ class s2206aprend(SoftDeletionModel):
     #s2206_aprend_custom#
 
     class Meta:
+        # verbose_name = u'Informações para identificação do empregador contratante de aprendiz'
         db_table = r's2206_aprend'       
         managed = True # s2206_aprend #
         unique_together = (
@@ -262,6 +264,7 @@ class s2206filiacaoSindical(SoftDeletionModel):
     #s2206_filiacaosindical_custom#
 
     class Meta:
+        # verbose_name = u'Filiação Sindical do Trabalhador'
         db_table = r's2206_filiacaosindical'       
         managed = True # s2206_filiacaosindical #
         unique_together = (
@@ -313,6 +316,7 @@ class s2206horContratual(SoftDeletionModel):
     #s2206_horcontratual_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].'
         db_table = r's2206_horcontratual'       
         managed = True # s2206_horcontratual #
         unique_together = (
@@ -362,6 +366,7 @@ class s2206horario(SoftDeletionModel):
     #s2206_horario_custom#
 
     class Meta:
+        # verbose_name = u'Informações diárias do horário contratual'
         db_table = r's2206_horario'       
         managed = True # s2206_horario #
         unique_together = (
@@ -413,6 +418,7 @@ class s2206infoCeletista(SoftDeletionModel):
     #s2206_infoceletista_custom#
 
     class Meta:
+        # verbose_name = u'Informações de Trabalhador Celetista'
         db_table = r's2206_infoceletista'       
         managed = True # s2206_infoceletista #
         unique_together = (
@@ -464,6 +470,7 @@ class s2206infoEstatutario(SoftDeletionModel):
     #s2206_infoestatutario_custom#
 
     class Meta:
+        # verbose_name = u'Informações de Trabalhador Estatutário'
         db_table = r's2206_infoestatutario'       
         managed = True # s2206_infoestatutario #
         unique_together = (
@@ -519,6 +526,7 @@ class s2206localTrabDom(SoftDeletionModel):
     #s2206_localtrabdom_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.'
         db_table = r's2206_localtrabdom'       
         managed = True # s2206_localtrabdom #
         unique_together = (
@@ -569,6 +577,7 @@ class s2206localTrabGeral(SoftDeletionModel):
     #s2206_localtrabgeral_custom#
 
     class Meta:
+        # verbose_name = u'Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades. Caso o trabalhador exerça suas atividades em instalações de terceiros, este campo deve ser preenchido com o estabelecimento do próprio empregado (...)'
         db_table = r's2206_localtrabgeral'       
         managed = True # s2206_localtrabgeral #
         unique_together = (
@@ -617,6 +626,7 @@ class s2206observacoes(SoftDeletionModel):
     #s2206_observacoes_custom#
 
     class Meta:
+        # verbose_name = u'Observações do contrato de trabalho'
         db_table = r's2206_observacoes'       
         managed = True # s2206_observacoes #
         unique_together = (
@@ -665,6 +675,7 @@ class s2206servPubl(SoftDeletionModel):
     #s2206_servpubl_custom#
 
     class Meta:
+        # verbose_name = u'Alterações inerentes ao servidor público'
         db_table = r's2206_servpubl'       
         managed = True # s2206_servpubl #
         unique_together = (
@@ -713,6 +724,7 @@ class s2206trabTemp(SoftDeletionModel):
     #s2206_trabtemp_custom#
 
     class Meta:
+        # verbose_name = u'Dados sobre trabalho temporário. Preenchimento obrigatório na prorrogação de contrato de trabalhador temporário'
         db_table = r's2206_trabtemp'       
         managed = True # s2206_trabtemp #
         unique_together = (

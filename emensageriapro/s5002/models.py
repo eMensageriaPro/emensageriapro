@@ -356,6 +356,7 @@ class s5002basesIrrf(SoftDeletionModel):
     #s5002_basesirrf_custom#
 
     class Meta:
+        # verbose_name = u'Bases, deduções, isenções e retenções do IRRF'
         db_table = r's5002_basesirrf'       
         managed = True # s5002_basesirrf #
         unique_together = (
@@ -412,6 +413,7 @@ class s5002idePgtoExt(SoftDeletionModel):
     #s5002_idepgtoext_custom#
 
     class Meta:
+        # verbose_name = u'Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.'
         db_table = r's5002_idepgtoext'       
         managed = True # s5002_idepgtoext #
         unique_together = (
@@ -460,6 +462,7 @@ class s5002infoDep(SoftDeletionModel):
     #s5002_infodep_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}'
         db_table = r's5002_infodep'       
         managed = True # s5002_infodep #
         unique_together = (
@@ -509,6 +512,7 @@ class s5002infoIrrf(SoftDeletionModel):
     #s5002_infoirrf_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo. Origem S-1200, S-1202, S-1207, S-1210, S-2299, S-2399.'
         db_table = r's5002_infoirrf'       
         managed = True # s5002_infoirrf #
         unique_together = (
@@ -558,6 +562,7 @@ class s5002irrf(SoftDeletionModel):
     #s5002_irrf_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao Imposto de Renda Retido na Fonte'
         db_table = r's5002_irrf'       
         managed = True # s5002_irrf #
         unique_together = (

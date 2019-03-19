@@ -312,9 +312,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2399_detoper_id:
-            s2399_detoper_form = form_s2399_detoper(request.POST or None, instance = s2399_detoper, slug = db_slug)
+            s2399_detoper_form = form_s2399_detoper(request.POST or None,
+                                         instance = s2399_detoper,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s2399_detoper_form = form_s2399_detoper(request.POST or None, slug = db_slug, initial={})
+            s2399_detoper_form = form_s2399_detoper(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s2399_detoper_form.is_valid():
 

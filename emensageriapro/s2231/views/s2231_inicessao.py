@@ -318,9 +318,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2231_inicessao_id:
-            s2231_inicessao_form = form_s2231_inicessao(request.POST or None, instance = s2231_inicessao, slug = db_slug)
+            s2231_inicessao_form = form_s2231_inicessao(request.POST or None,
+                                         instance = s2231_inicessao,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s2231_inicessao_form = form_s2231_inicessao(request.POST or None, slug = db_slug, initial={})
+            s2231_inicessao_form = form_s2231_inicessao(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s2231_inicessao_form.is_valid():
 

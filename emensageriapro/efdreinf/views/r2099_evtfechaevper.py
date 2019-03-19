@@ -370,7 +370,10 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2099_evtfechaevper_id:
-            r2099_evtfechaevper_form = form_r2099_evtfechaevper(request.POST or None, instance = r2099_evtfechaevper, slug = db_slug)
+            r2099_evtfechaevper_form = form_r2099_evtfechaevper(request.POST or None,
+                                         instance = r2099_evtfechaevper,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
             r2099_evtfechaevper_form = form_r2099_evtfechaevper(request.POST or None,
                                          slug = db_slug,
@@ -378,7 +381,8 @@ def salvar(request, hash):
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,
                                                   'procemi': 1,
-                                                  'verproc': VERSAO_EMENSAGERIA})
+                                                  'verproc': VERSAO_EMENSAGERIA,
+                                                  'excluido': False})
         if request.method == 'POST':
             if r2099_evtfechaevper_form.is_valid():
 

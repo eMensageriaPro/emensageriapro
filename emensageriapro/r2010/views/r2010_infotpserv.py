@@ -333,9 +333,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2010_infotpserv_id:
-            r2010_infotpserv_form = form_r2010_infotpserv(request.POST or None, instance = r2010_infotpserv, slug = db_slug)
+            r2010_infotpserv_form = form_r2010_infotpserv(request.POST or None,
+                                         instance = r2010_infotpserv,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r2010_infotpserv_form = form_r2010_infotpserv(request.POST or None, slug = db_slug, initial={})
+            r2010_infotpserv_form = form_r2010_infotpserv(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r2010_infotpserv_form.is_valid():
 

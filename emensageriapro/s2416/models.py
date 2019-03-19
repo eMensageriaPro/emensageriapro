@@ -73,6 +73,7 @@ class s2416homologTC(SoftDeletionModel):
     #s2416_homologtc_custom#
 
     class Meta:
+        # verbose_name = u'Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas'
         db_table = r's2416_homologtc'       
         managed = True # s2416_homologtc #
         unique_together = (
@@ -121,6 +122,7 @@ class s2416infoPenMorte(SoftDeletionModel):
     #s2416_infopenmorte_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a pensão por morte'
         db_table = r's2416_infopenmorte'       
         managed = True # s2416_infopenmorte #
         unique_together = (
@@ -170,6 +172,7 @@ class s2416suspensao(SoftDeletionModel):
     #s2416_suspensao_custom#
 
     class Meta:
+        # verbose_name = u'Informações referentes à suspensão do benefício'
         db_table = r's2416_suspensao'       
         managed = True # s2416_suspensao #
         unique_together = (

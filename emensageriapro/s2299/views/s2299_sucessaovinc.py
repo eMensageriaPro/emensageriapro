@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2299_sucessaovinc_id:
-            s2299_sucessaovinc_form = form_s2299_sucessaovinc(request.POST or None, instance = s2299_sucessaovinc, slug = db_slug)
+            s2299_sucessaovinc_form = form_s2299_sucessaovinc(request.POST or None,
+                                         instance = s2299_sucessaovinc,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s2299_sucessaovinc_form = form_s2299_sucessaovinc(request.POST or None, slug = db_slug, initial={})
+            s2299_sucessaovinc_form = form_s2299_sucessaovinc(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s2299_sucessaovinc_form.is_valid():
 

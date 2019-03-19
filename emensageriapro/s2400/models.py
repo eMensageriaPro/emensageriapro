@@ -120,6 +120,7 @@ class s2400brasil(SoftDeletionModel):
     #s2400_brasil_custom#
 
     class Meta:
+        # verbose_name = u'Preenchimento obrigatório para trabalhador residente no Brasil.'
         db_table = r's2400_brasil'       
         managed = True # s2400_brasil #
         unique_together = (
@@ -175,6 +176,7 @@ class s2400dependente(SoftDeletionModel):
     #s2400_dependente_custom#
 
     class Meta:
+        # verbose_name = u'Informações dos dependentes'
         db_table = r's2400_dependente'       
         managed = True # s2400_dependente #
         unique_together = (
@@ -229,6 +231,7 @@ class s2400exterior(SoftDeletionModel):
     #s2400_exterior_custom#
 
     class Meta:
+        # verbose_name = u'Preenchido em caso de trabalhador residente no exterior.'
         db_table = r's2400_exterior'       
         managed = True # s2400_exterior #
         unique_together = (

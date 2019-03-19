@@ -138,6 +138,7 @@ class s5003basePerAntE(SoftDeletionModel):
     #s5003_baseperante_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre bases de cálculo do FGTS referentes à remuneração de períodos anteriores quando {tpAcConv} = [E]. Origem: S-1200 ou S-2299.'
         db_table = r's5003_baseperante'       
         managed = True # s5003_baseperante #
         unique_together = (
@@ -187,6 +188,7 @@ class s5003basePerApur(SoftDeletionModel):
     #s5003_baseperapur_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre bases de cálculo do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-1200, S-2299 ou S-2399.'
         db_table = r's5003_baseperapur'       
         managed = True # s5003_baseperapur #
         unique_together = (
@@ -236,6 +238,7 @@ class s5003dpsPerAntE(SoftDeletionModel):
     #s5003_dpsperante_custom#
 
     class Meta:
+        # verbose_name = u'Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].'
         db_table = r's5003_dpsperante'       
         managed = True # s5003_dpsperante #
         unique_together = (
@@ -285,6 +288,7 @@ class s5003dpsPerApur(SoftDeletionModel):
     #s5003_dpsperapur_custom#
 
     class Meta:
+        # verbose_name = u'Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].'
         db_table = r's5003_dpsperapur'       
         managed = True # s5003_dpsperapur #
         unique_together = (
@@ -335,6 +339,7 @@ class s5003ideEstabLot(SoftDeletionModel):
     #s5003_ideestablot_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)'
         db_table = r's5003_ideestablot'       
         managed = True # s5003_ideestablot #
         unique_together = (
@@ -383,6 +388,7 @@ class s5003infoBasePerAntE(SoftDeletionModel):
     #s5003_infobaseperante_custom#
 
     class Meta:
+        # verbose_name = u'Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E].'
         db_table = r's5003_infobaseperante'       
         managed = True # s5003_infobaseperante #
         unique_together = (
@@ -431,6 +437,7 @@ class s5003infoDpsPerAntE(SoftDeletionModel):
     #s5003_infodpsperante_custom#
 
     class Meta:
+        # verbose_name = u'Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E].'
         db_table = r's5003_infodpsperante'       
         managed = True # s5003_infodpsperante #
         unique_together = (
@@ -479,6 +486,7 @@ class s5003infoFGTS(SoftDeletionModel):
     #s5003_infofgts_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao FGTS.'
         db_table = r's5003_infofgts'       
         managed = True # s5003_infofgts #
         unique_together = (
@@ -528,6 +536,7 @@ class s5003infoTrabDps(SoftDeletionModel):
     #s5003_infotrabdps_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas à matrícula e categoria do trabalhador.'
         db_table = r's5003_infotrabdps'       
         managed = True # s5003_infotrabdps #
         unique_together = (
@@ -583,6 +592,7 @@ class s5003infoTrabFGTS(SoftDeletionModel):
     #s5003_infotrabfgts_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas à matrícula e categoria do trabalhador.'
         db_table = r's5003_infotrabfgts'       
         managed = True # s5003_infotrabfgts #
         unique_together = (

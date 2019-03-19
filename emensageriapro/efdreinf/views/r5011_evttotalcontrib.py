@@ -363,7 +363,10 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r5011_evttotalcontrib_id:
-            r5011_evttotalcontrib_form = form_r5011_evttotalcontrib(request.POST or None, instance = r5011_evttotalcontrib, slug = db_slug)
+            r5011_evttotalcontrib_form = form_r5011_evttotalcontrib(request.POST or None,
+                                         instance = r5011_evttotalcontrib,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
             r5011_evttotalcontrib_form = form_r5011_evttotalcontrib(request.POST or None,
                                          slug = db_slug,
@@ -371,7 +374,8 @@ def salvar(request, hash):
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,
                                                   'procemi': 1,
-                                                  'verproc': VERSAO_EMENSAGERIA})
+                                                  'verproc': VERSAO_EMENSAGERIA,
+                                                  'excluido': False})
         if request.method == 'POST':
             if r5011_evttotalcontrib_form.is_valid():
 

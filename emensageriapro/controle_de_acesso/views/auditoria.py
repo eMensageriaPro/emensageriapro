@@ -283,9 +283,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if auditoria_id:
-            auditoria_form = form_auditoria(request.POST or None, instance = auditoria, slug = db_slug)
+            auditoria_form = form_auditoria(request.POST or None,
+                                instance = auditoria,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         else:
-            auditoria_form = form_auditoria(request.POST or None, slug = db_slug, initial={})
+            auditoria_form = form_auditoria(request.POST or None,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         if request.method == 'POST':
             if auditoria_form.is_valid():
                 #auditoria_campos_multiple_passo1

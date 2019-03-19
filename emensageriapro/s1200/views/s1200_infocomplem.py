@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1200_infocomplem_id:
-            s1200_infocomplem_form = form_s1200_infocomplem(request.POST or None, instance = s1200_infocomplem, slug = db_slug)
+            s1200_infocomplem_form = form_s1200_infocomplem(request.POST or None,
+                                         instance = s1200_infocomplem,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s1200_infocomplem_form = form_s1200_infocomplem(request.POST or None, slug = db_slug, initial={})
+            s1200_infocomplem_form = form_s1200_infocomplem(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s1200_infocomplem_form.is_valid():
 

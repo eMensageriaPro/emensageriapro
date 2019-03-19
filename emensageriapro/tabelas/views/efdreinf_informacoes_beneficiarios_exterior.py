@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if efdreinf_informacoes_beneficiarios_exterior_id:
-            efdreinf_informacoes_beneficiarios_exterior_form = form_efdreinf_informacoes_beneficiarios_exterior(request.POST or None, instance = efdreinf_informacoes_beneficiarios_exterior, slug = db_slug)
+            efdreinf_informacoes_beneficiarios_exterior_form = form_efdreinf_informacoes_beneficiarios_exterior(request.POST or None,
+                                         instance = efdreinf_informacoes_beneficiarios_exterior,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            efdreinf_informacoes_beneficiarios_exterior_form = form_efdreinf_informacoes_beneficiarios_exterior(request.POST or None, slug = db_slug, initial={})
+            efdreinf_informacoes_beneficiarios_exterior_form = form_efdreinf_informacoes_beneficiarios_exterior(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if efdreinf_informacoes_beneficiarios_exterior_form.is_valid():
 

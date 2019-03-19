@@ -79,6 +79,7 @@ class r2050infoProc(SoftDeletionModel):
     #r2050_infoproc_custom#
 
     class Meta:
+        # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
         db_table = r'r2050_infoproc'       
         managed = True # r2050_infoproc #
         unique_together = (
@@ -128,6 +129,7 @@ class r2050tipoCom(SoftDeletionModel):
     #r2050_tipocom_custom#
 
     class Meta:
+        # verbose_name = u'Registro que apresenta o valor total da Receita Bruta por "tipo" de comercialização.'
         db_table = r'r2050_tipocom'       
         managed = True # r2050_tipocom #
         unique_together = (

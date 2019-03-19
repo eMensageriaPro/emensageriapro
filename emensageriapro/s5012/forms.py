@@ -81,7 +81,6 @@ class form_s5012_infocrcontrib(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 

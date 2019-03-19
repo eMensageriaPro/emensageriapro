@@ -66,6 +66,7 @@ class s1295ideRespInf(SoftDeletionModel):
     #s1295_iderespinf_custom#
 
     class Meta:
+        # verbose_name = u'Responsável pelas informações'
         db_table = r's1295_iderespinf'       
         managed = True # s1295_iderespinf #
         unique_together = (

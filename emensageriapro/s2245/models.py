@@ -92,6 +92,7 @@ class s2245ideProfResp(SoftDeletionModel):
     #s2245_ideprofresp_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao profissional responsável pelo treinamento/capacitação'
         db_table = r's2245_ideprofresp'       
         managed = True # s2245_ideprofresp #
         unique_together = (
@@ -143,6 +144,7 @@ class s2245infoComplem(SoftDeletionModel):
     #s2245_infocomplem_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de "trabalhador sem vínculo". No caso das categorias em que o envio do evento TSV é opc (...)'
         db_table = r's2245_infocomplem'       
         managed = True # s2245_infocomplem #
         unique_together = (

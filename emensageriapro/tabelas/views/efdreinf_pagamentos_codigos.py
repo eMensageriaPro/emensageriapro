@@ -318,9 +318,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if efdreinf_pagamentos_codigos_id:
-            efdreinf_pagamentos_codigos_form = form_efdreinf_pagamentos_codigos(request.POST or None, instance = efdreinf_pagamentos_codigos, slug = db_slug)
+            efdreinf_pagamentos_codigos_form = form_efdreinf_pagamentos_codigos(request.POST or None,
+                                         instance = efdreinf_pagamentos_codigos,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            efdreinf_pagamentos_codigos_form = form_efdreinf_pagamentos_codigos(request.POST or None, slug = db_slug, initial={})
+            efdreinf_pagamentos_codigos_form = form_efdreinf_pagamentos_codigos(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if efdreinf_pagamentos_codigos_form.is_valid():
 

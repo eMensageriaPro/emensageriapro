@@ -128,6 +128,7 @@ class s1050alteracao(SoftDeletionModel):
     #s1050_alteracao_custom#
 
     class Meta:
+        # verbose_name = u'Alteração das informações'
         db_table = r's1050_alteracao'       
         managed = True # s1050_alteracao #
         unique_together = (
@@ -179,6 +180,7 @@ class s1050alteracaohorarioIntervalo(SoftDeletionModel):
     #s1050_alteracao_horariointervalo_custom#
 
     class Meta:
+        # verbose_name = u'Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.'
         db_table = r's1050_alteracao_horariointervalo'       
         managed = True # s1050_alteracao_horariointervalo #
         unique_together = (
@@ -228,6 +230,7 @@ class s1050alteracaonovaValidade(SoftDeletionModel):
     #s1050_alteracao_novavalidade_custom#
 
     class Meta:
+        # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1050_alteracao_novavalidade'       
         managed = True # s1050_alteracao_novavalidade #
         unique_together = (
@@ -278,6 +281,7 @@ class s1050exclusao(SoftDeletionModel):
     #s1050_exclusao_custom#
 
     class Meta:
+        # verbose_name = u'Exclusão das informações'
         db_table = r's1050_exclusao'       
         managed = True # s1050_exclusao #
         unique_together = (
@@ -332,6 +336,7 @@ class s1050inclusao(SoftDeletionModel):
     #s1050_inclusao_custom#
 
     class Meta:
+        # verbose_name = u'Inclusão de novas informações'
         db_table = r's1050_inclusao'       
         managed = True # s1050_inclusao #
         unique_together = (
@@ -383,6 +388,7 @@ class s1050inclusaohorarioIntervalo(SoftDeletionModel):
     #s1050_inclusao_horariointervalo_custom#
 
     class Meta:
+        # verbose_name = u'Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.'
         db_table = r's1050_inclusao_horariointervalo'       
         managed = True # s1050_inclusao_horariointervalo #
         unique_together = (

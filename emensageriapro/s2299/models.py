@@ -150,6 +150,7 @@ class s2299dmDev(SoftDeletionModel):
     #s2299_dmdev_custom#
 
     class Meta:
+        # verbose_name = u'Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF'
         db_table = r's2299_dmdev'       
         managed = True # s2299_dmdev #
         unique_together = (
@@ -203,6 +204,7 @@ class s2299infoPerAntdetVerbas(SoftDeletionModel):
     #s2299_infoperant_detverbas_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das verbas rescisórias devidas ao trabalhador. Deve haver, pelo menos uma rubrica de folha, mesmo que o valor líquido a ser pago ao trabalhador seja 0 (zero) em função de descontos.'
         db_table = r's2299_infoperant_detverbas'       
         managed = True # s2299_infoperant_detverbas #
         unique_together = (
@@ -255,6 +257,7 @@ class s2299infoPerAntideADC(SoftDeletionModel):
     #s2299_infoperant_ideadc_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.'
         db_table = r's2299_infoperant_ideadc'       
         managed = True # s2299_infoperant_ideadc #
         unique_together = (
@@ -305,6 +308,7 @@ class s2299infoPerAntideEstabLot(SoftDeletionModel):
     #s2299_infoperant_ideestablot_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)'
         db_table = r's2299_infoperant_ideestablot'       
         managed = True # s2299_infoperant_ideestablot #
         unique_together = (
@@ -353,6 +357,7 @@ class s2299infoPerAntidePeriodo(SoftDeletionModel):
     #s2299_infoperant_ideperiodo_custom#
 
     class Meta:
+        # verbose_name = u'Período de validade das informações incluídas'
         db_table = r's2299_infoperant_ideperiodo'       
         managed = True # s2299_infoperant_ideperiodo #
         unique_together = (
@@ -401,6 +406,7 @@ class s2299infoPerAntinfoAgNocivo(SoftDeletionModel):
     #s2299_infoperant_infoagnocivo_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a coopera (...)'
         db_table = r's2299_infoperant_infoagnocivo'       
         managed = True # s2299_infoperant_infoagnocivo #
         unique_together = (
@@ -449,6 +455,7 @@ class s2299infoPerAntinfoSimples(SoftDeletionModel):
     #s2299_infoperant_infosimples_custom#
 
     class Meta:
+        # verbose_name = u'Informação relativa a empresas enquadradas no Regime de Tributação Simples'
         db_table = r's2299_infoperant_infosimples'       
         managed = True # s2299_infoperant_infosimples #
         unique_together = (
@@ -499,6 +506,7 @@ class s2299infoPerApurdetOper(SoftDeletionModel):
     #s2299_infoperapur_detoper_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento dos valores pagos a Operadoras de Planos de Saúde.'
         db_table = r's2299_infoperapur_detoper'       
         managed = True # s2299_infoperapur_detoper #
         unique_together = (
@@ -551,6 +559,7 @@ class s2299infoPerApurdetPlano(SoftDeletionModel):
     #s2299_infoperapur_detplano_custom#
 
     class Meta:
+        # verbose_name = u'Informações do dependente do plano privado de saúde.'
         db_table = r's2299_infoperapur_detplano'       
         managed = True # s2299_infoperapur_detplano #
         unique_together = (
@@ -604,6 +613,7 @@ class s2299infoPerApurdetVerbas(SoftDeletionModel):
     #s2299_infoperapur_detverbas_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das verbas rescisórias devidas ao trabalhador. Deve haver, pelo menos uma rubrica de folha, mesmo que o valor líquido a ser pago ao trabalhador seja 0 (zero) em função de descontos.'
         db_table = r's2299_infoperapur_detverbas'       
         managed = True # s2299_infoperapur_detverbas #
         unique_together = (
@@ -654,6 +664,7 @@ class s2299infoPerApurideEstabLot(SoftDeletionModel):
     #s2299_infoperapur_ideestablot_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)'
         db_table = r's2299_infoperapur_ideestablot'       
         managed = True # s2299_infoperapur_ideestablot #
         unique_together = (
@@ -702,6 +713,7 @@ class s2299infoPerApurinfoAgNocivo(SoftDeletionModel):
     #s2299_infoperapur_infoagnocivo_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a coopera (...)'
         db_table = r's2299_infoperapur_infoagnocivo'       
         managed = True # s2299_infoperapur_infoagnocivo #
         unique_together = (
@@ -750,6 +762,7 @@ class s2299infoPerApurinfoSimples(SoftDeletionModel):
     #s2299_infoperapur_infosimples_custom#
 
     class Meta:
+        # verbose_name = u'Informação relativa a empresas enquadradas no Regime de Tributação Simples'
         db_table = r's2299_infoperapur_infosimples'       
         managed = True # s2299_infoperapur_infosimples #
         unique_together = (
@@ -798,6 +811,7 @@ class s2299infoTrabInterm(SoftDeletionModel):
     #s2299_infotrabinterm_custom#
 
     class Meta:
+        # verbose_name = u'Informações da(s) convocação(ões) de trabalho intermitente'
         db_table = r's2299_infotrabinterm'       
         managed = True # s2299_infotrabinterm #
         unique_together = (
@@ -847,6 +861,7 @@ class s2299infoTrabIntermconsigFGTS(SoftDeletionModel):
     #s2299_infotrabinterm_consigfgts_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre operação de crédito consignado com garantia de FGTS'
         db_table = r's2299_infotrabinterm_consigfgts'       
         managed = True # s2299_infotrabinterm_consigfgts #
         unique_together = (
@@ -895,6 +910,7 @@ class s2299infoTrabInterminfoMV(SoftDeletionModel):
     #s2299_infotrabinterm_infomv_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.'
         db_table = r's2299_infotrabinterm_infomv'       
         managed = True # s2299_infotrabinterm_infomv #
         unique_together = (
@@ -943,6 +959,7 @@ class s2299infoTrabIntermprocCS(SoftDeletionModel):
     #s2299_infotrabinterm_proccs_custom#
 
     class Meta:
+        # verbose_name = u'Informação sobre processo judicial que suspende a exigibilidade da Contribuição Social Rescisória'
         db_table = r's2299_infotrabinterm_proccs'       
         managed = True # s2299_infotrabinterm_proccs #
         unique_together = (
@@ -993,6 +1010,7 @@ class s2299infoTrabIntermprocJudTrab(SoftDeletionModel):
     #s2299_infotrabinterm_procjudtrab_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.'
         db_table = r's2299_infotrabinterm_procjudtrab'       
         managed = True # s2299_infotrabinterm_procjudtrab #
         unique_together = (
@@ -1041,6 +1059,7 @@ class s2299infoTrabIntermquarentena(SoftDeletionModel):
     #s2299_infotrabinterm_quarentena_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre a "quarentena" remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada.'
         db_table = r's2299_infotrabinterm_quarentena'       
         managed = True # s2299_infotrabinterm_quarentena #
         unique_together = (
@@ -1092,6 +1111,7 @@ class s2299infoTrabIntermremunOutrEmpr(SoftDeletionModel):
     #s2299_infotrabinterm_remunoutrempr_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores reco (...)'
         db_table = r's2299_infotrabinterm_remunoutrempr'       
         managed = True # s2299_infotrabinterm_remunoutrempr #
         unique_together = (
@@ -1140,6 +1160,7 @@ class s2299mudancaCPF(SoftDeletionModel):
     #s2299_mudancacpf_custom#
 
     class Meta:
+        # verbose_name = u'Informações de mudança de CPF do trabalhador.'
         db_table = r's2299_mudancacpf'       
         managed = True # s2299_mudancacpf #
         unique_together = (
@@ -1188,6 +1209,7 @@ class s2299observacoes(SoftDeletionModel):
     #s2299_observacoes_custom#
 
     class Meta:
+        # verbose_name = u'Observações do contrato de trabalho'
         db_table = r's2299_observacoes'       
         managed = True # s2299_observacoes #
         unique_together = (
@@ -1237,6 +1259,7 @@ class s2299sucessaoVinc(SoftDeletionModel):
     #s2299_sucessaovinc_custom#
 
     class Meta:
+        # verbose_name = u'Grupo de informações da sucessão de vínculo trabalhista/estatutário'
         db_table = r's2299_sucessaovinc'       
         managed = True # s2299_sucessaovinc #
         unique_together = (
@@ -1286,6 +1309,7 @@ class s2299transfTit(SoftDeletionModel):
     #s2299_transftit_custom#
 
     class Meta:
+        # verbose_name = u'Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar'
         db_table = r's2299_transftit'       
         managed = True # s2299_transftit #
         unique_together = (

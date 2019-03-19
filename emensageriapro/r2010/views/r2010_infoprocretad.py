@@ -315,9 +315,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2010_infoprocretad_id:
-            r2010_infoprocretad_form = form_r2010_infoprocretad(request.POST or None, instance = r2010_infoprocretad, slug = db_slug)
+            r2010_infoprocretad_form = form_r2010_infoprocretad(request.POST or None,
+                                         instance = r2010_infoprocretad,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r2010_infoprocretad_form = form_r2010_infoprocretad(request.POST or None, slug = db_slug, initial={})
+            r2010_infoprocretad_form = form_r2010_infoprocretad(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r2010_infoprocretad_form.is_valid():
 

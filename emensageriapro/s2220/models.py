@@ -88,6 +88,7 @@ class s2220exame(SoftDeletionModel):
     #s2220_exame_custom#
 
     class Meta:
+        # verbose_name = u'Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO. O não preenchimento siginifica a não realização de e (...)'
         db_table = r's2220_exame'       
         managed = True # s2220_exame #
         unique_together = (

@@ -306,9 +306,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s5003_infodpsperante_id:
-            s5003_infodpsperante_form = form_s5003_infodpsperante(request.POST or None, instance = s5003_infodpsperante, slug = db_slug)
+            s5003_infodpsperante_form = form_s5003_infodpsperante(request.POST or None,
+                                         instance = s5003_infodpsperante,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s5003_infodpsperante_form = form_s5003_infodpsperante(request.POST or None, slug = db_slug, initial={})
+            s5003_infodpsperante_form = form_s5003_infodpsperante(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s5003_infodpsperante_form.is_valid():
 

@@ -318,9 +318,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if cid_id:
-            cid_form = form_cid(request.POST or None, instance = cid, slug = db_slug)
+            cid_form = form_cid(request.POST or None,
+                                         instance = cid,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            cid_form = form_cid(request.POST or None, slug = db_slug, initial={})
+            cid_form = form_cid(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if cid_form.is_valid():
 

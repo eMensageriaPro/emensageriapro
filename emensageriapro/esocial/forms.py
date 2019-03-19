@@ -97,7 +97,6 @@ class form_s1000_evtinfoempregador(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -156,7 +155,6 @@ class form_s1005_evttabestab(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -215,7 +213,6 @@ class form_s1010_evttabrubrica(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -274,7 +271,6 @@ class form_s1020_evttablotacao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -333,7 +329,6 @@ class form_s1030_evttabcargo(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -392,7 +387,6 @@ class form_s1035_evttabcarreira(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -451,7 +445,6 @@ class form_s1040_evttabfuncao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -510,7 +503,6 @@ class form_s1050_evttabhortur(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -569,7 +561,6 @@ class form_s1060_evttabambiente(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -628,7 +619,6 @@ class form_s1070_evttabprocesso(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -687,7 +677,6 @@ class form_s1080_evttaboperport(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -749,7 +738,6 @@ class form_s1200_evtremun(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -811,7 +799,6 @@ class form_s1202_evtrmnrpps(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -873,7 +860,6 @@ class form_s1207_evtbenprrp(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -935,7 +921,6 @@ class form_s1210_evtpgtos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -998,7 +983,6 @@ class form_s1250_evtaqprod(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1060,7 +1044,6 @@ class form_s1260_evtcomprod(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1121,7 +1104,6 @@ class form_s1270_evtcontratavnp(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1182,7 +1164,6 @@ class form_s1280_evtinfocomplper(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1242,7 +1223,6 @@ class form_s1295_evttotconting(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1302,7 +1282,6 @@ class form_s1298_evtreabreevper(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1368,7 +1347,6 @@ class form_s1299_evtfechaevper(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1429,7 +1407,6 @@ class form_s1300_evtcontrsindpatr(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1490,7 +1467,6 @@ class form_s2190_evtadmprelim(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1567,7 +1543,6 @@ class form_s2200_evtadmissao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1635,7 +1610,6 @@ class form_s2205_evtaltcadastral(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1704,7 +1678,6 @@ class form_s2206_evtaltcontratual(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1776,7 +1749,6 @@ class form_s2210_evtcat(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1848,7 +1820,6 @@ class form_s2220_evtmonit(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1910,7 +1881,6 @@ class form_s2221_evttoxic(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -1970,7 +1940,6 @@ class form_s2230_evtafasttemp(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2032,7 +2001,6 @@ class form_s2231_evtcessao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2095,7 +2063,6 @@ class form_s2240_evtexprisco(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2156,7 +2123,6 @@ class form_s2241_evtinsapo(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2218,7 +2184,6 @@ class form_s2245_evttreicap(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2280,7 +2245,6 @@ class form_s2250_evtavprevio(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2347,7 +2311,6 @@ class form_s2260_evtconvinterm(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2413,7 +2376,6 @@ class form_s2298_evtreintegr(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2482,7 +2444,6 @@ class form_s2299_evtdeslig(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2552,7 +2513,6 @@ class form_s2300_evttsvinicio(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2614,7 +2574,6 @@ class form_s2306_evttsvaltcontr(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2678,7 +2637,6 @@ class form_s2399_evttsvtermino(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2745,7 +2703,6 @@ class form_s2400_evtcdbenefin(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2811,7 +2768,6 @@ class form_s2405_evtcdbenefalt(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2880,7 +2836,6 @@ class form_s2410_evtcdbenin(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -2948,7 +2903,6 @@ class form_s2416_evtcdbenalt(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -3012,7 +2966,6 @@ class form_s2420_evtcdbenterm(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -3072,7 +3025,6 @@ class form_s3000_evtexclusao(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -3128,7 +3080,6 @@ class form_s5001_evtbasestrab(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -3183,7 +3134,6 @@ class form_s5002_evtirrfbenef(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -3238,7 +3188,6 @@ class form_s5003_evtbasesfgts(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -3295,7 +3244,6 @@ class form_s5011_evtcs(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -3350,7 +3298,6 @@ class form_s5012_evtirrf(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',
@@ -3405,7 +3352,6 @@ class form_s5013_evtfgts(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'retornos_eventos',
             'ocorrencias',
             'validacao_precedencia',

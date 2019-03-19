@@ -2011,6 +2011,7 @@ class s1000evtInfoEmpregador(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1000 - Informações do Empregador/Contribuinte/Órgão Público'
         db_table = r's1000_evtinfoempregador'       
         managed = True # s1000_evtinfoempregador #
         unique_together = (
@@ -2081,6 +2082,7 @@ class s1005evtTabEstab(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos'
         db_table = r's1005_evttabestab'       
         managed = True # s1005_evttabestab #
         unique_together = (
@@ -2151,6 +2153,7 @@ class s1010evtTabRubrica(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1010 - Tabela de Rubricas'
         db_table = r's1010_evttabrubrica'       
         managed = True # s1010_evttabrubrica #
         unique_together = (
@@ -2221,6 +2224,7 @@ class s1020evtTabLotacao(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1020 - Tabela de Lotações Tributárias'
         db_table = r's1020_evttablotacao'       
         managed = True # s1020_evttablotacao #
         unique_together = (
@@ -2291,6 +2295,7 @@ class s1030evtTabCargo(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1030 - Tabela de Cargos/Empregos Públicos'
         db_table = r's1030_evttabcargo'       
         managed = True # s1030_evttabcargo #
         unique_together = (
@@ -2361,6 +2366,7 @@ class s1035evtTabCarreira(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1035 - Tabela de Carreiras Públicas'
         db_table = r's1035_evttabcarreira'       
         managed = True # s1035_evttabcarreira #
         unique_together = (
@@ -2431,6 +2437,7 @@ class s1040evtTabFuncao(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1040 - Tabela de Funções/Cargos em Comissão'
         db_table = r's1040_evttabfuncao'       
         managed = True # s1040_evttabfuncao #
         unique_together = (
@@ -2501,6 +2508,7 @@ class s1050evtTabHorTur(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1050 - Tabela de Horários/Turnos de Trabalho'
         db_table = r's1050_evttabhortur'       
         managed = True # s1050_evttabhortur #
         unique_together = (
@@ -2571,6 +2579,7 @@ class s1060evtTabAmbiente(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1060 - Tabela de Ambientes de Trabalho'
         db_table = r's1060_evttabambiente'       
         managed = True # s1060_evttabambiente #
         unique_together = (
@@ -2641,6 +2650,7 @@ class s1070evtTabProcesso(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1070 - Tabela de Processos Administrativos/Judiciais'
         db_table = r's1070_evttabprocesso'       
         managed = True # s1070_evttabprocesso #
         unique_together = (
@@ -2711,6 +2721,7 @@ class s1080evtTabOperPort(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1080 - Tabela de Operadores Portuários'
         db_table = r's1080_evttaboperport'       
         managed = True # s1080_evttaboperport #
         unique_together = (
@@ -2786,6 +2797,7 @@ class s1200evtRemun(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social'
         db_table = r's1200_evtremun'       
         managed = True # s1200_evtremun #
         unique_together = (
@@ -2862,6 +2874,7 @@ class s1202evtRmnRPPS(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social'
         db_table = r's1202_evtrmnrpps'       
         managed = True # s1202_evtrmnrpps #
         unique_together = (
@@ -2936,6 +2949,7 @@ class s1207evtBenPrRP(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1207 - Benefícios previdenciários - RPPS'
         db_table = r's1207_evtbenprrp'       
         managed = True # s1207_evtbenprrp #
         unique_together = (
@@ -3010,6 +3024,7 @@ class s1210evtPgtos(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1210 - Pagamentos de Rendimentos do Trabalho'
         db_table = r's1210_evtpgtos'       
         managed = True # s1210_evtpgtos #
         unique_together = (
@@ -3085,6 +3100,7 @@ class s1250evtAqProd(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1250 - Aquisição de Produção Rural'
         db_table = r's1250_evtaqprod'       
         managed = True # s1250_evtaqprod #
         unique_together = (
@@ -3159,6 +3175,7 @@ class s1260evtComProd(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1260 - Comercialização da Produção Rural Pessoa Física'
         db_table = r's1260_evtcomprod'       
         managed = True # s1260_evtcomprod #
         unique_together = (
@@ -3232,6 +3249,7 @@ class s1270evtContratAvNP(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1270 - Contratação de Trabalhadores Avulsos Não Portuários'
         db_table = r's1270_evtcontratavnp'       
         managed = True # s1270_evtcontratavnp #
         unique_together = (
@@ -3305,6 +3323,7 @@ class s1280evtInfoComplPer(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1280 - Informações Complementares aos Eventos Periódicos'
         db_table = r's1280_evtinfocomplper'       
         managed = True # s1280_evtinfocomplper #
         unique_together = (
@@ -3376,6 +3395,7 @@ class s1295evtTotConting(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1295 - Solicitação de Totalização para Pagamento em Contingência'
         db_table = r's1295_evttotconting'       
         managed = True # s1295_evttotconting #
         unique_together = (
@@ -3447,6 +3467,7 @@ class s1298evtReabreEvPer(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1298 - Reabertura dos Eventos Periódicos'
         db_table = r's1298_evtreabreevper'       
         managed = True # s1298_evtreabreevper #
         unique_together = (
@@ -3525,6 +3546,7 @@ class s1299evtFechaEvPer(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1299 - Fechamento dos Eventos Periódicos'
         db_table = r's1299_evtfechaevper'       
         managed = True # s1299_evtfechaevper #
         unique_together = (
@@ -3598,6 +3620,7 @@ class s1300evtContrSindPatr(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-1300 - Contribuição Sindical Patronal'
         db_table = r's1300_evtcontrsindpatr'       
         managed = True # s1300_evtcontrsindpatr #
         unique_together = (
@@ -3670,6 +3693,7 @@ class s2190evtAdmPrelim(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2190 - Admissão de Trabalhador - Registro Preliminar'
         db_table = r's2190_evtadmprelim'       
         managed = True # s2190_evtadmprelim #
         unique_together = (
@@ -3775,6 +3799,7 @@ class s2200evtAdmissao(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador'
         db_table = r's2200_evtadmissao'       
         managed = True # s2200_evtadmissao #
         unique_together = (
@@ -3862,6 +3887,7 @@ class s2205evtAltCadastral(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2205 - Alteração de Dados Cadastrais do Trabalhador'
         db_table = r's2205_evtaltcadastral'       
         managed = True # s2205_evtaltcadastral #
         unique_together = (
@@ -3951,6 +3977,7 @@ class s2206evtAltContratual(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2206 - Alteração de Contrato de Trabalho'
         db_table = r's2206_evtaltcontratual'       
         managed = True # s2206_evtaltcontratual #
         unique_together = (
@@ -4051,6 +4078,7 @@ class s2210evtCAT(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2210 - Comunicação de Acidente de Trabalho'
         db_table = r's2210_evtcat'       
         managed = True # s2210_evtcat #
         unique_together = (
@@ -4142,6 +4170,7 @@ class s2220evtMonit(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2220 - Monitoramento da Saúde do Trabalhador'
         db_table = r's2220_evtmonit'       
         managed = True # s2220_evtmonit #
         unique_together = (
@@ -4224,6 +4253,7 @@ class s2221evtToxic(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2221 - Exame Toxicológico do Motorista Profissional'
         db_table = r's2221_evttoxic'       
         managed = True # s2221_evttoxic #
         unique_together = (
@@ -4299,6 +4329,7 @@ class s2230evtAfastTemp(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2230 - Afastamento Temporário'
         db_table = r's2230_evtafasttemp'       
         managed = True # s2230_evtafasttemp #
         unique_together = (
@@ -4373,6 +4404,7 @@ class s2231evtCessao(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2231 - Cessão/Exercício em Outro Órgão'
         db_table = r's2231_evtcessao'       
         managed = True # s2231_evtcessao #
         unique_together = (
@@ -4451,6 +4483,7 @@ class s2240evtExpRisco(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2240 - Condições Ambientais do Trabalho - Fatores de Risco'
         db_table = r's2240_evtexprisco'       
         managed = True # s2240_evtexprisco #
         unique_together = (
@@ -4526,6 +4559,7 @@ class s2241evtInsApo(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2241 - Insalubridade, Periculosidade e Aposentadoria Especial'
         db_table = r's2241_evtinsapo'       
         managed = True # s2241_evtinsapo #
         unique_together = (
@@ -4605,6 +4639,7 @@ class s2245evtTreiCap(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2245 - Treinamentos, Capacitações e Exercícios Simulados'
         db_table = r's2245_evttreicap'       
         managed = True # s2245_evttreicap #
         unique_together = (
@@ -4679,6 +4714,7 @@ class s2250evtAvPrevio(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2250 - Aviso Prévio'
         db_table = r's2250_evtavprevio'       
         managed = True # s2250_evtavprevio #
         unique_together = (
@@ -4760,6 +4796,7 @@ class s2260evtConvInterm(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2260 - Convocação para Trabalho Intermitente'
         db_table = r's2260_evtconvinterm'       
         managed = True # s2260_evtconvinterm #
         unique_together = (
@@ -4840,6 +4877,7 @@ class s2298evtReintegr(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2298 - Reintegração'
         db_table = r's2298_evtreintegr'       
         managed = True # s2298_evtreintegr #
         unique_together = (
@@ -4925,6 +4963,7 @@ class s2299evtDeslig(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2299 - Desligamento'
         db_table = r's2299_evtdeslig'       
         managed = True # s2299_evtdeslig #
         unique_together = (
@@ -5015,6 +5054,7 @@ class s2300evtTSVInicio(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início'
         db_table = r's2300_evttsvinicio'       
         managed = True # s2300_evttsvinicio #
         unique_together = (
@@ -5091,6 +5131,7 @@ class s2306evtTSVAltContr(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual'
         db_table = r's2306_evttsvaltcontr'       
         managed = True # s2306_evttsvaltcontr #
         unique_together = (
@@ -5170,6 +5211,7 @@ class s2399evtTSVTermino(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término'
         db_table = r's2399_evttsvtermino'       
         managed = True # s2399_evttsvtermino #
         unique_together = (
@@ -5257,6 +5299,7 @@ class s2400evtCdBenefIn(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2400 - Cadastro de Beneficiários - Entes Públicos - Início'
         db_table = r's2400_evtcdbenefin'       
         managed = True # s2400_evtcdbenefin #
         unique_together = (
@@ -5340,6 +5383,7 @@ class s2405evtCdBenefAlt(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2405 - Cadastro de Beneficiários - Entes Públicos - Alteração'
         db_table = r's2405_evtcdbenefalt'       
         managed = True # s2405_evtcdbenefalt #
         unique_together = (
@@ -5423,6 +5467,7 @@ class s2410evtCdBenIn(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2410 - Cadastro de Benefícios - Entes Públicos - Início'
         db_table = r's2410_evtcdbenin'       
         managed = True # s2410_evtcdbenin #
         unique_together = (
@@ -5504,6 +5549,7 @@ class s2416evtCdBenAlt(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2416 - Cadastro de Benefícios - Entes Públicos - Alteração'
         db_table = r's2416_evtcdbenalt'       
         managed = True # s2416_evtcdbenalt #
         unique_together = (
@@ -5580,6 +5626,7 @@ class s2420evtCdBenTerm(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-2420 - Cadastro de Benefícios - Entes Públicos - Término'
         db_table = r's2420_evtcdbenterm'       
         managed = True # s2420_evtcdbenterm #
         unique_together = (
@@ -5651,6 +5698,7 @@ class s3000evtExclusao(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-3000 - Exclusão de eventos'
         db_table = r's3000_evtexclusao'       
         managed = True # s3000_evtexclusao #
         unique_together = (
@@ -5721,6 +5769,7 @@ class s5001evtBasesTrab(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-5001 - Informações das contribuições sociais por trabalhador'
         db_table = r's5001_evtbasestrab'       
         managed = True # s5001_evtbasestrab #
         unique_together = (
@@ -5790,6 +5839,7 @@ class s5002evtIrrfBenef(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-5002 - Imposto de Renda Retido na Fonte'
         db_table = r's5002_evtirrfbenef'       
         managed = True # s5002_evtirrfbenef #
         unique_together = (
@@ -5860,6 +5910,7 @@ class s5003evtBasesFGTS(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-5003 - Informações do FGTS por Trabalhador'
         db_table = r's5003_evtbasesfgts'       
         managed = True # s5003_evtbasesfgts #
         unique_together = (
@@ -5931,6 +5982,7 @@ class s5011evtCS(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-5011 - Informações das contribuições sociais consolidadas por contribuinte'
         db_table = r's5011_evtcs'       
         managed = True # s5011_evtcs #
         unique_together = (
@@ -6000,6 +6052,7 @@ class s5012evtIrrf(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-5012 - Informações do IRRF consolidadas por contribuinte'
         db_table = r's5012_evtirrf'       
         managed = True # s5012_evtirrf #
         unique_together = (
@@ -6069,6 +6122,7 @@ class s5013evtFGTS(SoftDeletionModel):
 
     
     class Meta:
+        # verbose_name = u'S-5013 - Informações do FGTS consolidadas por contribuinte'
         db_table = r's5013_evtfgts'       
         managed = True # s5013_evtfgts #
         unique_together = (

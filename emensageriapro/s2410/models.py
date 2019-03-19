@@ -74,6 +74,7 @@ class s2410homologTC(SoftDeletionModel):
     #s2410_homologtc_custom#
 
     class Meta:
+        # verbose_name = u'Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas'
         db_table = r's2410_homologtc'       
         managed = True # s2410_homologtc #
         unique_together = (
@@ -122,6 +123,7 @@ class s2410infoPenMorte(SoftDeletionModel):
     #s2410_infopenmorte_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a pensão por morte'
         db_table = r's2410_infopenmorte'       
         managed = True # s2410_infopenmorte #
         unique_together = (
@@ -172,6 +174,7 @@ class s2410instPenMorte(SoftDeletionModel):
     #s2410_instpenmorte_custom#
 
     class Meta:
+        # verbose_name = u'Informações do instituidor da pensão por morte'
         db_table = r's2410_instpenmorte'       
         managed = True # s2410_instpenmorte #
         unique_together = (

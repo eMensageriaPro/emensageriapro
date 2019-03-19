@@ -274,9 +274,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if config_modulos_id:
-            config_modulos_form = form_config_modulos(request.POST or None, instance = config_modulos, slug = db_slug)
+            config_modulos_form = form_config_modulos(request.POST or None,
+                                instance = config_modulos,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         else:
-            config_modulos_form = form_config_modulos(request.POST or None, slug = db_slug, initial={})
+            config_modulos_form = form_config_modulos(request.POST or None,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         if request.method == 'POST':
             if config_modulos_form.is_valid():
                 #config_modulos_campos_multiple_passo1

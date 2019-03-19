@@ -312,9 +312,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r5011_rcoml_id:
-            r5011_rcoml_form = form_r5011_rcoml(request.POST or None, instance = r5011_rcoml, slug = db_slug)
+            r5011_rcoml_form = form_r5011_rcoml(request.POST or None,
+                                         instance = r5011_rcoml,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r5011_rcoml_form = form_r5011_rcoml(request.POST or None, slug = db_slug, initial={})
+            r5011_rcoml_form = form_r5011_rcoml(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r5011_rcoml_form.is_valid():
 

@@ -90,6 +90,7 @@ class r2060infoProc(SoftDeletionModel):
     #r2060_infoproc_custom#
 
     class Meta:
+        # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
         db_table = r'r2060_infoproc'       
         managed = True # r2060_infoproc #
         unique_together = (
@@ -142,6 +143,7 @@ class r2060tipoAjuste(SoftDeletionModel):
     #r2060_tipoajuste_custom#
 
     class Meta:
+        # verbose_name = u'Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.'
         db_table = r'r2060_tipoajuste'       
         managed = True # r2060_tipoajuste #
         unique_together = (
@@ -195,6 +197,7 @@ class r2060tipoCod(SoftDeletionModel):
     #r2060_tipocod_custom#
 
     class Meta:
+        # verbose_name = u'Registro que apresenta o valor total da receita por tipo de código de atividade econômica.'
         db_table = r'r2060_tipocod'       
         managed = True # r2060_tipocod #
         unique_together = (

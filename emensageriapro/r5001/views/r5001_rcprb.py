@@ -312,9 +312,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r5001_rcprb_id:
-            r5001_rcprb_form = form_r5001_rcprb(request.POST or None, instance = r5001_rcprb, slug = db_slug)
+            r5001_rcprb_form = form_r5001_rcprb(request.POST or None,
+                                         instance = r5001_rcprb,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r5001_rcprb_form = form_r5001_rcprb(request.POST or None, slug = db_slug, initial={})
+            r5001_rcprb_form = form_r5001_rcprb(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r5001_rcprb_form.is_valid():
 

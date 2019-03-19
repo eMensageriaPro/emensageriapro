@@ -66,6 +66,7 @@ class r2099ideRespInf(SoftDeletionModel):
     #r2099_iderespinf_custom#
 
     class Meta:
+        # verbose_name = u'Responsável pelas informações'
         db_table = r'r2099_iderespinf'       
         managed = True # r2099_iderespinf #
         unique_together = (

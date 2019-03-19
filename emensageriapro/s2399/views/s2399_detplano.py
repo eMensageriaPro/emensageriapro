@@ -318,9 +318,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2399_detplano_id:
-            s2399_detplano_form = form_s2399_detplano(request.POST or None, instance = s2399_detplano, slug = db_slug)
+            s2399_detplano_form = form_s2399_detplano(request.POST or None,
+                                         instance = s2399_detplano,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s2399_detplano_form = form_s2399_detplano(request.POST or None, slug = db_slug, initial={})
+            s2399_detplano_form = form_s2399_detplano(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s2399_detplano_form.is_valid():
 

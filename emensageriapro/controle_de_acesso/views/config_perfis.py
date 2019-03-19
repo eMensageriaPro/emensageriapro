@@ -266,9 +266,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if config_perfis_id:
-            config_perfis_form = form_config_perfis(request.POST or None, instance = config_perfis, slug = db_slug)
+            config_perfis_form = form_config_perfis(request.POST or None,
+                                instance = config_perfis,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         else:
-            config_perfis_form = form_config_perfis(request.POST or None, slug = db_slug, initial={})
+            config_perfis_form = form_config_perfis(request.POST or None,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         if request.method == 'POST':
             if config_perfis_form.is_valid():
                 #config_perfis_campos_multiple_passo1

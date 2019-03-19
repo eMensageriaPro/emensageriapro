@@ -312,9 +312,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2299_infotrabinterm_procjudtrab_id:
-            s2299_infotrabinterm_procjudtrab_form = form_s2299_infotrabinterm_procjudtrab(request.POST or None, instance = s2299_infotrabinterm_procjudtrab, slug = db_slug)
+            s2299_infotrabinterm_procjudtrab_form = form_s2299_infotrabinterm_procjudtrab(request.POST or None,
+                                         instance = s2299_infotrabinterm_procjudtrab,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s2299_infotrabinterm_procjudtrab_form = form_s2299_infotrabinterm_procjudtrab(request.POST or None, slug = db_slug, initial={})
+            s2299_infotrabinterm_procjudtrab_form = form_s2299_infotrabinterm_procjudtrab(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s2299_infotrabinterm_procjudtrab_form.is_valid():
 

@@ -382,7 +382,10 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2050_evtcomprod_id:
-            r2050_evtcomprod_form = form_r2050_evtcomprod(request.POST or None, instance = r2050_evtcomprod, slug = db_slug)
+            r2050_evtcomprod_form = form_r2050_evtcomprod(request.POST or None,
+                                         instance = r2050_evtcomprod,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
             r2050_evtcomprod_form = form_r2050_evtcomprod(request.POST or None,
                                          slug = db_slug,
@@ -390,7 +393,8 @@ def salvar(request, hash):
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,
                                                   'procemi': 1,
-                                                  'verproc': VERSAO_EMENSAGERIA})
+                                                  'verproc': VERSAO_EMENSAGERIA,
+                                                  'excluido': False})
         if request.method == 'POST':
             if r2050_evtcomprod_form.is_valid():
 

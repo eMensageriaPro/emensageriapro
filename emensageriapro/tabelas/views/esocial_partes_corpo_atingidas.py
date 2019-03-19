@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_partes_corpo_atingidas_id:
-            esocial_partes_corpo_atingidas_form = form_esocial_partes_corpo_atingidas(request.POST or None, instance = esocial_partes_corpo_atingidas, slug = db_slug)
+            esocial_partes_corpo_atingidas_form = form_esocial_partes_corpo_atingidas(request.POST or None,
+                                         instance = esocial_partes_corpo_atingidas,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            esocial_partes_corpo_atingidas_form = form_esocial_partes_corpo_atingidas(request.POST or None, slug = db_slug, initial={})
+            esocial_partes_corpo_atingidas_form = form_esocial_partes_corpo_atingidas(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_partes_corpo_atingidas_form.is_valid():
 

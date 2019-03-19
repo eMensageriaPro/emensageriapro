@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s3000_idefolhapagto_id:
-            s3000_idefolhapagto_form = form_s3000_idefolhapagto(request.POST or None, instance = s3000_idefolhapagto, slug = db_slug)
+            s3000_idefolhapagto_form = form_s3000_idefolhapagto(request.POST or None,
+                                         instance = s3000_idefolhapagto,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s3000_idefolhapagto_form = form_s3000_idefolhapagto(request.POST or None, slug = db_slug, initial={})
+            s3000_idefolhapagto_form = form_s3000_idefolhapagto(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s3000_idefolhapagto_form.is_valid():
 

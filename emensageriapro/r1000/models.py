@@ -169,6 +169,7 @@ class r1000alteracao(SoftDeletionModel):
     #r1000_alteracao_custom#
 
     class Meta:
+        # verbose_name = u'Alteração das informações'
         db_table = r'r1000_alteracao'       
         managed = True # r1000_alteracao #
         unique_together = (
@@ -218,6 +219,7 @@ class r1000alteracaoinfoEFR(SoftDeletionModel):
     #r1000_alteracao_infoefr_custom#
 
     class Meta:
+        # verbose_name = u'Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR'
         db_table = r'r1000_alteracao_infoefr'       
         managed = True # r1000_alteracao_infoefr #
         unique_together = (
@@ -267,6 +269,7 @@ class r1000alteracaonovaValidade(SoftDeletionModel):
     #r1000_alteracao_novavalidade_custom#
 
     class Meta:
+        # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade'
         db_table = r'r1000_alteracao_novavalidade'       
         managed = True # r1000_alteracao_novavalidade #
         unique_together = (
@@ -319,6 +322,7 @@ class r1000alteracaosoftHouse(SoftDeletionModel):
     #r1000_alteracao_softhouse_custom#
 
     class Meta:
+        # verbose_name = u'Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.'
         db_table = r'r1000_alteracao_softhouse'       
         managed = True # r1000_alteracao_softhouse #
         unique_together = (
@@ -368,6 +372,7 @@ class r1000exclusao(SoftDeletionModel):
     #r1000_exclusao_custom#
 
     class Meta:
+        # verbose_name = u'Exclusão das informações'
         db_table = r'r1000_exclusao'       
         managed = True # r1000_exclusao #
         unique_together = (
@@ -427,6 +432,7 @@ class r1000inclusao(SoftDeletionModel):
     #r1000_inclusao_custom#
 
     class Meta:
+        # verbose_name = u'Inclusão de novas informações'
         db_table = r'r1000_inclusao'       
         managed = True # r1000_inclusao #
         unique_together = (
@@ -476,6 +482,7 @@ class r1000inclusaoinfoEFR(SoftDeletionModel):
     #r1000_inclusao_infoefr_custom#
 
     class Meta:
+        # verbose_name = u'Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR'
         db_table = r'r1000_inclusao_infoefr'       
         managed = True # r1000_inclusao_infoefr #
         unique_together = (
@@ -528,6 +535,7 @@ class r1000inclusaosoftHouse(SoftDeletionModel):
     #r1000_inclusao_softhouse_custom#
 
     class Meta:
+        # verbose_name = u'Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.'
         db_table = r'r1000_inclusao_softhouse'       
         managed = True # r1000_inclusao_softhouse #
         unique_together = (

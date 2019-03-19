@@ -211,6 +211,7 @@ class Arquivos(SoftDeletionModel):
     #arquivos_custom#
 
     class Meta:
+        # verbose_name = u'Arquivos'
         db_table = r'arquivos'       
         managed = True # arquivos #
         unique_together = (
@@ -264,6 +265,7 @@ class ImportacaoArquivos(SoftDeletionModel):
     #importacao_arquivos_custom#
 
     class Meta:
+        # verbose_name = u'Importação de Arquivos'
         db_table = r'importacao_arquivos'       
         managed = True # importacao_arquivos #
         unique_together = (
@@ -318,6 +320,7 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
     #importacao_arquivos_eventos_custom#
 
     class Meta:
+        # verbose_name = u'Eventos de Arquivos Importados'
         db_table = r'importacao_arquivos_eventos'       
         managed = True # importacao_arquivos_eventos #
         unique_together = (
@@ -378,6 +381,7 @@ class RegrasDeValidacao(SoftDeletionModel):
     #regras_validacao_custom#
 
     class Meta:
+        # verbose_name = u'Regras de Validação'
         db_table = r'regras_validacao'       
         managed = True # regras_validacao #
         unique_together = (
@@ -422,6 +426,7 @@ class Relatorios(SoftDeletionModel):
     #relatorios_custom#
 
     class Meta:
+        # verbose_name = u'Relatórios'
         db_table = r'relatorios'       
         managed = True # relatorios #
         unique_together = (
@@ -513,6 +518,7 @@ class RetornosEventos(SoftDeletionModel):
     #retornos_eventos_custom#
 
     class Meta:
+        # verbose_name = u'Retornos dos Eventos'
         db_table = r'retornos_eventos'       
         managed = True # retornos_eventos #
         unique_together = (
@@ -563,6 +569,7 @@ class RetornosEventosHorarios(SoftDeletionModel):
     #retornos_eventos_horarios_custom#
 
     class Meta:
+        # verbose_name = u'Retornos dos Eventos - Horários'
         db_table = r'retornos_eventos_horarios'       
         managed = True # retornos_eventos_horarios #
         unique_together = (
@@ -610,6 +617,7 @@ class RetornosEventosIntervalos(SoftDeletionModel):
     #retornos_eventos_intervalos_custom#
 
     class Meta:
+        # verbose_name = u'Retornos dos Eventos - Intervalos'
         db_table = r'retornos_eventos_intervalos'       
         managed = True # retornos_eventos_intervalos #
         unique_together = (
@@ -657,6 +665,7 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
     #retornos_eventos_ocorrencias_custom#
 
     class Meta:
+        # verbose_name = u'Retornos dos Eventos - Ocorrencias'
         db_table = r'retornos_eventos_ocorrencias'       
         managed = True # retornos_eventos_ocorrencias #
         unique_together = (
@@ -729,6 +738,7 @@ class TransmissorLote(SoftDeletionModel):
     #transmissores_custom#
 
     class Meta:
+        # verbose_name = u'Transmissor'
         db_table = r'transmissores'       
         managed = True # transmissores #
         unique_together = (
@@ -790,6 +800,7 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
     #transmissor_lote_efdreinf_custom#
 
     class Meta:
+        # verbose_name = u'Transmissor do EFD-Reinf'
         db_table = r'transmissor_lote_efdreinf'       
         managed = True # transmissor_lote_efdreinf #
         unique_together = (
@@ -837,6 +848,7 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
     #transmissor_lote_efdreinf_ocorrencias_custom#
 
     class Meta:
+        # verbose_name = u'Ocorrências do Transmissor de Lote do EFD-Reinf'
         db_table = r'transmissor_lote_efdreinf_ocorrencias'       
         managed = True # transmissor_lote_efdreinf_ocorrencias #
         unique_together = (
@@ -896,6 +908,7 @@ class TransmissorLoteEsocial(SoftDeletionModel):
     #transmissor_lote_esocial_custom#
 
     class Meta:
+        # verbose_name = u'Transmissor do eSocial'
         db_table = r'transmissor_lote_esocial'       
         managed = True # transmissor_lote_esocial #
         unique_together = (
@@ -943,6 +956,7 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
     #transmissor_lote_esocial_ocorrencias_custom#
 
     class Meta:
+        # verbose_name = u'Ocorrências do Transmissor de Lote do eSocial'
         db_table = r'transmissor_lote_esocial_ocorrencias'       
         managed = True # transmissor_lote_esocial_ocorrencias #
         unique_together = (

@@ -143,6 +143,7 @@ class r2070compJud(SoftDeletionModel):
     #r2070_compjud_custom#
 
     class Meta:
+        # verbose_name = u'Compensação Judicial'
         db_table = r'r2070_compjud'       
         managed = True # r2070_compjud #
         unique_together = (
@@ -191,6 +192,7 @@ class r2070depJudicial(SoftDeletionModel):
     #r2070_depjudicial_custom#
 
     class Meta:
+        # verbose_name = u'Depósito Judicial'
         db_table = r'r2070_depjudicial'       
         managed = True # r2070_depjudicial #
         unique_together = (
@@ -241,6 +243,7 @@ class r2070detCompet(SoftDeletionModel):
     #r2070_detcompet_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das Competências'
         db_table = r'r2070_detcompet'       
         managed = True # r2070_detcompet #
         unique_together = (
@@ -290,6 +293,7 @@ class r2070detDeducao(SoftDeletionModel):
     #r2070_detdeducao_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das Deduções'
         db_table = r'r2070_detdeducao'       
         managed = True # r2070_detdeducao #
         unique_together = (
@@ -339,6 +343,7 @@ class r2070ideEstab(SoftDeletionModel):
     #r2070_ideestab_custom#
 
     class Meta:
+        # verbose_name = u'Identificação dos estabelecimentos da associação desportiva que receberam os recursos'
         db_table = r'r2070_ideestab'       
         managed = True # r2070_ideestab #
         unique_together = (
@@ -387,6 +392,7 @@ class r2070infoMolestia(SoftDeletionModel):
     #r2070_infomolestia_custom#
 
     class Meta:
+        # verbose_name = u'Informações de Beneficiário portador de moléstia grave'
         db_table = r'r2070_infomolestia'       
         managed = True # r2070_infomolestia #
         unique_together = (
@@ -437,6 +443,7 @@ class r2070infoProcJud(SoftDeletionModel):
     #r2070_infoprocjud_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial'
         db_table = r'r2070_infoprocjud'       
         managed = True # r2070_infoprocjud #
         unique_together = (
@@ -486,6 +493,7 @@ class r2070infoProcJuddespProcJud(SoftDeletionModel):
     #r2070_infoprocjud_despprocjud_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das despesas de processo judicial'
         db_table = r'r2070_infoprocjud_despprocjud'       
         managed = True # r2070_infoprocjud_despprocjud #
         unique_together = (
@@ -536,6 +544,7 @@ class r2070infoProcJudideAdvogado(SoftDeletionModel):
     #r2070_infoprocjud_ideadvogado_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do Advogado'
         db_table = r'r2070_infoprocjud_ideadvogado'       
         managed = True # r2070_infoprocjud_ideadvogado #
         unique_together = (
@@ -584,6 +593,7 @@ class r2070infoProcJudorigemRecursos(SoftDeletionModel):
     #r2070_infoprocjud_origemrecursos_custom#
 
     class Meta:
+        # verbose_name = u'Identificação da origem dos recursos'
         db_table = r'r2070_infoprocjud_origemrecursos'       
         managed = True # r2070_infoprocjud_origemrecursos #
         unique_together = (
@@ -636,6 +646,7 @@ class r2070infoRRA(SoftDeletionModel):
     #r2070_inforra_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares - Rendimentos Recebidos Acumuladamente'
         db_table = r'r2070_inforra'       
         managed = True # r2070_inforra #
         unique_together = (
@@ -685,6 +696,7 @@ class r2070infoRRAdespProcJud(SoftDeletionModel):
     #r2070_inforra_despprocjud_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das despesas de processo judicial'
         db_table = r'r2070_inforra_despprocjud'       
         managed = True # r2070_inforra_despprocjud #
         unique_together = (
@@ -735,6 +747,7 @@ class r2070infoRRAideAdvogado(SoftDeletionModel):
     #r2070_inforra_ideadvogado_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do Advogado'
         db_table = r'r2070_inforra_ideadvogado'       
         managed = True # r2070_inforra_ideadvogado #
         unique_together = (
@@ -792,6 +805,7 @@ class r2070infoResidExt(SoftDeletionModel):
     #r2070_inforesidext_custom#
 
     class Meta:
+        # verbose_name = u'Informações complementares de beneficiário residente ou domiciliado no exterior'
         db_table = r'r2070_inforesidext'       
         managed = True # r2070_inforesidext #
         unique_together = (
@@ -844,6 +858,7 @@ class r2070pgtoPF(SoftDeletionModel):
     #r2070_pgtopf_custom#
 
     class Meta:
+        # verbose_name = u'Beneficiário Pessoa Física - Residente no Brasil'
         db_table = r'r2070_pgtopf'       
         managed = True # r2070_pgtopf #
         unique_together = (
@@ -894,6 +909,7 @@ class r2070pgtoPJ(SoftDeletionModel):
     #r2070_pgtopj_custom#
 
     class Meta:
+        # verbose_name = u'Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil'
         db_table = r'r2070_pgtopj'       
         managed = True # r2070_pgtopj #
         unique_together = (
@@ -943,6 +959,7 @@ class r2070pgtoPJdespProcJud(SoftDeletionModel):
     #r2070_pgtopj_despprocjud_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento das despesas de processo judicial'
         db_table = r'r2070_pgtopj_despprocjud'       
         managed = True # r2070_pgtopj_despprocjud #
         unique_together = (
@@ -993,6 +1010,7 @@ class r2070pgtoPJideAdvogado(SoftDeletionModel):
     #r2070_pgtopj_ideadvogado_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do Advogado'
         db_table = r'r2070_pgtopj_ideadvogado'       
         managed = True # r2070_pgtopj_ideadvogado #
         unique_together = (
@@ -1043,6 +1061,7 @@ class r2070pgtoPJinfoProcJud(SoftDeletionModel):
     #r2070_pgtopj_infoprocjud_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial'
         db_table = r'r2070_pgtopj_infoprocjud'       
         managed = True # r2070_pgtopj_infoprocjud #
         unique_together = (
@@ -1091,6 +1110,7 @@ class r2070pgtoPJorigemRecursos(SoftDeletionModel):
     #r2070_pgtopj_origemrecursos_custom#
 
     class Meta:
+        # verbose_name = u'Identificação da origem dos recursos'
         db_table = r'r2070_pgtopj_origemrecursos'       
         managed = True # r2070_pgtopj_origemrecursos #
         unique_together = (
@@ -1143,6 +1163,7 @@ class r2070pgtoResidExt(SoftDeletionModel):
     #r2070_pgtoresidext_custom#
 
     class Meta:
+        # verbose_name = u'Pagamento a não residente ou domiciliado no exterior'
         db_table = r'r2070_pgtoresidext'       
         managed = True # r2070_pgtoresidext #
         unique_together = (
@@ -1193,6 +1214,7 @@ class r2070rendIsento(SoftDeletionModel):
     #r2070_rendisento_custom#
 
     class Meta:
+        # verbose_name = u'Rendimentos Isentos/Não Tributáveis'
         db_table = r'r2070_rendisento'       
         managed = True # r2070_rendisento #
         unique_together = (

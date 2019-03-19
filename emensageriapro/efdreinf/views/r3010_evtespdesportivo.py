@@ -378,7 +378,10 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r3010_evtespdesportivo_id:
-            r3010_evtespdesportivo_form = form_r3010_evtespdesportivo(request.POST or None, instance = r3010_evtespdesportivo, slug = db_slug)
+            r3010_evtespdesportivo_form = form_r3010_evtespdesportivo(request.POST or None,
+                                         instance = r3010_evtespdesportivo,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
             r3010_evtespdesportivo_form = form_r3010_evtespdesportivo(request.POST or None,
                                          slug = db_slug,
@@ -386,7 +389,8 @@ def salvar(request, hash):
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,
                                                   'procemi': 1,
-                                                  'verproc': VERSAO_EMENSAGERIA})
+                                                  'verproc': VERSAO_EMENSAGERIA,
+                                                  'excluido': False})
         if request.method == 'POST':
             if r3010_evtespdesportivo_form.is_valid():
 

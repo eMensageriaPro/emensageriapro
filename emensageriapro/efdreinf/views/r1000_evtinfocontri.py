@@ -347,7 +347,10 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r1000_evtinfocontri_id:
-            r1000_evtinfocontri_form = form_r1000_evtinfocontri(request.POST or None, instance = r1000_evtinfocontri, slug = db_slug)
+            r1000_evtinfocontri_form = form_r1000_evtinfocontri(request.POST or None,
+                                         instance = r1000_evtinfocontri,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
             r1000_evtinfocontri_form = form_r1000_evtinfocontri(request.POST or None,
                                          slug = db_slug,
@@ -355,7 +358,8 @@ def salvar(request, hash):
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,
                                                   'procemi': 1,
-                                                  'verproc': VERSAO_EMENSAGERIA})
+                                                  'verproc': VERSAO_EMENSAGERIA,
+                                                  'excluido': False})
         if request.method == 'POST':
             if r1000_evtinfocontri_form.is_valid():
 

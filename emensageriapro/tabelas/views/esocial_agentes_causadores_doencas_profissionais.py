@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_agentes_causadores_doencas_profissionais_id:
-            esocial_agentes_causadores_doencas_profissionais_form = form_esocial_agentes_causadores_doencas_profissionais(request.POST or None, instance = esocial_agentes_causadores_doencas_profissionais, slug = db_slug)
+            esocial_agentes_causadores_doencas_profissionais_form = form_esocial_agentes_causadores_doencas_profissionais(request.POST or None,
+                                         instance = esocial_agentes_causadores_doencas_profissionais,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            esocial_agentes_causadores_doencas_profissionais_form = form_esocial_agentes_causadores_doencas_profissionais(request.POST or None, slug = db_slug, initial={})
+            esocial_agentes_causadores_doencas_profissionais_form = form_esocial_agentes_causadores_doencas_profissionais(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_agentes_causadores_doencas_profissionais_form.is_valid():
 

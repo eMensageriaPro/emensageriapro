@@ -134,6 +134,7 @@ class s1060alteracao(SoftDeletionModel):
     #s1060_alteracao_custom#
 
     class Meta:
+        # verbose_name = u'Alteração das informações'
         db_table = r's1060_alteracao'       
         managed = True # s1060_alteracao #
         unique_together = (
@@ -183,6 +184,7 @@ class s1060alteracaonovaValidade(SoftDeletionModel):
     #s1060_alteracao_novavalidade_custom#
 
     class Meta:
+        # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1060_alteracao_novavalidade'       
         managed = True # s1060_alteracao_novavalidade #
         unique_together = (
@@ -233,6 +235,7 @@ class s1060exclusao(SoftDeletionModel):
     #s1060_exclusao_custom#
 
     class Meta:
+        # verbose_name = u'Exclusão das informações'
         db_table = r's1060_exclusao'       
         managed = True # s1060_exclusao #
         unique_together = (
@@ -289,6 +292,7 @@ class s1060inclusao(SoftDeletionModel):
     #s1060_inclusao_custom#
 
     class Meta:
+        # verbose_name = u'Inclusão de novas informações'
         db_table = r's1060_inclusao'       
         managed = True # s1060_inclusao #
         unique_together = (

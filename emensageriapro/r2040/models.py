@@ -79,6 +79,7 @@ class r2040infoProc(SoftDeletionModel):
     #r2040_infoproc_custom#
 
     class Meta:
+        # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
         db_table = r'r2040_infoproc'       
         managed = True # r2040_infoproc #
         unique_together = (
@@ -130,6 +131,7 @@ class r2040infoRecurso(SoftDeletionModel):
     #r2040_inforecurso_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento dos recursos recebidos.'
         db_table = r'r2040_inforecurso'       
         managed = True # r2040_inforecurso #
         unique_together = (
@@ -181,6 +183,7 @@ class r2040recursosRep(SoftDeletionModel):
     #r2040_recursosrep_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.'
         db_table = r'r2040_recursosrep'       
         managed = True # r2040_recursosrep #
         unique_together = (

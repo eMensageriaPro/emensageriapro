@@ -312,9 +312,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1202_infoperapur_detoper_id:
-            s1202_infoperapur_detoper_form = form_s1202_infoperapur_detoper(request.POST or None, instance = s1202_infoperapur_detoper, slug = db_slug)
+            s1202_infoperapur_detoper_form = form_s1202_infoperapur_detoper(request.POST or None,
+                                         instance = s1202_infoperapur_detoper,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s1202_infoperapur_detoper_form = form_s1202_infoperapur_detoper(request.POST or None, slug = db_slug, initial={})
+            s1202_infoperapur_detoper_form = form_s1202_infoperapur_detoper(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s1202_infoperapur_detoper_form.is_valid():
 

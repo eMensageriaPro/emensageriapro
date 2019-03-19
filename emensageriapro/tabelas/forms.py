@@ -77,7 +77,6 @@ class form_municipios(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -117,7 +116,6 @@ class form_cbo(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -158,7 +156,6 @@ class form_cid(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -200,7 +197,6 @@ class form_cnae(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -240,7 +236,6 @@ class form_esocial_trabalhadores_categorias(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -279,7 +274,6 @@ class form_esocial_financiamentos_aposentadorias_especiais(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -320,7 +314,6 @@ class form_esocial_naturezas_rubricas(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -366,7 +359,6 @@ class form_esocial_codigo_aliquotas_fpas_terceiros(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -405,7 +397,6 @@ class form_esocial_inscricoes_tipos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -444,7 +435,6 @@ class form_esocial_paises(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -483,7 +473,6 @@ class form_esocial_dependentes_tipos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -522,7 +511,6 @@ class form_esocial_classificacoes_tributarias(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -561,7 +549,6 @@ class form_esocial_arquivos_esocial_tipos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -601,7 +588,6 @@ class form_esocial_lotacoes_tributarias_tipos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -654,7 +640,6 @@ class form_esocial_compatibilidades_categorias_classificacoes_lotacoes(forms.Mod
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -711,7 +696,6 @@ class form_esocial_compatibilidades_lotacoes_classificacoes(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -750,7 +734,6 @@ class form_esocial_partes_corpo_atingidas(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -789,7 +772,6 @@ class form_esocial_agentes_causadores_acidentes_trabalho(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -828,7 +810,6 @@ class form_esocial_agentes_causadores_doencas_profissionais(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -867,7 +848,6 @@ class form_esocial_acidentes_situacoes_geradoras(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -906,7 +886,6 @@ class form_esocial_naturezas_lesoes(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -946,7 +925,6 @@ class form_esocial_afastamentos_motivos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -986,7 +964,6 @@ class form_esocial_desligamentos_motivos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1025,7 +1002,6 @@ class form_esocial_logradouros_tipos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1065,7 +1041,6 @@ class form_esocial_naturezas_juridicas(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1122,7 +1097,6 @@ class form_esocial_compatibilidades_fpas_classificacoes_tributarias(forms.ModelF
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1162,7 +1136,6 @@ class form_esocial_fatores_risco(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1201,7 +1174,6 @@ class form_esocial_codificacoes_acidente_trabalho(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1241,7 +1213,6 @@ class form_esocial_beneficios_previdenciarios_tipos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1280,7 +1251,6 @@ class form_esocial_beneficios_previdenciarios_cessacao_motivos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1319,7 +1289,6 @@ class form_esocial_procedimentos_diagnosticos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1359,7 +1328,6 @@ class form_esocial_atividades_periculosas_insalubres_especiais(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1398,7 +1366,6 @@ class form_esocial_treinamentos_capacitacoes_exercicios_simulados(forms.ModelFor
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1437,7 +1404,6 @@ class form_esocial_programas_planos_documentos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1479,7 +1445,6 @@ class form_efdreinf_pagamentos_codigos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1518,7 +1483,6 @@ class form_efdreinf_regras_pagamentos_codigos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
             'descricao',
  
         ]
@@ -1558,7 +1522,6 @@ class form_efdreinf_rendimentos_beneficiarios_exterior(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1597,7 +1560,6 @@ class form_efdreinf_rendimentos_beneficiarios_exterior_tributacao(forms.ModelFor
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1636,7 +1598,6 @@ class form_efdreinf_informacoes_beneficiarios_exterior(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1675,7 +1636,6 @@ class form_efdreinf_classificacao_servicos_prestados(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1714,7 +1674,6 @@ class form_efdreinf_paises(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1753,7 +1712,6 @@ class form_efdreinf_classificacao_tributaria(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1794,7 +1752,6 @@ class form_efdreinf_codigos_atividades_produtos_servicos_cprb(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 
@@ -1833,7 +1790,6 @@ class form_efdreinf_eventos(forms.ModelForm):
         exclude = [ 
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
-            'excluido',
  
         ]
 

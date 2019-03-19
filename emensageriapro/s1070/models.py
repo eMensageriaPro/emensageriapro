@@ -234,6 +234,7 @@ class s1070alteracao(SoftDeletionModel):
     #s1070_alteracao_custom#
 
     class Meta:
+        # verbose_name = u'Alteração das informações'
         db_table = r's1070_alteracao'       
         managed = True # s1070_alteracao #
         unique_together = (
@@ -284,6 +285,7 @@ class s1070alteracaodadosProcJud(SoftDeletionModel):
     #s1070_alteracao_dadosprocjud_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares do Processo Judicial'
         db_table = r's1070_alteracao_dadosprocjud'       
         managed = True # s1070_alteracao_dadosprocjud #
         unique_together = (
@@ -335,6 +337,7 @@ class s1070alteracaoinfoSusp(SoftDeletionModel):
     #s1070_alteracao_infosusp_custom#
 
     class Meta:
+        # verbose_name = u'Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.'
         db_table = r's1070_alteracao_infosusp'       
         managed = True # s1070_alteracao_infosusp #
         unique_together = (
@@ -384,6 +387,7 @@ class s1070alteracaonovaValidade(SoftDeletionModel):
     #s1070_alteracao_novavalidade_custom#
 
     class Meta:
+        # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1070_alteracao_novavalidade'       
         managed = True # s1070_alteracao_novavalidade #
         unique_together = (
@@ -435,6 +439,7 @@ class s1070exclusao(SoftDeletionModel):
     #s1070_exclusao_custom#
 
     class Meta:
+        # verbose_name = u'Exclusão das informações'
         db_table = r's1070_exclusao'       
         managed = True # s1070_exclusao #
         unique_together = (
@@ -489,6 +494,7 @@ class s1070inclusao(SoftDeletionModel):
     #s1070_inclusao_custom#
 
     class Meta:
+        # verbose_name = u'Inclusão de novas informações'
         db_table = r's1070_inclusao'       
         managed = True # s1070_inclusao #
         unique_together = (
@@ -539,6 +545,7 @@ class s1070inclusaodadosProcJud(SoftDeletionModel):
     #s1070_inclusao_dadosprocjud_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares do Processo Judicial'
         db_table = r's1070_inclusao_dadosprocjud'       
         managed = True # s1070_inclusao_dadosprocjud #
         unique_together = (
@@ -590,6 +597,7 @@ class s1070inclusaoinfoSusp(SoftDeletionModel):
     #s1070_inclusao_infosusp_custom#
 
     class Meta:
+        # verbose_name = u'Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.'
         db_table = r's1070_inclusao_infosusp'       
         managed = True # s1070_inclusao_infosusp #
         unique_together = (

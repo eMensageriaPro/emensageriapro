@@ -120,6 +120,7 @@ class s2405brasil(SoftDeletionModel):
     #s2405_brasil_custom#
 
     class Meta:
+        # verbose_name = u'Preenchimento obrigatório para trabalhador residente no Brasil.'
         db_table = r's2405_brasil'       
         managed = True # s2405_brasil #
         unique_together = (
@@ -175,6 +176,7 @@ class s2405dependente(SoftDeletionModel):
     #s2405_dependente_custom#
 
     class Meta:
+        # verbose_name = u'Informações dos dependentes'
         db_table = r's2405_dependente'       
         managed = True # s2405_dependente #
         unique_together = (
@@ -229,6 +231,7 @@ class s2405exterior(SoftDeletionModel):
     #s2405_exterior_custom#
 
     class Meta:
+        # verbose_name = u'Preenchido em caso de trabalhador residente no exterior.'
         db_table = r's2405_exterior'       
         managed = True # s2405_exterior #
         unique_together = (

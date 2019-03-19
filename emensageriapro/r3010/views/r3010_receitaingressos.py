@@ -324,9 +324,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r3010_receitaingressos_id:
-            r3010_receitaingressos_form = form_r3010_receitaingressos(request.POST or None, instance = r3010_receitaingressos, slug = db_slug)
+            r3010_receitaingressos_form = form_r3010_receitaingressos(request.POST or None,
+                                         instance = r3010_receitaingressos,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r3010_receitaingressos_form = form_r3010_receitaingressos(request.POST or None, slug = db_slug, initial={})
+            r3010_receitaingressos_form = form_r3010_receitaingressos(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r3010_receitaingressos_form.is_valid():
 

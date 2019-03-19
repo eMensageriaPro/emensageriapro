@@ -156,6 +156,7 @@ class s1200dmDev(SoftDeletionModel):
     #s1200_dmdev_custom#
 
     class Meta:
+        # verbose_name = u'Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF'
         db_table = r's1200_dmdev'       
         managed = True # s1200_dmdev #
         unique_together = (
@@ -205,6 +206,7 @@ class s1200infoComplem(SoftDeletionModel):
     #s1200_infocomplem_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de "trabalhador sem vínculo". No caso das categorias em que o envio do evento TSV é opc (...)'
         db_table = r's1200_infocomplem'       
         managed = True # s1200_infocomplem #
         unique_together = (
@@ -253,6 +255,7 @@ class s1200infoInterm(SoftDeletionModel):
     #s1200_infointerm_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao trabalho intermitente'
         db_table = r's1200_infointerm'       
         managed = True # s1200_infointerm #
         unique_together = (
@@ -301,6 +304,7 @@ class s1200infoMV(SoftDeletionModel):
     #s1200_infomv_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.'
         db_table = r's1200_infomv'       
         managed = True # s1200_infomv #
         unique_together = (
@@ -354,6 +358,7 @@ class s1200infoPerAntideADC(SoftDeletionModel):
     #s1200_infoperant_ideadc_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.'
         db_table = r's1200_infoperant_ideadc'       
         managed = True # s1200_infoperant_ideadc #
         unique_together = (
@@ -404,6 +409,7 @@ class s1200infoPerAntideEstabLot(SoftDeletionModel):
     #s1200_infoperant_ideestablot_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)'
         db_table = r's1200_infoperant_ideestablot'       
         managed = True # s1200_infoperant_ideestablot #
         unique_together = (
@@ -452,6 +458,7 @@ class s1200infoPerAntidePeriodo(SoftDeletionModel):
     #s1200_infoperant_ideperiodo_custom#
 
     class Meta:
+        # verbose_name = u'Período de validade das informações incluídas'
         db_table = r's1200_infoperant_ideperiodo'       
         managed = True # s1200_infoperant_ideperiodo #
         unique_together = (
@@ -500,6 +507,7 @@ class s1200infoPerAntinfoAgNocivo(SoftDeletionModel):
     #s1200_infoperant_infoagnocivo_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a coopera (...)'
         db_table = r's1200_infoperant_infoagnocivo'       
         managed = True # s1200_infoperant_infoagnocivo #
         unique_together = (
@@ -550,6 +558,7 @@ class s1200infoPerAntinfoComplCont(SoftDeletionModel):
     #s1200_infoperant_infocomplcont_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).'
         db_table = r's1200_infoperant_infocomplcont'       
         managed = True # s1200_infoperant_infocomplcont #
         unique_together = (
@@ -598,6 +607,7 @@ class s1200infoPerAntinfoTrabInterm(SoftDeletionModel):
     #s1200_infoperant_infotrabinterm_custom#
 
     class Meta:
+        # verbose_name = u'Informações da(s) convocação(ões) de trabalho intermitente'
         db_table = r's1200_infoperant_infotrabinterm'       
         managed = True # s1200_infoperant_infotrabinterm #
         unique_together = (
@@ -651,6 +661,7 @@ class s1200infoPerAntitensRemun(SoftDeletionModel):
     #s1200_infoperant_itensremun_custom#
 
     class Meta:
+        # verbose_name = u'Registro que relaciona as rubricas que compõem a remuneração do trabalhador.'
         db_table = r's1200_infoperant_itensremun'       
         managed = True # s1200_infoperant_itensremun #
         unique_together = (
@@ -700,6 +711,7 @@ class s1200infoPerAntremunPerAnt(SoftDeletionModel):
     #s1200_infoperant_remunperant_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração'
         db_table = r's1200_infoperant_remunperant'       
         managed = True # s1200_infoperant_remunperant #
         unique_together = (
@@ -750,6 +762,7 @@ class s1200infoPerApurdetOper(SoftDeletionModel):
     #s1200_infoperapur_detoper_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento dos valores pagos a Operadoras de Planos de Saúde.'
         db_table = r's1200_infoperapur_detoper'       
         managed = True # s1200_infoperapur_detoper #
         unique_together = (
@@ -802,6 +815,7 @@ class s1200infoPerApurdetPlano(SoftDeletionModel):
     #s1200_infoperapur_detplano_custom#
 
     class Meta:
+        # verbose_name = u'Informações do dependente do plano privado de saúde.'
         db_table = r's1200_infoperapur_detplano'       
         managed = True # s1200_infoperapur_detplano #
         unique_together = (
@@ -853,6 +867,7 @@ class s1200infoPerApurideEstabLot(SoftDeletionModel):
     #s1200_infoperapur_ideestablot_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)'
         db_table = r's1200_infoperapur_ideestablot'       
         managed = True # s1200_infoperapur_ideestablot #
         unique_together = (
@@ -901,6 +916,7 @@ class s1200infoPerApurinfoAgNocivo(SoftDeletionModel):
     #s1200_infoperapur_infoagnocivo_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a coopera (...)'
         db_table = r's1200_infoperapur_infoagnocivo'       
         managed = True # s1200_infoperapur_infoagnocivo #
         unique_together = (
@@ -949,6 +965,7 @@ class s1200infoPerApurinfoTrabInterm(SoftDeletionModel):
     #s1200_infoperapur_infotrabinterm_custom#
 
     class Meta:
+        # verbose_name = u'Informações da(s) convocação(ões) de trabalho intermitente'
         db_table = r's1200_infoperapur_infotrabinterm'       
         managed = True # s1200_infoperapur_infotrabinterm #
         unique_together = (
@@ -1002,6 +1019,7 @@ class s1200infoPerApuritensRemun(SoftDeletionModel):
     #s1200_infoperapur_itensremun_custom#
 
     class Meta:
+        # verbose_name = u'Registro que relaciona as rubricas que compõem a remuneração do trabalhador.'
         db_table = r's1200_infoperapur_itensremun'       
         managed = True # s1200_infoperapur_itensremun #
         unique_together = (
@@ -1051,6 +1069,7 @@ class s1200infoPerApurremunPerApur(SoftDeletionModel):
     #s1200_infoperapur_remunperapur_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a remuneração do trabalhador no período de apuração'
         db_table = r's1200_infoperapur_remunperapur'       
         managed = True # s1200_infoperapur_remunperapur #
         unique_together = (
@@ -1101,6 +1120,7 @@ class s1200procJudTrab(SoftDeletionModel):
     #s1200_procjudtrab_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.'
         db_table = r's1200_procjudtrab'       
         managed = True # s1200_procjudtrab #
         unique_together = (
@@ -1152,6 +1172,7 @@ class s1200remunOutrEmpr(SoftDeletionModel):
     #s1200_remunoutrempr_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao trabalhador que possui vínculo empregatício com outra(s) empresa(s) e/ou que exerce outras atividades como contribuinte individual, detalhando as empresas que efetuaram (ou efetuarão) desconto da contribuição, ou ainda valores reco (...)'
         db_table = r's1200_remunoutrempr'       
         managed = True # s1200_remunoutrempr #
         unique_together = (
@@ -1204,6 +1225,7 @@ class s1200sucessaoVinc(SoftDeletionModel):
     #s1200_sucessaovinc_custom#
 
     class Meta:
+        # verbose_name = u'Grupo de informações da sucessão de vínculo trabalhista/estatutário'
         db_table = r's1200_sucessaovinc'       
         managed = True # s1200_sucessaovinc #
         unique_together = (

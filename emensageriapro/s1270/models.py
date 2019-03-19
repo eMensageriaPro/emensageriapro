@@ -79,6 +79,7 @@ class s1270remunAvNP(SoftDeletionModel):
     #s1270_remunavnp_custom#
 
     class Meta:
+        # verbose_name = u'Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.'
         db_table = r's1270_remunavnp'       
         managed = True # s1270_remunavnp #
         unique_together = (

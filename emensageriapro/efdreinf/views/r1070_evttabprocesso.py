@@ -347,7 +347,10 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r1070_evttabprocesso_id:
-            r1070_evttabprocesso_form = form_r1070_evttabprocesso(request.POST or None, instance = r1070_evttabprocesso, slug = db_slug)
+            r1070_evttabprocesso_form = form_r1070_evttabprocesso(request.POST or None,
+                                         instance = r1070_evttabprocesso,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
             r1070_evttabprocesso_form = form_r1070_evttabprocesso(request.POST or None,
                                          slug = db_slug,
@@ -355,7 +358,8 @@ def salvar(request, hash):
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,
                                                   'procemi': 1,
-                                                  'verproc': VERSAO_EMENSAGERIA})
+                                                  'verproc': VERSAO_EMENSAGERIA,
+                                                  'excluido': False})
         if request.method == 'POST':
             if r1070_evttabprocesso_form.is_valid():
 

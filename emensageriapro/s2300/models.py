@@ -288,6 +288,7 @@ class s2300CNH(SoftDeletionModel):
     #s2300_cnh_custom#
 
     class Meta:
+        # verbose_name = u'Informações da Carteira Nacional de Habilitação (CNH)'
         db_table = r's2300_cnh'       
         managed = True # s2300_cnh #
         unique_together = (
@@ -338,6 +339,7 @@ class s2300CTPS(SoftDeletionModel):
     #s2300_ctps_custom#
 
     class Meta:
+        # verbose_name = u'Informações da Carteira de Trabalho e Previdência Social'
         db_table = r's2300_ctps'       
         managed = True # s2300_ctps #
         unique_together = (
@@ -389,6 +391,7 @@ class s2300OC(SoftDeletionModel):
     #s2300_oc_custom#
 
     class Meta:
+        # verbose_name = u'Informações do número de registro em Órgão de Classe (OC)'
         db_table = r's2300_oc'       
         managed = True # s2300_oc #
         unique_together = (
@@ -439,6 +442,7 @@ class s2300RG(SoftDeletionModel):
     #s2300_rg_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Registro Geral (RG)'
         db_table = r's2300_rg'       
         managed = True # s2300_rg #
         unique_together = (
@@ -489,6 +493,7 @@ class s2300RIC(SoftDeletionModel):
     #s2300_ric_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)'
         db_table = r's2300_ric'       
         managed = True # s2300_ric #
         unique_together = (
@@ -539,6 +544,7 @@ class s2300RNE(SoftDeletionModel):
     #s2300_rne_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Registro Nacional de Estrangeiro'
         db_table = r's2300_rne'       
         managed = True # s2300_rne #
         unique_together = (
@@ -588,6 +594,7 @@ class s2300afastamento(SoftDeletionModel):
     #s2300_afastamento_custom#
 
     class Meta:
+        # verbose_name = u'Informações de afastamento do trabalhador'
         db_table = r's2300_afastamento'       
         managed = True # s2300_afastamento #
         unique_together = (
@@ -643,6 +650,7 @@ class s2300ageIntegracao(SoftDeletionModel):
     #s2300_ageintegracao_custom#
 
     class Meta:
+        # verbose_name = u'Agente de Integração'
         db_table = r's2300_ageintegracao'       
         managed = True # s2300_ageintegracao #
         unique_together = (
@@ -698,6 +706,7 @@ class s2300brasil(SoftDeletionModel):
     #s2300_brasil_custom#
 
     class Meta:
+        # verbose_name = u'Preenchimento obrigatório para trabalhador residente no Brasil.'
         db_table = r's2300_brasil'       
         managed = True # s2300_brasil #
         unique_together = (
@@ -747,6 +756,7 @@ class s2300cargoFuncao(SoftDeletionModel):
     #s2300_cargofuncao_custom#
 
     class Meta:
+        # verbose_name = u'Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo'
         db_table = r's2300_cargofuncao'       
         managed = True # s2300_cargofuncao #
         unique_together = (
@@ -798,6 +808,7 @@ class s2300contato(SoftDeletionModel):
     #s2300_contato_custom#
 
     class Meta:
+        # verbose_name = u'Informações de contato'
         db_table = r's2300_contato'       
         managed = True # s2300_contato #
         unique_together = (
@@ -854,6 +865,7 @@ class s2300dependente(SoftDeletionModel):
     #s2300_dependente_custom#
 
     class Meta:
+        # verbose_name = u'Informações dos dependentes'
         db_table = r's2300_dependente'       
         managed = True # s2300_dependente #
         unique_together = (
@@ -908,6 +920,7 @@ class s2300exterior(SoftDeletionModel):
     #s2300_exterior_custom#
 
     class Meta:
+        # verbose_name = u'Preenchido em caso de trabalhador residente no exterior.'
         db_table = r's2300_exterior'       
         managed = True # s2300_exterior #
         unique_together = (
@@ -957,6 +970,7 @@ class s2300fgts(SoftDeletionModel):
     #s2300_fgts_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Fundo de Garantia do Tempo de Serviço - FGTS'
         db_table = r's2300_fgts'       
         managed = True # s2300_fgts #
         unique_together = (
@@ -1011,6 +1025,7 @@ class s2300infoDeficiencia(SoftDeletionModel):
     #s2300_infodeficiencia_custom#
 
     class Meta:
+        # verbose_name = u'Pessoa com Deficiência'
         db_table = r's2300_infodeficiencia'       
         managed = True # s2300_infodeficiencia #
         unique_together = (
@@ -1062,6 +1077,7 @@ class s2300infoDirigenteSindical(SoftDeletionModel):
     #s2300_infodirigentesindical_custom#
 
     class Meta:
+        # verbose_name = u'Empresa de Origem do Dirigente Sindical'
         db_table = r's2300_infodirigentesindical'       
         managed = True # s2300_infodirigentesindical #
         unique_together = (
@@ -1123,6 +1139,7 @@ class s2300infoEstagiario(SoftDeletionModel):
     #s2300_infoestagiario_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao estagiário'
         db_table = r's2300_infoestagiario'       
         managed = True # s2300_infoestagiario #
         unique_together = (
@@ -1178,6 +1195,7 @@ class s2300infoTrabCedido(SoftDeletionModel):
     #s2300_infotrabcedido_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.'
         db_table = r's2300_infotrabcedido'       
         managed = True # s2300_infotrabcedido #
         unique_together = (
@@ -1228,6 +1246,7 @@ class s2300mudancaCPF(SoftDeletionModel):
     #s2300_mudancacpf_custom#
 
     class Meta:
+        # verbose_name = u'Informações de mudança de CPF do trabalhador.'
         db_table = r's2300_mudancacpf'       
         managed = True # s2300_mudancacpf #
         unique_together = (
@@ -1278,6 +1297,7 @@ class s2300remuneracao(SoftDeletionModel):
     #s2300_remuneracao_custom#
 
     class Meta:
+        # verbose_name = u'Informações da remuneração e periodicidade de pagamento'
         db_table = r's2300_remuneracao'       
         managed = True # s2300_remuneracao #
         unique_together = (
@@ -1327,6 +1347,7 @@ class s2300supervisorEstagio(SoftDeletionModel):
     #s2300_supervisorestagio_custom#
 
     class Meta:
+        # verbose_name = u'Supervisor do Estágio'
         db_table = r's2300_supervisorestagio'       
         managed = True # s2300_supervisorestagio #
         unique_together = (
@@ -1375,6 +1396,7 @@ class s2300termino(SoftDeletionModel):
     #s2300_termino_custom#
 
     class Meta:
+        # verbose_name = u'Informações de término do TSVE'
         db_table = r's2300_termino'       
         managed = True # s2300_termino #
         unique_together = (
@@ -1426,6 +1448,7 @@ class s2300trabEstrangeiro(SoftDeletionModel):
     #s2300_trabestrangeiro_custom#
 
     class Meta:
+        # verbose_name = u'Grupo de informações do Trabalhador Estrangeiro'
         db_table = r's2300_trabestrangeiro'       
         managed = True # s2300_trabestrangeiro #
         unique_together = (

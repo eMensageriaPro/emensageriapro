@@ -408,7 +408,10 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2299_evtdeslig_id:
-            s2299_evtdeslig_form = form_s2299_evtdeslig(request.POST or None, instance = s2299_evtdeslig, slug = db_slug)
+            s2299_evtdeslig_form = form_s2299_evtdeslig(request.POST or None,
+                                         instance = s2299_evtdeslig,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
             s2299_evtdeslig_form = form_s2299_evtdeslig(request.POST or None,
                                          slug = db_slug,
@@ -416,7 +419,8 @@ def salvar(request, hash):
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,
                                                   'procemi': 1,
-                                                  'verproc': VERSAO_EMENSAGERIA})
+                                                  'verproc': VERSAO_EMENSAGERIA,
+                                                  'excluido': False})
         if request.method == 'POST':
             if s2299_evtdeslig_form.is_valid():
 

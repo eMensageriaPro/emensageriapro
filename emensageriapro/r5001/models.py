@@ -81,6 +81,7 @@ class r5001RCPRB(SoftDeletionModel):
     #r5001_rcprb_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060'
         db_table = r'r5001_rcprb'       
         managed = True # r5001_rcprb #
         unique_together = (
@@ -131,6 +132,7 @@ class r5001RComl(SoftDeletionModel):
     #r5001_rcoml_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050'
         db_table = r'r5001_rcoml'       
         managed = True # r5001_rcoml #
         unique_together = (
@@ -185,6 +187,7 @@ class r5001RPrest(SoftDeletionModel):
     #r5001_rprest_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020'
         db_table = r'r5001_rprest'       
         managed = True # r5001_rprest #
         unique_together = (
@@ -236,6 +239,7 @@ class r5001RRecEspetDesp(SoftDeletionModel):
     #r5001_rrecespetdesp_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.'
         db_table = r'r5001_rrecespetdesp'       
         managed = True # r5001_rrecespetdesp #
         unique_together = (
@@ -288,6 +292,7 @@ class r5001RRecRepAD(SoftDeletionModel):
     #r5001_rrecrepad_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040'
         db_table = r'r5001_rrecrepad'       
         managed = True # r5001_rrecrepad #
         unique_together = (
@@ -338,6 +343,7 @@ class r5001RTom(SoftDeletionModel):
     #r5001_rtom_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010'
         db_table = r'r5001_rtom'       
         managed = True # r5001_rtom #
         unique_together = (
@@ -388,6 +394,7 @@ class r5001infoCRTom(SoftDeletionModel):
     #r5001_infocrtom_custom#
 
     class Meta:
+        # verbose_name = u'Totalizador das retenções de contribuição previdenciária sobre serviços tomados'
         db_table = r'r5001_infocrtom'       
         managed = True # r5001_infocrtom #
         unique_together = (
@@ -438,6 +445,7 @@ class r5001infoTotal(SoftDeletionModel):
     #r5001_infototal_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a totalizadores de bases e tributos'
         db_table = r'r5001_infototal'       
         managed = True # r5001_infototal #
         unique_together = (
@@ -489,6 +497,7 @@ class r5001regOcorrs(SoftDeletionModel):
     #r5001_regocorrs_custom#
 
     class Meta:
+        # verbose_name = u'Informações de ocorrências registradas'
         db_table = r'r5001_regocorrs'       
         managed = True # r5001_regocorrs #
         unique_together = (

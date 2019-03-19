@@ -289,9 +289,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if importacao_arquivos_eventos_id:
-            importacao_arquivos_eventos_form = form_importacao_arquivos_eventos(request.POST or None, instance = importacao_arquivos_eventos, slug = db_slug)
+            importacao_arquivos_eventos_form = form_importacao_arquivos_eventos(request.POST or None,
+                                instance = importacao_arquivos_eventos,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         else:
-            importacao_arquivos_eventos_form = form_importacao_arquivos_eventos(request.POST or None, slug = db_slug, initial={})
+            importacao_arquivos_eventos_form = form_importacao_arquivos_eventos(request.POST or None,
+                                slug = db_slug,
+                                initial = {'excluido': False})
         if request.method == 'POST':
             if importacao_arquivos_eventos_form.is_valid():
                 #importacao_arquivos_eventos_campos_multiple_passo1

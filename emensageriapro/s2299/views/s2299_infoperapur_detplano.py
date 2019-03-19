@@ -318,9 +318,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2299_infoperapur_detplano_id:
-            s2299_infoperapur_detplano_form = form_s2299_infoperapur_detplano(request.POST or None, instance = s2299_infoperapur_detplano, slug = db_slug)
+            s2299_infoperapur_detplano_form = form_s2299_infoperapur_detplano(request.POST or None,
+                                         instance = s2299_infoperapur_detplano,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s2299_infoperapur_detplano_form = form_s2299_infoperapur_detplano(request.POST or None, slug = db_slug, initial={})
+            s2299_infoperapur_detplano_form = form_s2299_infoperapur_detplano(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s2299_infoperapur_detplano_form.is_valid():
 

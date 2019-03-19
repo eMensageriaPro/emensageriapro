@@ -100,6 +100,7 @@ class s2260localTrabInterm(SoftDeletionModel):
     #s2260_localtrabinterm_custom#
 
     class Meta:
+        # verbose_name = u'Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206'
         db_table = r's2260_localtrabinterm'       
         managed = True # s2260_localtrabinterm #
         unique_together = (

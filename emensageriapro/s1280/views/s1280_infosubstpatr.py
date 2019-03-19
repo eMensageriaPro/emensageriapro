@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1280_infosubstpatr_id:
-            s1280_infosubstpatr_form = form_s1280_infosubstpatr(request.POST or None, instance = s1280_infosubstpatr, slug = db_slug)
+            s1280_infosubstpatr_form = form_s1280_infosubstpatr(request.POST or None,
+                                         instance = s1280_infosubstpatr,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s1280_infosubstpatr_form = form_s1280_infosubstpatr(request.POST or None, slug = db_slug, initial={})
+            s1280_infosubstpatr_form = form_s1280_infosubstpatr(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s1280_infosubstpatr_form.is_valid():
 

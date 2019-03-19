@@ -321,9 +321,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r1070_inclusao_id:
-            r1070_inclusao_form = form_r1070_inclusao(request.POST or None, instance = r1070_inclusao, slug = db_slug)
+            r1070_inclusao_form = form_r1070_inclusao(request.POST or None,
+                                         instance = r1070_inclusao,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            r1070_inclusao_form = form_r1070_inclusao(request.POST or None, slug = db_slug, initial={})
+            r1070_inclusao_form = form_r1070_inclusao(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if r1070_inclusao_form.is_valid():
 

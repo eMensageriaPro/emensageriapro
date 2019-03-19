@@ -309,9 +309,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_codificacoes_acidente_trabalho_id:
-            esocial_codificacoes_acidente_trabalho_form = form_esocial_codificacoes_acidente_trabalho(request.POST or None, instance = esocial_codificacoes_acidente_trabalho, slug = db_slug)
+            esocial_codificacoes_acidente_trabalho_form = form_esocial_codificacoes_acidente_trabalho(request.POST or None,
+                                         instance = esocial_codificacoes_acidente_trabalho,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         else:
-            esocial_codificacoes_acidente_trabalho_form = form_esocial_codificacoes_acidente_trabalho(request.POST or None, slug = db_slug, initial={})
+            esocial_codificacoes_acidente_trabalho_form = form_esocial_codificacoes_acidente_trabalho(request.POST or None,
+                                         slug = db_slug,
+                                         initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_codificacoes_acidente_trabalho_form.is_valid():
 

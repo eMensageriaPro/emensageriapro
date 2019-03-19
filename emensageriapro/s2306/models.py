@@ -129,6 +129,7 @@ class s2306ageIntegracao(SoftDeletionModel):
     #s2306_ageintegracao_custom#
 
     class Meta:
+        # verbose_name = u'Agente de Integração'
         db_table = r's2306_ageintegracao'       
         managed = True # s2306_ageintegracao #
         unique_together = (
@@ -178,6 +179,7 @@ class s2306cargoFuncao(SoftDeletionModel):
     #s2306_cargofuncao_custom#
 
     class Meta:
+        # verbose_name = u'Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo'
         db_table = r's2306_cargofuncao'       
         managed = True # s2306_cargofuncao #
         unique_together = (
@@ -239,6 +241,7 @@ class s2306infoEstagiario(SoftDeletionModel):
     #s2306_infoestagiario_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao estagiário'
         db_table = r's2306_infoestagiario'       
         managed = True # s2306_infoestagiario #
         unique_together = (
@@ -287,6 +290,7 @@ class s2306infoTrabCedido(SoftDeletionModel):
     #s2306_infotrabcedido_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.'
         db_table = r's2306_infotrabcedido'       
         managed = True # s2306_infotrabcedido #
         unique_together = (
@@ -337,6 +341,7 @@ class s2306remuneracao(SoftDeletionModel):
     #s2306_remuneracao_custom#
 
     class Meta:
+        # verbose_name = u'Informações da remuneração e periodicidade de pagamento'
         db_table = r's2306_remuneracao'       
         managed = True # s2306_remuneracao #
         unique_together = (
@@ -386,6 +391,7 @@ class s2306supervisorEstagio(SoftDeletionModel):
     #s2306_supervisorestagio_custom#
 
     class Meta:
+        # verbose_name = u'Supervisor do Estágio'
         db_table = r's2306_supervisorestagio'       
         managed = True # s2306_supervisorestagio #
         unique_together = (

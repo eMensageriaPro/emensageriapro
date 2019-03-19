@@ -327,9 +327,14 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1030_alteracao_cargopublico_id:
-            s1030_alteracao_cargopublico_form = form_s1030_alteracao_cargopublico(request.POST or None, instance = s1030_alteracao_cargopublico, slug = db_slug)
+            s1030_alteracao_cargopublico_form = form_s1030_alteracao_cargopublico(request.POST or None,
+                                         instance = s1030_alteracao_cargopublico,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         else:
-            s1030_alteracao_cargopublico_form = form_s1030_alteracao_cargopublico(request.POST or None, slug = db_slug, initial={})
+            s1030_alteracao_cargopublico_form = form_s1030_alteracao_cargopublico(request.POST or None,
+                                         slug = db_slug,
+                                         initial={'excluido': False})
         if request.method == 'POST':
             if s1030_alteracao_cargopublico_form.is_valid():
 

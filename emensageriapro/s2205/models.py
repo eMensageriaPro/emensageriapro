@@ -214,6 +214,7 @@ class s2205CNH(SoftDeletionModel):
     #s2205_cnh_custom#
 
     class Meta:
+        # verbose_name = u'Informações da Carteira Nacional de Habilitação (CNH)'
         db_table = r's2205_cnh'       
         managed = True # s2205_cnh #
         unique_together = (
@@ -264,6 +265,7 @@ class s2205CTPS(SoftDeletionModel):
     #s2205_ctps_custom#
 
     class Meta:
+        # verbose_name = u'Informações da Carteira de Trabalho e Previdência Social'
         db_table = r's2205_ctps'       
         managed = True # s2205_ctps #
         unique_together = (
@@ -315,6 +317,7 @@ class s2205OC(SoftDeletionModel):
     #s2205_oc_custom#
 
     class Meta:
+        # verbose_name = u'Informações do número de registro em Órgão de Classe (OC)'
         db_table = r's2205_oc'       
         managed = True # s2205_oc #
         unique_together = (
@@ -365,6 +368,7 @@ class s2205RG(SoftDeletionModel):
     #s2205_rg_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Registro Geral (RG)'
         db_table = r's2205_rg'       
         managed = True # s2205_rg #
         unique_together = (
@@ -415,6 +419,7 @@ class s2205RIC(SoftDeletionModel):
     #s2205_ric_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)'
         db_table = r's2205_ric'       
         managed = True # s2205_ric #
         unique_together = (
@@ -465,6 +470,7 @@ class s2205RNE(SoftDeletionModel):
     #s2205_rne_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Registro Nacional de Estrangeiro'
         db_table = r's2205_rne'       
         managed = True # s2205_rne #
         unique_together = (
@@ -513,6 +519,7 @@ class s2205aposentadoria(SoftDeletionModel):
     #s2205_aposentadoria_custom#
 
     class Meta:
+        # verbose_name = u'Informação de aposentadoria do trabalhador'
         db_table = r's2205_aposentadoria'       
         managed = True # s2205_aposentadoria #
         unique_together = (
@@ -568,6 +575,7 @@ class s2205brasil(SoftDeletionModel):
     #s2205_brasil_custom#
 
     class Meta:
+        # verbose_name = u'Preenchimento obrigatório para trabalhador residente no Brasil.'
         db_table = r's2205_brasil'       
         managed = True # s2205_brasil #
         unique_together = (
@@ -619,6 +627,7 @@ class s2205contato(SoftDeletionModel):
     #s2205_contato_custom#
 
     class Meta:
+        # verbose_name = u'Informações de contato'
         db_table = r's2205_contato'       
         managed = True # s2205_contato #
         unique_together = (
@@ -675,6 +684,7 @@ class s2205dependente(SoftDeletionModel):
     #s2205_dependente_custom#
 
     class Meta:
+        # verbose_name = u'Informações dos dependentes'
         db_table = r's2205_dependente'       
         managed = True # s2205_dependente #
         unique_together = (
@@ -729,6 +739,7 @@ class s2205exterior(SoftDeletionModel):
     #s2205_exterior_custom#
 
     class Meta:
+        # verbose_name = u'Preenchido em caso de trabalhador residente no exterior.'
         db_table = r's2205_exterior'       
         managed = True # s2205_exterior #
         unique_together = (
@@ -784,6 +795,7 @@ class s2205infoDeficiencia(SoftDeletionModel):
     #s2205_infodeficiencia_custom#
 
     class Meta:
+        # verbose_name = u'Pessoa com Deficiência'
         db_table = r's2205_infodeficiencia'       
         managed = True # s2205_infodeficiencia #
         unique_together = (
@@ -835,6 +847,7 @@ class s2205trabEstrangeiro(SoftDeletionModel):
     #s2205_trabestrangeiro_custom#
 
     class Meta:
+        # verbose_name = u'Grupo de informações do Trabalhador Estrangeiro'
         db_table = r's2205_trabestrangeiro'       
         managed = True # s2205_trabestrangeiro #
         unique_together = (

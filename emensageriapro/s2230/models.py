@@ -170,6 +170,7 @@ class s2230emitente(SoftDeletionModel):
     #s2230_emitente_custom#
 
     class Meta:
+        # verbose_name = u'Médico/Dentista que emitiu o atestado'
         db_table = r's2230_emitente'       
         managed = True # s2230_emitente #
         unique_together = (
@@ -218,6 +219,7 @@ class s2230fimAfastamento(SoftDeletionModel):
     #s2230_fimafastamento_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Término do Afastamento'
         db_table = r's2230_fimafastamento'       
         managed = True # s2230_fimafastamento #
         unique_together = (
@@ -267,6 +269,7 @@ class s2230infoAtestado(SoftDeletionModel):
     #s2230_infoatestado_custom#
 
     class Meta:
+        # verbose_name = u'Informações complementares relativas ao atestado médico'
         db_table = r's2230_infoatestado'       
         managed = True # s2230_infoatestado #
         unique_together = (
@@ -316,6 +319,7 @@ class s2230infoCessao(SoftDeletionModel):
     #s2230_infocessao_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.'
         db_table = r's2230_infocessao'       
         managed = True # s2230_infocessao #
         unique_together = (
@@ -365,6 +369,7 @@ class s2230infoMandSind(SoftDeletionModel):
     #s2230_infomandsind_custom#
 
     class Meta:
+        # verbose_name = u'Informações Complementares - afastamento para exercício de mandato sindical'
         db_table = r's2230_infomandsind'       
         managed = True # s2230_infomandsind #
         unique_together = (
@@ -415,6 +420,7 @@ class s2230infoRetif(SoftDeletionModel):
     #s2230_inforetif_custom#
 
     class Meta:
+        # verbose_name = u'Informações de retificação do Afastamento Temporário. Preenchimento obrigatório caso {codMotAfast} seja retificado de [01] para [03] ou de [03] para [01].'
         db_table = r's2230_inforetif'       
         managed = True # s2230_inforetif #
         unique_together = (
@@ -467,6 +473,7 @@ class s2230iniAfastamento(SoftDeletionModel):
     #s2230_iniafastamento_custom#
 
     class Meta:
+        # verbose_name = u'Informações do Afastamento Temporário - Início'
         db_table = r's2230_iniafastamento'       
         managed = True # s2230_iniafastamento #
         unique_together = (

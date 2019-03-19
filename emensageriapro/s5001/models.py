@@ -119,6 +119,7 @@ class s5001calcTerc(SoftDeletionModel):
     #s5001_calcterc_custom#
 
     class Meta:
+        # verbose_name = u'Cálculo das contribuições sociais devidas a Outras Entidades e Fundos.'
         db_table = r's5001_calcterc'       
         managed = True # s5001_calcterc #
         unique_together = (
@@ -169,6 +170,7 @@ class s5001ideEstabLot(SoftDeletionModel):
     #s5001_ideestablot_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)'
         db_table = r's5001_ideestablot'       
         managed = True # s5001_ideestablot #
         unique_together = (
@@ -219,6 +221,7 @@ class s5001infoBaseCS(SoftDeletionModel):
     #s5001_infobasecs_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos. Evento de origem (S-1200, S-2299 e S-2399).'
         db_table = r's5001_infobasecs'       
         managed = True # s5001_infobasecs #
         unique_together = (
@@ -269,6 +272,7 @@ class s5001infoCategIncid(SoftDeletionModel):
     #s5001_infocategincid_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.'
         db_table = r's5001_infocategincid'       
         managed = True # s5001_infocategincid #
         unique_together = (
@@ -319,6 +323,7 @@ class s5001infoCpCalc(SoftDeletionModel):
     #s5001_infocpcalc_custom#
 
     class Meta:
+        # verbose_name = u'Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399.'
         db_table = r's5001_infocpcalc'       
         managed = True # s5001_infocpcalc #
         unique_together = (
@@ -368,6 +373,7 @@ class s5001procJudTrab(SoftDeletionModel):
     #s5001_procjudtrab_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.'
         db_table = r's5001_procjudtrab'       
         managed = True # s5001_procjudtrab #
         unique_together = (

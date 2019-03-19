@@ -233,6 +233,7 @@ class s1005alteracao(SoftDeletionModel):
     #s1005_alteracao_custom#
 
     class Meta:
+        # verbose_name = u'Alteração das informações'
         db_table = r's1005_alteracao'       
         managed = True # s1005_alteracao #
         unique_together = (
@@ -281,6 +282,7 @@ class s1005alteracaoinfoCaepf(SoftDeletionModel):
     #s1005_alteracao_infocaepf_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.'
         db_table = r's1005_alteracao_infocaepf'       
         managed = True # s1005_alteracao_infocaepf #
         unique_together = (
@@ -329,6 +331,7 @@ class s1005alteracaoinfoEntEduc(SoftDeletionModel):
     #s1005_alteracao_infoenteduc_custom#
 
     class Meta:
+        # verbose_name = u'Identificação da(s) entidade(s) educativa(s) ou de prática desportiva'
         db_table = r's1005_alteracao_infoenteduc'       
         managed = True # s1005_alteracao_infoenteduc #
         unique_together = (
@@ -377,6 +380,7 @@ class s1005alteracaoinfoObra(SoftDeletionModel):
     #s1005_alteracao_infoobra_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos traba (...)'
         db_table = r's1005_alteracao_infoobra'       
         managed = True # s1005_alteracao_infoobra #
         unique_together = (
@@ -426,6 +430,7 @@ class s1005alteracaoinfoPCD(SoftDeletionModel):
     #s1005_alteracao_infopcd_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz".'
         db_table = r's1005_alteracao_infopcd'       
         managed = True # s1005_alteracao_infopcd #
         unique_together = (
@@ -475,6 +480,7 @@ class s1005alteracaonovaValidade(SoftDeletionModel):
     #s1005_alteracao_novavalidade_custom#
 
     class Meta:
+        # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1005_alteracao_novavalidade'       
         managed = True # s1005_alteracao_novavalidade #
         unique_together = (
@@ -525,6 +531,7 @@ class s1005alteracaoprocAdmJudFap(SoftDeletionModel):
     #s1005_alteracao_procadmjudfap_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.'
         db_table = r's1005_alteracao_procadmjudfap'       
         managed = True # s1005_alteracao_procadmjudfap #
         unique_together = (
@@ -575,6 +582,7 @@ class s1005alteracaoprocAdmJudRat(SoftDeletionModel):
     #s1005_alteracao_procadmjudrat_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.'
         db_table = r's1005_alteracao_procadmjudrat'       
         managed = True # s1005_alteracao_procadmjudrat #
         unique_together = (
@@ -626,6 +634,7 @@ class s1005exclusao(SoftDeletionModel):
     #s1005_exclusao_custom#
 
     class Meta:
+        # verbose_name = u'Exclusão das informações'
         db_table = r's1005_exclusao'       
         managed = True # s1005_exclusao #
         unique_together = (
@@ -685,6 +694,7 @@ class s1005inclusao(SoftDeletionModel):
     #s1005_inclusao_custom#
 
     class Meta:
+        # verbose_name = u'Inclusão de novas informações'
         db_table = r's1005_inclusao'       
         managed = True # s1005_inclusao #
         unique_together = (
@@ -733,6 +743,7 @@ class s1005inclusaoinfoCaepf(SoftDeletionModel):
     #s1005_inclusao_infocaepf_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.'
         db_table = r's1005_inclusao_infocaepf'       
         managed = True # s1005_inclusao_infocaepf #
         unique_together = (
@@ -781,6 +792,7 @@ class s1005inclusaoinfoEntEduc(SoftDeletionModel):
     #s1005_inclusao_infoenteduc_custom#
 
     class Meta:
+        # verbose_name = u'Identificação da(s) entidade(s) educativa(s) ou de prática desportiva'
         db_table = r's1005_inclusao_infoenteduc'       
         managed = True # s1005_inclusao_infoenteduc #
         unique_together = (
@@ -829,6 +841,7 @@ class s1005inclusaoinfoObra(SoftDeletionModel):
     #s1005_inclusao_infoobra_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos traba (...)'
         db_table = r's1005_inclusao_infoobra'       
         managed = True # s1005_inclusao_infoobra #
         unique_together = (
@@ -878,6 +891,7 @@ class s1005inclusaoinfoPCD(SoftDeletionModel):
     #s1005_inclusao_infopcd_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento "Matriz".'
         db_table = r's1005_inclusao_infopcd'       
         managed = True # s1005_inclusao_infopcd #
         unique_together = (
@@ -928,6 +942,7 @@ class s1005inclusaoprocAdmJudFap(SoftDeletionModel):
     #s1005_inclusao_procadmjudfap_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.'
         db_table = r's1005_inclusao_procadmjudfap'       
         managed = True # s1005_inclusao_procadmjudfap #
         unique_together = (
@@ -978,6 +993,7 @@ class s1005inclusaoprocAdmJudRat(SoftDeletionModel):
     #s1005_inclusao_procadmjudrat_custom#
 
     class Meta:
+        # verbose_name = u'Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.'
         db_table = r's1005_inclusao_procadmjudrat'       
         managed = True # s1005_inclusao_procadmjudrat #
         unique_together = (

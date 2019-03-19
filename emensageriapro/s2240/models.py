@@ -239,6 +239,7 @@ class s2240altExpRisco(SoftDeletionModel):
     #s2240_altexprisco_custom#
 
     class Meta:
+        # verbose_name = u'Condições ambientais do trabalho - Alteração'
         db_table = r's2240_altexprisco'       
         managed = True # s2240_altexprisco #
         unique_together = (
@@ -288,6 +289,7 @@ class s2240altExpRiscoepc(SoftDeletionModel):
     #s2240_altexprisco_epc_custom#
 
     class Meta:
+        # verbose_name = u'Equipamentos de Proteção Coletiva - EPC'
         db_table = r's2240_altexprisco_epc'       
         managed = True # s2240_altexprisco_epc #
         unique_together = (
@@ -342,6 +344,7 @@ class s2240altExpRiscoepi(SoftDeletionModel):
     #s2240_altexprisco_epi_custom#
 
     class Meta:
+        # verbose_name = u'Equipamentos de Proteção Individual - EPI'
         db_table = r's2240_altexprisco_epi'       
         managed = True # s2240_altexprisco_epi #
         unique_together = (
@@ -394,6 +397,7 @@ class s2240altExpRiscofatRisco(SoftDeletionModel):
     #s2240_altexprisco_fatrisco_custom#
 
     class Meta:
+        # verbose_name = u'Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente'
         db_table = r's2240_altexprisco_fatrisco'       
         managed = True # s2240_altexprisco_fatrisco #
         unique_together = (
@@ -443,6 +447,7 @@ class s2240altExpRiscoinfoAmb(SoftDeletionModel):
     #s2240_altexprisco_infoamb_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ambiente de trabalho'
         db_table = r's2240_altexprisco_infoamb'       
         managed = True # s2240_altexprisco_infoamb #
         unique_together = (
@@ -491,6 +496,7 @@ class s2240fimExpRisco(SoftDeletionModel):
     #s2240_fimexprisco_custom#
 
     class Meta:
+        # verbose_name = u'Condições ambientais do trabalho - Fim'
         db_table = r's2240_fimexprisco'       
         managed = True # s2240_fimexprisco #
         unique_together = (
@@ -539,6 +545,7 @@ class s2240fimExpRiscoinfoAmb(SoftDeletionModel):
     #s2240_fimexprisco_infoamb_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ambiente de trabalho'
         db_table = r's2240_fimexprisco_infoamb'       
         managed = True # s2240_fimexprisco_infoamb #
         unique_together = (
@@ -591,6 +598,7 @@ class s2240fimExpRiscorespReg(SoftDeletionModel):
     #s2240_fimexprisco_respreg_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao responsável pelos registros ambientais'
         db_table = r's2240_fimexprisco_respreg'       
         managed = True # s2240_fimexprisco_respreg #
         unique_together = (
@@ -639,6 +647,7 @@ class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
     #s2240_iniexprisco_ativpericinsal_custom#
 
     class Meta:
+        # verbose_name = u'Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)'
         db_table = r's2240_iniexprisco_ativpericinsal'       
         managed = True # s2240_iniexprisco_ativpericinsal #
         unique_together = (
@@ -689,6 +698,7 @@ class s2240iniExpRiscoepc(SoftDeletionModel):
     #s2240_iniexprisco_epc_custom#
 
     class Meta:
+        # verbose_name = u'Equipamentos de Proteção Coletiva - EPC'
         db_table = r's2240_iniexprisco_epc'       
         managed = True # s2240_iniexprisco_epc #
         unique_together = (
@@ -745,6 +755,7 @@ class s2240iniExpRiscoepi(SoftDeletionModel):
     #s2240_iniexprisco_epi_custom#
 
     class Meta:
+        # verbose_name = u'Equipamentos de Proteção Individual - EPI'
         db_table = r's2240_iniexprisco_epi'       
         managed = True # s2240_iniexprisco_epi #
         unique_together = (
@@ -804,6 +815,7 @@ class s2240iniExpRiscofatRisco(SoftDeletionModel):
     #s2240_iniexprisco_fatrisco_custom#
 
     class Meta:
+        # verbose_name = u'Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente'
         db_table = r's2240_iniexprisco_fatrisco'       
         managed = True # s2240_iniexprisco_fatrisco #
         unique_together = (
@@ -852,6 +864,7 @@ class s2240iniExpRiscoinfoAmb(SoftDeletionModel):
     #s2240_iniexprisco_infoamb_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao ambiente de trabalho'
         db_table = r's2240_iniexprisco_infoamb'       
         managed = True # s2240_iniexprisco_infoamb #
         unique_together = (
@@ -902,6 +915,7 @@ class s2240iniExpRiscoobs(SoftDeletionModel):
     #s2240_iniexprisco_obs_custom#
 
     class Meta:
+        # verbose_name = u'Observações relativas a registros ambientais'
         db_table = r's2240_iniexprisco_obs'       
         managed = True # s2240_iniexprisco_obs #
         unique_together = (
@@ -956,6 +970,7 @@ class s2240iniExpRiscorespReg(SoftDeletionModel):
     #s2240_iniexprisco_respreg_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas ao responsável pelos registros ambientais'
         db_table = r's2240_iniexprisco_respreg'       
         managed = True # s2240_iniexprisco_respreg #
         unique_together = (

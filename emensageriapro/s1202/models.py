@@ -106,6 +106,7 @@ class s1202dmDev(SoftDeletionModel):
     #s1202_dmdev_custom#
 
     class Meta:
+        # verbose_name = u'Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF'
         db_table = r's1202_dmdev'       
         managed = True # s1202_dmdev #
         unique_together = (
@@ -161,6 +162,7 @@ class s1202infoPerAntideADC(SoftDeletionModel):
     #s1202_infoperant_ideadc_custom#
 
     class Meta:
+        # verbose_name = u'Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.'
         db_table = r's1202_infoperant_ideadc'       
         managed = True # s1202_infoperant_ideadc #
         unique_together = (
@@ -210,6 +212,7 @@ class s1202infoPerAntideEstab(SoftDeletionModel):
     #s1202_infoperant_ideestab_custom#
 
     class Meta:
+        # verbose_name = u'Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas'
         db_table = r's1202_infoperant_ideestab'       
         managed = True # s1202_infoperant_ideestab #
         unique_together = (
@@ -258,6 +261,7 @@ class s1202infoPerAntidePeriodo(SoftDeletionModel):
     #s1202_infoperant_ideperiodo_custom#
 
     class Meta:
+        # verbose_name = u'Período de validade das informações incluídas'
         db_table = r's1202_infoperant_ideperiodo'       
         managed = True # s1202_infoperant_ideperiodo #
         unique_together = (
@@ -311,6 +315,7 @@ class s1202infoPerAntitensRemun(SoftDeletionModel):
     #s1202_infoperant_itensremun_custom#
 
     class Meta:
+        # verbose_name = u'Registro que relaciona as rubricas que compõem a remuneração do trabalhador.'
         db_table = r's1202_infoperant_itensremun'       
         managed = True # s1202_infoperant_itensremun #
         unique_together = (
@@ -360,6 +365,7 @@ class s1202infoPerAntremunPerAnt(SoftDeletionModel):
     #s1202_infoperant_remunperant_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração'
         db_table = r's1202_infoperant_remunperant'       
         managed = True # s1202_infoperant_remunperant #
         unique_together = (
@@ -410,6 +416,7 @@ class s1202infoPerApurdetOper(SoftDeletionModel):
     #s1202_infoperapur_detoper_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento dos valores pagos a Operadoras de Planos de Saúde.'
         db_table = r's1202_infoperapur_detoper'       
         managed = True # s1202_infoperapur_detoper #
         unique_together = (
@@ -462,6 +469,7 @@ class s1202infoPerApurdetPlano(SoftDeletionModel):
     #s1202_infoperapur_detplano_custom#
 
     class Meta:
+        # verbose_name = u'Informações do dependente do plano privado de saúde.'
         db_table = r's1202_infoperapur_detplano'       
         managed = True # s1202_infoperapur_detplano #
         unique_together = (
@@ -511,6 +519,7 @@ class s1202infoPerApurideEstab(SoftDeletionModel):
     #s1202_infoperapur_ideestab_custom#
 
     class Meta:
+        # verbose_name = u'Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas'
         db_table = r's1202_infoperapur_ideestab'       
         managed = True # s1202_infoperapur_ideestab #
         unique_together = (
@@ -564,6 +573,7 @@ class s1202infoPerApuritensRemun(SoftDeletionModel):
     #s1202_infoperapur_itensremun_custom#
 
     class Meta:
+        # verbose_name = u'Registro que relaciona as rubricas que compõem a remuneração do trabalhador.'
         db_table = r's1202_infoperapur_itensremun'       
         managed = True # s1202_infoperapur_itensremun #
         unique_together = (
@@ -613,6 +623,7 @@ class s1202infoPerApurremunPerApur(SoftDeletionModel):
     #s1202_infoperapur_remunperapur_custom#
 
     class Meta:
+        # verbose_name = u'Informações relativas a remuneração do trabalhador no período de apuração'
         db_table = r's1202_infoperapur_remunperapur'       
         managed = True # s1202_infoperapur_remunperapur #
         unique_together = (
@@ -663,6 +674,7 @@ class s1202procJudTrab(SoftDeletionModel):
     #s1202_procjudtrab_custom#
 
     class Meta:
+        # verbose_name = u'Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.'
         db_table = r's1202_procjudtrab'       
         managed = True # s1202_procjudtrab #
         unique_together = (

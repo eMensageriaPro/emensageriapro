@@ -79,6 +79,7 @@ class r2030infoProc(SoftDeletionModel):
     #r2030_infoproc_custom#
 
     class Meta:
+        # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
         db_table = r'r2030_infoproc'       
         managed = True # r2030_infoproc #
         unique_together = (
@@ -130,6 +131,7 @@ class r2030infoRecurso(SoftDeletionModel):
     #r2030_inforecurso_custom#
 
     class Meta:
+        # verbose_name = u'Detalhamento dos recursos recebidos.'
         db_table = r'r2030_inforecurso'       
         managed = True # r2030_inforecurso #
         unique_together = (
@@ -181,6 +183,7 @@ class r2030recursosRec(SoftDeletionModel):
     #r2030_recursosrec_custom#
 
     class Meta:
+        # verbose_name = u'Registro preenchido exclusivamente por associação desportiva que mantenha equipe de futebol profissional, quando receber repasse de outras empresas a título de patrocínio, publicidade, licenciamento, etc'
         db_table = r'r2030_recursosrec'       
         managed = True # r2030_recursosrec #
         unique_together = (
