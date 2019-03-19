@@ -291,20 +291,19 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if usuarios_id:
-            users_form = form_users(request.POST or None,
-                                    instance = user,
-                                    slug = db_slug)
             usuarios_form = form_usuarios(request.POST or None,
                                 instance = usuarios,
                                 slug = db_slug,
                                 initial = {'excluido': False})
-        else:
             users_form = form_users(request.POST or None,
                                     instance = user,
                                     slug = db_slug)
+        else:
             usuarios_form = form_usuarios(request.POST or None,
                                 slug = db_slug,
                                 initial = {'excluido': False})
+            users_form = form_users(request.POST or None,
+                                    slug = db_slug)
         if request.method == 'POST':
             if usuarios_form.is_valid() and users_form.is_valid():
                 #usuarios_campos_multiple_passo1

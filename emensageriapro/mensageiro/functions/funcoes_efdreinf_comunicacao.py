@@ -53,14 +53,14 @@ from emensageriapro.mensageiro.functions.funcoes_esocial import TRANSMISSOR_STAT
     TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
 
 
-def definir_status_evento(transmissor_lote_esocial_id):
+def definir_status_evento(transmissor_lote_efdreinf_id):
     from django.apps import apps
 
     app_models = apps.get_app_config('esocial').get_models()
 
     for model in app_models:
 
-        lista = model.objects.using('default').filter(transmissor_lote_esocial_id=transmissor_lote_esocial_id).all()
+        lista = model.objects.using('default').filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf_id).all()
 
         for a in lista:
 

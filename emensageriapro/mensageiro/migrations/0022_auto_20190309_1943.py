@@ -12,6 +12,16 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunSQL("""
+
+        UPDATE transmissores SET transmissor_nrinsc='1';
+        UPDATE transmissores SET transmissor_tpinsc=1;
+        UPDATE transmissores SET empregador_nrinsc='1';
+        UPDATE transmissores SET empregador_tpinsc=1;
+        UPDATE transmissores SET contribuinte_nrinsc='1';
+        UPDATE transmissores SET contribuinte_tpinsc=1;
+
+        """),
         migrations.AlterField(
             model_name='transmissorlote',
             name='contribuinte_nrinsc',
