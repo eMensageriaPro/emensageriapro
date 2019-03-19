@@ -80,7 +80,9 @@ def get_ocorrencias(retornos_eventos_id):
     from django.forms.models import model_to_dict
     from emensageriapro.mensageiro.models import RetornosEventosOcorrencias
 
-    ocorrencias = RetornosEventosOcorrencias.objects.using( 'default' ).filter(excluido = False, retornos_eventos_id=retornos_eventos_id).all()
+    ocorrencias = RetornosEventosOcorrencias.objects.using( 'default' ).\
+        filter(excluido = False, retornos_eventos_id=retornos_eventos_id).all()
+
     lista_ocor = []
     for o in ocorrencias:
         lista_ocor.append(json.dumps(model_to_dict(o), indent=4, sort_keys=True, default=str))
@@ -377,7 +379,9 @@ def read_retornoEvento(doc, transmissor_lote_id):
             
             if codigo_resposta >= 300:
 
-                model.objects.using('default').filter(identidade=retorno_evento_dados['identidade']).\
+                model.objects.using('default').filter(
+                    identidade=retorno_evento_dados['identidade'],
+                    transmissor_lote_esocial_id=transmissor_lote_id).\
                     update(status=STATUS_EVENTO_ENVIADO_ERRO,
                            ocorrencias=get_ocorrencias(retorno_evento_id),
                            retornos_eventos_id=retorno_evento_id,
@@ -385,7 +389,9 @@ def read_retornoEvento(doc, transmissor_lote_id):
             
             elif codigo_resposta >= 201 and codigo_resposta < 300:
 
-                model.objects.using('default').filter(identidade=retorno_evento_dados['identidade']).\
+                model.objects.using('default').filter(
+                    identidade=retorno_evento_dados['identidade'],
+                    transmissor_lote_esocial_id=transmissor_lote_id).\
                     update(status=STATUS_EVENTO_PROCESSADO,
                            ocorrencias=get_ocorrencias(retorno_evento_id),
                            retornos_eventos_id=retorno_evento_id)

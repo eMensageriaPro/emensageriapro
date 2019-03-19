@@ -208,6 +208,8 @@ def enviar(request, hash=None):
         else:
             grupo = 3
 
+        txt = ''
+
         for a in lista:
 
             transmissor_esocial_lista = TransmissorLoteEsocial.objects.using('default').filter(
