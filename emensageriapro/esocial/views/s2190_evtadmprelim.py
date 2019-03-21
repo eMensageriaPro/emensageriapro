@@ -346,13 +346,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2190_evtadmprelim_id:
-            s2190_evtadmprelim_form = form_s2190_evtadmprelim(request.POST or None,
-                                         instance = s2190_evtadmprelim,
+            s2190_evtadmprelim_form = form_s2190_evtadmprelim(request.POST or None, instance = s2190_evtadmprelim,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2190_evtadmprelim_form = form_s2190_evtadmprelim(request.POST or None,
-                                         slug = db_slug,
+            s2190_evtadmprelim_form = form_s2190_evtadmprelim(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

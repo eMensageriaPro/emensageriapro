@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if efdreinf_classificacao_servicos_prestados_id:
-            efdreinf_classificacao_servicos_prestados_form = form_efdreinf_classificacao_servicos_prestados(request.POST or None,
-                                         instance = efdreinf_classificacao_servicos_prestados,
+            efdreinf_classificacao_servicos_prestados_form = form_efdreinf_classificacao_servicos_prestados(request.POST or None, instance = efdreinf_classificacao_servicos_prestados,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            efdreinf_classificacao_servicos_prestados_form = form_efdreinf_classificacao_servicos_prestados(request.POST or None,
-                                         slug = db_slug,
+            efdreinf_classificacao_servicos_prestados_form = form_efdreinf_classificacao_servicos_prestados(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if efdreinf_classificacao_servicos_prestados_form.is_valid():

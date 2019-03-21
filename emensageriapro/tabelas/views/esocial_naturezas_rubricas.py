@@ -322,13 +322,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_naturezas_rubricas_id:
-            esocial_naturezas_rubricas_form = form_esocial_naturezas_rubricas(request.POST or None,
-                                         instance = esocial_naturezas_rubricas,
+            esocial_naturezas_rubricas_form = form_esocial_naturezas_rubricas(request.POST or None, instance = esocial_naturezas_rubricas,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            esocial_naturezas_rubricas_form = form_esocial_naturezas_rubricas(request.POST or None,
-                                         slug = db_slug,
+            esocial_naturezas_rubricas_form = form_esocial_naturezas_rubricas(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_naturezas_rubricas_form.is_valid():

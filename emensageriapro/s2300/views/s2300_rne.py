@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2300_rne_id:
-            s2300_rne_form = form_s2300_rne(request.POST or None,
-                                         instance = s2300_rne,
+            s2300_rne_form = form_s2300_rne(request.POST or None, instance = s2300_rne,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2300_rne_form = form_s2300_rne(request.POST or None,
-                                         slug = db_slug,
+            s2300_rne_form = form_s2300_rne(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2300_rne_form.is_valid():

@@ -335,13 +335,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if transmissor_lote_efdreinf_id:
-            transmissor_lote_efdreinf_form = form_transmissor_lote_efdreinf(request.POST or None,
-                                instance = transmissor_lote_efdreinf,
+            transmissor_lote_efdreinf_form = form_transmissor_lote_efdreinf(request.POST or None, instance = transmissor_lote_efdreinf,
                                 slug = db_slug,
                                 initial = {'excluido': False})
         else:
-            transmissor_lote_efdreinf_form = form_transmissor_lote_efdreinf(request.POST or None,
-                                slug = db_slug,
+            transmissor_lote_efdreinf_form = form_transmissor_lote_efdreinf(request.POST or None, slug = db_slug,
                                 initial = {'excluido': False})
         if request.method == 'POST':
             if transmissor_lote_efdreinf_form.is_valid():

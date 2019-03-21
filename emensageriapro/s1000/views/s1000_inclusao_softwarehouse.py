@@ -318,13 +318,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1000_inclusao_softwarehouse_id:
-            s1000_inclusao_softwarehouse_form = form_s1000_inclusao_softwarehouse(request.POST or None,
-                                         instance = s1000_inclusao_softwarehouse,
+            s1000_inclusao_softwarehouse_form = form_s1000_inclusao_softwarehouse(request.POST or None, instance = s1000_inclusao_softwarehouse,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1000_inclusao_softwarehouse_form = form_s1000_inclusao_softwarehouse(request.POST or None,
-                                         slug = db_slug,
+            s1000_inclusao_softwarehouse_form = form_s1000_inclusao_softwarehouse(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1000_inclusao_softwarehouse_form.is_valid():

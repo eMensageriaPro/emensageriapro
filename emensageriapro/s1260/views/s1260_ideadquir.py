@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1260_ideadquir_id:
-            s1260_ideadquir_form = form_s1260_ideadquir(request.POST or None,
-                                         instance = s1260_ideadquir,
+            s1260_ideadquir_form = form_s1260_ideadquir(request.POST or None, instance = s1260_ideadquir,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1260_ideadquir_form = form_s1260_ideadquir(request.POST or None,
-                                         slug = db_slug,
+            s1260_ideadquir_form = form_s1260_ideadquir(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1260_ideadquir_form.is_valid():

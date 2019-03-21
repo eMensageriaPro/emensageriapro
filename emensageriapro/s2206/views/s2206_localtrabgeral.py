@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2206_localtrabgeral_id:
-            s2206_localtrabgeral_form = form_s2206_localtrabgeral(request.POST or None,
-                                         instance = s2206_localtrabgeral,
+            s2206_localtrabgeral_form = form_s2206_localtrabgeral(request.POST or None, instance = s2206_localtrabgeral,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2206_localtrabgeral_form = form_s2206_localtrabgeral(request.POST or None,
-                                         slug = db_slug,
+            s2206_localtrabgeral_form = form_s2206_localtrabgeral(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2206_localtrabgeral_form.is_valid():

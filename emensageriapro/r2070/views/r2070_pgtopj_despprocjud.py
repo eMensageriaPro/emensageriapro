@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2070_pgtopj_despprocjud_id:
-            r2070_pgtopj_despprocjud_form = form_r2070_pgtopj_despprocjud(request.POST or None,
-                                         instance = r2070_pgtopj_despprocjud,
+            r2070_pgtopj_despprocjud_form = form_r2070_pgtopj_despprocjud(request.POST or None, instance = r2070_pgtopj_despprocjud,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2070_pgtopj_despprocjud_form = form_r2070_pgtopj_despprocjud(request.POST or None,
-                                         slug = db_slug,
+            r2070_pgtopj_despprocjud_form = form_r2070_pgtopj_despprocjud(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r2070_pgtopj_despprocjud_form.is_valid():

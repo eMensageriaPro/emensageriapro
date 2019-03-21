@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1005_alteracao_infopcd_id:
-            s1005_alteracao_infopcd_form = form_s1005_alteracao_infopcd(request.POST or None,
-                                         instance = s1005_alteracao_infopcd,
+            s1005_alteracao_infopcd_form = form_s1005_alteracao_infopcd(request.POST or None, instance = s1005_alteracao_infopcd,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1005_alteracao_infopcd_form = form_s1005_alteracao_infopcd(request.POST or None,
-                                         slug = db_slug,
+            s1005_alteracao_infopcd_form = form_s1005_alteracao_infopcd(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1005_alteracao_infopcd_form.is_valid():

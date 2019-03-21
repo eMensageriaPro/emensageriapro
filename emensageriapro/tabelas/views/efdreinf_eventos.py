@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if efdreinf_eventos_id:
-            efdreinf_eventos_form = form_efdreinf_eventos(request.POST or None,
-                                         instance = efdreinf_eventos,
+            efdreinf_eventos_form = form_efdreinf_eventos(request.POST or None, instance = efdreinf_eventos,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            efdreinf_eventos_form = form_efdreinf_eventos(request.POST or None,
-                                         slug = db_slug,
+            efdreinf_eventos_form = form_efdreinf_eventos(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if efdreinf_eventos_form.is_valid():

@@ -347,13 +347,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if transmissores_id:
-            transmissores_form = form_transmissores(request.POST or None,
-                                instance = transmissores,
+            transmissores_form = form_transmissores(request.POST or None, instance = transmissores,
                                 slug = db_slug,
                                 initial = {'excluido': False})
         else:
-            transmissores_form = form_transmissores(request.POST or None,
-                                slug = db_slug,
+            transmissores_form = form_transmissores(request.POST or None, slug = db_slug,
                                 initial = {'excluido': False})
         if request.method == 'POST':
             if transmissores_form.is_valid():

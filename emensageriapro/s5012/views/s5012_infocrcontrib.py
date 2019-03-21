@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s5012_infocrcontrib_id:
-            s5012_infocrcontrib_form = form_s5012_infocrcontrib(request.POST or None,
-                                         instance = s5012_infocrcontrib,
+            s5012_infocrcontrib_form = form_s5012_infocrcontrib(request.POST or None, instance = s5012_infocrcontrib,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s5012_infocrcontrib_form = form_s5012_infocrcontrib(request.POST or None,
-                                         slug = db_slug,
+            s5012_infocrcontrib_form = form_s5012_infocrcontrib(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s5012_infocrcontrib_form.is_valid():

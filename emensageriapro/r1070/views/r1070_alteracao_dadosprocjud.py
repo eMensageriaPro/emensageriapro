@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r1070_alteracao_dadosprocjud_id:
-            r1070_alteracao_dadosprocjud_form = form_r1070_alteracao_dadosprocjud(request.POST or None,
-                                         instance = r1070_alteracao_dadosprocjud,
+            r1070_alteracao_dadosprocjud_form = form_r1070_alteracao_dadosprocjud(request.POST or None, instance = r1070_alteracao_dadosprocjud,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r1070_alteracao_dadosprocjud_form = form_r1070_alteracao_dadosprocjud(request.POST or None,
-                                         slug = db_slug,
+            r1070_alteracao_dadosprocjud_form = form_r1070_alteracao_dadosprocjud(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r1070_alteracao_dadosprocjud_form.is_valid():

@@ -343,13 +343,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1020_evttablotacao_id:
-            s1020_evttablotacao_form = form_s1020_evttablotacao(request.POST or None,
-                                         instance = s1020_evttablotacao,
+            s1020_evttablotacao_form = form_s1020_evttablotacao(request.POST or None, instance = s1020_evttablotacao,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1020_evttablotacao_form = form_s1020_evttablotacao(request.POST or None,
-                                         slug = db_slug,
+            s1020_evttablotacao_form = form_s1020_evttablotacao(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

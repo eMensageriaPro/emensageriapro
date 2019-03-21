@@ -343,13 +343,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1000_evtinfoempregador_id:
-            s1000_evtinfoempregador_form = form_s1000_evtinfoempregador(request.POST or None,
-                                         instance = s1000_evtinfoempregador,
+            s1000_evtinfoempregador_form = form_s1000_evtinfoempregador(request.POST or None, instance = s1000_evtinfoempregador,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1000_evtinfoempregador_form = form_s1000_evtinfoempregador(request.POST or None,
-                                         slug = db_slug,
+            s1000_evtinfoempregador_form = form_s1000_evtinfoempregador(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

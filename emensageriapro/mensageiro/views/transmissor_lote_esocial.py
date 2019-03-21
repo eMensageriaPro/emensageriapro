@@ -407,13 +407,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if transmissor_lote_esocial_id:
-            transmissor_lote_esocial_form = form_transmissor_lote_esocial(request.POST or None,
-                                instance = transmissor_lote_esocial,
+            transmissor_lote_esocial_form = form_transmissor_lote_esocial(request.POST or None, instance = transmissor_lote_esocial,
                                 slug = db_slug,
                                 initial = {'excluido': False})
         else:
-            transmissor_lote_esocial_form = form_transmissor_lote_esocial(request.POST or None,
-                                slug = db_slug,
+            transmissor_lote_esocial_form = form_transmissor_lote_esocial(request.POST or None, slug = db_slug,
                                 initial = {'excluido': False})
         if request.method == 'POST':
             if transmissor_lote_esocial_form.is_valid():

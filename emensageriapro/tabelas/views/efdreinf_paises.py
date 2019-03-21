@@ -311,13 +311,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if efdreinf_paises_id:
-            efdreinf_paises_form = form_efdreinf_paises(request.POST or None,
-                                         instance = efdreinf_paises,
+            efdreinf_paises_form = form_efdreinf_paises(request.POST or None, instance = efdreinf_paises,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            efdreinf_paises_form = form_efdreinf_paises(request.POST or None,
-                                         slug = db_slug,
+            efdreinf_paises_form = form_efdreinf_paises(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if efdreinf_paises_form.is_valid():

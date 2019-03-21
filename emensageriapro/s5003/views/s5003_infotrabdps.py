@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s5003_infotrabdps_id:
-            s5003_infotrabdps_form = form_s5003_infotrabdps(request.POST or None,
-                                         instance = s5003_infotrabdps,
+            s5003_infotrabdps_form = form_s5003_infotrabdps(request.POST or None, instance = s5003_infotrabdps,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s5003_infotrabdps_form = form_s5003_infotrabdps(request.POST or None,
-                                         slug = db_slug,
+            s5003_infotrabdps_form = form_s5003_infotrabdps(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s5003_infotrabdps_form.is_valid():

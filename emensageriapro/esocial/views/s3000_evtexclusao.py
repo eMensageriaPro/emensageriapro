@@ -347,13 +347,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s3000_evtexclusao_id:
-            s3000_evtexclusao_form = form_s3000_evtexclusao(request.POST or None,
-                                         instance = s3000_evtexclusao,
+            s3000_evtexclusao_form = form_s3000_evtexclusao(request.POST or None, instance = s3000_evtexclusao,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s3000_evtexclusao_form = form_s3000_evtexclusao(request.POST or None,
-                                         slug = db_slug,
+            s3000_evtexclusao_form = form_s3000_evtexclusao(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

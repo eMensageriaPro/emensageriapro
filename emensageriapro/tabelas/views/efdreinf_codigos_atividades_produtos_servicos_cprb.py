@@ -327,13 +327,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if efdreinf_codigos_atividades_produtos_servicos_cprb_id:
-            efdreinf_codigos_atividades_produtos_servicos_cprb_form = form_efdreinf_codigos_atividades_produtos_servicos_cprb(request.POST or None,
-                                         instance = efdreinf_codigos_atividades_produtos_servicos_cprb,
+            efdreinf_codigos_atividades_produtos_servicos_cprb_form = form_efdreinf_codigos_atividades_produtos_servicos_cprb(request.POST or None, instance = efdreinf_codigos_atividades_produtos_servicos_cprb,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            efdreinf_codigos_atividades_produtos_servicos_cprb_form = form_efdreinf_codigos_atividades_produtos_servicos_cprb(request.POST or None,
-                                         slug = db_slug,
+            efdreinf_codigos_atividades_produtos_servicos_cprb_form = form_efdreinf_codigos_atividades_produtos_servicos_cprb(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if efdreinf_codigos_atividades_produtos_servicos_cprb_form.is_valid():

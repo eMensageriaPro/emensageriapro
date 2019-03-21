@@ -275,13 +275,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if retornos_eventos_ocorrencias_id:
-            retornos_eventos_ocorrencias_form = form_retornos_eventos_ocorrencias(request.POST or None,
-                                instance = retornos_eventos_ocorrencias,
+            retornos_eventos_ocorrencias_form = form_retornos_eventos_ocorrencias(request.POST or None, instance = retornos_eventos_ocorrencias,
                                 slug = db_slug,
                                 initial = {'excluido': False})
         else:
-            retornos_eventos_ocorrencias_form = form_retornos_eventos_ocorrencias(request.POST or None,
-                                slug = db_slug,
+            retornos_eventos_ocorrencias_form = form_retornos_eventos_ocorrencias(request.POST or None, slug = db_slug,
                                 initial = {'excluido': False})
         if request.method == 'POST':
             if retornos_eventos_ocorrencias_form.is_valid():

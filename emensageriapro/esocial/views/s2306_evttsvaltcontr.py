@@ -369,13 +369,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2306_evttsvaltcontr_id:
-            s2306_evttsvaltcontr_form = form_s2306_evttsvaltcontr(request.POST or None,
-                                         instance = s2306_evttsvaltcontr,
+            s2306_evttsvaltcontr_form = form_s2306_evttsvaltcontr(request.POST or None, instance = s2306_evttsvaltcontr,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2306_evttsvaltcontr_form = form_s2306_evttsvaltcontr(request.POST or None,
-                                         slug = db_slug,
+            s2306_evttsvaltcontr_form = form_s2306_evttsvaltcontr(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

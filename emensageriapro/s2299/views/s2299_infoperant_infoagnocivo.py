@@ -306,13 +306,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2299_infoperant_infoagnocivo_id:
-            s2299_infoperant_infoagnocivo_form = form_s2299_infoperant_infoagnocivo(request.POST or None,
-                                         instance = s2299_infoperant_infoagnocivo,
+            s2299_infoperant_infoagnocivo_form = form_s2299_infoperant_infoagnocivo(request.POST or None, instance = s2299_infoperant_infoagnocivo,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2299_infoperant_infoagnocivo_form = form_s2299_infoperant_infoagnocivo(request.POST or None,
-                                         slug = db_slug,
+            s2299_infoperant_infoagnocivo_form = form_s2299_infoperant_infoagnocivo(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2299_infoperant_infoagnocivo_form.is_valid():

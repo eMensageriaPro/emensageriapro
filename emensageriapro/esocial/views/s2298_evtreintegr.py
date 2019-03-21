@@ -373,13 +373,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2298_evtreintegr_id:
-            s2298_evtreintegr_form = form_s2298_evtreintegr(request.POST or None,
-                                         instance = s2298_evtreintegr,
+            s2298_evtreintegr_form = form_s2298_evtreintegr(request.POST or None, instance = s2298_evtreintegr,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2298_evtreintegr_form = form_s2298_evtreintegr(request.POST or None,
-                                         slug = db_slug,
+            s2298_evtreintegr_form = form_s2298_evtreintegr(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

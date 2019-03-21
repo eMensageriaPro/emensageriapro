@@ -306,13 +306,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2070_depjudicial_id:
-            r2070_depjudicial_form = form_r2070_depjudicial(request.POST or None,
-                                         instance = r2070_depjudicial,
+            r2070_depjudicial_form = form_r2070_depjudicial(request.POST or None, instance = r2070_depjudicial,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2070_depjudicial_form = form_r2070_depjudicial(request.POST or None,
-                                         slug = db_slug,
+            r2070_depjudicial_form = form_r2070_depjudicial(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r2070_depjudicial_form.is_valid():

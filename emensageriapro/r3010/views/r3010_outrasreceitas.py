@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r3010_outrasreceitas_id:
-            r3010_outrasreceitas_form = form_r3010_outrasreceitas(request.POST or None,
-                                         instance = r3010_outrasreceitas,
+            r3010_outrasreceitas_form = form_r3010_outrasreceitas(request.POST or None, instance = r3010_outrasreceitas,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r3010_outrasreceitas_form = form_r3010_outrasreceitas(request.POST or None,
-                                         slug = db_slug,
+            r3010_outrasreceitas_form = form_r3010_outrasreceitas(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r3010_outrasreceitas_form.is_valid():

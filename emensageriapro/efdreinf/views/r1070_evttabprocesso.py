@@ -347,13 +347,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r1070_evttabprocesso_id:
-            r1070_evttabprocesso_form = form_r1070_evttabprocesso(request.POST or None,
-                                         instance = r1070_evttabprocesso,
+            r1070_evttabprocesso_form = form_r1070_evttabprocesso(request.POST or None, instance = r1070_evttabprocesso,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r1070_evttabprocesso_form = form_r1070_evttabprocesso(request.POST or None,
-                                         slug = db_slug,
+            r1070_evttabprocesso_form = form_r1070_evttabprocesso(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_EFDREINF,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

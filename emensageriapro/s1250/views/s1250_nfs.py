@@ -324,13 +324,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1250_nfs_id:
-            s1250_nfs_form = form_s1250_nfs(request.POST or None,
-                                         instance = s1250_nfs,
+            s1250_nfs_form = form_s1250_nfs(request.POST or None, instance = s1250_nfs,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1250_nfs_form = form_s1250_nfs(request.POST or None,
-                                         slug = db_slug,
+            s1250_nfs_form = form_s1250_nfs(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1250_nfs_form.is_valid():

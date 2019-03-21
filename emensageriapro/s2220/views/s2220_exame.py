@@ -327,13 +327,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2220_exame_id:
-            s2220_exame_form = form_s2220_exame(request.POST or None,
-                                         instance = s2220_exame,
+            s2220_exame_form = form_s2220_exame(request.POST or None, instance = s2220_exame,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2220_exame_form = form_s2220_exame(request.POST or None,
-                                         slug = db_slug,
+            s2220_exame_form = form_s2220_exame(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2220_exame_form.is_valid():

@@ -327,13 +327,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_codigo_aliquotas_fpas_terceiros_id:
-            esocial_codigo_aliquotas_fpas_terceiros_form = form_esocial_codigo_aliquotas_fpas_terceiros(request.POST or None,
-                                         instance = esocial_codigo_aliquotas_fpas_terceiros,
+            esocial_codigo_aliquotas_fpas_terceiros_form = form_esocial_codigo_aliquotas_fpas_terceiros(request.POST or None, instance = esocial_codigo_aliquotas_fpas_terceiros,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            esocial_codigo_aliquotas_fpas_terceiros_form = form_esocial_codigo_aliquotas_fpas_terceiros(request.POST or None,
-                                         slug = db_slug,
+            esocial_codigo_aliquotas_fpas_terceiros_form = form_esocial_codigo_aliquotas_fpas_terceiros(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_codigo_aliquotas_fpas_terceiros_form.is_valid():

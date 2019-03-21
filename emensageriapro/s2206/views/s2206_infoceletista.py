@@ -315,13 +315,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2206_infoceletista_id:
-            s2206_infoceletista_form = form_s2206_infoceletista(request.POST or None,
-                                         instance = s2206_infoceletista,
+            s2206_infoceletista_form = form_s2206_infoceletista(request.POST or None, instance = s2206_infoceletista,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2206_infoceletista_form = form_s2206_infoceletista(request.POST or None,
-                                         slug = db_slug,
+            s2206_infoceletista_form = form_s2206_infoceletista(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2206_infoceletista_form.is_valid():

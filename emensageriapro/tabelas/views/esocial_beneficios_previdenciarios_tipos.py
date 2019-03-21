@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_beneficios_previdenciarios_tipos_id:
-            esocial_beneficios_previdenciarios_tipos_form = form_esocial_beneficios_previdenciarios_tipos(request.POST or None,
-                                         instance = esocial_beneficios_previdenciarios_tipos,
+            esocial_beneficios_previdenciarios_tipos_form = form_esocial_beneficios_previdenciarios_tipos(request.POST or None, instance = esocial_beneficios_previdenciarios_tipos,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            esocial_beneficios_previdenciarios_tipos_form = form_esocial_beneficios_previdenciarios_tipos(request.POST or None,
-                                         slug = db_slug,
+            esocial_beneficios_previdenciarios_tipos_form = form_esocial_beneficios_previdenciarios_tipos(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_beneficios_previdenciarios_tipos_form.is_valid():

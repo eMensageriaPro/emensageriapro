@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2240_iniexprisco_obs_id:
-            s2240_iniexprisco_obs_form = form_s2240_iniexprisco_obs(request.POST or None,
-                                         instance = s2240_iniexprisco_obs,
+            s2240_iniexprisco_obs_form = form_s2240_iniexprisco_obs(request.POST or None, instance = s2240_iniexprisco_obs,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2240_iniexprisco_obs_form = form_s2240_iniexprisco_obs(request.POST or None,
-                                         slug = db_slug,
+            s2240_iniexprisco_obs_form = form_s2240_iniexprisco_obs(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2240_iniexprisco_obs_form.is_valid():

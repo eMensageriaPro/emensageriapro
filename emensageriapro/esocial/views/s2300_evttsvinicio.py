@@ -451,13 +451,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2300_evttsvinicio_id:
-            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None,
-                                         instance = s2300_evttsvinicio,
+            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, instance = s2300_evttsvinicio,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None,
-                                         slug = db_slug,
+            s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

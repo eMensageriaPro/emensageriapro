@@ -285,13 +285,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if config_permissoes_id:
-            config_permissoes_form = form_config_permissoes(request.POST or None,
-                                instance = config_permissoes,
+            config_permissoes_form = form_config_permissoes(request.POST or None, instance = config_permissoes,
                                 slug = db_slug,
                                 initial = {'excluido': False})
         else:
-            config_permissoes_form = form_config_permissoes(request.POST or None,
-                                slug = db_slug,
+            config_permissoes_form = form_config_permissoes(request.POST or None, slug = db_slug,
                                 initial = {'excluido': False})
         if request.method == 'POST':
             if config_permissoes_form.is_valid():

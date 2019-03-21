@@ -306,13 +306,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2231_fimcessao_id:
-            s2231_fimcessao_form = form_s2231_fimcessao(request.POST or None,
-                                         instance = s2231_fimcessao,
+            s2231_fimcessao_form = form_s2231_fimcessao(request.POST or None, instance = s2231_fimcessao,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2231_fimcessao_form = form_s2231_fimcessao(request.POST or None,
-                                         slug = db_slug,
+            s2231_fimcessao_form = form_s2231_fimcessao(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2231_fimcessao_form.is_valid():

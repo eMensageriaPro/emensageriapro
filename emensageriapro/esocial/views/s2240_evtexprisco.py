@@ -386,13 +386,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2240_evtexprisco_id:
-            s2240_evtexprisco_form = form_s2240_evtexprisco(request.POST or None,
-                                         instance = s2240_evtexprisco,
+            s2240_evtexprisco_form = form_s2240_evtexprisco(request.POST or None, instance = s2240_evtexprisco,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2240_evtexprisco_form = form_s2240_evtexprisco(request.POST or None,
-                                         slug = db_slug,
+            s2240_evtexprisco_form = form_s2240_evtexprisco(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

@@ -346,13 +346,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s5001_evtbasestrab_id:
-            s5001_evtbasestrab_form = form_s5001_evtbasestrab(request.POST or None,
-                                         instance = s5001_evtbasestrab,
+            s5001_evtbasestrab_form = form_s5001_evtbasestrab(request.POST or None, instance = s5001_evtbasestrab,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s5001_evtbasestrab_form = form_s5001_evtbasestrab(request.POST or None,
-                                         slug = db_slug,
+            s5001_evtbasestrab_form = form_s5001_evtbasestrab(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

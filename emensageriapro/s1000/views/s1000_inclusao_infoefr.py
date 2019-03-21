@@ -315,13 +315,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1000_inclusao_infoefr_id:
-            s1000_inclusao_infoefr_form = form_s1000_inclusao_infoefr(request.POST or None,
-                                         instance = s1000_inclusao_infoefr,
+            s1000_inclusao_infoefr_form = form_s1000_inclusao_infoefr(request.POST or None, instance = s1000_inclusao_infoefr,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1000_inclusao_infoefr_form = form_s1000_inclusao_infoefr(request.POST or None,
-                                         slug = db_slug,
+            s1000_inclusao_infoefr_form = form_s1000_inclusao_infoefr(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1000_inclusao_infoefr_form.is_valid():

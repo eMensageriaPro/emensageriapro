@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2416_suspensao_id:
-            s2416_suspensao_form = form_s2416_suspensao(request.POST or None,
-                                         instance = s2416_suspensao,
+            s2416_suspensao_form = form_s2416_suspensao(request.POST or None, instance = s2416_suspensao,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2416_suspensao_form = form_s2416_suspensao(request.POST or None,
-                                         slug = db_slug,
+            s2416_suspensao_form = form_s2416_suspensao(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2416_suspensao_form.is_valid():

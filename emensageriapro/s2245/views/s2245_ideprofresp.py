@@ -321,13 +321,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2245_ideprofresp_id:
-            s2245_ideprofresp_form = form_s2245_ideprofresp(request.POST or None,
-                                         instance = s2245_ideprofresp,
+            s2245_ideprofresp_form = form_s2245_ideprofresp(request.POST or None, instance = s2245_ideprofresp,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2245_ideprofresp_form = form_s2245_ideprofresp(request.POST or None,
-                                         slug = db_slug,
+            s2245_ideprofresp_form = form_s2245_ideprofresp(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2245_ideprofresp_form.is_valid():

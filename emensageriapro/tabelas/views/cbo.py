@@ -315,13 +315,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if cbo_id:
-            cbo_form = form_cbo(request.POST or None,
-                                         instance = cbo,
+            cbo_form = form_cbo(request.POST or None, instance = cbo,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            cbo_form = form_cbo(request.POST or None,
-                                         slug = db_slug,
+            cbo_form = form_cbo(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if cbo_form.is_valid():

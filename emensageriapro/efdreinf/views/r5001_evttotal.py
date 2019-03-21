@@ -363,13 +363,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r5001_evttotal_id:
-            r5001_evttotal_form = form_r5001_evttotal(request.POST or None,
-                                         instance = r5001_evttotal,
+            r5001_evttotal_form = form_r5001_evttotal(request.POST or None, instance = r5001_evttotal,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r5001_evttotal_form = form_r5001_evttotal(request.POST or None,
-                                         slug = db_slug,
+            r5001_evttotal_form = form_r5001_evttotal(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_EFDREINF,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

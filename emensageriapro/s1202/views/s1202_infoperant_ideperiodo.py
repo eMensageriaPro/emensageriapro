@@ -306,13 +306,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1202_infoperant_ideperiodo_id:
-            s1202_infoperant_ideperiodo_form = form_s1202_infoperant_ideperiodo(request.POST or None,
-                                         instance = s1202_infoperant_ideperiodo,
+            s1202_infoperant_ideperiodo_form = form_s1202_infoperant_ideperiodo(request.POST or None, instance = s1202_infoperant_ideperiodo,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1202_infoperant_ideperiodo_form = form_s1202_infoperant_ideperiodo(request.POST or None,
-                                         slug = db_slug,
+            s1202_infoperant_ideperiodo_form = form_s1202_infoperant_ideperiodo(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1202_infoperant_ideperiodo_form.is_valid():

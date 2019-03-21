@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r1000_exclusao_id:
-            r1000_exclusao_form = form_r1000_exclusao(request.POST or None,
-                                         instance = r1000_exclusao,
+            r1000_exclusao_form = form_r1000_exclusao(request.POST or None, instance = r1000_exclusao,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r1000_exclusao_form = form_r1000_exclusao(request.POST or None,
-                                         slug = db_slug,
+            r1000_exclusao_form = form_r1000_exclusao(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r1000_exclusao_form.is_valid():

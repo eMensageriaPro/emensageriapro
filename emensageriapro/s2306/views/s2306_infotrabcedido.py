@@ -306,13 +306,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2306_infotrabcedido_id:
-            s2306_infotrabcedido_form = form_s2306_infotrabcedido(request.POST or None,
-                                         instance = s2306_infotrabcedido,
+            s2306_infotrabcedido_form = form_s2306_infotrabcedido(request.POST or None, instance = s2306_infotrabcedido,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2306_infotrabcedido_form = form_s2306_infotrabcedido(request.POST or None,
-                                         slug = db_slug,
+            s2306_infotrabcedido_form = form_s2306_infotrabcedido(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2306_infotrabcedido_form.is_valid():

@@ -339,13 +339,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s5012_evtirrf_id:
-            s5012_evtirrf_form = form_s5012_evtirrf(request.POST or None,
-                                         instance = s5012_evtirrf,
+            s5012_evtirrf_form = form_s5012_evtirrf(request.POST or None, instance = s5012_evtirrf,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s5012_evtirrf_form = form_s5012_evtirrf(request.POST or None,
-                                         slug = db_slug,
+            s5012_evtirrf_form = form_s5012_evtirrf(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

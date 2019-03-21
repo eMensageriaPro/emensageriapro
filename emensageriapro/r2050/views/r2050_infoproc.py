@@ -321,13 +321,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2050_infoproc_id:
-            r2050_infoproc_form = form_r2050_infoproc(request.POST or None,
-                                         instance = r2050_infoproc,
+            r2050_infoproc_form = form_r2050_infoproc(request.POST or None, instance = r2050_infoproc,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2050_infoproc_form = form_r2050_infoproc(request.POST or None,
-                                         slug = db_slug,
+            r2050_infoproc_form = form_r2050_infoproc(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r2050_infoproc_form.is_valid():

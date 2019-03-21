@@ -362,13 +362,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1202_evtrmnrpps_id:
-            s1202_evtrmnrpps_form = form_s1202_evtrmnrpps(request.POST or None,
-                                         instance = s1202_evtrmnrpps,
+            s1202_evtrmnrpps_form = form_s1202_evtrmnrpps(request.POST or None, instance = s1202_evtrmnrpps,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1202_evtrmnrpps_form = form_s1202_evtrmnrpps(request.POST or None,
-                                         slug = db_slug,
+            s1202_evtrmnrpps_form = form_s1202_evtrmnrpps(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

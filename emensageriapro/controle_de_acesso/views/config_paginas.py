@@ -280,13 +280,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if config_paginas_id:
-            config_paginas_form = form_config_paginas(request.POST or None,
-                                instance = config_paginas,
+            config_paginas_form = form_config_paginas(request.POST or None, instance = config_paginas,
                                 slug = db_slug,
                                 initial = {'excluido': False})
         else:
-            config_paginas_form = form_config_paginas(request.POST or None,
-                                slug = db_slug,
+            config_paginas_form = form_config_paginas(request.POST or None, slug = db_slug,
                                 initial = {'excluido': False})
         if request.method == 'POST':
             if config_paginas_form.is_valid():

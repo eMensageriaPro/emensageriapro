@@ -306,13 +306,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1005_inclusao_infoobra_id:
-            s1005_inclusao_infoobra_form = form_s1005_inclusao_infoobra(request.POST or None,
-                                         instance = s1005_inclusao_infoobra,
+            s1005_inclusao_infoobra_form = form_s1005_inclusao_infoobra(request.POST or None, instance = s1005_inclusao_infoobra,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1005_inclusao_infoobra_form = form_s1005_inclusao_infoobra(request.POST or None,
-                                         slug = db_slug,
+            s1005_inclusao_infoobra_form = form_s1005_inclusao_infoobra(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1005_inclusao_infoobra_form.is_valid():

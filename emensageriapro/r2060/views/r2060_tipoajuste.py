@@ -318,13 +318,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2060_tipoajuste_id:
-            r2060_tipoajuste_form = form_r2060_tipoajuste(request.POST or None,
-                                         instance = r2060_tipoajuste,
+            r2060_tipoajuste_form = form_r2060_tipoajuste(request.POST or None, instance = r2060_tipoajuste,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2060_tipoajuste_form = form_r2060_tipoajuste(request.POST or None,
-                                         slug = db_slug,
+            r2060_tipoajuste_form = form_r2060_tipoajuste(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r2060_tipoajuste_form.is_valid():

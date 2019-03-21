@@ -330,13 +330,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1035_alteracao_id:
-            s1035_alteracao_form = form_s1035_alteracao(request.POST or None,
-                                         instance = s1035_alteracao,
+            s1035_alteracao_form = form_s1035_alteracao(request.POST or None, instance = s1035_alteracao,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1035_alteracao_form = form_s1035_alteracao(request.POST or None,
-                                         slug = db_slug,
+            s1035_alteracao_form = form_s1035_alteracao(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1035_alteracao_form.is_valid():

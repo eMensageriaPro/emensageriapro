@@ -315,13 +315,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1299_iderespinf_id:
-            s1299_iderespinf_form = form_s1299_iderespinf(request.POST or None,
-                                         instance = s1299_iderespinf,
+            s1299_iderespinf_form = form_s1299_iderespinf(request.POST or None, instance = s1299_iderespinf,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1299_iderespinf_form = form_s1299_iderespinf(request.POST or None,
-                                         slug = db_slug,
+            s1299_iderespinf_form = form_s1299_iderespinf(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1299_iderespinf_form.is_valid():

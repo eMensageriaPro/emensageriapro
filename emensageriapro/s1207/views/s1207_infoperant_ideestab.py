@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1207_infoperant_ideestab_id:
-            s1207_infoperant_ideestab_form = form_s1207_infoperant_ideestab(request.POST or None,
-                                         instance = s1207_infoperant_ideestab,
+            s1207_infoperant_ideestab_form = form_s1207_infoperant_ideestab(request.POST or None, instance = s1207_infoperant_ideestab,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1207_infoperant_ideestab_form = form_s1207_infoperant_ideestab(request.POST or None,
-                                         slug = db_slug,
+            s1207_infoperant_ideestab_form = form_s1207_infoperant_ideestab(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1207_infoperant_ideestab_form.is_valid():

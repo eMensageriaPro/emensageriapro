@@ -315,13 +315,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2040_inforecurso_id:
-            r2040_inforecurso_form = form_r2040_inforecurso(request.POST or None,
-                                         instance = r2040_inforecurso,
+            r2040_inforecurso_form = form_r2040_inforecurso(request.POST or None, instance = r2040_inforecurso,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2040_inforecurso_form = form_r2040_inforecurso(request.POST or None,
-                                         slug = db_slug,
+            r2040_inforecurso_form = form_r2040_inforecurso(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r2040_inforecurso_form.is_valid():

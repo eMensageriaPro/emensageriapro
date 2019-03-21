@@ -308,13 +308,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if regras_validacao_id:
-            regras_validacao_form = form_regras_validacao(request.POST or None,
-                                instance = regras_validacao,
+            regras_validacao_form = form_regras_validacao(request.POST or None, instance = regras_validacao,
                                 slug = db_slug,
                                 initial = {'excluido': False})
         else:
-            regras_validacao_form = form_regras_validacao(request.POST or None,
-                                slug = db_slug,
+            regras_validacao_form = form_regras_validacao(request.POST or None, slug = db_slug,
                                 initial = {'excluido': False})
         if request.method == 'POST':
             if regras_validacao_form.is_valid():

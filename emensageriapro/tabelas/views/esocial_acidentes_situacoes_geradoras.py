@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_acidentes_situacoes_geradoras_id:
-            esocial_acidentes_situacoes_geradoras_form = form_esocial_acidentes_situacoes_geradoras(request.POST or None,
-                                         instance = esocial_acidentes_situacoes_geradoras,
+            esocial_acidentes_situacoes_geradoras_form = form_esocial_acidentes_situacoes_geradoras(request.POST or None, instance = esocial_acidentes_situacoes_geradoras,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            esocial_acidentes_situacoes_geradoras_form = form_esocial_acidentes_situacoes_geradoras(request.POST or None,
-                                         slug = db_slug,
+            esocial_acidentes_situacoes_geradoras_form = form_esocial_acidentes_situacoes_geradoras(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_acidentes_situacoes_geradoras_form.is_valid():

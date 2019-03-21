@@ -368,13 +368,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2070_evtpgtosdivs_id:
-            r2070_evtpgtosdivs_form = form_r2070_evtpgtosdivs(request.POST or None,
-                                         instance = r2070_evtpgtosdivs,
+            r2070_evtpgtosdivs_form = form_r2070_evtpgtosdivs(request.POST or None, instance = r2070_evtpgtosdivs,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2070_evtpgtosdivs_form = form_r2070_evtpgtosdivs(request.POST or None,
-                                         slug = db_slug,
+            r2070_evtpgtosdivs_form = form_r2070_evtpgtosdivs(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_EFDREINF,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

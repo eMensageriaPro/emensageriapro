@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_programas_planos_documentos_id:
-            esocial_programas_planos_documentos_form = form_esocial_programas_planos_documentos(request.POST or None,
-                                         instance = esocial_programas_planos_documentos,
+            esocial_programas_planos_documentos_form = form_esocial_programas_planos_documentos(request.POST or None, instance = esocial_programas_planos_documentos,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            esocial_programas_planos_documentos_form = form_esocial_programas_planos_documentos(request.POST or None,
-                                         slug = db_slug,
+            esocial_programas_planos_documentos_form = form_esocial_programas_planos_documentos(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_programas_planos_documentos_form.is_valid():

@@ -365,13 +365,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1200_evtremun_id:
-            s1200_evtremun_form = form_s1200_evtremun(request.POST or None,
-                                         instance = s1200_evtremun,
+            s1200_evtremun_form = form_s1200_evtremun(request.POST or None, instance = s1200_evtremun,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1200_evtremun_form = form_s1200_evtremun(request.POST or None,
-                                         slug = db_slug,
+            s1200_evtremun_form = form_s1200_evtremun(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

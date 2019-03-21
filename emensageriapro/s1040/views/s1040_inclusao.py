@@ -324,13 +324,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1040_inclusao_id:
-            s1040_inclusao_form = form_s1040_inclusao(request.POST or None,
-                                         instance = s1040_inclusao,
+            s1040_inclusao_form = form_s1040_inclusao(request.POST or None, instance = s1040_inclusao,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1040_inclusao_form = form_s1040_inclusao(request.POST or None,
-                                         slug = db_slug,
+            s1040_inclusao_form = form_s1040_inclusao(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1040_inclusao_form.is_valid():

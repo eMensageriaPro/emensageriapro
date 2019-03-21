@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2410_homologtc_id:
-            s2410_homologtc_form = form_s2410_homologtc(request.POST or None,
-                                         instance = s2410_homologtc,
+            s2410_homologtc_form = form_s2410_homologtc(request.POST or None, instance = s2410_homologtc,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2410_homologtc_form = form_s2410_homologtc(request.POST or None,
-                                         slug = db_slug,
+            s2410_homologtc_form = form_s2410_homologtc(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2410_homologtc_form.is_valid():

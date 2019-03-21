@@ -357,13 +357,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if municipios_id:
-            municipios_form = form_municipios(request.POST or None,
-                                         instance = municipios,
+            municipios_form = form_municipios(request.POST or None, instance = municipios,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            municipios_form = form_municipios(request.POST or None,
-                                         slug = db_slug,
+            municipios_form = form_municipios(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if municipios_form.is_valid():

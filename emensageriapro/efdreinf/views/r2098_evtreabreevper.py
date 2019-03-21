@@ -341,13 +341,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2098_evtreabreevper_id:
-            r2098_evtreabreevper_form = form_r2098_evtreabreevper(request.POST or None,
-                                         instance = r2098_evtreabreevper,
+            r2098_evtreabreevper_form = form_r2098_evtreabreevper(request.POST or None, instance = r2098_evtreabreevper,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2098_evtreabreevper_form = form_r2098_evtreabreevper(request.POST or None,
-                                         slug = db_slug,
+            r2098_evtreabreevper_form = form_r2098_evtreabreevper(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_EFDREINF,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

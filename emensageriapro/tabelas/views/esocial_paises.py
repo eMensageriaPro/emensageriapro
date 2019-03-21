@@ -345,13 +345,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_paises_id:
-            esocial_paises_form = form_esocial_paises(request.POST or None,
-                                         instance = esocial_paises,
+            esocial_paises_form = form_esocial_paises(request.POST or None, instance = esocial_paises,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            esocial_paises_form = form_esocial_paises(request.POST or None,
-                                         slug = db_slug,
+            esocial_paises_form = form_esocial_paises(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_paises_form.is_valid():

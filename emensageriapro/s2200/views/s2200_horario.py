@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2200_horario_id:
-            s2200_horario_form = form_s2200_horario(request.POST or None,
-                                         instance = s2200_horario,
+            s2200_horario_form = form_s2200_horario(request.POST or None, instance = s2200_horario,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2200_horario_form = form_s2200_horario(request.POST or None,
-                                         slug = db_slug,
+            s2200_horario_form = form_s2200_horario(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2200_horario_form.is_valid():

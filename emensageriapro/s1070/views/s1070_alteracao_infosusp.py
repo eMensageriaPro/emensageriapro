@@ -315,13 +315,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1070_alteracao_infosusp_id:
-            s1070_alteracao_infosusp_form = form_s1070_alteracao_infosusp(request.POST or None,
-                                         instance = s1070_alteracao_infosusp,
+            s1070_alteracao_infosusp_form = form_s1070_alteracao_infosusp(request.POST or None, instance = s1070_alteracao_infosusp,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1070_alteracao_infosusp_form = form_s1070_alteracao_infosusp(request.POST or None,
-                                         slug = db_slug,
+            s1070_alteracao_infosusp_form = form_s1070_alteracao_infosusp(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1070_alteracao_infosusp_form.is_valid():

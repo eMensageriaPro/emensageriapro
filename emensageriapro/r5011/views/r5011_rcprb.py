@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r5011_rcprb_id:
-            r5011_rcprb_form = form_r5011_rcprb(request.POST or None,
-                                         instance = r5011_rcprb,
+            r5011_rcprb_form = form_r5011_rcprb(request.POST or None, instance = r5011_rcprb,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r5011_rcprb_form = form_r5011_rcprb(request.POST or None,
-                                         slug = db_slug,
+            r5011_rcprb_form = form_r5011_rcprb(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r5011_rcprb_form.is_valid():

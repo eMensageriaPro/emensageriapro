@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1005_alteracao_procadmjudfap_id:
-            s1005_alteracao_procadmjudfap_form = form_s1005_alteracao_procadmjudfap(request.POST or None,
-                                         instance = s1005_alteracao_procadmjudfap,
+            s1005_alteracao_procadmjudfap_form = form_s1005_alteracao_procadmjudfap(request.POST or None, instance = s1005_alteracao_procadmjudfap,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1005_alteracao_procadmjudfap_form = form_s1005_alteracao_procadmjudfap(request.POST or None,
-                                         slug = db_slug,
+            s1005_alteracao_procadmjudfap_form = form_s1005_alteracao_procadmjudfap(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1005_alteracao_procadmjudfap_form.is_valid():

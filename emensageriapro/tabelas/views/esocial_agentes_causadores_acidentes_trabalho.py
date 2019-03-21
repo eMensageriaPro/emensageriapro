@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_agentes_causadores_acidentes_trabalho_id:
-            esocial_agentes_causadores_acidentes_trabalho_form = form_esocial_agentes_causadores_acidentes_trabalho(request.POST or None,
-                                         instance = esocial_agentes_causadores_acidentes_trabalho,
+            esocial_agentes_causadores_acidentes_trabalho_form = form_esocial_agentes_causadores_acidentes_trabalho(request.POST or None, instance = esocial_agentes_causadores_acidentes_trabalho,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            esocial_agentes_causadores_acidentes_trabalho_form = form_esocial_agentes_causadores_acidentes_trabalho(request.POST or None,
-                                         slug = db_slug,
+            esocial_agentes_causadores_acidentes_trabalho_form = form_esocial_agentes_causadores_acidentes_trabalho(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_agentes_causadores_acidentes_trabalho_form.is_valid():

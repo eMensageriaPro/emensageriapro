@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2210_idelocalacid_id:
-            s2210_idelocalacid_form = form_s2210_idelocalacid(request.POST or None,
-                                         instance = s2210_idelocalacid,
+            s2210_idelocalacid_form = form_s2210_idelocalacid(request.POST or None, instance = s2210_idelocalacid,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2210_idelocalacid_form = form_s2210_idelocalacid(request.POST or None,
-                                         slug = db_slug,
+            s2210_idelocalacid_form = form_s2210_idelocalacid(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2210_idelocalacid_form.is_valid():

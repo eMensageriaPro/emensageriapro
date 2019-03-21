@@ -333,13 +333,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1270_remunavnp_id:
-            s1270_remunavnp_form = form_s1270_remunavnp(request.POST or None,
-                                         instance = s1270_remunavnp,
+            s1270_remunavnp_form = form_s1270_remunavnp(request.POST or None, instance = s1270_remunavnp,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1270_remunavnp_form = form_s1270_remunavnp(request.POST or None,
-                                         slug = db_slug,
+            s1270_remunavnp_form = form_s1270_remunavnp(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1270_remunavnp_form.is_valid():

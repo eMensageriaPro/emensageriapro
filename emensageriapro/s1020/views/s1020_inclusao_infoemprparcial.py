@@ -315,13 +315,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1020_inclusao_infoemprparcial_id:
-            s1020_inclusao_infoemprparcial_form = form_s1020_inclusao_infoemprparcial(request.POST or None,
-                                         instance = s1020_inclusao_infoemprparcial,
+            s1020_inclusao_infoemprparcial_form = form_s1020_inclusao_infoemprparcial(request.POST or None, instance = s1020_inclusao_infoemprparcial,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1020_inclusao_infoemprparcial_form = form_s1020_inclusao_infoemprparcial(request.POST or None,
-                                         slug = db_slug,
+            s1020_inclusao_infoemprparcial_form = form_s1020_inclusao_infoemprparcial(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1020_inclusao_infoemprparcial_form.is_valid():

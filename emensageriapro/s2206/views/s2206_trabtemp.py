@@ -306,13 +306,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2206_trabtemp_id:
-            s2206_trabtemp_form = form_s2206_trabtemp(request.POST or None,
-                                         instance = s2206_trabtemp,
+            s2206_trabtemp_form = form_s2206_trabtemp(request.POST or None, instance = s2206_trabtemp,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2206_trabtemp_form = form_s2206_trabtemp(request.POST or None,
-                                         slug = db_slug,
+            s2206_trabtemp_form = form_s2206_trabtemp(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2206_trabtemp_form.is_valid():

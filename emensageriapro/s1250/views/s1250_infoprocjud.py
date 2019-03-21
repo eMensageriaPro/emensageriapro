@@ -318,13 +318,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1250_infoprocjud_id:
-            s1250_infoprocjud_form = form_s1250_infoprocjud(request.POST or None,
-                                         instance = s1250_infoprocjud,
+            s1250_infoprocjud_form = form_s1250_infoprocjud(request.POST or None, instance = s1250_infoprocjud,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1250_infoprocjud_form = form_s1250_infoprocjud(request.POST or None,
-                                         slug = db_slug,
+            s1250_infoprocjud_form = form_s1250_infoprocjud(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1250_infoprocjud_form.is_valid():

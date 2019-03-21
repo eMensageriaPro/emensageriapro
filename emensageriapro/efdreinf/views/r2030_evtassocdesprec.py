@@ -358,13 +358,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2030_evtassocdesprec_id:
-            r2030_evtassocdesprec_form = form_r2030_evtassocdesprec(request.POST or None,
-                                         instance = r2030_evtassocdesprec,
+            r2030_evtassocdesprec_form = form_r2030_evtassocdesprec(request.POST or None, instance = r2030_evtassocdesprec,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2030_evtassocdesprec_form = form_r2030_evtassocdesprec(request.POST or None,
-                                         slug = db_slug,
+            r2030_evtassocdesprec_form = form_r2030_evtassocdesprec(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_EFDREINF,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

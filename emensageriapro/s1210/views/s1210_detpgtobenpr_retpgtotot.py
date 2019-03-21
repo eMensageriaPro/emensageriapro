@@ -321,13 +321,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1210_detpgtobenpr_retpgtotot_id:
-            s1210_detpgtobenpr_retpgtotot_form = form_s1210_detpgtobenpr_retpgtotot(request.POST or None,
-                                         instance = s1210_detpgtobenpr_retpgtotot,
+            s1210_detpgtobenpr_retpgtotot_form = form_s1210_detpgtobenpr_retpgtotot(request.POST or None, instance = s1210_detpgtobenpr_retpgtotot,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1210_detpgtobenpr_retpgtotot_form = form_s1210_detpgtobenpr_retpgtotot(request.POST or None,
-                                         slug = db_slug,
+            s1210_detpgtobenpr_retpgtotot_form = form_s1210_detpgtobenpr_retpgtotot(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1210_detpgtobenpr_retpgtotot_form.is_valid():

@@ -343,13 +343,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1050_evttabhortur_id:
-            s1050_evttabhortur_form = form_s1050_evttabhortur(request.POST or None,
-                                         instance = s1050_evttabhortur,
+            s1050_evttabhortur_form = form_s1050_evttabhortur(request.POST or None, instance = s1050_evttabhortur,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1050_evttabhortur_form = form_s1050_evttabhortur(request.POST or None,
-                                         slug = db_slug,
+            s1050_evttabhortur_form = form_s1050_evttabhortur(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

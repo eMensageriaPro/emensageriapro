@@ -277,13 +277,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if retornos_eventos_intervalos_id:
-            retornos_eventos_intervalos_form = form_retornos_eventos_intervalos(request.POST or None,
-                                instance = retornos_eventos_intervalos,
+            retornos_eventos_intervalos_form = form_retornos_eventos_intervalos(request.POST or None, instance = retornos_eventos_intervalos,
                                 slug = db_slug,
                                 initial = {'excluido': False})
         else:
-            retornos_eventos_intervalos_form = form_retornos_eventos_intervalos(request.POST or None,
-                                slug = db_slug,
+            retornos_eventos_intervalos_form = form_retornos_eventos_intervalos(request.POST or None, slug = db_slug,
                                 initial = {'excluido': False})
         if request.method == 'POST':
             if retornos_eventos_intervalos_form.is_valid():

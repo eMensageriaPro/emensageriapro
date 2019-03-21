@@ -343,13 +343,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1035_evttabcarreira_id:
-            s1035_evttabcarreira_form = form_s1035_evttabcarreira(request.POST or None,
-                                         instance = s1035_evttabcarreira,
+            s1035_evttabcarreira_form = form_s1035_evttabcarreira(request.POST or None, instance = s1035_evttabcarreira,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1035_evttabcarreira_form = form_s1035_evttabcarreira(request.POST or None,
-                                         slug = db_slug,
+            s1035_evttabcarreira_form = form_s1035_evttabcarreira(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

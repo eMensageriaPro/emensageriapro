@@ -318,13 +318,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2070_inforra_id:
-            r2070_inforra_form = form_r2070_inforra(request.POST or None,
-                                         instance = r2070_inforra,
+            r2070_inforra_form = form_r2070_inforra(request.POST or None, instance = r2070_inforra,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2070_inforra_form = form_r2070_inforra(request.POST or None,
-                                         slug = db_slug,
+            r2070_inforra_form = form_r2070_inforra(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r2070_inforra_form.is_valid():

@@ -309,13 +309,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1200_infoperapur_remunperapur_id:
-            s1200_infoperapur_remunperapur_form = form_s1200_infoperapur_remunperapur(request.POST or None,
-                                         instance = s1200_infoperapur_remunperapur,
+            s1200_infoperapur_remunperapur_form = form_s1200_infoperapur_remunperapur(request.POST or None, instance = s1200_infoperapur_remunperapur,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1200_infoperapur_remunperapur_form = form_s1200_infoperapur_remunperapur(request.POST or None,
-                                         slug = db_slug,
+            s1200_infoperapur_remunperapur_form = form_s1200_infoperapur_remunperapur(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1200_infoperapur_remunperapur_form.is_valid():

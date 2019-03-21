@@ -318,13 +318,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2070_pgtopf_id:
-            r2070_pgtopf_form = form_r2070_pgtopf(request.POST or None,
-                                         instance = r2070_pgtopf,
+            r2070_pgtopf_form = form_r2070_pgtopf(request.POST or None, instance = r2070_pgtopf,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2070_pgtopf_form = form_r2070_pgtopf(request.POST or None,
-                                         slug = db_slug,
+            r2070_pgtopf_form = form_r2070_pgtopf(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r2070_pgtopf_form.is_valid():

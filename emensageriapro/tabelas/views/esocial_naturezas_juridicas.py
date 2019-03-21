@@ -316,13 +316,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_naturezas_juridicas_id:
-            esocial_naturezas_juridicas_form = form_esocial_naturezas_juridicas(request.POST or None,
-                                         instance = esocial_naturezas_juridicas,
+            esocial_naturezas_juridicas_form = form_esocial_naturezas_juridicas(request.POST or None, instance = esocial_naturezas_juridicas,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            esocial_naturezas_juridicas_form = form_esocial_naturezas_juridicas(request.POST or None,
-                                         slug = db_slug,
+            esocial_naturezas_juridicas_form = form_esocial_naturezas_juridicas(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_naturezas_juridicas_form.is_valid():

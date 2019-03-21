@@ -363,13 +363,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if esocial_compatibilidades_lotacoes_classificacoes_id:
-            esocial_compatibilidades_lotacoes_classificacoes_form = form_esocial_compatibilidades_lotacoes_classificacoes(request.POST or None,
-                                         instance = esocial_compatibilidades_lotacoes_classificacoes,
+            esocial_compatibilidades_lotacoes_classificacoes_form = form_esocial_compatibilidades_lotacoes_classificacoes(request.POST or None, instance = esocial_compatibilidades_lotacoes_classificacoes,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            esocial_compatibilidades_lotacoes_classificacoes_form = form_esocial_compatibilidades_lotacoes_classificacoes(request.POST or None,
-                                         slug = db_slug,
+            esocial_compatibilidades_lotacoes_classificacoes_form = form_esocial_compatibilidades_lotacoes_classificacoes(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if esocial_compatibilidades_lotacoes_classificacoes_form.is_valid():

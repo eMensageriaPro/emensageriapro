@@ -352,13 +352,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1280_evtinfocomplper_id:
-            s1280_evtinfocomplper_form = form_s1280_evtinfocomplper(request.POST or None,
-                                         instance = s1280_evtinfocomplper,
+            s1280_evtinfocomplper_form = form_s1280_evtinfocomplper(request.POST or None, instance = s1280_evtinfocomplper,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1280_evtinfocomplper_form = form_s1280_evtinfocomplper(request.POST or None,
-                                         slug = db_slug,
+            s1280_evtinfocomplper_form = form_s1280_evtinfocomplper(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

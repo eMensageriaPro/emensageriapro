@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2250_cancavprevio_id:
-            s2250_cancavprevio_form = form_s2250_cancavprevio(request.POST or None,
-                                         instance = s2250_cancavprevio,
+            s2250_cancavprevio_form = form_s2250_cancavprevio(request.POST or None, instance = s2250_cancavprevio,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2250_cancavprevio_form = form_s2250_cancavprevio(request.POST or None,
-                                         slug = db_slug,
+            s2250_cancavprevio_form = form_s2250_cancavprevio(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2250_cancavprevio_form.is_valid():

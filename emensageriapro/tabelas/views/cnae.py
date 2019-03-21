@@ -318,13 +318,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if cnae_id:
-            cnae_form = form_cnae(request.POST or None,
-                                         instance = cnae,
+            cnae_form = form_cnae(request.POST or None, instance = cnae,
                                          slug = db_slug,
                                          initial = {'excluido': False})
         else:
-            cnae_form = form_cnae(request.POST or None,
-                                         slug = db_slug,
+            cnae_form = form_cnae(request.POST or None, slug = db_slug,
                                          initial = {'excluido': False})
         if request.method == 'POST':
             if cnae_form.is_valid():

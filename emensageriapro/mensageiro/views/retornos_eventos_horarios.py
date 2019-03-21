@@ -283,13 +283,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if retornos_eventos_horarios_id:
-            retornos_eventos_horarios_form = form_retornos_eventos_horarios(request.POST or None,
-                                instance = retornos_eventos_horarios,
+            retornos_eventos_horarios_form = form_retornos_eventos_horarios(request.POST or None, instance = retornos_eventos_horarios,
                                 slug = db_slug,
                                 initial = {'excluido': False})
         else:
-            retornos_eventos_horarios_form = form_retornos_eventos_horarios(request.POST or None,
-                                slug = db_slug,
+            retornos_eventos_horarios_form = form_retornos_eventos_horarios(request.POST or None, slug = db_slug,
                                 initial = {'excluido': False})
         if request.method == 'POST':
             if retornos_eventos_horarios_form.is_valid():

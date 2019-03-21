@@ -327,13 +327,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2200_brasil_id:
-            s2200_brasil_form = form_s2200_brasil(request.POST or None,
-                                         instance = s2200_brasil,
+            s2200_brasil_form = form_s2200_brasil(request.POST or None, instance = s2200_brasil,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2200_brasil_form = form_s2200_brasil(request.POST or None,
-                                         slug = db_slug,
+            s2200_brasil_form = form_s2200_brasil(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2200_brasil_form.is_valid():

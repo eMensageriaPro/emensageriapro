@@ -327,13 +327,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2206_localtrabdom_id:
-            s2206_localtrabdom_form = form_s2206_localtrabdom(request.POST or None,
-                                         instance = s2206_localtrabdom,
+            s2206_localtrabdom_form = form_s2206_localtrabdom(request.POST or None, instance = s2206_localtrabdom,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2206_localtrabdom_form = form_s2206_localtrabdom(request.POST or None,
-                                         slug = db_slug,
+            s2206_localtrabdom_form = form_s2206_localtrabdom(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2206_localtrabdom_form.is_valid():

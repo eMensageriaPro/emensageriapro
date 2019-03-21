@@ -372,13 +372,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2245_evttreicap_id:
-            s2245_evttreicap_form = form_s2245_evttreicap(request.POST or None,
-                                         instance = s2245_evttreicap,
+            s2245_evttreicap_form = form_s2245_evttreicap(request.POST or None, instance = s2245_evttreicap,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2245_evttreicap_form = form_s2245_evttreicap(request.POST or None,
-                                         slug = db_slug,
+            s2245_evttreicap_form = form_s2245_evttreicap(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

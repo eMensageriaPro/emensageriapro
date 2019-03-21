@@ -312,13 +312,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1207_itens_id:
-            s1207_itens_form = form_s1207_itens(request.POST or None,
-                                         instance = s1207_itens,
+            s1207_itens_form = form_s1207_itens(request.POST or None, instance = s1207_itens,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1207_itens_form = form_s1207_itens(request.POST or None,
-                                         slug = db_slug,
+            s1207_itens_form = form_s1207_itens(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s1207_itens_form.is_valid():

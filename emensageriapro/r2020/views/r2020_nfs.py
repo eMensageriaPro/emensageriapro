@@ -318,13 +318,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if r2020_nfs_id:
-            r2020_nfs_form = form_r2020_nfs(request.POST or None,
-                                         instance = r2020_nfs,
+            r2020_nfs_form = form_r2020_nfs(request.POST or None, instance = r2020_nfs,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            r2020_nfs_form = form_r2020_nfs(request.POST or None,
-                                         slug = db_slug,
+            r2020_nfs_form = form_r2020_nfs(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if r2020_nfs_form.is_valid():

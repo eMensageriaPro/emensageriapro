@@ -343,13 +343,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s1080_evttaboperport_id:
-            s1080_evttaboperport_form = form_s1080_evttaboperport(request.POST or None,
-                                         instance = s1080_evttaboperport,
+            s1080_evttaboperport_form = form_s1080_evttaboperport(request.POST or None, instance = s1080_evttaboperport,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s1080_evttaboperport_form = form_s1080_evttaboperport(request.POST or None,
-                                         slug = db_slug,
+            s1080_evttaboperport_form = form_s1080_evttaboperport(request.POST or None, slug = db_slug,
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL,
                                                   'status': STATUS_EVENTO_CADASTRADO,
                                                   'tpamb': TP_AMB,

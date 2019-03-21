@@ -324,13 +324,11 @@ def salvar(request, hash):
     if permissao.permite_visualizar:
         mensagem = None
         if s2400_exterior_id:
-            s2400_exterior_form = form_s2400_exterior(request.POST or None,
-                                         instance = s2400_exterior,
+            s2400_exterior_form = form_s2400_exterior(request.POST or None, instance = s2400_exterior,
                                          slug = db_slug,
                                          initial={'excluido': False})
         else:
-            s2400_exterior_form = form_s2400_exterior(request.POST or None,
-                                         slug = db_slug,
+            s2400_exterior_form = form_s2400_exterior(request.POST or None, slug = db_slug,
                                          initial={'excluido': False})
         if request.method == 'POST':
             if s2400_exterior_form.is_valid():
