@@ -75,7 +75,7 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 #
 # Acessando via webservice:
 #
-# curl -X GET http://localhost:8000/mapa-processamento/esocial-validar/ -H 'Authorization: Token XXXXXXX'
+# curl -X GET http://localhost:8000/mapa-processamento/esocial-validar/ -H 'Authorization: Token c6289c3d4f60f08b4251922994b77f2af305eea3'
 #
 
 
@@ -329,7 +329,34 @@ def consultar(request, hash=None):
         paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
         modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
-    lista_transmissores = TransmissorLoteEsocial.objects.using(db_slug).filter(status=1).all()
+    from django.apps import apps
+    from emensageriapro.mensageiro.models import TransmissorLote, TransmissorLoteEsocial, TransmissorEventosEsocial
+
+    lista_transmissores_esocial = []
+
+    app_models = apps.get_app_config('esocial').get_models()
+
+    for model in app_models:
+
+        STATUS = [
+            STATUS_EVENTO_AGUARD_ENVIO,
+            #STATUS_EVENTO_VALIDADO
+        ]
+
+        EVENTOS_GRUPOS = (
+            (1, u'1 - Eventos de Tabelas'),
+            (2, u'2 - Eventos Não Periódicos'),
+            (3, u'3 - Eventos Periódicos'),
+        )
+
+        lista = model.objects.using('default').filter(status=STATUS_EVENTO_ENVIADO).all()
+
+        for a in lista:
+
+            lista_transmissores_esocial.append(a.transmissor_lote_esocial_id)
+
+    lista_transmissores = TransmissorLoteEsocial.objects.using(db_slug).\
+        filter(transmissores_esocial_id__in=lista_transmissores_esocial).all()
 
     for a in lista_transmissores:
         send_xml(request, a.id, 'WsConsultarLoteEventos')
