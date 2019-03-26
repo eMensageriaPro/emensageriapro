@@ -244,6 +244,9 @@ def get_schema_name(arquivo):
         elif 'evtIrrf' in xml:
             schema_filename = '%s/%s/evtIrrf.xsd' % (tipo, versao)
 
+        elif 'evtToxic' in xml:
+            schema_filename = '%s/%s/evtToxic.xsd' % (tipo, versao)
+
     if tipo == 'efdreinf':
 
         if 'evtInfoContri' in xml:
