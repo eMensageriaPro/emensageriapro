@@ -82,8 +82,8 @@ CHOICES_S1202_INFOPERAPUR_TPINSC = (
 )
 
 CHOICES_S1202_TPTRIB = (
-    (2, u'2 - Contribuições sociais do trabalhador'),
     (2, u'2 - IRRF'),
+    (2, u'2 - Contribuições sociais do trabalhador'),
     (3, u'3 - FGTS'),
     (4, u'4 - Contribuição sindical'),
 )

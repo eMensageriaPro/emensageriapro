@@ -266,6 +266,8 @@ class form_usuarios(forms.ModelForm):
         self.fields['last_name'].widget.attrs['required'] = True        
         self.fields['email'].widget.attrs['required'] = True        
         self.fields['is_superuser'].widget.attrs['required'] = True        
+        self.fields['is_staff'].widget.attrs['readonly'] = True
+        self.fields['is_staff'].widget.attrs['disabled'] = True        
         self.fields['config_perfis'].queryset = ConfigPerfis.objects.using( slug ).filter(excluido=False).all()
         self.fields['config_perfis'].widget.attrs['required'] = True
 
@@ -294,7 +296,6 @@ class form_usuarios(forms.ModelForm):
             'criado_em', 'criado_por',
             'modificado_em', 'modificado_por',
             'password',
-            'is_staff',
             'is_active',
             'last_login',
             'date_joined',

@@ -166,6 +166,7 @@ def listar(request, hash):
                 'email__icontains': 'email__icontains',
                 'first_name__icontains': 'first_name__icontains',
                 'foto__icontains': 'foto__icontains',
+                'is_staff': 'is_staff',
                 'is_superuser': 'is_superuser',
                 'last_name__icontains': 'last_name__icontains',
                 'username__icontains': 'username__icontains',}
@@ -179,6 +180,7 @@ def listar(request, hash):
                 'email__icontains': 'email__icontains',
                 'first_name__icontains': 'first_name__icontains',
                 'foto__icontains': 'foto__icontains',
+                'is_staff': 'is_staff',
                 'is_superuser': 'is_superuser',
                 'last_name__icontains': 'last_name__icontains',
                 'username__icontains': 'username__icontains',}
