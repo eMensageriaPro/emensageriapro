@@ -99,11 +99,15 @@ def validar_schema(file_schema_xsd, file_xml, lang=None):
 def get_schema_name(arquivo):
     from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento, get_evento_nome
     from emensageriapro.padrao import ler_arquivo
+
     xml = ler_arquivo(arquivo).replace("s:", "")
+
     if 'eSocial' in xml:
         tipo = 'esocial'
+
     elif 'Reinf' in xml:
         tipo = 'efdreinf'
+
     versao = get_versao_evento(xml)
     schema_filename = ''
 

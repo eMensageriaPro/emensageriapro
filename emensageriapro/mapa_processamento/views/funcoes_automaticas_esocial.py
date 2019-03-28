@@ -356,7 +356,7 @@ def consultar(request, hash=None):
             lista_transmissores_esocial.append(a.transmissor_lote_esocial_id)
 
     lista_transmissores = TransmissorLoteEsocial.objects.using(db_slug).\
-        filter(transmissores_esocial_id__in=lista_transmissores_esocial).all()
+        filter(id__in=lista_transmissores_esocial).all()
 
     for a in lista_transmissores:
         send_xml(request, a.id, 'WsConsultarLoteEventos')
