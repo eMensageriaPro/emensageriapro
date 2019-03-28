@@ -97,7 +97,7 @@ def validar_schema(file_schema_xsd, file_xml, lang=None):
 
 
 def get_schema_name(arquivo):
-    from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
+    from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento, get_evento_nome
     from emensageriapro.padrao import ler_arquivo
     xml = ler_arquivo(arquivo).replace("s:", "")
     if 'eSocial' in xml:
@@ -107,192 +107,196 @@ def get_schema_name(arquivo):
     versao = get_versao_evento(xml)
     schema_filename = ''
 
-    if tipo == 'esocial':
+    # if tipo == 'esocial':
 
-        if 'evtInfoEmpregador' in xml:
-            schema_filename = '%s/%s/evtInfoEmpregador.xsd' % (tipo, versao)
+    evento_nome = get_evento_nome(xml)
 
-        elif 'evtTabEstab' in xml:
-            schema_filename = '%s/%s/evtTabEstab.xsd' % (tipo, versao)
+    schema_filename = '%s/%s/%s.xsd' % (tipo, versao, evento_nome)
 
-        elif 'evtTabRubrica' in xml:
-            schema_filename = '%s/%s/evtTabRubrica.xsd' % (tipo, versao)
-
-        elif 'evtTabLotacao' in xml:
-            schema_filename = '%s/%s/evtTabLotacao.xsd' % (tipo, versao)
-
-        elif 'evtTabCargo' in xml:
-            schema_filename = '%s/%s/evtTabCargo.xsd' % (tipo, versao)
-
-        elif 'evtTabCarreira' in xml:
-            schema_filename = '%s/%s/evtTabCarreira.xsd' % (tipo, versao)
-
-        elif 'evtTabFuncao' in xml:
-            schema_filename = '%s/%s/evtTabFuncao.xsd' % (tipo, versao)
-
-        elif 'evtTabHorTur' in xml:
-            schema_filename = '%s/%s/evtTabHorTur.xsd' % (tipo, versao)
-
-        elif 'evtTabAmbiente' in xml:
-            schema_filename = '%s/%s/evtTabAmbiente.xsd' % (tipo, versao)
-
-        elif 'evtTabProcesso' in xml:
-            schema_filename = '%s/%s/evtTabProcesso.xsd' % (tipo, versao)
-
-        elif 'evtTabOperPort' in xml:
-            schema_filename = '%s/%s/evtTabOperPort.xsd' % (tipo, versao)
-
-        elif 'evtRemun' in xml:
-            schema_filename = '%s/%s/evtRemun.xsd' % (tipo, versao)
-
-        elif 'evtRmnRPPS' in xml:
-            schema_filename = '%s/%s/evtRmnRPPS.xsd' % (tipo, versao)
-
-        elif 'evtBenPrRP' in xml:
-            schema_filename = '%s/%s/evtBenPrRP.xsd' % (tipo, versao)
-
-        elif 'evtPgtos' in xml:
-            schema_filename = '%s/%s/evtPgtos.xsd' % (tipo, versao)
-
-        elif 'evtAqProd' in xml:
-            schema_filename = '%s/%s/evtAqProd.xsd' % (tipo, versao)
-
-        elif 'evtComProd' in xml:
-            schema_filename = '%s/%s/evtComProd.xsd' % (tipo, versao)
-
-        elif 'evtContratAvNP' in xml:
-            schema_filename = '%s/%s/evtContratAvNP.xsd' % (tipo, versao)
-
-        elif 'evtInfoComplPer' in xml:
-            schema_filename = '%s/%s/evtInfoComplPer.xsd' % (tipo, versao)
-
-        elif 'evtTotConting' in xml:
-            schema_filename = '%s/%s/evtTotConting.xsd' % (tipo, versao)
-
-        elif 'evtReabreEvPer' in xml:
-            schema_filename = '%s/%s/evtReabreEvPer.xsd' % (tipo, versao)
-
-        elif 'evtFechaEvPer' in xml:
-            schema_filename = '%s/%s/evtFechaEvPer.xsd' % (tipo, versao)
-
-        elif 'evtContrSindPatr' in xml:
-            schema_filename = '%s/%s/evtContrSindPatr.xsd' % (tipo, versao)
-
-        elif 'evtAdmPrelim' in xml:
-            schema_filename = '%s/%s/evtAdmPrelim.xsd' % (tipo, versao)
-
-        elif 'evtAdmissao' in xml:
-            schema_filename = '%s/%s/evtAdmissao.xsd' % (tipo, versao)
-
-        elif 'evtAltCadastral' in xml:
-            schema_filename = '%s/%s/evtAltCadastral.xsd' % (tipo, versao)
-
-        elif 'evtAltContratual' in xml:
-            schema_filename = '%s/%s/evtAltContratual.xsd' % (tipo, versao)
-
-        elif 'evtCAT' in xml:
-            schema_filename = '%s/%s/evtCAT.xsd' % (tipo, versao)
-
-        elif 'evtMonit' in xml:
-            schema_filename = '%s/%s/evtMonit.xsd' % (tipo, versao)
-
-        elif 'evtAfastTemp' in xml:
-            schema_filename = '%s/%s/evtAfastTemp.xsd' % (tipo, versao)
-
-        elif 'evtExpRisco' in xml:
-            schema_filename = '%s/%s/evtExpRisco.xsd' % (tipo, versao)
-
-        elif 'evtInsApo' in xml:
-            schema_filename = '%s/%s/evtInsApo.xsd' % (tipo, versao)
-
-        elif 'evtAvPrevio' in xml:
-            schema_filename = '%s/%s/evtAvPrevio.xsd' % (tipo, versao)
-
-        elif 'evtConvInterm' in xml:
-            schema_filename = '%s/%s/evtConvInterm.xsd' % (tipo, versao)
-
-        elif 'evtReintegr' in xml:
-            schema_filename = '%s/%s/evtReintegr.xsd' % (tipo, versao)
-
-        elif 'evtDeslig' in xml:
-            schema_filename = '%s/%s/evtDeslig.xsd' % (tipo, versao)
-
-        elif 'evtTSVInicio' in xml:
-            schema_filename = '%s/%s/evtTSVInicio.xsd' % (tipo, versao)
-
-        elif 'evtTSVAltContr' in xml:
-            schema_filename = '%s/%s/evtTSVAltContr.xsd' % (tipo, versao)
-
-        elif 'evtTSVTermino' in xml:
-            schema_filename = '%s/%s/evtTSVTermino.xsd' % (tipo, versao)
-
-        elif 'evtCdBenPrRP' in xml:
-            schema_filename = '%s/%s/evtCdBenPrRP.xsd' % (tipo, versao)
-
-        elif 'evtExclusao' in xml:
-            schema_filename = '%s/%s/evtExclusao.xsd' % (tipo, versao)
-
-        elif 'evtBasesTrab' in xml:
-            schema_filename = '%s/%s/evtBasesTrab.xsd' % (tipo, versao)
-
-        elif 'evtIrrfBenef' in xml:
-            schema_filename = '%s/%s/evtIrrfBenef.xsd' % (tipo, versao)
-
-        elif 'evtCS' in xml:
-            schema_filename = '%s/%s/evtCS.xsd' % (tipo, versao)
-
-        elif 'evtIrrf' in xml:
-            schema_filename = '%s/%s/evtIrrf.xsd' % (tipo, versao)
-
-        elif 'evtToxic' in xml:
-            schema_filename = '%s/%s/evtToxic.xsd' % (tipo, versao)
-
-    if tipo == 'efdreinf':
-
-        if 'evtInfoContri' in xml:
-            schema_filename = '%s/%s/evtInfoContri.xsd' % (tipo, versao)
-
-        elif 'evtTabProcesso' in xml:
-            schema_filename = '%s/%s/evtTabProcesso.xsd' % (tipo, versao)
-
-        elif 'evtServTom' in xml:
-            schema_filename = '%s/%s/evtServTom.xsd' % (tipo, versao)
-
-        elif 'evtServPrest' in xml:
-            schema_filename = '%s/%s/evtServPrest.xsd' % (tipo, versao)
-
-        elif 'evtAssocDespRec' in xml:
-            schema_filename = '%s/%s/evtAssocDespRec.xsd' % (tipo, versao)
-
-        elif 'evtAssocDespRep' in xml:
-            schema_filename = '%s/%s/evtAssocDespRep.xsd' % (tipo, versao)
-
-        elif 'evtComProd' in xml:
-            schema_filename = '%s/%s/evtComProd.xsd' % (tipo, versao)
-
-        elif 'evtCPRB' in xml:
-            schema_filename = '%s/%s/evtCPRB.xsd' % (tipo, versao)
-
-        elif 'evtPgtosDivs' in xml:
-            schema_filename = '%s/%s/evtPgtosDivs' % (tipo, versao)
-
-        elif 'evtReabreEvPer' in xml:
-            schema_filename = '%s/%s/evtReabreEvPer.xsd' % (tipo, versao)
-
-        elif 'evtFechaEvPer' in xml:
-            schema_filename = '%s/%s/evtFechaEvPer.xsd' % (tipo, versao)
-
-        elif 'evtEspDesportivo' in xml:
-            schema_filename = '%s/%s/evtEspDesportivo.xsd' % (tipo, versao)
-
-        elif 'evtTotal' in xml:
-            schema_filename = '%s/%s/evtTotal.xsd' % (tipo, versao)
-
-        elif 'evtTotalContrib' in xml:
-            schema_filename = '%s/%s/evtTotalContrib.xsd' % (tipo, versao)
-
-        elif 'evtExclusao' in xml:
-            schema_filename = '%s/%s/evtExclusao.xsd' % (tipo, versao)
+    #     # if 'evtInfoEmpregador' in xml:
+    #     #     schema_filename = '%s/%s/evtInfoEmpregador.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTabEstab' in xml:
+    #     #     schema_filename = '%s/%s/evtTabEstab.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTabRubrica' in xml:
+    #     #     schema_filename = '%s/%s/evtTabRubrica.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTabLotacao' in xml:
+    #     #     schema_filename = '%s/%s/evtTabLotacao.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTabCargo' in xml:
+    #     #     schema_filename = '%s/%s/evtTabCargo.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTabCarreira' in xml:
+    #     #     schema_filename = '%s/%s/evtTabCarreira.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTabFuncao' in xml:
+    #     #     schema_filename = '%s/%s/evtTabFuncao.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTabHorTur' in xml:
+    #     #     schema_filename = '%s/%s/evtTabHorTur.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTabAmbiente' in xml:
+    #     #     schema_filename = '%s/%s/evtTabAmbiente.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTabProcesso' in xml:
+    #     #     schema_filename = '%s/%s/evtTabProcesso.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTabOperPort' in xml:
+    #     #     schema_filename = '%s/%s/evtTabOperPort.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtRemun' in xml:
+    #     #     schema_filename = '%s/%s/evtRemun.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtRmnRPPS' in xml:
+    #     #     schema_filename = '%s/%s/evtRmnRPPS.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtBenPrRP' in xml:
+    #     #     schema_filename = '%s/%s/evtBenPrRP.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtPgtos' in xml:
+    #     #     schema_filename = '%s/%s/evtPgtos.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtAqProd' in xml:
+    #     #     schema_filename = '%s/%s/evtAqProd.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtComProd' in xml:
+    #     #     schema_filename = '%s/%s/evtComProd.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtContratAvNP' in xml:
+    #     #     schema_filename = '%s/%s/evtContratAvNP.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtInfoComplPer' in xml:
+    #     #     schema_filename = '%s/%s/evtInfoComplPer.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTotConting' in xml:
+    #     #     schema_filename = '%s/%s/evtTotConting.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtReabreEvPer' in xml:
+    #     #     schema_filename = '%s/%s/evtReabreEvPer.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtFechaEvPer' in xml:
+    #     #     schema_filename = '%s/%s/evtFechaEvPer.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtContrSindPatr' in xml:
+    #     #     schema_filename = '%s/%s/evtContrSindPatr.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtAdmPrelim' in xml:
+    #     #     schema_filename = '%s/%s/evtAdmPrelim.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtAdmissao' in xml:
+    #     #     schema_filename = '%s/%s/evtAdmissao.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtAltCadastral' in xml:
+    #     #     schema_filename = '%s/%s/evtAltCadastral.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtAltContratual' in xml:
+    #     #     schema_filename = '%s/%s/evtAltContratual.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtCAT' in xml:
+    #     #     schema_filename = '%s/%s/evtCAT.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtMonit' in xml:
+    #     #     schema_filename = '%s/%s/evtMonit.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtAfastTemp' in xml:
+    #     #     schema_filename = '%s/%s/evtAfastTemp.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtExpRisco' in xml:
+    #     #     schema_filename = '%s/%s/evtExpRisco.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtInsApo' in xml:
+    #     #     schema_filename = '%s/%s/evtInsApo.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtAvPrevio' in xml:
+    #     #     schema_filename = '%s/%s/evtAvPrevio.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtConvInterm' in xml:
+    #     #     schema_filename = '%s/%s/evtConvInterm.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtReintegr' in xml:
+    #     #     schema_filename = '%s/%s/evtReintegr.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtDeslig' in xml:
+    #     #     schema_filename = '%s/%s/evtDeslig.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTSVInicio' in xml:
+    #     #     schema_filename = '%s/%s/evtTSVInicio.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTSVAltContr' in xml:
+    #     #     schema_filename = '%s/%s/evtTSVAltContr.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtTSVTermino' in xml:
+    #     #     schema_filename = '%s/%s/evtTSVTermino.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtCdBenPrRP' in xml:
+    #     #     schema_filename = '%s/%s/evtCdBenPrRP.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtExclusao' in xml:
+    #     #     schema_filename = '%s/%s/evtExclusao.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtBasesTrab' in xml:
+    #     #     schema_filename = '%s/%s/evtBasesTrab.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtIrrfBenef' in xml:
+    #     #     schema_filename = '%s/%s/evtIrrfBenef.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtCS' in xml:
+    #     #     schema_filename = '%s/%s/evtCS.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtIrrf' in xml:
+    #     #     schema_filename = '%s/%s/evtIrrf.xsd' % (tipo, versao)
+    #     #
+    #     # elif 'evtToxic' in xml:
+    #     #     schema_filename = '%s/%s/evtToxic.xsd' % (tipo, versao)
+    #
+    # if tipo == 'efdreinf':
+    #
+    #     if 'evtInfoContri' in xml:
+    #         schema_filename = '%s/%s/evtInfoContri.xsd' % (tipo, versao)
+    #
+    #     elif 'evtTabProcesso' in xml:
+    #         schema_filename = '%s/%s/evtTabProcesso.xsd' % (tipo, versao)
+    #
+    #     elif 'evtServTom' in xml:
+    #         schema_filename = '%s/%s/evtServTom.xsd' % (tipo, versao)
+    #
+    #     elif 'evtServPrest' in xml:
+    #         schema_filename = '%s/%s/evtServPrest.xsd' % (tipo, versao)
+    #
+    #     elif 'evtAssocDespRec' in xml:
+    #         schema_filename = '%s/%s/evtAssocDespRec.xsd' % (tipo, versao)
+    #
+    #     elif 'evtAssocDespRep' in xml:
+    #         schema_filename = '%s/%s/evtAssocDespRep.xsd' % (tipo, versao)
+    #
+    #     elif 'evtComProd' in xml:
+    #         schema_filename = '%s/%s/evtComProd.xsd' % (tipo, versao)
+    #
+    #     elif 'evtCPRB' in xml:
+    #         schema_filename = '%s/%s/evtCPRB.xsd' % (tipo, versao)
+    #
+    #     elif 'evtPgtosDivs' in xml:
+    #         schema_filename = '%s/%s/evtPgtosDivs' % (tipo, versao)
+    #
+    #     elif 'evtReabreEvPer' in xml:
+    #         schema_filename = '%s/%s/evtReabreEvPer.xsd' % (tipo, versao)
+    #
+    #     elif 'evtFechaEvPer' in xml:
+    #         schema_filename = '%s/%s/evtFechaEvPer.xsd' % (tipo, versao)
+    #
+    #     elif 'evtEspDesportivo' in xml:
+    #         schema_filename = '%s/%s/evtEspDesportivo.xsd' % (tipo, versao)
+    #
+    #     elif 'evtTotal' in xml:
+    #         schema_filename = '%s/%s/evtTotal.xsd' % (tipo, versao)
+    #
+    #     elif 'evtTotalContrib' in xml:
+    #         schema_filename = '%s/%s/evtTotalContrib.xsd' % (tipo, versao)
+    #
+    #     elif 'evtExclusao' in xml:
+    #         schema_filename = '%s/%s/evtExclusao.xsd' % (tipo, versao)
 
     return schema_filename
 

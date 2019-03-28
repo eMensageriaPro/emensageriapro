@@ -54,6 +54,13 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 
+def get_evento_nome(texto):
+    texto = texto.replace('/">', '">').replace('id="', 'Id="')
+    a = texto.split(' Id="')
+    b = a[0].split('"><')
+    return b[len(b)-1]
+
+
 def get_versao_evento(texto):
     texto = texto.replace('/">', '">')
     a = texto.split('">')
