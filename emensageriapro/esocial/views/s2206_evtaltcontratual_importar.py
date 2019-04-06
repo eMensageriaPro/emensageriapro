@@ -79,31 +79,56 @@ def read_s2206_evtaltcontratual_obj(doc, status, validar=False):
     s2206_evtaltcontratual_dados['identidade'] = doc.eSocial.evtAltContratual['Id']
     evtAltContratual = doc.eSocial.evtAltContratual
 
-    if 'indRetif' in dir(evtAltContratual.ideEvento): s2206_evtaltcontratual_dados['indretif'] = evtAltContratual.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtAltContratual.ideEvento): s2206_evtaltcontratual_dados['nrrecibo'] = evtAltContratual.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtAltContratual.ideEvento): s2206_evtaltcontratual_dados['tpamb'] = evtAltContratual.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtAltContratual.ideEvento): s2206_evtaltcontratual_dados['procemi'] = evtAltContratual.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtAltContratual.ideEvento): s2206_evtaltcontratual_dados['verproc'] = evtAltContratual.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtAltContratual.ideEmpregador): s2206_evtaltcontratual_dados['tpinsc'] = evtAltContratual.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtAltContratual.ideEmpregador): s2206_evtaltcontratual_dados['nrinsc'] = evtAltContratual.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtAltContratual.ideVinculo): s2206_evtaltcontratual_dados['cpftrab'] = evtAltContratual.ideVinculo.cpfTrab.cdata
-    if 'nisTrab' in dir(evtAltContratual.ideVinculo): s2206_evtaltcontratual_dados['nistrab'] = evtAltContratual.ideVinculo.nisTrab.cdata
-    if 'matricula' in dir(evtAltContratual.ideVinculo): s2206_evtaltcontratual_dados['matricula'] = evtAltContratual.ideVinculo.matricula.cdata
-    if 'dtAlteracao' in dir(evtAltContratual.altContratual): s2206_evtaltcontratual_dados['dtalteracao'] = evtAltContratual.altContratual.dtAlteracao.cdata
-    if 'dtEf' in dir(evtAltContratual.altContratual): s2206_evtaltcontratual_dados['dtef'] = evtAltContratual.altContratual.dtEf.cdata
-    if 'dscAlt' in dir(evtAltContratual.altContratual): s2206_evtaltcontratual_dados['dscalt'] = evtAltContratual.altContratual.dscAlt.cdata
-    if 'tpRegPrev' in dir(evtAltContratual.altContratual.vinculo): s2206_evtaltcontratual_dados['tpregprev'] = evtAltContratual.altContratual.vinculo.tpRegPrev.cdata
-    if 'codCargo' in dir(evtAltContratual.altContratual.infoContrato): s2206_evtaltcontratual_dados['codcargo'] = evtAltContratual.altContratual.infoContrato.codCargo.cdata
-    if 'codFuncao' in dir(evtAltContratual.altContratual.infoContrato): s2206_evtaltcontratual_dados['codfuncao'] = evtAltContratual.altContratual.infoContrato.codFuncao.cdata
-    if 'codCateg' in dir(evtAltContratual.altContratual.infoContrato): s2206_evtaltcontratual_dados['codcateg'] = evtAltContratual.altContratual.infoContrato.codCateg.cdata
-    if 'codCarreira' in dir(evtAltContratual.altContratual.infoContrato): s2206_evtaltcontratual_dados['codcarreira'] = evtAltContratual.altContratual.infoContrato.codCarreira.cdata
-    if 'dtIngrCarr' in dir(evtAltContratual.altContratual.infoContrato): s2206_evtaltcontratual_dados['dtingrcarr'] = evtAltContratual.altContratual.infoContrato.dtIngrCarr.cdata
-    if 'vrSalFx' in dir(evtAltContratual.altContratual.infoContrato.remuneracao): s2206_evtaltcontratual_dados['vrsalfx'] = evtAltContratual.altContratual.infoContrato.remuneracao.vrSalFx.cdata
-    if 'undSalFixo' in dir(evtAltContratual.altContratual.infoContrato.remuneracao): s2206_evtaltcontratual_dados['undsalfixo'] = evtAltContratual.altContratual.infoContrato.remuneracao.undSalFixo.cdata
-    if 'dscSalVar' in dir(evtAltContratual.altContratual.infoContrato.remuneracao): s2206_evtaltcontratual_dados['dscsalvar'] = evtAltContratual.altContratual.infoContrato.remuneracao.dscSalVar.cdata
-    if 'tpContr' in dir(evtAltContratual.altContratual.infoContrato.duracao): s2206_evtaltcontratual_dados['tpcontr'] = evtAltContratual.altContratual.infoContrato.duracao.tpContr.cdata
-    if 'dtTerm' in dir(evtAltContratual.altContratual.infoContrato.duracao): s2206_evtaltcontratual_dados['dtterm'] = evtAltContratual.altContratual.infoContrato.duracao.dtTerm.cdata
-    if 'objDet' in dir(evtAltContratual.altContratual.infoContrato.duracao): s2206_evtaltcontratual_dados['objdet'] = evtAltContratual.altContratual.infoContrato.duracao.objDet.cdata
+    try: s2206_evtaltcontratual_dados['indretif'] = evtAltContratual.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['nrrecibo'] = evtAltContratual.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['tpamb'] = evtAltContratual.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['procemi'] = evtAltContratual.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['verproc'] = evtAltContratual.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['tpinsc'] = evtAltContratual.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['nrinsc'] = evtAltContratual.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['cpftrab'] = evtAltContratual.ideVinculo.cpfTrab.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['nistrab'] = evtAltContratual.ideVinculo.nisTrab.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['matricula'] = evtAltContratual.ideVinculo.matricula.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['dtalteracao'] = evtAltContratual.altContratual.dtAlteracao.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['dtef'] = evtAltContratual.altContratual.dtEf.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['dscalt'] = evtAltContratual.altContratual.dscAlt.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['tpregprev'] = evtAltContratual.altContratual.vinculo.tpRegPrev.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['codcargo'] = evtAltContratual.altContratual.infoContrato.codCargo.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['codfuncao'] = evtAltContratual.altContratual.infoContrato.codFuncao.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['codcateg'] = evtAltContratual.altContratual.infoContrato.codCateg.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['codcarreira'] = evtAltContratual.altContratual.infoContrato.codCarreira.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['dtingrcarr'] = evtAltContratual.altContratual.infoContrato.dtIngrCarr.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['vrsalfx'] = evtAltContratual.altContratual.infoContrato.remuneracao.vrSalFx.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['undsalfixo'] = evtAltContratual.altContratual.infoContrato.remuneracao.undSalFixo.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['dscsalvar'] = evtAltContratual.altContratual.infoContrato.remuneracao.dscSalVar.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['tpcontr'] = evtAltContratual.altContratual.infoContrato.duracao.tpContr.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['dtterm'] = evtAltContratual.altContratual.infoContrato.duracao.dtTerm.cdata
+    except AttributeError: pass
+    try: s2206_evtaltcontratual_dados['objdet'] = evtAltContratual.altContratual.infoContrato.duracao.objDet.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtAltContratual.altContratual): s2206_evtaltcontratual_dados['operacao'] = 1
     elif 'alteracao' in dir(evtAltContratual.altContratual): s2206_evtaltcontratual_dados['operacao'] = 2
     elif 'exclusao' in dir(evtAltContratual.altContratual): s2206_evtaltcontratual_dados['operacao'] = 3
@@ -117,153 +142,185 @@ def read_s2206_evtaltcontratual_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtAltContratual['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'infoCeletista' in dir(evtAltContratual.altContratual.infoRegimeTrab):
+    if 'infoCeletista' in dir(evtAltContratual.altContratual.infoRegimeTrab) and evtAltContratual.altContratual.infoRegimeTrab.infoCeletista.cdata != '':
         for infoCeletista in evtAltContratual.altContratual.infoRegimeTrab.infoCeletista:
             s2206_infoceletista_dados = {}
             s2206_infoceletista_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual_id
 
-            if 'tpRegJor' in dir(infoCeletista): s2206_infoceletista_dados['tpregjor'] = infoCeletista.tpRegJor.cdata
-            if 'natAtividade' in dir(infoCeletista): s2206_infoceletista_dados['natatividade'] = infoCeletista.natAtividade.cdata
-            if 'dtBase' in dir(infoCeletista): s2206_infoceletista_dados['dtbase'] = infoCeletista.dtBase.cdata
-            if 'cnpjSindCategProf' in dir(infoCeletista): s2206_infoceletista_dados['cnpjsindcategprof'] = infoCeletista.cnpjSindCategProf.cdata
+            try: s2206_infoceletista_dados['tpregjor'] = infoCeletista.tpRegJor.cdata
+            except AttributeError: pass
+            try: s2206_infoceletista_dados['natatividade'] = infoCeletista.natAtividade.cdata
+            except AttributeError: pass
+            try: s2206_infoceletista_dados['dtbase'] = infoCeletista.dtBase.cdata
+            except AttributeError: pass
+            try: s2206_infoceletista_dados['cnpjsindcategprof'] = infoCeletista.cnpjSindCategProf.cdata
+            except AttributeError: pass
             insert = create_insert('s2206_infoceletista', s2206_infoceletista_dados)
             resp = executar_sql(insert, True)
             s2206_infoceletista_id = resp[0][0]
             #print s2206_infoceletista_id
 
-            if 'trabTemp' in dir(infoCeletista):
+            if 'trabTemp' in dir(infoCeletista) and infoCeletista.trabTemp.cdata != '':
                 for trabTemp in infoCeletista.trabTemp:
                     s2206_trabtemp_dados = {}
                     s2206_trabtemp_dados['s2206_infoceletista_id'] = s2206_infoceletista_id
 
-                    if 'justProrr' in dir(trabTemp): s2206_trabtemp_dados['justprorr'] = trabTemp.justProrr.cdata
+                    try: s2206_trabtemp_dados['justprorr'] = trabTemp.justProrr.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2206_trabtemp', s2206_trabtemp_dados)
                     resp = executar_sql(insert, True)
                     s2206_trabtemp_id = resp[0][0]
                     #print s2206_trabtemp_id
 
-            if 'aprend' in dir(infoCeletista):
+            if 'aprend' in dir(infoCeletista) and infoCeletista.aprend.cdata != '':
                 for aprend in infoCeletista.aprend:
                     s2206_aprend_dados = {}
                     s2206_aprend_dados['s2206_infoceletista_id'] = s2206_infoceletista_id
 
-                    if 'tpInsc' in dir(aprend): s2206_aprend_dados['tpinsc'] = aprend.tpInsc.cdata
-                    if 'nrInsc' in dir(aprend): s2206_aprend_dados['nrinsc'] = aprend.nrInsc.cdata
+                    try: s2206_aprend_dados['tpinsc'] = aprend.tpInsc.cdata
+                    except AttributeError: pass
+                    try: s2206_aprend_dados['nrinsc'] = aprend.nrInsc.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2206_aprend', s2206_aprend_dados)
                     resp = executar_sql(insert, True)
                     s2206_aprend_id = resp[0][0]
                     #print s2206_aprend_id
 
-    if 'infoEstatutario' in dir(evtAltContratual.altContratual.infoRegimeTrab):
+    if 'infoEstatutario' in dir(evtAltContratual.altContratual.infoRegimeTrab) and evtAltContratual.altContratual.infoRegimeTrab.infoEstatutario.cdata != '':
         for infoEstatutario in evtAltContratual.altContratual.infoRegimeTrab.infoEstatutario:
             s2206_infoestatutario_dados = {}
             s2206_infoestatutario_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual_id
 
-            if 'tpPlanRP' in dir(infoEstatutario): s2206_infoestatutario_dados['tpplanrp'] = infoEstatutario.tpPlanRP.cdata
-            if 'indTetoRGPS' in dir(infoEstatutario): s2206_infoestatutario_dados['indtetorgps'] = infoEstatutario.indTetoRGPS.cdata
-            if 'indAbonoPerm' in dir(infoEstatutario): s2206_infoestatutario_dados['indabonoperm'] = infoEstatutario.indAbonoPerm.cdata
-            if 'indParcRemun' in dir(infoEstatutario): s2206_infoestatutario_dados['indparcremun'] = infoEstatutario.indParcRemun.cdata
+            try: s2206_infoestatutario_dados['tpplanrp'] = infoEstatutario.tpPlanRP.cdata
+            except AttributeError: pass
+            try: s2206_infoestatutario_dados['indtetorgps'] = infoEstatutario.indTetoRGPS.cdata
+            except AttributeError: pass
+            try: s2206_infoestatutario_dados['indabonoperm'] = infoEstatutario.indAbonoPerm.cdata
+            except AttributeError: pass
+            try: s2206_infoestatutario_dados['indparcremun'] = infoEstatutario.indParcRemun.cdata
+            except AttributeError: pass
             insert = create_insert('s2206_infoestatutario', s2206_infoestatutario_dados)
             resp = executar_sql(insert, True)
             s2206_infoestatutario_id = resp[0][0]
             #print s2206_infoestatutario_id
 
-    if 'localTrabGeral' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho):
+    if 'localTrabGeral' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho) and evtAltContratual.altContratual.infoContrato.localTrabalho.localTrabGeral.cdata != '':
         for localTrabGeral in evtAltContratual.altContratual.infoContrato.localTrabalho.localTrabGeral:
             s2206_localtrabgeral_dados = {}
             s2206_localtrabgeral_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual_id
 
-            if 'tpInsc' in dir(localTrabGeral): s2206_localtrabgeral_dados['tpinsc'] = localTrabGeral.tpInsc.cdata
-            if 'nrInsc' in dir(localTrabGeral): s2206_localtrabgeral_dados['nrinsc'] = localTrabGeral.nrInsc.cdata
-            if 'descComp' in dir(localTrabGeral): s2206_localtrabgeral_dados['desccomp'] = localTrabGeral.descComp.cdata
+            try: s2206_localtrabgeral_dados['tpinsc'] = localTrabGeral.tpInsc.cdata
+            except AttributeError: pass
+            try: s2206_localtrabgeral_dados['nrinsc'] = localTrabGeral.nrInsc.cdata
+            except AttributeError: pass
+            try: s2206_localtrabgeral_dados['desccomp'] = localTrabGeral.descComp.cdata
+            except AttributeError: pass
             insert = create_insert('s2206_localtrabgeral', s2206_localtrabgeral_dados)
             resp = executar_sql(insert, True)
             s2206_localtrabgeral_id = resp[0][0]
             #print s2206_localtrabgeral_id
 
-    if 'localTrabDom' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho):
+    if 'localTrabDom' in dir(evtAltContratual.altContratual.infoContrato.localTrabalho) and evtAltContratual.altContratual.infoContrato.localTrabalho.localTrabDom.cdata != '':
         for localTrabDom in evtAltContratual.altContratual.infoContrato.localTrabalho.localTrabDom:
             s2206_localtrabdom_dados = {}
             s2206_localtrabdom_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual_id
 
-            if 'tpLograd' in dir(localTrabDom): s2206_localtrabdom_dados['tplograd'] = localTrabDom.tpLograd.cdata
-            if 'dscLograd' in dir(localTrabDom): s2206_localtrabdom_dados['dsclograd'] = localTrabDom.dscLograd.cdata
-            if 'nrLograd' in dir(localTrabDom): s2206_localtrabdom_dados['nrlograd'] = localTrabDom.nrLograd.cdata
-            if 'complemento' in dir(localTrabDom): s2206_localtrabdom_dados['complemento'] = localTrabDom.complemento.cdata
-            if 'bairro' in dir(localTrabDom): s2206_localtrabdom_dados['bairro'] = localTrabDom.bairro.cdata
-            if 'cep' in dir(localTrabDom): s2206_localtrabdom_dados['cep'] = localTrabDom.cep.cdata
-            if 'codMunic' in dir(localTrabDom): s2206_localtrabdom_dados['codmunic'] = localTrabDom.codMunic.cdata
-            if 'uf' in dir(localTrabDom): s2206_localtrabdom_dados['uf'] = localTrabDom.uf.cdata
+            try: s2206_localtrabdom_dados['tplograd'] = localTrabDom.tpLograd.cdata
+            except AttributeError: pass
+            try: s2206_localtrabdom_dados['dsclograd'] = localTrabDom.dscLograd.cdata
+            except AttributeError: pass
+            try: s2206_localtrabdom_dados['nrlograd'] = localTrabDom.nrLograd.cdata
+            except AttributeError: pass
+            try: s2206_localtrabdom_dados['complemento'] = localTrabDom.complemento.cdata
+            except AttributeError: pass
+            try: s2206_localtrabdom_dados['bairro'] = localTrabDom.bairro.cdata
+            except AttributeError: pass
+            try: s2206_localtrabdom_dados['cep'] = localTrabDom.cep.cdata
+            except AttributeError: pass
+            try: s2206_localtrabdom_dados['codmunic'] = localTrabDom.codMunic.cdata
+            except AttributeError: pass
+            try: s2206_localtrabdom_dados['uf'] = localTrabDom.uf.cdata
+            except AttributeError: pass
             insert = create_insert('s2206_localtrabdom', s2206_localtrabdom_dados)
             resp = executar_sql(insert, True)
             s2206_localtrabdom_id = resp[0][0]
             #print s2206_localtrabdom_id
 
-    if 'horContratual' in dir(evtAltContratual.altContratual.infoContrato):
+    if 'horContratual' in dir(evtAltContratual.altContratual.infoContrato) and evtAltContratual.altContratual.infoContrato.horContratual.cdata != '':
         for horContratual in evtAltContratual.altContratual.infoContrato.horContratual:
             s2206_horcontratual_dados = {}
             s2206_horcontratual_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual_id
 
-            if 'qtdHrsSem' in dir(horContratual): s2206_horcontratual_dados['qtdhrssem'] = horContratual.qtdHrsSem.cdata
-            if 'tpJornada' in dir(horContratual): s2206_horcontratual_dados['tpjornada'] = horContratual.tpJornada.cdata
-            if 'dscTpJorn' in dir(horContratual): s2206_horcontratual_dados['dsctpjorn'] = horContratual.dscTpJorn.cdata
-            if 'tmpParc' in dir(horContratual): s2206_horcontratual_dados['tmpparc'] = horContratual.tmpParc.cdata
+            try: s2206_horcontratual_dados['qtdhrssem'] = horContratual.qtdHrsSem.cdata
+            except AttributeError: pass
+            try: s2206_horcontratual_dados['tpjornada'] = horContratual.tpJornada.cdata
+            except AttributeError: pass
+            try: s2206_horcontratual_dados['dsctpjorn'] = horContratual.dscTpJorn.cdata
+            except AttributeError: pass
+            try: s2206_horcontratual_dados['tmpparc'] = horContratual.tmpParc.cdata
+            except AttributeError: pass
             insert = create_insert('s2206_horcontratual', s2206_horcontratual_dados)
             resp = executar_sql(insert, True)
             s2206_horcontratual_id = resp[0][0]
             #print s2206_horcontratual_id
 
-            if 'horario' in dir(horContratual):
+            if 'horario' in dir(horContratual) and horContratual.horario.cdata != '':
                 for horario in horContratual.horario:
                     s2206_horario_dados = {}
                     s2206_horario_dados['s2206_horcontratual_id'] = s2206_horcontratual_id
 
-                    if 'dia' in dir(horario): s2206_horario_dados['dia'] = horario.dia.cdata
-                    if 'codHorContrat' in dir(horario): s2206_horario_dados['codhorcontrat'] = horario.codHorContrat.cdata
+                    try: s2206_horario_dados['dia'] = horario.dia.cdata
+                    except AttributeError: pass
+                    try: s2206_horario_dados['codhorcontrat'] = horario.codHorContrat.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2206_horario', s2206_horario_dados)
                     resp = executar_sql(insert, True)
                     s2206_horario_id = resp[0][0]
                     #print s2206_horario_id
 
-    if 'filiacaoSindical' in dir(evtAltContratual.altContratual.infoContrato):
+    if 'filiacaoSindical' in dir(evtAltContratual.altContratual.infoContrato) and evtAltContratual.altContratual.infoContrato.filiacaoSindical.cdata != '':
         for filiacaoSindical in evtAltContratual.altContratual.infoContrato.filiacaoSindical:
             s2206_filiacaosindical_dados = {}
             s2206_filiacaosindical_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual_id
 
-            if 'cnpjSindTrab' in dir(filiacaoSindical): s2206_filiacaosindical_dados['cnpjsindtrab'] = filiacaoSindical.cnpjSindTrab.cdata
+            try: s2206_filiacaosindical_dados['cnpjsindtrab'] = filiacaoSindical.cnpjSindTrab.cdata
+            except AttributeError: pass
             insert = create_insert('s2206_filiacaosindical', s2206_filiacaosindical_dados)
             resp = executar_sql(insert, True)
             s2206_filiacaosindical_id = resp[0][0]
             #print s2206_filiacaosindical_id
 
-    if 'alvaraJudicial' in dir(evtAltContratual.altContratual.infoContrato):
+    if 'alvaraJudicial' in dir(evtAltContratual.altContratual.infoContrato) and evtAltContratual.altContratual.infoContrato.alvaraJudicial.cdata != '':
         for alvaraJudicial in evtAltContratual.altContratual.infoContrato.alvaraJudicial:
             s2206_alvarajudicial_dados = {}
             s2206_alvarajudicial_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual_id
 
-            if 'nrProcJud' in dir(alvaraJudicial): s2206_alvarajudicial_dados['nrprocjud'] = alvaraJudicial.nrProcJud.cdata
+            try: s2206_alvarajudicial_dados['nrprocjud'] = alvaraJudicial.nrProcJud.cdata
+            except AttributeError: pass
             insert = create_insert('s2206_alvarajudicial', s2206_alvarajudicial_dados)
             resp = executar_sql(insert, True)
             s2206_alvarajudicial_id = resp[0][0]
             #print s2206_alvarajudicial_id
 
-    if 'observacoes' in dir(evtAltContratual.altContratual.infoContrato):
+    if 'observacoes' in dir(evtAltContratual.altContratual.infoContrato) and evtAltContratual.altContratual.infoContrato.observacoes.cdata != '':
         for observacoes in evtAltContratual.altContratual.infoContrato.observacoes:
             s2206_observacoes_dados = {}
             s2206_observacoes_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual_id
 
-            if 'observacao' in dir(observacoes): s2206_observacoes_dados['observacao'] = observacoes.observacao.cdata
+            try: s2206_observacoes_dados['observacao'] = observacoes.observacao.cdata
+            except AttributeError: pass
             insert = create_insert('s2206_observacoes', s2206_observacoes_dados)
             resp = executar_sql(insert, True)
             s2206_observacoes_id = resp[0][0]
             #print s2206_observacoes_id
 
-    if 'servPubl' in dir(evtAltContratual.altContratual.infoContrato):
+    if 'servPubl' in dir(evtAltContratual.altContratual.infoContrato) and evtAltContratual.altContratual.infoContrato.servPubl.cdata != '':
         for servPubl in evtAltContratual.altContratual.infoContrato.servPubl:
             s2206_servpubl_dados = {}
             s2206_servpubl_dados['s2206_evtaltcontratual_id'] = s2206_evtaltcontratual_id
 
-            if 'mtvAlter' in dir(servPubl): s2206_servpubl_dados['mtvalter'] = servPubl.mtvAlter.cdata
+            try: s2206_servpubl_dados['mtvalter'] = servPubl.mtvAlter.cdata
+            except AttributeError: pass
             insert = create_insert('s2206_servpubl', s2206_servpubl_dados)
             resp = executar_sql(insert, True)
             s2206_servpubl_id = resp[0][0]

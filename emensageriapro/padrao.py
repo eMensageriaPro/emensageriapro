@@ -227,7 +227,7 @@ def create_insert(tabela, dados):
         campos_numericos_lista.append(a[0])
     valores = ''
     for a in variaveis:
-        if dados[a] or dados[a] == 0:
+        if dados[a] or dados[a] == '' or dados[a] == 0:
             if (a in campos_numericos_lista):
                 valores += "%s, " % str(dados[a]).replace('.','').replace(',','.')
             else:

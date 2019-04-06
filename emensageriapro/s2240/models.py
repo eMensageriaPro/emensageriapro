@@ -120,7 +120,7 @@ CHOICES_S2240_INIEXPRISCO_HIGIENIZACAO = (
 
 CHOICES_S2240_INIEXPRISCO_IDEOC = (
     (1, u'1 - Conselho Regional de Medicina (CRM)'),
-    (2, u'2 - Conselho Regional de Engenharia e Agronomia (CREA)'),
+    (4, u'4 - Conselho Regional de Engenharia e Agronomia (CREA)'),
     (9, u'9 - Outros'),
 )
 

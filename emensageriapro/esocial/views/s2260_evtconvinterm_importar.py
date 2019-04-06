@@ -79,23 +79,40 @@ def read_s2260_evtconvinterm_obj(doc, status, validar=False):
     s2260_evtconvinterm_dados['identidade'] = doc.eSocial.evtConvInterm['Id']
     evtConvInterm = doc.eSocial.evtConvInterm
 
-    if 'indRetif' in dir(evtConvInterm.ideEvento): s2260_evtconvinterm_dados['indretif'] = evtConvInterm.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtConvInterm.ideEvento): s2260_evtconvinterm_dados['nrrecibo'] = evtConvInterm.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtConvInterm.ideEvento): s2260_evtconvinterm_dados['tpamb'] = evtConvInterm.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtConvInterm.ideEvento): s2260_evtconvinterm_dados['procemi'] = evtConvInterm.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtConvInterm.ideEvento): s2260_evtconvinterm_dados['verproc'] = evtConvInterm.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtConvInterm.ideEmpregador): s2260_evtconvinterm_dados['tpinsc'] = evtConvInterm.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtConvInterm.ideEmpregador): s2260_evtconvinterm_dados['nrinsc'] = evtConvInterm.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtConvInterm.ideVinculo): s2260_evtconvinterm_dados['cpftrab'] = evtConvInterm.ideVinculo.cpfTrab.cdata
-    if 'nisTrab' in dir(evtConvInterm.ideVinculo): s2260_evtconvinterm_dados['nistrab'] = evtConvInterm.ideVinculo.nisTrab.cdata
-    if 'matricula' in dir(evtConvInterm.ideVinculo): s2260_evtconvinterm_dados['matricula'] = evtConvInterm.ideVinculo.matricula.cdata
-    if 'codConv' in dir(evtConvInterm.infoConvInterm): s2260_evtconvinterm_dados['codconv'] = evtConvInterm.infoConvInterm.codConv.cdata
-    if 'dtInicio' in dir(evtConvInterm.infoConvInterm): s2260_evtconvinterm_dados['dtinicio'] = evtConvInterm.infoConvInterm.dtInicio.cdata
-    if 'dtFim' in dir(evtConvInterm.infoConvInterm): s2260_evtconvinterm_dados['dtfim'] = evtConvInterm.infoConvInterm.dtFim.cdata
-    if 'dtPrevPgto' in dir(evtConvInterm.infoConvInterm): s2260_evtconvinterm_dados['dtprevpgto'] = evtConvInterm.infoConvInterm.dtPrevPgto.cdata
-    if 'codHorContrat' in dir(evtConvInterm.infoConvInterm.jornada): s2260_evtconvinterm_dados['codhorcontrat'] = evtConvInterm.infoConvInterm.jornada.codHorContrat.cdata
-    if 'dscJornada' in dir(evtConvInterm.infoConvInterm.jornada): s2260_evtconvinterm_dados['dscjornada'] = evtConvInterm.infoConvInterm.jornada.dscJornada.cdata
-    if 'indLocal' in dir(evtConvInterm.infoConvInterm.localTrab): s2260_evtconvinterm_dados['indlocal'] = evtConvInterm.infoConvInterm.localTrab.indLocal.cdata
+    try: s2260_evtconvinterm_dados['indretif'] = evtConvInterm.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['nrrecibo'] = evtConvInterm.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['tpamb'] = evtConvInterm.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['procemi'] = evtConvInterm.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['verproc'] = evtConvInterm.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['tpinsc'] = evtConvInterm.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['nrinsc'] = evtConvInterm.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['cpftrab'] = evtConvInterm.ideVinculo.cpfTrab.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['nistrab'] = evtConvInterm.ideVinculo.nisTrab.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['matricula'] = evtConvInterm.ideVinculo.matricula.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['codconv'] = evtConvInterm.infoConvInterm.codConv.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['dtinicio'] = evtConvInterm.infoConvInterm.dtInicio.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['dtfim'] = evtConvInterm.infoConvInterm.dtFim.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['dtprevpgto'] = evtConvInterm.infoConvInterm.dtPrevPgto.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['codhorcontrat'] = evtConvInterm.infoConvInterm.jornada.codHorContrat.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['dscjornada'] = evtConvInterm.infoConvInterm.jornada.dscJornada.cdata
+    except AttributeError: pass
+    try: s2260_evtconvinterm_dados['indlocal'] = evtConvInterm.infoConvInterm.localTrab.indLocal.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtConvInterm.infoConvInterm): s2260_evtconvinterm_dados['operacao'] = 1
     elif 'alteracao' in dir(evtConvInterm.infoConvInterm): s2260_evtconvinterm_dados['operacao'] = 2
     elif 'exclusao' in dir(evtConvInterm.infoConvInterm): s2260_evtconvinterm_dados['operacao'] = 3
@@ -109,19 +126,27 @@ def read_s2260_evtconvinterm_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtConvInterm['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'localTrabInterm' in dir(evtConvInterm.infoConvInterm.localTrab):
+    if 'localTrabInterm' in dir(evtConvInterm.infoConvInterm.localTrab) and evtConvInterm.infoConvInterm.localTrab.localTrabInterm.cdata != '':
         for localTrabInterm in evtConvInterm.infoConvInterm.localTrab.localTrabInterm:
             s2260_localtrabinterm_dados = {}
             s2260_localtrabinterm_dados['s2260_evtconvinterm_id'] = s2260_evtconvinterm_id
 
-            if 'tpLograd' in dir(localTrabInterm): s2260_localtrabinterm_dados['tplograd'] = localTrabInterm.tpLograd.cdata
-            if 'dscLograd' in dir(localTrabInterm): s2260_localtrabinterm_dados['dsclograd'] = localTrabInterm.dscLograd.cdata
-            if 'nrLograd' in dir(localTrabInterm): s2260_localtrabinterm_dados['nrlograd'] = localTrabInterm.nrLograd.cdata
-            if 'complem' in dir(localTrabInterm): s2260_localtrabinterm_dados['complem'] = localTrabInterm.complem.cdata
-            if 'bairro' in dir(localTrabInterm): s2260_localtrabinterm_dados['bairro'] = localTrabInterm.bairro.cdata
-            if 'cep' in dir(localTrabInterm): s2260_localtrabinterm_dados['cep'] = localTrabInterm.cep.cdata
-            if 'codMunic' in dir(localTrabInterm): s2260_localtrabinterm_dados['codmunic'] = localTrabInterm.codMunic.cdata
-            if 'uf' in dir(localTrabInterm): s2260_localtrabinterm_dados['uf'] = localTrabInterm.uf.cdata
+            try: s2260_localtrabinterm_dados['tplograd'] = localTrabInterm.tpLograd.cdata
+            except AttributeError: pass
+            try: s2260_localtrabinterm_dados['dsclograd'] = localTrabInterm.dscLograd.cdata
+            except AttributeError: pass
+            try: s2260_localtrabinterm_dados['nrlograd'] = localTrabInterm.nrLograd.cdata
+            except AttributeError: pass
+            try: s2260_localtrabinterm_dados['complem'] = localTrabInterm.complem.cdata
+            except AttributeError: pass
+            try: s2260_localtrabinterm_dados['bairro'] = localTrabInterm.bairro.cdata
+            except AttributeError: pass
+            try: s2260_localtrabinterm_dados['cep'] = localTrabInterm.cep.cdata
+            except AttributeError: pass
+            try: s2260_localtrabinterm_dados['codmunic'] = localTrabInterm.codMunic.cdata
+            except AttributeError: pass
+            try: s2260_localtrabinterm_dados['uf'] = localTrabInterm.uf.cdata
+            except AttributeError: pass
             insert = create_insert('s2260_localtrabinterm', s2260_localtrabinterm_dados)
             resp = executar_sql(insert, True)
             s2260_localtrabinterm_id = resp[0][0]

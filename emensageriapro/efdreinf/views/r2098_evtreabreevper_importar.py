@@ -79,12 +79,18 @@ def read_r2098_evtreabreevper_obj(doc, status, validar=False):
     r2098_evtreabreevper_dados['identidade'] = doc.Reinf.evtReabreEvPer['id']
     evtReabreEvPer = doc.Reinf.evtReabreEvPer
 
-    if 'perApur' in dir(evtReabreEvPer.ideEvento): r2098_evtreabreevper_dados['perapur'] = evtReabreEvPer.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtReabreEvPer.ideEvento): r2098_evtreabreevper_dados['tpamb'] = evtReabreEvPer.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtReabreEvPer.ideEvento): r2098_evtreabreevper_dados['procemi'] = evtReabreEvPer.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtReabreEvPer.ideEvento): r2098_evtreabreevper_dados['verproc'] = evtReabreEvPer.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtReabreEvPer.ideContri): r2098_evtreabreevper_dados['tpinsc'] = evtReabreEvPer.ideContri.tpInsc.cdata
-    if 'nrInsc' in dir(evtReabreEvPer.ideContri): r2098_evtreabreevper_dados['nrinsc'] = evtReabreEvPer.ideContri.nrInsc.cdata
+    try: r2098_evtreabreevper_dados['perapur'] = evtReabreEvPer.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: r2098_evtreabreevper_dados['tpamb'] = evtReabreEvPer.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: r2098_evtreabreevper_dados['procemi'] = evtReabreEvPer.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: r2098_evtreabreevper_dados['verproc'] = evtReabreEvPer.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: r2098_evtreabreevper_dados['tpinsc'] = evtReabreEvPer.ideContri.tpInsc.cdata
+    except AttributeError: pass
+    try: r2098_evtreabreevper_dados['nrinsc'] = evtReabreEvPer.ideContri.nrInsc.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtReabreEvPer.ideContri): r2098_evtreabreevper_dados['operacao'] = 1
     elif 'alteracao' in dir(evtReabreEvPer.ideContri): r2098_evtreabreevper_dados['operacao'] = 2
     elif 'exclusao' in dir(evtReabreEvPer.ideContri): r2098_evtreabreevper_dados['operacao'] = 3

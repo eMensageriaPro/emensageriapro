@@ -47,28 +47,28 @@ def validacoes_s2231_evtcessao(arquivo):
     xmlns = doc.eSocial['xmlns'].split('/')
     evtCessao = doc.eSocial.evtCessao
 
-    if 'indRetif' in dir(evtCessao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEvento.indRetif', evtCessao.ideEvento.indRetif.cdata, 1, '1;2')
-    if 'nrRecibo' in dir(evtCessao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEvento.nrRecibo', evtCessao.ideEvento.nrRecibo.cdata, 0, '')
-    if 'tpAmb' in dir(evtCessao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEvento.tpAmb', evtCessao.ideEvento.tpAmb.cdata, 1, '1;2')
-    if 'procEmi' in dir(evtCessao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEvento.procEmi', evtCessao.ideEvento.procEmi.cdata, 1, '1;2;3;4;5')
-    if 'verProc' in dir(evtCessao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEvento.verProc', evtCessao.ideEvento.verProc.cdata, 1, '')
-    if 'tpInsc' in dir(evtCessao.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEmpregador.tpInsc', evtCessao.ideEmpregador.tpInsc.cdata, 1, '')
-    if 'nrInsc' in dir(evtCessao.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEmpregador.nrInsc', evtCessao.ideEmpregador.nrInsc.cdata, 1, '')
-    if 'cpfTrab' in dir(evtCessao.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideVinculo.cpfTrab', evtCessao.ideVinculo.cpfTrab.cdata, 1, '')
-    if 'nisTrab' in dir(evtCessao.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideVinculo.nisTrab', evtCessao.ideVinculo.nisTrab.cdata, 1, '')
-    if 'matricula' in dir(evtCessao.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideVinculo.matricula', evtCessao.ideVinculo.matricula.cdata, 1, '')
+    if 'indRetif' in dir(evtCessao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEvento.indRetif', evtCessao.ideEvento.indRetif.cdata, 1, u'1;2')
+    if 'nrRecibo' in dir(evtCessao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEvento.nrRecibo', evtCessao.ideEvento.nrRecibo.cdata, 0, u'')
+    if 'tpAmb' in dir(evtCessao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEvento.tpAmb', evtCessao.ideEvento.tpAmb.cdata, 1, u'1;2')
+    if 'procEmi' in dir(evtCessao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEvento.procEmi', evtCessao.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
+    if 'verProc' in dir(evtCessao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEvento.verProc', evtCessao.ideEvento.verProc.cdata, 1, u'')
+    if 'tpInsc' in dir(evtCessao.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEmpregador.tpInsc', evtCessao.ideEmpregador.tpInsc.cdata, 1, u'')
+    if 'nrInsc' in dir(evtCessao.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideEmpregador.nrInsc', evtCessao.ideEmpregador.nrInsc.cdata, 1, u'')
+    if 'cpfTrab' in dir(evtCessao.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideVinculo.cpfTrab', evtCessao.ideVinculo.cpfTrab.cdata, 1, u'')
+    if 'nisTrab' in dir(evtCessao.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideVinculo.nisTrab', evtCessao.ideVinculo.nisTrab.cdata, 1, u'')
+    if 'matricula' in dir(evtCessao.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtCessao.ideVinculo.matricula', evtCessao.ideVinculo.matricula.cdata, 1, u'')
     if 'iniCessao' in dir(evtCessao.infoCessao):
         for iniCessao in evtCessao.infoCessao.iniCessao:
 
-            if 'dtIniCessao' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.dtIniCessao', iniCessao.dtIniCessao.cdata, 1, '')
-            if 'cnpjCess' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.cnpjCess', iniCessao.cnpjCess.cdata, 1, '')
-            if 'infOnus' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.infOnus', iniCessao.infOnus.cdata, 1, '1;2;3;4')
-            if 'indCessao' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.indCessao', iniCessao.indCessao.cdata, 1, '1;2;3')
-            if 'dscSituacao' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.dscSituacao', iniCessao.dscSituacao.cdata, 0, '')
+            if 'dtIniCessao' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.dtIniCessao', iniCessao.dtIniCessao.cdata, 1, u'')
+            if 'cnpjCess' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.cnpjCess', iniCessao.cnpjCess.cdata, 1, u'')
+            if 'infOnus' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.infOnus', iniCessao.infOnus.cdata, 1, u'1;2;3;4')
+            if 'indCessao' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.indCessao', iniCessao.indCessao.cdata, 1, u'1;2;3')
+            if 'dscSituacao' in dir(iniCessao): validacoes_lista = validar_campo(validacoes_lista,'iniCessao.dscSituacao', iniCessao.dscSituacao.cdata, 0, u'')
 
     if 'fimCessao' in dir(evtCessao.infoCessao):
         for fimCessao in evtCessao.infoCessao.fimCessao:
 
-            if 'dtTermCessao' in dir(fimCessao): validacoes_lista = validar_campo(validacoes_lista,'fimCessao.dtTermCessao', fimCessao.dtTermCessao.cdata, 1, '')
+            if 'dtTermCessao' in dir(fimCessao): validacoes_lista = validar_campo(validacoes_lista,'fimCessao.dtTermCessao', fimCessao.dtTermCessao.cdata, 1, u'')
 
     return validacoes_lista

@@ -47,36 +47,36 @@ def validacoes_s2245_evttreicap(arquivo):
     xmlns = doc.eSocial['xmlns'].split('/')
     evtTreiCap = doc.eSocial.evtTreiCap
 
-    if 'indRetif' in dir(evtTreiCap.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEvento.indRetif', evtTreiCap.ideEvento.indRetif.cdata, 1, '1;2')
-    if 'nrRecibo' in dir(evtTreiCap.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEvento.nrRecibo', evtTreiCap.ideEvento.nrRecibo.cdata, 0, '')
-    if 'tpAmb' in dir(evtTreiCap.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEvento.tpAmb', evtTreiCap.ideEvento.tpAmb.cdata, 1, '1;2')
-    if 'procEmi' in dir(evtTreiCap.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEvento.procEmi', evtTreiCap.ideEvento.procEmi.cdata, 1, '1;2;3;4;5')
-    if 'verProc' in dir(evtTreiCap.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEvento.verProc', evtTreiCap.ideEvento.verProc.cdata, 1, '')
-    if 'tpInsc' in dir(evtTreiCap.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEmpregador.tpInsc', evtTreiCap.ideEmpregador.tpInsc.cdata, 1, '1;2')
-    if 'nrInsc' in dir(evtTreiCap.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEmpregador.nrInsc', evtTreiCap.ideEmpregador.nrInsc.cdata, 1, '')
-    if 'cpfTrab' in dir(evtTreiCap.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideVinculo.cpfTrab', evtTreiCap.ideVinculo.cpfTrab.cdata, 1, '')
-    if 'nisTrab' in dir(evtTreiCap.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideVinculo.nisTrab', evtTreiCap.ideVinculo.nisTrab.cdata, 0, '')
-    if 'matricula' in dir(evtTreiCap.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideVinculo.matricula', evtTreiCap.ideVinculo.matricula.cdata, 0, '')
-    if 'codCateg' in dir(evtTreiCap.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideVinculo.codCateg', evtTreiCap.ideVinculo.codCateg.cdata, 0, '')
-    if 'codTreiCap' in dir(evtTreiCap.treiCap): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.treiCap.codTreiCap', evtTreiCap.treiCap.codTreiCap.cdata, 1, '')
-    if 'obsTreiCap' in dir(evtTreiCap.treiCap): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.treiCap.obsTreiCap', evtTreiCap.treiCap.obsTreiCap.cdata, 0, '')
-    if 'observacao' in dir(evtTreiCap.treiCap): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.treiCap.observacao', evtTreiCap.treiCap.observacao.cdata, 0, '')
+    if 'indRetif' in dir(evtTreiCap.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEvento.indRetif', evtTreiCap.ideEvento.indRetif.cdata, 1, u'1;2')
+    if 'nrRecibo' in dir(evtTreiCap.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEvento.nrRecibo', evtTreiCap.ideEvento.nrRecibo.cdata, 0, u'')
+    if 'tpAmb' in dir(evtTreiCap.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEvento.tpAmb', evtTreiCap.ideEvento.tpAmb.cdata, 1, u'1;2')
+    if 'procEmi' in dir(evtTreiCap.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEvento.procEmi', evtTreiCap.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
+    if 'verProc' in dir(evtTreiCap.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEvento.verProc', evtTreiCap.ideEvento.verProc.cdata, 1, u'')
+    if 'tpInsc' in dir(evtTreiCap.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEmpregador.tpInsc', evtTreiCap.ideEmpregador.tpInsc.cdata, 1, u'1;2')
+    if 'nrInsc' in dir(evtTreiCap.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideEmpregador.nrInsc', evtTreiCap.ideEmpregador.nrInsc.cdata, 1, u'')
+    if 'cpfTrab' in dir(evtTreiCap.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideVinculo.cpfTrab', evtTreiCap.ideVinculo.cpfTrab.cdata, 1, u'')
+    if 'nisTrab' in dir(evtTreiCap.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideVinculo.nisTrab', evtTreiCap.ideVinculo.nisTrab.cdata, 0, u'')
+    if 'matricula' in dir(evtTreiCap.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideVinculo.matricula', evtTreiCap.ideVinculo.matricula.cdata, 0, u'')
+    if 'codCateg' in dir(evtTreiCap.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.ideVinculo.codCateg', evtTreiCap.ideVinculo.codCateg.cdata, 0, u'')
+    if 'codTreiCap' in dir(evtTreiCap.treiCap): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.treiCap.codTreiCap', evtTreiCap.treiCap.codTreiCap.cdata, 1, u'')
+    if 'obsTreiCap' in dir(evtTreiCap.treiCap): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.treiCap.obsTreiCap', evtTreiCap.treiCap.obsTreiCap.cdata, 0, u'')
+    if 'observacao' in dir(evtTreiCap.treiCap): validacoes_lista = validar_campo(validacoes_lista,'evtTreiCap.treiCap.observacao', evtTreiCap.treiCap.observacao.cdata, 0, u'')
     if 'infoComplem' in dir(evtTreiCap.treiCap):
         for infoComplem in evtTreiCap.treiCap.infoComplem:
 
-            if 'dtTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.dtTreiCap', infoComplem.dtTreiCap.cdata, 1, '')
-            if 'durTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.durTreiCap', infoComplem.durTreiCap.cdata, 1, '')
-            if 'modTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.modTreiCap', infoComplem.modTreiCap.cdata, 1, '1;2;3')
-            if 'tpTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.tpTreiCap', infoComplem.tpTreiCap.cdata, 1, '1;2;3;4;5')
+            if 'dtTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.dtTreiCap', infoComplem.dtTreiCap.cdata, 1, u'')
+            if 'durTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.durTreiCap', infoComplem.durTreiCap.cdata, 1, u'')
+            if 'modTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.modTreiCap', infoComplem.modTreiCap.cdata, 1, u'1;2;3')
+            if 'tpTreiCap' in dir(infoComplem): validacoes_lista = validar_campo(validacoes_lista,'infoComplem.tpTreiCap', infoComplem.tpTreiCap.cdata, 1, u'1;2;3;4;5')
 
             if 'ideProfResp' in dir(infoComplem):
                 for ideProfResp in infoComplem.ideProfResp:
 
-                    if 'cpfProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.cpfProf', ideProfResp.cpfProf.cdata, 0, '')
-                    if 'nmProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.nmProf', ideProfResp.nmProf.cdata, 1, '')
-                    if 'tpProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.tpProf', ideProfResp.tpProf.cdata, 1, '1;2')
-                    if 'formProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.formProf', ideProfResp.formProf.cdata, 1, '')
-                    if 'codCBO' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.codCBO', ideProfResp.codCBO.cdata, 1, '')
-                    if 'nacProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.nacProf', ideProfResp.nacProf.cdata, 1, '1;2')
+                    if 'cpfProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.cpfProf', ideProfResp.cpfProf.cdata, 0, u'')
+                    if 'nmProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.nmProf', ideProfResp.nmProf.cdata, 1, u'')
+                    if 'tpProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.tpProf', ideProfResp.tpProf.cdata, 1, u'1;2')
+                    if 'formProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.formProf', ideProfResp.formProf.cdata, 1, u'')
+                    if 'codCBO' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.codCBO', ideProfResp.codCBO.cdata, 1, u'')
+                    if 'nacProf' in dir(ideProfResp): validacoes_lista = validar_campo(validacoes_lista,'ideProfResp.nacProf', ideProfResp.nacProf.cdata, 1, u'1;2')
 
     return validacoes_lista

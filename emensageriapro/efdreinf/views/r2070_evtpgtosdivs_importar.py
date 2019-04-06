@@ -79,18 +79,30 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
     r2070_evtpgtosdivs_dados['identidade'] = doc.Reinf.evtPgtosDivs['id']
     evtPgtosDivs = doc.Reinf.evtPgtosDivs
 
-    if 'indRetif' in dir(evtPgtosDivs.ideEvento): r2070_evtpgtosdivs_dados['indretif'] = evtPgtosDivs.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtPgtosDivs.ideEvento): r2070_evtpgtosdivs_dados['nrrecibo'] = evtPgtosDivs.ideEvento.nrRecibo.cdata
-    if 'perApur' in dir(evtPgtosDivs.ideEvento): r2070_evtpgtosdivs_dados['perapur'] = evtPgtosDivs.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtPgtosDivs.ideEvento): r2070_evtpgtosdivs_dados['tpamb'] = evtPgtosDivs.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtPgtosDivs.ideEvento): r2070_evtpgtosdivs_dados['procemi'] = evtPgtosDivs.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtPgtosDivs.ideEvento): r2070_evtpgtosdivs_dados['verproc'] = evtPgtosDivs.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtPgtosDivs.ideContri): r2070_evtpgtosdivs_dados['tpinsc'] = evtPgtosDivs.ideContri.tpInsc.cdata
-    if 'nrInsc' in dir(evtPgtosDivs.ideContri): r2070_evtpgtosdivs_dados['nrinsc'] = evtPgtosDivs.ideContri.nrInsc.cdata
-    if 'codPgto' in dir(evtPgtosDivs.ideBenef): r2070_evtpgtosdivs_dados['codpgto'] = evtPgtosDivs.ideBenef.codPgto.cdata
-    if 'tpInscBenef' in dir(evtPgtosDivs.ideBenef): r2070_evtpgtosdivs_dados['tpinscbenef'] = evtPgtosDivs.ideBenef.tpInscBenef.cdata
-    if 'nrInscBenef' in dir(evtPgtosDivs.ideBenef): r2070_evtpgtosdivs_dados['nrinscbenef'] = evtPgtosDivs.ideBenef.nrInscBenef.cdata
-    if 'nmRazaoBenef' in dir(evtPgtosDivs.ideBenef): r2070_evtpgtosdivs_dados['nmrazaobenef'] = evtPgtosDivs.ideBenef.nmRazaoBenef.cdata
+    try: r2070_evtpgtosdivs_dados['indretif'] = evtPgtosDivs.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['nrrecibo'] = evtPgtosDivs.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['perapur'] = evtPgtosDivs.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['tpamb'] = evtPgtosDivs.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['procemi'] = evtPgtosDivs.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['verproc'] = evtPgtosDivs.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['tpinsc'] = evtPgtosDivs.ideContri.tpInsc.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['nrinsc'] = evtPgtosDivs.ideContri.nrInsc.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['codpgto'] = evtPgtosDivs.ideBenef.codPgto.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['tpinscbenef'] = evtPgtosDivs.ideBenef.tpInscBenef.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['nrinscbenef'] = evtPgtosDivs.ideBenef.nrInscBenef.cdata
+    except AttributeError: pass
+    try: r2070_evtpgtosdivs_dados['nmrazaobenef'] = evtPgtosDivs.ideBenef.nmRazaoBenef.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtPgtosDivs.ideBenef): r2070_evtpgtosdivs_dados['operacao'] = 1
     elif 'alteracao' in dir(evtPgtosDivs.ideBenef): r2070_evtpgtosdivs_dados['operacao'] = 2
     elif 'exclusao' in dir(evtPgtosDivs.ideBenef): r2070_evtpgtosdivs_dados['operacao'] = 3
@@ -104,87 +116,113 @@ def read_r2070_evtpgtosdivs_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.Reinf.evtPgtosDivs['id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'infoResidExt' in dir(evtPgtosDivs.ideBenef):
+    if 'infoResidExt' in dir(evtPgtosDivs.ideBenef) and evtPgtosDivs.ideBenef.infoResidExt.cdata != '':
         for infoResidExt in evtPgtosDivs.ideBenef.infoResidExt:
             r2070_inforesidext_dados = {}
             r2070_inforesidext_dados['r2070_evtpgtosdivs_id'] = r2070_evtpgtosdivs_id
 
-            if 'paisResid' in dir(infoResidExt.infoEnder): r2070_inforesidext_dados['paisresid'] = infoResidExt.infoEnder.paisResid.cdata
-            if 'dscLograd' in dir(infoResidExt.infoEnder): r2070_inforesidext_dados['dsclograd'] = infoResidExt.infoEnder.dscLograd.cdata
-            if 'nrLograd' in dir(infoResidExt.infoEnder): r2070_inforesidext_dados['nrlograd'] = infoResidExt.infoEnder.nrLograd.cdata
-            if 'complem' in dir(infoResidExt.infoEnder): r2070_inforesidext_dados['complem'] = infoResidExt.infoEnder.complem.cdata
-            if 'bairro' in dir(infoResidExt.infoEnder): r2070_inforesidext_dados['bairro'] = infoResidExt.infoEnder.bairro.cdata
-            if 'cidade' in dir(infoResidExt.infoEnder): r2070_inforesidext_dados['cidade'] = infoResidExt.infoEnder.cidade.cdata
-            if 'codPostal' in dir(infoResidExt.infoEnder): r2070_inforesidext_dados['codpostal'] = infoResidExt.infoEnder.codPostal.cdata
-            if 'indNIF' in dir(infoResidExt.infoFiscal): r2070_inforesidext_dados['indnif'] = infoResidExt.infoFiscal.indNIF.cdata
-            if 'nifBenef' in dir(infoResidExt.infoFiscal): r2070_inforesidext_dados['nifbenef'] = infoResidExt.infoFiscal.nifBenef.cdata
-            if 'relFontePagad' in dir(infoResidExt.infoFiscal): r2070_inforesidext_dados['relfontepagad'] = infoResidExt.infoFiscal.relFontePagad.cdata
+            try: r2070_inforesidext_dados['paisresid'] = infoResidExt.infoEnder.paisResid.cdata
+            except AttributeError: pass
+            try: r2070_inforesidext_dados['dsclograd'] = infoResidExt.infoEnder.dscLograd.cdata
+            except AttributeError: pass
+            try: r2070_inforesidext_dados['nrlograd'] = infoResidExt.infoEnder.nrLograd.cdata
+            except AttributeError: pass
+            try: r2070_inforesidext_dados['complem'] = infoResidExt.infoEnder.complem.cdata
+            except AttributeError: pass
+            try: r2070_inforesidext_dados['bairro'] = infoResidExt.infoEnder.bairro.cdata
+            except AttributeError: pass
+            try: r2070_inforesidext_dados['cidade'] = infoResidExt.infoEnder.cidade.cdata
+            except AttributeError: pass
+            try: r2070_inforesidext_dados['codpostal'] = infoResidExt.infoEnder.codPostal.cdata
+            except AttributeError: pass
+            try: r2070_inforesidext_dados['indnif'] = infoResidExt.infoFiscal.indNIF.cdata
+            except AttributeError: pass
+            try: r2070_inforesidext_dados['nifbenef'] = infoResidExt.infoFiscal.nifBenef.cdata
+            except AttributeError: pass
+            try: r2070_inforesidext_dados['relfontepagad'] = infoResidExt.infoFiscal.relFontePagad.cdata
+            except AttributeError: pass
             insert = create_insert('r2070_inforesidext', r2070_inforesidext_dados)
             resp = executar_sql(insert, True)
             r2070_inforesidext_id = resp[0][0]
             #print r2070_inforesidext_id
 
-    if 'infoMolestia' in dir(evtPgtosDivs.ideBenef):
+    if 'infoMolestia' in dir(evtPgtosDivs.ideBenef) and evtPgtosDivs.ideBenef.infoMolestia.cdata != '':
         for infoMolestia in evtPgtosDivs.ideBenef.infoMolestia:
             r2070_infomolestia_dados = {}
             r2070_infomolestia_dados['r2070_evtpgtosdivs_id'] = r2070_evtpgtosdivs_id
 
-            if 'dtLaudo' in dir(infoMolestia): r2070_infomolestia_dados['dtlaudo'] = infoMolestia.dtLaudo.cdata
+            try: r2070_infomolestia_dados['dtlaudo'] = infoMolestia.dtLaudo.cdata
+            except AttributeError: pass
             insert = create_insert('r2070_infomolestia', r2070_infomolestia_dados)
             resp = executar_sql(insert, True)
             r2070_infomolestia_id = resp[0][0]
             #print r2070_infomolestia_id
 
-    if 'ideEstab' in dir(evtPgtosDivs.ideBenef.infoPgto):
+    if 'ideEstab' in dir(evtPgtosDivs.ideBenef.infoPgto) and evtPgtosDivs.ideBenef.infoPgto.ideEstab.cdata != '':
         for ideEstab in evtPgtosDivs.ideBenef.infoPgto.ideEstab:
             r2070_ideestab_dados = {}
             r2070_ideestab_dados['r2070_evtpgtosdivs_id'] = r2070_evtpgtosdivs_id
 
-            if 'tpInsc' in dir(ideEstab): r2070_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
-            if 'nrInsc' in dir(ideEstab): r2070_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
+            try: r2070_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
+            except AttributeError: pass
+            try: r2070_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
+            except AttributeError: pass
             insert = create_insert('r2070_ideestab', r2070_ideestab_dados)
             resp = executar_sql(insert, True)
             r2070_ideestab_id = resp[0][0]
             #print r2070_ideestab_id
 
-            if 'pgtoPF' in dir(ideEstab.pgtoResidBR):
+            if 'pgtoPF' in dir(ideEstab.pgtoResidBR) and ideEstab.pgtoResidBR.pgtoPF.cdata != '':
                 for pgtoPF in ideEstab.pgtoResidBR.pgtoPF:
                     r2070_pgtopf_dados = {}
                     r2070_pgtopf_dados['r2070_ideestab_id'] = r2070_ideestab_id
 
-                    if 'dtPgto' in dir(pgtoPF): r2070_pgtopf_dados['dtpgto'] = pgtoPF.dtPgto.cdata
-                    if 'indSuspExig' in dir(pgtoPF): r2070_pgtopf_dados['indsuspexig'] = pgtoPF.indSuspExig.cdata
-                    if 'indDecTerceiro' in dir(pgtoPF): r2070_pgtopf_dados['inddecterceiro'] = pgtoPF.indDecTerceiro.cdata
-                    if 'vlrRendTributavel' in dir(pgtoPF): r2070_pgtopf_dados['vlrrendtributavel'] = pgtoPF.vlrRendTributavel.cdata
-                    if 'vlrIRRF' in dir(pgtoPF): r2070_pgtopf_dados['vlrirrf'] = pgtoPF.vlrIRRF.cdata
+                    try: r2070_pgtopf_dados['dtpgto'] = pgtoPF.dtPgto.cdata
+                    except AttributeError: pass
+                    try: r2070_pgtopf_dados['indsuspexig'] = pgtoPF.indSuspExig.cdata
+                    except AttributeError: pass
+                    try: r2070_pgtopf_dados['inddecterceiro'] = pgtoPF.indDecTerceiro.cdata
+                    except AttributeError: pass
+                    try: r2070_pgtopf_dados['vlrrendtributavel'] = pgtoPF.vlrRendTributavel.cdata
+                    except AttributeError: pass
+                    try: r2070_pgtopf_dados['vlrirrf'] = pgtoPF.vlrIRRF.cdata
+                    except AttributeError: pass
                     insert = create_insert('r2070_pgtopf', r2070_pgtopf_dados)
                     resp = executar_sql(insert, True)
                     r2070_pgtopf_id = resp[0][0]
                     #print r2070_pgtopf_id
 
-            if 'pgtoPJ' in dir(ideEstab.pgtoResidBR):
+            if 'pgtoPJ' in dir(ideEstab.pgtoResidBR) and ideEstab.pgtoResidBR.pgtoPJ.cdata != '':
                 for pgtoPJ in ideEstab.pgtoResidBR.pgtoPJ:
                     r2070_pgtopj_dados = {}
                     r2070_pgtopj_dados['r2070_ideestab_id'] = r2070_ideestab_id
 
-                    if 'dtPagto' in dir(pgtoPJ): r2070_pgtopj_dados['dtpagto'] = pgtoPJ.dtPagto.cdata
-                    if 'vlrRendTributavel' in dir(pgtoPJ): r2070_pgtopj_dados['vlrrendtributavel'] = pgtoPJ.vlrRendTributavel.cdata
-                    if 'vlrRet' in dir(pgtoPJ): r2070_pgtopj_dados['vlrret'] = pgtoPJ.vlrRet.cdata
+                    try: r2070_pgtopj_dados['dtpagto'] = pgtoPJ.dtPagto.cdata
+                    except AttributeError: pass
+                    try: r2070_pgtopj_dados['vlrrendtributavel'] = pgtoPJ.vlrRendTributavel.cdata
+                    except AttributeError: pass
+                    try: r2070_pgtopj_dados['vlrret'] = pgtoPJ.vlrRet.cdata
+                    except AttributeError: pass
                     insert = create_insert('r2070_pgtopj', r2070_pgtopj_dados)
                     resp = executar_sql(insert, True)
                     r2070_pgtopj_id = resp[0][0]
                     #print r2070_pgtopj_id
 
-            if 'pgtoResidExt' in dir(ideEstab):
+            if 'pgtoResidExt' in dir(ideEstab) and ideEstab.pgtoResidExt.cdata != '':
                 for pgtoResidExt in ideEstab.pgtoResidExt:
                     r2070_pgtoresidext_dados = {}
                     r2070_pgtoresidext_dados['r2070_ideestab_id'] = r2070_ideestab_id
 
-                    if 'dtPagto' in dir(pgtoResidExt): r2070_pgtoresidext_dados['dtpagto'] = pgtoResidExt.dtPagto.cdata
-                    if 'tpRendimento' in dir(pgtoResidExt): r2070_pgtoresidext_dados['tprendimento'] = pgtoResidExt.tpRendimento.cdata
-                    if 'formaTributacao' in dir(pgtoResidExt): r2070_pgtoresidext_dados['formatributacao'] = pgtoResidExt.formaTributacao.cdata
-                    if 'vlrPgto' in dir(pgtoResidExt): r2070_pgtoresidext_dados['vlrpgto'] = pgtoResidExt.vlrPgto.cdata
-                    if 'vlrRet' in dir(pgtoResidExt): r2070_pgtoresidext_dados['vlrret'] = pgtoResidExt.vlrRet.cdata
+                    try: r2070_pgtoresidext_dados['dtpagto'] = pgtoResidExt.dtPagto.cdata
+                    except AttributeError: pass
+                    try: r2070_pgtoresidext_dados['tprendimento'] = pgtoResidExt.tpRendimento.cdata
+                    except AttributeError: pass
+                    try: r2070_pgtoresidext_dados['formatributacao'] = pgtoResidExt.formaTributacao.cdata
+                    except AttributeError: pass
+                    try: r2070_pgtoresidext_dados['vlrpgto'] = pgtoResidExt.vlrPgto.cdata
+                    except AttributeError: pass
+                    try: r2070_pgtoresidext_dados['vlrret'] = pgtoResidExt.vlrRet.cdata
+                    except AttributeError: pass
                     insert = create_insert('r2070_pgtoresidext', r2070_pgtoresidext_dados)
                     resp = executar_sql(insert, True)
                     r2070_pgtoresidext_id = resp[0][0]

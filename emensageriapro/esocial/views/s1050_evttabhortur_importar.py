@@ -79,11 +79,16 @@ def read_s1050_evttabhortur_obj(doc, status, validar=False):
     s1050_evttabhortur_dados['identidade'] = doc.eSocial.evtTabHorTur['Id']
     evtTabHorTur = doc.eSocial.evtTabHorTur
 
-    if 'tpAmb' in dir(evtTabHorTur.ideEvento): s1050_evttabhortur_dados['tpamb'] = evtTabHorTur.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtTabHorTur.ideEvento): s1050_evttabhortur_dados['procemi'] = evtTabHorTur.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtTabHorTur.ideEvento): s1050_evttabhortur_dados['verproc'] = evtTabHorTur.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtTabHorTur.ideEmpregador): s1050_evttabhortur_dados['tpinsc'] = evtTabHorTur.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtTabHorTur.ideEmpregador): s1050_evttabhortur_dados['nrinsc'] = evtTabHorTur.ideEmpregador.nrInsc.cdata
+    try: s1050_evttabhortur_dados['tpamb'] = evtTabHorTur.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1050_evttabhortur_dados['procemi'] = evtTabHorTur.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1050_evttabhortur_dados['verproc'] = evtTabHorTur.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1050_evttabhortur_dados['tpinsc'] = evtTabHorTur.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1050_evttabhortur_dados['nrinsc'] = evtTabHorTur.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtTabHorTur.infoHorContratual): s1050_evttabhortur_dados['operacao'] = 1
     elif 'alteracao' in dir(evtTabHorTur.infoHorContratual): s1050_evttabhortur_dados['operacao'] = 2
     elif 'exclusao' in dir(evtTabHorTur.infoHorContratual): s1050_evttabhortur_dados['operacao'] = 3
@@ -97,88 +102,115 @@ def read_s1050_evttabhortur_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtTabHorTur['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'inclusao' in dir(evtTabHorTur.infoHorContratual):
+    if 'inclusao' in dir(evtTabHorTur.infoHorContratual) and evtTabHorTur.infoHorContratual.inclusao.cdata != '':
         for inclusao in evtTabHorTur.infoHorContratual.inclusao:
             s1050_inclusao_dados = {}
             s1050_inclusao_dados['s1050_evttabhortur_id'] = s1050_evttabhortur_id
 
-            if 'codHorContrat' in dir(inclusao.ideHorContratual): s1050_inclusao_dados['codhorcontrat'] = inclusao.ideHorContratual.codHorContrat.cdata
-            if 'iniValid' in dir(inclusao.ideHorContratual): s1050_inclusao_dados['inivalid'] = inclusao.ideHorContratual.iniValid.cdata
-            if 'fimValid' in dir(inclusao.ideHorContratual): s1050_inclusao_dados['fimvalid'] = inclusao.ideHorContratual.fimValid.cdata
-            if 'hrEntr' in dir(inclusao.dadosHorContratual): s1050_inclusao_dados['hrentr'] = inclusao.dadosHorContratual.hrEntr.cdata
-            if 'hrSaida' in dir(inclusao.dadosHorContratual): s1050_inclusao_dados['hrsaida'] = inclusao.dadosHorContratual.hrSaida.cdata
-            if 'durJornada' in dir(inclusao.dadosHorContratual): s1050_inclusao_dados['durjornada'] = inclusao.dadosHorContratual.durJornada.cdata
-            if 'perHorFlexivel' in dir(inclusao.dadosHorContratual): s1050_inclusao_dados['perhorflexivel'] = inclusao.dadosHorContratual.perHorFlexivel.cdata
+            try: s1050_inclusao_dados['codhorcontrat'] = inclusao.ideHorContratual.codHorContrat.cdata
+            except AttributeError: pass
+            try: s1050_inclusao_dados['inivalid'] = inclusao.ideHorContratual.iniValid.cdata
+            except AttributeError: pass
+            try: s1050_inclusao_dados['fimvalid'] = inclusao.ideHorContratual.fimValid.cdata
+            except AttributeError: pass
+            try: s1050_inclusao_dados['hrentr'] = inclusao.dadosHorContratual.hrEntr.cdata
+            except AttributeError: pass
+            try: s1050_inclusao_dados['hrsaida'] = inclusao.dadosHorContratual.hrSaida.cdata
+            except AttributeError: pass
+            try: s1050_inclusao_dados['durjornada'] = inclusao.dadosHorContratual.durJornada.cdata
+            except AttributeError: pass
+            try: s1050_inclusao_dados['perhorflexivel'] = inclusao.dadosHorContratual.perHorFlexivel.cdata
+            except AttributeError: pass
             insert = create_insert('s1050_inclusao', s1050_inclusao_dados)
             resp = executar_sql(insert, True)
             s1050_inclusao_id = resp[0][0]
             #print s1050_inclusao_id
 
-            if 'horarioIntervalo' in dir(inclusao.dadosHorContratual):
+            if 'horarioIntervalo' in dir(inclusao.dadosHorContratual) and inclusao.dadosHorContratual.horarioIntervalo.cdata != '':
                 for horarioIntervalo in inclusao.dadosHorContratual.horarioIntervalo:
                     s1050_inclusao_horariointervalo_dados = {}
                     s1050_inclusao_horariointervalo_dados['s1050_inclusao_id'] = s1050_inclusao_id
 
-                    if 'tpInterv' in dir(horarioIntervalo): s1050_inclusao_horariointervalo_dados['tpinterv'] = horarioIntervalo.tpInterv.cdata
-                    if 'durInterv' in dir(horarioIntervalo): s1050_inclusao_horariointervalo_dados['durinterv'] = horarioIntervalo.durInterv.cdata
-                    if 'iniInterv' in dir(horarioIntervalo): s1050_inclusao_horariointervalo_dados['iniinterv'] = horarioIntervalo.iniInterv.cdata
-                    if 'termInterv' in dir(horarioIntervalo): s1050_inclusao_horariointervalo_dados['terminterv'] = horarioIntervalo.termInterv.cdata
+                    try: s1050_inclusao_horariointervalo_dados['tpinterv'] = horarioIntervalo.tpInterv.cdata
+                    except AttributeError: pass
+                    try: s1050_inclusao_horariointervalo_dados['durinterv'] = horarioIntervalo.durInterv.cdata
+                    except AttributeError: pass
+                    try: s1050_inclusao_horariointervalo_dados['iniinterv'] = horarioIntervalo.iniInterv.cdata
+                    except AttributeError: pass
+                    try: s1050_inclusao_horariointervalo_dados['terminterv'] = horarioIntervalo.termInterv.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1050_inclusao_horariointervalo', s1050_inclusao_horariointervalo_dados)
                     resp = executar_sql(insert, True)
                     s1050_inclusao_horariointervalo_id = resp[0][0]
                     #print s1050_inclusao_horariointervalo_id
 
-    if 'alteracao' in dir(evtTabHorTur.infoHorContratual):
+    if 'alteracao' in dir(evtTabHorTur.infoHorContratual) and evtTabHorTur.infoHorContratual.alteracao.cdata != '':
         for alteracao in evtTabHorTur.infoHorContratual.alteracao:
             s1050_alteracao_dados = {}
             s1050_alteracao_dados['s1050_evttabhortur_id'] = s1050_evttabhortur_id
 
-            if 'codHorContrat' in dir(alteracao.ideHorContratual): s1050_alteracao_dados['codhorcontrat'] = alteracao.ideHorContratual.codHorContrat.cdata
-            if 'iniValid' in dir(alteracao.ideHorContratual): s1050_alteracao_dados['inivalid'] = alteracao.ideHorContratual.iniValid.cdata
-            if 'fimValid' in dir(alteracao.ideHorContratual): s1050_alteracao_dados['fimvalid'] = alteracao.ideHorContratual.fimValid.cdata
-            if 'hrEntr' in dir(alteracao.dadosHorContratual): s1050_alteracao_dados['hrentr'] = alteracao.dadosHorContratual.hrEntr.cdata
-            if 'hrSaida' in dir(alteracao.dadosHorContratual): s1050_alteracao_dados['hrsaida'] = alteracao.dadosHorContratual.hrSaida.cdata
-            if 'durJornada' in dir(alteracao.dadosHorContratual): s1050_alteracao_dados['durjornada'] = alteracao.dadosHorContratual.durJornada.cdata
-            if 'perHorFlexivel' in dir(alteracao.dadosHorContratual): s1050_alteracao_dados['perhorflexivel'] = alteracao.dadosHorContratual.perHorFlexivel.cdata
+            try: s1050_alteracao_dados['codhorcontrat'] = alteracao.ideHorContratual.codHorContrat.cdata
+            except AttributeError: pass
+            try: s1050_alteracao_dados['inivalid'] = alteracao.ideHorContratual.iniValid.cdata
+            except AttributeError: pass
+            try: s1050_alteracao_dados['fimvalid'] = alteracao.ideHorContratual.fimValid.cdata
+            except AttributeError: pass
+            try: s1050_alteracao_dados['hrentr'] = alteracao.dadosHorContratual.hrEntr.cdata
+            except AttributeError: pass
+            try: s1050_alteracao_dados['hrsaida'] = alteracao.dadosHorContratual.hrSaida.cdata
+            except AttributeError: pass
+            try: s1050_alteracao_dados['durjornada'] = alteracao.dadosHorContratual.durJornada.cdata
+            except AttributeError: pass
+            try: s1050_alteracao_dados['perhorflexivel'] = alteracao.dadosHorContratual.perHorFlexivel.cdata
+            except AttributeError: pass
             insert = create_insert('s1050_alteracao', s1050_alteracao_dados)
             resp = executar_sql(insert, True)
             s1050_alteracao_id = resp[0][0]
             #print s1050_alteracao_id
 
-            if 'horarioIntervalo' in dir(alteracao.dadosHorContratual):
+            if 'horarioIntervalo' in dir(alteracao.dadosHorContratual) and alteracao.dadosHorContratual.horarioIntervalo.cdata != '':
                 for horarioIntervalo in alteracao.dadosHorContratual.horarioIntervalo:
                     s1050_alteracao_horariointervalo_dados = {}
                     s1050_alteracao_horariointervalo_dados['s1050_alteracao_id'] = s1050_alteracao_id
 
-                    if 'tpInterv' in dir(horarioIntervalo): s1050_alteracao_horariointervalo_dados['tpinterv'] = horarioIntervalo.tpInterv.cdata
-                    if 'durInterv' in dir(horarioIntervalo): s1050_alteracao_horariointervalo_dados['durinterv'] = horarioIntervalo.durInterv.cdata
-                    if 'iniInterv' in dir(horarioIntervalo): s1050_alteracao_horariointervalo_dados['iniinterv'] = horarioIntervalo.iniInterv.cdata
-                    if 'termInterv' in dir(horarioIntervalo): s1050_alteracao_horariointervalo_dados['terminterv'] = horarioIntervalo.termInterv.cdata
+                    try: s1050_alteracao_horariointervalo_dados['tpinterv'] = horarioIntervalo.tpInterv.cdata
+                    except AttributeError: pass
+                    try: s1050_alteracao_horariointervalo_dados['durinterv'] = horarioIntervalo.durInterv.cdata
+                    except AttributeError: pass
+                    try: s1050_alteracao_horariointervalo_dados['iniinterv'] = horarioIntervalo.iniInterv.cdata
+                    except AttributeError: pass
+                    try: s1050_alteracao_horariointervalo_dados['terminterv'] = horarioIntervalo.termInterv.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1050_alteracao_horariointervalo', s1050_alteracao_horariointervalo_dados)
                     resp = executar_sql(insert, True)
                     s1050_alteracao_horariointervalo_id = resp[0][0]
                     #print s1050_alteracao_horariointervalo_id
 
-            if 'novaValidade' in dir(alteracao):
+            if 'novaValidade' in dir(alteracao) and alteracao.novaValidade.cdata != '':
                 for novaValidade in alteracao.novaValidade:
                     s1050_alteracao_novavalidade_dados = {}
                     s1050_alteracao_novavalidade_dados['s1050_alteracao_id'] = s1050_alteracao_id
 
-                    if 'iniValid' in dir(novaValidade): s1050_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
-                    if 'fimValid' in dir(novaValidade): s1050_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                    try: s1050_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                    except AttributeError: pass
+                    try: s1050_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1050_alteracao_novavalidade', s1050_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1050_alteracao_novavalidade_id = resp[0][0]
                     #print s1050_alteracao_novavalidade_id
 
-    if 'exclusao' in dir(evtTabHorTur.infoHorContratual):
+    if 'exclusao' in dir(evtTabHorTur.infoHorContratual) and evtTabHorTur.infoHorContratual.exclusao.cdata != '':
         for exclusao in evtTabHorTur.infoHorContratual.exclusao:
             s1050_exclusao_dados = {}
             s1050_exclusao_dados['s1050_evttabhortur_id'] = s1050_evttabhortur_id
 
-            if 'codHorContrat' in dir(exclusao.ideHorContratual): s1050_exclusao_dados['codhorcontrat'] = exclusao.ideHorContratual.codHorContrat.cdata
-            if 'iniValid' in dir(exclusao.ideHorContratual): s1050_exclusao_dados['inivalid'] = exclusao.ideHorContratual.iniValid.cdata
-            if 'fimValid' in dir(exclusao.ideHorContratual): s1050_exclusao_dados['fimvalid'] = exclusao.ideHorContratual.fimValid.cdata
+            try: s1050_exclusao_dados['codhorcontrat'] = exclusao.ideHorContratual.codHorContrat.cdata
+            except AttributeError: pass
+            try: s1050_exclusao_dados['inivalid'] = exclusao.ideHorContratual.iniValid.cdata
+            except AttributeError: pass
+            try: s1050_exclusao_dados['fimvalid'] = exclusao.ideHorContratual.fimValid.cdata
+            except AttributeError: pass
             insert = create_insert('s1050_exclusao', s1050_exclusao_dados)
             resp = executar_sql(insert, True)
             s1050_exclusao_id = resp[0][0]

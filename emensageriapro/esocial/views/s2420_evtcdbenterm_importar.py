@@ -79,17 +79,28 @@ def read_s2420_evtcdbenterm_obj(doc, status, validar=False):
     s2420_evtcdbenterm_dados['identidade'] = doc.eSocial.evtCdBenTerm['Id']
     evtCdBenTerm = doc.eSocial.evtCdBenTerm
 
-    if 'indRetif' in dir(evtCdBenTerm.ideEvento): s2420_evtcdbenterm_dados['indretif'] = evtCdBenTerm.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtCdBenTerm.ideEvento): s2420_evtcdbenterm_dados['nrrecibo'] = evtCdBenTerm.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtCdBenTerm.ideEvento): s2420_evtcdbenterm_dados['tpamb'] = evtCdBenTerm.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtCdBenTerm.ideEvento): s2420_evtcdbenterm_dados['procemi'] = evtCdBenTerm.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtCdBenTerm.ideEvento): s2420_evtcdbenterm_dados['verproc'] = evtCdBenTerm.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtCdBenTerm.ideEmpregador): s2420_evtcdbenterm_dados['tpinsc'] = evtCdBenTerm.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtCdBenTerm.ideEmpregador): s2420_evtcdbenterm_dados['nrinsc'] = evtCdBenTerm.ideEmpregador.nrInsc.cdata
-    if 'cpfBenef' in dir(evtCdBenTerm.ideBeneficio): s2420_evtcdbenterm_dados['cpfbenef'] = evtCdBenTerm.ideBeneficio.cpfBenef.cdata
-    if 'nrBeneficio' in dir(evtCdBenTerm.ideBeneficio): s2420_evtcdbenterm_dados['nrbeneficio'] = evtCdBenTerm.ideBeneficio.nrBeneficio.cdata
-    if 'dtTermBeneficio' in dir(evtCdBenTerm.infoBenTermino): s2420_evtcdbenterm_dados['dttermbeneficio'] = evtCdBenTerm.infoBenTermino.dtTermBeneficio.cdata
-    if 'mtvTermino' in dir(evtCdBenTerm.infoBenTermino): s2420_evtcdbenterm_dados['mtvtermino'] = evtCdBenTerm.infoBenTermino.mtvTermino.cdata
+    try: s2420_evtcdbenterm_dados['indretif'] = evtCdBenTerm.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2420_evtcdbenterm_dados['nrrecibo'] = evtCdBenTerm.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2420_evtcdbenterm_dados['tpamb'] = evtCdBenTerm.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2420_evtcdbenterm_dados['procemi'] = evtCdBenTerm.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2420_evtcdbenterm_dados['verproc'] = evtCdBenTerm.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2420_evtcdbenterm_dados['tpinsc'] = evtCdBenTerm.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2420_evtcdbenterm_dados['nrinsc'] = evtCdBenTerm.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2420_evtcdbenterm_dados['cpfbenef'] = evtCdBenTerm.ideBeneficio.cpfBenef.cdata
+    except AttributeError: pass
+    try: s2420_evtcdbenterm_dados['nrbeneficio'] = evtCdBenTerm.ideBeneficio.nrBeneficio.cdata
+    except AttributeError: pass
+    try: s2420_evtcdbenterm_dados['dttermbeneficio'] = evtCdBenTerm.infoBenTermino.dtTermBeneficio.cdata
+    except AttributeError: pass
+    try: s2420_evtcdbenterm_dados['mtvtermino'] = evtCdBenTerm.infoBenTermino.mtvTermino.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtCdBenTerm.infoBenTermino): s2420_evtcdbenterm_dados['operacao'] = 1
     elif 'alteracao' in dir(evtCdBenTerm.infoBenTermino): s2420_evtcdbenterm_dados['operacao'] = 2
     elif 'exclusao' in dir(evtCdBenTerm.infoBenTermino): s2420_evtcdbenterm_dados['operacao'] = 3

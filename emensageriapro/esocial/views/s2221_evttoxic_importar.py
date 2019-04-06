@@ -79,24 +79,42 @@ def read_s2221_evttoxic_obj(doc, status, validar=False):
     s2221_evttoxic_dados['identidade'] = doc.eSocial.evtToxic['Id']
     evtToxic = doc.eSocial.evtToxic
 
-    if 'indRetif' in dir(evtToxic.ideEvento): s2221_evttoxic_dados['indretif'] = evtToxic.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtToxic.ideEvento): s2221_evttoxic_dados['nrrecibo'] = evtToxic.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtToxic.ideEvento): s2221_evttoxic_dados['tpamb'] = evtToxic.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtToxic.ideEvento): s2221_evttoxic_dados['procemi'] = evtToxic.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtToxic.ideEvento): s2221_evttoxic_dados['verproc'] = evtToxic.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtToxic.ideEmpregador): s2221_evttoxic_dados['tpinsc'] = evtToxic.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtToxic.ideEmpregador): s2221_evttoxic_dados['nrinsc'] = evtToxic.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtToxic.ideVinculo): s2221_evttoxic_dados['cpftrab'] = evtToxic.ideVinculo.cpfTrab.cdata
-    if 'nisTrab' in dir(evtToxic.ideVinculo): s2221_evttoxic_dados['nistrab'] = evtToxic.ideVinculo.nisTrab.cdata
-    if 'matricula' in dir(evtToxic.ideVinculo): s2221_evttoxic_dados['matricula'] = evtToxic.ideVinculo.matricula.cdata
-    if 'codCateg' in dir(evtToxic.ideVinculo): s2221_evttoxic_dados['codcateg'] = evtToxic.ideVinculo.codCateg.cdata
-    if 'dtExame' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['dtexame'] = evtToxic.toxicologico.dtExame.cdata
-    if 'cnpjLab' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['cnpjlab'] = evtToxic.toxicologico.cnpjLab.cdata
-    if 'codSeqExame' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['codseqexame'] = evtToxic.toxicologico.codSeqExame.cdata
-    if 'nmMed' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['nmmed'] = evtToxic.toxicologico.nmMed.cdata
-    if 'nrCRM' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['nrcrm'] = evtToxic.toxicologico.nrCRM.cdata
-    if 'ufCRM' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['ufcrm'] = evtToxic.toxicologico.ufCRM.cdata
-    if 'indRecusa' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['indrecusa'] = evtToxic.toxicologico.indRecusa.cdata
+    try: s2221_evttoxic_dados['indretif'] = evtToxic.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['nrrecibo'] = evtToxic.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['tpamb'] = evtToxic.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['procemi'] = evtToxic.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['verproc'] = evtToxic.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['tpinsc'] = evtToxic.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['nrinsc'] = evtToxic.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['cpftrab'] = evtToxic.ideVinculo.cpfTrab.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['nistrab'] = evtToxic.ideVinculo.nisTrab.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['matricula'] = evtToxic.ideVinculo.matricula.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['codcateg'] = evtToxic.ideVinculo.codCateg.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['dtexame'] = evtToxic.toxicologico.dtExame.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['cnpjlab'] = evtToxic.toxicologico.cnpjLab.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['codseqexame'] = evtToxic.toxicologico.codSeqExame.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['nmmed'] = evtToxic.toxicologico.nmMed.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['nrcrm'] = evtToxic.toxicologico.nrCRM.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['ufcrm'] = evtToxic.toxicologico.ufCRM.cdata
+    except AttributeError: pass
+    try: s2221_evttoxic_dados['indrecusa'] = evtToxic.toxicologico.indRecusa.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['operacao'] = 1
     elif 'alteracao' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['operacao'] = 2
     elif 'exclusao' in dir(evtToxic.toxicologico): s2221_evttoxic_dados['operacao'] = 3

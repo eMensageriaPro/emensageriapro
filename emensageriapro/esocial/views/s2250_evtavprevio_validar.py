@@ -47,29 +47,29 @@ def validacoes_s2250_evtavprevio(arquivo):
     xmlns = doc.eSocial['xmlns'].split('/')
     evtAvPrevio = doc.eSocial.evtAvPrevio
 
-    if 'indRetif' in dir(evtAvPrevio.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEvento.indRetif', evtAvPrevio.ideEvento.indRetif.cdata, 1, '1;2')
-    if 'nrRecibo' in dir(evtAvPrevio.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEvento.nrRecibo', evtAvPrevio.ideEvento.nrRecibo.cdata, 0, '')
-    if 'tpAmb' in dir(evtAvPrevio.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEvento.tpAmb', evtAvPrevio.ideEvento.tpAmb.cdata, 1, '1;2')
-    if 'procEmi' in dir(evtAvPrevio.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEvento.procEmi', evtAvPrevio.ideEvento.procEmi.cdata, 1, '1;2;3;4;5')
-    if 'verProc' in dir(evtAvPrevio.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEvento.verProc', evtAvPrevio.ideEvento.verProc.cdata, 1, '')
-    if 'tpInsc' in dir(evtAvPrevio.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEmpregador.tpInsc', evtAvPrevio.ideEmpregador.tpInsc.cdata, 1, '1;2;3;4')
-    if 'nrInsc' in dir(evtAvPrevio.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEmpregador.nrInsc', evtAvPrevio.ideEmpregador.nrInsc.cdata, 1, '')
-    if 'cpfTrab' in dir(evtAvPrevio.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideVinculo.cpfTrab', evtAvPrevio.ideVinculo.cpfTrab.cdata, 1, '')
-    if 'nisTrab' in dir(evtAvPrevio.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideVinculo.nisTrab', evtAvPrevio.ideVinculo.nisTrab.cdata, 1, '')
-    if 'matricula' in dir(evtAvPrevio.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideVinculo.matricula', evtAvPrevio.ideVinculo.matricula.cdata, 1, '')
+    if 'indRetif' in dir(evtAvPrevio.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEvento.indRetif', evtAvPrevio.ideEvento.indRetif.cdata, 1, u'1;2')
+    if 'nrRecibo' in dir(evtAvPrevio.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEvento.nrRecibo', evtAvPrevio.ideEvento.nrRecibo.cdata, 0, u'')
+    if 'tpAmb' in dir(evtAvPrevio.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEvento.tpAmb', evtAvPrevio.ideEvento.tpAmb.cdata, 1, u'1;2')
+    if 'procEmi' in dir(evtAvPrevio.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEvento.procEmi', evtAvPrevio.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
+    if 'verProc' in dir(evtAvPrevio.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEvento.verProc', evtAvPrevio.ideEvento.verProc.cdata, 1, u'')
+    if 'tpInsc' in dir(evtAvPrevio.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEmpregador.tpInsc', evtAvPrevio.ideEmpregador.tpInsc.cdata, 1, u'1;2;3;4')
+    if 'nrInsc' in dir(evtAvPrevio.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideEmpregador.nrInsc', evtAvPrevio.ideEmpregador.nrInsc.cdata, 1, u'')
+    if 'cpfTrab' in dir(evtAvPrevio.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideVinculo.cpfTrab', evtAvPrevio.ideVinculo.cpfTrab.cdata, 1, u'')
+    if 'nisTrab' in dir(evtAvPrevio.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideVinculo.nisTrab', evtAvPrevio.ideVinculo.nisTrab.cdata, 1, u'')
+    if 'matricula' in dir(evtAvPrevio.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtAvPrevio.ideVinculo.matricula', evtAvPrevio.ideVinculo.matricula.cdata, 1, u'')
     if 'detAvPrevio' in dir(evtAvPrevio.infoAvPrevio):
         for detAvPrevio in evtAvPrevio.infoAvPrevio.detAvPrevio:
 
-            if 'dtAvPrv' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.dtAvPrv', detAvPrevio.dtAvPrv.cdata, 1, '')
-            if 'dtPrevDeslig' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.dtPrevDeslig', detAvPrevio.dtPrevDeslig.cdata, 1, '')
-            if 'tpAvPrevio' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.tpAvPrevio', detAvPrevio.tpAvPrevio.cdata, 1, '1;2;4;5')
-            if 'observacao' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.observacao', detAvPrevio.observacao.cdata, 0, '')
+            if 'dtAvPrv' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.dtAvPrv', detAvPrevio.dtAvPrv.cdata, 1, u'')
+            if 'dtPrevDeslig' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.dtPrevDeslig', detAvPrevio.dtPrevDeslig.cdata, 1, u'')
+            if 'tpAvPrevio' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.tpAvPrevio', detAvPrevio.tpAvPrevio.cdata, 1, u'1;2;4;5')
+            if 'observacao' in dir(detAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'detAvPrevio.observacao', detAvPrevio.observacao.cdata, 0, u'')
 
     if 'cancAvPrevio' in dir(evtAvPrevio.infoAvPrevio):
         for cancAvPrevio in evtAvPrevio.infoAvPrevio.cancAvPrevio:
 
-            if 'dtCancAvPrv' in dir(cancAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'cancAvPrevio.dtCancAvPrv', cancAvPrevio.dtCancAvPrv.cdata, 1, '')
-            if 'observacao' in dir(cancAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'cancAvPrevio.observacao', cancAvPrevio.observacao.cdata, 0, '')
-            if 'mtvCancAvPrevio' in dir(cancAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'cancAvPrevio.mtvCancAvPrevio', cancAvPrevio.mtvCancAvPrevio.cdata, 1, '1;2;3;9')
+            if 'dtCancAvPrv' in dir(cancAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'cancAvPrevio.dtCancAvPrv', cancAvPrevio.dtCancAvPrv.cdata, 1, u'')
+            if 'observacao' in dir(cancAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'cancAvPrevio.observacao', cancAvPrevio.observacao.cdata, 0, u'')
+            if 'mtvCancAvPrevio' in dir(cancAvPrevio): validacoes_lista = validar_campo(validacoes_lista,'cancAvPrevio.mtvCancAvPrevio', cancAvPrevio.mtvCancAvPrevio.cdata, 1, u'1;2;3;9')
 
     return validacoes_lista

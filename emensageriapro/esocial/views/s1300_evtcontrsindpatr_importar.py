@@ -79,15 +79,24 @@ def read_s1300_evtcontrsindpatr_obj(doc, status, validar=False):
     s1300_evtcontrsindpatr_dados['identidade'] = doc.eSocial.evtContrSindPatr['Id']
     evtContrSindPatr = doc.eSocial.evtContrSindPatr
 
-    if 'indRetif' in dir(evtContrSindPatr.ideEvento): s1300_evtcontrsindpatr_dados['indretif'] = evtContrSindPatr.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtContrSindPatr.ideEvento): s1300_evtcontrsindpatr_dados['nrrecibo'] = evtContrSindPatr.ideEvento.nrRecibo.cdata
-    if 'indApuracao' in dir(evtContrSindPatr.ideEvento): s1300_evtcontrsindpatr_dados['indapuracao'] = evtContrSindPatr.ideEvento.indApuracao.cdata
-    if 'perApur' in dir(evtContrSindPatr.ideEvento): s1300_evtcontrsindpatr_dados['perapur'] = evtContrSindPatr.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtContrSindPatr.ideEvento): s1300_evtcontrsindpatr_dados['tpamb'] = evtContrSindPatr.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtContrSindPatr.ideEvento): s1300_evtcontrsindpatr_dados['procemi'] = evtContrSindPatr.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtContrSindPatr.ideEvento): s1300_evtcontrsindpatr_dados['verproc'] = evtContrSindPatr.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtContrSindPatr.ideEmpregador): s1300_evtcontrsindpatr_dados['tpinsc'] = evtContrSindPatr.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtContrSindPatr.ideEmpregador): s1300_evtcontrsindpatr_dados['nrinsc'] = evtContrSindPatr.ideEmpregador.nrInsc.cdata
+    try: s1300_evtcontrsindpatr_dados['indretif'] = evtContrSindPatr.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s1300_evtcontrsindpatr_dados['nrrecibo'] = evtContrSindPatr.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s1300_evtcontrsindpatr_dados['indapuracao'] = evtContrSindPatr.ideEvento.indApuracao.cdata
+    except AttributeError: pass
+    try: s1300_evtcontrsindpatr_dados['perapur'] = evtContrSindPatr.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s1300_evtcontrsindpatr_dados['tpamb'] = evtContrSindPatr.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1300_evtcontrsindpatr_dados['procemi'] = evtContrSindPatr.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1300_evtcontrsindpatr_dados['verproc'] = evtContrSindPatr.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1300_evtcontrsindpatr_dados['tpinsc'] = evtContrSindPatr.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1300_evtcontrsindpatr_dados['nrinsc'] = evtContrSindPatr.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtContrSindPatr.contribSind): s1300_evtcontrsindpatr_dados['operacao'] = 1
     elif 'alteracao' in dir(evtContrSindPatr.contribSind): s1300_evtcontrsindpatr_dados['operacao'] = 2
     elif 'exclusao' in dir(evtContrSindPatr.contribSind): s1300_evtcontrsindpatr_dados['operacao'] = 3
@@ -101,14 +110,17 @@ def read_s1300_evtcontrsindpatr_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtContrSindPatr['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'contribSind' in dir(evtContrSindPatr):
+    if 'contribSind' in dir(evtContrSindPatr) and evtContrSindPatr.contribSind.cdata != '':
         for contribSind in evtContrSindPatr.contribSind:
             s1300_contribsind_dados = {}
             s1300_contribsind_dados['s1300_evtcontrsindpatr_id'] = s1300_evtcontrsindpatr_id
 
-            if 'cnpjSindic' in dir(contribSind): s1300_contribsind_dados['cnpjsindic'] = contribSind.cnpjSindic.cdata
-            if 'tpContribSind' in dir(contribSind): s1300_contribsind_dados['tpcontribsind'] = contribSind.tpContribSind.cdata
-            if 'vlrContribSind' in dir(contribSind): s1300_contribsind_dados['vlrcontribsind'] = contribSind.vlrContribSind.cdata
+            try: s1300_contribsind_dados['cnpjsindic'] = contribSind.cnpjSindic.cdata
+            except AttributeError: pass
+            try: s1300_contribsind_dados['tpcontribsind'] = contribSind.tpContribSind.cdata
+            except AttributeError: pass
+            try: s1300_contribsind_dados['vlrcontribsind'] = contribSind.vlrContribSind.cdata
+            except AttributeError: pass
             insert = create_insert('s1300_contribsind', s1300_contribsind_dados)
             resp = executar_sql(insert, True)
             s1300_contribsind_id = resp[0][0]

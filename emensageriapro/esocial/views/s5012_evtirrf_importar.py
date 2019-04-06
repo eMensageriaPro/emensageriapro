@@ -79,11 +79,16 @@ def read_s5012_evtirrf_obj(doc, status, validar=False):
     s5012_evtirrf_dados['identidade'] = doc.eSocial.evtIrrf['Id']
     evtIrrf = doc.eSocial.evtIrrf
 
-    if 'perApur' in dir(evtIrrf.ideEvento): s5012_evtirrf_dados['perapur'] = evtIrrf.ideEvento.perApur.cdata
-    if 'tpInsc' in dir(evtIrrf.ideEmpregador): s5012_evtirrf_dados['tpinsc'] = evtIrrf.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtIrrf.ideEmpregador): s5012_evtirrf_dados['nrinsc'] = evtIrrf.ideEmpregador.nrInsc.cdata
-    if 'nrRecArqBase' in dir(evtIrrf.infoIRRF): s5012_evtirrf_dados['nrrecarqbase'] = evtIrrf.infoIRRF.nrRecArqBase.cdata
-    if 'indExistInfo' in dir(evtIrrf.infoIRRF): s5012_evtirrf_dados['indexistinfo'] = evtIrrf.infoIRRF.indExistInfo.cdata
+    try: s5012_evtirrf_dados['perapur'] = evtIrrf.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s5012_evtirrf_dados['tpinsc'] = evtIrrf.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s5012_evtirrf_dados['nrinsc'] = evtIrrf.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s5012_evtirrf_dados['nrrecarqbase'] = evtIrrf.infoIRRF.nrRecArqBase.cdata
+    except AttributeError: pass
+    try: s5012_evtirrf_dados['indexistinfo'] = evtIrrf.infoIRRF.indExistInfo.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtIrrf.infoIRRF): s5012_evtirrf_dados['operacao'] = 1
     elif 'alteracao' in dir(evtIrrf.infoIRRF): s5012_evtirrf_dados['operacao'] = 2
     elif 'exclusao' in dir(evtIrrf.infoIRRF): s5012_evtirrf_dados['operacao'] = 3
@@ -97,13 +102,15 @@ def read_s5012_evtirrf_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtIrrf['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'infoCRContrib' in dir(evtIrrf.infoIRRF):
+    if 'infoCRContrib' in dir(evtIrrf.infoIRRF) and evtIrrf.infoIRRF.infoCRContrib.cdata != '':
         for infoCRContrib in evtIrrf.infoIRRF.infoCRContrib:
             s5012_infocrcontrib_dados = {}
             s5012_infocrcontrib_dados['s5012_evtirrf_id'] = s5012_evtirrf_id
 
-            if 'tpCR' in dir(infoCRContrib): s5012_infocrcontrib_dados['tpcr'] = infoCRContrib.tpCR.cdata
-            if 'vrCR' in dir(infoCRContrib): s5012_infocrcontrib_dados['vrcr'] = infoCRContrib.vrCR.cdata
+            try: s5012_infocrcontrib_dados['tpcr'] = infoCRContrib.tpCR.cdata
+            except AttributeError: pass
+            try: s5012_infocrcontrib_dados['vrcr'] = infoCRContrib.vrCR.cdata
+            except AttributeError: pass
             insert = create_insert('s5012_infocrcontrib', s5012_infocrcontrib_dados)
             resp = executar_sql(insert, True)
             s5012_infocrcontrib_id = resp[0][0]

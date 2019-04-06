@@ -79,20 +79,34 @@ def read_r2099_evtfechaevper_obj(doc, status, validar=False):
     r2099_evtfechaevper_dados['identidade'] = doc.Reinf.evtFechaEvPer['id']
     evtFechaEvPer = doc.Reinf.evtFechaEvPer
 
-    if 'perApur' in dir(evtFechaEvPer.ideEvento): r2099_evtfechaevper_dados['perapur'] = evtFechaEvPer.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtFechaEvPer.ideEvento): r2099_evtfechaevper_dados['tpamb'] = evtFechaEvPer.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtFechaEvPer.ideEvento): r2099_evtfechaevper_dados['procemi'] = evtFechaEvPer.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtFechaEvPer.ideEvento): r2099_evtfechaevper_dados['verproc'] = evtFechaEvPer.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtFechaEvPer.ideContri): r2099_evtfechaevper_dados['tpinsc'] = evtFechaEvPer.ideContri.tpInsc.cdata
-    if 'nrInsc' in dir(evtFechaEvPer.ideContri): r2099_evtfechaevper_dados['nrinsc'] = evtFechaEvPer.ideContri.nrInsc.cdata
-    if 'evtServTm' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['evtservtm'] = evtFechaEvPer.infoFech.evtServTm.cdata
-    if 'evtServPr' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['evtservpr'] = evtFechaEvPer.infoFech.evtServPr.cdata
-    if 'evtAssDespRec' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['evtassdesprec'] = evtFechaEvPer.infoFech.evtAssDespRec.cdata
-    if 'evtAssDespRep' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['evtassdesprep'] = evtFechaEvPer.infoFech.evtAssDespRep.cdata
-    if 'evtComProd' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['evtcomprod'] = evtFechaEvPer.infoFech.evtComProd.cdata
-    if 'evtCPRB' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['evtcprb'] = evtFechaEvPer.infoFech.evtCPRB.cdata
-    if 'evtPgtos' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['evtpgtos'] = evtFechaEvPer.infoFech.evtPgtos.cdata
-    if 'compSemMovto' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['compsemmovto'] = evtFechaEvPer.infoFech.compSemMovto.cdata
+    try: r2099_evtfechaevper_dados['perapur'] = evtFechaEvPer.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['tpamb'] = evtFechaEvPer.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['procemi'] = evtFechaEvPer.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['verproc'] = evtFechaEvPer.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['tpinsc'] = evtFechaEvPer.ideContri.tpInsc.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['nrinsc'] = evtFechaEvPer.ideContri.nrInsc.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['evtservtm'] = evtFechaEvPer.infoFech.evtServTm.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['evtservpr'] = evtFechaEvPer.infoFech.evtServPr.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['evtassdesprec'] = evtFechaEvPer.infoFech.evtAssDespRec.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['evtassdesprep'] = evtFechaEvPer.infoFech.evtAssDespRep.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['evtcomprod'] = evtFechaEvPer.infoFech.evtComProd.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['evtcprb'] = evtFechaEvPer.infoFech.evtCPRB.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['evtpgtos'] = evtFechaEvPer.infoFech.evtPgtos.cdata
+    except AttributeError: pass
+    try: r2099_evtfechaevper_dados['compsemmovto'] = evtFechaEvPer.infoFech.compSemMovto.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['operacao'] = 1
     elif 'alteracao' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['operacao'] = 2
     elif 'exclusao' in dir(evtFechaEvPer.infoFech): r2099_evtfechaevper_dados['operacao'] = 3
@@ -106,15 +120,19 @@ def read_r2099_evtfechaevper_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.Reinf.evtFechaEvPer['id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'ideRespInf' in dir(evtFechaEvPer):
+    if 'ideRespInf' in dir(evtFechaEvPer) and evtFechaEvPer.ideRespInf.cdata != '':
         for ideRespInf in evtFechaEvPer.ideRespInf:
             r2099_iderespinf_dados = {}
             r2099_iderespinf_dados['r2099_evtfechaevper_id'] = r2099_evtfechaevper_id
 
-            if 'nmResp' in dir(ideRespInf): r2099_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
-            if 'cpfResp' in dir(ideRespInf): r2099_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
-            if 'telefone' in dir(ideRespInf): r2099_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata
-            if 'email' in dir(ideRespInf): r2099_iderespinf_dados['email'] = ideRespInf.email.cdata
+            try: r2099_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
+            except AttributeError: pass
+            try: r2099_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
+            except AttributeError: pass
+            try: r2099_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata
+            except AttributeError: pass
+            try: r2099_iderespinf_dados['email'] = ideRespInf.email.cdata
+            except AttributeError: pass
             insert = create_insert('r2099_iderespinf', r2099_iderespinf_dados)
             resp = executar_sql(insert, True)
             r2099_iderespinf_id = resp[0][0]

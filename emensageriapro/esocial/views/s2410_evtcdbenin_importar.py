@@ -79,25 +79,44 @@ def read_s2410_evtcdbenin_obj(doc, status, validar=False):
     s2410_evtcdbenin_dados['identidade'] = doc.eSocial.evtCdBenIn['Id']
     evtCdBenIn = doc.eSocial.evtCdBenIn
 
-    if 'indRetif' in dir(evtCdBenIn.ideEvento): s2410_evtcdbenin_dados['indretif'] = evtCdBenIn.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtCdBenIn.ideEvento): s2410_evtcdbenin_dados['nrrecibo'] = evtCdBenIn.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtCdBenIn.ideEvento): s2410_evtcdbenin_dados['tpamb'] = evtCdBenIn.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtCdBenIn.ideEvento): s2410_evtcdbenin_dados['procemi'] = evtCdBenIn.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtCdBenIn.ideEvento): s2410_evtcdbenin_dados['verproc'] = evtCdBenIn.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtCdBenIn.ideEmpregador): s2410_evtcdbenin_dados['tpinsc'] = evtCdBenIn.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtCdBenIn.ideEmpregador): s2410_evtcdbenin_dados['nrinsc'] = evtCdBenIn.ideEmpregador.nrInsc.cdata
-    if 'cpfBenef' in dir(evtCdBenIn.beneficiario): s2410_evtcdbenin_dados['cpfbenef'] = evtCdBenIn.beneficiario.cpfBenef.cdata
-    if 'matricula' in dir(evtCdBenIn.beneficiario): s2410_evtcdbenin_dados['matricula'] = evtCdBenIn.beneficiario.matricula.cdata
-    if 'cnpjOrigem' in dir(evtCdBenIn.beneficiario): s2410_evtcdbenin_dados['cnpjorigem'] = evtCdBenIn.beneficiario.cnpjOrigem.cdata
-    if 'cadIni' in dir(evtCdBenIn.infoBenInicio): s2410_evtcdbenin_dados['cadini'] = evtCdBenIn.infoBenInicio.cadIni.cdata
-    if 'nrBeneficio' in dir(evtCdBenIn.infoBenInicio): s2410_evtcdbenin_dados['nrbeneficio'] = evtCdBenIn.infoBenInicio.nrBeneficio.cdata
-    if 'dtIniBeneficio' in dir(evtCdBenIn.infoBenInicio): s2410_evtcdbenin_dados['dtinibeneficio'] = evtCdBenIn.infoBenInicio.dtIniBeneficio.cdata
-    if 'tpBeneficio' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio): s2410_evtcdbenin_dados['tpbeneficio'] = evtCdBenIn.infoBenInicio.dadosBeneficio.tpBeneficio.cdata
-    if 'vrBeneficio' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio): s2410_evtcdbenin_dados['vrbeneficio'] = evtCdBenIn.infoBenInicio.dadosBeneficio.vrBeneficio.cdata
-    if 'tpPlanRP' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio): s2410_evtcdbenin_dados['tpplanrp'] = evtCdBenIn.infoBenInicio.dadosBeneficio.tpPlanRP.cdata
-    if 'dsc' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio): s2410_evtcdbenin_dados['dsc'] = evtCdBenIn.infoBenInicio.dadosBeneficio.dsc.cdata
-    if 'indDecJud' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio): s2410_evtcdbenin_dados['inddecjud'] = evtCdBenIn.infoBenInicio.dadosBeneficio.indDecJud.cdata
-    if 'indHomologTC' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio): s2410_evtcdbenin_dados['indhomologtc'] = evtCdBenIn.infoBenInicio.dadosBeneficio.indHomologTC.cdata
+    try: s2410_evtcdbenin_dados['indretif'] = evtCdBenIn.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['nrrecibo'] = evtCdBenIn.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['tpamb'] = evtCdBenIn.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['procemi'] = evtCdBenIn.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['verproc'] = evtCdBenIn.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['tpinsc'] = evtCdBenIn.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['nrinsc'] = evtCdBenIn.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['cpfbenef'] = evtCdBenIn.beneficiario.cpfBenef.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['matricula'] = evtCdBenIn.beneficiario.matricula.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['cnpjorigem'] = evtCdBenIn.beneficiario.cnpjOrigem.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['cadini'] = evtCdBenIn.infoBenInicio.cadIni.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['nrbeneficio'] = evtCdBenIn.infoBenInicio.nrBeneficio.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['dtinibeneficio'] = evtCdBenIn.infoBenInicio.dtIniBeneficio.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['tpbeneficio'] = evtCdBenIn.infoBenInicio.dadosBeneficio.tpBeneficio.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['vrbeneficio'] = evtCdBenIn.infoBenInicio.dadosBeneficio.vrBeneficio.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['tpplanrp'] = evtCdBenIn.infoBenInicio.dadosBeneficio.tpPlanRP.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['dsc'] = evtCdBenIn.infoBenInicio.dadosBeneficio.dsc.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['inddecjud'] = evtCdBenIn.infoBenInicio.dadosBeneficio.indDecJud.cdata
+    except AttributeError: pass
+    try: s2410_evtcdbenin_dados['indhomologtc'] = evtCdBenIn.infoBenInicio.dadosBeneficio.indHomologTC.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtCdBenIn.infoBenInicio): s2410_evtcdbenin_dados['operacao'] = 1
     elif 'alteracao' in dir(evtCdBenIn.infoBenInicio): s2410_evtcdbenin_dados['operacao'] = 2
     elif 'exclusao' in dir(evtCdBenIn.infoBenInicio): s2410_evtcdbenin_dados['operacao'] = 3
@@ -111,37 +130,43 @@ def read_s2410_evtcdbenin_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtCdBenIn['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'infoPenMorte' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
+    if 'infoPenMorte' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio) and evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte.cdata != '':
         for infoPenMorte in evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte:
             s2410_infopenmorte_dados = {}
             s2410_infopenmorte_dados['s2410_evtcdbenin_id'] = s2410_evtcdbenin_id
 
-            if 'tpPenMorte' in dir(infoPenMorte): s2410_infopenmorte_dados['tppenmorte'] = infoPenMorte.tpPenMorte.cdata
+            try: s2410_infopenmorte_dados['tppenmorte'] = infoPenMorte.tpPenMorte.cdata
+            except AttributeError: pass
             insert = create_insert('s2410_infopenmorte', s2410_infopenmorte_dados)
             resp = executar_sql(insert, True)
             s2410_infopenmorte_id = resp[0][0]
             #print s2410_infopenmorte_id
 
-            if 'instPenMorte' in dir(infoPenMorte):
+            if 'instPenMorte' in dir(infoPenMorte) and infoPenMorte.instPenMorte.cdata != '':
                 for instPenMorte in infoPenMorte.instPenMorte:
                     s2410_instpenmorte_dados = {}
                     s2410_instpenmorte_dados['s2410_infopenmorte_id'] = s2410_infopenmorte_id
 
-                    if 'cpfInst' in dir(instPenMorte): s2410_instpenmorte_dados['cpfinst'] = instPenMorte.cpfInst.cdata
-                    if 'dtInst' in dir(instPenMorte): s2410_instpenmorte_dados['dtinst'] = instPenMorte.dtInst.cdata
-                    if 'intAposentado' in dir(instPenMorte): s2410_instpenmorte_dados['intaposentado'] = instPenMorte.intAposentado.cdata
+                    try: s2410_instpenmorte_dados['cpfinst'] = instPenMorte.cpfInst.cdata
+                    except AttributeError: pass
+                    try: s2410_instpenmorte_dados['dtinst'] = instPenMorte.dtInst.cdata
+                    except AttributeError: pass
+                    try: s2410_instpenmorte_dados['intaposentado'] = instPenMorte.intAposentado.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2410_instpenmorte', s2410_instpenmorte_dados)
                     resp = executar_sql(insert, True)
                     s2410_instpenmorte_id = resp[0][0]
                     #print s2410_instpenmorte_id
 
-    if 'homologTC' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
+    if 'homologTC' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio) and evtCdBenIn.infoBenInicio.dadosBeneficio.homologTC.cdata != '':
         for homologTC in evtCdBenIn.infoBenInicio.dadosBeneficio.homologTC:
             s2410_homologtc_dados = {}
             s2410_homologtc_dados['s2410_evtcdbenin_id'] = s2410_evtcdbenin_id
 
-            if 'dtHomol' in dir(homologTC): s2410_homologtc_dados['dthomol'] = homologTC.dtHomol.cdata
-            if 'nrAtoLegal' in dir(homologTC): s2410_homologtc_dados['nratolegal'] = homologTC.nrAtoLegal.cdata
+            try: s2410_homologtc_dados['dthomol'] = homologTC.dtHomol.cdata
+            except AttributeError: pass
+            try: s2410_homologtc_dados['nratolegal'] = homologTC.nrAtoLegal.cdata
+            except AttributeError: pass
             insert = create_insert('s2410_homologtc', s2410_homologtc_dados)
             resp = executar_sql(insert, True)
             s2410_homologtc_id = resp[0][0]

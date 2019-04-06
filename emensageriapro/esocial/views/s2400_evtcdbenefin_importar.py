@@ -79,29 +79,52 @@ def read_s2400_evtcdbenefin_obj(doc, status, validar=False):
     s2400_evtcdbenefin_dados['identidade'] = doc.eSocial.evtCdBenefIn['Id']
     evtCdBenefIn = doc.eSocial.evtCdBenefIn
 
-    if 'indRetif' in dir(evtCdBenefIn.ideEvento): s2400_evtcdbenefin_dados['indretif'] = evtCdBenefIn.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtCdBenefIn.ideEvento): s2400_evtcdbenefin_dados['nrrecibo'] = evtCdBenefIn.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtCdBenefIn.ideEvento): s2400_evtcdbenefin_dados['tpamb'] = evtCdBenefIn.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtCdBenefIn.ideEvento): s2400_evtcdbenefin_dados['procemi'] = evtCdBenefIn.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtCdBenefIn.ideEvento): s2400_evtcdbenefin_dados['verproc'] = evtCdBenefIn.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtCdBenefIn.ideEmpregador): s2400_evtcdbenefin_dados['tpinsc'] = evtCdBenefIn.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtCdBenefIn.ideEmpregador): s2400_evtcdbenefin_dados['nrinsc'] = evtCdBenefIn.ideEmpregador.nrInsc.cdata
-    if 'cpfBenef' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['cpfbenef'] = evtCdBenefIn.beneficiario.cpfBenef.cdata
-    if 'nisBenef' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['nisbenef'] = evtCdBenefIn.beneficiario.nisBenef.cdata
-    if 'nmBenefic' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['nmbenefic'] = evtCdBenefIn.beneficiario.nmBenefic.cdata
-    if 'dtInicio' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['dtinicio'] = evtCdBenefIn.beneficiario.dtInicio.cdata
-    if 'sexo' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['sexo'] = evtCdBenefIn.beneficiario.sexo.cdata
-    if 'racaCor' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['racacor'] = evtCdBenefIn.beneficiario.racaCor.cdata
-    if 'estCiv' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['estciv'] = evtCdBenefIn.beneficiario.estCiv.cdata
-    if 'incFisMen' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['incfismen'] = evtCdBenefIn.beneficiario.incFisMen.cdata
-    if 'dtIncFisMen' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['dtincfismen'] = evtCdBenefIn.beneficiario.dtIncFisMen.cdata
-    if 'dtNascto' in dir(evtCdBenefIn.beneficiario.dadosNasc): s2400_evtcdbenefin_dados['dtnascto'] = evtCdBenefIn.beneficiario.dadosNasc.dtNascto.cdata
-    if 'codMunic' in dir(evtCdBenefIn.beneficiario.dadosNasc): s2400_evtcdbenefin_dados['codmunic'] = evtCdBenefIn.beneficiario.dadosNasc.codMunic.cdata
-    if 'uf' in dir(evtCdBenefIn.beneficiario.dadosNasc): s2400_evtcdbenefin_dados['uf'] = evtCdBenefIn.beneficiario.dadosNasc.uf.cdata
-    if 'paisNascto' in dir(evtCdBenefIn.beneficiario.dadosNasc): s2400_evtcdbenefin_dados['paisnascto'] = evtCdBenefIn.beneficiario.dadosNasc.paisNascto.cdata
-    if 'paisNac' in dir(evtCdBenefIn.beneficiario.dadosNasc): s2400_evtcdbenefin_dados['paisnac'] = evtCdBenefIn.beneficiario.dadosNasc.paisNac.cdata
-    if 'nmMae' in dir(evtCdBenefIn.beneficiario.dadosNasc): s2400_evtcdbenefin_dados['nmmae'] = evtCdBenefIn.beneficiario.dadosNasc.nmMae.cdata
-    if 'nmPai' in dir(evtCdBenefIn.beneficiario.dadosNasc): s2400_evtcdbenefin_dados['nmpai'] = evtCdBenefIn.beneficiario.dadosNasc.nmPai.cdata
+    try: s2400_evtcdbenefin_dados['indretif'] = evtCdBenefIn.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['nrrecibo'] = evtCdBenefIn.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['tpamb'] = evtCdBenefIn.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['procemi'] = evtCdBenefIn.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['verproc'] = evtCdBenefIn.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['tpinsc'] = evtCdBenefIn.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['nrinsc'] = evtCdBenefIn.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['cpfbenef'] = evtCdBenefIn.beneficiario.cpfBenef.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['nisbenef'] = evtCdBenefIn.beneficiario.nisBenef.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['nmbenefic'] = evtCdBenefIn.beneficiario.nmBenefic.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['dtinicio'] = evtCdBenefIn.beneficiario.dtInicio.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['sexo'] = evtCdBenefIn.beneficiario.sexo.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['racacor'] = evtCdBenefIn.beneficiario.racaCor.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['estciv'] = evtCdBenefIn.beneficiario.estCiv.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['incfismen'] = evtCdBenefIn.beneficiario.incFisMen.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['dtincfismen'] = evtCdBenefIn.beneficiario.dtIncFisMen.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['dtnascto'] = evtCdBenefIn.beneficiario.dadosNasc.dtNascto.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['codmunic'] = evtCdBenefIn.beneficiario.dadosNasc.codMunic.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['uf'] = evtCdBenefIn.beneficiario.dadosNasc.uf.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['paisnascto'] = evtCdBenefIn.beneficiario.dadosNasc.paisNascto.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['paisnac'] = evtCdBenefIn.beneficiario.dadosNasc.paisNac.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['nmmae'] = evtCdBenefIn.beneficiario.dadosNasc.nmMae.cdata
+    except AttributeError: pass
+    try: s2400_evtcdbenefin_dados['nmpai'] = evtCdBenefIn.beneficiario.dadosNasc.nmPai.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['operacao'] = 1
     elif 'alteracao' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['operacao'] = 2
     elif 'exclusao' in dir(evtCdBenefIn.beneficiario): s2400_evtcdbenefin_dados['operacao'] = 3
@@ -115,54 +138,77 @@ def read_s2400_evtcdbenefin_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtCdBenefIn['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'brasil' in dir(evtCdBenefIn.beneficiario.endereco):
+    if 'brasil' in dir(evtCdBenefIn.beneficiario.endereco) and evtCdBenefIn.beneficiario.endereco.brasil.cdata != '':
         for brasil in evtCdBenefIn.beneficiario.endereco.brasil:
             s2400_brasil_dados = {}
             s2400_brasil_dados['s2400_evtcdbenefin_id'] = s2400_evtcdbenefin_id
 
-            if 'tpLograd' in dir(brasil): s2400_brasil_dados['tplograd'] = brasil.tpLograd.cdata
-            if 'dscLograd' in dir(brasil): s2400_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
-            if 'nrLograd' in dir(brasil): s2400_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
-            if 'complemento' in dir(brasil): s2400_brasil_dados['complemento'] = brasil.complemento.cdata
-            if 'bairro' in dir(brasil): s2400_brasil_dados['bairro'] = brasil.bairro.cdata
-            if 'cep' in dir(brasil): s2400_brasil_dados['cep'] = brasil.cep.cdata
-            if 'codMunic' in dir(brasil): s2400_brasil_dados['codmunic'] = brasil.codMunic.cdata
-            if 'uf' in dir(brasil): s2400_brasil_dados['uf'] = brasil.uf.cdata
+            try: s2400_brasil_dados['tplograd'] = brasil.tpLograd.cdata
+            except AttributeError: pass
+            try: s2400_brasil_dados['dsclograd'] = brasil.dscLograd.cdata
+            except AttributeError: pass
+            try: s2400_brasil_dados['nrlograd'] = brasil.nrLograd.cdata
+            except AttributeError: pass
+            try: s2400_brasil_dados['complemento'] = brasil.complemento.cdata
+            except AttributeError: pass
+            try: s2400_brasil_dados['bairro'] = brasil.bairro.cdata
+            except AttributeError: pass
+            try: s2400_brasil_dados['cep'] = brasil.cep.cdata
+            except AttributeError: pass
+            try: s2400_brasil_dados['codmunic'] = brasil.codMunic.cdata
+            except AttributeError: pass
+            try: s2400_brasil_dados['uf'] = brasil.uf.cdata
+            except AttributeError: pass
             insert = create_insert('s2400_brasil', s2400_brasil_dados)
             resp = executar_sql(insert, True)
             s2400_brasil_id = resp[0][0]
             #print s2400_brasil_id
 
-    if 'exterior' in dir(evtCdBenefIn.beneficiario.endereco):
+    if 'exterior' in dir(evtCdBenefIn.beneficiario.endereco) and evtCdBenefIn.beneficiario.endereco.exterior.cdata != '':
         for exterior in evtCdBenefIn.beneficiario.endereco.exterior:
             s2400_exterior_dados = {}
             s2400_exterior_dados['s2400_evtcdbenefin_id'] = s2400_evtcdbenefin_id
 
-            if 'paisResid' in dir(exterior): s2400_exterior_dados['paisresid'] = exterior.paisResid.cdata
-            if 'dscLograd' in dir(exterior): s2400_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
-            if 'nrLograd' in dir(exterior): s2400_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
-            if 'complemento' in dir(exterior): s2400_exterior_dados['complemento'] = exterior.complemento.cdata
-            if 'bairro' in dir(exterior): s2400_exterior_dados['bairro'] = exterior.bairro.cdata
-            if 'nmCid' in dir(exterior): s2400_exterior_dados['nmcid'] = exterior.nmCid.cdata
-            if 'codPostal' in dir(exterior): s2400_exterior_dados['codpostal'] = exterior.codPostal.cdata
+            try: s2400_exterior_dados['paisresid'] = exterior.paisResid.cdata
+            except AttributeError: pass
+            try: s2400_exterior_dados['dsclograd'] = exterior.dscLograd.cdata
+            except AttributeError: pass
+            try: s2400_exterior_dados['nrlograd'] = exterior.nrLograd.cdata
+            except AttributeError: pass
+            try: s2400_exterior_dados['complemento'] = exterior.complemento.cdata
+            except AttributeError: pass
+            try: s2400_exterior_dados['bairro'] = exterior.bairro.cdata
+            except AttributeError: pass
+            try: s2400_exterior_dados['nmcid'] = exterior.nmCid.cdata
+            except AttributeError: pass
+            try: s2400_exterior_dados['codpostal'] = exterior.codPostal.cdata
+            except AttributeError: pass
             insert = create_insert('s2400_exterior', s2400_exterior_dados)
             resp = executar_sql(insert, True)
             s2400_exterior_id = resp[0][0]
             #print s2400_exterior_id
 
-    if 'dependente' in dir(evtCdBenefIn.beneficiario):
+    if 'dependente' in dir(evtCdBenefIn.beneficiario) and evtCdBenefIn.beneficiario.dependente.cdata != '':
         for dependente in evtCdBenefIn.beneficiario.dependente:
             s2400_dependente_dados = {}
             s2400_dependente_dados['s2400_evtcdbenefin_id'] = s2400_evtcdbenefin_id
 
-            if 'tpDep' in dir(dependente): s2400_dependente_dados['tpdep'] = dependente.tpDep.cdata
-            if 'nmDep' in dir(dependente): s2400_dependente_dados['nmdep'] = dependente.nmDep.cdata
-            if 'dtNascto' in dir(dependente): s2400_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
-            if 'cpfDep' in dir(dependente): s2400_dependente_dados['cpfdep'] = dependente.cpfDep.cdata
-            if 'sexoDep' in dir(dependente): s2400_dependente_dados['sexodep'] = dependente.sexoDep.cdata
-            if 'depIRRF' in dir(dependente): s2400_dependente_dados['depirrf'] = dependente.depIRRF.cdata
-            if 'incFisMen' in dir(dependente): s2400_dependente_dados['incfismen'] = dependente.incFisMen.cdata
-            if 'depFinsPrev' in dir(dependente): s2400_dependente_dados['depfinsprev'] = dependente.depFinsPrev.cdata
+            try: s2400_dependente_dados['tpdep'] = dependente.tpDep.cdata
+            except AttributeError: pass
+            try: s2400_dependente_dados['nmdep'] = dependente.nmDep.cdata
+            except AttributeError: pass
+            try: s2400_dependente_dados['dtnascto'] = dependente.dtNascto.cdata
+            except AttributeError: pass
+            try: s2400_dependente_dados['cpfdep'] = dependente.cpfDep.cdata
+            except AttributeError: pass
+            try: s2400_dependente_dados['sexodep'] = dependente.sexoDep.cdata
+            except AttributeError: pass
+            try: s2400_dependente_dados['depirrf'] = dependente.depIRRF.cdata
+            except AttributeError: pass
+            try: s2400_dependente_dados['incfismen'] = dependente.incFisMen.cdata
+            except AttributeError: pass
+            try: s2400_dependente_dados['depfinsprev'] = dependente.depFinsPrev.cdata
+            except AttributeError: pass
             insert = create_insert('s2400_dependente', s2400_dependente_dados)
             resp = executar_sql(insert, True)
             s2400_dependente_id = resp[0][0]

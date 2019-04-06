@@ -79,13 +79,20 @@ def read_s1298_evtreabreevper_obj(doc, status, validar=False):
     s1298_evtreabreevper_dados['identidade'] = doc.eSocial.evtReabreEvPer['Id']
     evtReabreEvPer = doc.eSocial.evtReabreEvPer
 
-    if 'indApuracao' in dir(evtReabreEvPer.ideEvento): s1298_evtreabreevper_dados['indapuracao'] = evtReabreEvPer.ideEvento.indApuracao.cdata
-    if 'perApur' in dir(evtReabreEvPer.ideEvento): s1298_evtreabreevper_dados['perapur'] = evtReabreEvPer.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtReabreEvPer.ideEvento): s1298_evtreabreevper_dados['tpamb'] = evtReabreEvPer.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtReabreEvPer.ideEvento): s1298_evtreabreevper_dados['procemi'] = evtReabreEvPer.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtReabreEvPer.ideEvento): s1298_evtreabreevper_dados['verproc'] = evtReabreEvPer.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtReabreEvPer.ideEmpregador): s1298_evtreabreevper_dados['tpinsc'] = evtReabreEvPer.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtReabreEvPer.ideEmpregador): s1298_evtreabreevper_dados['nrinsc'] = evtReabreEvPer.ideEmpregador.nrInsc.cdata
+    try: s1298_evtreabreevper_dados['indapuracao'] = evtReabreEvPer.ideEvento.indApuracao.cdata
+    except AttributeError: pass
+    try: s1298_evtreabreevper_dados['perapur'] = evtReabreEvPer.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s1298_evtreabreevper_dados['tpamb'] = evtReabreEvPer.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1298_evtreabreevper_dados['procemi'] = evtReabreEvPer.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1298_evtreabreevper_dados['verproc'] = evtReabreEvPer.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1298_evtreabreevper_dados['tpinsc'] = evtReabreEvPer.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1298_evtreabreevper_dados['nrinsc'] = evtReabreEvPer.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtReabreEvPer.ideEmpregador): s1298_evtreabreevper_dados['operacao'] = 1
     elif 'alteracao' in dir(evtReabreEvPer.ideEmpregador): s1298_evtreabreevper_dados['operacao'] = 2
     elif 'exclusao' in dir(evtReabreEvPer.ideEmpregador): s1298_evtreabreevper_dados['operacao'] = 3

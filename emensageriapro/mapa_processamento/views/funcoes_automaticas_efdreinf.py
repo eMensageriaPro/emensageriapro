@@ -202,6 +202,8 @@ def enviar(request, hash=None):
         else:
             grupo = 3
 
+        txt = ''
+
         for a in lista:
 
             transmissor_efdreinf_lista = TransmissorLoteEfdreinf.objects.using('default').filter(

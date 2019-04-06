@@ -79,11 +79,16 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
     s1020_evttablotacao_dados['identidade'] = doc.eSocial.evtTabLotacao['Id']
     evtTabLotacao = doc.eSocial.evtTabLotacao
 
-    if 'tpAmb' in dir(evtTabLotacao.ideEvento): s1020_evttablotacao_dados['tpamb'] = evtTabLotacao.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtTabLotacao.ideEvento): s1020_evttablotacao_dados['procemi'] = evtTabLotacao.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtTabLotacao.ideEvento): s1020_evttablotacao_dados['verproc'] = evtTabLotacao.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtTabLotacao.ideEmpregador): s1020_evttablotacao_dados['tpinsc'] = evtTabLotacao.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtTabLotacao.ideEmpregador): s1020_evttablotacao_dados['nrinsc'] = evtTabLotacao.ideEmpregador.nrInsc.cdata
+    try: s1020_evttablotacao_dados['tpamb'] = evtTabLotacao.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1020_evttablotacao_dados['procemi'] = evtTabLotacao.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1020_evttablotacao_dados['verproc'] = evtTabLotacao.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1020_evttablotacao_dados['tpinsc'] = evtTabLotacao.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1020_evttablotacao_dados['nrinsc'] = evtTabLotacao.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtTabLotacao.infoLotacao): s1020_evttablotacao_dados['operacao'] = 1
     elif 'alteracao' in dir(evtTabLotacao.infoLotacao): s1020_evttablotacao_dados['operacao'] = 2
     elif 'exclusao' in dir(evtTabLotacao.infoLotacao): s1020_evttablotacao_dados['operacao'] = 3
@@ -97,118 +102,155 @@ def read_s1020_evttablotacao_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtTabLotacao['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'inclusao' in dir(evtTabLotacao.infoLotacao):
+    if 'inclusao' in dir(evtTabLotacao.infoLotacao) and evtTabLotacao.infoLotacao.inclusao.cdata != '':
         for inclusao in evtTabLotacao.infoLotacao.inclusao:
             s1020_inclusao_dados = {}
             s1020_inclusao_dados['s1020_evttablotacao_id'] = s1020_evttablotacao_id
 
-            if 'codLotacao' in dir(inclusao.ideLotacao): s1020_inclusao_dados['codlotacao'] = inclusao.ideLotacao.codLotacao.cdata
-            if 'iniValid' in dir(inclusao.ideLotacao): s1020_inclusao_dados['inivalid'] = inclusao.ideLotacao.iniValid.cdata
-            if 'fimValid' in dir(inclusao.ideLotacao): s1020_inclusao_dados['fimvalid'] = inclusao.ideLotacao.fimValid.cdata
-            if 'tpLotacao' in dir(inclusao.dadosLotacao): s1020_inclusao_dados['tplotacao'] = inclusao.dadosLotacao.tpLotacao.cdata
-            if 'tpInsc' in dir(inclusao.dadosLotacao): s1020_inclusao_dados['tpinsc'] = inclusao.dadosLotacao.tpInsc.cdata
-            if 'nrInsc' in dir(inclusao.dadosLotacao): s1020_inclusao_dados['nrinsc'] = inclusao.dadosLotacao.nrInsc.cdata
-            if 'fpas' in dir(inclusao.dadosLotacao.fpasLotacao): s1020_inclusao_dados['fpas'] = inclusao.dadosLotacao.fpasLotacao.fpas.cdata
-            if 'codTercs' in dir(inclusao.dadosLotacao.fpasLotacao): s1020_inclusao_dados['codtercs'] = inclusao.dadosLotacao.fpasLotacao.codTercs.cdata
-            if 'codTercsSusp' in dir(inclusao.dadosLotacao.fpasLotacao): s1020_inclusao_dados['codtercssusp'] = inclusao.dadosLotacao.fpasLotacao.codTercsSusp.cdata
+            try: s1020_inclusao_dados['codlotacao'] = inclusao.ideLotacao.codLotacao.cdata
+            except AttributeError: pass
+            try: s1020_inclusao_dados['inivalid'] = inclusao.ideLotacao.iniValid.cdata
+            except AttributeError: pass
+            try: s1020_inclusao_dados['fimvalid'] = inclusao.ideLotacao.fimValid.cdata
+            except AttributeError: pass
+            try: s1020_inclusao_dados['tplotacao'] = inclusao.dadosLotacao.tpLotacao.cdata
+            except AttributeError: pass
+            try: s1020_inclusao_dados['tpinsc'] = inclusao.dadosLotacao.tpInsc.cdata
+            except AttributeError: pass
+            try: s1020_inclusao_dados['nrinsc'] = inclusao.dadosLotacao.nrInsc.cdata
+            except AttributeError: pass
+            try: s1020_inclusao_dados['fpas'] = inclusao.dadosLotacao.fpasLotacao.fpas.cdata
+            except AttributeError: pass
+            try: s1020_inclusao_dados['codtercs'] = inclusao.dadosLotacao.fpasLotacao.codTercs.cdata
+            except AttributeError: pass
+            try: s1020_inclusao_dados['codtercssusp'] = inclusao.dadosLotacao.fpasLotacao.codTercsSusp.cdata
+            except AttributeError: pass
             insert = create_insert('s1020_inclusao', s1020_inclusao_dados)
             resp = executar_sql(insert, True)
             s1020_inclusao_id = resp[0][0]
             #print s1020_inclusao_id
 
-            if 'procJudTerceiro' in dir(inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros):
+            if 'procJudTerceiro' in dir(inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros) and inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro.cdata != '':
                 for procJudTerceiro in inclusao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro:
                     s1020_inclusao_procjudterceiro_dados = {}
                     s1020_inclusao_procjudterceiro_dados['s1020_inclusao_id'] = s1020_inclusao_id
 
-                    if 'codTerc' in dir(procJudTerceiro): s1020_inclusao_procjudterceiro_dados['codterc'] = procJudTerceiro.codTerc.cdata
-                    if 'nrProcJud' in dir(procJudTerceiro): s1020_inclusao_procjudterceiro_dados['nrprocjud'] = procJudTerceiro.nrProcJud.cdata
-                    if 'codSusp' in dir(procJudTerceiro): s1020_inclusao_procjudterceiro_dados['codsusp'] = procJudTerceiro.codSusp.cdata
+                    try: s1020_inclusao_procjudterceiro_dados['codterc'] = procJudTerceiro.codTerc.cdata
+                    except AttributeError: pass
+                    try: s1020_inclusao_procjudterceiro_dados['nrprocjud'] = procJudTerceiro.nrProcJud.cdata
+                    except AttributeError: pass
+                    try: s1020_inclusao_procjudterceiro_dados['codsusp'] = procJudTerceiro.codSusp.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1020_inclusao_procjudterceiro', s1020_inclusao_procjudterceiro_dados)
                     resp = executar_sql(insert, True)
                     s1020_inclusao_procjudterceiro_id = resp[0][0]
                     #print s1020_inclusao_procjudterceiro_id
 
-            if 'infoEmprParcial' in dir(inclusao.dadosLotacao):
+            if 'infoEmprParcial' in dir(inclusao.dadosLotacao) and inclusao.dadosLotacao.infoEmprParcial.cdata != '':
                 for infoEmprParcial in inclusao.dadosLotacao.infoEmprParcial:
                     s1020_inclusao_infoemprparcial_dados = {}
                     s1020_inclusao_infoemprparcial_dados['s1020_inclusao_id'] = s1020_inclusao_id
 
-                    if 'tpInscContrat' in dir(infoEmprParcial): s1020_inclusao_infoemprparcial_dados['tpinsccontrat'] = infoEmprParcial.tpInscContrat.cdata
-                    if 'nrInscContrat' in dir(infoEmprParcial): s1020_inclusao_infoemprparcial_dados['nrinsccontrat'] = infoEmprParcial.nrInscContrat.cdata
-                    if 'tpInscProp' in dir(infoEmprParcial): s1020_inclusao_infoemprparcial_dados['tpinscprop'] = infoEmprParcial.tpInscProp.cdata
-                    if 'nrInscProp' in dir(infoEmprParcial): s1020_inclusao_infoemprparcial_dados['nrinscprop'] = infoEmprParcial.nrInscProp.cdata
+                    try: s1020_inclusao_infoemprparcial_dados['tpinsccontrat'] = infoEmprParcial.tpInscContrat.cdata
+                    except AttributeError: pass
+                    try: s1020_inclusao_infoemprparcial_dados['nrinsccontrat'] = infoEmprParcial.nrInscContrat.cdata
+                    except AttributeError: pass
+                    try: s1020_inclusao_infoemprparcial_dados['tpinscprop'] = infoEmprParcial.tpInscProp.cdata
+                    except AttributeError: pass
+                    try: s1020_inclusao_infoemprparcial_dados['nrinscprop'] = infoEmprParcial.nrInscProp.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1020_inclusao_infoemprparcial', s1020_inclusao_infoemprparcial_dados)
                     resp = executar_sql(insert, True)
                     s1020_inclusao_infoemprparcial_id = resp[0][0]
                     #print s1020_inclusao_infoemprparcial_id
 
-    if 'alteracao' in dir(evtTabLotacao.infoLotacao):
+    if 'alteracao' in dir(evtTabLotacao.infoLotacao) and evtTabLotacao.infoLotacao.alteracao.cdata != '':
         for alteracao in evtTabLotacao.infoLotacao.alteracao:
             s1020_alteracao_dados = {}
             s1020_alteracao_dados['s1020_evttablotacao_id'] = s1020_evttablotacao_id
 
-            if 'codLotacao' in dir(alteracao.ideLotacao): s1020_alteracao_dados['codlotacao'] = alteracao.ideLotacao.codLotacao.cdata
-            if 'iniValid' in dir(alteracao.ideLotacao): s1020_alteracao_dados['inivalid'] = alteracao.ideLotacao.iniValid.cdata
-            if 'fimValid' in dir(alteracao.ideLotacao): s1020_alteracao_dados['fimvalid'] = alteracao.ideLotacao.fimValid.cdata
-            if 'tpLotacao' in dir(alteracao.dadosLotacao): s1020_alteracao_dados['tplotacao'] = alteracao.dadosLotacao.tpLotacao.cdata
-            if 'tpInsc' in dir(alteracao.dadosLotacao): s1020_alteracao_dados['tpinsc'] = alteracao.dadosLotacao.tpInsc.cdata
-            if 'nrInsc' in dir(alteracao.dadosLotacao): s1020_alteracao_dados['nrinsc'] = alteracao.dadosLotacao.nrInsc.cdata
-            if 'fpas' in dir(alteracao.dadosLotacao.fpasLotacao): s1020_alteracao_dados['fpas'] = alteracao.dadosLotacao.fpasLotacao.fpas.cdata
-            if 'codTercs' in dir(alteracao.dadosLotacao.fpasLotacao): s1020_alteracao_dados['codtercs'] = alteracao.dadosLotacao.fpasLotacao.codTercs.cdata
-            if 'codTercsSusp' in dir(alteracao.dadosLotacao.fpasLotacao): s1020_alteracao_dados['codtercssusp'] = alteracao.dadosLotacao.fpasLotacao.codTercsSusp.cdata
+            try: s1020_alteracao_dados['codlotacao'] = alteracao.ideLotacao.codLotacao.cdata
+            except AttributeError: pass
+            try: s1020_alteracao_dados['inivalid'] = alteracao.ideLotacao.iniValid.cdata
+            except AttributeError: pass
+            try: s1020_alteracao_dados['fimvalid'] = alteracao.ideLotacao.fimValid.cdata
+            except AttributeError: pass
+            try: s1020_alteracao_dados['tplotacao'] = alteracao.dadosLotacao.tpLotacao.cdata
+            except AttributeError: pass
+            try: s1020_alteracao_dados['tpinsc'] = alteracao.dadosLotacao.tpInsc.cdata
+            except AttributeError: pass
+            try: s1020_alteracao_dados['nrinsc'] = alteracao.dadosLotacao.nrInsc.cdata
+            except AttributeError: pass
+            try: s1020_alteracao_dados['fpas'] = alteracao.dadosLotacao.fpasLotacao.fpas.cdata
+            except AttributeError: pass
+            try: s1020_alteracao_dados['codtercs'] = alteracao.dadosLotacao.fpasLotacao.codTercs.cdata
+            except AttributeError: pass
+            try: s1020_alteracao_dados['codtercssusp'] = alteracao.dadosLotacao.fpasLotacao.codTercsSusp.cdata
+            except AttributeError: pass
             insert = create_insert('s1020_alteracao', s1020_alteracao_dados)
             resp = executar_sql(insert, True)
             s1020_alteracao_id = resp[0][0]
             #print s1020_alteracao_id
 
-            if 'procJudTerceiro' in dir(alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros):
+            if 'procJudTerceiro' in dir(alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros) and alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro.cdata != '':
                 for procJudTerceiro in alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro:
                     s1020_alteracao_procjudterceiro_dados = {}
                     s1020_alteracao_procjudterceiro_dados['s1020_alteracao_id'] = s1020_alteracao_id
 
-                    if 'codTerc' in dir(procJudTerceiro): s1020_alteracao_procjudterceiro_dados['codterc'] = procJudTerceiro.codTerc.cdata
-                    if 'nrProcJud' in dir(procJudTerceiro): s1020_alteracao_procjudterceiro_dados['nrprocjud'] = procJudTerceiro.nrProcJud.cdata
-                    if 'codSusp' in dir(procJudTerceiro): s1020_alteracao_procjudterceiro_dados['codsusp'] = procJudTerceiro.codSusp.cdata
+                    try: s1020_alteracao_procjudterceiro_dados['codterc'] = procJudTerceiro.codTerc.cdata
+                    except AttributeError: pass
+                    try: s1020_alteracao_procjudterceiro_dados['nrprocjud'] = procJudTerceiro.nrProcJud.cdata
+                    except AttributeError: pass
+                    try: s1020_alteracao_procjudterceiro_dados['codsusp'] = procJudTerceiro.codSusp.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1020_alteracao_procjudterceiro', s1020_alteracao_procjudterceiro_dados)
                     resp = executar_sql(insert, True)
                     s1020_alteracao_procjudterceiro_id = resp[0][0]
                     #print s1020_alteracao_procjudterceiro_id
 
-            if 'infoEmprParcial' in dir(alteracao.dadosLotacao):
+            if 'infoEmprParcial' in dir(alteracao.dadosLotacao) and alteracao.dadosLotacao.infoEmprParcial.cdata != '':
                 for infoEmprParcial in alteracao.dadosLotacao.infoEmprParcial:
                     s1020_alteracao_infoemprparcial_dados = {}
                     s1020_alteracao_infoemprparcial_dados['s1020_alteracao_id'] = s1020_alteracao_id
 
-                    if 'tpInscContrat' in dir(infoEmprParcial): s1020_alteracao_infoemprparcial_dados['tpinsccontrat'] = infoEmprParcial.tpInscContrat.cdata
-                    if 'nrInscContrat' in dir(infoEmprParcial): s1020_alteracao_infoemprparcial_dados['nrinsccontrat'] = infoEmprParcial.nrInscContrat.cdata
-                    if 'tpInscProp' in dir(infoEmprParcial): s1020_alteracao_infoemprparcial_dados['tpinscprop'] = infoEmprParcial.tpInscProp.cdata
-                    if 'nrInscProp' in dir(infoEmprParcial): s1020_alteracao_infoemprparcial_dados['nrinscprop'] = infoEmprParcial.nrInscProp.cdata
+                    try: s1020_alteracao_infoemprparcial_dados['tpinsccontrat'] = infoEmprParcial.tpInscContrat.cdata
+                    except AttributeError: pass
+                    try: s1020_alteracao_infoemprparcial_dados['nrinsccontrat'] = infoEmprParcial.nrInscContrat.cdata
+                    except AttributeError: pass
+                    try: s1020_alteracao_infoemprparcial_dados['tpinscprop'] = infoEmprParcial.tpInscProp.cdata
+                    except AttributeError: pass
+                    try: s1020_alteracao_infoemprparcial_dados['nrinscprop'] = infoEmprParcial.nrInscProp.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1020_alteracao_infoemprparcial', s1020_alteracao_infoemprparcial_dados)
                     resp = executar_sql(insert, True)
                     s1020_alteracao_infoemprparcial_id = resp[0][0]
                     #print s1020_alteracao_infoemprparcial_id
 
-            if 'novaValidade' in dir(alteracao):
+            if 'novaValidade' in dir(alteracao) and alteracao.novaValidade.cdata != '':
                 for novaValidade in alteracao.novaValidade:
                     s1020_alteracao_novavalidade_dados = {}
                     s1020_alteracao_novavalidade_dados['s1020_alteracao_id'] = s1020_alteracao_id
 
-                    if 'iniValid' in dir(novaValidade): s1020_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
-                    if 'fimValid' in dir(novaValidade): s1020_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                    try: s1020_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                    except AttributeError: pass
+                    try: s1020_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1020_alteracao_novavalidade', s1020_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1020_alteracao_novavalidade_id = resp[0][0]
                     #print s1020_alteracao_novavalidade_id
 
-    if 'exclusao' in dir(evtTabLotacao.infoLotacao):
+    if 'exclusao' in dir(evtTabLotacao.infoLotacao) and evtTabLotacao.infoLotacao.exclusao.cdata != '':
         for exclusao in evtTabLotacao.infoLotacao.exclusao:
             s1020_exclusao_dados = {}
             s1020_exclusao_dados['s1020_evttablotacao_id'] = s1020_evttablotacao_id
 
-            if 'codLotacao' in dir(exclusao.ideLotacao): s1020_exclusao_dados['codlotacao'] = exclusao.ideLotacao.codLotacao.cdata
-            if 'iniValid' in dir(exclusao.ideLotacao): s1020_exclusao_dados['inivalid'] = exclusao.ideLotacao.iniValid.cdata
-            if 'fimValid' in dir(exclusao.ideLotacao): s1020_exclusao_dados['fimvalid'] = exclusao.ideLotacao.fimValid.cdata
+            try: s1020_exclusao_dados['codlotacao'] = exclusao.ideLotacao.codLotacao.cdata
+            except AttributeError: pass
+            try: s1020_exclusao_dados['inivalid'] = exclusao.ideLotacao.iniValid.cdata
+            except AttributeError: pass
+            try: s1020_exclusao_dados['fimvalid'] = exclusao.ideLotacao.fimValid.cdata
+            except AttributeError: pass
             insert = create_insert('s1020_exclusao', s1020_exclusao_dados)
             resp = executar_sql(insert, True)
             s1020_exclusao_id = resp[0][0]

@@ -79,18 +79,30 @@ def read_s1202_evtrmnrpps_obj(doc, status, validar=False):
     s1202_evtrmnrpps_dados['identidade'] = doc.eSocial.evtRmnRPPS['Id']
     evtRmnRPPS = doc.eSocial.evtRmnRPPS
 
-    if 'indRetif' in dir(evtRmnRPPS.ideEvento): s1202_evtrmnrpps_dados['indretif'] = evtRmnRPPS.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtRmnRPPS.ideEvento): s1202_evtrmnrpps_dados['nrrecibo'] = evtRmnRPPS.ideEvento.nrRecibo.cdata
-    if 'indApuracao' in dir(evtRmnRPPS.ideEvento): s1202_evtrmnrpps_dados['indapuracao'] = evtRmnRPPS.ideEvento.indApuracao.cdata
-    if 'perApur' in dir(evtRmnRPPS.ideEvento): s1202_evtrmnrpps_dados['perapur'] = evtRmnRPPS.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtRmnRPPS.ideEvento): s1202_evtrmnrpps_dados['tpamb'] = evtRmnRPPS.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtRmnRPPS.ideEvento): s1202_evtrmnrpps_dados['procemi'] = evtRmnRPPS.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtRmnRPPS.ideEvento): s1202_evtrmnrpps_dados['verproc'] = evtRmnRPPS.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtRmnRPPS.ideEmpregador): s1202_evtrmnrpps_dados['tpinsc'] = evtRmnRPPS.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtRmnRPPS.ideEmpregador): s1202_evtrmnrpps_dados['nrinsc'] = evtRmnRPPS.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtRmnRPPS.ideTrabalhador): s1202_evtrmnrpps_dados['cpftrab'] = evtRmnRPPS.ideTrabalhador.cpfTrab.cdata
-    if 'nisTrab' in dir(evtRmnRPPS.ideTrabalhador): s1202_evtrmnrpps_dados['nistrab'] = evtRmnRPPS.ideTrabalhador.nisTrab.cdata
-    if 'qtdDepFP' in dir(evtRmnRPPS.ideTrabalhador): s1202_evtrmnrpps_dados['qtddepfp'] = evtRmnRPPS.ideTrabalhador.qtdDepFP.cdata
+    try: s1202_evtrmnrpps_dados['indretif'] = evtRmnRPPS.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['nrrecibo'] = evtRmnRPPS.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['indapuracao'] = evtRmnRPPS.ideEvento.indApuracao.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['perapur'] = evtRmnRPPS.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['tpamb'] = evtRmnRPPS.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['procemi'] = evtRmnRPPS.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['verproc'] = evtRmnRPPS.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['tpinsc'] = evtRmnRPPS.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['nrinsc'] = evtRmnRPPS.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['cpftrab'] = evtRmnRPPS.ideTrabalhador.cpfTrab.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['nistrab'] = evtRmnRPPS.ideTrabalhador.nisTrab.cdata
+    except AttributeError: pass
+    try: s1202_evtrmnrpps_dados['qtddepfp'] = evtRmnRPPS.ideTrabalhador.qtdDepFP.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtRmnRPPS.dmDev): s1202_evtrmnrpps_dados['operacao'] = 1
     elif 'alteracao' in dir(evtRmnRPPS.dmDev): s1202_evtrmnrpps_dados['operacao'] = 2
     elif 'exclusao' in dir(evtRmnRPPS.dmDev): s1202_evtrmnrpps_dados['operacao'] = 3
@@ -104,56 +116,71 @@ def read_s1202_evtrmnrpps_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtRmnRPPS['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'procJudTrab' in dir(evtRmnRPPS.ideTrabalhador):
+    if 'procJudTrab' in dir(evtRmnRPPS.ideTrabalhador) and evtRmnRPPS.ideTrabalhador.procJudTrab.cdata != '':
         for procJudTrab in evtRmnRPPS.ideTrabalhador.procJudTrab:
             s1202_procjudtrab_dados = {}
             s1202_procjudtrab_dados['s1202_evtrmnrpps_id'] = s1202_evtrmnrpps_id
 
-            if 'tpTrib' in dir(procJudTrab): s1202_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
-            if 'nrProcJud' in dir(procJudTrab): s1202_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
-            if 'codSusp' in dir(procJudTrab): s1202_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
+            try: s1202_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
+            except AttributeError: pass
+            try: s1202_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
+            except AttributeError: pass
+            try: s1202_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
+            except AttributeError: pass
             insert = create_insert('s1202_procjudtrab', s1202_procjudtrab_dados)
             resp = executar_sql(insert, True)
             s1202_procjudtrab_id = resp[0][0]
             #print s1202_procjudtrab_id
 
-    if 'dmDev' in dir(evtRmnRPPS):
+    if 'dmDev' in dir(evtRmnRPPS) and evtRmnRPPS.dmDev.cdata != '':
         for dmDev in evtRmnRPPS.dmDev:
             s1202_dmdev_dados = {}
             s1202_dmdev_dados['s1202_evtrmnrpps_id'] = s1202_evtrmnrpps_id
 
-            if 'ideDmDev' in dir(dmDev): s1202_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
-            if 'codCateg' in dir(dmDev): s1202_dmdev_dados['codcateg'] = dmDev.codCateg.cdata
+            try: s1202_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
+            except AttributeError: pass
+            try: s1202_dmdev_dados['codcateg'] = dmDev.codCateg.cdata
+            except AttributeError: pass
             insert = create_insert('s1202_dmdev', s1202_dmdev_dados)
             resp = executar_sql(insert, True)
             s1202_dmdev_id = resp[0][0]
             #print s1202_dmdev_id
 
-            if 'ideEstab' in dir(dmDev.infoPerApur):
+            if 'ideEstab' in dir(dmDev.infoPerApur) and dmDev.infoPerApur.ideEstab.cdata != '':
                 for ideEstab in dmDev.infoPerApur.ideEstab:
                     s1202_infoperapur_ideestab_dados = {}
                     s1202_infoperapur_ideestab_dados['s1202_dmdev_id'] = s1202_dmdev_id
 
-                    if 'tpInsc' in dir(ideEstab): s1202_infoperapur_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
-                    if 'nrInsc' in dir(ideEstab): s1202_infoperapur_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
+                    try: s1202_infoperapur_ideestab_dados['tpinsc'] = ideEstab.tpInsc.cdata
+                    except AttributeError: pass
+                    try: s1202_infoperapur_ideestab_dados['nrinsc'] = ideEstab.nrInsc.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1202_infoperapur_ideestab', s1202_infoperapur_ideestab_dados)
                     resp = executar_sql(insert, True)
                     s1202_infoperapur_ideestab_id = resp[0][0]
                     #print s1202_infoperapur_ideestab_id
 
-            if 'ideADC' in dir(dmDev.infoPerAnt):
+            if 'ideADC' in dir(dmDev.infoPerAnt) and dmDev.infoPerAnt.ideADC.cdata != '':
                 for ideADC in dmDev.infoPerAnt.ideADC:
                     s1202_infoperant_ideadc_dados = {}
                     s1202_infoperant_ideadc_dados['s1202_dmdev_id'] = s1202_dmdev_id
 
-                    if 'dtLei' in dir(ideADC): s1202_infoperant_ideadc_dados['dtlei'] = ideADC.dtLei.cdata
-                    if 'nrLei' in dir(ideADC): s1202_infoperant_ideadc_dados['nrlei'] = ideADC.nrLei.cdata
-                    if 'dtEf' in dir(ideADC): s1202_infoperant_ideadc_dados['dtef'] = ideADC.dtEf.cdata
-                    if 'dtAcConv' in dir(ideADC): s1202_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
-                    if 'tpAcConv' in dir(ideADC): s1202_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
-                    if 'compAcConv' in dir(ideADC): s1202_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
-                    if 'dtEfAcConv' in dir(ideADC): s1202_infoperant_ideadc_dados['dtefacconv'] = ideADC.dtEfAcConv.cdata
-                    if 'dsc' in dir(ideADC): s1202_infoperant_ideadc_dados['dsc'] = ideADC.dsc.cdata
+                    try: s1202_infoperant_ideadc_dados['dtlei'] = ideADC.dtLei.cdata
+                    except AttributeError: pass
+                    try: s1202_infoperant_ideadc_dados['nrlei'] = ideADC.nrLei.cdata
+                    except AttributeError: pass
+                    try: s1202_infoperant_ideadc_dados['dtef'] = ideADC.dtEf.cdata
+                    except AttributeError: pass
+                    try: s1202_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
+                    except AttributeError: pass
+                    try: s1202_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
+                    except AttributeError: pass
+                    try: s1202_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
+                    except AttributeError: pass
+                    try: s1202_infoperant_ideadc_dados['dtefacconv'] = ideADC.dtEfAcConv.cdata
+                    except AttributeError: pass
+                    try: s1202_infoperant_ideadc_dados['dsc'] = ideADC.dsc.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1202_infoperant_ideadc', s1202_infoperant_ideadc_dados)
                     resp = executar_sql(insert, True)
                     s1202_infoperant_ideadc_id = resp[0][0]

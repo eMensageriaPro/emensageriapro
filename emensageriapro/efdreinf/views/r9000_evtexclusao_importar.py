@@ -79,14 +79,22 @@ def read_r9000_evtexclusao_obj(doc, status, validar=False):
     r9000_evtexclusao_dados['identidade'] = doc.Reinf.evtExclusao['id']
     evtExclusao = doc.Reinf.evtExclusao
 
-    if 'tpAmb' in dir(evtExclusao.ideEvento): r9000_evtexclusao_dados['tpamb'] = evtExclusao.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtExclusao.ideEvento): r9000_evtexclusao_dados['procemi'] = evtExclusao.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtExclusao.ideEvento): r9000_evtexclusao_dados['verproc'] = evtExclusao.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtExclusao.ideContri): r9000_evtexclusao_dados['tpinsc'] = evtExclusao.ideContri.tpInsc.cdata
-    if 'nrInsc' in dir(evtExclusao.ideContri): r9000_evtexclusao_dados['nrinsc'] = evtExclusao.ideContri.nrInsc.cdata
-    if 'tpEvento' in dir(evtExclusao.infoExclusao): r9000_evtexclusao_dados['tpevento'] = evtExclusao.infoExclusao.tpEvento.cdata
-    if 'nrRecEvt' in dir(evtExclusao.infoExclusao): r9000_evtexclusao_dados['nrrecevt'] = evtExclusao.infoExclusao.nrRecEvt.cdata
-    if 'perApur' in dir(evtExclusao.infoExclusao): r9000_evtexclusao_dados['perapur'] = evtExclusao.infoExclusao.perApur.cdata
+    try: r9000_evtexclusao_dados['tpamb'] = evtExclusao.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: r9000_evtexclusao_dados['procemi'] = evtExclusao.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: r9000_evtexclusao_dados['verproc'] = evtExclusao.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: r9000_evtexclusao_dados['tpinsc'] = evtExclusao.ideContri.tpInsc.cdata
+    except AttributeError: pass
+    try: r9000_evtexclusao_dados['nrinsc'] = evtExclusao.ideContri.nrInsc.cdata
+    except AttributeError: pass
+    try: r9000_evtexclusao_dados['tpevento'] = evtExclusao.infoExclusao.tpEvento.cdata
+    except AttributeError: pass
+    try: r9000_evtexclusao_dados['nrrecevt'] = evtExclusao.infoExclusao.nrRecEvt.cdata
+    except AttributeError: pass
+    try: r9000_evtexclusao_dados['perapur'] = evtExclusao.infoExclusao.perApur.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtExclusao.infoExclusao): r9000_evtexclusao_dados['operacao'] = 1
     elif 'alteracao' in dir(evtExclusao.infoExclusao): r9000_evtexclusao_dados['operacao'] = 2
     elif 'exclusao' in dir(evtExclusao.infoExclusao): r9000_evtexclusao_dados['operacao'] = 3

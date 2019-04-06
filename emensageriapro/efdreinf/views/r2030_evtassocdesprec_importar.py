@@ -79,16 +79,26 @@ def read_r2030_evtassocdesprec_obj(doc, status, validar=False):
     r2030_evtassocdesprec_dados['identidade'] = doc.Reinf.evtAssocDespRec['id']
     evtAssocDespRec = doc.Reinf.evtAssocDespRec
 
-    if 'indRetif' in dir(evtAssocDespRec.ideEvento): r2030_evtassocdesprec_dados['indretif'] = evtAssocDespRec.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtAssocDespRec.ideEvento): r2030_evtassocdesprec_dados['nrrecibo'] = evtAssocDespRec.ideEvento.nrRecibo.cdata
-    if 'perApur' in dir(evtAssocDespRec.ideEvento): r2030_evtassocdesprec_dados['perapur'] = evtAssocDespRec.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtAssocDespRec.ideEvento): r2030_evtassocdesprec_dados['tpamb'] = evtAssocDespRec.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtAssocDespRec.ideEvento): r2030_evtassocdesprec_dados['procemi'] = evtAssocDespRec.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtAssocDespRec.ideEvento): r2030_evtassocdesprec_dados['verproc'] = evtAssocDespRec.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtAssocDespRec.ideContri): r2030_evtassocdesprec_dados['tpinsc'] = evtAssocDespRec.ideContri.tpInsc.cdata
-    if 'nrInsc' in dir(evtAssocDespRec.ideContri): r2030_evtassocdesprec_dados['nrinsc'] = evtAssocDespRec.ideContri.nrInsc.cdata
-    if 'tpInscEstab' in dir(evtAssocDespRec.ideContri.ideEstab): r2030_evtassocdesprec_dados['tpinscestab'] = evtAssocDespRec.ideContri.ideEstab.tpInscEstab.cdata
-    if 'nrInscEstab' in dir(evtAssocDespRec.ideContri.ideEstab): r2030_evtassocdesprec_dados['nrinscestab'] = evtAssocDespRec.ideContri.ideEstab.nrInscEstab.cdata
+    try: r2030_evtassocdesprec_dados['indretif'] = evtAssocDespRec.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: r2030_evtassocdesprec_dados['nrrecibo'] = evtAssocDespRec.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: r2030_evtassocdesprec_dados['perapur'] = evtAssocDespRec.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: r2030_evtassocdesprec_dados['tpamb'] = evtAssocDespRec.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: r2030_evtassocdesprec_dados['procemi'] = evtAssocDespRec.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: r2030_evtassocdesprec_dados['verproc'] = evtAssocDespRec.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: r2030_evtassocdesprec_dados['tpinsc'] = evtAssocDespRec.ideContri.tpInsc.cdata
+    except AttributeError: pass
+    try: r2030_evtassocdesprec_dados['nrinsc'] = evtAssocDespRec.ideContri.nrInsc.cdata
+    except AttributeError: pass
+    try: r2030_evtassocdesprec_dados['tpinscestab'] = evtAssocDespRec.ideContri.ideEstab.tpInscEstab.cdata
+    except AttributeError: pass
+    try: r2030_evtassocdesprec_dados['nrinscestab'] = evtAssocDespRec.ideContri.ideEstab.nrInscEstab.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtAssocDespRec.ideContri): r2030_evtassocdesprec_dados['operacao'] = 1
     elif 'alteracao' in dir(evtAssocDespRec.ideContri): r2030_evtassocdesprec_dados['operacao'] = 2
     elif 'exclusao' in dir(evtAssocDespRec.ideContri): r2030_evtassocdesprec_dados['operacao'] = 3
@@ -102,43 +112,55 @@ def read_r2030_evtassocdesprec_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.Reinf.evtAssocDespRec['id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'recursosRec' in dir(evtAssocDespRec.ideContri.ideEstab):
+    if 'recursosRec' in dir(evtAssocDespRec.ideContri.ideEstab) and evtAssocDespRec.ideContri.ideEstab.recursosRec.cdata != '':
         for recursosRec in evtAssocDespRec.ideContri.ideEstab.recursosRec:
             r2030_recursosrec_dados = {}
             r2030_recursosrec_dados['r2030_evtassocdesprec_id'] = r2030_evtassocdesprec_id
 
-            if 'cnpjOrigRecurso' in dir(recursosRec): r2030_recursosrec_dados['cnpjorigrecurso'] = recursosRec.cnpjOrigRecurso.cdata
-            if 'vlrTotalRec' in dir(recursosRec): r2030_recursosrec_dados['vlrtotalrec'] = recursosRec.vlrTotalRec.cdata
-            if 'vlrTotalRet' in dir(recursosRec): r2030_recursosrec_dados['vlrtotalret'] = recursosRec.vlrTotalRet.cdata
-            if 'vlrTotalNRet' in dir(recursosRec): r2030_recursosrec_dados['vlrtotalnret'] = recursosRec.vlrTotalNRet.cdata
+            try: r2030_recursosrec_dados['cnpjorigrecurso'] = recursosRec.cnpjOrigRecurso.cdata
+            except AttributeError: pass
+            try: r2030_recursosrec_dados['vlrtotalrec'] = recursosRec.vlrTotalRec.cdata
+            except AttributeError: pass
+            try: r2030_recursosrec_dados['vlrtotalret'] = recursosRec.vlrTotalRet.cdata
+            except AttributeError: pass
+            try: r2030_recursosrec_dados['vlrtotalnret'] = recursosRec.vlrTotalNRet.cdata
+            except AttributeError: pass
             insert = create_insert('r2030_recursosrec', r2030_recursosrec_dados)
             resp = executar_sql(insert, True)
             r2030_recursosrec_id = resp[0][0]
             #print r2030_recursosrec_id
 
-            if 'infoRecurso' in dir(recursosRec):
+            if 'infoRecurso' in dir(recursosRec) and recursosRec.infoRecurso.cdata != '':
                 for infoRecurso in recursosRec.infoRecurso:
                     r2030_inforecurso_dados = {}
                     r2030_inforecurso_dados['r2030_recursosrec_id'] = r2030_recursosrec_id
 
-                    if 'tpRepasse' in dir(infoRecurso): r2030_inforecurso_dados['tprepasse'] = infoRecurso.tpRepasse.cdata
-                    if 'descRecurso' in dir(infoRecurso): r2030_inforecurso_dados['descrecurso'] = infoRecurso.descRecurso.cdata
-                    if 'vlrBruto' in dir(infoRecurso): r2030_inforecurso_dados['vlrbruto'] = infoRecurso.vlrBruto.cdata
-                    if 'vlrRetApur' in dir(infoRecurso): r2030_inforecurso_dados['vlrretapur'] = infoRecurso.vlrRetApur.cdata
+                    try: r2030_inforecurso_dados['tprepasse'] = infoRecurso.tpRepasse.cdata
+                    except AttributeError: pass
+                    try: r2030_inforecurso_dados['descrecurso'] = infoRecurso.descRecurso.cdata
+                    except AttributeError: pass
+                    try: r2030_inforecurso_dados['vlrbruto'] = infoRecurso.vlrBruto.cdata
+                    except AttributeError: pass
+                    try: r2030_inforecurso_dados['vlrretapur'] = infoRecurso.vlrRetApur.cdata
+                    except AttributeError: pass
                     insert = create_insert('r2030_inforecurso', r2030_inforecurso_dados)
                     resp = executar_sql(insert, True)
                     r2030_inforecurso_id = resp[0][0]
                     #print r2030_inforecurso_id
 
-            if 'infoProc' in dir(recursosRec):
+            if 'infoProc' in dir(recursosRec) and recursosRec.infoProc.cdata != '':
                 for infoProc in recursosRec.infoProc:
                     r2030_infoproc_dados = {}
                     r2030_infoproc_dados['r2030_recursosrec_id'] = r2030_recursosrec_id
 
-                    if 'tpProc' in dir(infoProc): r2030_infoproc_dados['tpproc'] = infoProc.tpProc.cdata
-                    if 'nrProc' in dir(infoProc): r2030_infoproc_dados['nrproc'] = infoProc.nrProc.cdata
-                    if 'codSusp' in dir(infoProc): r2030_infoproc_dados['codsusp'] = infoProc.codSusp.cdata
-                    if 'vlrNRet' in dir(infoProc): r2030_infoproc_dados['vlrnret'] = infoProc.vlrNRet.cdata
+                    try: r2030_infoproc_dados['tpproc'] = infoProc.tpProc.cdata
+                    except AttributeError: pass
+                    try: r2030_infoproc_dados['nrproc'] = infoProc.nrProc.cdata
+                    except AttributeError: pass
+                    try: r2030_infoproc_dados['codsusp'] = infoProc.codSusp.cdata
+                    except AttributeError: pass
+                    try: r2030_infoproc_dados['vlrnret'] = infoProc.vlrNRet.cdata
+                    except AttributeError: pass
                     insert = create_insert('r2030_infoproc', r2030_infoproc_dados)
                     resp = executar_sql(insert, True)
                     r2030_infoproc_id = resp[0][0]

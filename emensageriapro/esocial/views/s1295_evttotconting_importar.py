@@ -79,13 +79,20 @@ def read_s1295_evttotconting_obj(doc, status, validar=False):
     s1295_evttotconting_dados['identidade'] = doc.eSocial.evtTotConting['Id']
     evtTotConting = doc.eSocial.evtTotConting
 
-    if 'indApuracao' in dir(evtTotConting.ideEvento): s1295_evttotconting_dados['indapuracao'] = evtTotConting.ideEvento.indApuracao.cdata
-    if 'perApur' in dir(evtTotConting.ideEvento): s1295_evttotconting_dados['perapur'] = evtTotConting.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtTotConting.ideEvento): s1295_evttotconting_dados['tpamb'] = evtTotConting.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtTotConting.ideEvento): s1295_evttotconting_dados['procemi'] = evtTotConting.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtTotConting.ideEvento): s1295_evttotconting_dados['verproc'] = evtTotConting.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtTotConting.ideEmpregador): s1295_evttotconting_dados['tpinsc'] = evtTotConting.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtTotConting.ideEmpregador): s1295_evttotconting_dados['nrinsc'] = evtTotConting.ideEmpregador.nrInsc.cdata
+    try: s1295_evttotconting_dados['indapuracao'] = evtTotConting.ideEvento.indApuracao.cdata
+    except AttributeError: pass
+    try: s1295_evttotconting_dados['perapur'] = evtTotConting.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s1295_evttotconting_dados['tpamb'] = evtTotConting.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1295_evttotconting_dados['procemi'] = evtTotConting.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1295_evttotconting_dados['verproc'] = evtTotConting.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1295_evttotconting_dados['tpinsc'] = evtTotConting.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1295_evttotconting_dados['nrinsc'] = evtTotConting.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtTotConting.ideRespInf): s1295_evttotconting_dados['operacao'] = 1
     elif 'alteracao' in dir(evtTotConting.ideRespInf): s1295_evttotconting_dados['operacao'] = 2
     elif 'exclusao' in dir(evtTotConting.ideRespInf): s1295_evttotconting_dados['operacao'] = 3
@@ -99,15 +106,19 @@ def read_s1295_evttotconting_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtTotConting['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'ideRespInf' in dir(evtTotConting):
+    if 'ideRespInf' in dir(evtTotConting) and evtTotConting.ideRespInf.cdata != '':
         for ideRespInf in evtTotConting.ideRespInf:
             s1295_iderespinf_dados = {}
             s1295_iderespinf_dados['s1295_evttotconting_id'] = s1295_evttotconting_id
 
-            if 'nmResp' in dir(ideRespInf): s1295_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
-            if 'cpfResp' in dir(ideRespInf): s1295_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
-            if 'telefone' in dir(ideRespInf): s1295_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata
-            if 'email' in dir(ideRespInf): s1295_iderespinf_dados['email'] = ideRespInf.email.cdata
+            try: s1295_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
+            except AttributeError: pass
+            try: s1295_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
+            except AttributeError: pass
+            try: s1295_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata
+            except AttributeError: pass
+            try: s1295_iderespinf_dados['email'] = ideRespInf.email.cdata
+            except AttributeError: pass
             insert = create_insert('s1295_iderespinf', s1295_iderespinf_dados)
             resp = executar_sql(insert, True)
             s1295_iderespinf_id = resp[0][0]

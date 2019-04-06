@@ -79,22 +79,38 @@ def read_s2416_evtcdbenalt_obj(doc, status, validar=False):
     s2416_evtcdbenalt_dados['identidade'] = doc.eSocial.evtCdBenAlt['Id']
     evtCdBenAlt = doc.eSocial.evtCdBenAlt
 
-    if 'indRetif' in dir(evtCdBenAlt.ideEvento): s2416_evtcdbenalt_dados['indretif'] = evtCdBenAlt.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtCdBenAlt.ideEvento): s2416_evtcdbenalt_dados['nrrecibo'] = evtCdBenAlt.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtCdBenAlt.ideEvento): s2416_evtcdbenalt_dados['tpamb'] = evtCdBenAlt.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtCdBenAlt.ideEvento): s2416_evtcdbenalt_dados['procemi'] = evtCdBenAlt.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtCdBenAlt.ideEvento): s2416_evtcdbenalt_dados['verproc'] = evtCdBenAlt.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtCdBenAlt.ideEmpregador): s2416_evtcdbenalt_dados['tpinsc'] = evtCdBenAlt.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtCdBenAlt.ideEmpregador): s2416_evtcdbenalt_dados['nrinsc'] = evtCdBenAlt.ideEmpregador.nrInsc.cdata
-    if 'cpfBenef' in dir(evtCdBenAlt.ideBeneficio): s2416_evtcdbenalt_dados['cpfbenef'] = evtCdBenAlt.ideBeneficio.cpfBenef.cdata
-    if 'nrBeneficio' in dir(evtCdBenAlt.ideBeneficio): s2416_evtcdbenalt_dados['nrbeneficio'] = evtCdBenAlt.ideBeneficio.nrBeneficio.cdata
-    if 'dtAltBeneficio' in dir(evtCdBenAlt.infoBenAlteracao): s2416_evtcdbenalt_dados['dtaltbeneficio'] = evtCdBenAlt.infoBenAlteracao.dtAltBeneficio.cdata
-    if 'tpBeneficio' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio): s2416_evtcdbenalt_dados['tpbeneficio'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.tpBeneficio.cdata
-    if 'tpPlanRP' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio): s2416_evtcdbenalt_dados['tpplanrp'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.tpPlanRP.cdata
-    if 'dsc' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio): s2416_evtcdbenalt_dados['dsc'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.dsc.cdata
-    if 'indDecJud' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio): s2416_evtcdbenalt_dados['inddecjud'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.indDecJud.cdata
-    if 'indHomologTC' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio): s2416_evtcdbenalt_dados['indhomologtc'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.indHomologTC.cdata
-    if 'indSuspensao' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio): s2416_evtcdbenalt_dados['indsuspensao'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.indSuspensao.cdata
+    try: s2416_evtcdbenalt_dados['indretif'] = evtCdBenAlt.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['nrrecibo'] = evtCdBenAlt.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['tpamb'] = evtCdBenAlt.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['procemi'] = evtCdBenAlt.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['verproc'] = evtCdBenAlt.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['tpinsc'] = evtCdBenAlt.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['nrinsc'] = evtCdBenAlt.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['cpfbenef'] = evtCdBenAlt.ideBeneficio.cpfBenef.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['nrbeneficio'] = evtCdBenAlt.ideBeneficio.nrBeneficio.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['dtaltbeneficio'] = evtCdBenAlt.infoBenAlteracao.dtAltBeneficio.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['tpbeneficio'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.tpBeneficio.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['tpplanrp'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.tpPlanRP.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['dsc'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.dsc.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['inddecjud'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.indDecJud.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['indhomologtc'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.indHomologTC.cdata
+    except AttributeError: pass
+    try: s2416_evtcdbenalt_dados['indsuspensao'] = evtCdBenAlt.infoBenAlteracao.dadosBeneficio.indSuspensao.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtCdBenAlt.infoBenAlteracao): s2416_evtcdbenalt_dados['operacao'] = 1
     elif 'alteracao' in dir(evtCdBenAlt.infoBenAlteracao): s2416_evtcdbenalt_dados['operacao'] = 2
     elif 'exclusao' in dir(evtCdBenAlt.infoBenAlteracao): s2416_evtcdbenalt_dados['operacao'] = 3
@@ -108,35 +124,39 @@ def read_s2416_evtcdbenalt_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtCdBenAlt['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'infoPenMorte' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
+    if 'infoPenMorte' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio) and evtCdBenAlt.infoBenAlteracao.dadosBeneficio.infoPenMorte.cdata != '':
         for infoPenMorte in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.infoPenMorte:
             s2416_infopenmorte_dados = {}
             s2416_infopenmorte_dados['s2416_evtcdbenalt_id'] = s2416_evtcdbenalt_id
 
-            if 'tpPenMorte' in dir(infoPenMorte): s2416_infopenmorte_dados['tppenmorte'] = infoPenMorte.tpPenMorte.cdata
+            try: s2416_infopenmorte_dados['tppenmorte'] = infoPenMorte.tpPenMorte.cdata
+            except AttributeError: pass
             insert = create_insert('s2416_infopenmorte', s2416_infopenmorte_dados)
             resp = executar_sql(insert, True)
             s2416_infopenmorte_id = resp[0][0]
             #print s2416_infopenmorte_id
 
-    if 'homologTC' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
+    if 'homologTC' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio) and evtCdBenAlt.infoBenAlteracao.dadosBeneficio.homologTC.cdata != '':
         for homologTC in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.homologTC:
             s2416_homologtc_dados = {}
             s2416_homologtc_dados['s2416_evtcdbenalt_id'] = s2416_evtcdbenalt_id
 
-            if 'nrAtoLegal' in dir(homologTC): s2416_homologtc_dados['nratolegal'] = homologTC.nrAtoLegal.cdata
+            try: s2416_homologtc_dados['nratolegal'] = homologTC.nrAtoLegal.cdata
+            except AttributeError: pass
             insert = create_insert('s2416_homologtc', s2416_homologtc_dados)
             resp = executar_sql(insert, True)
             s2416_homologtc_id = resp[0][0]
             #print s2416_homologtc_id
 
-    if 'suspensao' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio):
+    if 'suspensao' in dir(evtCdBenAlt.infoBenAlteracao.dadosBeneficio) and evtCdBenAlt.infoBenAlteracao.dadosBeneficio.suspensao.cdata != '':
         for suspensao in evtCdBenAlt.infoBenAlteracao.dadosBeneficio.suspensao:
             s2416_suspensao_dados = {}
             s2416_suspensao_dados['s2416_evtcdbenalt_id'] = s2416_evtcdbenalt_id
 
-            if 'mtvSuspensao' in dir(suspensao): s2416_suspensao_dados['mtvsuspensao'] = suspensao.mtvSuspensao.cdata
-            if 'dscSuspensao' in dir(suspensao): s2416_suspensao_dados['dscsuspensao'] = suspensao.dscSuspensao.cdata
+            try: s2416_suspensao_dados['mtvsuspensao'] = suspensao.mtvSuspensao.cdata
+            except AttributeError: pass
+            try: s2416_suspensao_dados['dscsuspensao'] = suspensao.dscSuspensao.cdata
+            except AttributeError: pass
             insert = create_insert('s2416_suspensao', s2416_suspensao_dados)
             resp = executar_sql(insert, True)
             s2416_suspensao_id = resp[0][0]

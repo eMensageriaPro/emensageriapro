@@ -79,16 +79,26 @@ def read_s2231_evtcessao_obj(doc, status, validar=False):
     s2231_evtcessao_dados['identidade'] = doc.eSocial.evtCessao['Id']
     evtCessao = doc.eSocial.evtCessao
 
-    if 'indRetif' in dir(evtCessao.ideEvento): s2231_evtcessao_dados['indretif'] = evtCessao.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtCessao.ideEvento): s2231_evtcessao_dados['nrrecibo'] = evtCessao.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtCessao.ideEvento): s2231_evtcessao_dados['tpamb'] = evtCessao.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtCessao.ideEvento): s2231_evtcessao_dados['procemi'] = evtCessao.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtCessao.ideEvento): s2231_evtcessao_dados['verproc'] = evtCessao.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtCessao.ideEmpregador): s2231_evtcessao_dados['tpinsc'] = evtCessao.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtCessao.ideEmpregador): s2231_evtcessao_dados['nrinsc'] = evtCessao.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtCessao.ideVinculo): s2231_evtcessao_dados['cpftrab'] = evtCessao.ideVinculo.cpfTrab.cdata
-    if 'nisTrab' in dir(evtCessao.ideVinculo): s2231_evtcessao_dados['nistrab'] = evtCessao.ideVinculo.nisTrab.cdata
-    if 'matricula' in dir(evtCessao.ideVinculo): s2231_evtcessao_dados['matricula'] = evtCessao.ideVinculo.matricula.cdata
+    try: s2231_evtcessao_dados['indretif'] = evtCessao.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2231_evtcessao_dados['nrrecibo'] = evtCessao.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2231_evtcessao_dados['tpamb'] = evtCessao.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2231_evtcessao_dados['procemi'] = evtCessao.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2231_evtcessao_dados['verproc'] = evtCessao.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2231_evtcessao_dados['tpinsc'] = evtCessao.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2231_evtcessao_dados['nrinsc'] = evtCessao.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2231_evtcessao_dados['cpftrab'] = evtCessao.ideVinculo.cpfTrab.cdata
+    except AttributeError: pass
+    try: s2231_evtcessao_dados['nistrab'] = evtCessao.ideVinculo.nisTrab.cdata
+    except AttributeError: pass
+    try: s2231_evtcessao_dados['matricula'] = evtCessao.ideVinculo.matricula.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtCessao.infoCessao): s2231_evtcessao_dados['operacao'] = 1
     elif 'alteracao' in dir(evtCessao.infoCessao): s2231_evtcessao_dados['operacao'] = 2
     elif 'exclusao' in dir(evtCessao.infoCessao): s2231_evtcessao_dados['operacao'] = 3
@@ -102,27 +112,33 @@ def read_s2231_evtcessao_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtCessao['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'iniCessao' in dir(evtCessao.infoCessao):
+    if 'iniCessao' in dir(evtCessao.infoCessao) and evtCessao.infoCessao.iniCessao.cdata != '':
         for iniCessao in evtCessao.infoCessao.iniCessao:
             s2231_inicessao_dados = {}
             s2231_inicessao_dados['s2231_evtcessao_id'] = s2231_evtcessao_id
 
-            if 'dtIniCessao' in dir(iniCessao): s2231_inicessao_dados['dtinicessao'] = iniCessao.dtIniCessao.cdata
-            if 'cnpjCess' in dir(iniCessao): s2231_inicessao_dados['cnpjcess'] = iniCessao.cnpjCess.cdata
-            if 'infOnus' in dir(iniCessao): s2231_inicessao_dados['infonus'] = iniCessao.infOnus.cdata
-            if 'indCessao' in dir(iniCessao): s2231_inicessao_dados['indcessao'] = iniCessao.indCessao.cdata
-            if 'dscSituacao' in dir(iniCessao): s2231_inicessao_dados['dscsituacao'] = iniCessao.dscSituacao.cdata
+            try: s2231_inicessao_dados['dtinicessao'] = iniCessao.dtIniCessao.cdata
+            except AttributeError: pass
+            try: s2231_inicessao_dados['cnpjcess'] = iniCessao.cnpjCess.cdata
+            except AttributeError: pass
+            try: s2231_inicessao_dados['infonus'] = iniCessao.infOnus.cdata
+            except AttributeError: pass
+            try: s2231_inicessao_dados['indcessao'] = iniCessao.indCessao.cdata
+            except AttributeError: pass
+            try: s2231_inicessao_dados['dscsituacao'] = iniCessao.dscSituacao.cdata
+            except AttributeError: pass
             insert = create_insert('s2231_inicessao', s2231_inicessao_dados)
             resp = executar_sql(insert, True)
             s2231_inicessao_id = resp[0][0]
             #print s2231_inicessao_id
 
-    if 'fimCessao' in dir(evtCessao.infoCessao):
+    if 'fimCessao' in dir(evtCessao.infoCessao) and evtCessao.infoCessao.fimCessao.cdata != '':
         for fimCessao in evtCessao.infoCessao.fimCessao:
             s2231_fimcessao_dados = {}
             s2231_fimcessao_dados['s2231_evtcessao_id'] = s2231_evtcessao_id
 
-            if 'dtTermCessao' in dir(fimCessao): s2231_fimcessao_dados['dttermcessao'] = fimCessao.dtTermCessao.cdata
+            try: s2231_fimcessao_dados['dttermcessao'] = fimCessao.dtTermCessao.cdata
+            except AttributeError: pass
             insert = create_insert('s2231_fimcessao', s2231_fimcessao_dados)
             resp = executar_sql(insert, True)
             s2231_fimcessao_id = resp[0][0]

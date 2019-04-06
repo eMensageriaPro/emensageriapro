@@ -79,17 +79,28 @@ def read_s1250_evtaqprod_obj(doc, status, validar=False):
     s1250_evtaqprod_dados['identidade'] = doc.eSocial.evtAqProd['Id']
     evtAqProd = doc.eSocial.evtAqProd
 
-    if 'indRetif' in dir(evtAqProd.ideEvento): s1250_evtaqprod_dados['indretif'] = evtAqProd.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtAqProd.ideEvento): s1250_evtaqprod_dados['nrrecibo'] = evtAqProd.ideEvento.nrRecibo.cdata
-    if 'indApuracao' in dir(evtAqProd.ideEvento): s1250_evtaqprod_dados['indapuracao'] = evtAqProd.ideEvento.indApuracao.cdata
-    if 'perApur' in dir(evtAqProd.ideEvento): s1250_evtaqprod_dados['perapur'] = evtAqProd.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtAqProd.ideEvento): s1250_evtaqprod_dados['tpamb'] = evtAqProd.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtAqProd.ideEvento): s1250_evtaqprod_dados['procemi'] = evtAqProd.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtAqProd.ideEvento): s1250_evtaqprod_dados['verproc'] = evtAqProd.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtAqProd.ideEmpregador): s1250_evtaqprod_dados['tpinsc'] = evtAqProd.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtAqProd.ideEmpregador): s1250_evtaqprod_dados['nrinsc'] = evtAqProd.ideEmpregador.nrInsc.cdata
-    if 'tpInscAdq' in dir(evtAqProd.infoAquisProd.ideEstabAdquir): s1250_evtaqprod_dados['tpinscadq'] = evtAqProd.infoAquisProd.ideEstabAdquir.tpInscAdq.cdata
-    if 'nrInscAdq' in dir(evtAqProd.infoAquisProd.ideEstabAdquir): s1250_evtaqprod_dados['nrinscadq'] = evtAqProd.infoAquisProd.ideEstabAdquir.nrInscAdq.cdata
+    try: s1250_evtaqprod_dados['indretif'] = evtAqProd.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s1250_evtaqprod_dados['nrrecibo'] = evtAqProd.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s1250_evtaqprod_dados['indapuracao'] = evtAqProd.ideEvento.indApuracao.cdata
+    except AttributeError: pass
+    try: s1250_evtaqprod_dados['perapur'] = evtAqProd.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s1250_evtaqprod_dados['tpamb'] = evtAqProd.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1250_evtaqprod_dados['procemi'] = evtAqProd.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1250_evtaqprod_dados['verproc'] = evtAqProd.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1250_evtaqprod_dados['tpinsc'] = evtAqProd.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1250_evtaqprod_dados['nrinsc'] = evtAqProd.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s1250_evtaqprod_dados['tpinscadq'] = evtAqProd.infoAquisProd.ideEstabAdquir.tpInscAdq.cdata
+    except AttributeError: pass
+    try: s1250_evtaqprod_dados['nrinscadq'] = evtAqProd.infoAquisProd.ideEstabAdquir.nrInscAdq.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtAqProd.infoAquisProd): s1250_evtaqprod_dados['operacao'] = 1
     elif 'alteracao' in dir(evtAqProd.infoAquisProd): s1250_evtaqprod_dados['operacao'] = 2
     elif 'exclusao' in dir(evtAqProd.infoAquisProd): s1250_evtaqprod_dados['operacao'] = 3
@@ -103,7 +114,7 @@ def read_s1250_evtaqprod_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtAqProd['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'tpAquis' in dir(evtAqProd.infoAquisProd.ideEstabAdquir):
+    if 'tpAquis' in dir(evtAqProd.infoAquisProd.ideEstabAdquir) and evtAqProd.infoAquisProd.ideEstabAdquir.tpAquis.cdata != '':
         for tpAquis in evtAqProd.infoAquisProd.ideEstabAdquir.tpAquis:
             s1250_tpaquis_dados = {}
             s1250_tpaquis_dados['s1250_evtaqprod_id'] = s1250_evtaqprod_id
@@ -113,7 +124,7 @@ def read_s1250_evtaqprod_obj(doc, status, validar=False):
             s1250_tpaquis_id = resp[0][0]
             #print s1250_tpaquis_id
 
-            if 'ideProdutor' in dir(tpAquis):
+            if 'ideProdutor' in dir(tpAquis) and tpAquis.ideProdutor.cdata != '':
                 for ideProdutor in tpAquis.ideProdutor:
                     s1250_ideprodutor_dados = {}
                     s1250_ideprodutor_dados['s1250_tpaquis_id'] = s1250_tpaquis_id
@@ -123,7 +134,7 @@ def read_s1250_evtaqprod_obj(doc, status, validar=False):
                     s1250_ideprodutor_id = resp[0][0]
                     #print s1250_ideprodutor_id
 
-            if 'infoProcJ' in dir(tpAquis):
+            if 'infoProcJ' in dir(tpAquis) and tpAquis.infoProcJ.cdata != '':
                 for infoProcJ in tpAquis.infoProcJ:
                     s1250_infoprocj_dados = {}
                     s1250_infoprocj_dados['s1250_tpaquis_id'] = s1250_tpaquis_id

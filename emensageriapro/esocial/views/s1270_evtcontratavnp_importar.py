@@ -79,15 +79,24 @@ def read_s1270_evtcontratavnp_obj(doc, status, validar=False):
     s1270_evtcontratavnp_dados['identidade'] = doc.eSocial.evtContratAvNP['Id']
     evtContratAvNP = doc.eSocial.evtContratAvNP
 
-    if 'indRetif' in dir(evtContratAvNP.ideEvento): s1270_evtcontratavnp_dados['indretif'] = evtContratAvNP.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtContratAvNP.ideEvento): s1270_evtcontratavnp_dados['nrrecibo'] = evtContratAvNP.ideEvento.nrRecibo.cdata
-    if 'indApuracao' in dir(evtContratAvNP.ideEvento): s1270_evtcontratavnp_dados['indapuracao'] = evtContratAvNP.ideEvento.indApuracao.cdata
-    if 'perApur' in dir(evtContratAvNP.ideEvento): s1270_evtcontratavnp_dados['perapur'] = evtContratAvNP.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtContratAvNP.ideEvento): s1270_evtcontratavnp_dados['tpamb'] = evtContratAvNP.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtContratAvNP.ideEvento): s1270_evtcontratavnp_dados['procemi'] = evtContratAvNP.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtContratAvNP.ideEvento): s1270_evtcontratavnp_dados['verproc'] = evtContratAvNP.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtContratAvNP.ideEmpregador): s1270_evtcontratavnp_dados['tpinsc'] = evtContratAvNP.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtContratAvNP.ideEmpregador): s1270_evtcontratavnp_dados['nrinsc'] = evtContratAvNP.ideEmpregador.nrInsc.cdata
+    try: s1270_evtcontratavnp_dados['indretif'] = evtContratAvNP.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s1270_evtcontratavnp_dados['nrrecibo'] = evtContratAvNP.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s1270_evtcontratavnp_dados['indapuracao'] = evtContratAvNP.ideEvento.indApuracao.cdata
+    except AttributeError: pass
+    try: s1270_evtcontratavnp_dados['perapur'] = evtContratAvNP.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s1270_evtcontratavnp_dados['tpamb'] = evtContratAvNP.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1270_evtcontratavnp_dados['procemi'] = evtContratAvNP.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1270_evtcontratavnp_dados['verproc'] = evtContratAvNP.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1270_evtcontratavnp_dados['tpinsc'] = evtContratAvNP.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1270_evtcontratavnp_dados['nrinsc'] = evtContratAvNP.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtContratAvNP.remunAvNP): s1270_evtcontratavnp_dados['operacao'] = 1
     elif 'alteracao' in dir(evtContratAvNP.remunAvNP): s1270_evtcontratavnp_dados['operacao'] = 2
     elif 'exclusao' in dir(evtContratAvNP.remunAvNP): s1270_evtcontratavnp_dados['operacao'] = 3
@@ -101,21 +110,31 @@ def read_s1270_evtcontratavnp_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtContratAvNP['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'remunAvNP' in dir(evtContratAvNP):
+    if 'remunAvNP' in dir(evtContratAvNP) and evtContratAvNP.remunAvNP.cdata != '':
         for remunAvNP in evtContratAvNP.remunAvNP:
             s1270_remunavnp_dados = {}
             s1270_remunavnp_dados['s1270_evtcontratavnp_id'] = s1270_evtcontratavnp_id
 
-            if 'tpInsc' in dir(remunAvNP): s1270_remunavnp_dados['tpinsc'] = remunAvNP.tpInsc.cdata
-            if 'nrInsc' in dir(remunAvNP): s1270_remunavnp_dados['nrinsc'] = remunAvNP.nrInsc.cdata
-            if 'codLotacao' in dir(remunAvNP): s1270_remunavnp_dados['codlotacao'] = remunAvNP.codLotacao.cdata
-            if 'vrBcCp00' in dir(remunAvNP): s1270_remunavnp_dados['vrbccp00'] = remunAvNP.vrBcCp00.cdata
-            if 'vrBcCp15' in dir(remunAvNP): s1270_remunavnp_dados['vrbccp15'] = remunAvNP.vrBcCp15.cdata
-            if 'vrBcCp20' in dir(remunAvNP): s1270_remunavnp_dados['vrbccp20'] = remunAvNP.vrBcCp20.cdata
-            if 'vrBcCp25' in dir(remunAvNP): s1270_remunavnp_dados['vrbccp25'] = remunAvNP.vrBcCp25.cdata
-            if 'vrBcCp13' in dir(remunAvNP): s1270_remunavnp_dados['vrbccp13'] = remunAvNP.vrBcCp13.cdata
-            if 'vrBcFgts' in dir(remunAvNP): s1270_remunavnp_dados['vrbcfgts'] = remunAvNP.vrBcFgts.cdata
-            if 'vrDescCP' in dir(remunAvNP): s1270_remunavnp_dados['vrdesccp'] = remunAvNP.vrDescCP.cdata
+            try: s1270_remunavnp_dados['tpinsc'] = remunAvNP.tpInsc.cdata
+            except AttributeError: pass
+            try: s1270_remunavnp_dados['nrinsc'] = remunAvNP.nrInsc.cdata
+            except AttributeError: pass
+            try: s1270_remunavnp_dados['codlotacao'] = remunAvNP.codLotacao.cdata
+            except AttributeError: pass
+            try: s1270_remunavnp_dados['vrbccp00'] = remunAvNP.vrBcCp00.cdata
+            except AttributeError: pass
+            try: s1270_remunavnp_dados['vrbccp15'] = remunAvNP.vrBcCp15.cdata
+            except AttributeError: pass
+            try: s1270_remunavnp_dados['vrbccp20'] = remunAvNP.vrBcCp20.cdata
+            except AttributeError: pass
+            try: s1270_remunavnp_dados['vrbccp25'] = remunAvNP.vrBcCp25.cdata
+            except AttributeError: pass
+            try: s1270_remunavnp_dados['vrbccp13'] = remunAvNP.vrBcCp13.cdata
+            except AttributeError: pass
+            try: s1270_remunavnp_dados['vrbcfgts'] = remunAvNP.vrBcFgts.cdata
+            except AttributeError: pass
+            try: s1270_remunavnp_dados['vrdesccp'] = remunAvNP.vrDescCP.cdata
+            except AttributeError: pass
             insert = create_insert('s1270_remunavnp', s1270_remunavnp_dados)
             resp = executar_sql(insert, True)
             s1270_remunavnp_id = resp[0][0]

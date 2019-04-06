@@ -47,17 +47,17 @@ def validacoes_s1250_evtaqprod(arquivo):
     xmlns = doc.eSocial['xmlns'].split('/')
     evtAqProd = doc.eSocial.evtAqProd
 
-    if 'indRetif' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.indRetif', evtAqProd.ideEvento.indRetif.cdata, 1, '1;2')
-    if 'nrRecibo' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.nrRecibo', evtAqProd.ideEvento.nrRecibo.cdata, 0, '')
-    if 'indApuracao' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.indApuracao', evtAqProd.ideEvento.indApuracao.cdata, 1, '1')
-    if 'perApur' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.perApur', evtAqProd.ideEvento.perApur.cdata, 1, '')
-    if 'tpAmb' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.tpAmb', evtAqProd.ideEvento.tpAmb.cdata, 1, '1;2')
-    if 'procEmi' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.procEmi', evtAqProd.ideEvento.procEmi.cdata, 1, '1;2;3;4;5')
-    if 'verProc' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.verProc', evtAqProd.ideEvento.verProc.cdata, 1, '')
-    if 'tpInsc' in dir(evtAqProd.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEmpregador.tpInsc', evtAqProd.ideEmpregador.tpInsc.cdata, 1, '1;2;3;4')
-    if 'nrInsc' in dir(evtAqProd.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEmpregador.nrInsc', evtAqProd.ideEmpregador.nrInsc.cdata, 1, '')
-    if 'tpInscAdq' in dir(evtAqProd.infoAquisProd.ideEstabAdquir): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.infoAquisProd.ideEstabAdquir.tpInscAdq', evtAqProd.infoAquisProd.ideEstabAdquir.tpInscAdq.cdata, 1, '1;2;3;4')
-    if 'nrInscAdq' in dir(evtAqProd.infoAquisProd.ideEstabAdquir): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.infoAquisProd.ideEstabAdquir.nrInscAdq', evtAqProd.infoAquisProd.ideEstabAdquir.nrInscAdq.cdata, 1, '')
+    if 'indRetif' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.indRetif', evtAqProd.ideEvento.indRetif.cdata, 1, u'1;2')
+    if 'nrRecibo' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.nrRecibo', evtAqProd.ideEvento.nrRecibo.cdata, 0, u'')
+    if 'indApuracao' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.indApuracao', evtAqProd.ideEvento.indApuracao.cdata, 1, u'1')
+    if 'perApur' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.perApur', evtAqProd.ideEvento.perApur.cdata, 1, u'')
+    if 'tpAmb' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.tpAmb', evtAqProd.ideEvento.tpAmb.cdata, 1, u'1;2')
+    if 'procEmi' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.procEmi', evtAqProd.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
+    if 'verProc' in dir(evtAqProd.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEvento.verProc', evtAqProd.ideEvento.verProc.cdata, 1, u'')
+    if 'tpInsc' in dir(evtAqProd.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEmpregador.tpInsc', evtAqProd.ideEmpregador.tpInsc.cdata, 1, u'1;2;3;4')
+    if 'nrInsc' in dir(evtAqProd.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.ideEmpregador.nrInsc', evtAqProd.ideEmpregador.nrInsc.cdata, 1, u'')
+    if 'tpInscAdq' in dir(evtAqProd.infoAquisProd.ideEstabAdquir): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.infoAquisProd.ideEstabAdquir.tpInscAdq', evtAqProd.infoAquisProd.ideEstabAdquir.tpInscAdq.cdata, 1, u'1;2;3;4')
+    if 'nrInscAdq' in dir(evtAqProd.infoAquisProd.ideEstabAdquir): validacoes_lista = validar_campo(validacoes_lista,'evtAqProd.infoAquisProd.ideEstabAdquir.nrInscAdq', evtAqProd.infoAquisProd.ideEstabAdquir.nrInscAdq.cdata, 1, u'')
     if 'tpAquis' in dir(evtAqProd.infoAquisProd.ideEstabAdquir):
         for tpAquis in evtAqProd.infoAquisProd.ideEstabAdquir.tpAquis:
 

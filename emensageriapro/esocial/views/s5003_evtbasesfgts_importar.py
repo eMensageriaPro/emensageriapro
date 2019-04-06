@@ -79,12 +79,18 @@ def read_s5003_evtbasesfgts_obj(doc, status, validar=False):
     s5003_evtbasesfgts_dados['identidade'] = doc.eSocial.evtBasesFGTS['Id']
     evtBasesFGTS = doc.eSocial.evtBasesFGTS
 
-    if 'nrRecArqBase' in dir(evtBasesFGTS.ideEvento): s5003_evtbasesfgts_dados['nrrecarqbase'] = evtBasesFGTS.ideEvento.nrRecArqBase.cdata
-    if 'perApur' in dir(evtBasesFGTS.ideEvento): s5003_evtbasesfgts_dados['perapur'] = evtBasesFGTS.ideEvento.perApur.cdata
-    if 'tpInsc' in dir(evtBasesFGTS.ideEmpregador): s5003_evtbasesfgts_dados['tpinsc'] = evtBasesFGTS.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtBasesFGTS.ideEmpregador): s5003_evtbasesfgts_dados['nrinsc'] = evtBasesFGTS.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtBasesFGTS.ideTrabalhador): s5003_evtbasesfgts_dados['cpftrab'] = evtBasesFGTS.ideTrabalhador.cpfTrab.cdata
-    if 'nisTrab' in dir(evtBasesFGTS.ideTrabalhador): s5003_evtbasesfgts_dados['nistrab'] = evtBasesFGTS.ideTrabalhador.nisTrab.cdata
+    try: s5003_evtbasesfgts_dados['nrrecarqbase'] = evtBasesFGTS.ideEvento.nrRecArqBase.cdata
+    except AttributeError: pass
+    try: s5003_evtbasesfgts_dados['perapur'] = evtBasesFGTS.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s5003_evtbasesfgts_dados['tpinsc'] = evtBasesFGTS.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s5003_evtbasesfgts_dados['nrinsc'] = evtBasesFGTS.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s5003_evtbasesfgts_dados['cpftrab'] = evtBasesFGTS.ideTrabalhador.cpfTrab.cdata
+    except AttributeError: pass
+    try: s5003_evtbasesfgts_dados['nistrab'] = evtBasesFGTS.ideTrabalhador.nisTrab.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtBasesFGTS.infoFGTS): s5003_evtbasesfgts_dados['operacao'] = 1
     elif 'alteracao' in dir(evtBasesFGTS.infoFGTS): s5003_evtbasesfgts_dados['operacao'] = 2
     elif 'exclusao' in dir(evtBasesFGTS.infoFGTS): s5003_evtbasesfgts_dados['operacao'] = 3
@@ -98,37 +104,43 @@ def read_s5003_evtbasesfgts_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtBasesFGTS['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'infoFGTS' in dir(evtBasesFGTS):
+    if 'infoFGTS' in dir(evtBasesFGTS) and evtBasesFGTS.infoFGTS.cdata != '':
         for infoFGTS in evtBasesFGTS.infoFGTS:
             s5003_infofgts_dados = {}
             s5003_infofgts_dados['s5003_evtbasesfgts_id'] = s5003_evtbasesfgts_id
 
-            if 'dtVenc' in dir(infoFGTS): s5003_infofgts_dados['dtvenc'] = infoFGTS.dtVenc.cdata
+            try: s5003_infofgts_dados['dtvenc'] = infoFGTS.dtVenc.cdata
+            except AttributeError: pass
             insert = create_insert('s5003_infofgts', s5003_infofgts_dados)
             resp = executar_sql(insert, True)
             s5003_infofgts_id = resp[0][0]
             #print s5003_infofgts_id
 
-            if 'ideEstabLot' in dir(infoFGTS):
+            if 'ideEstabLot' in dir(infoFGTS) and infoFGTS.ideEstabLot.cdata != '':
                 for ideEstabLot in infoFGTS.ideEstabLot:
                     s5003_ideestablot_dados = {}
                     s5003_ideestablot_dados['s5003_infofgts_id'] = s5003_infofgts_id
 
-                    if 'tpInsc' in dir(ideEstabLot): s5003_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
-                    if 'nrInsc' in dir(ideEstabLot): s5003_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
-                    if 'codLotacao' in dir(ideEstabLot): s5003_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+                    try: s5003_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+                    except AttributeError: pass
+                    try: s5003_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+                    except AttributeError: pass
+                    try: s5003_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+                    except AttributeError: pass
                     insert = create_insert('s5003_ideestablot', s5003_ideestablot_dados)
                     resp = executar_sql(insert, True)
                     s5003_ideestablot_id = resp[0][0]
                     #print s5003_ideestablot_id
 
-            if 'infoTrabDps' in dir(infoFGTS.infoDpsFGTS):
+            if 'infoTrabDps' in dir(infoFGTS.infoDpsFGTS) and infoFGTS.infoDpsFGTS.infoTrabDps.cdata != '':
                 for infoTrabDps in infoFGTS.infoDpsFGTS.infoTrabDps:
                     s5003_infotrabdps_dados = {}
                     s5003_infotrabdps_dados['s5003_infofgts_id'] = s5003_infofgts_id
 
-                    if 'matricula' in dir(infoTrabDps): s5003_infotrabdps_dados['matricula'] = infoTrabDps.matricula.cdata
-                    if 'codCateg' in dir(infoTrabDps): s5003_infotrabdps_dados['codcateg'] = infoTrabDps.codCateg.cdata
+                    try: s5003_infotrabdps_dados['matricula'] = infoTrabDps.matricula.cdata
+                    except AttributeError: pass
+                    try: s5003_infotrabdps_dados['codcateg'] = infoTrabDps.codCateg.cdata
+                    except AttributeError: pass
                     insert = create_insert('s5003_infotrabdps', s5003_infotrabdps_dados)
                     resp = executar_sql(insert, True)
                     s5003_infotrabdps_id = resp[0][0]

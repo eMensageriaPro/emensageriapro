@@ -79,11 +79,16 @@ def read_s5002_evtirrfbenef_obj(doc, status, validar=False):
     s5002_evtirrfbenef_dados['identidade'] = doc.eSocial.evtIrrfBenef['Id']
     evtIrrfBenef = doc.eSocial.evtIrrfBenef
 
-    if 'nrRecArqBase' in dir(evtIrrfBenef.ideEvento): s5002_evtirrfbenef_dados['nrrecarqbase'] = evtIrrfBenef.ideEvento.nrRecArqBase.cdata
-    if 'perApur' in dir(evtIrrfBenef.ideEvento): s5002_evtirrfbenef_dados['perapur'] = evtIrrfBenef.ideEvento.perApur.cdata
-    if 'tpInsc' in dir(evtIrrfBenef.ideEmpregador): s5002_evtirrfbenef_dados['tpinsc'] = evtIrrfBenef.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtIrrfBenef.ideEmpregador): s5002_evtirrfbenef_dados['nrinsc'] = evtIrrfBenef.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtIrrfBenef.ideTrabalhador): s5002_evtirrfbenef_dados['cpftrab'] = evtIrrfBenef.ideTrabalhador.cpfTrab.cdata
+    try: s5002_evtirrfbenef_dados['nrrecarqbase'] = evtIrrfBenef.ideEvento.nrRecArqBase.cdata
+    except AttributeError: pass
+    try: s5002_evtirrfbenef_dados['perapur'] = evtIrrfBenef.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s5002_evtirrfbenef_dados['tpinsc'] = evtIrrfBenef.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s5002_evtirrfbenef_dados['nrinsc'] = evtIrrfBenef.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s5002_evtirrfbenef_dados['cpftrab'] = evtIrrfBenef.ideTrabalhador.cpfTrab.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtIrrfBenef.infoIrrf): s5002_evtirrfbenef_dados['operacao'] = 1
     elif 'alteracao' in dir(evtIrrfBenef.infoIrrf): s5002_evtirrfbenef_dados['operacao'] = 2
     elif 'exclusao' in dir(evtIrrfBenef.infoIrrf): s5002_evtirrfbenef_dados['operacao'] = 3
@@ -97,67 +102,83 @@ def read_s5002_evtirrfbenef_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtIrrfBenef['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'infoDep' in dir(evtIrrfBenef):
+    if 'infoDep' in dir(evtIrrfBenef) and evtIrrfBenef.infoDep.cdata != '':
         for infoDep in evtIrrfBenef.infoDep:
             s5002_infodep_dados = {}
             s5002_infodep_dados['s5002_evtirrfbenef_id'] = s5002_evtirrfbenef_id
 
-            if 'vrDedDep' in dir(infoDep): s5002_infodep_dados['vrdeddep'] = infoDep.vrDedDep.cdata
+            try: s5002_infodep_dados['vrdeddep'] = infoDep.vrDedDep.cdata
+            except AttributeError: pass
             insert = create_insert('s5002_infodep', s5002_infodep_dados)
             resp = executar_sql(insert, True)
             s5002_infodep_id = resp[0][0]
             #print s5002_infodep_id
 
-    if 'infoIrrf' in dir(evtIrrfBenef):
+    if 'infoIrrf' in dir(evtIrrfBenef) and evtIrrfBenef.infoIrrf.cdata != '':
         for infoIrrf in evtIrrfBenef.infoIrrf:
             s5002_infoirrf_dados = {}
             s5002_infoirrf_dados['s5002_evtirrfbenef_id'] = s5002_evtirrfbenef_id
 
-            if 'codCateg' in dir(infoIrrf): s5002_infoirrf_dados['codcateg'] = infoIrrf.codCateg.cdata
-            if 'indResBr' in dir(infoIrrf): s5002_infoirrf_dados['indresbr'] = infoIrrf.indResBr.cdata
+            try: s5002_infoirrf_dados['codcateg'] = infoIrrf.codCateg.cdata
+            except AttributeError: pass
+            try: s5002_infoirrf_dados['indresbr'] = infoIrrf.indResBr.cdata
+            except AttributeError: pass
             insert = create_insert('s5002_infoirrf', s5002_infoirrf_dados)
             resp = executar_sql(insert, True)
             s5002_infoirrf_id = resp[0][0]
             #print s5002_infoirrf_id
 
-            if 'basesIrrf' in dir(infoIrrf):
+            if 'basesIrrf' in dir(infoIrrf) and infoIrrf.basesIrrf.cdata != '':
                 for basesIrrf in infoIrrf.basesIrrf:
                     s5002_basesirrf_dados = {}
                     s5002_basesirrf_dados['s5002_infoirrf_id'] = s5002_infoirrf_id
 
-                    if 'tpValor' in dir(basesIrrf): s5002_basesirrf_dados['tpvalor'] = basesIrrf.tpValor.cdata
-                    if 'valor' in dir(basesIrrf): s5002_basesirrf_dados['valor'] = basesIrrf.valor.cdata
+                    try: s5002_basesirrf_dados['tpvalor'] = basesIrrf.tpValor.cdata
+                    except AttributeError: pass
+                    try: s5002_basesirrf_dados['valor'] = basesIrrf.valor.cdata
+                    except AttributeError: pass
                     insert = create_insert('s5002_basesirrf', s5002_basesirrf_dados)
                     resp = executar_sql(insert, True)
                     s5002_basesirrf_id = resp[0][0]
                     #print s5002_basesirrf_id
 
-            if 'irrf' in dir(infoIrrf):
+            if 'irrf' in dir(infoIrrf) and infoIrrf.irrf.cdata != '':
                 for irrf in infoIrrf.irrf:
                     s5002_irrf_dados = {}
                     s5002_irrf_dados['s5002_infoirrf_id'] = s5002_infoirrf_id
 
-                    if 'tpCR' in dir(irrf): s5002_irrf_dados['tpcr'] = irrf.tpCR.cdata
-                    if 'vrIrrfDesc' in dir(irrf): s5002_irrf_dados['vrirrfdesc'] = irrf.vrIrrfDesc.cdata
+                    try: s5002_irrf_dados['tpcr'] = irrf.tpCR.cdata
+                    except AttributeError: pass
+                    try: s5002_irrf_dados['vrirrfdesc'] = irrf.vrIrrfDesc.cdata
+                    except AttributeError: pass
                     insert = create_insert('s5002_irrf', s5002_irrf_dados)
                     resp = executar_sql(insert, True)
                     s5002_irrf_id = resp[0][0]
                     #print s5002_irrf_id
 
-            if 'idePgtoExt' in dir(infoIrrf):
+            if 'idePgtoExt' in dir(infoIrrf) and infoIrrf.idePgtoExt.cdata != '':
                 for idePgtoExt in infoIrrf.idePgtoExt:
                     s5002_idepgtoext_dados = {}
                     s5002_idepgtoext_dados['s5002_infoirrf_id'] = s5002_infoirrf_id
 
-                    if 'codPais' in dir(idePgtoExt): s5002_idepgtoext_dados['codpais'] = idePgtoExt.idePais.codPais.cdata
-                    if 'indNIF' in dir(idePgtoExt): s5002_idepgtoext_dados['indnif'] = idePgtoExt.idePais.indNIF.cdata
-                    if 'nifBenef' in dir(idePgtoExt): s5002_idepgtoext_dados['nifbenef'] = idePgtoExt.idePais.nifBenef.cdata
-                    if 'dscLograd' in dir(idePgtoExt): s5002_idepgtoext_dados['dsclograd'] = idePgtoExt.endExt.dscLograd.cdata
-                    if 'nrLograd' in dir(idePgtoExt): s5002_idepgtoext_dados['nrlograd'] = idePgtoExt.endExt.nrLograd.cdata
-                    if 'complem' in dir(idePgtoExt): s5002_idepgtoext_dados['complem'] = idePgtoExt.endExt.complem.cdata
-                    if 'bairro' in dir(idePgtoExt): s5002_idepgtoext_dados['bairro'] = idePgtoExt.endExt.bairro.cdata
-                    if 'nmCid' in dir(idePgtoExt): s5002_idepgtoext_dados['nmcid'] = idePgtoExt.endExt.nmCid.cdata
-                    if 'codPostal' in dir(idePgtoExt): s5002_idepgtoext_dados['codpostal'] = idePgtoExt.endExt.codPostal.cdata
+                    try: s5002_idepgtoext_dados['codpais'] = idePgtoExt.idePais.codPais.cdata
+                    except AttributeError: pass
+                    try: s5002_idepgtoext_dados['indnif'] = idePgtoExt.idePais.indNIF.cdata
+                    except AttributeError: pass
+                    try: s5002_idepgtoext_dados['nifbenef'] = idePgtoExt.idePais.nifBenef.cdata
+                    except AttributeError: pass
+                    try: s5002_idepgtoext_dados['dsclograd'] = idePgtoExt.endExt.dscLograd.cdata
+                    except AttributeError: pass
+                    try: s5002_idepgtoext_dados['nrlograd'] = idePgtoExt.endExt.nrLograd.cdata
+                    except AttributeError: pass
+                    try: s5002_idepgtoext_dados['complem'] = idePgtoExt.endExt.complem.cdata
+                    except AttributeError: pass
+                    try: s5002_idepgtoext_dados['bairro'] = idePgtoExt.endExt.bairro.cdata
+                    except AttributeError: pass
+                    try: s5002_idepgtoext_dados['nmcid'] = idePgtoExt.endExt.nmCid.cdata
+                    except AttributeError: pass
+                    try: s5002_idepgtoext_dados['codpostal'] = idePgtoExt.endExt.codPostal.cdata
+                    except AttributeError: pass
                     insert = create_insert('s5002_idepgtoext', s5002_idepgtoext_dados)
                     resp = executar_sql(insert, True)
                     s5002_idepgtoext_id = resp[0][0]

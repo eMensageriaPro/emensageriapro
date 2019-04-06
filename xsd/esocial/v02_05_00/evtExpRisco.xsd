@@ -90,7 +90,7 @@
                                       <xs:documentation>Codigo da atividade conforme tabela 28</xs:documentation>
                                     </xs:annotation>
                                     <xs:restriction base="xs:string">
-                                      <xs:pattern value="\w{6}"/>
+                                      <xs:pattern value="\d{2}\.\d{3}"/>
                                     </xs:restriction>
                                   </xs:simpleType>
                                 </xs:element>
@@ -117,6 +117,18 @@
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="dscFatRisc" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:annotation>
+                                <xs:documentation>Descrição do fator de risco</xs:documentation>
+                              </xs:annotation>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="2"/>
+                                <xs:maxLength value="999"/>
+                                <xs:whiteSpace value="preserve"/>
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                           <xs:element name="tpAval">
                             <xs:simpleType>
                               <xs:annotation>
@@ -133,7 +145,7 @@
                                 <xs:documentation>Intensidade/Concentração</xs:documentation>
                               </xs:annotation>
                               <xs:restriction base="xs:decimal">
-                                <xs:totalDigits value="6"/>
+                                <xs:totalDigits value="10"/>
                                 <xs:fractionDigits value="4"/>
                                 <xs:maxInclusive value="999999.9999"/>
                               </xs:restriction>
@@ -145,7 +157,7 @@
                                 <xs:documentation>Limite de tolerância</xs:documentation>
                               </xs:annotation>
                               <xs:restriction base="xs:decimal">
-                                <xs:totalDigits value="6"/>
+                                <xs:totalDigits value="10"/>
                                 <xs:fractionDigits value="4"/>
                                 <xs:maxInclusive value="999999.9999"/>
                               </xs:restriction>

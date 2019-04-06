@@ -79,20 +79,34 @@ def read_s2245_evttreicap_obj(doc, status, validar=False):
     s2245_evttreicap_dados['identidade'] = doc.eSocial.evtTreiCap['Id']
     evtTreiCap = doc.eSocial.evtTreiCap
 
-    if 'indRetif' in dir(evtTreiCap.ideEvento): s2245_evttreicap_dados['indretif'] = evtTreiCap.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtTreiCap.ideEvento): s2245_evttreicap_dados['nrrecibo'] = evtTreiCap.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtTreiCap.ideEvento): s2245_evttreicap_dados['tpamb'] = evtTreiCap.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtTreiCap.ideEvento): s2245_evttreicap_dados['procemi'] = evtTreiCap.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtTreiCap.ideEvento): s2245_evttreicap_dados['verproc'] = evtTreiCap.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtTreiCap.ideEmpregador): s2245_evttreicap_dados['tpinsc'] = evtTreiCap.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtTreiCap.ideEmpregador): s2245_evttreicap_dados['nrinsc'] = evtTreiCap.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtTreiCap.ideVinculo): s2245_evttreicap_dados['cpftrab'] = evtTreiCap.ideVinculo.cpfTrab.cdata
-    if 'nisTrab' in dir(evtTreiCap.ideVinculo): s2245_evttreicap_dados['nistrab'] = evtTreiCap.ideVinculo.nisTrab.cdata
-    if 'matricula' in dir(evtTreiCap.ideVinculo): s2245_evttreicap_dados['matricula'] = evtTreiCap.ideVinculo.matricula.cdata
-    if 'codCateg' in dir(evtTreiCap.ideVinculo): s2245_evttreicap_dados['codcateg'] = evtTreiCap.ideVinculo.codCateg.cdata
-    if 'codTreiCap' in dir(evtTreiCap.treiCap): s2245_evttreicap_dados['codtreicap'] = evtTreiCap.treiCap.codTreiCap.cdata
-    if 'obsTreiCap' in dir(evtTreiCap.treiCap): s2245_evttreicap_dados['obstreicap'] = evtTreiCap.treiCap.obsTreiCap.cdata
-    if 'observacao' in dir(evtTreiCap.treiCap): s2245_evttreicap_dados['observacao'] = evtTreiCap.treiCap.observacao.cdata
+    try: s2245_evttreicap_dados['indretif'] = evtTreiCap.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['nrrecibo'] = evtTreiCap.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['tpamb'] = evtTreiCap.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['procemi'] = evtTreiCap.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['verproc'] = evtTreiCap.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['tpinsc'] = evtTreiCap.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['nrinsc'] = evtTreiCap.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['cpftrab'] = evtTreiCap.ideVinculo.cpfTrab.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['nistrab'] = evtTreiCap.ideVinculo.nisTrab.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['matricula'] = evtTreiCap.ideVinculo.matricula.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['codcateg'] = evtTreiCap.ideVinculo.codCateg.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['codtreicap'] = evtTreiCap.treiCap.codTreiCap.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['obstreicap'] = evtTreiCap.treiCap.obsTreiCap.cdata
+    except AttributeError: pass
+    try: s2245_evttreicap_dados['observacao'] = evtTreiCap.treiCap.observacao.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtTreiCap.treiCap): s2245_evttreicap_dados['operacao'] = 1
     elif 'alteracao' in dir(evtTreiCap.treiCap): s2245_evttreicap_dados['operacao'] = 2
     elif 'exclusao' in dir(evtTreiCap.treiCap): s2245_evttreicap_dados['operacao'] = 3
@@ -106,31 +120,41 @@ def read_s2245_evttreicap_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtTreiCap['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'infoComplem' in dir(evtTreiCap.treiCap):
+    if 'infoComplem' in dir(evtTreiCap.treiCap) and evtTreiCap.treiCap.infoComplem.cdata != '':
         for infoComplem in evtTreiCap.treiCap.infoComplem:
             s2245_infocomplem_dados = {}
             s2245_infocomplem_dados['s2245_evttreicap_id'] = s2245_evttreicap_id
 
-            if 'dtTreiCap' in dir(infoComplem): s2245_infocomplem_dados['dttreicap'] = infoComplem.dtTreiCap.cdata
-            if 'durTreiCap' in dir(infoComplem): s2245_infocomplem_dados['durtreicap'] = infoComplem.durTreiCap.cdata
-            if 'modTreiCap' in dir(infoComplem): s2245_infocomplem_dados['modtreicap'] = infoComplem.modTreiCap.cdata
-            if 'tpTreiCap' in dir(infoComplem): s2245_infocomplem_dados['tptreicap'] = infoComplem.tpTreiCap.cdata
+            try: s2245_infocomplem_dados['dttreicap'] = infoComplem.dtTreiCap.cdata
+            except AttributeError: pass
+            try: s2245_infocomplem_dados['durtreicap'] = infoComplem.durTreiCap.cdata
+            except AttributeError: pass
+            try: s2245_infocomplem_dados['modtreicap'] = infoComplem.modTreiCap.cdata
+            except AttributeError: pass
+            try: s2245_infocomplem_dados['tptreicap'] = infoComplem.tpTreiCap.cdata
+            except AttributeError: pass
             insert = create_insert('s2245_infocomplem', s2245_infocomplem_dados)
             resp = executar_sql(insert, True)
             s2245_infocomplem_id = resp[0][0]
             #print s2245_infocomplem_id
 
-            if 'ideProfResp' in dir(infoComplem):
+            if 'ideProfResp' in dir(infoComplem) and infoComplem.ideProfResp.cdata != '':
                 for ideProfResp in infoComplem.ideProfResp:
                     s2245_ideprofresp_dados = {}
                     s2245_ideprofresp_dados['s2245_infocomplem_id'] = s2245_infocomplem_id
 
-                    if 'cpfProf' in dir(ideProfResp): s2245_ideprofresp_dados['cpfprof'] = ideProfResp.cpfProf.cdata
-                    if 'nmProf' in dir(ideProfResp): s2245_ideprofresp_dados['nmprof'] = ideProfResp.nmProf.cdata
-                    if 'tpProf' in dir(ideProfResp): s2245_ideprofresp_dados['tpprof'] = ideProfResp.tpProf.cdata
-                    if 'formProf' in dir(ideProfResp): s2245_ideprofresp_dados['formprof'] = ideProfResp.formProf.cdata
-                    if 'codCBO' in dir(ideProfResp): s2245_ideprofresp_dados['codcbo'] = ideProfResp.codCBO.cdata
-                    if 'nacProf' in dir(ideProfResp): s2245_ideprofresp_dados['nacprof'] = ideProfResp.nacProf.cdata
+                    try: s2245_ideprofresp_dados['cpfprof'] = ideProfResp.cpfProf.cdata
+                    except AttributeError: pass
+                    try: s2245_ideprofresp_dados['nmprof'] = ideProfResp.nmProf.cdata
+                    except AttributeError: pass
+                    try: s2245_ideprofresp_dados['tpprof'] = ideProfResp.tpProf.cdata
+                    except AttributeError: pass
+                    try: s2245_ideprofresp_dados['formprof'] = ideProfResp.formProf.cdata
+                    except AttributeError: pass
+                    try: s2245_ideprofresp_dados['codcbo'] = ideProfResp.codCBO.cdata
+                    except AttributeError: pass
+                    try: s2245_ideprofresp_dados['nacprof'] = ideProfResp.nacProf.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2245_ideprofresp', s2245_ideprofresp_dados)
                     resp = executar_sql(insert, True)
                     s2245_ideprofresp_id = resp[0][0]

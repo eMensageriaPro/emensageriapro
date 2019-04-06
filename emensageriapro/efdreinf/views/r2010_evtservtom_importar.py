@@ -79,25 +79,44 @@ def read_r2010_evtservtom_obj(doc, status, validar=False):
     r2010_evtservtom_dados['identidade'] = doc.Reinf.evtServTom['id']
     evtServTom = doc.Reinf.evtServTom
 
-    if 'indRetif' in dir(evtServTom.ideEvento): r2010_evtservtom_dados['indretif'] = evtServTom.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtServTom.ideEvento): r2010_evtservtom_dados['nrrecibo'] = evtServTom.ideEvento.nrRecibo.cdata
-    if 'perApur' in dir(evtServTom.ideEvento): r2010_evtservtom_dados['perapur'] = evtServTom.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtServTom.ideEvento): r2010_evtservtom_dados['tpamb'] = evtServTom.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtServTom.ideEvento): r2010_evtservtom_dados['procemi'] = evtServTom.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtServTom.ideEvento): r2010_evtservtom_dados['verproc'] = evtServTom.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtServTom.ideContri): r2010_evtservtom_dados['tpinsc'] = evtServTom.ideContri.tpInsc.cdata
-    if 'nrInsc' in dir(evtServTom.ideContri): r2010_evtservtom_dados['nrinsc'] = evtServTom.ideContri.nrInsc.cdata
-    if 'tpInscEstab' in dir(evtServTom.infoServTom.ideEstabObra): r2010_evtservtom_dados['tpinscestab'] = evtServTom.infoServTom.ideEstabObra.tpInscEstab.cdata
-    if 'nrInscEstab' in dir(evtServTom.infoServTom.ideEstabObra): r2010_evtservtom_dados['nrinscestab'] = evtServTom.infoServTom.ideEstabObra.nrInscEstab.cdata
-    if 'indObra' in dir(evtServTom.infoServTom.ideEstabObra): r2010_evtservtom_dados['indobra'] = evtServTom.infoServTom.ideEstabObra.indObra.cdata
-    if 'cnpjPrestador' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ): r2010_evtservtom_dados['cnpjprestador'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.cnpjPrestador.cdata
-    if 'vlrTotalBruto' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ): r2010_evtservtom_dados['vlrtotalbruto'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalBruto.cdata
-    if 'vlrTotalBaseRet' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ): r2010_evtservtom_dados['vlrtotalbaseret'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalBaseRet.cdata
-    if 'vlrTotalRetPrinc' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ): r2010_evtservtom_dados['vlrtotalretprinc'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalRetPrinc.cdata
-    if 'vlrTotalRetAdic' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ): r2010_evtservtom_dados['vlrtotalretadic'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalRetAdic.cdata
-    if 'vlrTotalNRetPrinc' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ): r2010_evtservtom_dados['vlrtotalnretprinc'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalNRetPrinc.cdata
-    if 'vlrTotalNRetAdic' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ): r2010_evtservtom_dados['vlrtotalnretadic'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalNRetAdic.cdata
-    if 'indCPRB' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ): r2010_evtservtom_dados['indcprb'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.indCPRB.cdata
+    try: r2010_evtservtom_dados['indretif'] = evtServTom.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['nrrecibo'] = evtServTom.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['perapur'] = evtServTom.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['tpamb'] = evtServTom.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['procemi'] = evtServTom.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['verproc'] = evtServTom.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['tpinsc'] = evtServTom.ideContri.tpInsc.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['nrinsc'] = evtServTom.ideContri.nrInsc.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['tpinscestab'] = evtServTom.infoServTom.ideEstabObra.tpInscEstab.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['nrinscestab'] = evtServTom.infoServTom.ideEstabObra.nrInscEstab.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['indobra'] = evtServTom.infoServTom.ideEstabObra.indObra.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['cnpjprestador'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.cnpjPrestador.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['vlrtotalbruto'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalBruto.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['vlrtotalbaseret'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalBaseRet.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['vlrtotalretprinc'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalRetPrinc.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['vlrtotalretadic'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalRetAdic.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['vlrtotalnretprinc'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalNRetPrinc.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['vlrtotalnretadic'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.vlrTotalNRetAdic.cdata
+    except AttributeError: pass
+    try: r2010_evtservtom_dados['indcprb'] = evtServTom.infoServTom.ideEstabObra.idePrestServ.indCPRB.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtServTom.infoServTom): r2010_evtservtom_dados['operacao'] = 1
     elif 'alteracao' in dir(evtServTom.infoServTom): r2010_evtservtom_dados['operacao'] = 2
     elif 'exclusao' in dir(evtServTom.infoServTom): r2010_evtservtom_dados['operacao'] = 3
@@ -111,64 +130,87 @@ def read_r2010_evtservtom_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.Reinf.evtServTom['id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'nfs' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
+    if 'nfs' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ) and evtServTom.infoServTom.ideEstabObra.idePrestServ.nfs.cdata != '':
         for nfs in evtServTom.infoServTom.ideEstabObra.idePrestServ.nfs:
             r2010_nfs_dados = {}
             r2010_nfs_dados['r2010_evtservtom_id'] = r2010_evtservtom_id
 
-            if 'serie' in dir(nfs): r2010_nfs_dados['serie'] = nfs.serie.cdata
-            if 'numDocto' in dir(nfs): r2010_nfs_dados['numdocto'] = nfs.numDocto.cdata
-            if 'dtEmissaoNF' in dir(nfs): r2010_nfs_dados['dtemissaonf'] = nfs.dtEmissaoNF.cdata
-            if 'vlrBruto' in dir(nfs): r2010_nfs_dados['vlrbruto'] = nfs.vlrBruto.cdata
-            if 'obs' in dir(nfs): r2010_nfs_dados['obs'] = nfs.obs.cdata
+            try: r2010_nfs_dados['serie'] = nfs.serie.cdata
+            except AttributeError: pass
+            try: r2010_nfs_dados['numdocto'] = nfs.numDocto.cdata
+            except AttributeError: pass
+            try: r2010_nfs_dados['dtemissaonf'] = nfs.dtEmissaoNF.cdata
+            except AttributeError: pass
+            try: r2010_nfs_dados['vlrbruto'] = nfs.vlrBruto.cdata
+            except AttributeError: pass
+            try: r2010_nfs_dados['obs'] = nfs.obs.cdata
+            except AttributeError: pass
             insert = create_insert('r2010_nfs', r2010_nfs_dados)
             resp = executar_sql(insert, True)
             r2010_nfs_id = resp[0][0]
             #print r2010_nfs_id
 
-            if 'infoTpServ' in dir(nfs):
+            if 'infoTpServ' in dir(nfs) and nfs.infoTpServ.cdata != '':
                 for infoTpServ in nfs.infoTpServ:
                     r2010_infotpserv_dados = {}
                     r2010_infotpserv_dados['r2010_nfs_id'] = r2010_nfs_id
 
-                    if 'tpServico' in dir(infoTpServ): r2010_infotpserv_dados['tpservico'] = infoTpServ.tpServico.cdata
-                    if 'vlrBaseRet' in dir(infoTpServ): r2010_infotpserv_dados['vlrbaseret'] = infoTpServ.vlrBaseRet.cdata
-                    if 'vlrRetencao' in dir(infoTpServ): r2010_infotpserv_dados['vlrretencao'] = infoTpServ.vlrRetencao.cdata
-                    if 'vlrRetSub' in dir(infoTpServ): r2010_infotpserv_dados['vlrretsub'] = infoTpServ.vlrRetSub.cdata
-                    if 'vlrNRetPrinc' in dir(infoTpServ): r2010_infotpserv_dados['vlrnretprinc'] = infoTpServ.vlrNRetPrinc.cdata
-                    if 'vlrServicos15' in dir(infoTpServ): r2010_infotpserv_dados['vlrservicos15'] = infoTpServ.vlrServicos15.cdata
-                    if 'vlrServicos20' in dir(infoTpServ): r2010_infotpserv_dados['vlrservicos20'] = infoTpServ.vlrServicos20.cdata
-                    if 'vlrServicos25' in dir(infoTpServ): r2010_infotpserv_dados['vlrservicos25'] = infoTpServ.vlrServicos25.cdata
-                    if 'vlrAdicional' in dir(infoTpServ): r2010_infotpserv_dados['vlradicional'] = infoTpServ.vlrAdicional.cdata
-                    if 'vlrNRetAdic' in dir(infoTpServ): r2010_infotpserv_dados['vlrnretadic'] = infoTpServ.vlrNRetAdic.cdata
+                    try: r2010_infotpserv_dados['tpservico'] = infoTpServ.tpServico.cdata
+                    except AttributeError: pass
+                    try: r2010_infotpserv_dados['vlrbaseret'] = infoTpServ.vlrBaseRet.cdata
+                    except AttributeError: pass
+                    try: r2010_infotpserv_dados['vlrretencao'] = infoTpServ.vlrRetencao.cdata
+                    except AttributeError: pass
+                    try: r2010_infotpserv_dados['vlrretsub'] = infoTpServ.vlrRetSub.cdata
+                    except AttributeError: pass
+                    try: r2010_infotpserv_dados['vlrnretprinc'] = infoTpServ.vlrNRetPrinc.cdata
+                    except AttributeError: pass
+                    try: r2010_infotpserv_dados['vlrservicos15'] = infoTpServ.vlrServicos15.cdata
+                    except AttributeError: pass
+                    try: r2010_infotpserv_dados['vlrservicos20'] = infoTpServ.vlrServicos20.cdata
+                    except AttributeError: pass
+                    try: r2010_infotpserv_dados['vlrservicos25'] = infoTpServ.vlrServicos25.cdata
+                    except AttributeError: pass
+                    try: r2010_infotpserv_dados['vlradicional'] = infoTpServ.vlrAdicional.cdata
+                    except AttributeError: pass
+                    try: r2010_infotpserv_dados['vlrnretadic'] = infoTpServ.vlrNRetAdic.cdata
+                    except AttributeError: pass
                     insert = create_insert('r2010_infotpserv', r2010_infotpserv_dados)
                     resp = executar_sql(insert, True)
                     r2010_infotpserv_id = resp[0][0]
                     #print r2010_infotpserv_id
 
-    if 'infoProcRetPr' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
+    if 'infoProcRetPr' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ) and evtServTom.infoServTom.ideEstabObra.idePrestServ.infoProcRetPr.cdata != '':
         for infoProcRetPr in evtServTom.infoServTom.ideEstabObra.idePrestServ.infoProcRetPr:
             r2010_infoprocretpr_dados = {}
             r2010_infoprocretpr_dados['r2010_evtservtom_id'] = r2010_evtservtom_id
 
-            if 'tpProcRetPrinc' in dir(infoProcRetPr): r2010_infoprocretpr_dados['tpprocretprinc'] = infoProcRetPr.tpProcRetPrinc.cdata
-            if 'nrProcRetPrinc' in dir(infoProcRetPr): r2010_infoprocretpr_dados['nrprocretprinc'] = infoProcRetPr.nrProcRetPrinc.cdata
-            if 'codSuspPrinc' in dir(infoProcRetPr): r2010_infoprocretpr_dados['codsuspprinc'] = infoProcRetPr.codSuspPrinc.cdata
-            if 'valorPrinc' in dir(infoProcRetPr): r2010_infoprocretpr_dados['valorprinc'] = infoProcRetPr.valorPrinc.cdata
+            try: r2010_infoprocretpr_dados['tpprocretprinc'] = infoProcRetPr.tpProcRetPrinc.cdata
+            except AttributeError: pass
+            try: r2010_infoprocretpr_dados['nrprocretprinc'] = infoProcRetPr.nrProcRetPrinc.cdata
+            except AttributeError: pass
+            try: r2010_infoprocretpr_dados['codsuspprinc'] = infoProcRetPr.codSuspPrinc.cdata
+            except AttributeError: pass
+            try: r2010_infoprocretpr_dados['valorprinc'] = infoProcRetPr.valorPrinc.cdata
+            except AttributeError: pass
             insert = create_insert('r2010_infoprocretpr', r2010_infoprocretpr_dados)
             resp = executar_sql(insert, True)
             r2010_infoprocretpr_id = resp[0][0]
             #print r2010_infoprocretpr_id
 
-    if 'infoProcRetAd' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ):
+    if 'infoProcRetAd' in dir(evtServTom.infoServTom.ideEstabObra.idePrestServ) and evtServTom.infoServTom.ideEstabObra.idePrestServ.infoProcRetAd.cdata != '':
         for infoProcRetAd in evtServTom.infoServTom.ideEstabObra.idePrestServ.infoProcRetAd:
             r2010_infoprocretad_dados = {}
             r2010_infoprocretad_dados['r2010_evtservtom_id'] = r2010_evtservtom_id
 
-            if 'tpProcRetAdic' in dir(infoProcRetAd): r2010_infoprocretad_dados['tpprocretadic'] = infoProcRetAd.tpProcRetAdic.cdata
-            if 'nrProcRetAdic' in dir(infoProcRetAd): r2010_infoprocretad_dados['nrprocretadic'] = infoProcRetAd.nrProcRetAdic.cdata
-            if 'codSuspAdic' in dir(infoProcRetAd): r2010_infoprocretad_dados['codsuspadic'] = infoProcRetAd.codSuspAdic.cdata
-            if 'valorAdic' in dir(infoProcRetAd): r2010_infoprocretad_dados['valoradic'] = infoProcRetAd.valorAdic.cdata
+            try: r2010_infoprocretad_dados['tpprocretadic'] = infoProcRetAd.tpProcRetAdic.cdata
+            except AttributeError: pass
+            try: r2010_infoprocretad_dados['nrprocretadic'] = infoProcRetAd.nrProcRetAdic.cdata
+            except AttributeError: pass
+            try: r2010_infoprocretad_dados['codsuspadic'] = infoProcRetAd.codSuspAdic.cdata
+            except AttributeError: pass
+            try: r2010_infoprocretad_dados['valoradic'] = infoProcRetAd.valorAdic.cdata
+            except AttributeError: pass
             insert = create_insert('r2010_infoprocretad', r2010_infoprocretad_dados)
             resp = executar_sql(insert, True)
             r2010_infoprocretad_id = resp[0][0]

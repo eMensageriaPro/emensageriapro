@@ -79,15 +79,24 @@ def read_s1280_evtinfocomplper_obj(doc, status, validar=False):
     s1280_evtinfocomplper_dados['identidade'] = doc.eSocial.evtInfoComplPer['Id']
     evtInfoComplPer = doc.eSocial.evtInfoComplPer
 
-    if 'indRetif' in dir(evtInfoComplPer.ideEvento): s1280_evtinfocomplper_dados['indretif'] = evtInfoComplPer.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtInfoComplPer.ideEvento): s1280_evtinfocomplper_dados['nrrecibo'] = evtInfoComplPer.ideEvento.nrRecibo.cdata
-    if 'indApuracao' in dir(evtInfoComplPer.ideEvento): s1280_evtinfocomplper_dados['indapuracao'] = evtInfoComplPer.ideEvento.indApuracao.cdata
-    if 'perApur' in dir(evtInfoComplPer.ideEvento): s1280_evtinfocomplper_dados['perapur'] = evtInfoComplPer.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtInfoComplPer.ideEvento): s1280_evtinfocomplper_dados['tpamb'] = evtInfoComplPer.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtInfoComplPer.ideEvento): s1280_evtinfocomplper_dados['procemi'] = evtInfoComplPer.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtInfoComplPer.ideEvento): s1280_evtinfocomplper_dados['verproc'] = evtInfoComplPer.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtInfoComplPer.ideEmpregador): s1280_evtinfocomplper_dados['tpinsc'] = evtInfoComplPer.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtInfoComplPer.ideEmpregador): s1280_evtinfocomplper_dados['nrinsc'] = evtInfoComplPer.ideEmpregador.nrInsc.cdata
+    try: s1280_evtinfocomplper_dados['indretif'] = evtInfoComplPer.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s1280_evtinfocomplper_dados['nrrecibo'] = evtInfoComplPer.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s1280_evtinfocomplper_dados['indapuracao'] = evtInfoComplPer.ideEvento.indApuracao.cdata
+    except AttributeError: pass
+    try: s1280_evtinfocomplper_dados['perapur'] = evtInfoComplPer.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s1280_evtinfocomplper_dados['tpamb'] = evtInfoComplPer.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1280_evtinfocomplper_dados['procemi'] = evtInfoComplPer.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1280_evtinfocomplper_dados['verproc'] = evtInfoComplPer.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1280_evtinfocomplper_dados['tpinsc'] = evtInfoComplPer.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1280_evtinfocomplper_dados['nrinsc'] = evtInfoComplPer.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtInfoComplPer.infoAtivConcom): s1280_evtinfocomplper_dados['operacao'] = 1
     elif 'alteracao' in dir(evtInfoComplPer.infoAtivConcom): s1280_evtinfocomplper_dados['operacao'] = 2
     elif 'exclusao' in dir(evtInfoComplPer.infoAtivConcom): s1280_evtinfocomplper_dados['operacao'] = 3
@@ -101,36 +110,41 @@ def read_s1280_evtinfocomplper_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtInfoComplPer['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'infoSubstPatr' in dir(evtInfoComplPer):
+    if 'infoSubstPatr' in dir(evtInfoComplPer) and evtInfoComplPer.infoSubstPatr.cdata != '':
         for infoSubstPatr in evtInfoComplPer.infoSubstPatr:
             s1280_infosubstpatr_dados = {}
             s1280_infosubstpatr_dados['s1280_evtinfocomplper_id'] = s1280_evtinfocomplper_id
 
-            if 'indSubstPatr' in dir(infoSubstPatr): s1280_infosubstpatr_dados['indsubstpatr'] = infoSubstPatr.indSubstPatr.cdata
-            if 'percRedContrib' in dir(infoSubstPatr): s1280_infosubstpatr_dados['percredcontrib'] = infoSubstPatr.percRedContrib.cdata
+            try: s1280_infosubstpatr_dados['indsubstpatr'] = infoSubstPatr.indSubstPatr.cdata
+            except AttributeError: pass
+            try: s1280_infosubstpatr_dados['percredcontrib'] = infoSubstPatr.percRedContrib.cdata
+            except AttributeError: pass
             insert = create_insert('s1280_infosubstpatr', s1280_infosubstpatr_dados)
             resp = executar_sql(insert, True)
             s1280_infosubstpatr_id = resp[0][0]
             #print s1280_infosubstpatr_id
 
-    if 'infoSubstPatrOpPort' in dir(evtInfoComplPer):
+    if 'infoSubstPatrOpPort' in dir(evtInfoComplPer) and evtInfoComplPer.infoSubstPatrOpPort.cdata != '':
         for infoSubstPatrOpPort in evtInfoComplPer.infoSubstPatrOpPort:
             s1280_infosubstpatropport_dados = {}
             s1280_infosubstpatropport_dados['s1280_evtinfocomplper_id'] = s1280_evtinfocomplper_id
 
-            if 'cnpjOpPortuario' in dir(infoSubstPatrOpPort): s1280_infosubstpatropport_dados['cnpjopportuario'] = infoSubstPatrOpPort.cnpjOpPortuario.cdata
+            try: s1280_infosubstpatropport_dados['cnpjopportuario'] = infoSubstPatrOpPort.cnpjOpPortuario.cdata
+            except AttributeError: pass
             insert = create_insert('s1280_infosubstpatropport', s1280_infosubstpatropport_dados)
             resp = executar_sql(insert, True)
             s1280_infosubstpatropport_id = resp[0][0]
             #print s1280_infosubstpatropport_id
 
-    if 'infoAtivConcom' in dir(evtInfoComplPer):
+    if 'infoAtivConcom' in dir(evtInfoComplPer) and evtInfoComplPer.infoAtivConcom.cdata != '':
         for infoAtivConcom in evtInfoComplPer.infoAtivConcom:
             s1280_infoativconcom_dados = {}
             s1280_infoativconcom_dados['s1280_evtinfocomplper_id'] = s1280_evtinfocomplper_id
 
-            if 'fatorMes' in dir(infoAtivConcom): s1280_infoativconcom_dados['fatormes'] = infoAtivConcom.fatorMes.cdata
-            if 'fator13' in dir(infoAtivConcom): s1280_infoativconcom_dados['fator13'] = infoAtivConcom.fator13.cdata
+            try: s1280_infoativconcom_dados['fatormes'] = infoAtivConcom.fatorMes.cdata
+            except AttributeError: pass
+            try: s1280_infoativconcom_dados['fator13'] = infoAtivConcom.fator13.cdata
+            except AttributeError: pass
             insert = create_insert('s1280_infoativconcom', s1280_infoativconcom_dados)
             resp = executar_sql(insert, True)
             s1280_infoativconcom_id = resp[0][0]

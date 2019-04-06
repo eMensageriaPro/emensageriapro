@@ -79,12 +79,18 @@ def read_s5001_evtbasestrab_obj(doc, status, validar=False):
     s5001_evtbasestrab_dados['identidade'] = doc.eSocial.evtBasesTrab['Id']
     evtBasesTrab = doc.eSocial.evtBasesTrab
 
-    if 'nrRecArqBase' in dir(evtBasesTrab.ideEvento): s5001_evtbasestrab_dados['nrrecarqbase'] = evtBasesTrab.ideEvento.nrRecArqBase.cdata
-    if 'indApuracao' in dir(evtBasesTrab.ideEvento): s5001_evtbasestrab_dados['indapuracao'] = evtBasesTrab.ideEvento.indApuracao.cdata
-    if 'perApur' in dir(evtBasesTrab.ideEvento): s5001_evtbasestrab_dados['perapur'] = evtBasesTrab.ideEvento.perApur.cdata
-    if 'tpInsc' in dir(evtBasesTrab.ideEmpregador): s5001_evtbasestrab_dados['tpinsc'] = evtBasesTrab.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtBasesTrab.ideEmpregador): s5001_evtbasestrab_dados['nrinsc'] = evtBasesTrab.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtBasesTrab.ideTrabalhador): s5001_evtbasestrab_dados['cpftrab'] = evtBasesTrab.ideTrabalhador.cpfTrab.cdata
+    try: s5001_evtbasestrab_dados['nrrecarqbase'] = evtBasesTrab.ideEvento.nrRecArqBase.cdata
+    except AttributeError: pass
+    try: s5001_evtbasestrab_dados['indapuracao'] = evtBasesTrab.ideEvento.indApuracao.cdata
+    except AttributeError: pass
+    try: s5001_evtbasestrab_dados['perapur'] = evtBasesTrab.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s5001_evtbasestrab_dados['tpinsc'] = evtBasesTrab.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s5001_evtbasestrab_dados['nrinsc'] = evtBasesTrab.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s5001_evtbasestrab_dados['cpftrab'] = evtBasesTrab.ideTrabalhador.cpfTrab.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtBasesTrab.infoCp): s5001_evtbasestrab_dados['operacao'] = 1
     elif 'alteracao' in dir(evtBasesTrab.infoCp): s5001_evtbasestrab_dados['operacao'] = 2
     elif 'exclusao' in dir(evtBasesTrab.infoCp): s5001_evtbasestrab_dados['operacao'] = 3
@@ -98,52 +104,63 @@ def read_s5001_evtbasestrab_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtBasesTrab['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'procJudTrab' in dir(evtBasesTrab.ideTrabalhador):
+    if 'procJudTrab' in dir(evtBasesTrab.ideTrabalhador) and evtBasesTrab.ideTrabalhador.procJudTrab.cdata != '':
         for procJudTrab in evtBasesTrab.ideTrabalhador.procJudTrab:
             s5001_procjudtrab_dados = {}
             s5001_procjudtrab_dados['s5001_evtbasestrab_id'] = s5001_evtbasestrab_id
 
-            if 'nrProcJud' in dir(procJudTrab): s5001_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
-            if 'codSusp' in dir(procJudTrab): s5001_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
+            try: s5001_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
+            except AttributeError: pass
+            try: s5001_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
+            except AttributeError: pass
             insert = create_insert('s5001_procjudtrab', s5001_procjudtrab_dados)
             resp = executar_sql(insert, True)
             s5001_procjudtrab_id = resp[0][0]
             #print s5001_procjudtrab_id
 
-    if 'infoCpCalc' in dir(evtBasesTrab):
+    if 'infoCpCalc' in dir(evtBasesTrab) and evtBasesTrab.infoCpCalc.cdata != '':
         for infoCpCalc in evtBasesTrab.infoCpCalc:
             s5001_infocpcalc_dados = {}
             s5001_infocpcalc_dados['s5001_evtbasestrab_id'] = s5001_evtbasestrab_id
 
-            if 'tpCR' in dir(infoCpCalc): s5001_infocpcalc_dados['tpcr'] = infoCpCalc.tpCR.cdata
-            if 'vrCpSeg' in dir(infoCpCalc): s5001_infocpcalc_dados['vrcpseg'] = infoCpCalc.vrCpSeg.cdata
-            if 'vrDescSeg' in dir(infoCpCalc): s5001_infocpcalc_dados['vrdescseg'] = infoCpCalc.vrDescSeg.cdata
+            try: s5001_infocpcalc_dados['tpcr'] = infoCpCalc.tpCR.cdata
+            except AttributeError: pass
+            try: s5001_infocpcalc_dados['vrcpseg'] = infoCpCalc.vrCpSeg.cdata
+            except AttributeError: pass
+            try: s5001_infocpcalc_dados['vrdescseg'] = infoCpCalc.vrDescSeg.cdata
+            except AttributeError: pass
             insert = create_insert('s5001_infocpcalc', s5001_infocpcalc_dados)
             resp = executar_sql(insert, True)
             s5001_infocpcalc_id = resp[0][0]
             #print s5001_infocpcalc_id
 
-    if 'ideEstabLot' in dir(evtBasesTrab.infoCp):
+    if 'ideEstabLot' in dir(evtBasesTrab.infoCp) and evtBasesTrab.infoCp.ideEstabLot.cdata != '':
         for ideEstabLot in evtBasesTrab.infoCp.ideEstabLot:
             s5001_ideestablot_dados = {}
             s5001_ideestablot_dados['s5001_evtbasestrab_id'] = s5001_evtbasestrab_id
 
-            if 'tpInsc' in dir(ideEstabLot): s5001_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
-            if 'nrInsc' in dir(ideEstabLot): s5001_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
-            if 'codLotacao' in dir(ideEstabLot): s5001_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+            try: s5001_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+            except AttributeError: pass
+            try: s5001_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+            except AttributeError: pass
+            try: s5001_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+            except AttributeError: pass
             insert = create_insert('s5001_ideestablot', s5001_ideestablot_dados)
             resp = executar_sql(insert, True)
             s5001_ideestablot_id = resp[0][0]
             #print s5001_ideestablot_id
 
-            if 'infoCategIncid' in dir(ideEstabLot):
+            if 'infoCategIncid' in dir(ideEstabLot) and ideEstabLot.infoCategIncid.cdata != '':
                 for infoCategIncid in ideEstabLot.infoCategIncid:
                     s5001_infocategincid_dados = {}
                     s5001_infocategincid_dados['s5001_ideestablot_id'] = s5001_ideestablot_id
 
-                    if 'matricula' in dir(infoCategIncid): s5001_infocategincid_dados['matricula'] = infoCategIncid.matricula.cdata
-                    if 'codCateg' in dir(infoCategIncid): s5001_infocategincid_dados['codcateg'] = infoCategIncid.codCateg.cdata
-                    if 'indSimples' in dir(infoCategIncid): s5001_infocategincid_dados['indsimples'] = infoCategIncid.indSimples.cdata
+                    try: s5001_infocategincid_dados['matricula'] = infoCategIncid.matricula.cdata
+                    except AttributeError: pass
+                    try: s5001_infocategincid_dados['codcateg'] = infoCategIncid.codCateg.cdata
+                    except AttributeError: pass
+                    try: s5001_infocategincid_dados['indsimples'] = infoCategIncid.indSimples.cdata
+                    except AttributeError: pass
                     insert = create_insert('s5001_infocategincid', s5001_infocategincid_dados)
                     resp = executar_sql(insert, True)
                     s5001_infocategincid_id = resp[0][0]

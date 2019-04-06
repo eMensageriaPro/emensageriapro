@@ -79,14 +79,22 @@ def read_s2190_evtadmprelim_obj(doc, status, validar=False):
     s2190_evtadmprelim_dados['identidade'] = doc.eSocial.evtAdmPrelim['Id']
     evtAdmPrelim = doc.eSocial.evtAdmPrelim
 
-    if 'tpAmb' in dir(evtAdmPrelim.ideEvento): s2190_evtadmprelim_dados['tpamb'] = evtAdmPrelim.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtAdmPrelim.ideEvento): s2190_evtadmprelim_dados['procemi'] = evtAdmPrelim.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtAdmPrelim.ideEvento): s2190_evtadmprelim_dados['verproc'] = evtAdmPrelim.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtAdmPrelim.ideEmpregador): s2190_evtadmprelim_dados['tpinsc'] = evtAdmPrelim.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtAdmPrelim.ideEmpregador): s2190_evtadmprelim_dados['nrinsc'] = evtAdmPrelim.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtAdmPrelim.infoRegPrelim): s2190_evtadmprelim_dados['cpftrab'] = evtAdmPrelim.infoRegPrelim.cpfTrab.cdata
-    if 'dtNascto' in dir(evtAdmPrelim.infoRegPrelim): s2190_evtadmprelim_dados['dtnascto'] = evtAdmPrelim.infoRegPrelim.dtNascto.cdata
-    if 'dtAdm' in dir(evtAdmPrelim.infoRegPrelim): s2190_evtadmprelim_dados['dtadm'] = evtAdmPrelim.infoRegPrelim.dtAdm.cdata
+    try: s2190_evtadmprelim_dados['tpamb'] = evtAdmPrelim.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2190_evtadmprelim_dados['procemi'] = evtAdmPrelim.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2190_evtadmprelim_dados['verproc'] = evtAdmPrelim.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2190_evtadmprelim_dados['tpinsc'] = evtAdmPrelim.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2190_evtadmprelim_dados['nrinsc'] = evtAdmPrelim.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2190_evtadmprelim_dados['cpftrab'] = evtAdmPrelim.infoRegPrelim.cpfTrab.cdata
+    except AttributeError: pass
+    try: s2190_evtadmprelim_dados['dtnascto'] = evtAdmPrelim.infoRegPrelim.dtNascto.cdata
+    except AttributeError: pass
+    try: s2190_evtadmprelim_dados['dtadm'] = evtAdmPrelim.infoRegPrelim.dtAdm.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtAdmPrelim.infoRegPrelim): s2190_evtadmprelim_dados['operacao'] = 1
     elif 'alteracao' in dir(evtAdmPrelim.infoRegPrelim): s2190_evtadmprelim_dados['operacao'] = 2
     elif 'exclusao' in dir(evtAdmPrelim.infoRegPrelim): s2190_evtadmprelim_dados['operacao'] = 3

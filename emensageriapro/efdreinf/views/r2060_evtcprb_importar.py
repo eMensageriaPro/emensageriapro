@@ -79,19 +79,32 @@ def read_r2060_evtcprb_obj(doc, status, validar=False):
     r2060_evtcprb_dados['identidade'] = doc.Reinf.evtCPRB['id']
     evtCPRB = doc.Reinf.evtCPRB
 
-    if 'indRetif' in dir(evtCPRB.ideEvento): r2060_evtcprb_dados['indretif'] = evtCPRB.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtCPRB.ideEvento): r2060_evtcprb_dados['nrrecibo'] = evtCPRB.ideEvento.nrRecibo.cdata
-    if 'perApur' in dir(evtCPRB.ideEvento): r2060_evtcprb_dados['perapur'] = evtCPRB.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtCPRB.ideEvento): r2060_evtcprb_dados['tpamb'] = evtCPRB.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtCPRB.ideEvento): r2060_evtcprb_dados['procemi'] = evtCPRB.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtCPRB.ideEvento): r2060_evtcprb_dados['verproc'] = evtCPRB.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtCPRB.ideContri): r2060_evtcprb_dados['tpinsc'] = evtCPRB.ideContri.tpInsc.cdata
-    if 'nrInsc' in dir(evtCPRB.ideContri): r2060_evtcprb_dados['nrinsc'] = evtCPRB.ideContri.nrInsc.cdata
-    if 'tpInscEstab' in dir(evtCPRB.infoCPRB.ideEstab): r2060_evtcprb_dados['tpinscestab'] = evtCPRB.infoCPRB.ideEstab.tpInscEstab.cdata
-    if 'nrInscEstab' in dir(evtCPRB.infoCPRB.ideEstab): r2060_evtcprb_dados['nrinscestab'] = evtCPRB.infoCPRB.ideEstab.nrInscEstab.cdata
-    if 'vlrRecBrutaTotal' in dir(evtCPRB.infoCPRB.ideEstab): r2060_evtcprb_dados['vlrrecbrutatotal'] = evtCPRB.infoCPRB.ideEstab.vlrRecBrutaTotal.cdata
-    if 'vlrCPApurTotal' in dir(evtCPRB.infoCPRB.ideEstab): r2060_evtcprb_dados['vlrcpapurtotal'] = evtCPRB.infoCPRB.ideEstab.vlrCPApurTotal.cdata
-    if 'vlrCPRBSuspTotal' in dir(evtCPRB.infoCPRB.ideEstab): r2060_evtcprb_dados['vlrcprbsusptotal'] = evtCPRB.infoCPRB.ideEstab.vlrCPRBSuspTotal.cdata
+    try: r2060_evtcprb_dados['indretif'] = evtCPRB.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['nrrecibo'] = evtCPRB.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['perapur'] = evtCPRB.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['tpamb'] = evtCPRB.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['procemi'] = evtCPRB.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['verproc'] = evtCPRB.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['tpinsc'] = evtCPRB.ideContri.tpInsc.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['nrinsc'] = evtCPRB.ideContri.nrInsc.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['tpinscestab'] = evtCPRB.infoCPRB.ideEstab.tpInscEstab.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['nrinscestab'] = evtCPRB.infoCPRB.ideEstab.nrInscEstab.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['vlrrecbrutatotal'] = evtCPRB.infoCPRB.ideEstab.vlrRecBrutaTotal.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['vlrcpapurtotal'] = evtCPRB.infoCPRB.ideEstab.vlrCPApurTotal.cdata
+    except AttributeError: pass
+    try: r2060_evtcprb_dados['vlrcprbsusptotal'] = evtCPRB.infoCPRB.ideEstab.vlrCPRBSuspTotal.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtCPRB.infoCPRB): r2060_evtcprb_dados['operacao'] = 1
     elif 'alteracao' in dir(evtCPRB.infoCPRB): r2060_evtcprb_dados['operacao'] = 2
     elif 'exclusao' in dir(evtCPRB.infoCPRB): r2060_evtcprb_dados['operacao'] = 3
@@ -105,46 +118,61 @@ def read_r2060_evtcprb_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.Reinf.evtCPRB['id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'tipoCod' in dir(evtCPRB.infoCPRB.ideEstab):
+    if 'tipoCod' in dir(evtCPRB.infoCPRB.ideEstab) and evtCPRB.infoCPRB.ideEstab.tipoCod.cdata != '':
         for tipoCod in evtCPRB.infoCPRB.ideEstab.tipoCod:
             r2060_tipocod_dados = {}
             r2060_tipocod_dados['r2060_evtcprb_id'] = r2060_evtcprb_id
 
-            if 'codAtivEcon' in dir(tipoCod): r2060_tipocod_dados['codativecon'] = tipoCod.codAtivEcon.cdata
-            if 'vlrRecBrutaAtiv' in dir(tipoCod): r2060_tipocod_dados['vlrrecbrutaativ'] = tipoCod.vlrRecBrutaAtiv.cdata
-            if 'vlrExcRecBruta' in dir(tipoCod): r2060_tipocod_dados['vlrexcrecbruta'] = tipoCod.vlrExcRecBruta.cdata
-            if 'vlrAdicRecBruta' in dir(tipoCod): r2060_tipocod_dados['vlradicrecbruta'] = tipoCod.vlrAdicRecBruta.cdata
-            if 'vlrBcCPRB' in dir(tipoCod): r2060_tipocod_dados['vlrbccprb'] = tipoCod.vlrBcCPRB.cdata
-            if 'vlrCPRBapur' in dir(tipoCod): r2060_tipocod_dados['vlrcprbapur'] = tipoCod.vlrCPRBapur.cdata
+            try: r2060_tipocod_dados['codativecon'] = tipoCod.codAtivEcon.cdata
+            except AttributeError: pass
+            try: r2060_tipocod_dados['vlrrecbrutaativ'] = tipoCod.vlrRecBrutaAtiv.cdata
+            except AttributeError: pass
+            try: r2060_tipocod_dados['vlrexcrecbruta'] = tipoCod.vlrExcRecBruta.cdata
+            except AttributeError: pass
+            try: r2060_tipocod_dados['vlradicrecbruta'] = tipoCod.vlrAdicRecBruta.cdata
+            except AttributeError: pass
+            try: r2060_tipocod_dados['vlrbccprb'] = tipoCod.vlrBcCPRB.cdata
+            except AttributeError: pass
+            try: r2060_tipocod_dados['vlrcprbapur'] = tipoCod.vlrCPRBapur.cdata
+            except AttributeError: pass
             insert = create_insert('r2060_tipocod', r2060_tipocod_dados)
             resp = executar_sql(insert, True)
             r2060_tipocod_id = resp[0][0]
             #print r2060_tipocod_id
 
-            if 'tipoAjuste' in dir(tipoCod):
+            if 'tipoAjuste' in dir(tipoCod) and tipoCod.tipoAjuste.cdata != '':
                 for tipoAjuste in tipoCod.tipoAjuste:
                     r2060_tipoajuste_dados = {}
                     r2060_tipoajuste_dados['r2060_tipocod_id'] = r2060_tipocod_id
 
-                    if 'tpAjuste' in dir(tipoAjuste): r2060_tipoajuste_dados['tpajuste'] = tipoAjuste.tpAjuste.cdata
-                    if 'codAjuste' in dir(tipoAjuste): r2060_tipoajuste_dados['codajuste'] = tipoAjuste.codAjuste.cdata
-                    if 'vlrAjuste' in dir(tipoAjuste): r2060_tipoajuste_dados['vlrajuste'] = tipoAjuste.vlrAjuste.cdata
-                    if 'descAjuste' in dir(tipoAjuste): r2060_tipoajuste_dados['descajuste'] = tipoAjuste.descAjuste.cdata
-                    if 'dtAjuste' in dir(tipoAjuste): r2060_tipoajuste_dados['dtajuste'] = tipoAjuste.dtAjuste.cdata
+                    try: r2060_tipoajuste_dados['tpajuste'] = tipoAjuste.tpAjuste.cdata
+                    except AttributeError: pass
+                    try: r2060_tipoajuste_dados['codajuste'] = tipoAjuste.codAjuste.cdata
+                    except AttributeError: pass
+                    try: r2060_tipoajuste_dados['vlrajuste'] = tipoAjuste.vlrAjuste.cdata
+                    except AttributeError: pass
+                    try: r2060_tipoajuste_dados['descajuste'] = tipoAjuste.descAjuste.cdata
+                    except AttributeError: pass
+                    try: r2060_tipoajuste_dados['dtajuste'] = tipoAjuste.dtAjuste.cdata
+                    except AttributeError: pass
                     insert = create_insert('r2060_tipoajuste', r2060_tipoajuste_dados)
                     resp = executar_sql(insert, True)
                     r2060_tipoajuste_id = resp[0][0]
                     #print r2060_tipoajuste_id
 
-            if 'infoProc' in dir(tipoCod):
+            if 'infoProc' in dir(tipoCod) and tipoCod.infoProc.cdata != '':
                 for infoProc in tipoCod.infoProc:
                     r2060_infoproc_dados = {}
                     r2060_infoproc_dados['r2060_tipocod_id'] = r2060_tipocod_id
 
-                    if 'tpProc' in dir(infoProc): r2060_infoproc_dados['tpproc'] = infoProc.tpProc.cdata
-                    if 'nrProc' in dir(infoProc): r2060_infoproc_dados['nrproc'] = infoProc.nrProc.cdata
-                    if 'codSusp' in dir(infoProc): r2060_infoproc_dados['codsusp'] = infoProc.codSusp.cdata
-                    if 'vlrCPRBSusp' in dir(infoProc): r2060_infoproc_dados['vlrcprbsusp'] = infoProc.vlrCPRBSusp.cdata
+                    try: r2060_infoproc_dados['tpproc'] = infoProc.tpProc.cdata
+                    except AttributeError: pass
+                    try: r2060_infoproc_dados['nrproc'] = infoProc.nrProc.cdata
+                    except AttributeError: pass
+                    try: r2060_infoproc_dados['codsusp'] = infoProc.codSusp.cdata
+                    except AttributeError: pass
+                    try: r2060_infoproc_dados['vlrcprbsusp'] = infoProc.vlrCPRBSusp.cdata
+                    except AttributeError: pass
                     insert = create_insert('r2060_infoproc', r2060_infoproc_dados)
                     resp = executar_sql(insert, True)
                     r2060_infoproc_id = resp[0][0]

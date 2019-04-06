@@ -47,28 +47,28 @@ def validacoes_s5003_evtbasesfgts(arquivo):
     xmlns = doc.eSocial['xmlns'].split('/')
     evtBasesFGTS = doc.eSocial.evtBasesFGTS
 
-    if 'nrRecArqBase' in dir(evtBasesFGTS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideEvento.nrRecArqBase', evtBasesFGTS.ideEvento.nrRecArqBase.cdata, 1, '')
-    if 'perApur' in dir(evtBasesFGTS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideEvento.perApur', evtBasesFGTS.ideEvento.perApur.cdata, 1, '')
-    if 'tpInsc' in dir(evtBasesFGTS.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideEmpregador.tpInsc', evtBasesFGTS.ideEmpregador.tpInsc.cdata, 1, '1;2')
-    if 'nrInsc' in dir(evtBasesFGTS.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideEmpregador.nrInsc', evtBasesFGTS.ideEmpregador.nrInsc.cdata, 1, '')
-    if 'cpfTrab' in dir(evtBasesFGTS.ideTrabalhador): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideTrabalhador.cpfTrab', evtBasesFGTS.ideTrabalhador.cpfTrab.cdata, 1, '')
-    if 'nisTrab' in dir(evtBasesFGTS.ideTrabalhador): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideTrabalhador.nisTrab', evtBasesFGTS.ideTrabalhador.nisTrab.cdata, 0, '')
+    if 'nrRecArqBase' in dir(evtBasesFGTS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideEvento.nrRecArqBase', evtBasesFGTS.ideEvento.nrRecArqBase.cdata, 1, u'')
+    if 'perApur' in dir(evtBasesFGTS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideEvento.perApur', evtBasesFGTS.ideEvento.perApur.cdata, 1, u'')
+    if 'tpInsc' in dir(evtBasesFGTS.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideEmpregador.tpInsc', evtBasesFGTS.ideEmpregador.tpInsc.cdata, 1, u'1;2')
+    if 'nrInsc' in dir(evtBasesFGTS.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideEmpregador.nrInsc', evtBasesFGTS.ideEmpregador.nrInsc.cdata, 1, u'')
+    if 'cpfTrab' in dir(evtBasesFGTS.ideTrabalhador): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideTrabalhador.cpfTrab', evtBasesFGTS.ideTrabalhador.cpfTrab.cdata, 1, u'')
+    if 'nisTrab' in dir(evtBasesFGTS.ideTrabalhador): validacoes_lista = validar_campo(validacoes_lista,'evtBasesFGTS.ideTrabalhador.nisTrab', evtBasesFGTS.ideTrabalhador.nisTrab.cdata, 0, u'')
     if 'infoFGTS' in dir(evtBasesFGTS):
         for infoFGTS in evtBasesFGTS.infoFGTS:
 
-            if 'dtVenc' in dir(infoFGTS): validacoes_lista = validar_campo(validacoes_lista,'infoFGTS.dtVenc', infoFGTS.dtVenc.cdata, 0, '')
+            if 'dtVenc' in dir(infoFGTS): validacoes_lista = validar_campo(validacoes_lista,'infoFGTS.dtVenc', infoFGTS.dtVenc.cdata, 0, u'')
 
             if 'ideEstabLot' in dir(infoFGTS):
                 for ideEstabLot in infoFGTS.ideEstabLot:
 
-                    if 'tpInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.tpInsc', ideEstabLot.tpInsc.cdata, 1, '')
-                    if 'nrInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.nrInsc', ideEstabLot.nrInsc.cdata, 1, '')
-                    if 'codLotacao' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.codLotacao', ideEstabLot.codLotacao.cdata, 1, '')
+                    if 'tpInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.tpInsc', ideEstabLot.tpInsc.cdata, 1, u'')
+                    if 'nrInsc' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.nrInsc', ideEstabLot.nrInsc.cdata, 1, u'')
+                    if 'codLotacao' in dir(ideEstabLot): validacoes_lista = validar_campo(validacoes_lista,'ideEstabLot.codLotacao', ideEstabLot.codLotacao.cdata, 1, u'')
 
             if 'infoTrabDps' in dir(infoFGTS.infoDpsFGTS):
                 for infoTrabDps in infoFGTS.infoDpsFGTS.infoTrabDps:
 
-                    if 'matricula' in dir(infoTrabDps): validacoes_lista = validar_campo(validacoes_lista,'infoTrabDps.matricula', infoTrabDps.matricula.cdata, 0, '')
-                    if 'codCateg' in dir(infoTrabDps): validacoes_lista = validar_campo(validacoes_lista,'infoTrabDps.codCateg', infoTrabDps.codCateg.cdata, 1, '')
+                    if 'matricula' in dir(infoTrabDps): validacoes_lista = validar_campo(validacoes_lista,'infoTrabDps.matricula', infoTrabDps.matricula.cdata, 0, u'')
+                    if 'codCateg' in dir(infoTrabDps): validacoes_lista = validar_campo(validacoes_lista,'infoTrabDps.codCateg', infoTrabDps.codCateg.cdata, 1, u'')
 
     return validacoes_lista

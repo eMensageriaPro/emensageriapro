@@ -79,11 +79,16 @@ def read_s1030_evttabcargo_obj(doc, status, validar=False):
     s1030_evttabcargo_dados['identidade'] = doc.eSocial.evtTabCargo['Id']
     evtTabCargo = doc.eSocial.evtTabCargo
 
-    if 'tpAmb' in dir(evtTabCargo.ideEvento): s1030_evttabcargo_dados['tpamb'] = evtTabCargo.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtTabCargo.ideEvento): s1030_evttabcargo_dados['procemi'] = evtTabCargo.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtTabCargo.ideEvento): s1030_evttabcargo_dados['verproc'] = evtTabCargo.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtTabCargo.ideEmpregador): s1030_evttabcargo_dados['tpinsc'] = evtTabCargo.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtTabCargo.ideEmpregador): s1030_evttabcargo_dados['nrinsc'] = evtTabCargo.ideEmpregador.nrInsc.cdata
+    try: s1030_evttabcargo_dados['tpamb'] = evtTabCargo.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1030_evttabcargo_dados['procemi'] = evtTabCargo.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1030_evttabcargo_dados['verproc'] = evtTabCargo.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1030_evttabcargo_dados['tpinsc'] = evtTabCargo.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1030_evttabcargo_dados['nrinsc'] = evtTabCargo.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtTabCargo.infoCargo): s1030_evttabcargo_dados['operacao'] = 1
     elif 'alteracao' in dir(evtTabCargo.infoCargo): s1030_evttabcargo_dados['operacao'] = 2
     elif 'exclusao' in dir(evtTabCargo.infoCargo): s1030_evttabcargo_dados['operacao'] = 3
@@ -97,90 +102,119 @@ def read_s1030_evttabcargo_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtTabCargo['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'inclusao' in dir(evtTabCargo.infoCargo):
+    if 'inclusao' in dir(evtTabCargo.infoCargo) and evtTabCargo.infoCargo.inclusao.cdata != '':
         for inclusao in evtTabCargo.infoCargo.inclusao:
             s1030_inclusao_dados = {}
             s1030_inclusao_dados['s1030_evttabcargo_id'] = s1030_evttabcargo_id
 
-            if 'codCargo' in dir(inclusao.ideCargo): s1030_inclusao_dados['codcargo'] = inclusao.ideCargo.codCargo.cdata
-            if 'iniValid' in dir(inclusao.ideCargo): s1030_inclusao_dados['inivalid'] = inclusao.ideCargo.iniValid.cdata
-            if 'fimValid' in dir(inclusao.ideCargo): s1030_inclusao_dados['fimvalid'] = inclusao.ideCargo.fimValid.cdata
-            if 'nmCargo' in dir(inclusao.dadosCargo): s1030_inclusao_dados['nmcargo'] = inclusao.dadosCargo.nmCargo.cdata
-            if 'codCBO' in dir(inclusao.dadosCargo): s1030_inclusao_dados['codcbo'] = inclusao.dadosCargo.codCBO.cdata
+            try: s1030_inclusao_dados['codcargo'] = inclusao.ideCargo.codCargo.cdata
+            except AttributeError: pass
+            try: s1030_inclusao_dados['inivalid'] = inclusao.ideCargo.iniValid.cdata
+            except AttributeError: pass
+            try: s1030_inclusao_dados['fimvalid'] = inclusao.ideCargo.fimValid.cdata
+            except AttributeError: pass
+            try: s1030_inclusao_dados['nmcargo'] = inclusao.dadosCargo.nmCargo.cdata
+            except AttributeError: pass
+            try: s1030_inclusao_dados['codcbo'] = inclusao.dadosCargo.codCBO.cdata
+            except AttributeError: pass
             insert = create_insert('s1030_inclusao', s1030_inclusao_dados)
             resp = executar_sql(insert, True)
             s1030_inclusao_id = resp[0][0]
             #print s1030_inclusao_id
 
-            if 'cargoPublico' in dir(inclusao.dadosCargo):
+            if 'cargoPublico' in dir(inclusao.dadosCargo) and inclusao.dadosCargo.cargoPublico.cdata != '':
                 for cargoPublico in inclusao.dadosCargo.cargoPublico:
                     s1030_inclusao_cargopublico_dados = {}
                     s1030_inclusao_cargopublico_dados['s1030_inclusao_id'] = s1030_inclusao_id
 
-                    if 'acumCargo' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['acumcargo'] = cargoPublico.acumCargo.cdata
-                    if 'contagemEsp' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['contagemesp'] = cargoPublico.contagemEsp.cdata
-                    if 'dedicExcl' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['dedicexcl'] = cargoPublico.dedicExcl.cdata
-                    if 'codCarreira' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['codcarreira'] = cargoPublico.codCarreira.cdata
-                    if 'nrLei' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['nrlei'] = cargoPublico.leiCargo.nrLei.cdata
-                    if 'dtLei' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['dtlei'] = cargoPublico.leiCargo.dtLei.cdata
-                    if 'sitCargo' in dir(cargoPublico): s1030_inclusao_cargopublico_dados['sitcargo'] = cargoPublico.leiCargo.sitCargo.cdata
+                    try: s1030_inclusao_cargopublico_dados['acumcargo'] = cargoPublico.acumCargo.cdata
+                    except AttributeError: pass
+                    try: s1030_inclusao_cargopublico_dados['contagemesp'] = cargoPublico.contagemEsp.cdata
+                    except AttributeError: pass
+                    try: s1030_inclusao_cargopublico_dados['dedicexcl'] = cargoPublico.dedicExcl.cdata
+                    except AttributeError: pass
+                    try: s1030_inclusao_cargopublico_dados['codcarreira'] = cargoPublico.codCarreira.cdata
+                    except AttributeError: pass
+                    try: s1030_inclusao_cargopublico_dados['nrlei'] = cargoPublico.leiCargo.nrLei.cdata
+                    except AttributeError: pass
+                    try: s1030_inclusao_cargopublico_dados['dtlei'] = cargoPublico.leiCargo.dtLei.cdata
+                    except AttributeError: pass
+                    try: s1030_inclusao_cargopublico_dados['sitcargo'] = cargoPublico.leiCargo.sitCargo.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1030_inclusao_cargopublico', s1030_inclusao_cargopublico_dados)
                     resp = executar_sql(insert, True)
                     s1030_inclusao_cargopublico_id = resp[0][0]
                     #print s1030_inclusao_cargopublico_id
 
-    if 'alteracao' in dir(evtTabCargo.infoCargo):
+    if 'alteracao' in dir(evtTabCargo.infoCargo) and evtTabCargo.infoCargo.alteracao.cdata != '':
         for alteracao in evtTabCargo.infoCargo.alteracao:
             s1030_alteracao_dados = {}
             s1030_alteracao_dados['s1030_evttabcargo_id'] = s1030_evttabcargo_id
 
-            if 'codCargo' in dir(alteracao.ideCargo): s1030_alteracao_dados['codcargo'] = alteracao.ideCargo.codCargo.cdata
-            if 'iniValid' in dir(alteracao.ideCargo): s1030_alteracao_dados['inivalid'] = alteracao.ideCargo.iniValid.cdata
-            if 'fimValid' in dir(alteracao.ideCargo): s1030_alteracao_dados['fimvalid'] = alteracao.ideCargo.fimValid.cdata
-            if 'nmCargo' in dir(alteracao.dadosCargo): s1030_alteracao_dados['nmcargo'] = alteracao.dadosCargo.nmCargo.cdata
-            if 'codCBO' in dir(alteracao.dadosCargo): s1030_alteracao_dados['codcbo'] = alteracao.dadosCargo.codCBO.cdata
+            try: s1030_alteracao_dados['codcargo'] = alteracao.ideCargo.codCargo.cdata
+            except AttributeError: pass
+            try: s1030_alteracao_dados['inivalid'] = alteracao.ideCargo.iniValid.cdata
+            except AttributeError: pass
+            try: s1030_alteracao_dados['fimvalid'] = alteracao.ideCargo.fimValid.cdata
+            except AttributeError: pass
+            try: s1030_alteracao_dados['nmcargo'] = alteracao.dadosCargo.nmCargo.cdata
+            except AttributeError: pass
+            try: s1030_alteracao_dados['codcbo'] = alteracao.dadosCargo.codCBO.cdata
+            except AttributeError: pass
             insert = create_insert('s1030_alteracao', s1030_alteracao_dados)
             resp = executar_sql(insert, True)
             s1030_alteracao_id = resp[0][0]
             #print s1030_alteracao_id
 
-            if 'cargoPublico' in dir(alteracao.dadosCargo):
+            if 'cargoPublico' in dir(alteracao.dadosCargo) and alteracao.dadosCargo.cargoPublico.cdata != '':
                 for cargoPublico in alteracao.dadosCargo.cargoPublico:
                     s1030_alteracao_cargopublico_dados = {}
                     s1030_alteracao_cargopublico_dados['s1030_alteracao_id'] = s1030_alteracao_id
 
-                    if 'acumCargo' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['acumcargo'] = cargoPublico.acumCargo.cdata
-                    if 'contagemEsp' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['contagemesp'] = cargoPublico.contagemEsp.cdata
-                    if 'dedicExcl' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['dedicexcl'] = cargoPublico.dedicExcl.cdata
-                    if 'codCarreira' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['codcarreira'] = cargoPublico.codCarreira.cdata
-                    if 'nrLei' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['nrlei'] = cargoPublico.leiCargo.nrLei.cdata
-                    if 'dtLei' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['dtlei'] = cargoPublico.leiCargo.dtLei.cdata
-                    if 'sitCargo' in dir(cargoPublico): s1030_alteracao_cargopublico_dados['sitcargo'] = cargoPublico.leiCargo.sitCargo.cdata
+                    try: s1030_alteracao_cargopublico_dados['acumcargo'] = cargoPublico.acumCargo.cdata
+                    except AttributeError: pass
+                    try: s1030_alteracao_cargopublico_dados['contagemesp'] = cargoPublico.contagemEsp.cdata
+                    except AttributeError: pass
+                    try: s1030_alteracao_cargopublico_dados['dedicexcl'] = cargoPublico.dedicExcl.cdata
+                    except AttributeError: pass
+                    try: s1030_alteracao_cargopublico_dados['codcarreira'] = cargoPublico.codCarreira.cdata
+                    except AttributeError: pass
+                    try: s1030_alteracao_cargopublico_dados['nrlei'] = cargoPublico.leiCargo.nrLei.cdata
+                    except AttributeError: pass
+                    try: s1030_alteracao_cargopublico_dados['dtlei'] = cargoPublico.leiCargo.dtLei.cdata
+                    except AttributeError: pass
+                    try: s1030_alteracao_cargopublico_dados['sitcargo'] = cargoPublico.leiCargo.sitCargo.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1030_alteracao_cargopublico', s1030_alteracao_cargopublico_dados)
                     resp = executar_sql(insert, True)
                     s1030_alteracao_cargopublico_id = resp[0][0]
                     #print s1030_alteracao_cargopublico_id
 
-            if 'novaValidade' in dir(alteracao):
+            if 'novaValidade' in dir(alteracao) and alteracao.novaValidade.cdata != '':
                 for novaValidade in alteracao.novaValidade:
                     s1030_alteracao_novavalidade_dados = {}
                     s1030_alteracao_novavalidade_dados['s1030_alteracao_id'] = s1030_alteracao_id
 
-                    if 'iniValid' in dir(novaValidade): s1030_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
-                    if 'fimValid' in dir(novaValidade): s1030_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                    try: s1030_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                    except AttributeError: pass
+                    try: s1030_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1030_alteracao_novavalidade', s1030_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1030_alteracao_novavalidade_id = resp[0][0]
                     #print s1030_alteracao_novavalidade_id
 
-    if 'exclusao' in dir(evtTabCargo.infoCargo):
+    if 'exclusao' in dir(evtTabCargo.infoCargo) and evtTabCargo.infoCargo.exclusao.cdata != '':
         for exclusao in evtTabCargo.infoCargo.exclusao:
             s1030_exclusao_dados = {}
             s1030_exclusao_dados['s1030_evttabcargo_id'] = s1030_evttabcargo_id
 
-            if 'codCargo' in dir(exclusao.ideCargo): s1030_exclusao_dados['codcargo'] = exclusao.ideCargo.codCargo.cdata
-            if 'iniValid' in dir(exclusao.ideCargo): s1030_exclusao_dados['inivalid'] = exclusao.ideCargo.iniValid.cdata
-            if 'fimValid' in dir(exclusao.ideCargo): s1030_exclusao_dados['fimvalid'] = exclusao.ideCargo.fimValid.cdata
+            try: s1030_exclusao_dados['codcargo'] = exclusao.ideCargo.codCargo.cdata
+            except AttributeError: pass
+            try: s1030_exclusao_dados['inivalid'] = exclusao.ideCargo.iniValid.cdata
+            except AttributeError: pass
+            try: s1030_exclusao_dados['fimvalid'] = exclusao.ideCargo.fimValid.cdata
+            except AttributeError: pass
             insert = create_insert('s1030_exclusao', s1030_exclusao_dados)
             resp = executar_sql(insert, True)
             s1030_exclusao_id = resp[0][0]

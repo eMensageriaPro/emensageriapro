@@ -79,19 +79,32 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
     s2240_evtexprisco_dados['identidade'] = doc.eSocial.evtExpRisco['Id']
     evtExpRisco = doc.eSocial.evtExpRisco
 
-    if 'indRetif' in dir(evtExpRisco.ideEvento): s2240_evtexprisco_dados['indretif'] = evtExpRisco.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtExpRisco.ideEvento): s2240_evtexprisco_dados['nrrecibo'] = evtExpRisco.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtExpRisco.ideEvento): s2240_evtexprisco_dados['tpamb'] = evtExpRisco.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtExpRisco.ideEvento): s2240_evtexprisco_dados['procemi'] = evtExpRisco.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtExpRisco.ideEvento): s2240_evtexprisco_dados['verproc'] = evtExpRisco.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtExpRisco.ideEmpregador): s2240_evtexprisco_dados['tpinsc'] = evtExpRisco.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtExpRisco.ideEmpregador): s2240_evtexprisco_dados['nrinsc'] = evtExpRisco.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtExpRisco.ideVinculo): s2240_evtexprisco_dados['cpftrab'] = evtExpRisco.ideVinculo.cpfTrab.cdata
-    if 'nisTrab' in dir(evtExpRisco.ideVinculo): s2240_evtexprisco_dados['nistrab'] = evtExpRisco.ideVinculo.nisTrab.cdata
-    if 'matricula' in dir(evtExpRisco.ideVinculo): s2240_evtexprisco_dados['matricula'] = evtExpRisco.ideVinculo.matricula.cdata
-    if 'codCateg' in dir(evtExpRisco.ideVinculo): s2240_evtexprisco_dados['codcateg'] = evtExpRisco.ideVinculo.codCateg.cdata
-    if 'dtIniCondicao' in dir(evtExpRisco.infoExpRisco): s2240_evtexprisco_dados['dtinicondicao'] = evtExpRisco.infoExpRisco.dtIniCondicao.cdata
-    if 'dscAtivDes' in dir(evtExpRisco.infoExpRisco.infoAtiv): s2240_evtexprisco_dados['dscativdes'] = evtExpRisco.infoExpRisco.infoAtiv.dscAtivDes.cdata
+    try: s2240_evtexprisco_dados['indretif'] = evtExpRisco.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['nrrecibo'] = evtExpRisco.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['tpamb'] = evtExpRisco.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['procemi'] = evtExpRisco.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['verproc'] = evtExpRisco.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['tpinsc'] = evtExpRisco.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['nrinsc'] = evtExpRisco.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['cpftrab'] = evtExpRisco.ideVinculo.cpfTrab.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['nistrab'] = evtExpRisco.ideVinculo.nisTrab.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['matricula'] = evtExpRisco.ideVinculo.matricula.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['codcateg'] = evtExpRisco.ideVinculo.codCateg.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['dtinicondicao'] = evtExpRisco.infoExpRisco.dtIniCondicao.cdata
+    except AttributeError: pass
+    try: s2240_evtexprisco_dados['dscativdes'] = evtExpRisco.infoExpRisco.infoAtiv.dscAtivDes.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtExpRisco.infoExpRisco): s2240_evtexprisco_dados['operacao'] = 1
     elif 'alteracao' in dir(evtExpRisco.infoExpRisco): s2240_evtexprisco_dados['operacao'] = 2
     elif 'exclusao' in dir(evtExpRisco.infoExpRisco): s2240_evtexprisco_dados['operacao'] = 3
@@ -105,167 +118,213 @@ def read_s2240_evtexprisco_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtExpRisco['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'infoAmb' in dir(evtExpRisco.infoExpRisco):
+    if 'infoAmb' in dir(evtExpRisco.infoExpRisco) and evtExpRisco.infoExpRisco.infoAmb.cdata != '':
         for infoAmb in evtExpRisco.infoExpRisco.infoAmb:
             s2240_iniexprisco_infoamb_dados = {}
             s2240_iniexprisco_infoamb_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
 
-            if 'codAmb' in dir(infoAmb): s2240_iniexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+            try: s2240_iniexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+            except AttributeError: pass
             insert = create_insert('s2240_iniexprisco_infoamb', s2240_iniexprisco_infoamb_dados)
             resp = executar_sql(insert, True)
             s2240_iniexprisco_infoamb_id = resp[0][0]
             #print s2240_iniexprisco_infoamb_id
 
-    if 'ativPericInsal' in dir(evtExpRisco.infoExpRisco.infoAtiv):
+    if 'ativPericInsal' in dir(evtExpRisco.infoExpRisco.infoAtiv) and evtExpRisco.infoExpRisco.infoAtiv.ativPericInsal.cdata != '':
         for ativPericInsal in evtExpRisco.infoExpRisco.infoAtiv.ativPericInsal:
             s2240_iniexprisco_ativpericinsal_dados = {}
             s2240_iniexprisco_ativpericinsal_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
 
-            if 'codAtiv' in dir(ativPericInsal): s2240_iniexprisco_ativpericinsal_dados['codativ'] = ativPericInsal.codAtiv.cdata
+            try: s2240_iniexprisco_ativpericinsal_dados['codativ'] = ativPericInsal.codAtiv.cdata
+            except AttributeError: pass
             insert = create_insert('s2240_iniexprisco_ativpericinsal', s2240_iniexprisco_ativpericinsal_dados)
             resp = executar_sql(insert, True)
             s2240_iniexprisco_ativpericinsal_id = resp[0][0]
             #print s2240_iniexprisco_ativpericinsal_id
 
-    if 'fatRisco' in dir(evtExpRisco.infoExpRisco):
+    if 'fatRisco' in dir(evtExpRisco.infoExpRisco) and evtExpRisco.infoExpRisco.fatRisco.cdata != '':
         for fatRisco in evtExpRisco.infoExpRisco.fatRisco:
             s2240_iniexprisco_fatrisco_dados = {}
             s2240_iniexprisco_fatrisco_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
 
-            if 'codFatRis' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['codfatris'] = fatRisco.codFatRis.cdata
-            if 'tpAval' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['tpaval'] = fatRisco.tpAval.cdata
-            if 'intConc' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['intconc'] = fatRisco.intConc.cdata
-            if 'limTol' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['limtol'] = fatRisco.limTol.cdata
-            if 'unMed' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['unmed'] = fatRisco.unMed.cdata
-            if 'tecMedicao' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['tecmedicao'] = fatRisco.tecMedicao.cdata
-            if 'insalubridade' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['insalubridade'] = fatRisco.insalubridade.cdata
-            if 'periculosidade' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['periculosidade'] = fatRisco.periculosidade.cdata
-            if 'aposentEsp' in dir(fatRisco): s2240_iniexprisco_fatrisco_dados['aposentesp'] = fatRisco.aposentEsp.cdata
-            if 'utilizEPC' in dir(fatRisco.epcEpi): s2240_iniexprisco_fatrisco_dados['utilizepc'] = fatRisco.epcEpi.utilizEPC.cdata
-            if 'eficEpc' in dir(fatRisco.epcEpi): s2240_iniexprisco_fatrisco_dados['eficepc'] = fatRisco.epcEpi.eficEpc.cdata
-            if 'utilizEPI' in dir(fatRisco.epcEpi): s2240_iniexprisco_fatrisco_dados['utilizepi'] = fatRisco.epcEpi.utilizEPI.cdata
+            try: s2240_iniexprisco_fatrisco_dados['codfatris'] = fatRisco.codFatRis.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['tpaval'] = fatRisco.tpAval.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['intconc'] = fatRisco.intConc.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['limtol'] = fatRisco.limTol.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['unmed'] = fatRisco.unMed.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['tecmedicao'] = fatRisco.tecMedicao.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['insalubridade'] = fatRisco.insalubridade.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['periculosidade'] = fatRisco.periculosidade.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['aposentesp'] = fatRisco.aposentEsp.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['utilizepc'] = fatRisco.epcEpi.utilizEPC.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['eficepc'] = fatRisco.epcEpi.eficEpc.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_fatrisco_dados['utilizepi'] = fatRisco.epcEpi.utilizEPI.cdata
+            except AttributeError: pass
             insert = create_insert('s2240_iniexprisco_fatrisco', s2240_iniexprisco_fatrisco_dados)
             resp = executar_sql(insert, True)
             s2240_iniexprisco_fatrisco_id = resp[0][0]
             #print s2240_iniexprisco_fatrisco_id
 
-            if 'epc' in dir(fatRisco.epcEpi):
+            if 'epc' in dir(fatRisco.epcEpi) and fatRisco.epcEpi.epc.cdata != '':
                 for epc in fatRisco.epcEpi.epc:
                     s2240_iniexprisco_epc_dados = {}
                     s2240_iniexprisco_epc_dados['s2240_iniexprisco_fatrisco_id'] = s2240_iniexprisco_fatrisco_id
 
-                    if 'codEP' in dir(epc): s2240_iniexprisco_epc_dados['codep'] = epc.codEP.cdata
-                    if 'dscEpc' in dir(epc): s2240_iniexprisco_epc_dados['dscepc'] = epc.dscEpc.cdata
-                    if 'eficEpc' in dir(epc): s2240_iniexprisco_epc_dados['eficepc'] = epc.eficEpc.cdata
+                    try: s2240_iniexprisco_epc_dados['codep'] = epc.codEP.cdata
+                    except AttributeError: pass
+                    try: s2240_iniexprisco_epc_dados['dscepc'] = epc.dscEpc.cdata
+                    except AttributeError: pass
+                    try: s2240_iniexprisco_epc_dados['eficepc'] = epc.eficEpc.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2240_iniexprisco_epc', s2240_iniexprisco_epc_dados)
                     resp = executar_sql(insert, True)
                     s2240_iniexprisco_epc_id = resp[0][0]
                     #print s2240_iniexprisco_epc_id
 
-            if 'epi' in dir(fatRisco.epcEpi):
+            if 'epi' in dir(fatRisco.epcEpi) and fatRisco.epcEpi.epi.cdata != '':
                 for epi in fatRisco.epcEpi.epi:
                     s2240_iniexprisco_epi_dados = {}
                     s2240_iniexprisco_epi_dados['s2240_iniexprisco_fatrisco_id'] = s2240_iniexprisco_fatrisco_id
 
-                    if 'caEPI' in dir(epi): s2240_iniexprisco_epi_dados['caepi'] = epi.caEPI.cdata
-                    if 'dscEPI' in dir(epi): s2240_iniexprisco_epi_dados['dscepi'] = epi.dscEPI.cdata
-                    if 'eficEpi' in dir(epi): s2240_iniexprisco_epi_dados['eficepi'] = epi.eficEpi.cdata
-                    if 'medProtecao' in dir(epi): s2240_iniexprisco_epi_dados['medprotecao'] = epi.medProtecao.cdata
-                    if 'condFuncto' in dir(epi): s2240_iniexprisco_epi_dados['condfuncto'] = epi.condFuncto.cdata
-                    if 'usoInint' in dir(epi): s2240_iniexprisco_epi_dados['usoinint'] = epi.usoInint.cdata
-                    if 'przValid' in dir(epi): s2240_iniexprisco_epi_dados['przvalid'] = epi.przValid.cdata
-                    if 'periodicTroca' in dir(epi): s2240_iniexprisco_epi_dados['periodictroca'] = epi.periodicTroca.cdata
-                    if 'higienizacao' in dir(epi): s2240_iniexprisco_epi_dados['higienizacao'] = epi.higienizacao.cdata
+                    try: s2240_iniexprisco_epi_dados['caepi'] = epi.caEPI.cdata
+                    except AttributeError: pass
+                    try: s2240_iniexprisco_epi_dados['dscepi'] = epi.dscEPI.cdata
+                    except AttributeError: pass
+                    try: s2240_iniexprisco_epi_dados['eficepi'] = epi.eficEpi.cdata
+                    except AttributeError: pass
+                    try: s2240_iniexprisco_epi_dados['medprotecao'] = epi.medProtecao.cdata
+                    except AttributeError: pass
+                    try: s2240_iniexprisco_epi_dados['condfuncto'] = epi.condFuncto.cdata
+                    except AttributeError: pass
+                    try: s2240_iniexprisco_epi_dados['usoinint'] = epi.usoInint.cdata
+                    except AttributeError: pass
+                    try: s2240_iniexprisco_epi_dados['przvalid'] = epi.przValid.cdata
+                    except AttributeError: pass
+                    try: s2240_iniexprisco_epi_dados['periodictroca'] = epi.periodicTroca.cdata
+                    except AttributeError: pass
+                    try: s2240_iniexprisco_epi_dados['higienizacao'] = epi.higienizacao.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2240_iniexprisco_epi', s2240_iniexprisco_epi_dados)
                     resp = executar_sql(insert, True)
                     s2240_iniexprisco_epi_id = resp[0][0]
                     #print s2240_iniexprisco_epi_id
 
-    if 'respReg' in dir(evtExpRisco.infoExpRisco):
+    if 'respReg' in dir(evtExpRisco.infoExpRisco) and evtExpRisco.infoExpRisco.respReg.cdata != '':
         for respReg in evtExpRisco.infoExpRisco.respReg:
             s2240_iniexprisco_respreg_dados = {}
             s2240_iniexprisco_respreg_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
 
-            if 'cpfResp' in dir(respReg): s2240_iniexprisco_respreg_dados['cpfresp'] = respReg.cpfResp.cdata
-            if 'nisResp' in dir(respReg): s2240_iniexprisco_respreg_dados['nisresp'] = respReg.nisResp.cdata
-            if 'nmResp' in dir(respReg): s2240_iniexprisco_respreg_dados['nmresp'] = respReg.nmResp.cdata
-            if 'ideOC' in dir(respReg): s2240_iniexprisco_respreg_dados['ideoc'] = respReg.ideOC.cdata
-            if 'dscOC' in dir(respReg): s2240_iniexprisco_respreg_dados['dscoc'] = respReg.dscOC.cdata
-            if 'nrOC' in dir(respReg): s2240_iniexprisco_respreg_dados['nroc'] = respReg.nrOC.cdata
-            if 'ufOC' in dir(respReg): s2240_iniexprisco_respreg_dados['ufoc'] = respReg.ufOC.cdata
+            try: s2240_iniexprisco_respreg_dados['cpfresp'] = respReg.cpfResp.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_respreg_dados['nisresp'] = respReg.nisResp.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_respreg_dados['nmresp'] = respReg.nmResp.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_respreg_dados['ideoc'] = respReg.ideOC.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_respreg_dados['dscoc'] = respReg.dscOC.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_respreg_dados['nroc'] = respReg.nrOC.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_respreg_dados['ufoc'] = respReg.ufOC.cdata
+            except AttributeError: pass
             insert = create_insert('s2240_iniexprisco_respreg', s2240_iniexprisco_respreg_dados)
             resp = executar_sql(insert, True)
             s2240_iniexprisco_respreg_id = resp[0][0]
             #print s2240_iniexprisco_respreg_id
 
-    if 'obs' in dir(evtExpRisco.infoExpRisco):
+    if 'obs' in dir(evtExpRisco.infoExpRisco) and evtExpRisco.infoExpRisco.obs.cdata != '':
         for obs in evtExpRisco.infoExpRisco.obs:
             s2240_iniexprisco_obs_dados = {}
             s2240_iniexprisco_obs_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
 
-            if 'metErg' in dir(obs): s2240_iniexprisco_obs_dados['meterg'] = obs.metErg.cdata
-            if 'obsCompl' in dir(obs): s2240_iniexprisco_obs_dados['obscompl'] = obs.obsCompl.cdata
-            if 'observacao' in dir(obs): s2240_iniexprisco_obs_dados['observacao'] = obs.observacao.cdata
+            try: s2240_iniexprisco_obs_dados['meterg'] = obs.metErg.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_obs_dados['obscompl'] = obs.obsCompl.cdata
+            except AttributeError: pass
+            try: s2240_iniexprisco_obs_dados['observacao'] = obs.observacao.cdata
+            except AttributeError: pass
             insert = create_insert('s2240_iniexprisco_obs', s2240_iniexprisco_obs_dados)
             resp = executar_sql(insert, True)
             s2240_iniexprisco_obs_id = resp[0][0]
             #print s2240_iniexprisco_obs_id
 
-    if 'altExpRisco' in dir(evtExpRisco.infoExpRisco):
+    if 'altExpRisco' in dir(evtExpRisco.infoExpRisco) and evtExpRisco.infoExpRisco.altExpRisco.cdata != '':
         for altExpRisco in evtExpRisco.infoExpRisco.altExpRisco:
             s2240_altexprisco_dados = {}
             s2240_altexprisco_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
 
-            if 'dtAltCondicao' in dir(altExpRisco): s2240_altexprisco_dados['dtaltcondicao'] = altExpRisco.dtAltCondicao.cdata
+            try: s2240_altexprisco_dados['dtaltcondicao'] = altExpRisco.dtAltCondicao.cdata
+            except AttributeError: pass
             insert = create_insert('s2240_altexprisco', s2240_altexprisco_dados)
             resp = executar_sql(insert, True)
             s2240_altexprisco_id = resp[0][0]
             #print s2240_altexprisco_id
 
-            if 'infoAmb' in dir(altExpRisco):
+            if 'infoAmb' in dir(altExpRisco) and altExpRisco.infoAmb.cdata != '':
                 for infoAmb in altExpRisco.infoAmb:
                     s2240_altexprisco_infoamb_dados = {}
                     s2240_altexprisco_infoamb_dados['s2240_altexprisco_id'] = s2240_altexprisco_id
 
-                    if 'codAmb' in dir(infoAmb): s2240_altexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
-                    if 'dscAtivDes' in dir(infoAmb): s2240_altexprisco_infoamb_dados['dscativdes'] = infoAmb.infoAtiv.dscAtivDes.cdata
+                    try: s2240_altexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    except AttributeError: pass
+                    try: s2240_altexprisco_infoamb_dados['dscativdes'] = infoAmb.infoAtiv.dscAtivDes.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2240_altexprisco_infoamb', s2240_altexprisco_infoamb_dados)
                     resp = executar_sql(insert, True)
                     s2240_altexprisco_infoamb_id = resp[0][0]
                     #print s2240_altexprisco_infoamb_id
 
-    if 'fimExpRisco' in dir(evtExpRisco.infoExpRisco):
+    if 'fimExpRisco' in dir(evtExpRisco.infoExpRisco) and evtExpRisco.infoExpRisco.fimExpRisco.cdata != '':
         for fimExpRisco in evtExpRisco.infoExpRisco.fimExpRisco:
             s2240_fimexprisco_dados = {}
             s2240_fimexprisco_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
 
-            if 'dtFimCondicao' in dir(fimExpRisco): s2240_fimexprisco_dados['dtfimcondicao'] = fimExpRisco.dtFimCondicao.cdata
+            try: s2240_fimexprisco_dados['dtfimcondicao'] = fimExpRisco.dtFimCondicao.cdata
+            except AttributeError: pass
             insert = create_insert('s2240_fimexprisco', s2240_fimexprisco_dados)
             resp = executar_sql(insert, True)
             s2240_fimexprisco_id = resp[0][0]
             #print s2240_fimexprisco_id
 
-            if 'infoAmb' in dir(fimExpRisco):
+            if 'infoAmb' in dir(fimExpRisco) and fimExpRisco.infoAmb.cdata != '':
                 for infoAmb in fimExpRisco.infoAmb:
                     s2240_fimexprisco_infoamb_dados = {}
                     s2240_fimexprisco_infoamb_dados['s2240_fimexprisco_id'] = s2240_fimexprisco_id
 
-                    if 'codAmb' in dir(infoAmb): s2240_fimexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    try: s2240_fimexprisco_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2240_fimexprisco_infoamb', s2240_fimexprisco_infoamb_dados)
                     resp = executar_sql(insert, True)
                     s2240_fimexprisco_infoamb_id = resp[0][0]
                     #print s2240_fimexprisco_infoamb_id
 
-    if 'respReg' in dir(evtExpRisco.infoExpRisco):
+    if 'respReg' in dir(evtExpRisco.infoExpRisco) and evtExpRisco.infoExpRisco.respReg.cdata != '':
         for respReg in evtExpRisco.infoExpRisco.respReg:
             s2240_fimexprisco_respreg_dados = {}
             s2240_fimexprisco_respreg_dados['s2240_evtexprisco_id'] = s2240_evtexprisco_id
 
-            if 'dtIni' in dir(respReg): s2240_fimexprisco_respreg_dados['dtini'] = respReg.dtIni.cdata
-            if 'dtFim' in dir(respReg): s2240_fimexprisco_respreg_dados['dtfim'] = respReg.dtFim.cdata
-            if 'nisResp' in dir(respReg): s2240_fimexprisco_respreg_dados['nisresp'] = respReg.nisResp.cdata
-            if 'nrOc' in dir(respReg): s2240_fimexprisco_respreg_dados['nroc'] = respReg.nrOc.cdata
-            if 'ufOC' in dir(respReg): s2240_fimexprisco_respreg_dados['ufoc'] = respReg.ufOC.cdata
+            try: s2240_fimexprisco_respreg_dados['dtini'] = respReg.dtIni.cdata
+            except AttributeError: pass
+            try: s2240_fimexprisco_respreg_dados['dtfim'] = respReg.dtFim.cdata
+            except AttributeError: pass
+            try: s2240_fimexprisco_respreg_dados['nisresp'] = respReg.nisResp.cdata
+            except AttributeError: pass
+            try: s2240_fimexprisco_respreg_dados['nroc'] = respReg.nrOc.cdata
+            except AttributeError: pass
+            try: s2240_fimexprisco_respreg_dados['ufoc'] = respReg.ufOC.cdata
+            except AttributeError: pass
             insert = create_insert('s2240_fimexprisco_respreg', s2240_fimexprisco_respreg_dados)
             resp = executar_sql(insert, True)
             s2240_fimexprisco_respreg_id = resp[0][0]

@@ -79,20 +79,34 @@ def read_s1299_evtfechaevper_obj(doc, status, validar=False):
     s1299_evtfechaevper_dados['identidade'] = doc.eSocial.evtFechaEvPer['Id']
     evtFechaEvPer = doc.eSocial.evtFechaEvPer
 
-    if 'indApuracao' in dir(evtFechaEvPer.ideEvento): s1299_evtfechaevper_dados['indapuracao'] = evtFechaEvPer.ideEvento.indApuracao.cdata
-    if 'perApur' in dir(evtFechaEvPer.ideEvento): s1299_evtfechaevper_dados['perapur'] = evtFechaEvPer.ideEvento.perApur.cdata
-    if 'tpAmb' in dir(evtFechaEvPer.ideEvento): s1299_evtfechaevper_dados['tpamb'] = evtFechaEvPer.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtFechaEvPer.ideEvento): s1299_evtfechaevper_dados['procemi'] = evtFechaEvPer.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtFechaEvPer.ideEvento): s1299_evtfechaevper_dados['verproc'] = evtFechaEvPer.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtFechaEvPer.ideEmpregador): s1299_evtfechaevper_dados['tpinsc'] = evtFechaEvPer.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtFechaEvPer.ideEmpregador): s1299_evtfechaevper_dados['nrinsc'] = evtFechaEvPer.ideEmpregador.nrInsc.cdata
-    if 'evtRemun' in dir(evtFechaEvPer.infoFech): s1299_evtfechaevper_dados['evtremun'] = evtFechaEvPer.infoFech.evtRemun.cdata
-    if 'evtPgtos' in dir(evtFechaEvPer.infoFech): s1299_evtfechaevper_dados['evtpgtos'] = evtFechaEvPer.infoFech.evtPgtos.cdata
-    if 'evtAqProd' in dir(evtFechaEvPer.infoFech): s1299_evtfechaevper_dados['evtaqprod'] = evtFechaEvPer.infoFech.evtAqProd.cdata
-    if 'evtComProd' in dir(evtFechaEvPer.infoFech): s1299_evtfechaevper_dados['evtcomprod'] = evtFechaEvPer.infoFech.evtComProd.cdata
-    if 'evtContratAvNP' in dir(evtFechaEvPer.infoFech): s1299_evtfechaevper_dados['evtcontratavnp'] = evtFechaEvPer.infoFech.evtContratAvNP.cdata
-    if 'evtInfoComplPer' in dir(evtFechaEvPer.infoFech): s1299_evtfechaevper_dados['evtinfocomplper'] = evtFechaEvPer.infoFech.evtInfoComplPer.cdata
-    if 'compSemMovto' in dir(evtFechaEvPer.infoFech): s1299_evtfechaevper_dados['compsemmovto'] = evtFechaEvPer.infoFech.compSemMovto.cdata
+    try: s1299_evtfechaevper_dados['indapuracao'] = evtFechaEvPer.ideEvento.indApuracao.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['perapur'] = evtFechaEvPer.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['tpamb'] = evtFechaEvPer.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['procemi'] = evtFechaEvPer.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['verproc'] = evtFechaEvPer.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['tpinsc'] = evtFechaEvPer.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['nrinsc'] = evtFechaEvPer.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['evtremun'] = evtFechaEvPer.infoFech.evtRemun.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['evtpgtos'] = evtFechaEvPer.infoFech.evtPgtos.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['evtaqprod'] = evtFechaEvPer.infoFech.evtAqProd.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['evtcomprod'] = evtFechaEvPer.infoFech.evtComProd.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['evtcontratavnp'] = evtFechaEvPer.infoFech.evtContratAvNP.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['evtinfocomplper'] = evtFechaEvPer.infoFech.evtInfoComplPer.cdata
+    except AttributeError: pass
+    try: s1299_evtfechaevper_dados['compsemmovto'] = evtFechaEvPer.infoFech.compSemMovto.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtFechaEvPer.infoFech): s1299_evtfechaevper_dados['operacao'] = 1
     elif 'alteracao' in dir(evtFechaEvPer.infoFech): s1299_evtfechaevper_dados['operacao'] = 2
     elif 'exclusao' in dir(evtFechaEvPer.infoFech): s1299_evtfechaevper_dados['operacao'] = 3
@@ -106,15 +120,19 @@ def read_s1299_evtfechaevper_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtFechaEvPer['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'ideRespInf' in dir(evtFechaEvPer):
+    if 'ideRespInf' in dir(evtFechaEvPer) and evtFechaEvPer.ideRespInf.cdata != '':
         for ideRespInf in evtFechaEvPer.ideRespInf:
             s1299_iderespinf_dados = {}
             s1299_iderespinf_dados['s1299_evtfechaevper_id'] = s1299_evtfechaevper_id
 
-            if 'nmResp' in dir(ideRespInf): s1299_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
-            if 'cpfResp' in dir(ideRespInf): s1299_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
-            if 'telefone' in dir(ideRespInf): s1299_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata
-            if 'email' in dir(ideRespInf): s1299_iderespinf_dados['email'] = ideRespInf.email.cdata
+            try: s1299_iderespinf_dados['nmresp'] = ideRespInf.nmResp.cdata
+            except AttributeError: pass
+            try: s1299_iderespinf_dados['cpfresp'] = ideRespInf.cpfResp.cdata
+            except AttributeError: pass
+            try: s1299_iderespinf_dados['telefone'] = ideRespInf.telefone.cdata
+            except AttributeError: pass
+            try: s1299_iderespinf_dados['email'] = ideRespInf.email.cdata
+            except AttributeError: pass
             insert = create_insert('s1299_iderespinf', s1299_iderespinf_dados)
             resp = executar_sql(insert, True)
             s1299_iderespinf_id = resp[0][0]

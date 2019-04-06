@@ -79,11 +79,16 @@ def read_s1035_evttabcarreira_obj(doc, status, validar=False):
     s1035_evttabcarreira_dados['identidade'] = doc.eSocial.evtTabCarreira['Id']
     evtTabCarreira = doc.eSocial.evtTabCarreira
 
-    if 'tpAmb' in dir(evtTabCarreira.ideEvento): s1035_evttabcarreira_dados['tpamb'] = evtTabCarreira.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtTabCarreira.ideEvento): s1035_evttabcarreira_dados['procemi'] = evtTabCarreira.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtTabCarreira.ideEvento): s1035_evttabcarreira_dados['verproc'] = evtTabCarreira.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtTabCarreira.ideEmpregador): s1035_evttabcarreira_dados['tpinsc'] = evtTabCarreira.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtTabCarreira.ideEmpregador): s1035_evttabcarreira_dados['nrinsc'] = evtTabCarreira.ideEmpregador.nrInsc.cdata
+    try: s1035_evttabcarreira_dados['tpamb'] = evtTabCarreira.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s1035_evttabcarreira_dados['procemi'] = evtTabCarreira.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s1035_evttabcarreira_dados['verproc'] = evtTabCarreira.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s1035_evttabcarreira_dados['tpinsc'] = evtTabCarreira.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s1035_evttabcarreira_dados['nrinsc'] = evtTabCarreira.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtTabCarreira.infoCarreira): s1035_evttabcarreira_dados['operacao'] = 1
     elif 'alteracao' in dir(evtTabCarreira.infoCarreira): s1035_evttabcarreira_dados['operacao'] = 2
     elif 'exclusao' in dir(evtTabCarreira.infoCarreira): s1035_evttabcarreira_dados['operacao'] = 3
@@ -97,60 +102,79 @@ def read_s1035_evttabcarreira_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtTabCarreira['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'inclusao' in dir(evtTabCarreira.infoCarreira):
+    if 'inclusao' in dir(evtTabCarreira.infoCarreira) and evtTabCarreira.infoCarreira.inclusao.cdata != '':
         for inclusao in evtTabCarreira.infoCarreira.inclusao:
             s1035_inclusao_dados = {}
             s1035_inclusao_dados['s1035_evttabcarreira_id'] = s1035_evttabcarreira_id
 
-            if 'codCarreira' in dir(inclusao.ideCarreira): s1035_inclusao_dados['codcarreira'] = inclusao.ideCarreira.codCarreira.cdata
-            if 'iniValid' in dir(inclusao.ideCarreira): s1035_inclusao_dados['inivalid'] = inclusao.ideCarreira.iniValid.cdata
-            if 'fimValid' in dir(inclusao.ideCarreira): s1035_inclusao_dados['fimvalid'] = inclusao.ideCarreira.fimValid.cdata
-            if 'dscCarreira' in dir(inclusao.dadosCarreira): s1035_inclusao_dados['dsccarreira'] = inclusao.dadosCarreira.dscCarreira.cdata
-            if 'leiCarr' in dir(inclusao.dadosCarreira): s1035_inclusao_dados['leicarr'] = inclusao.dadosCarreira.leiCarr.cdata
-            if 'dtLeiCarr' in dir(inclusao.dadosCarreira): s1035_inclusao_dados['dtleicarr'] = inclusao.dadosCarreira.dtLeiCarr.cdata
-            if 'sitCarr' in dir(inclusao.dadosCarreira): s1035_inclusao_dados['sitcarr'] = inclusao.dadosCarreira.sitCarr.cdata
+            try: s1035_inclusao_dados['codcarreira'] = inclusao.ideCarreira.codCarreira.cdata
+            except AttributeError: pass
+            try: s1035_inclusao_dados['inivalid'] = inclusao.ideCarreira.iniValid.cdata
+            except AttributeError: pass
+            try: s1035_inclusao_dados['fimvalid'] = inclusao.ideCarreira.fimValid.cdata
+            except AttributeError: pass
+            try: s1035_inclusao_dados['dsccarreira'] = inclusao.dadosCarreira.dscCarreira.cdata
+            except AttributeError: pass
+            try: s1035_inclusao_dados['leicarr'] = inclusao.dadosCarreira.leiCarr.cdata
+            except AttributeError: pass
+            try: s1035_inclusao_dados['dtleicarr'] = inclusao.dadosCarreira.dtLeiCarr.cdata
+            except AttributeError: pass
+            try: s1035_inclusao_dados['sitcarr'] = inclusao.dadosCarreira.sitCarr.cdata
+            except AttributeError: pass
             insert = create_insert('s1035_inclusao', s1035_inclusao_dados)
             resp = executar_sql(insert, True)
             s1035_inclusao_id = resp[0][0]
             #print s1035_inclusao_id
 
-    if 'alteracao' in dir(evtTabCarreira.infoCarreira):
+    if 'alteracao' in dir(evtTabCarreira.infoCarreira) and evtTabCarreira.infoCarreira.alteracao.cdata != '':
         for alteracao in evtTabCarreira.infoCarreira.alteracao:
             s1035_alteracao_dados = {}
             s1035_alteracao_dados['s1035_evttabcarreira_id'] = s1035_evttabcarreira_id
 
-            if 'codCarreira' in dir(alteracao.ideCarreira): s1035_alteracao_dados['codcarreira'] = alteracao.ideCarreira.codCarreira.cdata
-            if 'iniValid' in dir(alteracao.ideCarreira): s1035_alteracao_dados['inivalid'] = alteracao.ideCarreira.iniValid.cdata
-            if 'fimValid' in dir(alteracao.ideCarreira): s1035_alteracao_dados['fimvalid'] = alteracao.ideCarreira.fimValid.cdata
-            if 'dscCarreira' in dir(alteracao.dadosCarreira): s1035_alteracao_dados['dsccarreira'] = alteracao.dadosCarreira.dscCarreira.cdata
-            if 'leiCarr' in dir(alteracao.dadosCarreira): s1035_alteracao_dados['leicarr'] = alteracao.dadosCarreira.leiCarr.cdata
-            if 'dtLeiCarr' in dir(alteracao.dadosCarreira): s1035_alteracao_dados['dtleicarr'] = alteracao.dadosCarreira.dtLeiCarr.cdata
-            if 'sitCarr' in dir(alteracao.dadosCarreira): s1035_alteracao_dados['sitcarr'] = alteracao.dadosCarreira.sitCarr.cdata
+            try: s1035_alteracao_dados['codcarreira'] = alteracao.ideCarreira.codCarreira.cdata
+            except AttributeError: pass
+            try: s1035_alteracao_dados['inivalid'] = alteracao.ideCarreira.iniValid.cdata
+            except AttributeError: pass
+            try: s1035_alteracao_dados['fimvalid'] = alteracao.ideCarreira.fimValid.cdata
+            except AttributeError: pass
+            try: s1035_alteracao_dados['dsccarreira'] = alteracao.dadosCarreira.dscCarreira.cdata
+            except AttributeError: pass
+            try: s1035_alteracao_dados['leicarr'] = alteracao.dadosCarreira.leiCarr.cdata
+            except AttributeError: pass
+            try: s1035_alteracao_dados['dtleicarr'] = alteracao.dadosCarreira.dtLeiCarr.cdata
+            except AttributeError: pass
+            try: s1035_alteracao_dados['sitcarr'] = alteracao.dadosCarreira.sitCarr.cdata
+            except AttributeError: pass
             insert = create_insert('s1035_alteracao', s1035_alteracao_dados)
             resp = executar_sql(insert, True)
             s1035_alteracao_id = resp[0][0]
             #print s1035_alteracao_id
 
-            if 'novaValidade' in dir(alteracao):
+            if 'novaValidade' in dir(alteracao) and alteracao.novaValidade.cdata != '':
                 for novaValidade in alteracao.novaValidade:
                     s1035_alteracao_novavalidade_dados = {}
                     s1035_alteracao_novavalidade_dados['s1035_alteracao_id'] = s1035_alteracao_id
 
-                    if 'iniValid' in dir(novaValidade): s1035_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
-                    if 'fimValid' in dir(novaValidade): s1035_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                    try: s1035_alteracao_novavalidade_dados['inivalid'] = novaValidade.iniValid.cdata
+                    except AttributeError: pass
+                    try: s1035_alteracao_novavalidade_dados['fimvalid'] = novaValidade.fimValid.cdata
+                    except AttributeError: pass
                     insert = create_insert('s1035_alteracao_novavalidade', s1035_alteracao_novavalidade_dados)
                     resp = executar_sql(insert, True)
                     s1035_alteracao_novavalidade_id = resp[0][0]
                     #print s1035_alteracao_novavalidade_id
 
-    if 'exclusao' in dir(evtTabCarreira.infoCarreira):
+    if 'exclusao' in dir(evtTabCarreira.infoCarreira) and evtTabCarreira.infoCarreira.exclusao.cdata != '':
         for exclusao in evtTabCarreira.infoCarreira.exclusao:
             s1035_exclusao_dados = {}
             s1035_exclusao_dados['s1035_evttabcarreira_id'] = s1035_evttabcarreira_id
 
-            if 'codCarreira' in dir(exclusao.ideCarreira): s1035_exclusao_dados['codcarreira'] = exclusao.ideCarreira.codCarreira.cdata
-            if 'iniValid' in dir(exclusao.ideCarreira): s1035_exclusao_dados['inivalid'] = exclusao.ideCarreira.iniValid.cdata
-            if 'fimValid' in dir(exclusao.ideCarreira): s1035_exclusao_dados['fimvalid'] = exclusao.ideCarreira.fimValid.cdata
+            try: s1035_exclusao_dados['codcarreira'] = exclusao.ideCarreira.codCarreira.cdata
+            except AttributeError: pass
+            try: s1035_exclusao_dados['inivalid'] = exclusao.ideCarreira.iniValid.cdata
+            except AttributeError: pass
+            try: s1035_exclusao_dados['fimvalid'] = exclusao.ideCarreira.fimValid.cdata
+            except AttributeError: pass
             insert = create_insert('s1035_exclusao', s1035_exclusao_dados)
             resp = executar_sql(insert, True)
             s1035_exclusao_id = resp[0][0]

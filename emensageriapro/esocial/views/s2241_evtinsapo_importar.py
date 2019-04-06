@@ -79,16 +79,26 @@ def read_s2241_evtinsapo_obj(doc, status, validar=False):
     s2241_evtinsapo_dados['identidade'] = doc.eSocial.evtInsApo['Id']
     evtInsApo = doc.eSocial.evtInsApo
 
-    if 'indRetif' in dir(evtInsApo.ideEvento): s2241_evtinsapo_dados['indretif'] = evtInsApo.ideEvento.indRetif.cdata
-    if 'nrRecibo' in dir(evtInsApo.ideEvento): s2241_evtinsapo_dados['nrrecibo'] = evtInsApo.ideEvento.nrRecibo.cdata
-    if 'tpAmb' in dir(evtInsApo.ideEvento): s2241_evtinsapo_dados['tpamb'] = evtInsApo.ideEvento.tpAmb.cdata
-    if 'procEmi' in dir(evtInsApo.ideEvento): s2241_evtinsapo_dados['procemi'] = evtInsApo.ideEvento.procEmi.cdata
-    if 'verProc' in dir(evtInsApo.ideEvento): s2241_evtinsapo_dados['verproc'] = evtInsApo.ideEvento.verProc.cdata
-    if 'tpInsc' in dir(evtInsApo.ideEmpregador): s2241_evtinsapo_dados['tpinsc'] = evtInsApo.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtInsApo.ideEmpregador): s2241_evtinsapo_dados['nrinsc'] = evtInsApo.ideEmpregador.nrInsc.cdata
-    if 'cpfTrab' in dir(evtInsApo.ideVinculo): s2241_evtinsapo_dados['cpftrab'] = evtInsApo.ideVinculo.cpfTrab.cdata
-    if 'nisTrab' in dir(evtInsApo.ideVinculo): s2241_evtinsapo_dados['nistrab'] = evtInsApo.ideVinculo.nisTrab.cdata
-    if 'matricula' in dir(evtInsApo.ideVinculo): s2241_evtinsapo_dados['matricula'] = evtInsApo.ideVinculo.matricula.cdata
+    try: s2241_evtinsapo_dados['indretif'] = evtInsApo.ideEvento.indRetif.cdata
+    except AttributeError: pass
+    try: s2241_evtinsapo_dados['nrrecibo'] = evtInsApo.ideEvento.nrRecibo.cdata
+    except AttributeError: pass
+    try: s2241_evtinsapo_dados['tpamb'] = evtInsApo.ideEvento.tpAmb.cdata
+    except AttributeError: pass
+    try: s2241_evtinsapo_dados['procemi'] = evtInsApo.ideEvento.procEmi.cdata
+    except AttributeError: pass
+    try: s2241_evtinsapo_dados['verproc'] = evtInsApo.ideEvento.verProc.cdata
+    except AttributeError: pass
+    try: s2241_evtinsapo_dados['tpinsc'] = evtInsApo.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s2241_evtinsapo_dados['nrinsc'] = evtInsApo.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s2241_evtinsapo_dados['cpftrab'] = evtInsApo.ideVinculo.cpfTrab.cdata
+    except AttributeError: pass
+    try: s2241_evtinsapo_dados['nistrab'] = evtInsApo.ideVinculo.nisTrab.cdata
+    except AttributeError: pass
+    try: s2241_evtinsapo_dados['matricula'] = evtInsApo.ideVinculo.matricula.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtInsApo.aposentEsp): s2241_evtinsapo_dados['operacao'] = 1
     elif 'alteracao' in dir(evtInsApo.aposentEsp): s2241_evtinsapo_dados['operacao'] = 2
     elif 'exclusao' in dir(evtInsApo.aposentEsp): s2241_evtinsapo_dados['operacao'] = 3
@@ -102,133 +112,145 @@ def read_s2241_evtinsapo_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtInsApo['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'iniInsalPeric' in dir(evtInsApo.insalPeric):
+    if 'iniInsalPeric' in dir(evtInsApo.insalPeric) and evtInsApo.insalPeric.iniInsalPeric.cdata != '':
         for iniInsalPeric in evtInsApo.insalPeric.iniInsalPeric:
             s2241_iniinsalperic_dados = {}
             s2241_iniinsalperic_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
 
-            if 'dtIniCondicao' in dir(iniInsalPeric): s2241_iniinsalperic_dados['dtinicondicao'] = iniInsalPeric.dtIniCondicao.cdata
+            try: s2241_iniinsalperic_dados['dtinicondicao'] = iniInsalPeric.dtIniCondicao.cdata
+            except AttributeError: pass
             insert = create_insert('s2241_iniinsalperic', s2241_iniinsalperic_dados)
             resp = executar_sql(insert, True)
             s2241_iniinsalperic_id = resp[0][0]
             #print s2241_iniinsalperic_id
 
-            if 'infoAmb' in dir(iniInsalPeric):
+            if 'infoAmb' in dir(iniInsalPeric) and iniInsalPeric.infoAmb.cdata != '':
                 for infoAmb in iniInsalPeric.infoAmb:
                     s2241_iniinsalperic_infoamb_dados = {}
                     s2241_iniinsalperic_infoamb_dados['s2241_iniinsalperic_id'] = s2241_iniinsalperic_id
 
-                    if 'codAmb' in dir(infoAmb): s2241_iniinsalperic_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    try: s2241_iniinsalperic_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2241_iniinsalperic_infoamb', s2241_iniinsalperic_infoamb_dados)
                     resp = executar_sql(insert, True)
                     s2241_iniinsalperic_infoamb_id = resp[0][0]
                     #print s2241_iniinsalperic_infoamb_id
 
-    if 'altInsalPeric' in dir(evtInsApo.insalPeric):
+    if 'altInsalPeric' in dir(evtInsApo.insalPeric) and evtInsApo.insalPeric.altInsalPeric.cdata != '':
         for altInsalPeric in evtInsApo.insalPeric.altInsalPeric:
             s2241_altinsalperic_dados = {}
             s2241_altinsalperic_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
 
-            if 'dtAltCondicao' in dir(altInsalPeric): s2241_altinsalperic_dados['dtaltcondicao'] = altInsalPeric.dtAltCondicao.cdata
+            try: s2241_altinsalperic_dados['dtaltcondicao'] = altInsalPeric.dtAltCondicao.cdata
+            except AttributeError: pass
             insert = create_insert('s2241_altinsalperic', s2241_altinsalperic_dados)
             resp = executar_sql(insert, True)
             s2241_altinsalperic_id = resp[0][0]
             #print s2241_altinsalperic_id
 
-            if 'infoamb' in dir(altInsalPeric):
+            if 'infoamb' in dir(altInsalPeric) and altInsalPeric.infoamb.cdata != '':
                 for infoamb in altInsalPeric.infoamb:
                     s2241_altinsalperic_infoamb_dados = {}
                     s2241_altinsalperic_infoamb_dados['s2241_altinsalperic_id'] = s2241_altinsalperic_id
 
-                    if 'codAmb' in dir(infoamb): s2241_altinsalperic_infoamb_dados['codamb'] = infoamb.codAmb.cdata
+                    try: s2241_altinsalperic_infoamb_dados['codamb'] = infoamb.codAmb.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2241_altinsalperic_infoamb', s2241_altinsalperic_infoamb_dados)
                     resp = executar_sql(insert, True)
                     s2241_altinsalperic_infoamb_id = resp[0][0]
                     #print s2241_altinsalperic_infoamb_id
 
-    if 'fimInsalPeric' in dir(evtInsApo.insalPeric):
+    if 'fimInsalPeric' in dir(evtInsApo.insalPeric) and evtInsApo.insalPeric.fimInsalPeric.cdata != '':
         for fimInsalPeric in evtInsApo.insalPeric.fimInsalPeric:
             s2241_fiminsalperic_dados = {}
             s2241_fiminsalperic_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
 
-            if 'dtFimCondicao' in dir(fimInsalPeric): s2241_fiminsalperic_dados['dtfimcondicao'] = fimInsalPeric.dtFimCondicao.cdata
+            try: s2241_fiminsalperic_dados['dtfimcondicao'] = fimInsalPeric.dtFimCondicao.cdata
+            except AttributeError: pass
             insert = create_insert('s2241_fiminsalperic', s2241_fiminsalperic_dados)
             resp = executar_sql(insert, True)
             s2241_fiminsalperic_id = resp[0][0]
             #print s2241_fiminsalperic_id
 
-            if 'infoAmb' in dir(fimInsalPeric):
+            if 'infoAmb' in dir(fimInsalPeric) and fimInsalPeric.infoAmb.cdata != '':
                 for infoAmb in fimInsalPeric.infoAmb:
                     s2241_fiminsalperic_infoamb_dados = {}
                     s2241_fiminsalperic_infoamb_dados['s2241_fiminsalperic_id'] = s2241_fiminsalperic_id
 
-                    if 'codAmb' in dir(infoAmb): s2241_fiminsalperic_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    try: s2241_fiminsalperic_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2241_fiminsalperic_infoamb', s2241_fiminsalperic_infoamb_dados)
                     resp = executar_sql(insert, True)
                     s2241_fiminsalperic_infoamb_id = resp[0][0]
                     #print s2241_fiminsalperic_infoamb_id
 
-    if 'iniAposentEsp' in dir(evtInsApo.aposentEsp):
+    if 'iniAposentEsp' in dir(evtInsApo.aposentEsp) and evtInsApo.aposentEsp.iniAposentEsp.cdata != '':
         for iniAposentEsp in evtInsApo.aposentEsp.iniAposentEsp:
             s2241_iniaposentesp_dados = {}
             s2241_iniaposentesp_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
 
-            if 'dtIniCondicao' in dir(iniAposentEsp): s2241_iniaposentesp_dados['dtinicondicao'] = iniAposentEsp.dtIniCondicao.cdata
+            try: s2241_iniaposentesp_dados['dtinicondicao'] = iniAposentEsp.dtIniCondicao.cdata
+            except AttributeError: pass
             insert = create_insert('s2241_iniaposentesp', s2241_iniaposentesp_dados)
             resp = executar_sql(insert, True)
             s2241_iniaposentesp_id = resp[0][0]
             #print s2241_iniaposentesp_id
 
-            if 'infoAmb' in dir(iniAposentEsp):
+            if 'infoAmb' in dir(iniAposentEsp) and iniAposentEsp.infoAmb.cdata != '':
                 for infoAmb in iniAposentEsp.infoAmb:
                     s2241_iniaposentesp_infoamb_dados = {}
                     s2241_iniaposentesp_infoamb_dados['s2241_iniaposentesp_id'] = s2241_iniaposentesp_id
 
-                    if 'codAmb' in dir(infoAmb): s2241_iniaposentesp_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    try: s2241_iniaposentesp_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2241_iniaposentesp_infoamb', s2241_iniaposentesp_infoamb_dados)
                     resp = executar_sql(insert, True)
                     s2241_iniaposentesp_infoamb_id = resp[0][0]
                     #print s2241_iniaposentesp_infoamb_id
 
-    if 'altAposentEsp' in dir(evtInsApo.aposentEsp):
+    if 'altAposentEsp' in dir(evtInsApo.aposentEsp) and evtInsApo.aposentEsp.altAposentEsp.cdata != '':
         for altAposentEsp in evtInsApo.aposentEsp.altAposentEsp:
             s2241_altaposentesp_dados = {}
             s2241_altaposentesp_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
 
-            if 'dtAltCondicao' in dir(altAposentEsp): s2241_altaposentesp_dados['dtaltcondicao'] = altAposentEsp.dtAltCondicao.cdata
+            try: s2241_altaposentesp_dados['dtaltcondicao'] = altAposentEsp.dtAltCondicao.cdata
+            except AttributeError: pass
             insert = create_insert('s2241_altaposentesp', s2241_altaposentesp_dados)
             resp = executar_sql(insert, True)
             s2241_altaposentesp_id = resp[0][0]
             #print s2241_altaposentesp_id
 
-            if 'infoamb' in dir(altAposentEsp):
+            if 'infoamb' in dir(altAposentEsp) and altAposentEsp.infoamb.cdata != '':
                 for infoamb in altAposentEsp.infoamb:
                     s2241_altaposentesp_infoamb_dados = {}
                     s2241_altaposentesp_infoamb_dados['s2241_altaposentesp_id'] = s2241_altaposentesp_id
 
-                    if 'codAmb' in dir(infoamb): s2241_altaposentesp_infoamb_dados['codamb'] = infoamb.codAmb.cdata
+                    try: s2241_altaposentesp_infoamb_dados['codamb'] = infoamb.codAmb.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2241_altaposentesp_infoamb', s2241_altaposentesp_infoamb_dados)
                     resp = executar_sql(insert, True)
                     s2241_altaposentesp_infoamb_id = resp[0][0]
                     #print s2241_altaposentesp_infoamb_id
 
-    if 'fimAposentEsp' in dir(evtInsApo.aposentEsp):
+    if 'fimAposentEsp' in dir(evtInsApo.aposentEsp) and evtInsApo.aposentEsp.fimAposentEsp.cdata != '':
         for fimAposentEsp in evtInsApo.aposentEsp.fimAposentEsp:
             s2241_fimaposentesp_dados = {}
             s2241_fimaposentesp_dados['s2241_evtinsapo_id'] = s2241_evtinsapo_id
 
-            if 'dtFimCondicao' in dir(fimAposentEsp): s2241_fimaposentesp_dados['dtfimcondicao'] = fimAposentEsp.dtFimCondicao.cdata
+            try: s2241_fimaposentesp_dados['dtfimcondicao'] = fimAposentEsp.dtFimCondicao.cdata
+            except AttributeError: pass
             insert = create_insert('s2241_fimaposentesp', s2241_fimaposentesp_dados)
             resp = executar_sql(insert, True)
             s2241_fimaposentesp_id = resp[0][0]
             #print s2241_fimaposentesp_id
 
-            if 'infoAmb' in dir(fimAposentEsp):
+            if 'infoAmb' in dir(fimAposentEsp) and fimAposentEsp.infoAmb.cdata != '':
                 for infoAmb in fimAposentEsp.infoAmb:
                     s2241_fimaposentesp_infoamb_dados = {}
                     s2241_fimaposentesp_infoamb_dados['s2241_fimaposentesp_id'] = s2241_fimaposentesp_id
 
-                    if 'codAmb' in dir(infoAmb): s2241_fimaposentesp_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    try: s2241_fimaposentesp_infoamb_dados['codamb'] = infoAmb.codAmb.cdata
+                    except AttributeError: pass
                     insert = create_insert('s2241_fimaposentesp_infoamb', s2241_fimaposentesp_infoamb_dados)
                     resp = executar_sql(insert, True)
                     s2241_fimaposentesp_infoamb_id = resp[0][0]

@@ -79,11 +79,16 @@ def read_s5013_evtfgts_obj(doc, status, validar=False):
     s5013_evtfgts_dados['identidade'] = doc.eSocial.evtFGTS['Id']
     evtFGTS = doc.eSocial.evtFGTS
 
-    if 'perApur' in dir(evtFGTS.ideEvento): s5013_evtfgts_dados['perapur'] = evtFGTS.ideEvento.perApur.cdata
-    if 'tpInsc' in dir(evtFGTS.ideEmpregador): s5013_evtfgts_dados['tpinsc'] = evtFGTS.ideEmpregador.tpInsc.cdata
-    if 'nrInsc' in dir(evtFGTS.ideEmpregador): s5013_evtfgts_dados['nrinsc'] = evtFGTS.ideEmpregador.nrInsc.cdata
-    if 'nrRecArqBase' in dir(evtFGTS.infoFGTS): s5013_evtfgts_dados['nrrecarqbase'] = evtFGTS.infoFGTS.nrRecArqBase.cdata
-    if 'indExistInfo' in dir(evtFGTS.infoFGTS): s5013_evtfgts_dados['indexistinfo'] = evtFGTS.infoFGTS.indExistInfo.cdata
+    try: s5013_evtfgts_dados['perapur'] = evtFGTS.ideEvento.perApur.cdata
+    except AttributeError: pass
+    try: s5013_evtfgts_dados['tpinsc'] = evtFGTS.ideEmpregador.tpInsc.cdata
+    except AttributeError: pass
+    try: s5013_evtfgts_dados['nrinsc'] = evtFGTS.ideEmpregador.nrInsc.cdata
+    except AttributeError: pass
+    try: s5013_evtfgts_dados['nrrecarqbase'] = evtFGTS.infoFGTS.nrRecArqBase.cdata
+    except AttributeError: pass
+    try: s5013_evtfgts_dados['indexistinfo'] = evtFGTS.infoFGTS.indExistInfo.cdata
+    except AttributeError: pass
     if 'inclusao' in dir(evtFGTS.infoFGTS): s5013_evtfgts_dados['operacao'] = 1
     elif 'alteracao' in dir(evtFGTS.infoFGTS): s5013_evtfgts_dados['operacao'] = 2
     elif 'exclusao' in dir(evtFGTS.infoFGTS): s5013_evtfgts_dados['operacao'] = 3
@@ -97,71 +102,81 @@ def read_s5013_evtfgts_obj(doc, status, validar=False):
     dados['identidade_evento'] = doc.eSocial.evtFGTS['Id']
     dados['status'] = STATUS_EVENTO_IMPORTADO
 
-    if 'basePerApur' in dir(evtFGTS.infoFGTS.infoBaseFGTS):
+    if 'basePerApur' in dir(evtFGTS.infoFGTS.infoBaseFGTS) and evtFGTS.infoFGTS.infoBaseFGTS.basePerApur.cdata != '':
         for basePerApur in evtFGTS.infoFGTS.infoBaseFGTS.basePerApur:
             s5013_baseperapur_dados = {}
             s5013_baseperapur_dados['s5013_evtfgts_id'] = s5013_evtfgts_id
 
-            if 'tpValor' in dir(basePerApur): s5013_baseperapur_dados['tpvalor'] = basePerApur.tpValor.cdata
-            if 'baseFGTS' in dir(basePerApur): s5013_baseperapur_dados['basefgts'] = basePerApur.baseFGTS.cdata
+            try: s5013_baseperapur_dados['tpvalor'] = basePerApur.tpValor.cdata
+            except AttributeError: pass
+            try: s5013_baseperapur_dados['basefgts'] = basePerApur.baseFGTS.cdata
+            except AttributeError: pass
             insert = create_insert('s5013_baseperapur', s5013_baseperapur_dados)
             resp = executar_sql(insert, True)
             s5013_baseperapur_id = resp[0][0]
             #print s5013_baseperapur_id
 
-    if 'infoBasePerAntE' in dir(evtFGTS.infoFGTS.infoBaseFGTS):
+    if 'infoBasePerAntE' in dir(evtFGTS.infoFGTS.infoBaseFGTS) and evtFGTS.infoFGTS.infoBaseFGTS.infoBasePerAntE.cdata != '':
         for infoBasePerAntE in evtFGTS.infoFGTS.infoBaseFGTS.infoBasePerAntE:
             s5013_infobaseperante_dados = {}
             s5013_infobaseperante_dados['s5013_evtfgts_id'] = s5013_evtfgts_id
 
-            if 'perRef' in dir(infoBasePerAntE): s5013_infobaseperante_dados['perref'] = infoBasePerAntE.perRef.cdata
+            try: s5013_infobaseperante_dados['perref'] = infoBasePerAntE.perRef.cdata
+            except AttributeError: pass
             insert = create_insert('s5013_infobaseperante', s5013_infobaseperante_dados)
             resp = executar_sql(insert, True)
             s5013_infobaseperante_id = resp[0][0]
             #print s5013_infobaseperante_id
 
-            if 'basePerAntE' in dir(infoBasePerAntE):
+            if 'basePerAntE' in dir(infoBasePerAntE) and infoBasePerAntE.basePerAntE.cdata != '':
                 for basePerAntE in infoBasePerAntE.basePerAntE:
                     s5013_baseperante_dados = {}
                     s5013_baseperante_dados['s5013_infobaseperante_id'] = s5013_infobaseperante_id
 
-                    if 'tpValorE' in dir(basePerAntE): s5013_baseperante_dados['tpvalore'] = basePerAntE.tpValorE.cdata
-                    if 'baseFGTSE' in dir(basePerAntE): s5013_baseperante_dados['basefgtse'] = basePerAntE.baseFGTSE.cdata
+                    try: s5013_baseperante_dados['tpvalore'] = basePerAntE.tpValorE.cdata
+                    except AttributeError: pass
+                    try: s5013_baseperante_dados['basefgtse'] = basePerAntE.baseFGTSE.cdata
+                    except AttributeError: pass
                     insert = create_insert('s5013_baseperante', s5013_baseperante_dados)
                     resp = executar_sql(insert, True)
                     s5013_baseperante_id = resp[0][0]
                     #print s5013_baseperante_id
 
-    if 'dpsPerApur' in dir(evtFGTS.infoFGTS.infoDpsFGTS):
+    if 'dpsPerApur' in dir(evtFGTS.infoFGTS.infoDpsFGTS) and evtFGTS.infoFGTS.infoDpsFGTS.dpsPerApur.cdata != '':
         for dpsPerApur in evtFGTS.infoFGTS.infoDpsFGTS.dpsPerApur:
             s5013_dpsperapur_dados = {}
             s5013_dpsperapur_dados['s5013_evtfgts_id'] = s5013_evtfgts_id
 
-            if 'tpDps' in dir(dpsPerApur): s5013_dpsperapur_dados['tpdps'] = dpsPerApur.tpDps.cdata
-            if 'vrFGTS' in dir(dpsPerApur): s5013_dpsperapur_dados['vrfgts'] = dpsPerApur.vrFGTS.cdata
+            try: s5013_dpsperapur_dados['tpdps'] = dpsPerApur.tpDps.cdata
+            except AttributeError: pass
+            try: s5013_dpsperapur_dados['vrfgts'] = dpsPerApur.vrFGTS.cdata
+            except AttributeError: pass
             insert = create_insert('s5013_dpsperapur', s5013_dpsperapur_dados)
             resp = executar_sql(insert, True)
             s5013_dpsperapur_id = resp[0][0]
             #print s5013_dpsperapur_id
 
-    if 'infoDpsPerAntE' in dir(evtFGTS.infoFGTS.infoDpsFGTS):
+    if 'infoDpsPerAntE' in dir(evtFGTS.infoFGTS.infoDpsFGTS) and evtFGTS.infoFGTS.infoDpsFGTS.infoDpsPerAntE.cdata != '':
         for infoDpsPerAntE in evtFGTS.infoFGTS.infoDpsFGTS.infoDpsPerAntE:
             s5013_infodpsperante_dados = {}
             s5013_infodpsperante_dados['s5013_evtfgts_id'] = s5013_evtfgts_id
 
-            if 'perRef' in dir(infoDpsPerAntE): s5013_infodpsperante_dados['perref'] = infoDpsPerAntE.perRef.cdata
+            try: s5013_infodpsperante_dados['perref'] = infoDpsPerAntE.perRef.cdata
+            except AttributeError: pass
             insert = create_insert('s5013_infodpsperante', s5013_infodpsperante_dados)
             resp = executar_sql(insert, True)
             s5013_infodpsperante_id = resp[0][0]
             #print s5013_infodpsperante_id
 
-            if 'dpsPerAntE' in dir(infoDpsPerAntE):
+            if 'dpsPerAntE' in dir(infoDpsPerAntE) and infoDpsPerAntE.dpsPerAntE.cdata != '':
                 for dpsPerAntE in infoDpsPerAntE.dpsPerAntE:
                     s5013_dpsperante_dados = {}
                     s5013_dpsperante_dados['s5013_infodpsperante_id'] = s5013_infodpsperante_id
 
-                    if 'tpDpsE' in dir(dpsPerAntE): s5013_dpsperante_dados['tpdpse'] = dpsPerAntE.tpDpsE.cdata
-                    if 'vrFGTSE' in dir(dpsPerAntE): s5013_dpsperante_dados['vrfgtse'] = dpsPerAntE.vrFGTSE.cdata
+                    try: s5013_dpsperante_dados['tpdpse'] = dpsPerAntE.tpDpsE.cdata
+                    except AttributeError: pass
+                    try: s5013_dpsperante_dados['vrfgtse'] = dpsPerAntE.vrFGTSE.cdata
+                    except AttributeError: pass
                     insert = create_insert('s5013_dpsperante', s5013_dpsperante_dados)
                     resp = executar_sql(insert, True)
                     s5013_dpsperante_id = resp[0][0]
