@@ -51,7 +51,7 @@ def listar(request, hash):
         usuario_id = False
         return redirect('login')
     usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='importacao_arquivos_eventos')
+    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='mapa_importacoes')
     permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
     dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
@@ -108,10 +108,10 @@ def listar(request, hash):
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
         dict_qs = clear_dict_fields(dict_fields)
 
-        importacao_arquivos_eventos_lista = ImportacaoArquivosEventos.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False, status=0).exclude(id=0).all()
-        importacao_arquivos_eventos_erros_lista = ImportacaoArquivosEventos.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False, status=2).exclude(id=0).all()
+        lista_aguardando = ImportacaoArquivosEventos.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False, status=0).exclude(id=0).all()
+        lista_erros = ImportacaoArquivosEventos.objects.using( db_slug ).filter(**dict_qs).filter(excluido = False, status=2).exclude(id=0).all()
+        lista_processados = ImportacaoArquivos.objects.using( db_slug ).filter(excluido = False, status=0).all()
 
-        importacao_arquivos_lista = ImportacaoArquivos.objects.using( db_slug ).filter(excluido = False, status=0).all()
         #importacao_arquivos_eventos_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'mapa_importacoes'
@@ -119,8 +119,9 @@ def listar(request, hash):
         context = {
 
             'tab': dict_hash['tab'],
-            'importacao_arquivos_eventos_lista': importacao_arquivos_eventos_lista,
-            'importacao_arquivos_eventos_erros_lista': importacao_arquivos_eventos_erros_lista,
+            'lista_aguardando': lista_aguardando,
+            'lista_erros': lista_erros,
+            'lista_processados': lista_processados,
 
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
@@ -136,7 +137,7 @@ def listar(request, hash):
             'hash': hash,
             'filtrar': filtrar,
 
-            'importacao_arquivos_lista': importacao_arquivos_lista,
+            #'importacao_arquivos_lista': importacao_arquivos_lista,
         }
         return render(request, 'mapa_importacoes.html', context)
     else:

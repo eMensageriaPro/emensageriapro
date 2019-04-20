@@ -85,7 +85,9 @@
                     <div class="icon"><i class="fa fa-check"></i></div>
                     <a href="{% url 'mapa_esocial' hash='{}'|json_tab:'processados'|json_id:0|json_print:0|base64_encode_me %}"
                        class="small-box-footer">Visualizar<i class="fa fa-eye"></i></a></div>
-            </div><!-- ./col --></div>{% if not tab %}
+            </div><!-- ./col -->
+        </div>
+        {% if not tab %}
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-success">
