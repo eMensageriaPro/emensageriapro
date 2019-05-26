@@ -1,1 +1,31 @@
-{% load templatetags %}{% load static %}{% if not s5013_evtfgts_id or s5013_evtfgts_id != s5013_infodpsfgts_form.s5013_evtfgts.value %}<!-- inicio__s5013_infodpsfgts__s5013_evtfgts --><div class="col-md-12" id="s5013_infodpsfgts__s5013_evtfgts__div"><div class="form-group"><label id="s5013_infodpsfgts__s5013_evtfgts__label">Evento consolidado por contribuinte referente ao FGTS devido.*<a data-toggle="tooltip" title="Informações sobre valores de FGTS, agrupados por {tpDps}."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s5013_infodpsfgts_form.s5013_evtfgts.value %}<a href="{% url 's5013_evtfgts_salvar' hash='{}'|json_return_page:'s5013_infodpsfgts_salvar'|json_return_hash:hash|json_id:s5013_infodpsfgts_form.s5013_evtfgts.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s5013_infodpsfgts_form.s5013_evtfgts.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5013_infodpsfgts_form.s5013_evtfgts.errors }}</div>{% endif %} {% if s5013_infodpsfgts_form.s5013_evtfgts.field.widget.attrs.readonly %} {% if s5013_infodpsfgts_form.s5013_evtfgts.field.widget.attrs.disabled %} {{ s5013_infodpsfgts_form.s5013_evtfgts|addcss:'form-control' }}<input id="id_s5013_evtfgts" name="s5013_evtfgts" type="hidden" value="{{ s5013_infodpsfgts_form.s5013_evtfgts.value }}">{% else %} {{ s5013_infodpsfgts_form.s5013_evtfgts|addcss:'form-control' }} {% endif %} {% else %} {{ s5013_infodpsfgts_form.s5013_evtfgts|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s5013_infodpsfgts__s5013_evtfgts -->{% else %}<input type="hidden" value="{{ s5013_evtfgts_id|valor }}" id="id_s5013_evtfgts" name="s5013_evtfgts">{% endif %}
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5013_infodpsfgts__s5013_evtfgts -->
+<div class="col-md-12" id="s5013_infodpsfgts__s5013_evtfgts__div">
+  <div class="form-group">
+    <label id="s5013_infodpsfgts__s5013_evtfgts__label">Informações sobre valores de FGTS.*</label>
+    {% if not for_print %}{% if s5013_infodpsfgts_form.s5013_evtfgts.value %}
+        <a href="{% url 's5013_evtfgts_salvar' hash='{}'|json_return_page:'s5013_infodpsfgts_salvar'|json_return_hash:hash|json_id:s5013_infodpsfgts_form.s5013_evtfgts.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s5013_infodpsfgts_form.s5013_evtfgts.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5013_infodpsfgts_form.s5013_evtfgts.errors }}
+      </div>
+    {% endif %}
+    {% if s5013_infodpsfgts_form.s5013_evtfgts.field.widget.attrs.readonly %}
+      {% if s5013_infodpsfgts_form.s5013_evtfgts.field.widget.attrs.disabled %}
+        {{ s5013_infodpsfgts_form.s5013_evtfgts|addcss:'form-control' }}
+        <input id="id_s5013_evtfgts" name="s5013_evtfgts" type="hidden" value="{{ s5013_infodpsfgts_form.s5013_evtfgts.value }}">
+      {% else %}
+        {{ s5013_infodpsfgts_form.s5013_evtfgts|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s5013_infodpsfgts_form.s5013_evtfgts|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s5013_infodpsfgts__s5013_evtfgts -->

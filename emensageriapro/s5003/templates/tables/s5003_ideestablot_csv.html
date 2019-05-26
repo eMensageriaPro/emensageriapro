@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)"
-{% if show_fields.show_s5003_infofgts or not s5003_infofgts_id and 1 %}"Informações relativas ao FGTS.";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Número de inscrição (CPF/CNPJ)";{% endif %}{% if show_fields.show_codlotacao or 1 %}"Código da Lotação";{% endif %}
-{% for a in s5003_ideestablot_lista %}{% if show_fields.show_s5003_infofgts or  not s5003_infofgts_id and 1 %}"{{ a.s5003_infofgts }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ a.tpinsc }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ a.nrinsc }}";{% endif %}{% if show_fields.show_codlotacao or 1 %}"{{ a.codlotacao }}";{% endif %}
-{% endfor %}

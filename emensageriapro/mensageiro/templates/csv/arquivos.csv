@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_arquivo or 1 %}"Arquivo";{% endif %}{% if show_fields.show_data_criacao or 1 %}"Data de Criação";{% endif %}{% if show_fields.show_permite_recuperacao or 1 %}"Permite Recuperação";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_arquivo or 1 %}"{{ c.arquivo }}";{% endif %}{% if show_fields.show_data_criacao or 1 %}"{{ c.data_criacao }}";{% endif %}{% if show_fields.show_permite_recuperacao or 1 %}"{{ c.permite_recuperacao }}";{% endif %}
+{% endfor %}

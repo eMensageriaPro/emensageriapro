@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações do empregado doméstico transferido de outro representante da mesma unidade familiar"
-{% if show_fields.show_s2200_evtadmissao or not s2200_evtadmissao_id and 1 %}"Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador";{% endif %}{% if show_fields.show_cpfsubstituido or 1 %}"Preencher com o número do CPF do representante anterior da unidade familiar";{% endif %}{% if show_fields.show_matricant or 0 %}"Matricula anterior";{% endif %}{% if show_fields.show_dttransf or 1 %}"Preencher com a data da transferência do empregado para o empregador declarante";{% endif %}
-{% for a in s2200_transfdom_lista %}{% if show_fields.show_s2200_evtadmissao or  not s2200_evtadmissao_id and 1 %}"{{ a.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_cpfsubstituido or 1 %}"{{ a.cpfsubstituido }}";{% endif %}{% if show_fields.show_matricant or 0 %}"{{ a.matricant }}";{% endif %}{% if show_fields.show_dttransf or 1 %}"{{ a.dttransf|date:"d/m/Y" }}";{% endif %}
-{% endfor %}

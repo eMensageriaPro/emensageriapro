@@ -1,1 +1,380 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% extends 'base.html' %}{% load templatetags %}{% block content %}<section class="content-header"><h1>Perfis<small>Cadastrar/Editar</small></h1><ol class="breadcrumb"><li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li><li><a href="#">Perfis</a></li><li class="active">Cadastrar/Editar</li></ol></section>{% if not for_print %}<section class="content"><div class="row"><div class="col-xs-12"><div class="nav-tabs-custom"><ul class="nav nav-tabs">{% if dict_permissoes|get_permissao:'config_perfis_visualizar' %}<li {% if not tab %}class="active"{% endif %}><a href="{% url 'config_perfis_salvar' hash='{}'|json_return_page:'config_perfis_salvar'|json_return_hash:hash|json_id:config_perfis_id|json_print:0|base64_encode_me %}">Perfis</a></li>{% endif %}{% if config_perfis_id %}<!-- ANTES-TABS-config_permissoes -->{% if dict_permissoes|get_permissao:'config_permissoes_visualizar' %}<li {% if tab == 'config_permissoes' %}class="active"{% endif %}><a href="{% url 'config_perfis_salvar' hash='{}'|json_id:config_perfis_id|json_print:0|json_tab:'config_permissoes'|base64_encode_me %}">Permissões</a></li>{% endif %}<!-- DEPOIS-TABS-config_permissoes -->{% endif %}</ul></div></div></div>{% else %}<section class="invoice">{% endif %} {% if not for_print %} {% if messages %}<div class="row"><div class="pad margin no-print">{% for message in messages %}<div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div></div>{% endif %} {% if config_perfis_form.errors %}<div class="row"><div class="pad margin no-print">{% for error in config_perfis_form.non_field_errors %}<div class="alert alert-error" style="margin-bottom: 0!important;">{{ error|escape }}</div>{% endfor %}</div></div>{% endif %} {% endif %} {% if not tab %}<div class="row"><div class="col-md-12">{% if not for_print %}<div class="box box-primary"><div class="box-header with-border"><h3 class="box-title">Cadastrar/Editar Perfil</h3></div>{% else %}<div class="row">{% endif %} {% if not for_print %} {% if dict_permissoes|get_permissao:'config_perfis_editar' or dict_permissoes|get_permissao:'config_perfis_cadastrar' %}<form action="#" id="id_form_config_perfis" method="POST" content="text/html; charset=UTF-8">{% csrf_token %} {% endif %} {% endif %}<div class="box-body"><div class="row">{% include 'forms/config_perfis.html' %}</div></div>{% if not for_print %}<div class="row"><div class="form-group col-md-4"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-8"><div class="box-footer text-right"><!-- botões especiais -->{% if config_perfis_id %} {% if dict_permissoes|get_permissao:'config_perfis_cadastrar' %}<a href="{% url 'config_perfis_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>{% endif %} {% endif %} {% if dict_permissoes|get_permissao:'config_perfis_listar' or dict_permissoes|get_permissao:'config_perfis_listar' %}<a href="{% url 'config_perfis' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %} {% if dict_permissoes|get_permissao:'config_perfis_visualizar' and config_perfis_id %}<a href="{% url 'config_perfis_salvar' hash='{}'|json_id:config_perfis_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %} {% if dict_permissoes|get_permissao:'config_perfis_visualizar' and config_perfis_id %}<div class="btn-group"><button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar</button><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span></button><ul class="dropdown-menu" role="menu"><li class="text-left"><a href="{% url 'config_perfis_salvar' hash='{}'|json_id:config_perfis_id|json_print:2|base64_encode_me %}" target="_blank"><span id="ExportarPDF" type="submit" class="btn btn-default"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</span></a></li><!--<li class="text-left"><a href="{% url 'config_perfis_salvar' hash='{}'|json_id:config_perfis_id|json_print:3|base64_encode_me %}" target="_blank"><span id="ExportarXLS" type="submit" class="btn btn-default"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</span></a></li>--></ul></div>&nbsp;{% endif %} {% if dict_permissoes|get_permissao:'config_perfis_editar' or dict_permissoes|get_permissao:'config_perfis_cadastrar' %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %} {% if dict_permissoes|get_permissao:'config_perfis_apagar' and config_perfis_id %}<a href="{% url 'config_perfis_apagar' hash='{}'|json_id:config_perfis_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}<a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a></div></div></div>{% endif %} {% if not for_print %} {% if dict_permissoes|get_permissao:'config_perfis_editar' or dict_permissoes|get_permissao:'config_perfis_cadastrar' %}</form>{% endif %} {% endif %}</div><!-- TEXTO_ABAIXO_FORMULARIO --></div></div></div></div>{% endif %}<!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->{% if config_perfis_id %}<!-- begin_Permissões -->{% if tab == 'config_permissoes' or for_print %} {% if dict_permissoes|get_permissao:'config_permissoes_visualizar' %} {% if dict_permissoes|get_permissao:'config_permissoes_editar' or dict_permissoes|get_permissao:'config_permissoes_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Permissões</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'config_permissoes_editar' or dict_permissoes|get_permissao:'config_permissoes_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'config_permissoes_cadastrar' %}<!-- begin_form_config_permissoes --><div id="cadastrar" style="display:none"><form id="id_form_config_permissoes" action="{% url 'config_permissoes_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/config_permissoes.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_config_permissoes -->{% endif %}<div id="listar"><!-- begin_table_config_permissoes -->{% include 'tables/config_permissoes.html' %}<!-- end_table_config_permissoes --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Permissões -->{% endif %}</section><!-- script --><!--- javascript -->{% endblock content %}
+<!--
+
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->{% extends 'base.html' %}
+{% load templatetags %}
+{% block content %}
+
+<section class="content-header">
+    <h1>
+        ConfigPerfis
+        <small>Cadastrar/Editar</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">ConfigPerfis</a></li>
+        <li class="active">Cadastrar/Editar</li>
+    </ol>
+</section>
+
+{% if not for_print %}
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if dict_permissoes|get_permissao:'config_perfis_visualizar' %}
+                    <li {% if not tab %}class="active"{% endif %} >
+                            <a href="{% url 'config_perfis_salvar' hash='{}'|json_return_page:'config_perfis_salvar'|json_return_hash:hash|json_id:config_perfis_id|json_print:0|base64_encode_me %}">
+                            Perfis
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if config_perfis_id %}
+                        
+                            {% if dict_permissoes|get_permissao:'config_permissoes_visualizar' %}
+                                <li {% if tab == 'config_permissoes' %} class="active"{% endif %} >
+                                    <a href="{% url 'config_perfis_salvar' hash='{}'|json_id:config_perfis_id|json_print:0|json_tab:'config_permissoes'|base64_encode_me %}">
+                                    Permissões</a>
+                                </li>
+                            {% endif %}
+                        
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+
+<section class="invoice">
+
+{% endif %}
+  
+                  
+{% if not for_print %}
+
+    {% if messages %}
+
+    <div class="row">
+        <div class="pad margin no-print">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endif %}
+
+      
+    {% if config_perfis_form.errors %}
+
+    <div class="row">
+        <div class="pad margin no-print">
+            {% for error in config_perfis_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endif %}
+   
+{% endif %}
+
+{% if not tab %}
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+        {% if not for_print %}
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Perfis</h3>
+                </div>
+
+        {% else %}
+
+            <div class="row">
+
+        {% endif %}
+
+
+        {% if not for_print %}
+            {% if dict_permissoes|get_permissao:'config_perfis_editar' or dict_permissoes|get_permissao:'config_perfis_cadastrar' %}
+                <form action="#" id="id_form_config_perfis" method="POST" content="text/html; charset=UTF-8">
+                {% csrf_token %}
+            {% endif %}
+        {% endif %}
+
+                <div class="box-body">
+                    <div class="row">
+                        {% include 'forms/config_perfis.html' %}
+                    </div>
+                </div>
+
+
+                {% if not for_print %}
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <div class="box-footer text-left">
+                            <font color="red">* Campos Obrigatórios.
+                            </font>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <div class="box-footer text-right">
+                            <!-- botões especiais -->
+                            {% if config_perfis_id %}
+
+                                {% if dict_permissoes|get_permissao:'config_perfis_cadastrar' %}
+                                    <a href="{% url 'config_perfis_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                                        <span class="btn btn-info">
+                                            <i class="fa fa-plus-circle"></i>
+                                            &nbsp;Cadastrar
+                                        </span>
+                                    </a>
+
+                                {% endif %}
+
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'config_perfis_listar' or dict_permissoes|get_permissao:'config_perfis_listar' %}
+                                <a href="{% url 'config_perfis'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                                    <span class="btn btn-primary">
+                                        <i class="fa fa-list"></i>
+                                        &nbsp;Listagem
+                                    </span>
+                                </a>&nbsp;
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'config_perfis_visualizar' and config_perfis_id %}
+                                <a href="{% url 'config_perfis_salvar' hash='{}'|json_id:config_perfis_id|json_print:1|base64_encode_me %}" target="_blank">
+                                    <span class="btn btn-primary">
+                                        <i class="fa fa-print"></i>
+                                        &nbsp;Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            {% endif %}
+                            
+                            {% if dict_permissoes|get_permissao:'config_perfis_visualizar' and config_perfis_id %}
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fa fa-download"></i>
+                                        &nbsp;Exportar
+                                    </button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Exportar</span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 'config_perfis_salvar' hash='{}'|json_id:config_perfis_id|json_print:2|base64_encode_me %}"
+                                            target="_blank">
+                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
+                                                    <i class="fa fa-file-pdf-o"></i>
+                                                    &nbsp;PDF
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>&nbsp;
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'config_perfis_editar' or dict_permissoes|get_permissao:'config_perfis_cadastrar' %}
+                            
+                            <button type="submit" class="btn btn-primary" >
+                                <i class="fa fa-save"></i>
+                                &nbsp;Salvar
+                            </button>&nbsp;
+
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'config_perfis_apagar' and config_perfis_id %}
+
+                            <a href="{% url 'config_perfis_apagar' hash='{}'|json_id:config_perfis_id|json_print:0|base64_encode_me %}">
+                                <span class="btn btn-danger">
+                                    <i class="fa fa-remove"></i> &nbsp;Apagar
+                                </span>
+                            </a>&nbsp;
+
+                            {% endif %}
+
+                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>
+                                &nbsp;Voltar
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if not for_print %}
+
+                    {% if dict_permissoes|get_permissao:'config_perfis_editar' or dict_permissoes|get_permissao:'config_perfis_cadastrar' %}
+                        </form>
+                    {% endif %}
+
+                {% endif %}
+
+
+            </div>    
+
+        <!-- TEXTO_ABAIXO_FORMULARIO -->
+
+        </div>
+    </div>
+
+    {% endif %}
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+
+    {% if config_perfis_id %}
+
+        
+            
+            <!-- begin_config_permissoes -->
+
+            {% if tab == 'config_permissoes' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'config_permissoes_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'config_permissoes_editar' or dict_permissoes|get_permissao:'config_permissoes_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Permissões</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'config_permissoes_editar' or dict_permissoes|get_permissao:'config_permissoes_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'config_permissoes_cadastrar' %}            
+                                    <!-- begin_form_config_permissoes --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_config_permissoes" action="{% url 'config_permissoes_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/config_permissoes.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_config_permissoes -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_config_permissoes --> 
+
+                                    {% include 'tables/config_permissoes.html' %}
+                                        
+                                    <!-- end_table_config_permissoes --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_config_permissoes -->
+
+        
+
+    {% endif %}
+
+</section>
+
+<!-- script -->
+<!--- javascript -->
+
+{% endblock content %}

@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Período de validade das informações incluídas"
-{% if show_fields.show_s2299_infoperant_ideadc or not s2299_infoperant_ideadc_id and 1 %}"Identificação do Instrumento ou situação ensejadora da remuneração relativa a Períodos de Apuração Anteriores.";{% endif %}{% if show_fields.show_perref or 1 %}"Período de Referência";{% endif %}
-{% for a in s2299_infoperant_ideperiodo_lista %}{% if show_fields.show_s2299_infoperant_ideadc or  not s2299_infoperant_ideadc_id and 1 %}"{{ a.s2299_infoperant_ideadc }}";{% endif %}{% if show_fields.show_perref or 1 %}"{{ a.perref }}";{% endif %}
-{% endfor %}

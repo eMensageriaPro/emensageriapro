@@ -1,0 +1,64 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r4099_evtfech or 1 %}
+            <th>Responsável pelas informações</th>
+            {% endif %}
+            {% if show_fields.show_nmresp or 1 %}
+            <th>Nome do responsável pelas informações.</th>
+            {% endif %}
+            {% if show_fields.show_cpfresp or 1 %}
+            <th>Preencher com o CPF do responsável</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r4099_iderespinf_lista %}
+        <tr>
+            {% if show_fields.show_r4099_evtfech or 1 %}
+            <td>{{ a.r4099_evtfech }}</td>
+            {% endif %}
+            {% if show_fields.show_nmresp or 1 %}
+            <td>{{ a.nmresp }}</td>
+            {% endif %}
+            {% if show_fields.show_cpfresp or 1 %}
+            <td>{{ a.cpfresp }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r4099_iderespinf_visualizar' %}
+                        <a href="{% url 'r4099_iderespinf_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r4099_iderespinf_editar' or dict_permissoes|get_permissao:'r4099_iderespinf_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r4099_iderespinf_apagar' %}
+                        <a href="{% url 'r4099_iderespinf_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

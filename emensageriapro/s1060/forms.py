@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s1060.models import * 
-from emensageriapro.esocial.models import s1060evtTabAmbiente 
+from emensageriapro.s1060.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,25 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s1060_alteracao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1060_alteracao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True        
-        self.fields['codamb'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True        
-        self.fields['nmamb'].widget.attrs['required'] = True        
-        self.fields['dscamb'].widget.attrs['required'] = True        
-        self.fields['localamb'].widget.attrs['required'] = True
+        super(form_s1060_alteracao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -78,25 +74,25 @@ class form_s1060_alteracao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1060alteracao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1060_alteracao_novavalidade(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1060_alteracao_novavalidade, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1060_alteracao'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        super(form_s1060_alteracao_novavalidade, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -116,26 +112,25 @@ class form_s1060_alteracao_novavalidade(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1060alteracaonovaValidade
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1060_exclusao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1060_exclusao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True        
-        self.fields['codamb'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        super(form_s1060_exclusao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -155,29 +150,25 @@ class form_s1060_exclusao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1060exclusao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1060_inclusao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1060_inclusao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1060_evttabambiente'].widget.attrs['required'] = True        
-        self.fields['codamb'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True        
-        self.fields['nmamb'].widget.attrs['required'] = True        
-        self.fields['dscamb'].widget.attrs['required'] = True        
-        self.fields['localamb'].widget.attrs['required'] = True
+        super(form_s1060_inclusao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -197,10 +188,10 @@ class form_s1060_inclusao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1060inclusao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

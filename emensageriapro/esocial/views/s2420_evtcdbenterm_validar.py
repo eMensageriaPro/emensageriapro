@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,16 +46,83 @@ def validacoes_s2420_evtcdbenterm(arquivo):
     validacoes_lista = []
     xmlns = doc.eSocial['xmlns'].split('/')
     evtCdBenTerm = doc.eSocial.evtCdBenTerm
-
-    if 'indRetif' in dir(evtCdBenTerm.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.ideEvento.indRetif', evtCdBenTerm.ideEvento.indRetif.cdata, 1, u'1;2')
-    if 'nrRecibo' in dir(evtCdBenTerm.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.ideEvento.nrRecibo', evtCdBenTerm.ideEvento.nrRecibo.cdata, 0, u'')
-    if 'tpAmb' in dir(evtCdBenTerm.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.ideEvento.tpAmb', evtCdBenTerm.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtCdBenTerm.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.ideEvento.procEmi', evtCdBenTerm.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
-    if 'verProc' in dir(evtCdBenTerm.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.ideEvento.verProc', evtCdBenTerm.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtCdBenTerm.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.ideEmpregador.tpInsc', evtCdBenTerm.ideEmpregador.tpInsc.cdata, 1, u'1')
-    if 'nrInsc' in dir(evtCdBenTerm.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.ideEmpregador.nrInsc', evtCdBenTerm.ideEmpregador.nrInsc.cdata, 1, u'')
-    if 'cpfBenef' in dir(evtCdBenTerm.ideBeneficio): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.ideBeneficio.cpfBenef', evtCdBenTerm.ideBeneficio.cpfBenef.cdata, 1, u'')
-    if 'nrBeneficio' in dir(evtCdBenTerm.ideBeneficio): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.ideBeneficio.nrBeneficio', evtCdBenTerm.ideBeneficio.nrBeneficio.cdata, 1, u'')
-    if 'dtTermBeneficio' in dir(evtCdBenTerm.infoBenTermino): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.infoBenTermino.dtTermBeneficio', evtCdBenTerm.infoBenTermino.dtTermBeneficio.cdata, 1, u'')
-    if 'mtvTermino' in dir(evtCdBenTerm.infoBenTermino): validacoes_lista = validar_campo(validacoes_lista,'evtCdBenTerm.infoBenTermino.mtvTermino', evtCdBenTerm.infoBenTermino.mtvTermino.cdata, 1, u'')
+    #variaveis
+    
+    if 'ideEvento' in dir(evtCdBenTerm.ideEvento):
+        for ideEvento in evtCdBenTerm.ideEvento:
+            
+            if 'indRetif' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.indRetif', 
+                                                  ideEvento.indRetif.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'nrRecibo' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.nrRecibo', 
+                                                  ideEvento.nrRecibo.cdata, 
+                                                  0, u'None')
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideEmpregador' in dir(evtCdBenTerm.ideEmpregador):
+        for ideEmpregador in evtCdBenTerm.ideEmpregador:
+            
+            if 'tpInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.tpInsc', 
+                                                  ideEmpregador.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.nrInsc', 
+                                                  ideEmpregador.nrInsc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideBeneficio' in dir(evtCdBenTerm.ideBeneficio):
+        for ideBeneficio in evtCdBenTerm.ideBeneficio:
+            
+            if 'cpfBenef' in dir(ideBeneficio):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideBeneficio.cpfBenef', 
+                                                  ideBeneficio.cpfBenef.cdata, 
+                                                  1, u'None')
+            
+            if 'nrBeneficio' in dir(ideBeneficio):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideBeneficio.nrBeneficio', 
+                                                  ideBeneficio.nrBeneficio.cdata, 
+                                                  1, u'None')
+    
+    if 'infoBenTermino' in dir(evtCdBenTerm.infoBenTermino):
+        for infoBenTermino in evtCdBenTerm.infoBenTermino:
+            
+            if 'dtTermBeneficio' in dir(infoBenTermino):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoBenTermino.dtTermBeneficio', 
+                                                  infoBenTermino.dtTermBeneficio.cdata, 
+                                                  1, u'None')
+            
+            if 'mtvTermino' in dir(infoBenTermino):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoBenTermino.mtvTermino', 
+                                                  infoBenTermino.mtvTermino.cdata, 
+                                                  1, u'1, 2, 3, 4, 5, 6, 7, 8')
     return validacoes_lista

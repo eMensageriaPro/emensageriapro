@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,63 +46,257 @@ def validacoes_s1030_evttabcargo(arquivo):
     validacoes_lista = []
     xmlns = doc.eSocial['xmlns'].split('/')
     evtTabCargo = doc.eSocial.evtTabCargo
-
-    if 'tpAmb' in dir(evtTabCargo.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTabCargo.ideEvento.tpAmb', evtTabCargo.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtTabCargo.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTabCargo.ideEvento.procEmi', evtTabCargo.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
-    if 'verProc' in dir(evtTabCargo.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTabCargo.ideEvento.verProc', evtTabCargo.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtTabCargo.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabCargo.ideEmpregador.tpInsc', evtTabCargo.ideEmpregador.tpInsc.cdata, 1, u'1;2;3;4')
-    if 'nrInsc' in dir(evtTabCargo.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabCargo.ideEmpregador.nrInsc', evtTabCargo.ideEmpregador.nrInsc.cdata, 1, u'')
-    if 'inclusao' in dir(evtTabCargo.infoCargo):
-        for inclusao in evtTabCargo.infoCargo.inclusao:
-
-            if 'codCargo' in dir(inclusao.ideCargo): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideCargo.codCargo', inclusao.ideCargo.codCargo.cdata, 1, u'')
-            if 'iniValid' in dir(inclusao.ideCargo): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideCargo.iniValid', inclusao.ideCargo.iniValid.cdata, 1, u'')
-            if 'fimValid' in dir(inclusao.ideCargo): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideCargo.fimValid', inclusao.ideCargo.fimValid.cdata, 0, u'')
-            if 'nmCargo' in dir(inclusao.dadosCargo): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosCargo.nmCargo', inclusao.dadosCargo.nmCargo.cdata, 1, u'')
-            if 'codCBO' in dir(inclusao.dadosCargo): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosCargo.codCBO', inclusao.dadosCargo.codCBO.cdata, 1, u'')
-
-            if 'cargoPublico' in dir(inclusao.dadosCargo):
-                for cargoPublico in inclusao.dadosCargo.cargoPublico:
-
-                    if 'acumCargo' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.acumCargo', cargoPublico.acumCargo.cdata, 1, u'1;2;3;4')
-                    if 'contagemEsp' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.contagemEsp', cargoPublico.contagemEsp.cdata, 1, u'1;2;3;4')
-                    if 'dedicExcl' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.dedicExcl', cargoPublico.dedicExcl.cdata, 1, u'S;N')
-                    if 'codCarreira' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.codCarreira', cargoPublico.codCarreira.cdata, 0, u'')
-                    if 'nrLei' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.nrLei', cargoPublico.nrLei.cdata, 1, u'')
-                    if 'dtLei' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.dtLei', cargoPublico.dtLei.cdata, 1, u'')
-                    if 'sitCargo' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.sitCargo', cargoPublico.sitCargo.cdata, 1, u'1;2;3')
-
-    if 'alteracao' in dir(evtTabCargo.infoCargo):
-        for alteracao in evtTabCargo.infoCargo.alteracao:
-
-            if 'codCargo' in dir(alteracao.ideCargo): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideCargo.codCargo', alteracao.ideCargo.codCargo.cdata, 1, u'')
-            if 'iniValid' in dir(alteracao.ideCargo): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideCargo.iniValid', alteracao.ideCargo.iniValid.cdata, 1, u'')
-            if 'fimValid' in dir(alteracao.ideCargo): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideCargo.fimValid', alteracao.ideCargo.fimValid.cdata, 0, u'')
-            if 'nmCargo' in dir(alteracao.dadosCargo): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosCargo.nmCargo', alteracao.dadosCargo.nmCargo.cdata, 1, u'')
-            if 'codCBO' in dir(alteracao.dadosCargo): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosCargo.codCBO', alteracao.dadosCargo.codCBO.cdata, 1, u'')
-
-            if 'cargoPublico' in dir(alteracao.dadosCargo):
-                for cargoPublico in alteracao.dadosCargo.cargoPublico:
-
-                    if 'acumCargo' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.acumCargo', cargoPublico.acumCargo.cdata, 1, u'1;2;3;4')
-                    if 'contagemEsp' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.contagemEsp', cargoPublico.contagemEsp.cdata, 1, u'1;2;3;4')
-                    if 'dedicExcl' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.dedicExcl', cargoPublico.dedicExcl.cdata, 1, u'S;N')
-                    if 'codCarreira' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.codCarreira', cargoPublico.codCarreira.cdata, 0, u'')
-                    if 'nrLei' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.nrLei', cargoPublico.nrLei.cdata, 1, u'')
-                    if 'dtLei' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.dtLei', cargoPublico.dtLei.cdata, 1, u'')
-                    if 'sitCargo' in dir(cargoPublico): validacoes_lista = validar_campo(validacoes_lista,'cargoPublico.sitCargo', cargoPublico.sitCargo.cdata, 1, u'1;2;3')
-
-            if 'novaValidade' in dir(alteracao):
-                for novaValidade in alteracao.novaValidade:
-
-                    if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, u'')
-                    if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, u'')
-
-    if 'exclusao' in dir(evtTabCargo.infoCargo):
-        for exclusao in evtTabCargo.infoCargo.exclusao:
-
-            if 'codCargo' in dir(exclusao.ideCargo): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideCargo.codCargo', exclusao.ideCargo.codCargo.cdata, 1, u'')
-            if 'iniValid' in dir(exclusao.ideCargo): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideCargo.iniValid', exclusao.ideCargo.iniValid.cdata, 1, u'')
-            if 'fimValid' in dir(exclusao.ideCargo): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideCargo.fimValid', exclusao.ideCargo.fimValid.cdata, 0, u'')
-
+    #variaveis
+    
+    if 'ideEvento' in dir(evtTabCargo.ideEvento):
+        for ideEvento in evtTabCargo.ideEvento:
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideEmpregador' in dir(evtTabCargo.ideEmpregador):
+        for ideEmpregador in evtTabCargo.ideEmpregador:
+            
+            if 'tpInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.tpInsc', 
+                                                  ideEmpregador.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.nrInsc', 
+                                                  ideEmpregador.nrInsc.cdata, 
+                                                  1, u'None')
+    
+    if 'infoCargo' in dir(evtTabCargo.infoCargo):
+        for infoCargo in evtTabCargo.infoCargo:
+            
+            if 'inclusao' in dir(infoCargo.inclusao):
+                for inclusao in infoCargo.inclusao:
+                    
+                    if 'ideCargo' in dir(inclusao.ideCargo):
+                        for ideCargo in inclusao.ideCargo:
+                            
+                            if 'codCargo' in dir(ideCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideCargo.codCargo', 
+                                                                  ideCargo.codCargo.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'iniValid' in dir(ideCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideCargo.iniValid', 
+                                                                  ideCargo.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(ideCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideCargo.fimValid', 
+                                                                  ideCargo.fimValid.cdata, 
+                                                                  0, u'None')
+                    
+                    if 'dadosCargo' in dir(inclusao.dadosCargo):
+                        for dadosCargo in inclusao.dadosCargo:
+                            
+                            if 'nmCargo' in dir(dadosCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosCargo.nmCargo', 
+                                                                  dadosCargo.nmCargo.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'codCBO' in dir(dadosCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosCargo.codCBO', 
+                                                                  dadosCargo.codCBO.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'cargoPublico' in dir(dadosCargo.cargoPublico):
+                                for cargoPublico in dadosCargo.cargoPublico:
+                                    
+                                    if 'acumCargo' in dir(cargoPublico):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'cargoPublico.acumCargo', 
+                                                                          cargoPublico.acumCargo.cdata, 
+                                                                          1, u'1, 2, 3, 4')
+                                    
+                                    if 'contagemEsp' in dir(cargoPublico):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'cargoPublico.contagemEsp', 
+                                                                          cargoPublico.contagemEsp.cdata, 
+                                                                          1, u'1, 2, 3, 4')
+                                    
+                                    if 'dedicExcl' in dir(cargoPublico):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'cargoPublico.dedicExcl', 
+                                                                          cargoPublico.dedicExcl.cdata, 
+                                                                          1, u'S, N')
+                                    
+                                    if 'codCarreira' in dir(cargoPublico):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'cargoPublico.codCarreira', 
+                                                                          cargoPublico.codCarreira.cdata, 
+                                                                          0, u'None')
+                                    
+                                    if 'leiCargo' in dir(cargoPublico.leiCargo):
+                                        for leiCargo in cargoPublico.leiCargo:
+                                            
+                                            if 'nrLei' in dir(leiCargo):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'leiCargo.nrLei', 
+                                                                                  leiCargo.nrLei.cdata, 
+                                                                                  1, u'None')
+                                            
+                                            if 'dtLei' in dir(leiCargo):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'leiCargo.dtLei', 
+                                                                                  leiCargo.dtLei.cdata, 
+                                                                                  1, u'None')
+                                            
+                                            if 'sitCargo' in dir(leiCargo):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'leiCargo.sitCargo', 
+                                                                                  leiCargo.sitCargo.cdata, 
+                                                                                  1, u'1, 2, 3')
+            
+            if 'alteracao' in dir(infoCargo.alteracao):
+                for alteracao in infoCargo.alteracao:
+                    
+                    if 'ideCargo' in dir(alteracao.ideCargo):
+                        for ideCargo in alteracao.ideCargo:
+                            
+                            if 'codCargo' in dir(ideCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideCargo.codCargo', 
+                                                                  ideCargo.codCargo.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'iniValid' in dir(ideCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideCargo.iniValid', 
+                                                                  ideCargo.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(ideCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideCargo.fimValid', 
+                                                                  ideCargo.fimValid.cdata, 
+                                                                  0, u'None')
+                    
+                    if 'dadosCargo' in dir(alteracao.dadosCargo):
+                        for dadosCargo in alteracao.dadosCargo:
+                            
+                            if 'nmCargo' in dir(dadosCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosCargo.nmCargo', 
+                                                                  dadosCargo.nmCargo.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'codCBO' in dir(dadosCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosCargo.codCBO', 
+                                                                  dadosCargo.codCBO.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'cargoPublico' in dir(dadosCargo.cargoPublico):
+                                for cargoPublico in dadosCargo.cargoPublico:
+                                    
+                                    if 'acumCargo' in dir(cargoPublico):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'cargoPublico.acumCargo', 
+                                                                          cargoPublico.acumCargo.cdata, 
+                                                                          1, u'1, 2, 3, 4')
+                                    
+                                    if 'contagemEsp' in dir(cargoPublico):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'cargoPublico.contagemEsp', 
+                                                                          cargoPublico.contagemEsp.cdata, 
+                                                                          1, u'1, 2, 3, 4')
+                                    
+                                    if 'dedicExcl' in dir(cargoPublico):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'cargoPublico.dedicExcl', 
+                                                                          cargoPublico.dedicExcl.cdata, 
+                                                                          1, u'S, N')
+                                    
+                                    if 'codCarreira' in dir(cargoPublico):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'cargoPublico.codCarreira', 
+                                                                          cargoPublico.codCarreira.cdata, 
+                                                                          0, u'None')
+                                    
+                                    if 'leiCargo' in dir(cargoPublico.leiCargo):
+                                        for leiCargo in cargoPublico.leiCargo:
+                                            
+                                            if 'nrLei' in dir(leiCargo):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'leiCargo.nrLei', 
+                                                                                  leiCargo.nrLei.cdata, 
+                                                                                  1, u'None')
+                                            
+                                            if 'dtLei' in dir(leiCargo):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'leiCargo.dtLei', 
+                                                                                  leiCargo.dtLei.cdata, 
+                                                                                  1, u'None')
+                                            
+                                            if 'sitCargo' in dir(leiCargo):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'leiCargo.sitCargo', 
+                                                                                  leiCargo.sitCargo.cdata, 
+                                                                                  1, u'1, 2, 3')
+                    
+                    if 'novaValidade' in dir(alteracao.novaValidade):
+                        for novaValidade in alteracao.novaValidade:
+                            
+                            if 'iniValid' in dir(novaValidade):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'novaValidade.iniValid', 
+                                                                  novaValidade.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(novaValidade):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'novaValidade.fimValid', 
+                                                                  novaValidade.fimValid.cdata, 
+                                                                  0, u'None')
+            
+            if 'exclusao' in dir(infoCargo.exclusao):
+                for exclusao in infoCargo.exclusao:
+                    
+                    if 'ideCargo' in dir(exclusao.ideCargo):
+                        for ideCargo in exclusao.ideCargo:
+                            
+                            if 'codCargo' in dir(ideCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideCargo.codCargo', 
+                                                                  ideCargo.codCargo.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'iniValid' in dir(ideCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideCargo.iniValid', 
+                                                                  ideCargo.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(ideCargo):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideCargo.fimValid', 
+                                                                  ideCargo.fimValid.cdata, 
+                                                                  0, u'None')
     return validacoes_lista

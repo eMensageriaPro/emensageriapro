@@ -4,7 +4,7 @@
 
 """
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 @login_required
 def verificar(request, hash):
     for_print = 0
-    db_slug = 'default'
+    
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
@@ -82,71 +82,71 @@ def verificar(request, hash):
     except:
         return redirect('login')
 
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2299_evtdeslig')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+    usuario = get_object_or_404(Usuarios, id = usuario_id)
+    pagina = ConfigPaginas.objects.get(endereco='s2299_evtdeslig')
+    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
     dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-        s2299_evtdeslig = get_object_or_404(s2299evtDeslig.objects.using( db_slug ), excluido = False, id = s2299_evtdeslig_id)
-        s2299_evtdeslig_lista = s2299evtDeslig.objects.using( db_slug ).filter(id=s2299_evtdeslig_id, excluido = False).all()
+        s2299_evtdeslig = get_object_or_404(s2299evtDeslig, id = s2299_evtdeslig_id)
+        s2299_evtdeslig_lista = s2299evtDeslig.objects.filter(id=s2299_evtdeslig_id).all()
 
+        
+        s2299_observacoes_lista = s2299observacoes.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
+        s2299_sucessaovinc_lista = s2299sucessaoVinc.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
+        s2299_transftit_lista = s2299transfTit.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
+        s2299_mudancacpf_lista = s2299mudancaCPF.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
+        s2299_verbasresc_lista = s2299verbasResc.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
+        s2299_dmdev_lista = s2299dmDev.objects.filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).all()
+        s2299_infoperapur_lista = s2299infoPerApur.objects.filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).all()
+        s2299_infoperapur_ideestablot_lista = s2299infoPerApurideEstabLot.objects.filter(s2299_infoperapur_id__in = listar_ids(s2299_infoperapur_lista) ).all()
+        s2299_infoperapur_detverbas_lista = s2299infoPerApurdetVerbas.objects.filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).all()
+        s2299_infoperapur_infosaudecolet_lista = s2299infoPerApurinfoSaudeColet.objects.filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).all()
+        s2299_infoperapur_detoper_lista = s2299infoPerApurdetOper.objects.filter(s2299_infoperapur_infosaudecolet_id__in = listar_ids(s2299_infoperapur_infosaudecolet_lista) ).all()
+        s2299_infoperapur_detplano_lista = s2299infoPerApurdetPlano.objects.filter(s2299_infoperapur_detoper_id__in = listar_ids(s2299_infoperapur_detoper_lista) ).all()
+        s2299_infoperapur_infoagnocivo_lista = s2299infoPerApurinfoAgNocivo.objects.filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).all()
+        s2299_infoperapur_infosimples_lista = s2299infoPerApurinfoSimples.objects.filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).all()
+        s2299_infoperant_lista = s2299infoPerAnt.objects.filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).all()
+        s2299_infoperant_ideadc_lista = s2299infoPerAntideADC.objects.filter(s2299_infoperant_id__in = listar_ids(s2299_infoperant_lista) ).all()
+        s2299_infoperant_ideperiodo_lista = s2299infoPerAntidePeriodo.objects.filter(s2299_infoperant_ideadc_id__in = listar_ids(s2299_infoperant_ideadc_lista) ).all()
+        s2299_infoperant_ideestablot_lista = s2299infoPerAntideEstabLot.objects.filter(s2299_infoperant_ideperiodo_id__in = listar_ids(s2299_infoperant_ideperiodo_lista) ).all()
+        s2299_infoperant_detverbas_lista = s2299infoPerAntdetVerbas.objects.filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).all()
+        s2299_infoperant_infoagnocivo_lista = s2299infoPerAntinfoAgNocivo.objects.filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).all()
+        s2299_infoperant_infosimples_lista = s2299infoPerAntinfoSimples.objects.filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).all()
+        s2299_infotrabinterm_lista = s2299infoTrabInterm.objects.filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).all()
+        s2299_infotrabinterm_procjudtrab_lista = s2299infoTrabIntermprocJudTrab.objects.filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).all()
+        s2299_infotrabinterm_infomv_lista = s2299infoTrabInterminfoMV.objects.filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).all()
+        s2299_infotrabinterm_remunoutrempr_lista = s2299infoTrabIntermremunOutrEmpr.objects.filter(s2299_infotrabinterm_infomv_id__in = listar_ids(s2299_infotrabinterm_infomv_lista) ).all()
+        s2299_infotrabinterm_proccs_lista = s2299infoTrabIntermprocCS.objects.filter(s2299_verbasresc_id__in = listar_ids(s2299_verbasresc_lista) ).all()
+        s2299_infotrabinterm_quarentena_lista = s2299infoTrabIntermquarentena.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
+        s2299_infotrabinterm_consigfgts_lista = s2299infoTrabIntermconsigFGTS.objects.filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).all()
 
-        s2299_observacoes_lista = s2299observacoes.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_sucessaovinc_lista = s2299sucessaoVinc.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_transftit_lista = s2299transfTit.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_mudancacpf_lista = s2299mudancaCPF.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_dmdev_lista = s2299dmDev.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_ideestablot_lista = s2299infoPerApurideEstabLot.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_detverbas_lista = s2299infoPerApurdetVerbas.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_detoper_lista = s2299infoPerApurdetOper.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_detplano_lista = s2299infoPerApurdetPlano.objects.using(db_slug).filter(s2299_infoperapur_detoper_id__in = listar_ids(s2299_infoperapur_detoper_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_infoagnocivo_lista = s2299infoPerApurinfoAgNocivo.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_infosimples_lista = s2299infoPerApurinfoSimples.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperant_ideadc_lista = s2299infoPerAntideADC.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infoperant_ideperiodo_lista = s2299infoPerAntidePeriodo.objects.using(db_slug).filter(s2299_infoperant_ideadc_id__in = listar_ids(s2299_infoperant_ideadc_lista) ).filter(excluido=False).all()
-        s2299_infoperant_ideestablot_lista = s2299infoPerAntideEstabLot.objects.using(db_slug).filter(s2299_infoperant_ideperiodo_id__in = listar_ids(s2299_infoperant_ideperiodo_lista) ).filter(excluido=False).all()
-        s2299_infoperant_detverbas_lista = s2299infoPerAntdetVerbas.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperant_infoagnocivo_lista = s2299infoPerAntinfoAgNocivo.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperant_infosimples_lista = s2299infoPerAntinfoSimples.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_lista = s2299infoTrabInterm.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_procjudtrab_lista = s2299infoTrabIntermprocJudTrab.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_infomv_lista = s2299infoTrabInterminfoMV.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_remunoutrempr_lista = s2299infoTrabIntermremunOutrEmpr.objects.using(db_slug).filter(s2299_infotrabinterm_infomv_id__in = listar_ids(s2299_infotrabinterm_infomv_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_proccs_lista = s2299infoTrabIntermprocCS.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_quarentena_lista = s2299infoTrabIntermquarentena.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_consigfgts_lista = s2299infoTrabIntermconsigFGTS.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2299_evtdeslig'
+
         context = {
             's2299_evtdeslig_lista': s2299_evtdeslig_lista,
             's2299_evtdeslig_id': s2299_evtdeslig_id,
             's2299_evtdeslig': s2299_evtdeslig,
-  
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
-            'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-            'for_print': for_print,
-            'hash': hash,
-
+            
+            
             's2299_observacoes_lista': s2299_observacoes_lista,
             's2299_sucessaovinc_lista': s2299_sucessaovinc_lista,
             's2299_transftit_lista': s2299_transftit_lista,
             's2299_mudancacpf_lista': s2299_mudancacpf_lista,
+            's2299_verbasresc_lista': s2299_verbasresc_lista,
             's2299_dmdev_lista': s2299_dmdev_lista,
+            's2299_infoperapur_lista': s2299_infoperapur_lista,
             's2299_infoperapur_ideestablot_lista': s2299_infoperapur_ideestablot_lista,
             's2299_infoperapur_detverbas_lista': s2299_infoperapur_detverbas_lista,
+            's2299_infoperapur_infosaudecolet_lista': s2299_infoperapur_infosaudecolet_lista,
             's2299_infoperapur_detoper_lista': s2299_infoperapur_detoper_lista,
             's2299_infoperapur_detplano_lista': s2299_infoperapur_detplano_lista,
             's2299_infoperapur_infoagnocivo_lista': s2299_infoperapur_infoagnocivo_lista,
             's2299_infoperapur_infosimples_lista': s2299_infoperapur_infosimples_lista,
+            's2299_infoperant_lista': s2299_infoperant_lista,
             's2299_infoperant_ideadc_lista': s2299_infoperant_ideadc_lista,
             's2299_infoperant_ideperiodo_lista': s2299_infoperant_ideperiodo_lista,
             's2299_infoperant_ideestablot_lista': s2299_infoperant_ideestablot_lista,
@@ -160,9 +160,22 @@ def verificar(request, hash):
             's2299_infotrabinterm_proccs_lista': s2299_infotrabinterm_proccs_lista,
             's2299_infotrabinterm_quarentena_lista': s2299_infotrabinterm_quarentena_lista,
             's2299_infotrabinterm_consigfgts_lista': s2299_infotrabinterm_consigfgts_lista,
+            
+            'usuario': usuario,
+            'modulos_permitidos_lista': modulos_permitidos_lista,
+            'paginas_permitidas_lista': paginas_permitidas_lista,
+  
+            'permissao': permissao,
+            'data': datetime.now(),
+            'pagina': pagina,
+            'dict_permissoes': dict_permissoes,
+            'for_print': for_print,
+            'hash': hash,
+
+            
+
         }
         if for_print == 2:
-
             response = PDFTemplateResponse(request=request,
                                            template='s2299_evtdeslig_verificar.html',
                                            filename="s2299_evtdeslig.pdf",
@@ -181,7 +194,6 @@ def verificar(request, hash):
             return response
 
         elif for_print == 3:
-
             response =  render_to_response('s2299_evtdeslig_verificar.html', context)
             filename = "%s.xls" % s2299_evtdeslig.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -189,7 +201,6 @@ def verificar(request, hash):
             return response
 
         elif for_print == 4:
-
             response =  render_to_response('s2299_evtdeslig_verificar.html', context)
             filename = "%s.csv" % s2299_evtdeslig.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -197,17 +208,14 @@ def verificar(request, hash):
             return response
 
         else:
-
             return render(request, 's2299_evtdeslig_verificar.html', context)
 
     else:
 
         context = {
             'usuario': usuario,
-  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
             'permissao': permissao,
             'data': datetime.now(),
             'pagina': pagina,
@@ -215,590 +223,3 @@ def verificar(request, hash):
         }
 
         return render(request, 'permissao_negada.html', context)
-
-
-
-def gerar_xml_s2299(s2299_evtdeslig_id, db_slug, versao=None):
-
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s2299_evtdeslig_id:
-
-        s2299_evtdeslig = get_object_or_404(
-            s2299evtDeslig.objects.using( db_slug ),
-            excluido = False,
-            id = s2299_evtdeslig_id)
-
-        if not versao or versao == '|':
-
-            versao = s2299_evtdeslig.versao
-
-        evento = 's2299evtDeslig'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
-        xmlns = get_xmlns(arquivo)
-
-        s2299_evtdeslig_lista = s2299evtDeslig.objects.using( db_slug ).filter(id=s2299_evtdeslig_id, excluido = False).all()
-
-
-        s2299_observacoes_lista = s2299observacoes.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_sucessaovinc_lista = s2299sucessaoVinc.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_transftit_lista = s2299transfTit.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_mudancacpf_lista = s2299mudancaCPF.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_dmdev_lista = s2299dmDev.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_ideestablot_lista = s2299infoPerApurideEstabLot.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_detverbas_lista = s2299infoPerApurdetVerbas.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_detoper_lista = s2299infoPerApurdetOper.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_detplano_lista = s2299infoPerApurdetPlano.objects.using(db_slug).filter(s2299_infoperapur_detoper_id__in = listar_ids(s2299_infoperapur_detoper_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_infoagnocivo_lista = s2299infoPerApurinfoAgNocivo.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperapur_infosimples_lista = s2299infoPerApurinfoSimples.objects.using(db_slug).filter(s2299_infoperapur_ideestablot_id__in = listar_ids(s2299_infoperapur_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperant_ideadc_lista = s2299infoPerAntideADC.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infoperant_ideperiodo_lista = s2299infoPerAntidePeriodo.objects.using(db_slug).filter(s2299_infoperant_ideadc_id__in = listar_ids(s2299_infoperant_ideadc_lista) ).filter(excluido=False).all()
-        s2299_infoperant_ideestablot_lista = s2299infoPerAntideEstabLot.objects.using(db_slug).filter(s2299_infoperant_ideperiodo_id__in = listar_ids(s2299_infoperant_ideperiodo_lista) ).filter(excluido=False).all()
-        s2299_infoperant_detverbas_lista = s2299infoPerAntdetVerbas.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperant_infoagnocivo_lista = s2299infoPerAntinfoAgNocivo.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infoperant_infosimples_lista = s2299infoPerAntinfoSimples.objects.using(db_slug).filter(s2299_infoperant_ideestablot_id__in = listar_ids(s2299_infoperant_ideestablot_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_lista = s2299infoTrabInterm.objects.using(db_slug).filter(s2299_dmdev_id__in = listar_ids(s2299_dmdev_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_procjudtrab_lista = s2299infoTrabIntermprocJudTrab.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_infomv_lista = s2299infoTrabInterminfoMV.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_remunoutrempr_lista = s2299infoTrabIntermremunOutrEmpr.objects.using(db_slug).filter(s2299_infotrabinterm_infomv_id__in = listar_ids(s2299_infotrabinterm_infomv_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_proccs_lista = s2299infoTrabIntermprocCS.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_quarentena_lista = s2299infoTrabIntermquarentena.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-        s2299_infotrabinterm_consigfgts_lista = s2299infoTrabIntermconsigFGTS.objects.using(db_slug).filter(s2299_evtdeslig_id__in = listar_ids(s2299_evtdeslig_lista) ).filter(excluido=False).all()
-
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s2299_evtdeslig,
-            's2299_evtdeslig_lista': s2299_evtdeslig_lista,
-            's2299_evtdeslig_id': int(s2299_evtdeslig_id),
-            's2299_evtdeslig': s2299_evtdeslig,
-
-            's2299_observacoes_lista': s2299_observacoes_lista,
-            's2299_sucessaovinc_lista': s2299_sucessaovinc_lista,
-            's2299_transftit_lista': s2299_transftit_lista,
-            's2299_mudancacpf_lista': s2299_mudancacpf_lista,
-            's2299_dmdev_lista': s2299_dmdev_lista,
-            's2299_infoperapur_ideestablot_lista': s2299_infoperapur_ideestablot_lista,
-            's2299_infoperapur_detverbas_lista': s2299_infoperapur_detverbas_lista,
-            's2299_infoperapur_detoper_lista': s2299_infoperapur_detoper_lista,
-            's2299_infoperapur_detplano_lista': s2299_infoperapur_detplano_lista,
-            's2299_infoperapur_infoagnocivo_lista': s2299_infoperapur_infoagnocivo_lista,
-            's2299_infoperapur_infosimples_lista': s2299_infoperapur_infosimples_lista,
-            's2299_infoperant_ideadc_lista': s2299_infoperant_ideadc_lista,
-            's2299_infoperant_ideperiodo_lista': s2299_infoperant_ideperiodo_lista,
-            's2299_infoperant_ideestablot_lista': s2299_infoperant_ideestablot_lista,
-            's2299_infoperant_detverbas_lista': s2299_infoperant_detverbas_lista,
-            's2299_infoperant_infoagnocivo_lista': s2299_infoperant_infoagnocivo_lista,
-            's2299_infoperant_infosimples_lista': s2299_infoperant_infosimples_lista,
-            's2299_infotrabinterm_lista': s2299_infotrabinterm_lista,
-            's2299_infotrabinterm_procjudtrab_lista': s2299_infotrabinterm_procjudtrab_lista,
-            's2299_infotrabinterm_infomv_lista': s2299_infotrabinterm_infomv_lista,
-            's2299_infotrabinterm_remunoutrempr_lista': s2299_infotrabinterm_remunoutrempr_lista,
-            's2299_infotrabinterm_proccs_lista': s2299_infotrabinterm_proccs_lista,
-            's2299_infotrabinterm_quarentena_lista': s2299_infotrabinterm_quarentena_lista,
-            's2299_infotrabinterm_consigfgts_lista': s2299_infotrabinterm_consigfgts_lista,
-        }
-
-        t = get_template('s2299_evtdeslig.xml')
-        xml = t.render(context)
-        return xml
-
-
-
-@login_required
-def recibo(request, hash, tipo):
-    for_print = 0
-    db_slug = 'default'
-
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s2299_evtdeslig_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-
-    except:
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s2299_evtdeslig')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_listar:
-
-        s2299_evtdeslig = get_object_or_404(
-            s2299evtDeslig.objects.using( db_slug ),
-            excluido = False, id = s2299_evtdeslig_id)
-
-        from emensageriapro.mensageiro.models import RetornosEventos, RetornosEventosHorarios, \
-            RetornosEventosIntervalos, RetornosEventosOcorrencias
-
-        retorno = get_object_or_404( RetornosEventos.objects.using(db_slug),
-            id=s2299_evtdeslig.retornos_eventos_id, excluido=False)
-
-        retorno_horarios = RetornosEventosHorarios.objects.using(db_slug).\
-            filter(retornos_eventos_id=retorno.id,excluido=False).all()
-
-        retorno_intervalos = RetornosEventosIntervalos.objects.using(db_slug).\
-            filter(retornos_eventos_horarios_id__in=listar_ids(retorno_horarios),excluido=False).all()
-
-        retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
-            filter(retornos_eventos_id=retorno.id,excluido=False).all()
-
-        context = {
-            's2299_evtdeslig_id': s2299_evtdeslig_id,
-            's2299_evtdeslig': s2299_evtdeslig,
-            'retorno': retorno,
-            'retorno_horarios': retorno_horarios,
-            'retorno_intervalos': retorno_intervalos,
-            'retorno_ocorrencias': retorno_ocorrencias,
-  
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
-            'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-            'for_print': for_print,
-            'hash': hash,
-        }
-
-        if tipo == 'XLS':
-            response =  render_to_response('s2299_evtdeslig_recibo_pdf.html', context)
-            filename = "%s.xls" % s2299_evtdeslig.identidade
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            return response
-
-        elif tipo == 'CSV':
-            response =  render_to_response('s2299_evtdeslig_recibo_csv.html', context)
-            filename = "%s.csv" % s2299_evtdeslig.identidade
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            response['Content-Type'] = 'text/csv; charset=UTF-8'
-            return response
-
-        else:
-            return render_to_pdf('s2299_evtdeslig_recibo_pdf.html', context)
-
-    else:
-
-        context = {
-            'usuario': usuario,
-  
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
-            'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-        }
-        return render(request, 'permissao_negada.html', context)
-
-
-
-def gerar_xml_assinado(s2299_evtdeslig_id, db_slug):
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
-    from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
-
-    s2299_evtdeslig = get_object_or_404(
-        s2299evtDeslig.objects.using(db_slug),
-        excluido=False,
-        id=s2299_evtdeslig_id)
-
-    if s2299_evtdeslig.arquivo_original:
-
-        xml = ler_arquivo(s2299_evtdeslig.arquivo)
-
-    else:
-
-        xml = gerar_xml_s2299(s2299_evtdeslig_id, db_slug)
-
-    if 'Signature' in xml:
-
-        xml_assinado = xml
-
-    else:
-
-        xml_assinado = assinar_esocial(xml)
-
-    if s2299_evtdeslig.status in (STATUS_EVENTO_CADASTRADO,
-                           STATUS_EVENTO_IMPORTADO,
-                           STATUS_EVENTO_DUPLICADO,
-                           STATUS_EVENTO_GERADO):
-
-        s2299evtDeslig.objects.using(db_slug).\
-            filter(id=s2299_evtdeslig_id,excluido=False).update(status=STATUS_EVENTO_ASSINADO)
-
-    arquivo = 'arquivos/Eventos/s2299_evtdeslig/%s.xml' % (s2299_evtdeslig.identidade)
-
-    os.system('mkdir -p %s/arquivos/Eventos/s2299_evtdeslig/' % BASE_DIR)
-
-    if not os.path.exists(BASE_DIR+arquivo):
-
-        salvar_arquivo_esocial(arquivo, xml_assinado, 1)
-
-    xml_assinado = ler_arquivo(arquivo)
-
-    return xml_assinado
-
-
-
-@login_required
-def gerar_xml(request, hash):
-
-
-    db_slug = 'default'
-    dict_hash = get_hash_url( hash )
-    s2299_evtdeslig_id = int(dict_hash['id'])
-
-    if s2299_evtdeslig_id:
-
-        xml_assinado = gerar_xml_assinado(s2299_evtdeslig_id, db_slug)
-        return HttpResponse(xml_assinado, content_type='text/xml')
-
-    context = {'data': datetime.now(),}
-    return render(request, 'permissao_negada.html', context)
-
-
-
-@login_required
-def duplicar(request, hash):
-
-    from emensageriapro.esocial.views.s2299_evtdeslig_importar import read_s2299_evtdeslig_string
-    from emensageriapro.functions import identidade_evento
-
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s2299_evtdeslig_id = int(dict_hash['id'])
-
-    if s2299_evtdeslig_id:
-
-        s2299_evtdeslig = get_object_or_404(
-            s2299evtDeslig.objects.using(db_slug),
-            excluido=False,
-            id=s2299_evtdeslig_id)
-
-        texto = gerar_xml_s2299(s2299_evtdeslig_id, db_slug, versao="|")
-        dados = read_s2299_evtdeslig_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2299_evtdeslig)
-
-        s2299evtDeslig.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2299_evtdeslig.identidade),
-            's2299_evtdeslig', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('s2299_evtdeslig_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao duplicar evento!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-
-
-
-@login_required
-def criar_alteracao(request, hash):
-
-    from emensageriapro.esocial.views.s2299_evtdeslig_importar import read_s2299_evtdeslig_string
-    from emensageriapro.functions import identidade_evento
-
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s2299_evtdeslig_id = int(dict_hash['id'])
-
-    if s2299_evtdeslig_id:
-
-        s2299_evtdeslig = get_object_or_404(
-            s2299evtDeslig.objects.using(db_slug),
-            excluido=False,
-            id=s2299_evtdeslig_id)
-
-        texto = gerar_xml_s2299(s2299_evtdeslig_id, db_slug, versao="|")
-        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_s2299_evtdeslig_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2299_evtdeslig)
-
-        s2299evtDeslig.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}',
-            u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2299_evtdeslig.identidade),
-            's2299_evtdeslig', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('s2299_evtdeslig_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao criar evento de alteração!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-
-
-
-@login_required
-def criar_exclusao(request, hash):
-
-    from emensageriapro.esocial.views.s2299_evtdeslig_importar import read_s2299_evtdeslig_string
-    from emensageriapro.functions import identidade_evento
-
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s2299_evtdeslig_id = int(dict_hash['id'])
-
-    if s2299_evtdeslig_id:
-
-        s2299_evtdeslig = get_object_or_404(
-            s2299evtDeslig.objects.using(db_slug),
-            excluido=False,
-            id=s2299_evtdeslig_id)
-
-        texto = gerar_xml_s2299(s2299_evtdeslig_id, db_slug, versao="|")
-        texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
-        texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_s2299_evtdeslig_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s2299_evtdeslig)
-
-        s2299evtDeslig.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}',
-            u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s2299_evtdeslig.identidade),
-            's2299_evtdeslig', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento de exclusão criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('s2299_evtdeslig_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao criar evento de exclusão!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-
-
-
-@login_required
-def alterar_identidade(request, hash):
-
-    from emensageriapro.functions import identidade_evento
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s2299_evtdeslig_id = int(dict_hash['id'])
-
-    if s2299_evtdeslig_id:
-
-        s2299_evtdeslig = get_object_or_404(
-            s2299evtDeslig.objects.using(db_slug),
-            excluido=False,
-            id=s2299_evtdeslig_id)
-
-        if s2299_evtdeslig.status == STATUS_EVENTO_CADASTRADO:
-
-            nova_identidade = identidade_evento(s2299_evtdeslig)
-            messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2299_evtdeslig_id )
-
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Identidade do evento foi alterada"}',
-                's2299_evtdeslig', s2299_evtdeslig_id, request.user.id, 1)
-
-            return redirect('s2299_evtdeslig_salvar', hash=url_hash)
-
-        else:
-
-            messages.error(request, u'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-    messages.error(request, u'Erro ao alterar identidade do evento!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-
-
-@login_required
-def abrir_evento_para_edicao(request, hash):
-    from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s2299_evtdeslig_id = int(dict_hash['id'])
-
-    if s2299_evtdeslig_id:
-        s2299_evtdeslig = get_object_or_404(s2299evtDeslig.objects.using(db_slug), excluido=False, id=s2299_evtdeslig_id)
-
-        status_list = [
-            STATUS_EVENTO_CADASTRADO,
-            STATUS_EVENTO_IMPORTADO,
-            STATUS_EVENTO_DUPLICADO,
-            STATUS_EVENTO_GERADO,
-            STATUS_EVENTO_GERADO_ERRO,
-            STATUS_EVENTO_ASSINADO,
-            STATUS_EVENTO_ASSINADO_ERRO,
-            STATUS_EVENTO_VALIDADO,
-            STATUS_EVENTO_VALIDADO_ERRO,
-            STATUS_EVENTO_AGUARD_PRECEDENCIA,
-            STATUS_EVENTO_AGUARD_ENVIO,
-            STATUS_EVENTO_ENVIADO_ERRO
-        ]
-
-        if s2299_evtdeslig.status in status_list:
-            s2299evtDeslig.objects.using(db_slug).filter(id=s2299_evtdeslig_id).update(status=STATUS_EVENTO_CADASTRADO,
-                                                                          arquivo_original=0)
-            arquivo = 'arquivos/Eventos/s2299_evtdeslig/%s.xml' % (s2299_evtdeslig.identidade)
-
-            if os.path.exists(BASE_DIR + '/' + arquivo):
-
-                data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
-                dad = (BASE_DIR, s2299_evtdeslig.identidade, BASE_DIR, s2299_evtdeslig.identidade, data_hora_atual)
-                os.system('mv %s/arquivos/Eventos/s2299_evtdeslig/%s.xml %s/arquivos/Eventos/s2299_evtdeslig/%s_backup_%s.xml' % dad)
-                gravar_nome_arquivo('/arquivos/Eventos/s2299_evtdeslig/%s_backup_%s.xml' % (s2299_evtdeslig.identidade, data_hora_atual),
-                    1)
-            messages.success(request, 'Evento aberto para edição!')
-            usuario_id = request.user.id
-            gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
-                's2299_evtdeslig', s2299_evtdeslig_id, usuario_id, 1)
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2299_evtdeslig_id )
-            return redirect('s2299_evtdeslig_salvar', hash=url_hash)
-        else:
-            messages.error(request, u'''
-            Não foi possível abrir o evento para edição! Somente é possível
-            abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
-            "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
-             ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
-             "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-    messages.error(request, 'Erro ao abrir evento para edição!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-
-
-def validar_evento_funcao(s2299_evtdeslig_id, db_slug):
-    from emensageriapro.padrao import executar_sql
-    from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
-    from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import validar_precedencia
-    from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name, validar_schema
-    from emensageriapro.settings import BASE_DIR, VERIFICAR_PREDECESSAO_ANTES_ENVIO
-    lista_validacoes = []
-    s2299_evtdeslig = get_object_or_404(s2299evtDeslig.objects.using(db_slug), excluido=False, id=s2299_evtdeslig_id)
-
-    #
-    # Validações internas
-    #
-
-    arquivo = 'arquivos/Eventos/s2299_evtdeslig/%s.xml' % (s2299_evtdeslig.identidade)
-    os.system('mkdir -p %s/arquivos/Eventos/s2299_evtdeslig/' % BASE_DIR)
-    lista = []
-    tipo = 'esocial'
-    if not os.path.exists(BASE_DIR + '/' + arquivo):
-        gerar_xml_assinado(s2299_evtdeslig_id, db_slug)
-    if os.path.exists(BASE_DIR + '/' + arquivo):
-        texto_xml = ler_arquivo(arquivo).replace("s:", "")
-        versao = get_versao_evento(texto_xml)
-        from emensageriapro.esocial.views.s2299_evtdeslig_validar import validacoes_s2299_evtdeslig
-        lista = validacoes_s2299_evtdeslig(arquivo)
-    for a in lista:
-        if a:
-            lista_validacoes.append(a)
-    #
-    # validando schema
-    #
-    schema_filename = get_schema_name(arquivo)
-    quant_erros, error_list = validar_schema(schema_filename, arquivo, lang='pt')
-    for a in error_list:
-        if a:
-            lista_validacoes.append(a)
-    #
-    #
-    #
-    if lista_validacoes:
-
-        validacoes = '<br>'.join(lista_validacoes).replace("'","''")
-
-        s2299evtDeslig.objects.using( db_slug ).\
-            filter(id=s2299_evtdeslig_id, excluido = False).\
-            update(validacoes=validacoes,
-                   status=STATUS_EVENTO_VALIDADO_ERRO)
-
-    else:
-
-        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
-
-            quant = validar_precedencia('esocial', 's2299_evtdeslig', s2299_evtdeslig_id)
-
-            if quant <= 0:
-
-                s2299evtDeslig.objects.using( db_slug ).\
-                    filter(id=s2299_evtdeslig_id, excluido = False).\
-                    update(validacoes=None,
-                           status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
-
-            else:
-
-                s2299evtDeslig.objects.using( db_slug ).\
-                    filter(id=s2299_evtdeslig_id, excluido = False).\
-                    update(validacoes=None,
-                           status=STATUS_EVENTO_AGUARD_ENVIO)
-
-        else:
-
-            s2299evtDeslig.objects.using(db_slug). \
-                filter(id=s2299_evtdeslig_id, excluido=False).\
-                update(validacoes=None,
-                       status=STATUS_EVENTO_AGUARD_ENVIO)
-
-    return lista_validacoes
-
-
-
-@login_required
-def validar_evento(request, hash):
-
-    from emensageriapro.settings import VERSOES_ESOCIAL, VERIFICAR_PREDECESSAO_ANTES_ENVIO
-    # from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
-
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s2299_evtdeslig_id = int(dict_hash['id'])
-
-    if s2299_evtdeslig_id:
-
-        s2299_evtdeslig = get_object_or_404(
-            s2299evtDeslig.objects.using(db_slug),
-            excluido=False,
-            id=s2299_evtdeslig_id)
-
-        if s2299_evtdeslig.versao in VERSOES_ESOCIAL:
-
-            validar_evento_funcao(s2299_evtdeslig_id, db_slug)
-
-            if s2299_evtdeslig.transmissor_lote_esocial and not VERIFICAR_PREDECESSAO_ANTES_ENVIO:
-                s2299evtDeslig.objects.using(db_slug).\
-                    filter(excluido=False, id=s2299_evtdeslig_id).update(status=STATUS_EVENTO_AGUARD_ENVIO)
-
-            elif s2299_evtdeslig.transmissor_lote_esocial and VERIFICAR_PREDECESSAO_ANTES_ENVIO:
-                s2299evtDeslig.objects.using(db_slug).\
-                    filter(excluido=False, id=s2299_evtdeslig_id).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
-
-            messages.success(request, u'Validações processadas com sucesso!')
-
-        else:
-
-            messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
-    else:
-
-        messages.error(request, u'Não foi possível validar o evento pois o mesmo não foi identificado!')
-
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])

@@ -79,13 +79,96 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 # curl -X GET http://localhost:8000/mapa-processamento/esocial-validar/ -H 'Authorization: Token XXXXXXX'
 #
 
+
+def get_grupo(model):
+
+    numero_evento = int(model._meta.db_table[1:5])
+
+    if numero_evento < 1200:
+        grupo = 1
+    elif numero_evento >= 1200 and numero_evento <= 1300:
+        grupo = 2
+    else:
+        grupo = 3
+
+    return grupo
+
+
+
+def criar_transmissor_efdreinf(request, grupo, nrinsc, tpinsc):
+
+    transmissor_efdreinf_lista = TransmissorLoteEfdreinf.objects.filter(
+        status=0,
+        grupo=grupo,
+        contribuinte_nrinsc=nrinsc,
+        contribuinte_tpinsc=tpinsc).all()
+
+    if not transmissor_efdreinf_lista:
+
+        transmissor = TransmissorLote.objects.filter(
+            contribuinte_nrinsc=nrinsc,
+            contribuinte_tpinsc=tpinsc).all()
+
+        if not transmissor:
+
+            txt = u'Cadastre um Transmissor para o empregador %s!' % nrinsc
+
+            if hash:
+                messages.error(request, txt)
+                return redirect('mapa_efdreinf', hash=request.session['retorno_hash'])
+            else:
+                data = {'response': txt}
+                return Response(data, status=HTTP_200_OK)
+
+        elif len(transmissor) > 1:
+            txt = u'Existe mais de um transmissor cadastrado o empregador %s, cadastre apenas um!' % nrinsc
+
+            if hash:
+                messages.error(request, txt)
+                return redirect('mapa_efdreinf', hash=request.session['retorno_hash'])
+            else:
+                data = {'response': txt}
+                return Response(data, status=HTTP_200_OK)
+
+        else:
+
+            dados = {}
+            dados['transmissor_id'] = transmissor[0].id
+            dados['contribuinte_tpinsc'] = transmissor[0].contribuinte_tpinsc
+            dados['contribuinte_nrinsc'] = transmissor[0].contribuinte_nrinsc
+            dados['grupo'] = grupo
+            dados['status'] = 0
+            transmissor_efdreinf = TransmissorLoteEfdreinf(**dados)
+            transmissor_efdreinf.save()
+
+
+def vincular_transmissor_efdreinf(request, grupo, model, a):
+
+    transmissor_efdreinf_lista = TransmissorLoteEfdreinf.objects.filter(
+        status=0,
+        grupo=grupo,
+        contribuinte_nrinsc=a.nrinsc,
+        contribuinte_tpinsc=a.tpinsc).all()
+
+    for te in transmissor_efdreinf_lista:
+
+        eventos_lista = TransmissorEventosEfdreinf.objects.filter(
+            transmissor_lote_efdreinf=te.id).all()
+
+        if len(eventos_lista) < te.transmissor.efdreinf_lote_max:
+            model.objects.filter(id=a.id).update(transmissor_lote_efdreinf=te)
+
+        txt = 'Evento vinculado com sucesso!'
+
+    return txt
+
+
+
 @csrf_exempt
 @api_view(["GET"])
 def validar(request, hash=None):
 
     texto = 'Validações processadas com sucesso!'
-
-    db_slug = 'default'
 
     if hash:
 
@@ -95,16 +178,13 @@ def validar(request, hash=None):
         except:
             return redirect('login')
 
-        usuario = get_object_or_404(Usuarios.objects.using(db_slug),
-                                    excluido=False,
+        usuario = get_object_or_404(Usuarios,
                                     id=usuario_id)
 
-        pagina = ConfigPaginas.objects.using(db_slug).get(excluido=False,
-                                                          endereco='mapa_efdreinf')
+        pagina = ConfigPaginas.objects.get(endereco='mapa_efdreinf')
 
-        permissao = ConfigPermissoes.objects.using(db_slug).get(excluido=False,
-                                                                config_paginas=pagina,
-                                                                config_perfis=usuario.config_perfis)
+        permissao = ConfigPermissoes.objects.get(config_paginas=pagina,
+                                                 config_perfis=usuario.config_perfis)
 
         dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
         paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
@@ -120,7 +200,7 @@ def validar(request, hash=None):
             STATUS_EVENTO_IMPORTADO,
         ]
 
-        lista = model.objects.using('default').filter(status__in=STATUS).all()
+        lista = model.objects.filter(status__in=STATUS).all()
 
         for a in lista:
 
@@ -132,6 +212,7 @@ def validar(request, hash=None):
         return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
 
     else:
+
         data = {'response': texto}
         return Response(data, status=HTTP_200_OK)
 
@@ -158,13 +239,13 @@ def enviar(request, hash=None):
             return redirect('login')
 
 
-        usuario = get_object_or_404(Usuarios.objects.using(db_slug),
+        usuario = get_object_or_404(Usuarios.objects,
                                     excluido=False,
                                     id=usuario_id)
-        pagina = ConfigPaginas.objects.using(db_slug).get(excluido=False,
+        pagina = ConfigPaginas.objects.get(excluido=False,
                                                           endereco='mapa_efdreinf')
 
-        permissao = ConfigPermissoes.objects.using(db_slug).get(excluido=False,
+        permissao = ConfigPermissoes.objects.get(excluido=False,
                                                                 config_paginas=pagina,
                                                                 config_perfis=usuario.config_perfis)
 
@@ -190,8 +271,8 @@ def enviar(request, hash=None):
             (3, u'3 - Eventos Periódicos'),
         )
 
-        lista = model.objects.using('default').filter(status=STATUS_EVENTO_AGUARD_ENVIO,
-                                                      transmissor_lote_efdreinf=None).all()
+        lista = model.objects.filter(status=STATUS_EVENTO_AGUARD_ENVIO,
+                                     transmissor_lote_efdreinf=None).all()
 
         numero_evento = int(model._meta.db_table[1:5])
 
@@ -206,69 +287,13 @@ def enviar(request, hash=None):
 
         for a in lista:
 
-            transmissor_efdreinf_lista = TransmissorLoteEfdreinf.objects.using('default').filter(
-                status=0,
-                grupo=grupo,
-                contribuinte_nrinsc=a.nrinsc,
-                contribuinte_tpinsc=a.tpinsc).all()
+            criar_transmissor_efdreinf(request, grupo, a.nrinsc, a.tpinsc)
 
-            if not transmissor_efdreinf:
-
-                transmissor = TransmissorLote.objects.using('default').filter(
-                    contribuinte_nrinsc=a.nrinsc,
-                    contribuinte_tpinsc=a.tpinsc).all()
-
-                if not transmissor:
-
-                    txt = u'Cadastre um Transmissor para o empregador %s!' % a.nrinsc
-
-                    if hash:
-                        messages.error(request, txt)
-                        return redirect('mapa_efdreinf', hash=request.session['retorno_hash'])
-                    else:
-                        data = {'response': txt}
-                        return Response(data, status=HTTP_200_OK)
-
-                elif len(transmissor) > 1:
-                    txt = u'Existe mais de um transmissor cadastrado o empregador %s, cadastre apenas um!' % a.nrinsc
-
-                    if hash:
-                        messages.error(request, txt)
-                        return redirect('mapa_efdreinf', hash=request.session['retorno_hash'])
-                    else:
-                        data = {'response': txt}
-                        return Response(data, status=HTTP_200_OK)
-
-                else:
-
-                    dados = {}
-                    dados['transmissor_id'] = transmissor[0].id
-                    dados['contribuinte_tpinsc'] = transmissor[0].contribuinte_tpinsc
-                    dados['contribuinte_nrinsc'] = transmissor[0].contribuinte_nrinsc
-                    dados['grupo'] = grupo
-                    dados['status'] = 0
-                    transmissor_efdreinf = TransmissorLoteEfdreinf(**dados)
-                    transmissor_efdreinf.save()
-
-            transmissor_efdreinf_lista = TransmissorLoteEfdreinf.objects.using('default').filter(
-                status=0,
-                grupo=grupo,
-                contribuinte_nrinsc=a.nrinsc,
-                contribuinte_tpinsc=a.tpinsc).all()
-
-            for te in transmissor_efdreinf_lista:
-
-                eventos_lista = TransmissorEventosEfdreinf.objects.using('default').filter(
-                    transmissor_lote_efdreinf=te.id).all()
-
-                if len(eventos_lista) < te.transmissor_lote_efdreinf.transmissor.efdreinf_lote_max:
-                    model.objects.using('default').filter(id=a.id).update(transmissor_lote_efdreinf=te)
-
-                txt = 'Evento vinculado com sucesso!'
+            txt = vincular_transmissor_efdreinf(request, grupo, model, a)
 
         texto += txt
 
-    lista_transmissores = TransmissorLoteEfdreinf.objects.using(db_slug).filter(status=0).all()
+    lista_transmissores = TransmissorLoteEfdreinf.objects.filter(status=0).all()
 
     n = 0
     for a in lista_transmissores:
@@ -305,24 +330,19 @@ def consultar(request, hash=None):
         except:
             return redirect('login')
 
-        usuario = get_object_or_404(Usuarios.objects.using(db_slug),
-                                    excluido=False,
+        usuario = get_object_or_404(Usuarios,
                                     id=usuario_id)
 
-        pagina = ConfigPaginas.objects.using(db_slug).get(excluido=False,
-                                                          endereco='mapa_efdreinf')
+        pagina = ConfigPaginas.objects.get(endereco='mapa_efdreinf')
 
-        permissao = ConfigPermissoes.objects.using(db_slug).get(excluido=False,
-                                                                config_paginas=pagina,
-                                                                config_perfis=usuario.config_perfis)
+        permissao = ConfigPermissoes.objects.get(config_paginas=pagina,
+                                                config_perfis=usuario.config_perfis)
 
         dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
         paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
         modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
-    db_slug = 'default'
-
-    lista_transmissores = TransmissorLoteEfdreinf.objects.using(db_slug).filter(status=1).all()
+    lista_transmissores = TransmissorLoteEfdreinf.objects.filter(status=1).all()
 
     for a in lista_transmissores:
         send_xml(request, a.id, 'ConsultasReinf')

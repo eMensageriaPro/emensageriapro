@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5001_evtbasestrab or 1 %}"Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos, referentes à Remuneração do Período de Apuração e de Períodos Anteriores informados nos eventos S-1200, S-2299 e S-2399.";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5001_evtbasestrab or 1 %}"{{ c.s5001_evtbasestrab }}";{% endif %}
+{% endfor %}

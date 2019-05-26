@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'. No caso das categorias em que o envio do evento TSV é opc (...)"
-{% if show_fields.show_s1200_evtremun or not s1200_evtremun_id and 1 %}"Possui informações relativas remuneração de trabalhadores no período de apuração?";{% endif %}{% if show_fields.show_nmtrab or 1 %}"Nome";{% endif %}{% if show_fields.show_dtnascto or 1 %}"Data de nascimento";{% endif %}
-{% for a in s1200_infocomplem_lista %}{% if show_fields.show_s1200_evtremun or  not s1200_evtremun_id and 1 %}"{{ a.s1200_evtremun }}";{% endif %}{% if show_fields.show_nmtrab or 1 %}"{{ a.nmtrab }}";{% endif %}{% if show_fields.show_dtnascto or 1 %}"{{ a.dtnascto|date:"d/m/Y" }}";{% endif %}
-{% endfor %}

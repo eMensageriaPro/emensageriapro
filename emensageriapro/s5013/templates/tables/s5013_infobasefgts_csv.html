@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Evento consolidado por contribuinte referente ao FGTS devido."
-{% if show_fields.show_s5013_evtfgts or not s5013_evtfgts_id and 1 %}"Evento consolidado por contribuinte referente ao FGTS devido.";{% endif %}
-{% for a in s5013_infobasefgts_lista %}{% if show_fields.show_s5013_evtfgts or  not s5013_evtfgts_id and 1 %}"{{ a.s5013_evtfgts }}";{% endif %}
-{% endfor %}

@@ -1,1 +1,73 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% extends 'base.html' %}{% load templatetags %}{% block content %}<section class="content"><div class="row"><div class="col-md-12"><div class="box box-primary"><div class="box-header"><h3 class="box-title">Apagar Registro</h3></div><div class="box-body"><div class="row">{% if dict_permissoes|get_permissao:'s2299_infoperapur_ideestablot_apagar' %}<form action="#" method="POST">{% csrf_token %}<div class="form-group col-md-8">Confirma a remoção do registro? Esta ação é irreversível e apagará todos os dados relacionados a este registro!</div><div class="form-group col-md-2 text-right"><button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i>Apagar</button></div></form><div class="form-group col-md-2 text-right"><a href="javascript:history.back()"><button type="submit" class="btn btn-primary"><i class="fa fa-rotate-left"></i>Não Apagar</button></a></div>{% else %}<div class="form-group col-md-10">Você não possui permissão para apagar este registro, entre em contato com o administrador do sistema!</div><div class="form-group col-md-2 text-right"><a href="javascript:history.back()"><button type="submit" class="btn btn-primary"><i class="fa fa-rotate-left"></i>Retornar</button></a></div>{% endif %}</div></div></div></div></div></section>{% endblock content %}
+<!--
+
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->{% extends 'base.html' %}
+{% load templatetags %}
+{% block content %}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Apagar Registro</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        {% if dict_permissoes|get_permissao:'s2299_infoperapur_ideestablot_apagar' %}
+                        <form action="#" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group col-md-8">
+                                Confirma a remoção do registro? Esta ação é irreversível e apagará todos os dados relacionados a este registro!
+                            </div>
+                            <div class="form-group col-md-2 text-right">
+                                <button type="submit" class="btn btn-danger"><i class="fa fa-remove"></i> Apagar</button>
+                            </div>
+                        </form>
+                        <div class="form-group col-md-2 text-right">
+                            <a href="javascript:history.back()"><button type="submit" class="btn btn-primary"><i class="fa fa-rotate-left"></i> Não Apagar</button></a>
+                        </div>
+                        {% else %}
+                        <div class="form-group col-md-10">
+                            Você não possui permissão para apagar este registro, entre em contato com o administrador do sistema!
+                        </div>
+                        <div class="form-group col-md-2 text-right">
+                            <a href="javascript:history.back()"><button type="submit" class="btn btn-primary"><i class="fa fa-rotate-left"></i> Retornar</button></a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

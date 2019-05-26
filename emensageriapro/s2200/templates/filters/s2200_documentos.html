@@ -1,1 +1,32 @@
-{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador</label><select name="s2200_evtadmissao" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2200_evtadmissao_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2200_evtadmissao' %}selected="selected"{% endifequal %}>{{ a.evtadmissao }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.trabalhador }} - {{ a.cpftrab }} - {{ a.nistrab }} - {{ a.nmtrab }} - {{ a.sexo }} - {{ a.racacor }} - {{ a.grauinstr }} - {{ a.nascimento }} - {{ a.dtnascto }} - {{ a.paisnascto }} - {{ a.paisnac }} - {{ a.endereco }} - {{ a.vinculo }} - {{ a.matricula }} - {{ a.tpregtrab }} - {{ a.tpregprev }} - {{ a.cadini }} - {{ a.inforegimetrab }} - {{ a.infocontrato }} - {{ a.codcateg }} - {{ a.remuneracao }} - {{ a.vrsalfx }} - {{ a.undsalfixo }} - {{ a.duracao }} - {{ a.tpcontr }} - {{ a.localtrabalho }}</option>{% endfor %}</select></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2200_evtadmissao" value="1" {% if show_fields|get_value_from_dict:'show_s2200_evtadmissao' %}checked{% endif %}>Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2200_documentos__s2200_evtadmissao -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações dos documentos pessoais do trabalhador</label>
+    <select name="s2200_evtadmissao" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s2200_evtadmissao_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2200_evtadmissao' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2200_documentos__s2200_evtadmissao -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2200_evtadmissao" value="1" {% if show_fields|get_value_from_dict:'show_s2200_evtadmissao' %}checked{% endif %} >Informações dos documentos pessoais do trabalhador
+    </div>
+</div>
+
+

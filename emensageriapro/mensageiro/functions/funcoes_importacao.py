@@ -38,7 +38,7 @@ import datetime
 import os
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.mensageiro.functions.funcoes_validacoes import validar_schema
-from emensageriapro.settings import CERT_HOST, CERT_PASS
+
 from emensageriapro.mensageiro.models import *
 from emensageriapro.esocial.models import *
 from emensageriapro.efdreinf.models import *
@@ -55,6 +55,7 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 def get_evento_nome(texto):
+    print texto
     texto = texto.replace('/">', '">').replace('id="', 'Id="')
     a = texto.split(' Id="')
     b = a[0].split('"><')

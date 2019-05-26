@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1005_inclusao or 1 %}"Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.";{% endif %}{% if show_fields.show_tpcaepf or 1 %}"Tipo CAEPF (Cadastro Atividade Econômica de Pessoa Física)";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1005_inclusao or 1 %}"{{ c.s1005_inclusao }}";{% endif %}{% if show_fields.show_tpcaepf or 1 %}"{{ c.tpcaepf }}";{% endif %}
+{% endfor %}

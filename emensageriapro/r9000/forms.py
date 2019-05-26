@@ -1,10 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.r9000.models import * 
+from emensageriapro.r9000.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -39,6 +40,5 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
 
 

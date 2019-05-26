@@ -103,11 +103,11 @@ def ler_arquivo(arquivo):
 
 def criar_permissoes(db_slug):
     from datetime import datetime
-    lista_paginas = ConfigPaginas.objects.using(db_slug).all()
-    lista_perfis = ConfigPerfis.objects.using(db_slug).all()
+    lista_paginas = ConfigPaginas.objects.all()
+    lista_perfis = ConfigPerfis.objects.all()
     for per in lista_perfis:
         for pag in lista_paginas:
-            lista = ConfigPermissoes.objects.using(db_slug).filter(config_paginas=pag.id, config_perfis=per.id).all()
+            lista = ConfigPermissoes.objects.filter(config_paginas=pag.id, config_perfis=per.id).all()
             if not lista:
                 dados = {}
                 dados['config_paginas_id'] = pag.id
@@ -127,7 +127,7 @@ def criar_permissoes(db_slug):
     dados_admin['permite_visualizar'] = 1
     dados_admin['permite_editar'] = 1
     dados_admin['permite_apagar'] = 1
-    ConfigPermissoes.objects.using(db_slug).filter(config_perfis=1).update(**dados_admin)
+    ConfigPermissoes.objects.filter(config_perfis=1).update(**dados_admin)
 
 
 def login(request):
@@ -149,7 +149,7 @@ def login(request):
         nome_usuario = request.POST.get('usuario')
         senha = request.POST.get('senha')
         try:
-            usuario = Usuarios.objects.using(db_slug).get(usuario=nome_usuario, excluido=False)
+            usuario = Usuarios.objects.get(usuario=nome_usuario)
         except:
             usuario = False
         if nome_usuario and usuario:

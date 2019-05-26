@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1000_inclusao_infoop or 1 %}"Informações relativas a Ente Federativo Responsável - EFR";{% endif %}{% if show_fields.show_ideefr or 1 %}"É Ente Federativo Responsável?";{% endif %}{% if show_fields.show_cnpjefr or 1 %}"CNPJ do EFR";{% endif %}{% if show_fields.show_indrpps or 1 %}"Possui RPPS";{% endif %}{% if show_fields.show_prevcomp or 1 %}"Informar se o EFR instituiu regime de previdência complementar";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1000_inclusao_infoop or 1 %}"{{ c.s1000_inclusao_infoop }}";{% endif %}{% if show_fields.show_ideefr or 1 %}"{{ c.ideefr }}";{% endif %}{% if show_fields.show_cnpjefr or 1 %}"{{ c.cnpjefr }}";{% endif %}{% if show_fields.show_indrpps or 1 %}"{{ c.indrpps }}";{% endif %}{% if show_fields.show_prevcomp or 1 %}"{{ c.prevcomp }}";{% endif %}
+{% endfor %}

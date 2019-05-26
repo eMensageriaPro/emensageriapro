@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5011_evtcs or 1 %}"Informações de contribuição previdenciária do Segurado";{% endif %}{% if show_fields.show_vrdesccp or 1 %}"Valor total descontada dos segurados";{% endif %}{% if show_fields.show_vrcpseg or 1 %}"Valor da contribuição do segurado";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5011_evtcs or 1 %}"{{ c.s5011_evtcs }}";{% endif %}{% if show_fields.show_vrdesccp or 1 %}"{{ c.vrdesccp }}";{% endif %}{% if show_fields.show_vrcpseg or 1 %}"{{ c.vrcpseg }}";{% endif %}
+{% endfor %}

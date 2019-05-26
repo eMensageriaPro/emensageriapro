@@ -1,1 +1,119 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Alteração das informações</label><select name="r1000_alteracao" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in r1000_alteracao_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r1000_alteracao' %}selected="selected"{% endifequal %}>{{ a.r1000_evtinfocontri }} - {{ a.ideperiodo }} - {{ a.inivalid }} - {{ a.infocadastro }} - {{ a.classtrib }} - {{ a.indescrituracao }} - {{ a.inddesoneracao }} - {{ a.indacordoisenmulta }} - {{ a.contato }} - {{ a.nmctt }} - {{ a.cpfctt }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>CNPJ da empresa desenvolvedora do software.</label><div name="cnpjsofthouse__icontains" class="input-group" style="width: 100%;"><input type="text" name="cnpjsofthouse__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'cnpjsofthouse__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Se pessoa jurídica ou órgão público, informar a Razão Social. Caso contrário, informar o nome do contribuinte.</label><div name="nmrazao__icontains" class="input-group" style="width: 100%;"><input type="text" name="nmrazao__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nmrazao__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Nome do contato na empresa.</label><div name="nmcont__icontains" class="input-group" style="width: 100%;"><input type="text" name="nmcont__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nmcont__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Informar o número do telefone, com DDD</label><div name="telefone__icontains" class="input-group" style="width: 100%;"><input type="text" name="telefone__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'telefone__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Endereço eletrônico</label><div name="email__icontains" class="input-group" style="width: 100%;"><input type="text" name="email__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'email__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_r1000_alteracao" value="1" {% if show_fields|get_value_from_dict:'show_r1000_alteracao' %}checked{% endif %}>Alteração das informações</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_cnpjsofthouse" value="1" {% if show_fields|get_value_from_dict:'show_cnpjsofthouse' %}checked{% endif %}>CNPJ da empresa desenvolvedora do software.</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nmrazao" value="1" {% if show_fields|get_value_from_dict:'show_nmrazao' %}checked{% endif %}>Se pessoa jurídica ou órgão público, informar a Razão Social. Caso contrário, informar o nome do contribuinte.</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nmcont" value="1" {% if show_fields|get_value_from_dict:'show_nmcont' %}checked{% endif %}>Nome do contato na empresa.</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_telefone" value="1" {% if show_fields|get_value_from_dict:'show_telefone' %}checked{% endif %}>Informar o número do telefone, com DDD</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_email" value="1" {% if show_fields|get_value_from_dict:'show_email' %}checked{% endif %}>Endereço eletrônico</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r1000_alteracao_softhouse__r1000_alteracao -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.</label>
+    <select name="r1000_alteracao" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r1000_alteracao_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r1000_alteracao' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r1000_alteracao_softhouse__r1000_alteracao -->
+
+<!-- inicio__r1000_alteracao_softhouse__cnpjsofthouse -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>CNPJ da empresa desenvolvedora do software.</label>
+    <div name="cnpjsofthouse" class="input-group" style="width: 100%;">
+      <input type="text" name="cnpjsofthouse" class="form-control" value="{{ dict_fields|get_value_from_dict:'cnpjsofthouse' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r1000_alteracao_softhouse__cnpjsofthouse -->
+
+<!-- inicio__r1000_alteracao_softhouse__nmrazao -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Se pessoa jurídica ou órgão público, informar a Razão Social. Caso contrário, informar o nome do contribuinte.</label>
+    <div name="nmrazao" class="input-group" style="width: 100%;">
+      <input type="text" name="nmrazao" class="form-control" value="{{ dict_fields|get_value_from_dict:'nmrazao' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r1000_alteracao_softhouse__nmrazao -->
+
+<!-- inicio__r1000_alteracao_softhouse__nmcont -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Nome do contato na empresa.</label>
+    <div name="nmcont" class="input-group" style="width: 100%;">
+      <input type="text" name="nmcont" class="form-control" value="{{ dict_fields|get_value_from_dict:'nmcont' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r1000_alteracao_softhouse__nmcont -->
+
+<!-- inicio__r1000_alteracao_softhouse__telefone -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o número do telefone, com DDD</label>
+    <div name="telefone" class="input-group" style="width: 100%;">
+      <input type="text" name="telefone" class="form-control" value="{{ dict_fields|get_value_from_dict:'telefone' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r1000_alteracao_softhouse__telefone -->
+
+<!-- inicio__r1000_alteracao_softhouse__email -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Endereço eletrônico</label>
+    <div name="email" class="input-group" style="width: 100%;">
+      <input type="text" name="email" class="form-control" value="{{ dict_fields|get_value_from_dict:'email' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r1000_alteracao_softhouse__email -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r1000_alteracao" value="1" {% if show_fields|get_value_from_dict:'show_r1000_alteracao' %}checked{% endif %} >Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_cnpjsofthouse" value="1" {% if show_fields|get_value_from_dict:'show_cnpjsofthouse' %}checked{% endif %} >CNPJ da empresa desenvolvedora do software.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nmrazao" value="1" {% if show_fields|get_value_from_dict:'show_nmrazao' %}checked{% endif %} >Se pessoa jurídica ou órgão público, informar a Razão Social. Caso contrário, informar o nome do contribuinte.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nmcont" value="1" {% if show_fields|get_value_from_dict:'show_nmcont' %}checked{% endif %} >Nome do contato na empresa.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_telefone" value="0" {% if show_fields|get_value_from_dict:'show_telefone' %}checked{% endif %} >Informar o número do telefone, com DDD
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_email" value="0" {% if show_fields|get_value_from_dict:'show_email' %}checked{% endif %} >Endereço eletrônico
+    </div>
+</div>
+
+

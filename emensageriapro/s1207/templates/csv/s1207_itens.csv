@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1207_dmdev or 1 %}"Detalhamento dos valores devidos ao beneficiário";{% endif %}{% if show_fields.show_codrubr or 1 %}"Código da Rubrica";{% endif %}{% if show_fields.show_idetabrubr or 1 %}"Identificador tabela de rubricas";{% endif %}{% if show_fields.show_vrrubr or 1 %}"Valor total";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1207_dmdev or 1 %}"{{ c.s1207_dmdev }}";{% endif %}{% if show_fields.show_codrubr or 1 %}"{{ c.codrubr }}";{% endif %}{% if show_fields.show_idetabrubr or 1 %}"{{ c.idetabrubr }}";{% endif %}{% if show_fields.show_vrrubr or 1 %}"{{ c.vrrubr }}";{% endif %}
+{% endfor %}

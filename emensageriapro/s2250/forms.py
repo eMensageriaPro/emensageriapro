@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s2250.models import * 
-from emensageriapro.esocial.models import s2250evtAvPrevio 
+from emensageriapro.s2250.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,22 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s2250_cancavprevio(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2250_cancavprevio, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2250_evtavprevio'].widget.attrs['required'] = True        
-        self.fields['dtcancavprv'].widget.attrs['required'] = True        
-        self.fields['mtvcancavprevio'].widget.attrs['required'] = True
+        super(form_s2250_cancavprevio, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -75,27 +74,25 @@ class form_s2250_cancavprevio(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2250cancAvPrevio
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2250_detavprevio(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2250_detavprevio, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2250_evtavprevio'].widget.attrs['required'] = True        
-        self.fields['dtavprv'].widget.attrs['required'] = True        
-        self.fields['dtprevdeslig'].widget.attrs['required'] = True        
-        self.fields['tpavprevio'].widget.attrs['required'] = True
+        super(form_s2250_detavprevio, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -115,10 +112,10 @@ class form_s2250_detavprevio(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2250detAvPrevio
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s1270.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,40 +45,44 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S1270_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
+
 
 class s1270remunAvNP(SoftDeletionModel):
-    s1270_evtcontratavnp = models.ForeignKey('esocial.s1270evtContratAvNP',
-        related_name='%(class)s_s1270_evtcontratavnp')
-    def evento(self): return self.s1270_evtcontratavnp.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1270_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    codlotacao = models.CharField(max_length=30)
-    vrbccp00 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrbccp15 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrbccp20 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrbccp25 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrbccp13 = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrbcfgts = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    s1270_evtcontratavnp = models.ForeignKey('esocial.s1270evtContratAvNP', 
+        related_name='%(class)s_s1270_evtcontratavnp', )
+    
+    def evento(self): 
+        return self.s1270_evtcontratavnp.evento()
+    tpinsc = models.IntegerField(choices=CHOICES_S1270_TPINSC, null=True, )
+    nrinsc = models.CharField(max_length=15, null=True, )
+    codlotacao = models.CharField(max_length=30, null=True, )
+    vrbccp00 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrbccp15 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrbccp20 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrbccp25 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrbccp13 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrbcfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -74,41 +90,67 @@ class s1270remunAvNP(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1270_evtcontratavnp) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.codlotacao) + ' - ' + unicode(self.vrbccp00) + ' - ' + unicode(self.vrbccp15) + ' - ' + unicode(self.vrbccp20) + ' - ' + unicode(self.vrbccp25) + ' - ' + unicode(self.vrbccp13) + ' - ' + unicode(self.vrbcfgts) + ' - ' + unicode(self.vrdesccp)
-    #s1270_remunavnp_custom#
-
+        
+        lista = [
+            unicode(self.s1270_evtcontratavnp),
+            unicode(self.tpinsc),
+            unicode(self.nrinsc),
+            unicode(self.codlotacao),
+            unicode(self.vrbccp00),
+            unicode(self.vrbccp15),
+            unicode(self.vrbccp20),
+            unicode(self.vrbccp25),
+            unicode(self.vrbccp13),
+            unicode(self.vrbcfgts),
+            unicode(self.vrdesccp),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.'
         db_table = r's1270_remunavnp'       
         managed = True # s1270_remunavnp #
-        unique_together = (
-            #custom_unique_together_s1270_remunavnp#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1270_remunavnp
-            #index_together_s1270_remunavnp
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1270_remunavnp", "Can view s1270_remunavnp"),
-            #custom_permissions_s1270_remunavnp
-        )
-        ordering = ['s1270_evtcontratavnp', 'tpinsc', 'nrinsc', 'codlotacao', 'vrbccp00', 'vrbccp15', 'vrbccp20', 'vrbccp25', 'vrbccp13', 'vrbcfgts', 'vrdesccp']
+            ("can_view_s1270_remunavnp", "Can view s1270_remunavnp"), )
+            
+        ordering = [
+            's1270_evtcontratavnp',
+            'tpinsc',
+            'nrinsc',
+            'codlotacao',
+            'vrbccp00',
+            'vrbccp15',
+            'vrbccp20',
+            'vrbccp25',
+            'vrbccp13',
+            'vrbcfgts',
+            'vrdesccp',]
 
 
 
 class s1270remunAvNPSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1270remunAvNP
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

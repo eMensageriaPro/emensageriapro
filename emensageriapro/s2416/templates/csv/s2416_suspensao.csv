@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2416_evtcdbenalt or 1 %}"Informações referentes à suspensão do benefício";{% endif %}{% if show_fields.show_mtvsuspensao or 1 %}"Motivo da suspensão do benefício";{% endif %}{% if show_fields.show_dscsuspensao or 1 %}"Descrição do motivo da suspensão do benefício";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2416_evtcdbenalt or 1 %}"{{ c.s2416_evtcdbenalt }}";{% endif %}{% if show_fields.show_mtvsuspensao or 1 %}"{{ c.mtvsuspensao }}";{% endif %}{% if show_fields.show_dscsuspensao or 1 %}"{{ c.dscsuspensao }}";{% endif %}
+{% endfor %}

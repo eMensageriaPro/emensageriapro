@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s2306.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,90 +45,42 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S2306_INDREMUNCARGO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
 
-CHOICES_S2306_NATESTAGIO = (
-    ('N', u'N - Não Obrigatório'),
-    ('O', u'O - Obrigatório'),
-)
-
-CHOICES_S2306_NIVESTAGIO = (
-    (1, u'1 - Fundamental'),
-    (2, u'2 - Médio'),
-    (3, u'3 - Formação Profissional'),
-    (4, u'4 - Superior'),
-    (8, u'8 - Especial'),
-    (9, u'9 - Mãe social (Lei 7644, de 1987)'),
-)
-
-CHOICES_S2306_UNDSALFIXO = (
-    (1, u'1 - Por Hora'),
-    (2, u'2 - Por Dia'),
-    (3, u'3 - Por Semana'),
-    (4, u'4 - Por Quinzena'),
-    (5, u'5 - Por Mês'),
-    (6, u'6 - Por Tarefa'),
-    (7, u'7 - Não aplicável - salário exclusivamente variável'),
-)
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
 
 class s2306ageIntegracao(SoftDeletionModel):
-    s2306_infoestagiario = models.OneToOneField('s2306infoEstagiario',
-        related_name='%(class)s_s2306_infoestagiario')
-    def evento(self): return self.s2306_infoestagiario.evento()
-    cnpjagntinteg = models.CharField(max_length=14)
-    nmrazao = models.CharField(max_length=100)
-    dsclograd = models.CharField(max_length=100)
-    nrlograd = models.CharField(max_length=10)
-    bairro = models.CharField(max_length=90, blank=True, null=True)
-    cep = models.CharField(max_length=8)
-    codmunic = models.TextField(max_length=7, blank=True, null=True)
-    uf = models.CharField(choices=ESTADOS, max_length=2)
+
+    s2306_infoestagiario = models.ForeignKey('s2306.s2306infoEstagiario', 
+        related_name='%(class)s_s2306_infoestagiario', )
+    
+    def evento(self): 
+        return self.s2306_infoestagiario.evento()
+    cnpjagntinteg = models.CharField(max_length=14, null=True, )
+    nmrazao = models.CharField(max_length=100, null=True, )
+    dsclograd = models.CharField(max_length=100, null=True, )
+    nrlograd = models.CharField(max_length=10, null=True, )
+    bairro = models.CharField(max_length=90, blank=True, null=True, )
+    cep = models.CharField(max_length=8, null=True, )
+    codmunic = models.TextField(blank=True, null=True, )
+    uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -124,49 +88,74 @@ class s2306ageIntegracao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2306_infoestagiario) + ' - ' + unicode(self.cnpjagntinteg) + ' - ' + unicode(self.nmrazao) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.uf)
-    #s2306_ageintegracao_custom#
-
+        
+        lista = [
+            unicode(self.s2306_infoestagiario),
+            unicode(self.cnpjagntinteg),
+            unicode(self.nmrazao),
+            unicode(self.dsclograd),
+            unicode(self.nrlograd),
+            unicode(self.cep),
+            unicode(self.uf),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Agente de Integração'
         db_table = r's2306_ageintegracao'       
         managed = True # s2306_ageintegracao #
-        unique_together = (
-            #custom_unique_together_s2306_ageintegracao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2306_ageintegracao
-            #index_together_s2306_ageintegracao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2306_ageintegracao", "Can view s2306_ageintegracao"),
-            #custom_permissions_s2306_ageintegracao
-        )
-        ordering = ['s2306_infoestagiario', 'cnpjagntinteg', 'nmrazao', 'dsclograd', 'nrlograd', 'cep', 'uf']
+            ("can_view_s2306_ageintegracao", "Can view s2306_ageintegracao"), )
+            
+        ordering = [
+            's2306_infoestagiario',
+            'cnpjagntinteg',
+            'nmrazao',
+            'dsclograd',
+            'nrlograd',
+            'cep',
+            'uf',]
 
 
 
 class s2306ageIntegracaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2306ageIntegracao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2306cargoFuncao(SoftDeletionModel):
-    s2306_evttsvaltcontr = models.OneToOneField('esocial.s2306evtTSVAltContr',
-        related_name='%(class)s_s2306_evttsvaltcontr')
-    def evento(self): return self.s2306_evttsvaltcontr.evento()
-    codcargo = models.CharField(max_length=30)
-    codfuncao = models.CharField(max_length=30, blank=True, null=True)
+
+    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares', 
+        related_name='%(class)s_s2306_infocomplementares', )
+    
+    def evento(self): 
+        return self.s2306_infocomplementares.evento()
+    codcargo = models.CharField(max_length=30, null=True, )
+    codfuncao = models.CharField(max_length=30, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -174,61 +163,62 @@ class s2306cargoFuncao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.codcargo)
-    #s2306_cargofuncao_custom#
-
+        
+        lista = [
+            unicode(self.s2306_infocomplementares),
+            unicode(self.codcargo),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo'
         db_table = r's2306_cargofuncao'       
         managed = True # s2306_cargofuncao #
-        unique_together = (
-            #custom_unique_together_s2306_cargofuncao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2306_cargofuncao
-            #index_together_s2306_cargofuncao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2306_cargofuncao", "Can view s2306_cargofuncao"),
-            #custom_permissions_s2306_cargofuncao
-        )
-        ordering = ['s2306_evttsvaltcontr', 'codcargo']
+            ("can_view_s2306_cargofuncao", "Can view s2306_cargofuncao"), )
+            
+        ordering = [
+            's2306_infocomplementares',
+            'codcargo',]
 
 
 
 class s2306cargoFuncaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2306cargoFuncao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
 
-class s2306infoEstagiario(SoftDeletionModel):
-    s2306_evttsvaltcontr = models.OneToOneField('esocial.s2306evtTSVAltContr',
-        related_name='%(class)s_s2306_evttsvaltcontr')
-    def evento(self): return self.s2306_evttsvaltcontr.evento()
-    natestagio = models.CharField(choices=CHOICES_S2306_NATESTAGIO, max_length=1)
-    nivestagio = models.IntegerField(choices=CHOICES_S2306_NIVESTAGIO)
-    areaatuacao = models.CharField(max_length=50, blank=True, null=True)
-    nrapol = models.CharField(max_length=30, blank=True, null=True)
-    vlrbolsa = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    dtprevterm = models.DateField()
-    cnpjinstensino = models.CharField(max_length=14, blank=True, null=True)
-    nmrazao = models.CharField(max_length=100)
-    dsclograd = models.CharField(max_length=100, blank=True, null=True)
-    nrlograd = models.CharField(max_length=10, blank=True, null=True)
-    bairro = models.CharField(max_length=90, blank=True, null=True)
-    cep = models.CharField(max_length=8, blank=True, null=True)
-    codmunic = models.TextField(max_length=7, blank=True, null=True)
-    uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
+
+class s2306infoComplementares(SoftDeletionModel):
+
+    s2306_evttsvaltcontr = models.ForeignKey('esocial.s2306evtTSVAltContr', 
+        related_name='%(class)s_s2306_evttsvaltcontr', )
+    
+    def evento(self): 
+        return self.s2306_evttsvaltcontr.evento()
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -236,48 +226,144 @@ class s2306infoEstagiario(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.natestagio) + ' - ' + unicode(self.nivestagio) + ' - ' + unicode(self.dtprevterm) + ' - ' + unicode(self.nmrazao)
-    #s2306_infoestagiario_custom#
+        
+        lista = [
+            unicode(self.s2306_evttsvaltcontr),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
+    class Meta:
+    
+        # verbose_name = u'Informações complementares sobre o declarante'
+        db_table = r's2306_infocomplementares'       
+        managed = True # s2306_infocomplementares #
+        
+        unique_together = ()
+            
+        index_together = ()
+        
+        permissions = (
+            ("can_view_s2306_infocomplementares", "Can view s2306_infocomplementares"), )
+            
+        ordering = [
+            's2306_evttsvaltcontr',]
+
+
+
+class s2306infoComplementaresSerializer(ModelSerializer):
 
     class Meta:
+    
+        model = s2306infoComplementares
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+    
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
+
+
+class s2306infoEstagiario(SoftDeletionModel):
+
+    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares', 
+        related_name='%(class)s_s2306_infocomplementares', )
+    
+    def evento(self): 
+        return self.s2306_infocomplementares.evento()
+    natestagio = models.CharField(choices=CHOICES_S2306_NATESTAGIO, max_length=1, null=True, )
+    nivestagio = models.IntegerField(choices=CHOICES_S2306_NIVESTAGIO, null=True, )
+    areaatuacao = models.CharField(max_length=50, blank=True, null=True, )
+    nrapol = models.CharField(max_length=30, blank=True, null=True, )
+    vlrbolsa = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    dtprevterm = models.DateField(null=True, )
+    cnpjinstensino = models.CharField(max_length=14, blank=True, null=True, )
+    nmrazao = models.CharField(max_length=100, null=True, )
+    dsclograd = models.CharField(max_length=100, blank=True, null=True, )
+    nrlograd = models.CharField(max_length=10, blank=True, null=True, )
+    bairro = models.CharField(max_length=90, blank=True, null=True, )
+    cep = models.CharField(max_length=8, blank=True, null=True, )
+    codmunic = models.TextField(blank=True, null=True, )
+    uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
+    
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
+    def __unicode__(self):
+        
+        lista = [
+            unicode(self.s2306_infocomplementares),
+            unicode(self.natestagio),
+            unicode(self.nivestagio),
+            unicode(self.dtprevterm),
+            unicode(self.nmrazao),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
+    class Meta:
+    
         # verbose_name = u'Informações relativas ao estagiário'
         db_table = r's2306_infoestagiario'       
         managed = True # s2306_infoestagiario #
-        unique_together = (
-            #custom_unique_together_s2306_infoestagiario#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2306_infoestagiario
-            #index_together_s2306_infoestagiario
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2306_infoestagiario", "Can view s2306_infoestagiario"),
-            #custom_permissions_s2306_infoestagiario
-        )
-        ordering = ['s2306_evttsvaltcontr', 'natestagio', 'nivestagio', 'dtprevterm', 'nmrazao']
+            ("can_view_s2306_infoestagiario", "Can view s2306_infoestagiario"), )
+            
+        ordering = [
+            's2306_infocomplementares',
+            'natestagio',
+            'nivestagio',
+            'dtprevterm',
+            'nmrazao',]
 
 
 
 class s2306infoEstagiarioSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2306infoEstagiario
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2306infoTrabCedido(SoftDeletionModel):
-    s2306_evttsvaltcontr = models.OneToOneField('esocial.s2306evtTSVAltContr',
-        related_name='%(class)s_s2306_evttsvaltcontr')
-    def evento(self): return self.s2306_evttsvaltcontr.evento()
-    indremuncargo = models.CharField(choices=CHOICES_S2306_INDREMUNCARGO, max_length=1)
+
+    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares', 
+        related_name='%(class)s_s2306_infocomplementares', )
+    
+    def evento(self): 
+        return self.s2306_infocomplementares.evento()
+    indremuncargo = models.CharField(choices=CHOICES_S2306_INDREMUNCARGO, max_length=1, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -285,50 +371,65 @@ class s2306infoTrabCedido(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.indremuncargo)
-    #s2306_infotrabcedido_custom#
-
+        
+        lista = [
+            unicode(self.s2306_infocomplementares),
+            unicode(self.indremuncargo),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.'
         db_table = r's2306_infotrabcedido'       
         managed = True # s2306_infotrabcedido #
-        unique_together = (
-            #custom_unique_together_s2306_infotrabcedido#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2306_infotrabcedido
-            #index_together_s2306_infotrabcedido
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2306_infotrabcedido", "Can view s2306_infotrabcedido"),
-            #custom_permissions_s2306_infotrabcedido
-        )
-        ordering = ['s2306_evttsvaltcontr', 'indremuncargo']
+            ("can_view_s2306_infotrabcedido", "Can view s2306_infotrabcedido"), )
+            
+        ordering = [
+            's2306_infocomplementares',
+            'indremuncargo',]
 
 
 
 class s2306infoTrabCedidoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2306infoTrabCedido
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2306remuneracao(SoftDeletionModel):
-    s2306_evttsvaltcontr = models.OneToOneField('esocial.s2306evtTSVAltContr',
-        related_name='%(class)s_s2306_evttsvaltcontr')
-    def evento(self): return self.s2306_evttsvaltcontr.evento()
-    vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    undsalfixo = models.IntegerField(choices=CHOICES_S2306_UNDSALFIXO)
-    dscsalvar = models.CharField(max_length=255, blank=True, null=True)
+
+    s2306_infocomplementares = models.ForeignKey('s2306.s2306infoComplementares', 
+        related_name='%(class)s_s2306_infocomplementares', )
+    
+    def evento(self): 
+        return self.s2306_infocomplementares.evento()
+    vrsalfx = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    undsalfixo = models.IntegerField(choices=CHOICES_S2306_UNDSALFIXO, null=True, )
+    dscsalvar = models.CharField(max_length=255, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -336,49 +437,66 @@ class s2306remuneracao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2306_evttsvaltcontr) + ' - ' + unicode(self.vrsalfx) + ' - ' + unicode(self.undsalfixo)
-    #s2306_remuneracao_custom#
-
+        
+        lista = [
+            unicode(self.s2306_infocomplementares),
+            unicode(self.vrsalfx),
+            unicode(self.undsalfixo),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações da remuneração e periodicidade de pagamento'
         db_table = r's2306_remuneracao'       
         managed = True # s2306_remuneracao #
-        unique_together = (
-            #custom_unique_together_s2306_remuneracao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2306_remuneracao
-            #index_together_s2306_remuneracao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2306_remuneracao", "Can view s2306_remuneracao"),
-            #custom_permissions_s2306_remuneracao
-        )
-        ordering = ['s2306_evttsvaltcontr', 'vrsalfx', 'undsalfixo']
+            ("can_view_s2306_remuneracao", "Can view s2306_remuneracao"), )
+            
+        ordering = [
+            's2306_infocomplementares',
+            'vrsalfx',
+            'undsalfixo',]
 
 
 
 class s2306remuneracaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2306remuneracao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2306supervisorEstagio(SoftDeletionModel):
-    s2306_infoestagiario = models.OneToOneField('s2306infoEstagiario',
-        related_name='%(class)s_s2306_infoestagiario')
-    def evento(self): return self.s2306_infoestagiario.evento()
-    cpfsupervisor = models.CharField(max_length=11)
-    nmsuperv = models.CharField(max_length=70)
+
+    s2306_infoestagiario = models.ForeignKey('s2306.s2306infoEstagiario', 
+        related_name='%(class)s_s2306_infoestagiario', )
+    
+    def evento(self): 
+        return self.s2306_infoestagiario.evento()
+    cpfsupervisor = models.CharField(max_length=11, null=True, )
+    nmsuperv = models.CharField(max_length=70, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -386,41 +504,51 @@ class s2306supervisorEstagio(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2306_infoestagiario) + ' - ' + unicode(self.cpfsupervisor) + ' - ' + unicode(self.nmsuperv)
-    #s2306_supervisorestagio_custom#
-
+        
+        lista = [
+            unicode(self.s2306_infoestagiario),
+            unicode(self.cpfsupervisor),
+            unicode(self.nmsuperv),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Supervisor do Estágio'
         db_table = r's2306_supervisorestagio'       
         managed = True # s2306_supervisorestagio #
-        unique_together = (
-            #custom_unique_together_s2306_supervisorestagio#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2306_supervisorestagio
-            #index_together_s2306_supervisorestagio
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2306_supervisorestagio", "Can view s2306_supervisorestagio"),
-            #custom_permissions_s2306_supervisorestagio
-        )
-        ordering = ['s2306_infoestagiario', 'cpfsupervisor', 'nmsuperv']
+            ("can_view_s2306_supervisorestagio", "Can view s2306_supervisorestagio"), )
+            
+        ordering = [
+            's2306_infoestagiario',
+            'cpfsupervisor',
+            'nmsuperv',]
 
 
 
 class s2306supervisorEstagioSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2306supervisorEstagio
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

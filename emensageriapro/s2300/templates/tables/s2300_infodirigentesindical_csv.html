@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Empresa de Origem do Dirigente Sindical"
-{% if show_fields.show_s2300_evttsvinicio or not s2300_evttsvinicio_id and 1 %}"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Início";{% endif %}{% if show_fields.show_categorig or 1 %}"Categoria de origem do trabalhador";{% endif %}{% if show_fields.show_cnpjorigem or 0 %}"CNPJ da empresa de origem do dirigente sindical";{% endif %}{% if show_fields.show_dtadmorig or 0 %}"Data de admissão do dirigente sindical";{% endif %}{% if show_fields.show_matricorig or 0 %}"Matricula do trabalhador no empregador origem";{% endif %}
-{% for a in s2300_infodirigentesindical_lista %}{% if show_fields.show_s2300_evttsvinicio or  not s2300_evttsvinicio_id and 1 %}"{{ a.s2300_evttsvinicio }}";{% endif %}{% if show_fields.show_categorig or 1 %}"{{ a.categorig }}";{% endif %}{% if show_fields.show_cnpjorigem or 0 %}"{{ a.cnpjorigem }}";{% endif %}{% if show_fields.show_dtadmorig or 0 %}"{{ a.dtadmorig|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_matricorig or 0 %}"{{ a.matricorig }}";{% endif %}
-{% endfor %}

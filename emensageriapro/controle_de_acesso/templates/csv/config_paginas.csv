@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_config_modulos or 1 %}"Módulo";{% endif %}{% if show_fields.show_titulo or 1 %}"Título";{% endif %}{% if show_fields.show_endereco or 1 %}"Endereço";{% endif %}{% if show_fields.show_exibe_menu or 1 %}"Exibe no Menu";{% endif %}{% if show_fields.show_tipo or 1 %}"Tipo";{% endif %}{% if show_fields.show_ordem or 1 %}"Ordem";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_config_modulos or 1 %}"{{ c.config_modulos }}";{% endif %}{% if show_fields.show_titulo or 1 %}"{{ c.titulo }}";{% endif %}{% if show_fields.show_endereco or 1 %}"{{ c.endereco }}";{% endif %}{% if show_fields.show_exibe_menu or 1 %}"{{ c.exibe_menu }}";{% endif %}{% if show_fields.show_tipo or 1 %}"{{ c.tipo }}";{% endif %}{% if show_fields.show_ordem or 1 %}"{{ c.ordem }}";{% endif %}
+{% endfor %}

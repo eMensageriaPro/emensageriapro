@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1060_evttabambiente or 1 %}"Exclusão das informações";{% endif %}{% if show_fields.show_ideambiente or 1 %}"Informações de identificação do ambiente de trabalho do empregador e de validade das informações.";{% endif %}{% if show_fields.show_codamb or 1 %}"Código do Ambiente";{% endif %}{% if show_fields.show_inivalid or 1 %}"Início da Validade";{% endif %}{% if show_fields.show_fimvalid or 1 %}"Fim da Validade";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1060_evttabambiente or 1 %}"{{ c.s1060_evttabambiente }}";{% endif %}{% if show_fields.show_ideambiente or 1 %}"{{ c.ideambiente }}";{% endif %}{% if show_fields.show_codamb or 1 %}"{{ c.codamb }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ c.inivalid }}";{% endif %}{% if show_fields.show_fimvalid or 1 %}"{{ c.fimvalid }}";{% endif %}
+{% endfor %}

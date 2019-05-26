@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.r2040.models import * 
-from emensageriapro.efdreinf.models import r2040evtAssocDespRep 
+from emensageriapro.r2040.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,25 +40,22 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_r2040_infoproc(forms.ModelForm):
+
     vlrnret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r2040_infoproc, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r2040_recursosrep'].queryset = r2040recursosRep.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2040_recursosrep'].widget.attrs['required'] = True        
-        self.fields['tpproc'].widget.attrs['required'] = True        
-        self.fields['nrproc'].widget.attrs['required'] = True        
-        self.fields['vlrnret'].widget.attrs['required'] = True
+        super(form_r2040_infoproc, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -78,31 +75,27 @@ class form_r2040_infoproc(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r2040infoProc
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r2040_inforecurso(forms.ModelForm):
+
     vlrbruto = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrretapur = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r2040_inforecurso, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r2040_recursosrep'].queryset = r2040recursosRep.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2040_recursosrep'].widget.attrs['required'] = True        
-        self.fields['tprepasse'].widget.attrs['required'] = True        
-        self.fields['descrecurso'].widget.attrs['required'] = True        
-        self.fields['vlrbruto'].widget.attrs['required'] = True        
-        self.fields['vlrretapur'].widget.attrs['required'] = True
+        super(form_r2040_inforecurso, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -122,31 +115,28 @@ class form_r2040_inforecurso(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r2040infoRecurso
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r2040_recursosrep(forms.ModelForm):
+
     vlrtotalrep = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrtotalret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrtotalnret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r2040_recursosrep, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r2040_evtassocdesprep'].queryset = r2040evtAssocDespRep.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2040_evtassocdesprep'].widget.attrs['required'] = True        
-        self.fields['cnpjassocdesp'].widget.attrs['required'] = True        
-        self.fields['vlrtotalrep'].widget.attrs['required'] = True        
-        self.fields['vlrtotalret'].widget.attrs['required'] = True
+        super(form_r2040_recursosrep, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -166,10 +156,10 @@ class form_r2040_recursosrep(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r2040recursosRep
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

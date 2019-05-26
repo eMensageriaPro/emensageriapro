@@ -3,7 +3,11 @@
 from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
-from emensageriapro.s2260.views import s2260_localtrabinterm as s2260_localtrabinterm_views
+from rest_framework.authtoken import views
+from emensageriapro.s2260.views import s2260_localtrabinterm_apagar as s2260_localtrabinterm_apagar_views
+from emensageriapro.s2260.views import s2260_localtrabinterm_listar as s2260_localtrabinterm_listar_views
+from emensageriapro.s2260.views import s2260_localtrabinterm_salvar as s2260_localtrabinterm_salvar_views
+from emensageriapro.s2260.views import s2260_localtrabinterm_api as s2260_localtrabinterm_api_views
 
 
 
@@ -40,30 +44,27 @@ from emensageriapro.s2260.views import s2260_localtrabinterm as s2260_localtrabi
 
 """
 
+
 urlpatterns = [
 
 
-
-url(r'^s2260-localtrabinterm/apagar/(?P<hash>.*)/$', 
-        s2260_localtrabinterm_views.apagar, 
+    url(r'^s2260-localtrabinterm/apagar/(?P<hash>.*)/$', 
+        s2260_localtrabinterm_apagar_views.apagar, 
         name='s2260_localtrabinterm_apagar'),
 
-url(r'^s2260-localtrabinterm/api/$',
-            s2260_localtrabinterm_views.s2260localTrabIntermList.as_view() ),
+    url(r'^s2260-localtrabinterm/api/$',
+        s2260_localtrabinterm_api_views.s2260localTrabIntermList.as_view() ),
 
-        url(r'^s2260-localtrabinterm/api/(?P<pk>[0-9]+)/$',
-            s2260_localtrabinterm_views.s2260localTrabIntermDetail.as_view() ),
+    url(r'^s2260-localtrabinterm/api/(?P<pk>[0-9]+)/$',
+        s2260_localtrabinterm_api_views.s2260localTrabIntermDetail.as_view() ),
 
-url(r'^s2260-localtrabinterm/listar/(?P<hash>.*)/$', 
-        s2260_localtrabinterm_views.listar, 
+    url(r'^s2260-localtrabinterm/listar/(?P<hash>.*)/$', 
+        s2260_localtrabinterm_listar_views.listar, 
         name='s2260_localtrabinterm'),
 
-url(r'^s2260-localtrabinterm/salvar/(?P<hash>.*)/$', 
-        s2260_localtrabinterm_views.salvar, 
+    url(r'^s2260-localtrabinterm/salvar/(?P<hash>.*)/$', 
+        s2260_localtrabinterm_salvar_views.salvar, 
         name='s2260_localtrabinterm_salvar'),
-
-
-
 
 
 ]

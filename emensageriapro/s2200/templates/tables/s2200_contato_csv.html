@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações de contato"
-{% if show_fields.show_s2200_evtadmissao or not s2200_evtadmissao_id and 1 %}"Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador";{% endif %}{% if show_fields.show_foneprinc or 0 %}"Telefone Principal";{% endif %}{% if show_fields.show_fonealternat or 0 %}"Telefone Alternativo";{% endif %}{% if show_fields.show_emailprinc or 0 %}"E-mail principal";{% endif %}{% if show_fields.show_emailalternat or 0 %}"E-mail alternativo";{% endif %}
-{% for a in s2200_contato_lista %}{% if show_fields.show_s2200_evtadmissao or  not s2200_evtadmissao_id and 1 %}"{{ a.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_foneprinc or 0 %}"{{ a.foneprinc }}";{% endif %}{% if show_fields.show_fonealternat or 0 %}"{{ a.fonealternat }}";{% endif %}{% if show_fields.show_emailprinc or 0 %}"{{ a.emailprinc }}";{% endif %}{% if show_fields.show_emailalternat or 0 %}"{{ a.emailalternat }}";{% endif %}
-{% endfor %}

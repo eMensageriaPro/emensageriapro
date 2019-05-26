@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1080_evttaboperport or 1 %}"Exclusão das informações";{% endif %}{% if show_fields.show_ideoperportuario or 1 %}"Informações de identificação do Operador Portuário e validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_cnpjopportuario or 1 %}"CNPJ do Operador Portuário";{% endif %}{% if show_fields.show_inivalid or 1 %}"Início da Validade";{% endif %}{% if show_fields.show_fimvalid or 1 %}"Fim da Validade";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1080_evttaboperport or 1 %}"{{ c.s1080_evttaboperport }}";{% endif %}{% if show_fields.show_ideoperportuario or 1 %}"{{ c.ideoperportuario }}";{% endif %}{% if show_fields.show_cnpjopportuario or 1 %}"{{ c.cnpjopportuario }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ c.inivalid }}";{% endif %}{% if show_fields.show_fimvalid or 1 %}"{{ c.fimvalid }}";{% endif %}
+{% endfor %}

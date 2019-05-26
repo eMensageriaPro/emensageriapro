@@ -1,0 +1,493 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2221_evttoxic__evttoxic -->
+<div class="col-md-12" id="s2221_evttoxic__evttoxic__div">
+  <h4>Evento Exame Toxicológico do Motorista Profissional</h4>
+</div>
+<!-- fim__s2221_evttoxic__evttoxic -->
+<!-- inicio__s2221_evttoxic__identidade -->
+<div class="col-md-6" id="s2221_evttoxic__identidade__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__identidade__label">Identidade do Registro</label>
+      {% if s2221_evttoxic_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__identidade -->
+<!-- inicio__s2221_evttoxic__ideevento -->
+<div class="col-md-12" id="s2221_evttoxic__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s2221_evttoxic__ideevento -->
+<!-- inicio__s2221_evttoxic__indretif -->
+<div class="col-md-6" id="s2221_evttoxic__indretif__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__indretif__label">Identificador de retificação*</label>
+    {% if s2221_evttoxic_form.indretif.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2221_evttoxic_form.indretif.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2221_evttoxic_form.indretif.field.widget.attrs.readonly %}
+        {% if s2221_evttoxic_form.indretif.field.widget.attrs.disabled %}
+          {{ s2221_evttoxic_form.indretif|addcss:'form-control' }}
+          <input id="id_indretif" name="indretif" type="hidden" value="{% if s2221_evttoxic_form.indretif.value or s2221_evttoxic_form.indretif.value == 0 %}{{ s2221_evttoxic_form.indretif.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2221_evttoxic_form.indretif|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2221_evttoxic_form.indretif|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__indretif -->
+<!-- inicio__s2221_evttoxic__nrrecibo -->
+<div class="col-md-6" id="s2221_evttoxic__nrrecibo__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__nrrecibo__label">Número do recibo</label>
+      {% if s2221_evttoxic_form.nrrecibo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.nrrecibo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.nrrecibo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__nrrecibo -->
+<!-- inicio__s2221_evttoxic__tpamb -->
+<div class="col-md-6" id="s2221_evttoxic__tpamb__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__tpamb__label">Identificação do ambiente*</label>
+    {% if s2221_evttoxic_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2221_evttoxic_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2221_evttoxic_form.tpamb.field.widget.attrs.readonly %}
+        {% if s2221_evttoxic_form.tpamb.field.widget.attrs.disabled %}
+          {{ s2221_evttoxic_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if s2221_evttoxic_form.tpamb.value or s2221_evttoxic_form.tpamb.value == 0 %}{{ s2221_evttoxic_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2221_evttoxic_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2221_evttoxic_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__tpamb -->
+<!-- inicio__s2221_evttoxic__procemi -->
+<div class="col-md-6" id="s2221_evttoxic__procemi__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__procemi__label">Processo de emissão do evento*</label>
+    {% if s2221_evttoxic_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2221_evttoxic_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2221_evttoxic_form.procemi.field.widget.attrs.readonly %}
+        {% if s2221_evttoxic_form.procemi.field.widget.attrs.disabled %}
+          {{ s2221_evttoxic_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if s2221_evttoxic_form.procemi.value or s2221_evttoxic_form.procemi.value == 0 %}{{ s2221_evttoxic_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2221_evttoxic_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2221_evttoxic_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__procemi -->
+<!-- inicio__s2221_evttoxic__verproc -->
+<div class="col-md-6" id="s2221_evttoxic__verproc__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__verproc__label">Versão do processo*</label>
+      {% if s2221_evttoxic_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__verproc -->
+<!-- inicio__s2221_evttoxic__ideempregador -->
+<div class="col-md-12" id="s2221_evttoxic__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s2221_evttoxic__ideempregador -->
+<!-- inicio__s2221_evttoxic__tpinsc -->
+<div class="col-md-6" id="s2221_evttoxic__tpinsc__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__tpinsc__label">Tipo de inscrição*</label>
+    {% if s2221_evttoxic_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2221_evttoxic_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2221_evttoxic_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s2221_evttoxic_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s2221_evttoxic_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s2221_evttoxic_form.tpinsc.value or s2221_evttoxic_form.tpinsc.value == 0 %}{{ s2221_evttoxic_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2221_evttoxic_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2221_evttoxic_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__tpinsc -->
+<!-- inicio__s2221_evttoxic__nrinsc -->
+<div class="col-md-6" id="s2221_evttoxic__nrinsc__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s2221_evttoxic_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__nrinsc -->
+<!-- inicio__s2221_evttoxic__idevinculo -->
+<div class="col-md-12" id="s2221_evttoxic__idevinculo__div">
+  <h4>Informações de Identificação do Trabalhador e do Vínculo</h4>
+</div>
+<!-- fim__s2221_evttoxic__idevinculo -->
+<!-- inicio__s2221_evttoxic__cpftrab -->
+<div class="col-md-6" id="s2221_evttoxic__cpftrab__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__cpftrab__label">CPF*</label>
+      {% if s2221_evttoxic_form.cpftrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.cpftrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.cpftrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__cpftrab -->
+<!-- inicio__s2221_evttoxic__nistrab -->
+<div class="col-md-6" id="s2221_evttoxic__nistrab__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__nistrab__label">NIS</label>
+      {% if s2221_evttoxic_form.nistrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.nistrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.nistrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__nistrab -->
+<!-- inicio__s2221_evttoxic__matricula -->
+<div class="col-md-6" id="s2221_evttoxic__matricula__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__matricula__label">Matricula</label>
+      {% if s2221_evttoxic_form.matricula.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.matricula.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.matricula|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__matricula -->
+<!-- inicio__s2221_evttoxic__codcateg -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2221_evttoxic__codcateg__div">
+    <div class="form-group">
+      <label id="s2221_evttoxic__codcateg__label">Código da Categoria</label>
+        {% if s2221_evttoxic_form.codcateg.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2221_evttoxic_form.codcateg.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2221_evttoxic.codcateg %}{{ s2221_evttoxic.codcateg }}{% endif %}" 
+        {% if s2221_evttoxic_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2221_evttoxic_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}{% if s2221_evttoxic_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_codcateg" name="codcateg" value="{% if s2221_evttoxic.codcateg %}{{ s2221_evttoxic_form.codcateg.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codcateg').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-trabalhadores-categorias/json-search/" + request.term + "/", function (data) {
+          response($.map(data.esocial_trabalhadores_categorias, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codcateg').val(ui.item.value);
+        return false;
+      }});
+    {% if s2221_evttoxic_form.codcateg.field.widget.attrs.required %}
+    $("#id_form_s2221_evttoxic").submit(function(e) {
+      $('#txt_codcateg').disabled = true;
+        if ($('#id_codcateg').val() == "") {
+          $('#txt_codcateg').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Código da Categoria!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2221_evttoxic__codcateg__div">
+    <div class="form-group">
+      <label id="s2221_evttoxic__codcateg__label">Código da Categoria</label>
+        {% if not for_print %}{% if s2221_evttoxic_form.codcateg.value %}
+            <a id="s2221_evttoxic__codcateg__div_acessar" href="{% url 'esocial-trabalhadores-categorias_salvar' hash='{}'|json_id:s2221_evttoxic_form.codcateg.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2221_evttoxic.codcateg %}{{ s2221_evttoxic.codcateg }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2221_evttoxic__codcateg -->
+<!-- inicio__s2221_evttoxic__toxicologico -->
+<div class="col-md-12" id="s2221_evttoxic__toxicologico__div">
+  <h4>Detalhamento das informações do exame toxicológico do motorista profissional</h4>
+</div>
+<!-- fim__s2221_evttoxic__toxicologico -->
+<!-- inicio__s2221_evttoxic__dtexame -->
+<div class="col-md-6" id="s2221_evttoxic__dtexame__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__dtexame__label">Data da realização do exame toxicológico*</label>
+        {% if s2221_evttoxic_form.dtexame.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2221_evttoxic_form.dtexame.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.dtexame|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__dtexame -->
+<!-- inicio__s2221_evttoxic__cnpjlab -->
+<div class="col-md-6" id="s2221_evttoxic__cnpjlab__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__cnpjlab__label">CNPJ do laboratório responsável pela realização do exame</label>
+      {% if s2221_evttoxic_form.cnpjlab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.cnpjlab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.cnpjlab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__cnpjlab -->
+<!-- inicio__s2221_evttoxic__codseqexame -->
+<div class="col-md-6" id="s2221_evttoxic__codseqexame__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__codseqexame__label">Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame</label>
+      {% if s2221_evttoxic_form.codseqexame.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.codseqexame.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.codseqexame|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__codseqexame -->
+<!-- inicio__s2221_evttoxic__nmmed -->
+<div class="col-md-6" id="s2221_evttoxic__nmmed__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__nmmed__label">Nome do Médico</label>
+      {% if s2221_evttoxic_form.nmmed.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.nmmed.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.nmmed|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__nmmed -->
+<!-- inicio__s2221_evttoxic__nrcrm -->
+<div class="col-md-6" id="s2221_evttoxic__nrcrm__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__nrcrm__label">Número do CRM</label>
+      {% if s2221_evttoxic_form.nrcrm.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2221_evttoxic_form.nrcrm.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2221_evttoxic_form.nrcrm|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__nrcrm -->
+<!-- inicio__s2221_evttoxic__ufcrm -->
+<div class="col-md-6" id="s2221_evttoxic__ufcrm__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__ufcrm__label">UF do Órgão de classe</label>
+    {% if s2221_evttoxic_form.ufcrm.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2221_evttoxic_form.ufcrm.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2221_evttoxic_form.ufcrm.field.widget.attrs.readonly %}
+        {% if s2221_evttoxic_form.ufcrm.field.widget.attrs.disabled %}
+          {{ s2221_evttoxic_form.ufcrm|addcss:'form-control' }}
+          <input id="id_ufcrm" name="ufcrm" type="hidden" value="{% if s2221_evttoxic_form.ufcrm.value or s2221_evttoxic_form.ufcrm.value == 0 %}{{ s2221_evttoxic_form.ufcrm.value }}{% endif %}">
+        {% else %}
+          {{ s2221_evttoxic_form.ufcrm|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2221_evttoxic_form.ufcrm|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__ufcrm -->
+<!-- inicio__s2221_evttoxic__indrecusa -->
+<div class="col-md-6" id="s2221_evttoxic__indrecusa__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__indrecusa__label">Indicar se o trabalhador se recusou a realizar o exame toxicológico no desligamento: S - Sim; N - Não. Valores Válidos: S, N.*</label>
+    {% if s2221_evttoxic_form.indrecusa.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2221_evttoxic_form.indrecusa.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2221_evttoxic_form.indrecusa.field.widget.attrs.readonly %}
+        {% if s2221_evttoxic_form.indrecusa.field.widget.attrs.disabled %}
+          {{ s2221_evttoxic_form.indrecusa|addcss:'form-control' }}
+          <input id="id_indrecusa" name="indrecusa" type="hidden" value="{% if s2221_evttoxic_form.indrecusa.value or s2221_evttoxic_form.indrecusa.value == 0 %}{{ s2221_evttoxic_form.indrecusa.value }}{% endif %}">
+        {% else %}
+          {{ s2221_evttoxic_form.indrecusa|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2221_evttoxic_form.indrecusa|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__indrecusa -->
+<!-- inicio__s2221_evttoxic__versao -->
+<div class="col-md-3" id="s2221_evttoxic__versao__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__versao__label">Versão</label>
+    {% if s2221_evttoxic_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2221_evttoxic_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2221_evttoxic_form.versao.field.widget.attrs.readonly %}
+        {% if s2221_evttoxic_form.versao.field.widget.attrs.disabled %}
+          {{ s2221_evttoxic_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if s2221_evttoxic_form.versao.value or s2221_evttoxic_form.versao.value == 0 %}{{ s2221_evttoxic_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ s2221_evttoxic_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2221_evttoxic_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__versao -->
+<!-- inicio__s2221_evttoxic__transmissor_lote_esocial -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_esocial').change(function(){document.getElementById("s2221_evttoxic__transmissor_lote_esocial__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="s2221_evttoxic__transmissor_lote_esocial__div">
+<div class="form-group">
+  <label id="s2221_evttoxic__transmissor_lote_esocial__label">Transmissor</label>
+  {% if not for_print %}
+    {% if s2221_evttoxic_form.transmissor_lote_esocial.value %}
+    <a id="s2221_evttoxic__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:s2221_evttoxic_form.transmissor_lote_esocial.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if s2221_evttoxic_form.transmissor_lote_esocial.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2221_evttoxic_form.transmissor_lote_esocial.errors }}
+    </div>
+  {% endif %}
+  {% if s2221_evttoxic_form.transmissor_lote_esocial.field.widget.attrs.readonly %}
+    {% if s2221_evttoxic_form.transmissor_lote_esocial.field.widget.attrs.disabled %}
+      {{ s2221_evttoxic_form.transmissor_lote_esocial|addcss:'form-control' }}
+      <input id="id_transmissor_lote_esocial" name="transmissor_lote_esocial" type="hidden" value="{% if s2221_evttoxic_form.transmissor_lote_esocial.value or s2221_evttoxic_form.transmissor_lote_esocial.value == 0 %}{{ s2221_evttoxic_form.transmissor_lote_esocial.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ s2221_evttoxic_form.transmissor_lote_esocial|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ s2221_evttoxic_form.transmissor_lote_esocial|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__s2221_evttoxic__transmissor_lote_esocial -->
+<!-- inicio__s2221_evttoxic__status -->
+<div class="col-md-3" id="s2221_evttoxic__status__div">
+  <div class="form-group">
+    <label id="s2221_evttoxic__status__label">Status</label>
+    {% if s2221_evttoxic_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2221_evttoxic_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2221_evttoxic_form.status.field.widget.attrs.readonly %}
+        {% if s2221_evttoxic_form.status.field.widget.attrs.disabled %}
+          {{ s2221_evttoxic_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if s2221_evttoxic_form.status.value or s2221_evttoxic_form.status.value == 0 %}{{ s2221_evttoxic_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2221_evttoxic_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2221_evttoxic_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2221_evttoxic__status -->

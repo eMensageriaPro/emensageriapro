@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1070_alteracao or 1 %}"Informações Complementares do Processo Judicial";{% endif %}{% if show_fields.show_ufvara or 1 %}"UF da seção jucidial";{% endif %}{% if show_fields.show_codmunic or 1 %}"Código do Município";{% endif %}{% if show_fields.show_idvara or 1 %}"Vara";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1070_alteracao or 1 %}"{{ c.s1070_alteracao }}";{% endif %}{% if show_fields.show_ufvara or 1 %}"{{ c.ufvara }}";{% endif %}{% if show_fields.show_codmunic or 1 %}"{{ c.codmunic }}";{% endif %}{% if show_fields.show_idvara or 1 %}"{{ c.idvara }}";{% endif %}
+{% endfor %}

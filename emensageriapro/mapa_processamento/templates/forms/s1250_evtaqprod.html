@@ -1,0 +1,342 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1250_evtaqprod__evtaqprod -->
+<div class="col-md-12" id="s1250_evtaqprod__evtaqprod__div">
+  <h4>Possui informações sobre a aquisição de produto rural de pessoas físicas?</h4>
+</div>
+<!-- fim__s1250_evtaqprod__evtaqprod -->
+<!-- inicio__s1250_evtaqprod__identidade -->
+<div class="col-md-6" id="s1250_evtaqprod__identidade__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__identidade__label">Identidade do Registro</label>
+      {% if s1250_evtaqprod_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1250_evtaqprod_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1250_evtaqprod_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__identidade -->
+<!-- inicio__s1250_evtaqprod__ideevento -->
+<div class="col-md-12" id="s1250_evtaqprod__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s1250_evtaqprod__ideevento -->
+<!-- inicio__s1250_evtaqprod__indretif -->
+<div class="col-md-6" id="s1250_evtaqprod__indretif__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__indretif__label">Identificador de retificação*</label>
+    {% if s1250_evtaqprod_form.indretif.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1250_evtaqprod_form.indretif.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1250_evtaqprod_form.indretif.field.widget.attrs.readonly %}
+        {% if s1250_evtaqprod_form.indretif.field.widget.attrs.disabled %}
+          {{ s1250_evtaqprod_form.indretif|addcss:'form-control' }}
+          <input id="id_indretif" name="indretif" type="hidden" value="{% if s1250_evtaqprod_form.indretif.value or s1250_evtaqprod_form.indretif.value == 0 %}{{ s1250_evtaqprod_form.indretif.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1250_evtaqprod_form.indretif|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1250_evtaqprod_form.indretif|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__indretif -->
+<!-- inicio__s1250_evtaqprod__nrrecibo -->
+<div class="col-md-6" id="s1250_evtaqprod__nrrecibo__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__nrrecibo__label">Número do recibo</label>
+      {% if s1250_evtaqprod_form.nrrecibo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1250_evtaqprod_form.nrrecibo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1250_evtaqprod_form.nrrecibo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__nrrecibo -->
+<!-- inicio__s1250_evtaqprod__indapuracao -->
+<div class="col-md-6" id="s1250_evtaqprod__indapuracao__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__indapuracao__label">Indicativo do periodo de apuração*</label>
+    {% if s1250_evtaqprod_form.indapuracao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1250_evtaqprod_form.indapuracao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1250_evtaqprod_form.indapuracao.field.widget.attrs.readonly %}
+        {% if s1250_evtaqprod_form.indapuracao.field.widget.attrs.disabled %}
+          {{ s1250_evtaqprod_form.indapuracao|addcss:'form-control' }}
+          <input id="id_indapuracao" name="indapuracao" type="hidden" value="{% if s1250_evtaqprod_form.indapuracao.value or s1250_evtaqprod_form.indapuracao.value == 0 %}{{ s1250_evtaqprod_form.indapuracao.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1250_evtaqprod_form.indapuracao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1250_evtaqprod_form.indapuracao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__indapuracao -->
+<!-- inicio__s1250_evtaqprod__perapur -->
+<div class="col-md-6" id="s1250_evtaqprod__perapur__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__perapur__label">Período de Apuração*</label>
+      {% if s1250_evtaqprod_form.perapur.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1250_evtaqprod_form.perapur.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1250_evtaqprod_form.perapur|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__perapur -->
+<!-- inicio__s1250_evtaqprod__tpamb -->
+<div class="col-md-6" id="s1250_evtaqprod__tpamb__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__tpamb__label">Identificação do ambiente*</label>
+    {% if s1250_evtaqprod_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1250_evtaqprod_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1250_evtaqprod_form.tpamb.field.widget.attrs.readonly %}
+        {% if s1250_evtaqprod_form.tpamb.field.widget.attrs.disabled %}
+          {{ s1250_evtaqprod_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if s1250_evtaqprod_form.tpamb.value or s1250_evtaqprod_form.tpamb.value == 0 %}{{ s1250_evtaqprod_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1250_evtaqprod_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1250_evtaqprod_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__tpamb -->
+<!-- inicio__s1250_evtaqprod__procemi -->
+<div class="col-md-6" id="s1250_evtaqprod__procemi__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__procemi__label">Processo de emissão do evento*</label>
+    {% if s1250_evtaqprod_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1250_evtaqprod_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1250_evtaqprod_form.procemi.field.widget.attrs.readonly %}
+        {% if s1250_evtaqprod_form.procemi.field.widget.attrs.disabled %}
+          {{ s1250_evtaqprod_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if s1250_evtaqprod_form.procemi.value or s1250_evtaqprod_form.procemi.value == 0 %}{{ s1250_evtaqprod_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1250_evtaqprod_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1250_evtaqprod_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__procemi -->
+<!-- inicio__s1250_evtaqprod__verproc -->
+<div class="col-md-6" id="s1250_evtaqprod__verproc__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__verproc__label">Versão do processo*</label>
+      {% if s1250_evtaqprod_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1250_evtaqprod_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1250_evtaqprod_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__verproc -->
+<!-- inicio__s1250_evtaqprod__ideempregador -->
+<div class="col-md-12" id="s1250_evtaqprod__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s1250_evtaqprod__ideempregador -->
+<!-- inicio__s1250_evtaqprod__tpinsc -->
+<div class="col-md-6" id="s1250_evtaqprod__tpinsc__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__tpinsc__label">Tipo de inscrição*</label>
+    {% if s1250_evtaqprod_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1250_evtaqprod_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1250_evtaqprod_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s1250_evtaqprod_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s1250_evtaqprod_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s1250_evtaqprod_form.tpinsc.value or s1250_evtaqprod_form.tpinsc.value == 0 %}{{ s1250_evtaqprod_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1250_evtaqprod_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1250_evtaqprod_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__tpinsc -->
+<!-- inicio__s1250_evtaqprod__nrinsc -->
+<div class="col-md-6" id="s1250_evtaqprod__nrinsc__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s1250_evtaqprod_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1250_evtaqprod_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1250_evtaqprod_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__nrinsc -->
+<!-- inicio__s1250_evtaqprod__infoaquisprod -->
+<div class="col-md-12" id="s1250_evtaqprod__infoaquisprod__div">
+  <h4>Informação da Aquisição de Produção</h4>
+</div>
+<!-- fim__s1250_evtaqprod__infoaquisprod -->
+<!-- inicio__s1250_evtaqprod__ideestabadquir -->
+<div class="col-md-12" id="s1250_evtaqprod__ideestabadquir__div">
+  <h4>Identificação do estabelecimento adquirente da produção</h4>
+</div>
+<!-- fim__s1250_evtaqprod__ideestabadquir -->
+<!-- inicio__s1250_evtaqprod__tpinscadq -->
+<div class="col-md-6" id="s1250_evtaqprod__tpinscadq__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__tpinscadq__label">Tipo de inscrição do Adquirente*</label>
+    {% if s1250_evtaqprod_form.tpinscadq.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1250_evtaqprod_form.tpinscadq.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1250_evtaqprod_form.tpinscadq.field.widget.attrs.readonly %}
+        {% if s1250_evtaqprod_form.tpinscadq.field.widget.attrs.disabled %}
+          {{ s1250_evtaqprod_form.tpinscadq|addcss:'form-control' }}
+          <input id="id_tpinscadq" name="tpinscadq" type="hidden" value="{% if s1250_evtaqprod_form.tpinscadq.value or s1250_evtaqprod_form.tpinscadq.value == 0 %}{{ s1250_evtaqprod_form.tpinscadq.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1250_evtaqprod_form.tpinscadq|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1250_evtaqprod_form.tpinscadq|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__tpinscadq -->
+<!-- inicio__s1250_evtaqprod__nrinscadq -->
+<div class="col-md-6" id="s1250_evtaqprod__nrinscadq__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__nrinscadq__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s1250_evtaqprod_form.nrinscadq.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1250_evtaqprod_form.nrinscadq.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1250_evtaqprod_form.nrinscadq|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__nrinscadq -->
+<!-- inicio__s1250_evtaqprod__versao -->
+<div class="col-md-3" id="s1250_evtaqprod__versao__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__versao__label">Versão</label>
+    {% if s1250_evtaqprod_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1250_evtaqprod_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1250_evtaqprod_form.versao.field.widget.attrs.readonly %}
+        {% if s1250_evtaqprod_form.versao.field.widget.attrs.disabled %}
+          {{ s1250_evtaqprod_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if s1250_evtaqprod_form.versao.value or s1250_evtaqprod_form.versao.value == 0 %}{{ s1250_evtaqprod_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ s1250_evtaqprod_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1250_evtaqprod_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__versao -->
+<!-- inicio__s1250_evtaqprod__transmissor_lote_esocial -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_esocial').change(function(){document.getElementById("s1250_evtaqprod__transmissor_lote_esocial__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="s1250_evtaqprod__transmissor_lote_esocial__div">
+<div class="form-group">
+  <label id="s1250_evtaqprod__transmissor_lote_esocial__label">Transmissor</label>
+  {% if not for_print %}
+    {% if s1250_evtaqprod_form.transmissor_lote_esocial.value %}
+    <a id="s1250_evtaqprod__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:s1250_evtaqprod_form.transmissor_lote_esocial.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if s1250_evtaqprod_form.transmissor_lote_esocial.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s1250_evtaqprod_form.transmissor_lote_esocial.errors }}
+    </div>
+  {% endif %}
+  {% if s1250_evtaqprod_form.transmissor_lote_esocial.field.widget.attrs.readonly %}
+    {% if s1250_evtaqprod_form.transmissor_lote_esocial.field.widget.attrs.disabled %}
+      {{ s1250_evtaqprod_form.transmissor_lote_esocial|addcss:'form-control' }}
+      <input id="id_transmissor_lote_esocial" name="transmissor_lote_esocial" type="hidden" value="{% if s1250_evtaqprod_form.transmissor_lote_esocial.value or s1250_evtaqprod_form.transmissor_lote_esocial.value == 0 %}{{ s1250_evtaqprod_form.transmissor_lote_esocial.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ s1250_evtaqprod_form.transmissor_lote_esocial|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ s1250_evtaqprod_form.transmissor_lote_esocial|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__s1250_evtaqprod__transmissor_lote_esocial -->
+<!-- inicio__s1250_evtaqprod__status -->
+<div class="col-md-3" id="s1250_evtaqprod__status__div">
+  <div class="form-group">
+    <label id="s1250_evtaqprod__status__label">Status</label>
+    {% if s1250_evtaqprod_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1250_evtaqprod_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1250_evtaqprod_form.status.field.widget.attrs.readonly %}
+        {% if s1250_evtaqprod_form.status.field.widget.attrs.disabled %}
+          {{ s1250_evtaqprod_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if s1250_evtaqprod_form.status.value or s1250_evtaqprod_form.status.value == 0 %}{{ s1250_evtaqprod_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1250_evtaqprod_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1250_evtaqprod_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1250_evtaqprod__status -->

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r2070_pgtopf or 1 %}"Detalhamento das Deduções";{% endif %}{% if show_fields.show_indtpdeducao or 1 %}"Indicativo do Tipo de Dedução";{% endif %}{% if show_fields.show_vlrdeducao or 1 %}"Preencher com o Valor da dedução da base de cálculo.";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r2070_pgtopf or 1 %}"{{ c.r2070_pgtopf }}";{% endif %}{% if show_fields.show_indtpdeducao or 1 %}"{{ c.indtpdeducao }}";{% endif %}{% if show_fields.show_vlrdeducao or 1 %}"{{ c.vlrdeducao }}";{% endif %}
+{% endfor %}

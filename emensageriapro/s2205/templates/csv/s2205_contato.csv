@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2205_evtaltcadastral or 1 %}"Informações de contato";{% endif %}{% if show_fields.show_foneprinc or 1 %}"Telefone Principal";{% endif %}{% if show_fields.show_fonealternat or 1 %}"Telefone Alternativo";{% endif %}{% if show_fields.show_emailprinc or 1 %}"E-mail principal";{% endif %}{% if show_fields.show_emailalternat or 1 %}"E-mail alternativo";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2205_evtaltcadastral or 1 %}"{{ c.s2205_evtaltcadastral }}";{% endif %}{% if show_fields.show_foneprinc or 1 %}"{{ c.foneprinc }}";{% endif %}{% if show_fields.show_fonealternat or 1 %}"{{ c.fonealternat }}";{% endif %}{% if show_fields.show_emailprinc or 1 %}"{{ c.emailprinc }}";{% endif %}{% if show_fields.show_emailalternat or 1 %}"{{ c.emailalternat }}";{% endif %}
+{% endfor %}

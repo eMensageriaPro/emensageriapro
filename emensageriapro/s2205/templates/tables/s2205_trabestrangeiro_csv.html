@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Grupo de informações do Trabalhador Estrangeiro"
-{% if show_fields.show_s2205_evtaltcadastral or not s2205_evtaltcadastral_id and 1 %}"Evento Alteração Cadastral do Trabalhador";{% endif %}{% if show_fields.show_dtchegada or 0 %}"Data de chegada";{% endif %}{% if show_fields.show_classtrabestrang or 1 %}"Classificação da condição de trabalho";{% endif %}{% if show_fields.show_casadobr or 1 %}"Casado com Brasileiro(a)";{% endif %}{% if show_fields.show_filhosbr or 1 %}"Possui filho(s) brasileiro(s)";{% endif %}
-{% for a in s2205_trabestrangeiro_lista %}{% if show_fields.show_s2205_evtaltcadastral or  not s2205_evtaltcadastral_id and 1 %}"{{ a.s2205_evtaltcadastral }}";{% endif %}{% if show_fields.show_dtchegada or 0 %}"{{ a.dtchegada|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_classtrabestrang or 1 %}"{{ a.get_classtrabestrang_display }}";{% endif %}{% if show_fields.show_casadobr or 1 %}"{{ a.get_casadobr_display }}";{% endif %}{% if show_fields.show_filhosbr or 1 %}"{{ a.get_filhosbr_display }}";{% endif %}
-{% endfor %}

@@ -1,1 +1,115 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.</label><select name="r2040_recursosrep" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in r2040_recursosrep_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2040_recursosrep' %}selected="selected"{% endifequal %}>{{ a.r2040_evtassocdesprep }} - {{ a.cnpjassocdesp }} - {{ a.vlrtotalrep }} - {{ a.vlrtotalret }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Tipo de repasse, conforme tabela abaixo</label><div class="input-group" style="width: 100%;"><select name="tprepasse" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tprepasse' %}selected="selected"{% endifequal %} >1 - Patrocínio</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tprepasse' %}selected="selected"{% endifequal %} >2 - Licenciamento de marcas e símbolos</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tprepasse' %}selected="selected"{% endifequal %} >3 - Publicidade</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tprepasse' %}selected="selected"{% endifequal %} >4 - Propaganda</option><option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tprepasse' %}selected="selected"{% endifequal %} >5 - Transmissão de espetáculos</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Descrição resumida do recurso recebido</label><div name="descrecurso__icontains" class="input-group" style="width: 100%;"><input type="text" name="descrecurso__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'descrecurso__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrbruto" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbruto' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o valor da retenção de contribuição previdenciária.</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrretapur" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrretapur' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_r2040_recursosrep" value="1" {% if show_fields|get_value_from_dict:'show_r2040_recursosrep' %}checked{% endif %}>Detalhamento dos repasses efetuados pelo estabelecimento indicado em {ideEstab} a Associação Desportiva que mantenha equipe de futebol profissional.</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tprepasse" value="1" {% if show_fields|get_value_from_dict:'show_tprepasse' %}checked{% endif %}>Tipo de repasse, conforme tabela abaixo</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_descrecurso" value="1" {% if show_fields|get_value_from_dict:'show_descrecurso' %}checked{% endif %}>Descrição resumida do recurso recebido</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrbruto" value="1" {% if show_fields|get_value_from_dict:'show_vlrbruto' %}checked{% endif %}>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrretapur" value="1" {% if show_fields|get_value_from_dict:'show_vlrretapur' %}checked{% endif %}>Preencher com o valor da retenção de contribuição previdenciária.</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r2040_inforecurso__r2040_recursosrep -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Detalhamento dos recursos recebidos.</label>
+    <select name="r2040_recursosrep" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r2040_recursosrep_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2040_recursosrep' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r2040_inforecurso__r2040_recursosrep -->
+
+<!-- inicio__r2040_inforecurso__tprepasse -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo de repasse, conforme tabela abaixo</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tprepasse" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tprepasse' %}selected="selected"{% endifequal %} >1 - Patrocínio</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tprepasse' %}selected="selected"{% endifequal %} >2 - Licenciamento de marcas e símbolos</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tprepasse' %}selected="selected"{% endifequal %} >3 - Publicidade</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tprepasse' %}selected="selected"{% endifequal %} >4 - Propaganda</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tprepasse' %}selected="selected"{% endifequal %} >5 - Transmissão de espetáculos.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r2040_inforecurso__tprepasse -->
+
+<!-- inicio__r2040_inforecurso__descrecurso -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Descrição resumida do recurso recebido</label>
+    <div name="descrecurso" class="input-group" style="width: 100%;">
+      <input type="text" name="descrecurso" class="form-control" value="{{ dict_fields|get_value_from_dict:'descrecurso' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2040_inforecurso__descrecurso -->
+
+<!-- inicio__r2040_inforecurso__vlrbruto -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbruto" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbruto' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2040_inforecurso__vlrbruto -->
+
+<!-- inicio__r2040_inforecurso__vlrretapur -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o valor da retenção de contribuição previdenciária.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrretapur" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrretapur' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2040_inforecurso__vlrretapur -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r2040_recursosrep" value="1" {% if show_fields|get_value_from_dict:'show_r2040_recursosrep' %}checked{% endif %} >Detalhamento dos recursos recebidos.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tprepasse" value="1" {% if show_fields|get_value_from_dict:'show_tprepasse' %}checked{% endif %} >Tipo de repasse, conforme tabela abaixo
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_descrecurso" value="1" {% if show_fields|get_value_from_dict:'show_descrecurso' %}checked{% endif %} >Descrição resumida do recurso recebido
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbruto" value="1" {% if show_fields|get_value_from_dict:'show_vlrbruto' %}checked{% endif %} >Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrretapur" value="1" {% if show_fields|get_value_from_dict:'show_vlrretapur' %}checked{% endif %} >Preencher com o valor da retenção de contribuição previdenciária.
+    </div>
+</div>
+
+

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2405_evtcdbenefalt or 1 %}"Grupo de informações do endereço do Trabalhador";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2405_evtcdbenefalt or 1 %}"{{ c.s2405_evtcdbenefalt }}";{% endif %}
+{% endfor %}

@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Bases, deduções, isenções e retenções do IRRF"
-{% if show_fields.show_s5002_infoirrf or not s5002_infoirrf_id and 1 %}"Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo";{% endif %}{% if show_fields.show_tpvalor or 1 %}"Tipo de Valor";{% endif %}{% if show_fields.show_valor or 1 %}"Valor da base de cálculo, dedução ou desconto da CP";{% endif %}
-{% for a in s5002_basesirrf_lista %}{% if show_fields.show_s5002_infoirrf or  not s5002_infoirrf_id and 1 %}"{{ a.s5002_infoirrf }}";{% endif %}{% if show_fields.show_tpvalor or 1 %}"{{ a.tpvalor }}";{% endif %}{% if show_fields.show_valor or 1 %}"{{ a.valor }}";{% endif %}
-{% endfor %}

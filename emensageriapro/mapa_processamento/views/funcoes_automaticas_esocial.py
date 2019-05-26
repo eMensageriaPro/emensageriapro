@@ -80,8 +80,93 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 
 def get_tipo_evento(model_name):
+
     return None
 
+
+def get_grupo(model):
+
+    numero_evento = int(model._meta.db_table[1:5])
+
+    if numero_evento < 1200:
+        grupo = 1
+    elif numero_evento >= 1200 and numero_evento <= 1300:
+        grupo = 2
+    else:
+        grupo = 3
+
+    return grupo
+
+
+
+def criar_transmissor_esocial(request, grupo, nrinsc, tpinsc):
+
+    transmissor_esocial_lista = TransmissorLoteEsocial.objects.filter(
+        status=0,
+        grupo=grupo,
+        empregador_nrinsc=nrinsc,
+        empregador_tpinsc=tpinsc).all()
+
+    if not transmissor_esocial_lista:
+
+        transmissor = TransmissorLote.objects.filter(
+            empregador_nrinsc=nrinsc,
+            empregador_tpinsc=tpinsc).all()
+
+        if not transmissor:
+
+            txt = u'Cadastre um Transmissor para o empregador %s!' % nrinsc
+
+            if hash:
+                messages.error(request, txt)
+                return redirect('mapa_esocial', hash=request.session['retorno_hash'])
+            else:
+                data = {'response': txt}
+                return Response(data, status=HTTP_200_OK)
+
+        elif len(transmissor) > 1:
+
+            txt = u'Existe mais de um transmissor cadastrado o empregador %s, cadastre apenas um!' % nrinsc
+
+            if hash:
+                messages.error(request, txt)
+                return redirect('mapa_esocial', hash=request.session['retorno_hash'])
+            else:
+                data = {'response': txt}
+                return Response(data, status=HTTP_200_OK)
+
+        else:
+
+            dados = {}
+            dados['transmissor_id'] = transmissor[0].id
+            dados['empregador_tpinsc'] = transmissor[0].empregador_tpinsc
+            dados['empregador_nrinsc'] = transmissor[0].empregador_nrinsc
+            dados['grupo'] = grupo
+            dados['status'] = 0
+            transmissor_esocial = TransmissorLoteEsocial(**dados)
+            transmissor_esocial.save()
+
+
+
+def vincular_transmissor_esocial(request, grupo, model, a):
+
+    transmissor_esocial_lista = TransmissorLoteEsocial.objects.filter(
+        status=0,
+        grupo=grupo,
+        empregador_nrinsc=a.nrinsc,
+        empregador_tpinsc=a.tpinsc).all()
+
+    for te in transmissor_esocial_lista:
+
+        eventos_lista = TransmissorEventosEsocial.objects.filter(
+            transmissor_lote_esocial=te.id).all()
+
+        if len(eventos_lista) < te.transmissor.esocial_lote_max:
+            model.objects.filter(id=a.id).update(transmissor_lote_esocial=te)
+
+        txt = 'Evento vinculado com sucesso!'
+
+    return txt
 
 
 
@@ -101,14 +186,14 @@ def validar(request, hash=None):
         except:
             return redirect('login')
 
-        usuario = get_object_or_404(Usuarios.objects.using(db_slug),
+        usuario = get_object_or_404(Usuarios.objects,
                                     excluido=False,
                                     id=usuario_id)
 
-        pagina = ConfigPaginas.objects.using(db_slug).get(excluido=False,
+        pagina = ConfigPaginas.objects.get(excluido=False,
                                                           endereco='mapa_esocial')
 
-        permissao = ConfigPermissoes.objects.using(db_slug).get(excluido=False,
+        permissao = ConfigPermissoes.objects.get(excluido=False,
                                                                 config_paginas=pagina,
                                                                 config_perfis=usuario.config_perfis)
 
@@ -126,7 +211,7 @@ def validar(request, hash=None):
             STATUS_EVENTO_IMPORTADO,
         ]
 
-        lista = model.objects.using('default').filter(status__in=STATUS).all()
+        lista = model.objects.filter(status__in=STATUS).all()
 
         for a in lista:
 
@@ -138,6 +223,7 @@ def validar(request, hash=None):
         return redirect(request.session["retorno_pagina"], hash=request.session['retorno_hash'])
 
     else:
+
         data = {'response': texto}
         return Response(data, status=HTTP_200_OK)
 
@@ -154,8 +240,6 @@ def enviar(request, hash=None):
 
     texto = ''
 
-    db_slug = 'default'
-
     if hash:
 
         try:
@@ -164,15 +248,12 @@ def enviar(request, hash=None):
         except:
             return redirect('login')
 
-        usuario = get_object_or_404(Usuarios.objects.using(db_slug),
-                                    excluido=False,
+        usuario = get_object_or_404(Usuarios,
                                     id=usuario_id)
-        pagina = ConfigPaginas.objects.using(db_slug).get(excluido=False,
-                                                          endereco='mapa_esocial')
+        pagina = ConfigPaginas.objects.get(endereco='mapa_esocial')
 
-        permissao = ConfigPermissoes.objects.using(db_slug).get(excluido=False,
-                                                                config_paginas=pagina,
-                                                                config_perfis=usuario.config_perfis)
+        permissao = ConfigPermissoes.objects.get(config_paginas=pagina,
+                                                 config_perfis=usuario.config_perfis)
 
         dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
         paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
@@ -196,8 +277,8 @@ def enviar(request, hash=None):
             (3, u'3 - Eventos Periódicos'),
         )
 
-        lista = model.objects.using('default').filter(status=STATUS_EVENTO_AGUARD_ENVIO,
-                                                      transmissor_lote_esocial=None).all()
+        lista = model.objects.filter(status=STATUS_EVENTO_AGUARD_ENVIO,
+                                     transmissor_lote_esocial=None).all()
 
         numero_evento = int(model._meta.db_table[1:5])
 
@@ -212,73 +293,19 @@ def enviar(request, hash=None):
 
         for a in lista:
 
-            transmissor_esocial_lista = TransmissorLoteEsocial.objects.using('default').filter(
-                status=0,
-                grupo=grupo,
-                empregador_nrinsc=a.nrinsc,
-                empregador_tpinsc=a.tpinsc).all()
+            criar_transmissor_esocial(request, grupo, a.nrinsc, a.tpinsc)
 
-            if not transmissor_esocial_lista:
+            txt = vincular_transmissor_esocial(request, grupo, model, a)
 
-                transmissor = TransmissorLote.objects.using('default').filter(
-                    empregador_nrinsc=a.nrinsc,
-                    empregador_tpinsc=a.tpinsc).all()
-
-                if not transmissor:
-
-                    txt = u'Cadastre um Transmissor para o empregador %s!' % a.nrinsc
-
-                    if hash:
-                        messages.error(request, txt)
-                        return redirect('mapa_esocial', hash=request.session['retorno_hash'])
-                    else:
-                        data = {'response': txt}
-                        return Response(data, status=HTTP_200_OK)
-
-                elif len(transmissor) > 1:
-
-                    txt = u'Existe mais de um transmissor cadastrado o empregador %s, cadastre apenas um!' % a.nrinsc
-
-                    if hash:
-                        messages.error(request, txt)
-                        return redirect('mapa_esocial', hash=request.session['retorno_hash'])
-                    else:
-                        data = {'response': txt}
-                        return Response(data, status=HTTP_200_OK)
-
-                else:
-
-                    dados = {}
-                    dados['transmissor_id'] = transmissor[0].id
-                    dados['empregador_tpinsc'] = transmissor[0].empregador_tpinsc
-                    dados['empregador_nrinsc'] = transmissor[0].empregador_nrinsc
-                    dados['grupo'] = grupo
-                    dados['status'] = 0
-                    transmissor_esocial = TransmissorLoteEsocial(**dados)
-                    transmissor_esocial.save()
-
-            transmissor_esocial_lista = TransmissorLoteEsocial.objects.using('default').filter(
-                status=0,
-                grupo=grupo,
-                empregador_nrinsc=a.nrinsc,
-                empregador_tpinsc=a.tpinsc).all()
-
-            for te in transmissor_esocial_lista:
-
-                eventos_lista = TransmissorEventosEsocial.objects.using('default').filter(
-                    transmissor_lote_esocial=te.id).all()
-
-                if len(eventos_lista) < te.transmissor.esocial_lote_max:
-                    model.objects.using('default').filter(id=a.id).update(transmissor_lote_esocial=te)
-
-                txt = 'Evento vinculado com sucesso!'
 
         texto += txt
 
-    lista_transmissores = TransmissorLoteEsocial.objects.using(db_slug).filter(status=0).all()
+    lista_transmissores = TransmissorLoteEsocial.objects.filter(status=0).all()
 
     n = 0
+
     for a in lista_transmissores:
+
         n += 1
         send_xml(request, a.id, 'WsEnviarLoteEventos')
 
@@ -314,14 +341,14 @@ def consultar(request, hash=None):
         except:
             return redirect('login')
 
-        usuario = get_object_or_404(Usuarios.objects.using(db_slug),
+        usuario = get_object_or_404(Usuarios.objects,
                                     excluido=False,
                                     id=usuario_id)
 
-        pagina = ConfigPaginas.objects.using(db_slug).get(excluido=False,
+        pagina = ConfigPaginas.objects.get(excluido=False,
                                                           endereco='mapa_esocial')
 
-        permissao = ConfigPermissoes.objects.using(db_slug).get(excluido=False,
+        permissao = ConfigPermissoes.objects.get(excluido=False,
                                                                 config_paginas=pagina,
                                                                 config_perfis=usuario.config_perfis)
 
@@ -349,13 +376,13 @@ def consultar(request, hash=None):
             (3, u'3 - Eventos Periódicos'),
         )
 
-        lista = model.objects.using('default').filter(status=STATUS_EVENTO_ENVIADO).all()
+        lista = model.objects.filter(status=STATUS_EVENTO_ENVIADO).all()
 
         for a in lista:
 
             lista_transmissores_esocial.append(a.transmissor_lote_esocial_id)
 
-    lista_transmissores = TransmissorLoteEsocial.objects.using(db_slug).\
+    lista_transmissores = TransmissorLoteEsocial.objects.\
         filter(id__in=lista_transmissores_esocial).all()
 
     for a in lista_transmissores:

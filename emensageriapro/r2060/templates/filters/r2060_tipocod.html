@@ -1,1 +1,168 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento da contribuição previdenciária sobre a receita bruta - CPRB</label><select name="r2060_evtcprb" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in r2060_evtcprb_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2060_evtcprb' %}selected="selected"{% endifequal %}>{{ a.evtcprb }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.perapur }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.idecontri }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.infocprb }} - {{ a.ideestab }} - {{ a.tpinscestab }} - {{ a.nrinscestab }} - {{ a.vlrrecbrutatotal }} - {{ a.vlrcpapurtotal }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09</label><div name="codativecon__icontains" class="input-group" style="width: 100%;"><input type="text" name="codativecon__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'codativecon__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o valor total da receita da atividade</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrrecbrutaativ" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrrecbrutaativ' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrexcrecbruta" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrexcrecbruta' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o Valor total das Adições da Receita Bruta previstas em lei</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlradicrecbruta" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlradicrecbruta' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrbccprb" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbccprb' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrcprbapur" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcprbapur' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_r2060_evtcprb" value="1" {% if show_fields|get_value_from_dict:'show_r2060_evtcprb' %}checked{% endif %}>Evento da contribuição previdenciária sobre a receita bruta - CPRB</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codativecon" value="1" {% if show_fields|get_value_from_dict:'show_codativecon' %}checked{% endif %}>Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrrecbrutaativ" value="1" {% if show_fields|get_value_from_dict:'show_vlrrecbrutaativ' %}checked{% endif %}>Preencher com o valor total da receita da atividade</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrexcrecbruta" value="1" {% if show_fields|get_value_from_dict:'show_vlrexcrecbruta' %}checked{% endif %}>Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlradicrecbruta" value="1" {% if show_fields|get_value_from_dict:'show_vlradicrecbruta' %}checked{% endif %}>Preencher com o Valor total das Adições da Receita Bruta previstas em lei</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrbccprb" value="1" {% if show_fields|get_value_from_dict:'show_vlrbccprb' %}checked{% endif %}>Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrcprbapur" value="1" {% if show_fields|get_value_from_dict:'show_vlrcprbapur' %}checked{% endif %}>Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r2060_tipocod__r2060_evtcprb -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</label>
+    <select name="r2060_evtcprb" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r2060_evtcprb_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2060_evtcprb' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r2060_tipocod__r2060_evtcprb -->
+
+<!-- inicio__r2060_tipocod__codativecon -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09</label>
+    <div name="codativecon" class="input-group" style="width: 100%;">
+      <input type="text" name="codativecon" class="form-control" value="{{ dict_fields|get_value_from_dict:'codativecon' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2060_tipocod__codativecon -->
+
+<!-- inicio__r2060_tipocod__vlrrecbrutaativ -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o valor total da receita da atividade</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrrecbrutaativ" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrrecbrutaativ' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2060_tipocod__vlrrecbrutaativ -->
+
+<!-- inicio__r2060_tipocod__vlrexcrecbruta -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrexcrecbruta" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrexcrecbruta' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2060_tipocod__vlrexcrecbruta -->
+
+<!-- inicio__r2060_tipocod__vlradicrecbruta -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o Valor total das Adições da Receita Bruta previstas em lei</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlradicrecbruta" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlradicrecbruta' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2060_tipocod__vlradicrecbruta -->
+
+<!-- inicio__r2060_tipocod__vlrbccprb -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbccprb" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbccprb' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2060_tipocod__vlrbccprb -->
+
+<!-- inicio__r2060_tipocod__vlrcprbapur -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcprbapur" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcprbapur' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2060_tipocod__vlrcprbapur -->
+
+<!-- inicio__r2060_tipocod__observ -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Observações</label>
+    <div name="observ" class="input-group" style="width: 100%;">
+      <input type="text" name="observ" class="form-control" value="{{ dict_fields|get_value_from_dict:'observ' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2060_tipocod__observ -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r2060_evtcprb" value="1" {% if show_fields|get_value_from_dict:'show_r2060_evtcprb' %}checked{% endif %} >Registro que apresenta o valor total da receita por tipo de código de atividade econômica.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codativecon" value="1" {% if show_fields|get_value_from_dict:'show_codativecon' %}checked{% endif %} >Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrrecbrutaativ" value="1" {% if show_fields|get_value_from_dict:'show_vlrrecbrutaativ' %}checked{% endif %} >Preencher com o valor total da receita da atividade
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrexcrecbruta" value="1" {% if show_fields|get_value_from_dict:'show_vlrexcrecbruta' %}checked{% endif %} >Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlradicrecbruta" value="1" {% if show_fields|get_value_from_dict:'show_vlradicrecbruta' %}checked{% endif %} >Preencher com o Valor total das Adições da Receita Bruta previstas em lei
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbccprb" value="1" {% if show_fields|get_value_from_dict:'show_vlrbccprb' %}checked{% endif %} >Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcprbapur" value="0" {% if show_fields|get_value_from_dict:'show_vlrcprbapur' %}checked{% endif %} >Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_observ" value="0" {% if show_fields|get_value_from_dict:'show_observ' %}checked{% endif %} >Observações
+    </div>
+</div>
+
+

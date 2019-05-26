@@ -1,0 +1,91 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9001_rcoml__r9001_infototal -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_r9001_infototal').change(function(){
+       document.getElementById("r9001_rcoml__r9001_infototal__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="r9001_rcoml__r9001_infototal__div">
+  <div class="form-group">
+    <label id="r9001_rcoml__r9001_infototal__label">Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050*</label>
+    {% if not for_print %}
+      {% if r9001_rcoml_form.r9001_infototal.value %}
+        <a id="r9001_rcoml__r9001_infototal__div_acessar" href="{% url 'r9001_infototal_salvar' hash='{}'|json_id:r9001_rcoml_form.r9001_infototal.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if r9001_rcoml_form.r9001_infototal.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r9001_rcoml_form.r9001_infototal.errors }}
+      </div>
+    {% endif %}
+    {% if r9001_rcoml_form.r9001_infototal.field.widget.attrs.readonly %}
+      {% if r9001_rcoml_form.r9001_infototal.field.widget.attrs.disabled %}
+        {{ r9001_rcoml_form.r9001_infototal|addcss:'form-control' }}
+        <input id="id_r9001_infototal" name="r9001_infototal" type="hidden" value="{% if r9001_rcoml_form.r9001_infototal.value or r9001_rcoml_form.r9001_infototal.value == 0 %}{{ r9001_rcoml_form.r9001_infototal.value|valor }}{% endif %}">
+      {% else %}
+        {{ r9001_rcoml_form.r9001_infototal|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r9001_rcoml_form.r9001_infototal|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r9001_rcoml__r9001_infototal -->
+<!-- inicio__r9001_rcoml__crcoml -->
+<div class="col-md-3" id="r9001_rcoml__crcoml__div">
+  <div class="form-group">
+    <label id="r9001_rcoml__crcoml__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor*</label>
+      {% if r9001_rcoml_form.crcoml.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9001_rcoml_form.crcoml.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9001_rcoml_form.crcoml|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rcoml__crcoml -->
+<!-- inicio__r9001_rcoml__vlrcrcoml -->
+<div class="col-md-3" id="r9001_rcoml__vlrcrcoml__div">
+  <div class="form-group">
+    <label id="r9001_rcoml__vlrcrcoml__label">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050*</label>
+    {% if r9001_rcoml_form.vlrcrcoml.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9001_rcoml_form.vlrcrcoml.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9001_rcoml_form.vlrcrcoml|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rcoml__vlrcrcoml -->
+<!-- inicio__r9001_rcoml__vlrcrcomlsusp -->
+<div class="col-md-3" id="r9001_rcoml__vlrcrcomlsusp__div">
+  <div class="form-group">
+    <label id="r9001_rcoml__vlrcrcomlsusp__label">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050</label>
+    {% if r9001_rcoml_form.vlrcrcomlsusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9001_rcoml_form.vlrcrcomlsusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9001_rcoml_form.vlrcrcomlsusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rcoml__vlrcrcomlsusp -->

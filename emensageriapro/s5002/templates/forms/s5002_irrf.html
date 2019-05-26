@@ -1,1 +1,82 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s5002_infoirrf_id or s5002_infoirrf_id != s5002_irrf_form.s5002_infoirrf.value %}<!-- inicio__s5002_irrf__s5002_infoirrf --><div class="col-md-12" id="s5002_irrf__s5002_infoirrf__div"><div class="form-group"><label id="s5002_irrf__s5002_infoirrf__label">Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo*<a data-toggle="tooltip" title="Informações relativas ao Imposto de Renda Retido na Fonte."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s5002_irrf_form.s5002_infoirrf.value %}<a id="s5002_irrf__s5002_infoirrf__div_acessar" href="{% url 's5002_infoirrf_salvar' hash='{}'|json_id:s5002_irrf_form.s5002_infoirrf.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_s5002_infoirrf').change(function(){ document.getElementById("s5002_irrf__s5002_infoirrf__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if s5002_irrf_form.s5002_infoirrf.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5002_irrf_form.s5002_infoirrf.errors }}</div>{% endif %} {% if s5002_irrf_form.s5002_infoirrf.field.widget.attrs.readonly %} {% if s5002_irrf_form.s5002_infoirrf.field.widget.attrs.disabled %} {{ s5002_irrf_form.s5002_infoirrf|addcss:'form-control' }}<input id="id_s5002_infoirrf" name="s5002_infoirrf" type="hidden" value="{% if s5002_irrf_form.s5002_infoirrf.value or s5002_irrf_form.s5002_infoirrf.value == 0 %}{{ s5002_irrf_form.s5002_infoirrf.value|valor }}{% endif %}">{% else %} {{ s5002_irrf_form.s5002_infoirrf|addcss:'form-control' }} {% endif %} {% else %} {{ s5002_irrf_form.s5002_infoirrf|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s5002_irrf__s5002_infoirrf -->{% else %}<input type="hidden" value="{{ s5002_infoirrf_id|valor }}" id="id_s5002_infoirrf" name="s5002_infoirrf">{% endif %}<!-- inicio__s5002_irrf__tpcr --><div class="col-md-6" id="s5002_irrf__tpcr__div"><div class="form-group"><label id="s5002_irrf__tpcr__label">Código da Receita (CR)*<a data-toggle="tooltip" title="Código de Receita - CR relativo ao Imposto de Renda Retido na Fonte sobre rendimentos do trabalho, conforme legislação em vigor na competência: 0473-01 - Renda e Proventos de Qualquer Natureza; 0561-07 - IRRF - Rendimento do Trabalho Assalariado no País/Au (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5002_irrf_form.tpcr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5002_irrf_form.tpcr.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s5002_irrf_form.tpcr.field.widget.attrs.readonly %} {% if s5002_irrf_form.tpcr.field.widget.attrs.disabled %} {{ s5002_irrf_form.tpcr|addcss:'form-control' }}<input id="id_tpcr" name="tpcr" type="hidden" value="{% if s5002_irrf_form.tpcr.value or s5002_irrf_form.tpcr.value == 0 %}{{ s5002_irrf_form.tpcr.value|valor }}{% endif %}">{% else %} {{ s5002_irrf_form.tpcr|addcss:'form-control' }} {% endif %} {% else %} {{ s5002_irrf_form.tpcr|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s5002_irrf__tpcr --><!-- inicio__s5002_irrf__vrirrfdesc --><div class="col-md-6" id="s5002_irrf__vrirrfdesc__div"><div class="form-group"><label id="s5002_irrf__vrirrfdesc__label">Valor efetivamente descontado IRRF*<a data-toggle="tooltip" title="Valor efetivamente descontado relativo ao Imposto de Renda Retido na Fonte sobre rendimentos do trabalho, agrupado conforme segue: ORIGEM: S-1200, S-1202, S-2299, S-2399 e respectivo S-1210: 0473-01: Se {codCateg} = [101,103,105,106,111,301,302,303,305,306 (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5002_irrf_form.vrirrfdesc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5002_irrf_form.vrirrfdesc.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ s5002_irrf_form.vrirrfdesc|addcss:'form-control automate-money' }}</div></div></div><!-- fim__s5002_irrf__vrirrfdesc -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5002_irrf__s5002_infoirrf -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_s5002_infoirrf').change(function(){
+       document.getElementById("s5002_irrf__s5002_infoirrf__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="s5002_irrf__s5002_infoirrf__div">
+  <div class="form-group">
+    <label id="s5002_irrf__s5002_infoirrf__label">Informações relativas ao Imposto de Renda Retido na Fonte*</label>
+    {% if not for_print %}
+      {% if s5002_irrf_form.s5002_infoirrf.value %}
+        <a id="s5002_irrf__s5002_infoirrf__div_acessar" href="{% url 's5002_infoirrf_salvar' hash='{}'|json_id:s5002_irrf_form.s5002_infoirrf.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if s5002_irrf_form.s5002_infoirrf.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5002_irrf_form.s5002_infoirrf.errors }}
+      </div>
+    {% endif %}
+    {% if s5002_irrf_form.s5002_infoirrf.field.widget.attrs.readonly %}
+      {% if s5002_irrf_form.s5002_infoirrf.field.widget.attrs.disabled %}
+        {{ s5002_irrf_form.s5002_infoirrf|addcss:'form-control' }}
+        <input id="id_s5002_infoirrf" name="s5002_infoirrf" type="hidden" value="{% if s5002_irrf_form.s5002_infoirrf.value or s5002_irrf_form.s5002_infoirrf.value == 0 %}{{ s5002_irrf_form.s5002_infoirrf.value|valor }}{% endif %}">
+      {% else %}
+        {{ s5002_irrf_form.s5002_infoirrf|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s5002_irrf_form.s5002_infoirrf|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s5002_irrf__s5002_infoirrf -->
+<!-- inicio__s5002_irrf__tpcr -->
+<div class="col-md-4" id="s5002_irrf__tpcr__div">
+  <div class="form-group">
+    <label id="s5002_irrf__tpcr__label">Código da Receita (CR)*</label>
+    {% if s5002_irrf_form.tpcr.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5002_irrf_form.tpcr.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s5002_irrf_form.tpcr.field.widget.attrs.readonly %}
+        {% if s5002_irrf_form.tpcr.field.widget.attrs.disabled %}
+          {{ s5002_irrf_form.tpcr|addcss:'form-control' }}
+          <input id="id_tpcr" name="tpcr" type="hidden" value="{% if s5002_irrf_form.tpcr.value or s5002_irrf_form.tpcr.value == 0 %}{{ s5002_irrf_form.tpcr.value }}{% endif %}">
+        {% else %}
+          {{ s5002_irrf_form.tpcr|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s5002_irrf_form.tpcr|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s5002_irrf__tpcr -->
+<!-- inicio__s5002_irrf__vrirrfdesc -->
+<div class="col-md-4" id="s5002_irrf__vrirrfdesc__div">
+  <div class="form-group">
+    <label id="s5002_irrf__vrirrfdesc__label">Valor efetivamente descontado IRRF*</label>
+    {% if s5002_irrf_form.vrirrfdesc.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s5002_irrf_form.vrirrfdesc.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ s5002_irrf_form.vrirrfdesc|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5002_irrf__vrirrfdesc -->

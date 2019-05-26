@@ -1,0 +1,533 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2245_evttreicap__evttreicap -->
+<div class="col-md-12" id="s2245_evttreicap__evttreicap__div">
+  <h4>Evento Treinamentos e Capacitações</h4>
+</div>
+<!-- fim__s2245_evttreicap__evttreicap -->
+<!-- inicio__s2245_evttreicap__identidade -->
+<div class="col-md-6" id="s2245_evttreicap__identidade__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__identidade__label">Identidade do Registro</label>
+      {% if s2245_evttreicap_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2245_evttreicap_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2245_evttreicap_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__identidade -->
+<!-- inicio__s2245_evttreicap__ideevento -->
+<div class="col-md-12" id="s2245_evttreicap__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s2245_evttreicap__ideevento -->
+<!-- inicio__s2245_evttreicap__indretif -->
+<div class="col-md-6" id="s2245_evttreicap__indretif__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__indretif__label">Identificador de retificação*</label>
+    {% if s2245_evttreicap_form.indretif.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2245_evttreicap_form.indretif.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2245_evttreicap_form.indretif.field.widget.attrs.readonly %}
+        {% if s2245_evttreicap_form.indretif.field.widget.attrs.disabled %}
+          {{ s2245_evttreicap_form.indretif|addcss:'form-control' }}
+          <input id="id_indretif" name="indretif" type="hidden" value="{% if s2245_evttreicap_form.indretif.value or s2245_evttreicap_form.indretif.value == 0 %}{{ s2245_evttreicap_form.indretif.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2245_evttreicap_form.indretif|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2245_evttreicap_form.indretif|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__indretif -->
+<!-- inicio__s2245_evttreicap__nrrecibo -->
+<div class="col-md-6" id="s2245_evttreicap__nrrecibo__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__nrrecibo__label">Número do recibo</label>
+      {% if s2245_evttreicap_form.nrrecibo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2245_evttreicap_form.nrrecibo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2245_evttreicap_form.nrrecibo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__nrrecibo -->
+<!-- inicio__s2245_evttreicap__tpamb -->
+<div class="col-md-6" id="s2245_evttreicap__tpamb__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__tpamb__label">Identificação do ambiente*</label>
+    {% if s2245_evttreicap_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2245_evttreicap_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2245_evttreicap_form.tpamb.field.widget.attrs.readonly %}
+        {% if s2245_evttreicap_form.tpamb.field.widget.attrs.disabled %}
+          {{ s2245_evttreicap_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if s2245_evttreicap_form.tpamb.value or s2245_evttreicap_form.tpamb.value == 0 %}{{ s2245_evttreicap_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2245_evttreicap_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2245_evttreicap_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__tpamb -->
+<!-- inicio__s2245_evttreicap__procemi -->
+<div class="col-md-6" id="s2245_evttreicap__procemi__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__procemi__label">Processo de emissão do evento*</label>
+    {% if s2245_evttreicap_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2245_evttreicap_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2245_evttreicap_form.procemi.field.widget.attrs.readonly %}
+        {% if s2245_evttreicap_form.procemi.field.widget.attrs.disabled %}
+          {{ s2245_evttreicap_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if s2245_evttreicap_form.procemi.value or s2245_evttreicap_form.procemi.value == 0 %}{{ s2245_evttreicap_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2245_evttreicap_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2245_evttreicap_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__procemi -->
+<!-- inicio__s2245_evttreicap__verproc -->
+<div class="col-md-6" id="s2245_evttreicap__verproc__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__verproc__label">Versão do processo*</label>
+      {% if s2245_evttreicap_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2245_evttreicap_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2245_evttreicap_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__verproc -->
+<!-- inicio__s2245_evttreicap__ideempregador -->
+<div class="col-md-12" id="s2245_evttreicap__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s2245_evttreicap__ideempregador -->
+<!-- inicio__s2245_evttreicap__tpinsc -->
+<div class="col-md-6" id="s2245_evttreicap__tpinsc__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__tpinsc__label">Tipo de inscrição*</label>
+    {% if s2245_evttreicap_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2245_evttreicap_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2245_evttreicap_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s2245_evttreicap_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s2245_evttreicap_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s2245_evttreicap_form.tpinsc.value or s2245_evttreicap_form.tpinsc.value == 0 %}{{ s2245_evttreicap_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2245_evttreicap_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2245_evttreicap_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__tpinsc -->
+<!-- inicio__s2245_evttreicap__nrinsc -->
+<div class="col-md-6" id="s2245_evttreicap__nrinsc__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s2245_evttreicap_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2245_evttreicap_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2245_evttreicap_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__nrinsc -->
+<!-- inicio__s2245_evttreicap__idevinculo -->
+<div class="col-md-12" id="s2245_evttreicap__idevinculo__div">
+  <h4>Informações de Identificação do Trabalhador e do Vínculo</h4>
+</div>
+<!-- fim__s2245_evttreicap__idevinculo -->
+<!-- inicio__s2245_evttreicap__cpftrab -->
+<div class="col-md-6" id="s2245_evttreicap__cpftrab__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__cpftrab__label">CPF*</label>
+      {% if s2245_evttreicap_form.cpftrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2245_evttreicap_form.cpftrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2245_evttreicap_form.cpftrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__cpftrab -->
+<!-- inicio__s2245_evttreicap__nistrab -->
+<div class="col-md-6" id="s2245_evttreicap__nistrab__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__nistrab__label">NIS</label>
+      {% if s2245_evttreicap_form.nistrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2245_evttreicap_form.nistrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2245_evttreicap_form.nistrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__nistrab -->
+<!-- inicio__s2245_evttreicap__matricula -->
+<div class="col-md-6" id="s2245_evttreicap__matricula__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__matricula__label">Matricula</label>
+      {% if s2245_evttreicap_form.matricula.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2245_evttreicap_form.matricula.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2245_evttreicap_form.matricula|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__matricula -->
+<!-- inicio__s2245_evttreicap__codcateg -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2245_evttreicap__codcateg__div">
+    <div class="form-group">
+      <label id="s2245_evttreicap__codcateg__label">Código da Categoria</label>
+        {% if s2245_evttreicap_form.codcateg.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2245_evttreicap_form.codcateg.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2245_evttreicap.codcateg %}{{ s2245_evttreicap.codcateg }}{% endif %}" 
+        {% if s2245_evttreicap_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2245_evttreicap_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}{% if s2245_evttreicap_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_codcateg" name="codcateg" value="{% if s2245_evttreicap.codcateg %}{{ s2245_evttreicap_form.codcateg.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codcateg').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-trabalhadores-categorias/json-search/" + request.term + "/", function (data) {
+          response($.map(data.esocial_trabalhadores_categorias, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codcateg').val(ui.item.value);
+        return false;
+      }});
+    {% if s2245_evttreicap_form.codcateg.field.widget.attrs.required %}
+    $("#id_form_s2245_evttreicap").submit(function(e) {
+      $('#txt_codcateg').disabled = true;
+        if ($('#id_codcateg').val() == "") {
+          $('#txt_codcateg').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Código da Categoria!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2245_evttreicap__codcateg__div">
+    <div class="form-group">
+      <label id="s2245_evttreicap__codcateg__label">Código da Categoria</label>
+        {% if not for_print %}{% if s2245_evttreicap_form.codcateg.value %}
+            <a id="s2245_evttreicap__codcateg__div_acessar" href="{% url 'esocial-trabalhadores-categorias_salvar' hash='{}'|json_id:s2245_evttreicap_form.codcateg.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2245_evttreicap.codcateg %}{{ s2245_evttreicap.codcateg }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2245_evttreicap__codcateg -->
+<!-- inicio__s2245_evttreicap__treicap -->
+<div class="col-md-12" id="s2245_evttreicap__treicap__div">
+  <h4>Treinamentos e Capacitações Específicas para Trabalho</h4>
+</div>
+<!-- fim__s2245_evttreicap__treicap -->
+<!-- inicio__s2245_evttreicap__codtreicap -->
+<div class="col-md-6" id="s2245_evttreicap__codtreicap__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__codtreicap__label">Informar o código do treinamento/capacitação*</label>
+    {% if s2245_evttreicap_form.codtreicap.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2245_evttreicap_form.codtreicap.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2245_evttreicap_form.codtreicap.field.widget.attrs.readonly %}
+        {% if s2245_evttreicap_form.codtreicap.field.widget.attrs.disabled %}
+          {{ s2245_evttreicap_form.codtreicap|addcss:'form-control' }}
+          <input id="id_codtreicap" name="codtreicap" type="hidden" value="{% if s2245_evttreicap_form.codtreicap.value or s2245_evttreicap_form.codtreicap.value == 0 %}{{ s2245_evttreicap_form.codtreicap.value }}{% endif %}">
+        {% else %}
+          {{ s2245_evttreicap_form.codtreicap|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2245_evttreicap_form.codtreicap|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__codtreicap -->
+<!-- inicio__s2245_evttreicap__obstreicap -->
+<div class="col-md-6" id="s2245_evttreicap__obstreicap__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__obstreicap__label">Observação referente ao treinamento/capacitação/exercício simulado.</label>
+      {% if s2245_evttreicap_form.obstreicap.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2245_evttreicap_form.obstreicap.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2245_evttreicap_form.obstreicap|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__obstreicap -->
+<!-- inicio__s2245_evttreicap__observacao -->
+<div class="col-md-6" id="s2245_evttreicap__observacao__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__observacao__label">Observações</label>
+      {% if s2245_evttreicap_form.observacao.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2245_evttreicap_form.observacao.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2245_evttreicap_form.observacao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__observacao -->
+<!-- inicio__s2245_evttreicap__infocomplem -->
+<div class="col-md-12" id="s2245_evttreicap__infocomplem__div">
+  <h4>Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</h4>
+</div>
+<!-- fim__s2245_evttreicap__infocomplem -->
+<!-- inicio__s2245_evttreicap__dttreicap -->
+<div class="col-md-6" id="s2245_evttreicap__dttreicap__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__dttreicap__label">Informar a data de início do treinamento/capacitação/autorização/exercício simulado ou a data de início da obrigatoriedade deste evento para o empregador no eSocial, a que for mais recente*</label>
+        {% if s2245_evttreicap_form.dttreicap.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2245_evttreicap_form.dttreicap.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2245_evttreicap_form.dttreicap|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__dttreicap -->
+<!-- inicio__s2245_evttreicap__durtreicap -->
+<div class="col-md-6" id="s2245_evttreicap__durtreicap__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__durtreicap__label">Informar a duração do treinamento/capacitação, em horas.</label>
+    {% if s2245_evttreicap_form.durtreicap.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2245_evttreicap_form.durtreicap.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+      </div>
+      {{ s2245_evttreicap_form.durtreicap|addcss:'form-control automate-decimal' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__durtreicap -->
+<!-- inicio__s2245_evttreicap__modtreicap -->
+<div class="col-md-6" id="s2245_evttreicap__modtreicap__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__modtreicap__label">Modalidade do treinamento/capacitação</label>
+    {% if s2245_evttreicap_form.modtreicap.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2245_evttreicap_form.modtreicap.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2245_evttreicap_form.modtreicap.field.widget.attrs.readonly %}
+        {% if s2245_evttreicap_form.modtreicap.field.widget.attrs.disabled %}
+          {{ s2245_evttreicap_form.modtreicap|addcss:'form-control' }}
+          <input id="id_modtreicap" name="modtreicap" type="hidden" value="{% if s2245_evttreicap_form.modtreicap.value or s2245_evttreicap_form.modtreicap.value == 0 %}{{ s2245_evttreicap_form.modtreicap.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2245_evttreicap_form.modtreicap|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2245_evttreicap_form.modtreicap|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__modtreicap -->
+<!-- inicio__s2245_evttreicap__tptreicap -->
+<div class="col-md-6" id="s2245_evttreicap__tptreicap__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__tptreicap__label">Tipo de treinamento/capacitação</label>
+    {% if s2245_evttreicap_form.tptreicap.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2245_evttreicap_form.tptreicap.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2245_evttreicap_form.tptreicap.field.widget.attrs.readonly %}
+        {% if s2245_evttreicap_form.tptreicap.field.widget.attrs.disabled %}
+          {{ s2245_evttreicap_form.tptreicap|addcss:'form-control' }}
+          <input id="id_tptreicap" name="tptreicap" type="hidden" value="{% if s2245_evttreicap_form.tptreicap.value or s2245_evttreicap_form.tptreicap.value == 0 %}{{ s2245_evttreicap_form.tptreicap.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2245_evttreicap_form.tptreicap|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2245_evttreicap_form.tptreicap|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__tptreicap -->
+<!-- inicio__s2245_evttreicap__indtreinant -->
+<div class="col-md-6" id="s2245_evttreicap__indtreinant__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__indtreinant__label">Indicar se o treinamento ocorreu antes da admissão, em outro empregador*</label>
+    {% if s2245_evttreicap_form.indtreinant.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2245_evttreicap_form.indtreinant.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2245_evttreicap_form.indtreinant.field.widget.attrs.readonly %}
+        {% if s2245_evttreicap_form.indtreinant.field.widget.attrs.disabled %}
+          {{ s2245_evttreicap_form.indtreinant|addcss:'form-control' }}
+          <input id="id_indtreinant" name="indtreinant" type="hidden" value="{% if s2245_evttreicap_form.indtreinant.value or s2245_evttreicap_form.indtreinant.value == 0 %}{{ s2245_evttreicap_form.indtreinant.value }}{% endif %}">
+        {% else %}
+          {{ s2245_evttreicap_form.indtreinant|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2245_evttreicap_form.indtreinant|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__indtreinant -->
+<!-- inicio__s2245_evttreicap__versao -->
+<div class="col-md-3" id="s2245_evttreicap__versao__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__versao__label">Versão</label>
+    {% if s2245_evttreicap_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2245_evttreicap_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2245_evttreicap_form.versao.field.widget.attrs.readonly %}
+        {% if s2245_evttreicap_form.versao.field.widget.attrs.disabled %}
+          {{ s2245_evttreicap_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if s2245_evttreicap_form.versao.value or s2245_evttreicap_form.versao.value == 0 %}{{ s2245_evttreicap_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ s2245_evttreicap_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2245_evttreicap_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__versao -->
+<!-- inicio__s2245_evttreicap__transmissor_lote_esocial -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_esocial').change(function(){document.getElementById("s2245_evttreicap__transmissor_lote_esocial__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="s2245_evttreicap__transmissor_lote_esocial__div">
+<div class="form-group">
+  <label id="s2245_evttreicap__transmissor_lote_esocial__label">Transmissor</label>
+  {% if not for_print %}
+    {% if s2245_evttreicap_form.transmissor_lote_esocial.value %}
+    <a id="s2245_evttreicap__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:s2245_evttreicap_form.transmissor_lote_esocial.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if s2245_evttreicap_form.transmissor_lote_esocial.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2245_evttreicap_form.transmissor_lote_esocial.errors }}
+    </div>
+  {% endif %}
+  {% if s2245_evttreicap_form.transmissor_lote_esocial.field.widget.attrs.readonly %}
+    {% if s2245_evttreicap_form.transmissor_lote_esocial.field.widget.attrs.disabled %}
+      {{ s2245_evttreicap_form.transmissor_lote_esocial|addcss:'form-control' }}
+      <input id="id_transmissor_lote_esocial" name="transmissor_lote_esocial" type="hidden" value="{% if s2245_evttreicap_form.transmissor_lote_esocial.value or s2245_evttreicap_form.transmissor_lote_esocial.value == 0 %}{{ s2245_evttreicap_form.transmissor_lote_esocial.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ s2245_evttreicap_form.transmissor_lote_esocial|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ s2245_evttreicap_form.transmissor_lote_esocial|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__s2245_evttreicap__transmissor_lote_esocial -->
+<!-- inicio__s2245_evttreicap__status -->
+<div class="col-md-3" id="s2245_evttreicap__status__div">
+  <div class="form-group">
+    <label id="s2245_evttreicap__status__label">Status</label>
+    {% if s2245_evttreicap_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2245_evttreicap_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2245_evttreicap_form.status.field.widget.attrs.readonly %}
+        {% if s2245_evttreicap_form.status.field.widget.attrs.disabled %}
+          {{ s2245_evttreicap_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if s2245_evttreicap_form.status.value or s2245_evttreicap_form.status.value == 0 %}{{ s2245_evttreicap_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2245_evttreicap_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2245_evttreicap_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2245_evttreicap__status -->

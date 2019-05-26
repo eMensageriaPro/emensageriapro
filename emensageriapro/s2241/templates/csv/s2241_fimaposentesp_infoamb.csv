@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2241_fimaposentesp or 1 %}"Informações relativas ao ambiente de trabalho";{% endif %}{% if show_fields.show_codamb or 1 %}"Código do Ambiente";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2241_fimaposentesp or 1 %}"{{ c.s2241_fimaposentesp }}";{% endif %}{% if show_fields.show_codamb or 1 %}"{{ c.codamb }}";{% endif %}
+{% endfor %}

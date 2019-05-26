@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações relativas ao ambiente de trabalho"
-{% if show_fields.show_s2240_evtexprisco or not s2240_evtexprisco_id and 1 %}"Evento Condições Ambientais do Trabalho - Fatores de Risco";{% endif %}{% if show_fields.show_codamb or 1 %}"Código do Ambiente";{% endif %}
-{% for a in s2240_iniexprisco_infoamb_lista %}{% if show_fields.show_s2240_evtexprisco or  not s2240_evtexprisco_id and 1 %}"{{ a.s2240_evtexprisco }}";{% endif %}{% if show_fields.show_codamb or 1 %}"{{ a.codamb }}";{% endif %}
-{% endfor %}

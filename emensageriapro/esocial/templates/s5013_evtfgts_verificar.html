@@ -129,7 +129,7 @@
 
         <tr {% if s5013_evtfgts.perapur|validacoes_esocial_efdreinf:"s5013_evtfgts.perapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perApur</td>
-            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações. Validação: Deve corresponder ao informado pelo empregador no evento de origem (S-1295 ou S-1299).</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM), ou apenas o ano (formato AAAA), de referência das informações.</td>
             <td width="200px"><b>{% if s5013_evtfgts.perapur or s5013_evtfgts.perapur == 0 %}{{ s5013_evtfgts.perapur }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -153,8 +153,8 @@
 
         <tr {% if s5013_evtfgts.tpinsc|validacoes_esocial_efdreinf:"s5013_evtfgts.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
-            <td width="200px"><b>{% if s5013_evtfgts.tpinsc or s5013_evtfgts.tpinsc == 0 %}{{ s5013_evtfgts.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s5013_evtfgts.tpinsc or s5013_evtfgts.tpinsc == 0 %}{{ s5013_evtfgts.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -172,7 +172,7 @@
 
         <tr {% if s5013_evtfgts.nrinsc|validacoes_esocial_efdreinf:"s5013_evtfgts.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s5013_evtfgts.nrinsc or s5013_evtfgts.nrinsc == 0 %}{{ s5013_evtfgts.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -196,7 +196,7 @@
 
         <tr {% if s5013_evtfgts.nrrecarqbase|validacoes_esocial_efdreinf:"s5013_evtfgts.nrrecarqbase" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecArqBase</td>
-            <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1295 ou S-1299).</td>
+            <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. <validacao> Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1295 ou S-1299).</td>
             <td width="200px"><b>{% if s5013_evtfgts.nrrecarqbase or s5013_evtfgts.nrrecarqbase == 0 %}{{ s5013_evtfgts.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -215,8 +215,8 @@
 
         <tr {% if s5013_evtfgts.indexistinfo|validacoes_esocial_efdreinf:"s5013_evtfgts.indexistinfo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indExistInfo</td>
-            <td width="500px">Indicativo de existência de FGTS, conforme opções a seguir: 1 - Há informações de FGTS; 2 - Há movimento, porém não há informações de FGTS; 3 - Não há movimento no período informado em {perApur}.</td>
-            <td width="200px"><b>{% if s5013_evtfgts.indexistinfo or s5013_evtfgts.indexistinfo == 0 %}{{ s5013_evtfgts.indexistinfo|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo de existência de FGTS, conforme opções a seguir<opcoes>1 - Há informações de FGTS; 2 - Há movimento, porém não há informações de FGTS; 3 - Não há movimento no período informado em {perApur}.</td>
+            <td width="200px"><b>{% if s5013_evtfgts.indexistinfo or s5013_evtfgts.indexistinfo == 0 %}{{ s5013_evtfgts.indexistinfo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -236,17 +236,18 @@
             <td bgcolor="lightgray" colspan="1" width="130px">infoBaseFGTS</td>
             <td bgcolor="lightgray" colspan="3">Informações referentes a bases de cálculo do FGTS, agrupadas por {tpValor}.</td>
         </tr>
-
+    {% for s5013_infobasefgts in s5013_infobasefgts_lista %}
+    {% ifequal s5013_infobasefgts.s5013_evtfgts.id s5013_evtfgts.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">basePerApur</td>
             <td bgcolor="lightgray" colspan="3">Informações consolidadas das bases de cálculo do FGTS do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-5003.</td>
         </tr>
     {% for s5013_baseperapur in s5013_baseperapur_lista %}
-    {% ifequal s5013_baseperapur.s5013_evtfgts.id s5013_evtfgts.id %}
+    {% ifequal s5013_baseperapur.s5013_infobasefgts.id s5013_infobasefgts.id %}
         <tr {% if s5013_baseperapur.tpvalor|validacoes_esocial_efdreinf:"s5013_baseperapur.tpvalor" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpValor</td>
-            <td width="500px">Tipo de valor que influi na apuração do FGTS: 11 - Base de Cálculo do FGTS; 12 - Base de Cálculo do FGTS 13° Salário; 13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 15 - Base de Cálculo do FGTS - Aprendiz; 16 - Base de Cálculo do FGTS 13° Salário - Aprendiz; 17 - Base de Cálculo do FGTS Dissídio - Aprendiz; 18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz; 21 - Base de Cálculo do FGTS Rescisório; 22 - Base de Cálculo do FGTS Rescisório - 13° Salário; 23 - Base de Cálculo do FGTS Rescisório - Aviso Prévio; 24 - Base de Cálculo do FGTS Rescisório - Dissídio; 25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário; 26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio; 27 - Base de Cálculo do FGTS Rescisório - Aprendiz; 28 - Base de Cálculo do FGTS Rescisório - 13° Salário Aprendiz; 29 - Base de Cálculo do FGTS Rescisório - Aviso Prévio Aprendiz; 30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz; 31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz; 91 - Incidência suspensa em decorrência de decisão judicial. Validação: Deve ser um código válido, conforme opções acima.</td>
-            <td width="200px"><b>{% if s5013_baseperapur.tpvalor or s5013_baseperapur.tpvalor == 0 %}{{ s5013_baseperapur.tpvalor|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de valor que influi na apuração do FGTS<opcoes>11 - Base de Cálculo do FGTS; 12 - Base de Cálculo do FGTS 13° Salário; 13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 15 - Base de Cálculo do FGTS - Aprendiz; 16 - Base de Cálculo do FGTS 13° Salário - Aprendiz; 17 - Base de Cálculo do FGTS Dissídio - Aprendiz; 18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz; 21 - Base de Cálculo do FGTS Rescisório; 22 - Base de Cálculo do FGTS Rescisório - 13° Salário; 23 - Base de Cálculo do FGTS Rescisório - Aviso Prévio; 24 - Base de Cálculo do FGTS Rescisório - Dissídio; 25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário; 26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio; 27 - Base de Cálculo do FGTS Rescisório - Aprendiz; 28 - Base de Cálculo do FGTS Rescisório - 13° Salário Aprendiz; 29 - Base de Cálculo do FGTS Rescisório - Aviso Prévio Aprendiz; 30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz; 31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz; 91 - Incidência suspensa em decorrência de decisão judicial. <validacao> Deve ser um código válido, conforme opções acima.</td>
+            <td width="200px"><b>{% if s5013_baseperapur.tpvalor or s5013_baseperapur.tpvalor == 0 %}{{ s5013_baseperapur.tpvalor }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -264,8 +265,8 @@
 
         <tr {% if s5013_baseperapur.basefgts|validacoes_esocial_efdreinf:"s5013_baseperapur.basefgts" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">baseFGTS</td>
-            <td width="500px">Remuneração (valor da base de cálculo) do FGTS. Evento de origem: S-5003. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTS}, agrupados por {tpValor}.</td>
-            <td width="200px"><b>{% if s5013_baseperapur.basefgts or s5013_baseperapur.basefgts == 0 %}{{ s5013_baseperapur.basefgts|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Remuneração (valor da base de cálculo) do FGTS. Evento de origem: S-5003. <validacao> Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTS}, agrupados por {tpValor}.</td>
+            <td width="200px"><b>{% if s5013_baseperapur.basefgts or s5013_baseperapur.basefgts == 0 %}{{ s5013_baseperapur.basefgts }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -286,10 +287,10 @@
             <td bgcolor="lightgray" colspan="3">Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E], agrupadas por {tpValor}.</td>
         </tr>
     {% for s5013_infobaseperante in s5013_infobaseperante_lista %}
-    {% ifequal s5013_infobaseperante.s5013_evtfgts.id s5013_evtfgts.id %}
+    {% ifequal s5013_infobaseperante.s5013_infobasefgts.id s5013_infobasefgts.id %}
         <tr {% if s5013_infobaseperante.perref|validacoes_esocial_efdreinf:"s5013_infobaseperante.perref" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perRef</td>
-            <td width="500px">Informar o período ao qual se refere a remuneração no formato AAAA-MM. Evento de origem: S-5003. Validação: Deve corresponder ao período informado no evento de origem.</td>
+            <td width="500px">Informar o período ao qual se refere a remuneração no formato AAAA-MM. Evento de origem: S-5003. <validacao> Deve corresponder ao período informado no evento de origem.</td>
             <td width="200px"><b>{% if s5013_infobaseperante.perref or s5013_infobaseperante.perref == 0 %}{{ s5013_infobaseperante.perref }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -314,8 +315,8 @@
     {% ifequal s5013_baseperante.s5013_infobaseperante.id s5013_infobaseperante.id %}
         <tr {% if s5013_baseperante.tpvalore|validacoes_esocial_efdreinf:"s5013_baseperante.tpvalore" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpValorE</td>
-            <td width="500px">Tipo de valor que influi na apuração do FGTS: 13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 17 - Base de Cálculo do FGTS Dissídio - Aprendiz; 18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz; 24 - Base de Cálculo do FGTS Rescisório - Dissídio; 25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário; 26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio; 30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz; 31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz; 91 - Incidência suspensa em decorrência de decisão judicial. Validação: Deve ser um código válido, conforme opções acima.</td>
-            <td width="200px"><b>{% if s5013_baseperante.tpvalore or s5013_baseperante.tpvalore == 0 %}{{ s5013_baseperante.tpvalore|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de valor que influi na apuração do FGTS<opcoes>13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 17 - Base de Cálculo do FGTS Dissídio - Aprendiz; 18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz; 24 - Base de Cálculo do FGTS Rescisório - Dissídio; 25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário; 26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio; 30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz; 31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz; 91 - Incidência suspensa em decorrência de decisão judicial. <validacao> Deve ser um código válido, conforme opções acima.</td>
+            <td width="200px"><b>{% if s5013_baseperante.tpvalore or s5013_baseperante.tpvalore == 0 %}{{ s5013_baseperante.tpvalore }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -333,8 +334,8 @@
 
         <tr {% if s5013_baseperante.basefgtse|validacoes_esocial_efdreinf:"s5013_baseperante.basefgtse" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">baseFGTSE</td>
-            <td width="500px">Remuneração (valor da base de cálculo) do FGTS. Evento de origem: S-5003. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTSE}, agrupados por {tpValorE}.</td>
-            <td width="200px"><b>{% if s5013_baseperante.basefgtse or s5013_baseperante.basefgtse == 0 %}{{ s5013_baseperante.basefgtse|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Remuneração (valor da base de cálculo) do FGTS. Evento de origem: S-5003. <validacao> Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTSE}, agrupados por {tpValorE}.</td>
+            <td width="200px"><b>{% if s5013_baseperante.basefgtse or s5013_baseperante.basefgtse == 0 %}{{ s5013_baseperante.basefgtse }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -349,22 +350,23 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoDpsFGTS</td>
             <td bgcolor="lightgray" colspan="3">Informações sobre valores de FGTS, agrupados por {tpDps}.</td>
         </tr>
-
+    {% for s5013_infodpsfgts in s5013_infodpsfgts_lista %}
+    {% ifequal s5013_infodpsfgts.s5013_evtfgts.id s5013_evtfgts.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">dpsPerApur</td>
             <td bgcolor="lightgray" colspan="3">Cálculo consolidado dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].</td>
         </tr>
     {% for s5013_dpsperapur in s5013_dpsperapur_lista %}
-    {% ifequal s5013_dpsperapur.s5013_evtfgts.id s5013_evtfgts.id %}
+    {% ifequal s5013_dpsperapur.s5013_infodpsfgts.id s5013_infodpsfgts.id %}
         <tr {% if s5013_dpsperapur.tpdps|validacoes_esocial_efdreinf:"s5013_dpsperapur.tpdps" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpDps</td>
-            <td width="500px">Tipo de depósito: 51 - Depósito do FGTS; 52 - Depósito do FGTS 13° Salário; 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 55 - Depósito do FGTS - Aprendiz; 56 - Depósito do FGTS 13° Salário - Aprendiz; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 61 - Depósito do FGTS Rescisório; 62 - Depósito do FGTS Rescisório - 13° Salário; 63 - Depósito do FGTS Rescisório - Aviso Prévio; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 67 - Depósito do FGTS Rescisório - Aprendiz; 68 - Depósito do FGTS Rescisório - 13° Salário Aprendiz; 69 - Depósito do FGTS Rescisório - Aviso Prévio Aprendiz; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. Validação: Deve ser um código válido, conforme opções acima.</td>
-            <td width="200px"><b>{% if s5013_dpsperapur.tpdps or s5013_dpsperapur.tpdps == 0 %}{{ s5013_dpsperapur.tpdps|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de depósito<opcoes>51 - Depósito do FGTS; 52 - Depósito do FGTS 13° Salário; 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 55 - Depósito do FGTS - Aprendiz; 56 - Depósito do FGTS 13° Salário - Aprendiz; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 61 - Depósito do FGTS Rescisório; 62 - Depósito do FGTS Rescisório - 13° Salário; 63 - Depósito do FGTS Rescisório - Aviso Prévio; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 67 - Depósito do FGTS Rescisório - Aprendiz; 68 - Depósito do FGTS Rescisório - 13° Salário Aprendiz; 69 - Depósito do FGTS Rescisório - Aviso Prévio Aprendiz; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. <validacao> Deve ser um código válido, conforme opções acima.</td>
+            <td width="200px"><b>{% if s5013_dpsperapur.tpdps or s5013_dpsperapur.tpdps == 0 %}{{ s5013_dpsperapur.tpdps }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -382,8 +384,8 @@
 
         <tr {% if s5013_dpsperapur.vrfgts|validacoes_esocial_efdreinf:"s5013_dpsperapur.vrfgts" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrFGTS</td>
-            <td width="500px">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador. Evento de origem: S-5003. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {dpsFGTS}, agrupados por {tpDps}.</td>
-            <td width="200px"><b>{% if s5013_dpsperapur.vrfgts or s5013_dpsperapur.vrfgts == 0 %}{{ s5013_dpsperapur.vrfgts|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador. Evento de origem: S-5003. <validacao> Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {dpsFGTS}, agrupados por {tpDps}.</td>
+            <td width="200px"><b>{% if s5013_dpsperapur.vrfgts or s5013_dpsperapur.vrfgts == 0 %}{{ s5013_dpsperapur.vrfgts }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -404,10 +406,10 @@
             <td bgcolor="lightgray" colspan="3">Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E].</td>
         </tr>
     {% for s5013_infodpsperante in s5013_infodpsperante_lista %}
-    {% ifequal s5013_infodpsperante.s5013_evtfgts.id s5013_evtfgts.id %}
+    {% ifequal s5013_infodpsperante.s5013_infodpsfgts.id s5013_infodpsfgts.id %}
         <tr {% if s5013_infodpsperante.perref|validacoes_esocial_efdreinf:"s5013_infodpsperante.perref" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perRef</td>
-            <td width="500px">Informar o período ao qual se refere a remuneração no formato AAAA-MM. Evento de origem: S-5003. Validação: Deve corresponder ao período informado no evento de origem.</td>
+            <td width="500px">Informar o período ao qual se refere a remuneração no formato AAAA-MM. Evento de origem: S-5003. <validacao> Deve corresponder ao período informado no evento de origem.</td>
             <td width="200px"><b>{% if s5013_infodpsperante.perref or s5013_infodpsperante.perref == 0 %}{{ s5013_infodpsperante.perref }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -432,8 +434,8 @@
     {% ifequal s5013_dpsperante.s5013_infodpsperante.id s5013_infodpsperante.id %}
         <tr {% if s5013_dpsperante.tpdpse|validacoes_esocial_efdreinf:"s5013_dpsperante.tpdpse" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpDpsE</td>
-            <td width="500px">Tipo de depósito: 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. Validação: Deve ser um código válido, conforme opções acima.</td>
-            <td width="200px"><b>{% if s5013_dpsperante.tpdpse or s5013_dpsperante.tpdpse == 0 %}{{ s5013_dpsperante.tpdpse|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de depósito<opcoes>53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 57 - Depósito do FGTS Dissídio - Aprendiz; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz; 64 - Depósito do FGTS Rescisório - Dissídio; 65 - Depósito do FGTS Rescisório - Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio; 70 - Depósito do FGTS Rescisório - Dissídio Aprendiz; 71 - Depósito do FGTS Rescisório - Dissídio 13° Salário Aprendiz; 72 - Depósito do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz. <validacao> Deve ser um código válido, conforme opções acima.</td>
+            <td width="200px"><b>{% if s5013_dpsperante.tpdpse or s5013_dpsperante.tpdpse == 0 %}{{ s5013_dpsperante.tpdpse }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -451,8 +453,8 @@
 
         <tr {% if s5013_dpsperante.vrfgtse|validacoes_esocial_efdreinf:"s5013_dpsperante.vrfgtse" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrFGTSE</td>
-            <td width="500px">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador. Evento de origem: S-5003. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {dpsFGTSE}, agrupados por {tpDpsE}.</td>
-            <td width="200px"><b>{% if s5013_dpsperante.vrfgtse or s5013_dpsperante.vrfgtse == 0 %}{{ s5013_dpsperante.vrfgtse|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador. Evento de origem: S-5003. <validacao> Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {dpsFGTSE}, agrupados por {tpDpsE}.</td>
+            <td width="200px"><b>{% if s5013_dpsperante.vrfgtse or s5013_dpsperante.vrfgtse == 0 %}{{ s5013_dpsperante.vrfgtse }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -467,7 +469,7 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}  {% endifequal %}{% endfor %}
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
 </table>
 {% if not for_print %}
             </div>

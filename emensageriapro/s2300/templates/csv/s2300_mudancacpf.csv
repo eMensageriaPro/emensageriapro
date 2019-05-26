@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2300_evttsvinicio or 1 %}"Informações de mudança de CPF do trabalhador.";{% endif %}{% if show_fields.show_cpfant or 1 %}"Preencher com o número do CPF antigo do trabalhador.";{% endif %}{% if show_fields.show_dtaltcpf or 1 %}"Data de alteração do CPF.";{% endif %}{% if show_fields.show_observacao or 1 %}"Observações";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2300_evttsvinicio or 1 %}"{{ c.s2300_evttsvinicio }}";{% endif %}{% if show_fields.show_cpfant or 1 %}"{{ c.cpfant }}";{% endif %}{% if show_fields.show_dtaltcpf or 1 %}"{{ c.dtaltcpf }}";{% endif %}{% if show_fields.show_observacao or 1 %}"{{ c.observacao }}";{% endif %}
+{% endfor %}

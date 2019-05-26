@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1202_infoperapur_infosaudecolet or 1 %}"Detalhamento dos valores pagos a Operadoras de Planos de Saúde.";{% endif %}{% if show_fields.show_cnpjoper or 1 %}"CNPJ da Operadora do Plano de Saúde";{% endif %}{% if show_fields.show_regans or 1 %}"Registro ANS";{% endif %}{% if show_fields.show_vrpgtit or 1 %}"Valor pago pelo titular";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1202_infoperapur_infosaudecolet or 1 %}"{{ c.s1202_infoperapur_infosaudecolet }}";{% endif %}{% if show_fields.show_cnpjoper or 1 %}"{{ c.cnpjoper }}";{% endif %}{% if show_fields.show_regans or 1 %}"{{ c.regans }}";{% endif %}{% if show_fields.show_vrpgtit or 1 %}"{{ c.vrpgtit }}";{% endif %}
+{% endfor %}

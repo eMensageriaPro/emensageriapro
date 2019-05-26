@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s2416.models import * 
-from emensageriapro.esocial.models import s2416evtCdBenAlt 
+from emensageriapro.s2416.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,21 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s2416_homologtc(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2416_homologtc, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2416_evtcdbenalt'].widget.attrs['required'] = True        
-        self.fields['nratolegal'].widget.attrs['required'] = True
+        super(form_s2416_homologtc, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -74,25 +74,25 @@ class form_s2416_homologtc(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2416homologTC
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2416_infopenmorte(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2416_infopenmorte, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2416_evtcdbenalt'].widget.attrs['required'] = True        
-        self.fields['tppenmorte'].widget.attrs['required'] = True
+        super(form_s2416_infopenmorte, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -112,25 +112,25 @@ class form_s2416_infopenmorte(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2416infoPenMorte
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2416_suspensao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2416_suspensao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2416_evtcdbenalt'].widget.attrs['required'] = True        
-        self.fields['mtvsuspensao'].widget.attrs['required'] = True
+        super(form_s2416_suspensao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -150,10 +150,10 @@ class form_s2416_suspensao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2416suspensao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

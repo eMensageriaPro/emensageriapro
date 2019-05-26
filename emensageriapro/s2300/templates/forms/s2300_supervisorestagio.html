@@ -1,1 +1,61 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s2300_infoestagiario_id or s2300_infoestagiario_id != s2300_supervisorestagio_form.s2300_infoestagiario.value %}<!-- inicio__s2300_supervisorestagio__s2300_infoestagiario --><div class="col-md-12" id="s2300_supervisorestagio__s2300_infoestagiario__div"><div class="form-group"><label id="s2300_supervisorestagio__s2300_infoestagiario__label">Informações relativas ao estagiário*<a data-toggle="tooltip" title="Supervisor do Estágio."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2300_supervisorestagio_form.s2300_infoestagiario.value %}<a href="{% url 's2300_infoestagiario_salvar' hash='{}'|json_return_page:'s2300_supervisorestagio_salvar'|json_return_hash:hash|json_id:s2300_supervisorestagio_form.s2300_infoestagiario.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s2300_supervisorestagio_form.s2300_infoestagiario.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_supervisorestagio_form.s2300_infoestagiario.errors }}</div>{% endif %} {% if s2300_supervisorestagio_form.s2300_infoestagiario.field.widget.attrs.readonly %} {% if s2300_supervisorestagio_form.s2300_infoestagiario.field.widget.attrs.disabled %} {{ s2300_supervisorestagio_form.s2300_infoestagiario|addcss:'form-control' }}<input id="id_s2300_infoestagiario" name="s2300_infoestagiario" type="hidden" value="{{ s2300_supervisorestagio_form.s2300_infoestagiario.value }}">{% else %} {{ s2300_supervisorestagio_form.s2300_infoestagiario|addcss:'form-control' }} {% endif %} {% else %} {{ s2300_supervisorestagio_form.s2300_infoestagiario|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2300_supervisorestagio__s2300_infoestagiario -->{% else %}<input type="hidden" value="{{ s2300_infoestagiario_id|valor }}" id="id_s2300_infoestagiario" name="s2300_infoestagiario">{% endif %}<!-- inicio__s2300_supervisorestagio__cpfsupervisor --><div class="col-md-6" id="s2300_supervisorestagio__cpfsupervisor__div"><div class="form-group"><label id="s2300_supervisorestagio__cpfsupervisor__label">CPF*<a data-toggle="tooltip" title="CPF do responsável pela supervisão do estagiário. Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_supervisorestagio_form.cpfsupervisor.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_supervisorestagio_form.cpfsupervisor.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_supervisorestagio_form.cpfsupervisor|addcss:'form-control' }}</div></div></div><!-- fim__s2300_supervisorestagio__cpfsupervisor --><!-- inicio__s2300_supervisorestagio__nmsuperv --><div class="col-md-6" id="s2300_supervisorestagio__nmsuperv__div"><div class="form-group"><label id="s2300_supervisorestagio__nmsuperv__label">Nome do Supervisor do Estágio*<a data-toggle="tooltip" title="Nome do Supervisor do Estágio."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_supervisorestagio_form.nmsuperv.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_supervisorestagio_form.nmsuperv.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_supervisorestagio_form.nmsuperv|addcss:'form-control' }}</div></div></div><!-- fim__s2300_supervisorestagio__nmsuperv -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2300_supervisorestagio__s2300_infoestagiario -->
+<div class="col-md-12" id="s2300_supervisorestagio__s2300_infoestagiario__div">
+  <div class="form-group">
+    <label id="s2300_supervisorestagio__s2300_infoestagiario__label">Supervisor do Estágio*</label>
+    {% if not for_print %}{% if s2300_supervisorestagio_form.s2300_infoestagiario.value %}
+        <a href="{% url 's2300_infoestagiario_salvar' hash='{}'|json_return_page:'s2300_supervisorestagio_salvar'|json_return_hash:hash|json_id:s2300_supervisorestagio_form.s2300_infoestagiario.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s2300_supervisorestagio_form.s2300_infoestagiario.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_supervisorestagio_form.s2300_infoestagiario.errors }}
+      </div>
+    {% endif %}
+    {% if s2300_supervisorestagio_form.s2300_infoestagiario.field.widget.attrs.readonly %}
+      {% if s2300_supervisorestagio_form.s2300_infoestagiario.field.widget.attrs.disabled %}
+        {{ s2300_supervisorestagio_form.s2300_infoestagiario|addcss:'form-control' }}
+        <input id="id_s2300_infoestagiario" name="s2300_infoestagiario" type="hidden" value="{{ s2300_supervisorestagio_form.s2300_infoestagiario.value }}">
+      {% else %}
+        {{ s2300_supervisorestagio_form.s2300_infoestagiario|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2300_supervisorestagio_form.s2300_infoestagiario|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2300_supervisorestagio__s2300_infoestagiario -->
+<!-- inicio__s2300_supervisorestagio__cpfsupervisor -->
+<div class="col-md-4" id="s2300_supervisorestagio__cpfsupervisor__div">
+  <div class="form-group">
+    <label id="s2300_supervisorestagio__cpfsupervisor__label">CPF*</label>
+      {% if s2300_supervisorestagio_form.cpfsupervisor.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_supervisorestagio_form.cpfsupervisor.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_supervisorestagio_form.cpfsupervisor|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_supervisorestagio__cpfsupervisor -->
+<!-- inicio__s2300_supervisorestagio__nmsuperv -->
+<div class="col-md-4" id="s2300_supervisorestagio__nmsuperv__div">
+  <div class="form-group">
+    <label id="s2300_supervisorestagio__nmsuperv__label">Nome do Supervisor do Estágio*</label>
+      {% if s2300_supervisorestagio_form.nmsuperv.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_supervisorestagio_form.nmsuperv.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_supervisorestagio_form.nmsuperv|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_supervisorestagio__nmsuperv -->

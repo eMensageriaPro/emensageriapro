@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.r2060.models import * 
-from emensageriapro.efdreinf.models import r2060evtCPRB 
+from emensageriapro.r2060.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,25 +40,22 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_r2060_infoproc(forms.ModelForm):
+
     vlrcprbsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r2060_infoproc, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r2060_tipocod'].queryset = r2060tipoCod.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2060_tipocod'].widget.attrs['required'] = True        
-        self.fields['tpproc'].widget.attrs['required'] = True        
-        self.fields['nrproc'].widget.attrs['required'] = True        
-        self.fields['vlrcprbsusp'].widget.attrs['required'] = True
+        super(form_r2060_infoproc, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -78,31 +75,26 @@ class form_r2060_infoproc(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r2060infoProc
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r2060_tipoajuste(forms.ModelForm):
+
     vlrajuste = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r2060_tipoajuste, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r2060_tipocod'].queryset = r2060tipoCod.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2060_tipocod'].widget.attrs['required'] = True        
-        self.fields['tpajuste'].widget.attrs['required'] = True        
-        self.fields['codajuste'].widget.attrs['required'] = True        
-        self.fields['vlrajuste'].widget.attrs['required'] = True        
-        self.fields['descajuste'].widget.attrs['required'] = True        
-        self.fields['dtajuste'].widget.attrs['required'] = True
+        super(form_r2060_tipoajuste, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -122,35 +114,30 @@ class form_r2060_tipoajuste(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r2060tipoAjuste
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r2060_tipocod(forms.ModelForm):
+
     vlrrecbrutaativ = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrexcrecbruta = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlradicrecbruta = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrbccprb = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrcprbapur = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r2060_tipocod, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r2060_evtcprb'].queryset = r2060evtCPRB.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2060_evtcprb'].widget.attrs['required'] = True        
-        self.fields['codativecon'].widget.attrs['required'] = True        
-        self.fields['vlrrecbrutaativ'].widget.attrs['required'] = True        
-        self.fields['vlrexcrecbruta'].widget.attrs['required'] = True        
-        self.fields['vlradicrecbruta'].widget.attrs['required'] = True        
-        self.fields['vlrbccprb'].widget.attrs['required'] = True
+        super(form_r2060_tipocod, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -170,10 +157,10 @@ class form_r2060_tipocod(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r2060tipoCod
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

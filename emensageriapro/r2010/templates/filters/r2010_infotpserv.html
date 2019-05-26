@@ -1,1 +1,264 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</label><select name="r2010_nfs" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in r2010_nfs_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2010_nfs' %}selected="selected"{% endifequal %}>{{ a.r2010_evtservtom }} - {{ a.serie }} - {{ a.numdocto }} - {{ a.dtemissaonf }} - {{ a.vlrbruto }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Informar o tipo de serviço, conforme tabela 6</label><div name="tpservico" class="input-group" style="width: 100%;"><input type="text" name="tpservico" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tpservico' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor da Base de cálculo da retenção da contribuição previdenciária.</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrbaseret" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbaseret' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrretencao" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrretencao' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrretsub" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrretsub' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrnretprinc" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrnretprinc' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrservicos15" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrservicos15' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrservicos20" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrservicos20' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrservicos25" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrservicos25' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Adicional apurado de retenção da nota fiscal</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlradicional" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlradicional' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrnretadic" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrnretadic' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_r2010_nfs" value="1" {% if show_fields|get_value_from_dict:'show_r2010_nfs' %}checked{% endif %}>Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpservico" value="1" {% if show_fields|get_value_from_dict:'show_tpservico' %}checked{% endif %}>Informar o tipo de serviço, conforme tabela 6</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrbaseret" value="1" {% if show_fields|get_value_from_dict:'show_vlrbaseret' %}checked{% endif %}>Valor da Base de cálculo da retenção da contribuição previdenciária.</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrretencao" value="1" {% if show_fields|get_value_from_dict:'show_vlrretencao' %}checked{% endif %}>Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrretsub" value="1" {% if show_fields|get_value_from_dict:'show_vlrretsub' %}checked{% endif %}>Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrnretprinc" value="1" {% if show_fields|get_value_from_dict:'show_vlrnretprinc' %}checked{% endif %}>Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrservicos15" value="1" {% if show_fields|get_value_from_dict:'show_vlrservicos15' %}checked{% endif %}>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrservicos20" value="1" {% if show_fields|get_value_from_dict:'show_vlrservicos20' %}checked{% endif %}>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrservicos25" value="1" {% if show_fields|get_value_from_dict:'show_vlrservicos25' %}checked{% endif %}>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlradicional" value="1" {% if show_fields|get_value_from_dict:'show_vlradicional' %}checked{% endif %}>Adicional apurado de retenção da nota fiscal</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrnretadic" value="1" {% if show_fields|get_value_from_dict:'show_vlrnretadic' %}checked{% endif %}>Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r2010_infotpserv__r2010_nfs -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações sobre os tipos de Serviços constantes da Nota Fiscal</label>
+    <select name="r2010_nfs" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r2010_nfs_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2010_nfs' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__r2010_nfs -->
+
+<!-- inicio__r2010_infotpserv__tpservico -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o tipo de serviço, conforme tabela 6</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpservico" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="100000001" {% ifequal 100000001 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000001 - Limpeza, conservação ou zeladoria</option>
+        <option value="100000002" {% ifequal 100000002 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000002 - Vigilância ou segurança</option>
+        <option value="100000003" {% ifequal 100000003 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000003 - Construção civil</option>
+        <option value="100000004" {% ifequal 100000004 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000004 - Serviços de natureza rural</option>
+        <option value="100000005" {% ifequal 100000005 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000005 - Digitação</option>
+        <option value="100000006" {% ifequal 100000006 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000006 - Preparação de dados para processamento</option>
+        <option value="100000007" {% ifequal 100000007 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000007 - Acabamento</option>
+        <option value="100000008" {% ifequal 100000008 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000008 - Embalagem</option>
+        <option value="100000009" {% ifequal 100000009 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000009 - Acondicionamento</option>
+        <option value="100000010" {% ifequal 100000010 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000010 - Cobrança</option>
+        <option value="100000011" {% ifequal 100000011 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000011 - Coleta ou reciclagem de lixo ou de resíduos</option>
+        <option value="100000012" {% ifequal 100000012 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000012 - Copa</option>
+        <option value="100000013" {% ifequal 100000013 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000013 - Hotelaria</option>
+        <option value="100000014" {% ifequal 100000014 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000014 - Corte ou ligação de serviços públicos</option>
+        <option value="100000015" {% ifequal 100000015 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000015 - Distribuição</option>
+        <option value="100000016" {% ifequal 100000016 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000016 - Treinamento e ensino</option>
+        <option value="100000017" {% ifequal 100000017 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000017 - Entrega de contas e de documentos</option>
+        <option value="100000018" {% ifequal 100000018 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000018 - Ligação de medidores</option>
+        <option value="100000019" {% ifequal 100000019 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000019 - Leitura de medidores</option>
+        <option value="100000020" {% ifequal 100000020 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000020 - Manutenção de instalações, de máquinas ou de equipamentos</option>
+        <option value="100000021" {% ifequal 100000021 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000021 - Montagem</option>
+        <option value="100000022" {% ifequal 100000022 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000022 - Operação de máquinas, de equipamentos e de veículos</option>
+        <option value="100000023" {% ifequal 100000023 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000023 - Operação de pedágio ou de terminal de transporte</option>
+        <option value="100000024" {% ifequal 100000024 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000024 - Operação de transporte de passageiros</option>
+        <option value="100000025" {% ifequal 100000025 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000025 - Portaria, recepção ou ascensorista</option>
+        <option value="100000026" {% ifequal 100000026 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000026 - Recepção, triagem ou movimentação de materiais</option>
+        <option value="100000027" {% ifequal 100000027 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000027 - Promoção de vendas ou de eventos</option>
+        <option value="100000028" {% ifequal 100000028 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000028 - Secretaria e expediente</option>
+        <option value="100000029" {% ifequal 100000029 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000029 - Saúde</option>
+        <option value="100000030" {% ifequal 100000030 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000030 - Telefonia ou telemarketing</option>
+        <option value="100000031" {% ifequal 100000031 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000031 - Trabalho temporário na forma da Lei nº 6.019, de janeiro de 1974</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__tpservico -->
+
+<!-- inicio__r2010_infotpserv__vlrbaseret -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da Base de cálculo da retenção da contribuição previdenciária.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbaseret" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbaseret' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__vlrbaseret -->
+
+<!-- inicio__r2010_infotpserv__vlrretencao -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrretencao" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrretencao' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__vlrretencao -->
+
+<!-- inicio__r2010_infotpserv__vlrretsub -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrretsub" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrretsub' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__vlrretsub -->
+
+<!-- inicio__r2010_infotpserv__vlrnretprinc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrnretprinc" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrnretprinc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__vlrnretprinc -->
+
+<!-- inicio__r2010_infotpserv__vlrservicos15 -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrservicos15" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrservicos15' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__vlrservicos15 -->
+
+<!-- inicio__r2010_infotpserv__vlrservicos20 -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrservicos20" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrservicos20' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__vlrservicos20 -->
+
+<!-- inicio__r2010_infotpserv__vlrservicos25 -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrservicos25" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrservicos25' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__vlrservicos25 -->
+
+<!-- inicio__r2010_infotpserv__vlradicional -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Adicional apurado de retenção da nota fiscal</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlradicional" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlradicional' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__vlradicional -->
+
+<!-- inicio__r2010_infotpserv__vlrnretadic -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrnretadic" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrnretadic' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2010_infotpserv__vlrnretadic -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r2010_nfs" value="1" {% if show_fields|get_value_from_dict:'show_r2010_nfs' %}checked{% endif %} >Informações sobre os tipos de Serviços constantes da Nota Fiscal
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpservico" value="1" {% if show_fields|get_value_from_dict:'show_tpservico' %}checked{% endif %} >Informar o tipo de serviço, conforme tabela 6
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbaseret" value="1" {% if show_fields|get_value_from_dict:'show_vlrbaseret' %}checked{% endif %} >Valor da Base de cálculo da retenção da contribuição previdenciária.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrretencao" value="1" {% if show_fields|get_value_from_dict:'show_vlrretencao' %}checked{% endif %} >Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrretsub" value="0" {% if show_fields|get_value_from_dict:'show_vlrretsub' %}checked{% endif %} >Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrnretprinc" value="0" {% if show_fields|get_value_from_dict:'show_vlrnretprinc' %}checked{% endif %} >Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrservicos15" value="0" {% if show_fields|get_value_from_dict:'show_vlrservicos15' %}checked{% endif %} >Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrservicos20" value="0" {% if show_fields|get_value_from_dict:'show_vlrservicos20' %}checked{% endif %} >Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrservicos25" value="0" {% if show_fields|get_value_from_dict:'show_vlrservicos25' %}checked{% endif %} >Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlradicional" value="0" {% if show_fields|get_value_from_dict:'show_vlradicional' %}checked{% endif %} >Adicional apurado de retenção da nota fiscal
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrnretadic" value="0" {% if show_fields|get_value_from_dict:'show_vlrnretadic' %}checked{% endif %} >Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa
+    </div>
+</div>
+
+

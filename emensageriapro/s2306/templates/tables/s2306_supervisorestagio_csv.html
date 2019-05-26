@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Supervisor do Estágio"
-{% if show_fields.show_s2306_infoestagiario or not s2306_infoestagiario_id and 1 %}"Informações relativas ao estagiário";{% endif %}{% if show_fields.show_cpfsupervisor or 1 %}"CPF";{% endif %}{% if show_fields.show_nmsuperv or 1 %}"Nome do Supervisor do Estágio";{% endif %}
-{% for a in s2306_supervisorestagio_lista %}{% if show_fields.show_s2306_infoestagiario or  not s2306_infoestagiario_id and 1 %}"{{ a.s2306_infoestagiario }}";{% endif %}{% if show_fields.show_cpfsupervisor or 1 %}"{{ a.cpfsupervisor }}";{% endif %}{% if show_fields.show_nmsuperv or 1 %}"{{ a.nmsuperv }}";{% endif %}
-{% endfor %}

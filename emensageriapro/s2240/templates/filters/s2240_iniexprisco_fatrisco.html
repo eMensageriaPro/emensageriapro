@@ -1,1 +1,354 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento Condições Ambientais do Trabalho - Fatores de Risco</label><select name="s2240_evtexprisco" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2240_evtexprisco_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2240_evtexprisco' %}selected="selected"{% endifequal %}>{{ a.evtexprisco }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.idevinculo }} - {{ a.cpftrab }} - {{ a.infoexprisco }} - {{ a.dtinicondicao }} - {{ a.infoativ }} - {{ a.dscativdes }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Código do Fator de Risco</label><input type="text" id="txt_codfatris__icontains" name="txt_codfatris__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'codfatris__icontains' }}"><input type="hidden" id="id_codfatris__icontains" name="codfatris__icontains" value="{{ dict_fields|get_value_from_dict:'codfatris__icontains'|valor }}"></div></div><script type="text/javascript">$(document).ready(function(e){ $('#txt_codfatris__icontains').autocomplete({ source: function (request, response) { $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-fatores-risco/json-search/" + request.term + "/", function (data) { response($.map(data.esocial_fatores_risco, function (value, key) { return { label: value.value, value: value.key }; })); }); }, minLength: 3, select: function( e, ui ) { e.preventDefault(e); $(this).val(ui.item.label); $('#id_codfatris__icontains').val(ui.item.value); return false; }});});</script><div class="col-md-6"><div class="form-group"><label>Tipo de avaliação do fator de risco</label><div class="input-group" style="width: 100%;"><select name="tpaval" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpaval' %}selected="selected"{% endifequal %} >1 - Critério quantitativo</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpaval' %}selected="selected"{% endifequal %} >2 - Critério qualitativo</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Concentração</label><div class="input-group"><div class="input-group-addon"></div><input type="text" name="intconc" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'intconc' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação</label><div class="input-group"><div class="input-group-addon"></div><input type="text" name="limtol" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'limtol' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Unidade de medida da intensidade ou concentração</label><div class="input-group" style="width: 100%;"><select name="unmed" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="01" {% ifequal 01 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >01 - Dose diária de ruído (número adimensional)</option><option value="02" {% ifequal 02 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >02 - Decibel linear (dB (linear))</option><option value="03" {% ifequal 03 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >03 - Decibel (C) (dB(C))</option><option value="04" {% ifequal 04 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >04 - Decibel (A) (dB(A))</option><option value="05" {% ifequal 05 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >05 - Quilocaloria por hora (kcal/h)</option><option value="06" {% ifequal 06 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >06 - Gray (Gy)</option><option value="07" {% ifequal 07 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >07 - Sievert (Sv)</option><option value="08" {% ifequal 08 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >08 - Quilograma-força por centímetro quadrado (kgf/cm2)</option><option value="09" {% ifequal 09 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >09 - Metro por segundo ao quadrado (m/s2)</option><option value="10" {% ifequal 10 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >10 - Metro por segundo elevado a 1,75 (m/s1,75)</option><option value="11" {% ifequal 11 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >11 - Parte de vapor ou gás por milhão de partes de ar contaminado (ppm)</option><option value="12" {% ifequal 12 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >12 - Miligrama por metro cúbico de ar (mg/m3)</option><option value="13" {% ifequal 13 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >13 - Fibra por centímetro cúbico (f/cm3)</option><option value="14" {% ifequal 14 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >14 - Grau centígrados (ºC)</option><option value="15" {% ifequal 15 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >15 - Metro por segundo (m/s)</option><option value="16" {% ifequal 16 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >16 - Percentual (%)</option><option value="17" {% ifequal 17 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >17 - Lux (lx)</option><option value="18" {% ifequal 18 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >18 - Unidade formadora de colônias por metro cúbico (ufc/m3)</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Técnica de medição</label><div name="tecmedicao__icontains" class="input-group" style="width: 100%;"><input type="text" name="tecmedicao__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'tecmedicao__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>A exposição ao fator de risco/execução da atividade configura trabalho insalubre?</label><div class="input-group" style="width: 100%;"><select name="insalubridade__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'insalubridade__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'insalubridade__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>A exposição ao fator de risco/execução da atividade configura trabalho periculoso?</label><div class="input-group" style="width: 100%;"><select name="periculosidade__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'periculosidade__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'periculosidade__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</label><div class="input-group" style="width: 100%;"><select name="aposentesp__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'aposentesp__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'aposentesp__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-12" id="s2240_iniexprisco_fatrisco__epcepi__div"><h4>Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI</h4></div><div class="col-md-6"><div class="form-group"><label>Utiliza EPC</label><div class="input-group" style="width: 100%;"><select name="utilizepc" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'utilizepc' %}selected="selected"{% endifequal %} >0 - Não se aplica</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'utilizepc' %}selected="selected"{% endifequal %} >1 - Não utilizado</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'utilizepc' %}selected="selected"{% endifequal %} >2 - Utilizado</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>EPC é eficaz na neutralização</label><div class="input-group" style="width: 100%;"><select name="eficepc__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'eficepc__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'eficepc__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Utiliza EPI</label><div class="input-group" style="width: 100%;"><select name="utilizepi" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'utilizepi' %}selected="selected"{% endifequal %} >0 - Não se aplica</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'utilizepi' %}selected="selected"{% endifequal %} >1 - Não utilizado</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'utilizepi' %}selected="selected"{% endifequal %} >2 - Utilizado</option></select></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2240_evtexprisco" value="1" {% if show_fields|get_value_from_dict:'show_s2240_evtexprisco' %}checked{% endif %}>Evento Condições Ambientais do Trabalho - Fatores de Risco</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codfatris" value="1" {% if show_fields|get_value_from_dict:'show_codfatris' %}checked{% endif %}>Código do Fator de Risco</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpaval" value="1" {% if show_fields|get_value_from_dict:'show_tpaval' %}checked{% endif %}>Tipo de avaliação do fator de risco</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_intconc" value="1" {% if show_fields|get_value_from_dict:'show_intconc' %}checked{% endif %}>Concentração</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_limtol" value="1" {% if show_fields|get_value_from_dict:'show_limtol' %}checked{% endif %}>Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_unmed" value="1" {% if show_fields|get_value_from_dict:'show_unmed' %}checked{% endif %}>Unidade de medida da intensidade ou concentração</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tecmedicao" value="1" {% if show_fields|get_value_from_dict:'show_tecmedicao' %}checked{% endif %}>Técnica de medição</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_insalubridade" value="1" {% if show_fields|get_value_from_dict:'show_insalubridade' %}checked{% endif %}>A exposição ao fator de risco/execução da atividade configura trabalho insalubre?</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_periculosidade" value="1" {% if show_fields|get_value_from_dict:'show_periculosidade' %}checked{% endif %}>A exposição ao fator de risco/execução da atividade configura trabalho periculoso?</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_aposentesp" value="1" {% if show_fields|get_value_from_dict:'show_aposentesp' %}checked{% endif %}>Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_epcepi" value="1" {% if show_fields|get_value_from_dict:'show_epcepi' %}checked{% endif %}>Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_utilizepc" value="1" {% if show_fields|get_value_from_dict:'show_utilizepc' %}checked{% endif %}>Utiliza EPC</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_eficepc" value="1" {% if show_fields|get_value_from_dict:'show_eficepc' %}checked{% endif %}>EPC é eficaz na neutralização</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_utilizepi" value="1" {% if show_fields|get_value_from_dict:'show_utilizepi' %}checked{% endif %}>Utiliza EPI</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2240_iniexprisco_fatrisco__s2240_evtexprisco -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</label>
+    <select name="s2240_evtexprisco" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in s2240_evtexprisco_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2240_evtexprisco' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__s2240_evtexprisco -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__codfatris -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Código do Fator de Risco</label>
+    <input type="text" id="txt_codfatris" name="txt_codfatris" class="form-control" value="{{ dict_fields|get_value_from_dict:'codfatris' }}">
+    <input type="hidden" id="id_codfatris" name="codfatris" value="{{ dict_fields|get_value_from_dict:'codfatris'|valor }}">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_codfatris').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-fatores-risco/json-search/" + request.term + "/", function (data) {
+      response($.map(data.esocial_fatores_risco, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_codfatris').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
+<!-- fim__s2240_iniexprisco_fatrisco__codfatris -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__tpaval -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo de avaliação do fator de risco</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpaval" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpaval' %}selected="selected"{% endifequal %} >1 - Critério quantitativo</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpaval' %}selected="selected"{% endifequal %} >2 - Critério qualitativo.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__tpaval -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__intconc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Concentração</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+      </div>
+      <input type="text" name="intconc" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'intconc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__intconc -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__limtol -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+      </div>
+      <input type="text" name="limtol" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'limtol' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__limtol -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__unmed -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Unidade de medida da intensidade ou concentração</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="unmed" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >1 - dose diária de ruído</option>
+        <option value="10" {% ifequal 10 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >10 - metro por segundo elevado a 1,75 (m/s1,75)</option>
+        <option value="11" {% ifequal 11 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >11 - parte de vapor ou gás por milhão de partes de ar contaminado (ppm)</option>
+        <option value="12" {% ifequal 12 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >12 - miligrama por metro cúbico de ar (mg/m3)</option>
+        <option value="13" {% ifequal 13 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >13 - fibra por centímetro cúbico (f/cm3)</option>
+        <option value="14" {% ifequal 14 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >14 - grau Celsius (ºC)</option>
+        <option value="15" {% ifequal 15 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >15 - metro por segundo (m/s)</option>
+        <option value="16" {% ifequal 16 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >16 - porcentual (%)</option>
+        <option value="17" {% ifequal 17 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >17 - lux (lx)</option>
+        <option value="18" {% ifequal 18 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >18 - unidade formadora de colônias por metro cúbico (ufc/m3)</option>
+        <option value="19" {% ifequal 19 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >19 - dose diária</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >2 - decibel linear (dB (linear))</option>
+        <option value="20" {% ifequal 20 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >20 - dose mensal</option>
+        <option value="21" {% ifequal 21 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >21 - dose trimestral</option>
+        <option value="22" {% ifequal 22 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >22 - dose anual</option>
+        <option value="26" {% ifequal 26 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >26 - watt por metro quadrado (W/m2)</option>
+        <option value="27" {% ifequal 27 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >27 - ampère por metro (A/m)</option>
+        <option value="28" {% ifequal 28 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >28 - militesla(mT)</option>
+        <option value="29" {% ifequal 29 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >29 - microtesla (µT)</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >3 - decibel (C) (dB(C))</option>
+        <option value="30" {% ifequal 30 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >30 - miliampère (mA)</option>
+        <option value="31" {% ifequal 31 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >31 - quilovolt por metro (kV/m)</option>
+        <option value="32" {% ifequal 32 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >32 - volt por metro (V/m)</option>
+        <option value="35" {% ifequal 35 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >35 - joule por metro quadrado (J/m2)</option>
+        <option value="36" {% ifequal 36 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >36 - milijoule por centímetro quadrado (mJ/cm2)</option>
+        <option value="37" {% ifequal 37 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >37 - milisievert (mSv)</option>
+        <option value="39" {% ifequal 39 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >39 - milhão de partículas por decímetro cúbico (mppdc)</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >4 - decibel (A) (dB(A))</option>
+        <option value="43" {% ifequal 43 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >43 - umidade relativa do ar (UR (%)).</option>
+        <option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'unmed' %}selected="selected"{% endifequal %} >9 - metro por segundo ao quadrado (m/s2)</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__unmed -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__tecmedicao -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Técnica de medição</label>
+    <div name="tecmedicao" class="input-group" style="width: 100%;">
+      <input type="text" name="tecmedicao" class="form-control" value="{{ dict_fields|get_value_from_dict:'tecmedicao' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__tecmedicao -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__insalubridade -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>A exposição ao fator de risco/execução da atividade configura trabalho insalubre?</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="insalubridade" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'insalubridade' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'insalubridade' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__insalubridade -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__periculosidade -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>A exposição ao fator de risco/execução da atividade configura trabalho periculoso?</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="periculosidade" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'periculosidade' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'periculosidade' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__periculosidade -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__aposentesp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="aposentesp" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'aposentesp' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'aposentesp' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__aposentesp -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__dscfatrisc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Descrição do fator de risco</label>
+    <div name="dscfatrisc" class="input-group" style="width: 100%;">
+      <input type="text" name="dscfatrisc" class="form-control" value="{{ dict_fields|get_value_from_dict:'dscfatrisc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__dscfatrisc -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__epcepi -->
+<div class="col-md-12" id="s2240_iniexprisco_fatrisco__epcepi__div">
+  <h4>Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI</h4>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__epcepi -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__utilizepc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Utiliza EPC</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="utilizepc" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'utilizepc' %}selected="selected"{% endifequal %} >0 - Não se aplica</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'utilizepc' %}selected="selected"{% endifequal %} >1 - Não implementa</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'utilizepc' %}selected="selected"{% endifequal %} >2 - Implementa.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__utilizepc -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__eficepc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>EPC é eficaz na neutralização</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="eficepc" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'eficepc' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'eficepc' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__eficepc -->
+
+<!-- inicio__s2240_iniexprisco_fatrisco__utilizepi -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Utiliza EPI</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="utilizepi" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'utilizepi' %}selected="selected"{% endifequal %} >0 - Não se aplica</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'utilizepi' %}selected="selected"{% endifequal %} >1 - Não utilizado</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'utilizepi' %}selected="selected"{% endifequal %} >2 - Utilizado.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2240_iniexprisco_fatrisco__utilizepi -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2240_evtexprisco" value="1" {% if show_fields|get_value_from_dict:'show_s2240_evtexprisco' %}checked{% endif %} >Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codfatris" value="1" {% if show_fields|get_value_from_dict:'show_codfatris' %}checked{% endif %} >Código do Fator de Risco
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpaval" value="1" {% if show_fields|get_value_from_dict:'show_tpaval' %}checked{% endif %} >Tipo de avaliação do fator de risco
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_intconc" value="0" {% if show_fields|get_value_from_dict:'show_intconc' %}checked{% endif %} >Concentração
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_limtol" value="0" {% if show_fields|get_value_from_dict:'show_limtol' %}checked{% endif %} >Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_unmed" value="0" {% if show_fields|get_value_from_dict:'show_unmed' %}checked{% endif %} >Unidade de medida da intensidade ou concentração
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tecmedicao" value="0" {% if show_fields|get_value_from_dict:'show_tecmedicao' %}checked{% endif %} >Técnica de medição
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_insalubridade" value="0" {% if show_fields|get_value_from_dict:'show_insalubridade' %}checked{% endif %} >A exposição ao fator de risco/execução da atividade configura trabalho insalubre?
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_periculosidade" value="0" {% if show_fields|get_value_from_dict:'show_periculosidade' %}checked{% endif %} >A exposição ao fator de risco/execução da atividade configura trabalho periculoso?
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_aposentesp" value="0" {% if show_fields|get_value_from_dict:'show_aposentesp' %}checked{% endif %} >Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dscfatrisc" value="0" {% if show_fields|get_value_from_dict:'show_dscfatrisc' %}checked{% endif %} >Descrição do fator de risco
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_epcepi" value="0" {% if show_fields|get_value_from_dict:'show_epcepi' %}checked{% endif %} >Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_utilizepc" value="1" {% if show_fields|get_value_from_dict:'show_utilizepc' %}checked{% endif %} >Utiliza EPC
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_eficepc" value="0" {% if show_fields|get_value_from_dict:'show_eficepc' %}checked{% endif %} >EPC é eficaz na neutralização
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_utilizepi" value="1" {% if show_fields|get_value_from_dict:'show_utilizepi' %}checked{% endif %} >Utiliza EPI
+    </div>
+</div>
+
+

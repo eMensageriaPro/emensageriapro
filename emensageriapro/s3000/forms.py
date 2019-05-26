@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s3000.models import * 
-from emensageriapro.esocial.models import s3000evtExclusao 
+from emensageriapro.s3000.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,22 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s3000_idefolhapagto(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s3000_idefolhapagto, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s3000_evtexclusao'].widget.attrs['required'] = True        
-        self.fields['indapuracao'].widget.attrs['required'] = True        
-        self.fields['perapur'].widget.attrs['required'] = True
+        super(form_s3000_idefolhapagto, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -75,25 +74,25 @@ class form_s3000_idefolhapagto(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s3000ideFolhaPagto
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s3000_idetrabalhador(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s3000_idetrabalhador, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s3000_evtexclusao'].widget.attrs['required'] = True        
-        self.fields['cpftrab'].widget.attrs['required'] = True
+        super(form_s3000_idetrabalhador, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -113,10 +112,10 @@ class form_s3000_idetrabalhador(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s3000ideTrabalhador
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

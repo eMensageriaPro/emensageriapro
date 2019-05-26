@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo"
-{% if show_fields.show_s2300_evttsvinicio or not s2300_evttsvinicio_id and 1 %}"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Início";{% endif %}{% if show_fields.show_codcargo or 1 %}"Código do Cargo";{% endif %}{% if show_fields.show_codfuncao or 0 %}"Código da Função";{% endif %}
-{% for a in s2300_cargofuncao_lista %}{% if show_fields.show_s2300_evttsvinicio or  not s2300_evttsvinicio_id and 1 %}"{{ a.s2300_evttsvinicio }}";{% endif %}{% if show_fields.show_codcargo or 1 %}"{{ a.codcargo }}";{% endif %}{% if show_fields.show_codfuncao or 0 %}"{{ a.codfuncao }}";{% endif %}
-{% endfor %}

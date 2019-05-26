@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria)."
-{% if show_fields.show_s1200_dmdev or not s1200_dmdev_id and 1 %}"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF";{% endif %}{% if show_fields.show_codcbo or 1 %}"CBO";{% endif %}{% if show_fields.show_natatividade or 0 %}"Natureza da atividade";{% endif %}{% if show_fields.show_qtddiastrab or 0 %}"Quant. de dias trabalhados";{% endif %}
-{% for a in s1200_infoperant_infocomplcont_lista %}{% if show_fields.show_s1200_dmdev or  not s1200_dmdev_id and 1 %}"{{ a.s1200_dmdev }}";{% endif %}{% if show_fields.show_codcbo or 1 %}"{{ a.codcbo }}";{% endif %}{% if show_fields.show_natatividade or 0 %}"{{ a.natatividade }}";{% endif %}{% if show_fields.show_qtddiastrab or 0 %}"{{ a.qtddiastrab }}";{% endif %}
-{% endfor %}

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1010_alteracao or 1 %}"Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.";{% endif %}{% if show_fields.show_nrproc or 1 %}"Número do Processo";{% endif %}{% if show_fields.show_codsusp or 1 %}"Código do Indicativo da Suspensão";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1010_alteracao or 1 %}"{{ c.s1010_alteracao }}";{% endif %}{% if show_fields.show_nrproc or 1 %}"{{ c.nrproc }}";{% endif %}{% if show_fields.show_codsusp or 1 %}"{{ c.codsusp }}";{% endif %}
+{% endfor %}

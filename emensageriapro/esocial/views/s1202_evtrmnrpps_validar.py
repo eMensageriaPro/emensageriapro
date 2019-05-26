@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,48 +46,383 @@ def validacoes_s1202_evtrmnrpps(arquivo):
     validacoes_lista = []
     xmlns = doc.eSocial['xmlns'].split('/')
     evtRmnRPPS = doc.eSocial.evtRmnRPPS
-
-    if 'indRetif' in dir(evtRmnRPPS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideEvento.indRetif', evtRmnRPPS.ideEvento.indRetif.cdata, 1, u'1;2')
-    if 'nrRecibo' in dir(evtRmnRPPS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideEvento.nrRecibo', evtRmnRPPS.ideEvento.nrRecibo.cdata, 0, u'')
-    if 'indApuracao' in dir(evtRmnRPPS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideEvento.indApuracao', evtRmnRPPS.ideEvento.indApuracao.cdata, 1, u'1;2')
-    if 'perApur' in dir(evtRmnRPPS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideEvento.perApur', evtRmnRPPS.ideEvento.perApur.cdata, 1, u'')
-    if 'tpAmb' in dir(evtRmnRPPS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideEvento.tpAmb', evtRmnRPPS.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtRmnRPPS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideEvento.procEmi', evtRmnRPPS.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
-    if 'verProc' in dir(evtRmnRPPS.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideEvento.verProc', evtRmnRPPS.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtRmnRPPS.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideEmpregador.tpInsc', evtRmnRPPS.ideEmpregador.tpInsc.cdata, 1, u'1;2;3;4')
-    if 'nrInsc' in dir(evtRmnRPPS.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideEmpregador.nrInsc', evtRmnRPPS.ideEmpregador.nrInsc.cdata, 1, u'')
-    if 'cpfTrab' in dir(evtRmnRPPS.ideTrabalhador): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideTrabalhador.cpfTrab', evtRmnRPPS.ideTrabalhador.cpfTrab.cdata, 1, u'')
-    if 'nisTrab' in dir(evtRmnRPPS.ideTrabalhador): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideTrabalhador.nisTrab', evtRmnRPPS.ideTrabalhador.nisTrab.cdata, 0, u'')
-    if 'qtdDepFP' in dir(evtRmnRPPS.ideTrabalhador): validacoes_lista = validar_campo(validacoes_lista,'evtRmnRPPS.ideTrabalhador.qtdDepFP', evtRmnRPPS.ideTrabalhador.qtdDepFP.cdata, 0, u'')
-    if 'procJudTrab' in dir(evtRmnRPPS.ideTrabalhador):
-        for procJudTrab in evtRmnRPPS.ideTrabalhador.procJudTrab:
-
-            if 'tpTrib' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.tpTrib', procJudTrab.tpTrib.cdata, 1, u'2;2;3;4')
-            if 'nrProcJud' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.nrProcJud', procJudTrab.nrProcJud.cdata, 1, u'')
-            if 'codSusp' in dir(procJudTrab): validacoes_lista = validar_campo(validacoes_lista,'procJudTrab.codSusp', procJudTrab.codSusp.cdata, 0, u'')
-
-    if 'dmDev' in dir(evtRmnRPPS):
+    #variaveis
+    
+    if 'ideEvento' in dir(evtRmnRPPS.ideEvento):
+        for ideEvento in evtRmnRPPS.ideEvento:
+            
+            if 'indRetif' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.indRetif', 
+                                                  ideEvento.indRetif.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'nrRecibo' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.nrRecibo', 
+                                                  ideEvento.nrRecibo.cdata, 
+                                                  0, u'None')
+            
+            if 'indApuracao' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.indApuracao', 
+                                                  ideEvento.indApuracao.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'perApur' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.perApur', 
+                                                  ideEvento.perApur.cdata, 
+                                                  1, u'None')
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideEmpregador' in dir(evtRmnRPPS.ideEmpregador):
+        for ideEmpregador in evtRmnRPPS.ideEmpregador:
+            
+            if 'tpInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.tpInsc', 
+                                                  ideEmpregador.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.nrInsc', 
+                                                  ideEmpregador.nrInsc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideTrabalhador' in dir(evtRmnRPPS.ideTrabalhador):
+        for ideTrabalhador in evtRmnRPPS.ideTrabalhador:
+            
+            if 'cpfTrab' in dir(ideTrabalhador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideTrabalhador.cpfTrab', 
+                                                  ideTrabalhador.cpfTrab.cdata, 
+                                                  1, u'None')
+            
+            if 'nisTrab' in dir(ideTrabalhador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideTrabalhador.nisTrab', 
+                                                  ideTrabalhador.nisTrab.cdata, 
+                                                  0, u'None')
+            
+            if 'qtdDepFP' in dir(ideTrabalhador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideTrabalhador.qtdDepFP', 
+                                                  ideTrabalhador.qtdDepFP.cdata, 
+                                                  0, u'None')
+            
+            if 'procJudTrab' in dir(ideTrabalhador.procJudTrab):
+                for procJudTrab in ideTrabalhador.procJudTrab:
+                    
+                    if 'tpTrib' in dir(procJudTrab):
+                        validacoes_lista = validar_campo( validacoes_lista,
+                                                          'procJudTrab.tpTrib', 
+                                                          procJudTrab.tpTrib.cdata, 
+                                                          1, u'1, 2, 3, 4')
+                    
+                    if 'nrProcJud' in dir(procJudTrab):
+                        validacoes_lista = validar_campo( validacoes_lista,
+                                                          'procJudTrab.nrProcJud', 
+                                                          procJudTrab.nrProcJud.cdata, 
+                                                          1, u'None')
+                    
+                    if 'codSusp' in dir(procJudTrab):
+                        validacoes_lista = validar_campo( validacoes_lista,
+                                                          'procJudTrab.codSusp', 
+                                                          procJudTrab.codSusp.cdata, 
+                                                          0, u'None')
+    
+    if 'dmDev' in dir(evtRmnRPPS.dmDev):
         for dmDev in evtRmnRPPS.dmDev:
-
-            if 'ideDmDev' in dir(dmDev): validacoes_lista = validar_campo(validacoes_lista,'dmDev.ideDmDev', dmDev.ideDmDev.cdata, 1, u'')
-            if 'codCateg' in dir(dmDev): validacoes_lista = validar_campo(validacoes_lista,'dmDev.codCateg', dmDev.codCateg.cdata, 1, u'')
-
-            if 'ideEstab' in dir(dmDev.infoPerApur):
-                for ideEstab in dmDev.infoPerApur.ideEstab:
-
-                    if 'tpInsc' in dir(ideEstab): validacoes_lista = validar_campo(validacoes_lista,'ideEstab.tpInsc', ideEstab.tpInsc.cdata, 1, u'1;2;3;4')
-                    if 'nrInsc' in dir(ideEstab): validacoes_lista = validar_campo(validacoes_lista,'ideEstab.nrInsc', ideEstab.nrInsc.cdata, 1, u'')
-
-            if 'ideADC' in dir(dmDev.infoPerAnt):
-                for ideADC in dmDev.infoPerAnt.ideADC:
-
-                    if 'dtLei' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtLei', ideADC.dtLei.cdata, 1, u'')
-                    if 'nrLei' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.nrLei', ideADC.nrLei.cdata, 1, u'')
-                    if 'dtEf' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtEf', ideADC.dtEf.cdata, 0, u'')
-                    if 'dtAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtAcConv', ideADC.dtAcConv.cdata, 0, u'')
-                    if 'tpAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.tpAcConv', ideADC.tpAcConv.cdata, 1, u'B;F;G;H')
-                    if 'compAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.compAcConv', ideADC.compAcConv.cdata, 0, u'')
-                    if 'dtEfAcConv' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dtEfAcConv', ideADC.dtEfAcConv.cdata, 0, u'')
-                    if 'dsc' in dir(ideADC): validacoes_lista = validar_campo(validacoes_lista,'ideADC.dsc', ideADC.dsc.cdata, 1, u'')
-
+            
+            if 'ideDmDev' in dir(dmDev):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'dmDev.ideDmDev', 
+                                                  dmDev.ideDmDev.cdata, 
+                                                  1, u'None')
+            
+            if 'codCateg' in dir(dmDev):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'dmDev.codCateg', 
+                                                  dmDev.codCateg.cdata, 
+                                                  1, u'None')
+            
+            if 'infoPerApur' in dir(dmDev.infoPerApur):
+                for infoPerApur in dmDev.infoPerApur:
+                    
+                    if 'ideEstab' in dir(infoPerApur.ideEstab):
+                        for ideEstab in infoPerApur.ideEstab:
+                            
+                            if 'tpInsc' in dir(ideEstab):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideEstab.tpInsc', 
+                                                                  ideEstab.tpInsc.cdata, 
+                                                                  1, u'1, 2, 3, 4, 5')
+                            
+                            if 'nrInsc' in dir(ideEstab):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideEstab.nrInsc', 
+                                                                  ideEstab.nrInsc.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'remunPerApur' in dir(ideEstab.remunPerApur):
+                                for remunPerApur in ideEstab.remunPerApur:
+                                    
+                                    if 'matricula' in dir(remunPerApur):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'remunPerApur.matricula', 
+                                                                          remunPerApur.matricula.cdata, 
+                                                                          0, u'None')
+                                    
+                                    if 'codCateg' in dir(remunPerApur):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'remunPerApur.codCateg', 
+                                                                          remunPerApur.codCateg.cdata, 
+                                                                          1, u'None')
+                                    
+                                    if 'itensRemun' in dir(remunPerApur.itensRemun):
+                                        for itensRemun in remunPerApur.itensRemun:
+                                            
+                                            if 'codRubr' in dir(itensRemun):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'itensRemun.codRubr', 
+                                                                                  itensRemun.codRubr.cdata, 
+                                                                                  1, u'None')
+                                            
+                                            if 'ideTabRubr' in dir(itensRemun):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'itensRemun.ideTabRubr', 
+                                                                                  itensRemun.ideTabRubr.cdata, 
+                                                                                  1, u'None')
+                                            
+                                            if 'qtdRubr' in dir(itensRemun):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'itensRemun.qtdRubr', 
+                                                                                  itensRemun.qtdRubr.cdata, 
+                                                                                  0, u'None')
+                                            
+                                            if 'fatorRubr' in dir(itensRemun):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'itensRemun.fatorRubr', 
+                                                                                  itensRemun.fatorRubr.cdata, 
+                                                                                  0, u'None')
+                                            
+                                            if 'vrUnit' in dir(itensRemun):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'itensRemun.vrUnit', 
+                                                                                  itensRemun.vrUnit.cdata, 
+                                                                                  0, u'None')
+                                            
+                                            if 'vrRubr' in dir(itensRemun):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'itensRemun.vrRubr', 
+                                                                                  itensRemun.vrRubr.cdata, 
+                                                                                  1, u'None')
+                                    
+                                    if 'infoSaudeColet' in dir(remunPerApur.infoSaudeColet):
+                                        for infoSaudeColet in remunPerApur.infoSaudeColet:
+                                            
+                                            if 'detOper' in dir(infoSaudeColet.detOper):
+                                                for detOper in infoSaudeColet.detOper:
+                                                    
+                                                    if 'cnpjOper' in dir(detOper):
+                                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                                          'detOper.cnpjOper', 
+                                                                                          detOper.cnpjOper.cdata, 
+                                                                                          1, u'None')
+                                                    
+                                                    if 'regANS' in dir(detOper):
+                                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                                          'detOper.regANS', 
+                                                                                          detOper.regANS.cdata, 
+                                                                                          1, u'None')
+                                                    
+                                                    if 'vrPgTit' in dir(detOper):
+                                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                                          'detOper.vrPgTit', 
+                                                                                          detOper.vrPgTit.cdata, 
+                                                                                          1, u'None')
+                                                    
+                                                    if 'detPlano' in dir(detOper.detPlano):
+                                                        for detPlano in detOper.detPlano:
+                                                            
+                                                            if 'tpDep' in dir(detPlano):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'detPlano.tpDep', 
+                                                                                                  detPlano.tpDep.cdata, 
+                                                                                                  1, u'01, 02, 03, 04, 06, 07, 09, 10, 11, 12, 99')
+                                                            
+                                                            if 'cpfDep' in dir(detPlano):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'detPlano.cpfDep', 
+                                                                                                  detPlano.cpfDep.cdata, 
+                                                                                                  0, u'None')
+                                                            
+                                                            if 'nmDep' in dir(detPlano):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'detPlano.nmDep', 
+                                                                                                  detPlano.nmDep.cdata, 
+                                                                                                  1, u'None')
+                                                            
+                                                            if 'dtNascto' in dir(detPlano):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'detPlano.dtNascto', 
+                                                                                                  detPlano.dtNascto.cdata, 
+                                                                                                  1, u'None')
+                                                            
+                                                            if 'vlrPgDep' in dir(detPlano):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'detPlano.vlrPgDep', 
+                                                                                                  detPlano.vlrPgDep.cdata, 
+                                                                                                  1, u'None')
+            
+            if 'infoPerAnt' in dir(dmDev.infoPerAnt):
+                for infoPerAnt in dmDev.infoPerAnt:
+                    
+                    if 'ideADC' in dir(infoPerAnt.ideADC):
+                        for ideADC in infoPerAnt.ideADC:
+                            
+                            if 'dtLei' in dir(ideADC):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideADC.dtLei', 
+                                                                  ideADC.dtLei.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'nrLei' in dir(ideADC):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideADC.nrLei', 
+                                                                  ideADC.nrLei.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'dtEf' in dir(ideADC):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideADC.dtEf', 
+                                                                  ideADC.dtEf.cdata, 
+                                                                  0, u'None')
+                            
+                            if 'dtAcConv' in dir(ideADC):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideADC.dtAcConv', 
+                                                                  ideADC.dtAcConv.cdata, 
+                                                                  0, u'None')
+                            
+                            if 'tpAcConv' in dir(ideADC):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideADC.tpAcConv', 
+                                                                  ideADC.tpAcConv.cdata, 
+                                                                  1, u'B, F, G, H')
+                            
+                            if 'compAcConv' in dir(ideADC):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideADC.compAcConv', 
+                                                                  ideADC.compAcConv.cdata, 
+                                                                  0, u'None')
+                            
+                            if 'dtEfAcConv' in dir(ideADC):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideADC.dtEfAcConv', 
+                                                                  ideADC.dtEfAcConv.cdata, 
+                                                                  0, u'None')
+                            
+                            if 'dsc' in dir(ideADC):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideADC.dsc', 
+                                                                  ideADC.dsc.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'idePeriodo' in dir(ideADC.idePeriodo):
+                                for idePeriodo in ideADC.idePeriodo:
+                                    
+                                    if 'perRef' in dir(idePeriodo):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'idePeriodo.perRef', 
+                                                                          idePeriodo.perRef.cdata, 
+                                                                          1, u'None')
+                                    
+                                    if 'ideEstab' in dir(idePeriodo.ideEstab):
+                                        for ideEstab in idePeriodo.ideEstab:
+                                            
+                                            if 'tpInsc' in dir(ideEstab):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'ideEstab.tpInsc', 
+                                                                                  ideEstab.tpInsc.cdata, 
+                                                                                  1, u'1, 2, 3, 4, 5')
+                                            
+                                            if 'nrInsc' in dir(ideEstab):
+                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                  'ideEstab.nrInsc', 
+                                                                                  ideEstab.nrInsc.cdata, 
+                                                                                  1, u'None')
+                                            
+                                            if 'remunPerAnt' in dir(ideEstab.remunPerAnt):
+                                                for remunPerAnt in ideEstab.remunPerAnt:
+                                                    
+                                                    if 'matricula' in dir(remunPerAnt):
+                                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                                          'remunPerAnt.matricula', 
+                                                                                          remunPerAnt.matricula.cdata, 
+                                                                                          0, u'None')
+                                                    
+                                                    if 'codCateg' in dir(remunPerAnt):
+                                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                                          'remunPerAnt.codCateg', 
+                                                                                          remunPerAnt.codCateg.cdata, 
+                                                                                          1, u'None')
+                                                    
+                                                    if 'itensRemun' in dir(remunPerAnt.itensRemun):
+                                                        for itensRemun in remunPerAnt.itensRemun:
+                                                            
+                                                            if 'codRubr' in dir(itensRemun):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'itensRemun.codRubr', 
+                                                                                                  itensRemun.codRubr.cdata, 
+                                                                                                  1, u'None')
+                                                            
+                                                            if 'ideTabRubr' in dir(itensRemun):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'itensRemun.ideTabRubr', 
+                                                                                                  itensRemun.ideTabRubr.cdata, 
+                                                                                                  1, u'None')
+                                                            
+                                                            if 'qtdRubr' in dir(itensRemun):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'itensRemun.qtdRubr', 
+                                                                                                  itensRemun.qtdRubr.cdata, 
+                                                                                                  0, u'None')
+                                                            
+                                                            if 'fatorRubr' in dir(itensRemun):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'itensRemun.fatorRubr', 
+                                                                                                  itensRemun.fatorRubr.cdata, 
+                                                                                                  0, u'None')
+                                                            
+                                                            if 'vrUnit' in dir(itensRemun):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'itensRemun.vrUnit', 
+                                                                                                  itensRemun.vrUnit.cdata, 
+                                                                                                  0, u'None')
+                                                            
+                                                            if 'vrRubr' in dir(itensRemun):
+                                                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                                                  'itensRemun.vrRubr', 
+                                                                                                  itensRemun.vrRubr.cdata, 
+                                                                                                  1, u'None')
     return validacoes_lista

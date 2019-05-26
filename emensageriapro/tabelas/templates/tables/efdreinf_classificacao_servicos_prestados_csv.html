@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"EFD-Reinf 06 – Classificação de Serviços Prestados mediante cessão de mão de obra/Empreitada"
-{% if show_fields.show_codigo or 1 %}"Código";{% endif %}{% if show_fields.show_descricao or 1 %}"Descrição";{% endif %}
-{% for a in efdreinf_classificacao_servicos_prestados_lista %}{% if show_fields.show_codigo or 1 %}"{{ a.codigo }}";{% endif %}{% if show_fields.show_descricao or 1 %}"{{ a.descricao }}";{% endif %}
-{% endfor %}

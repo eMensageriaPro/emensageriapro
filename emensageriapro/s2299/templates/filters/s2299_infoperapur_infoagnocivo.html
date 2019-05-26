@@ -1,1 +1,55 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</label><select name="s2299_infoperapur_ideestablot" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2299_infoperapur_ideestablot_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2299_infoperapur_ideestablot' %}selected="selected"{% endifequal %}>{{ a.s2299_dmdev }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.codlotacao }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Código</label><div class="input-group" style="width: 100%;"><select name="grauexp" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'grauexp' %}selected="selected"{% endifequal %} >1 - Não ensejador de aposentadoria especial</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'grauexp' %}selected="selected"{% endifequal %} >2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'grauexp' %}selected="selected"{% endifequal %} >3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'grauexp' %}selected="selected"{% endifequal %} >4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)</option></select></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2299_infoperapur_ideestablot" value="1" {% if show_fields|get_value_from_dict:'show_s2299_infoperapur_ideestablot' %}checked{% endif %}>Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_grauexp" value="1" {% if show_fields|get_value_from_dict:'show_grauexp' %}checked{% endif %}>Código</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2299_infoperapur_infoagnocivo__s2299_infoperapur_ideestablot -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</label>
+    <select name="s2299_infoperapur_ideestablot" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s2299_infoperapur_ideestablot_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2299_infoperapur_ideestablot' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2299_infoperapur_infoagnocivo__s2299_infoperapur_ideestablot -->
+
+<!-- inicio__s2299_infoperapur_infoagnocivo__grauexp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="grauexp" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'grauexp' %}selected="selected"{% endifequal %} >1 - Não ensejador de aposentadoria especial</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'grauexp' %}selected="selected"{% endifequal %} >2 - Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'grauexp' %}selected="selected"{% endifequal %} >3 - Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'grauexp' %}selected="selected"{% endifequal %} >4 - Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%).</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_infoperapur_infoagnocivo__grauexp -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2299_infoperapur_ideestablot" value="1" {% if show_fields|get_value_from_dict:'show_s2299_infoperapur_ideestablot' %}checked{% endif %} >Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_grauexp" value="1" {% if show_fields|get_value_from_dict:'show_grauexp' %}checked{% endif %} >Código
+    </div>
+</div>
+
+

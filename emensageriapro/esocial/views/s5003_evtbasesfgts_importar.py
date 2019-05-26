@@ -1,151 +1,314 @@
 #coding:utf-8
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 import xmltodict
 import pprint
 import json
 import psycopg2
-from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
-
-
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
-    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+from emensageriapro.padrao import ler_arquivo
+from emensageriapro.esocial.models import *
+from emensageriapro.s5003.models import *
 
 
 
 def read_s5003_evtbasesfgts_string(dados, xml, validar=False):
+
     import untangle
     doc = untangle.parse(xml)
+
     if validar:
         status = STATUS_EVENTO_IMPORTADO
     else:
         status = STATUS_EVENTO_CADASTRADO
+
     dados = read_s5003_evtbasesfgts_obj(doc, status, validar)
     return dados
 
+
+
 def read_s5003_evtbasesfgts(dados, arquivo, validar=False):
+
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
+
     if validar:
         status = STATUS_EVENTO_IMPORTADO
+
     else:
         status = STATUS_EVENTO_CADASTRADO
+
     dados = read_s5003_evtbasesfgts_obj(doc, status, validar)
     return dados
 
 
 
 def read_s5003_evtbasesfgts_obj(doc, status, validar=False):
+
+    xmlns_lista = doc.eSocial['xmlns'].split('/')
+
     s5003_evtbasesfgts_dados = {}
     s5003_evtbasesfgts_dados['status'] = status
-    xmlns_lista = doc.eSocial['xmlns'].split('/')
     s5003_evtbasesfgts_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s5003_evtbasesfgts_dados['identidade'] = doc.eSocial.evtBasesFGTS['Id']
     evtBasesFGTS = doc.eSocial.evtBasesFGTS
-
-    try: s5003_evtbasesfgts_dados['nrrecarqbase'] = evtBasesFGTS.ideEvento.nrRecArqBase.cdata
-    except AttributeError: pass
-    try: s5003_evtbasesfgts_dados['perapur'] = evtBasesFGTS.ideEvento.perApur.cdata
-    except AttributeError: pass
-    try: s5003_evtbasesfgts_dados['tpinsc'] = evtBasesFGTS.ideEmpregador.tpInsc.cdata
-    except AttributeError: pass
-    try: s5003_evtbasesfgts_dados['nrinsc'] = evtBasesFGTS.ideEmpregador.nrInsc.cdata
-    except AttributeError: pass
-    try: s5003_evtbasesfgts_dados['cpftrab'] = evtBasesFGTS.ideTrabalhador.cpfTrab.cdata
-    except AttributeError: pass
-    try: s5003_evtbasesfgts_dados['nistrab'] = evtBasesFGTS.ideTrabalhador.nisTrab.cdata
-    except AttributeError: pass
-    if 'inclusao' in dir(evtBasesFGTS.infoFGTS): s5003_evtbasesfgts_dados['operacao'] = 1
-    elif 'alteracao' in dir(evtBasesFGTS.infoFGTS): s5003_evtbasesfgts_dados['operacao'] = 2
-    elif 'exclusao' in dir(evtBasesFGTS.infoFGTS): s5003_evtbasesfgts_dados['operacao'] = 3
-    #print dados
-    insert = create_insert('s5003_evtbasesfgts', s5003_evtbasesfgts_dados)
-    resp = executar_sql(insert, True)
-    s5003_evtbasesfgts_id = resp[0][0]
-    dados = s5003_evtbasesfgts_dados
-    dados['evento'] = 's5003'
-    dados['id'] = s5003_evtbasesfgts_id
-    dados['identidade_evento'] = doc.eSocial.evtBasesFGTS['Id']
-    dados['status'] = STATUS_EVENTO_IMPORTADO
-
-    if 'infoFGTS' in dir(evtBasesFGTS) and evtBasesFGTS.infoFGTS.cdata != '':
-        for infoFGTS in evtBasesFGTS.infoFGTS:
-            s5003_infofgts_dados = {}
-            s5003_infofgts_dados['s5003_evtbasesfgts_id'] = s5003_evtbasesfgts_id
-
-            try: s5003_infofgts_dados['dtvenc'] = infoFGTS.dtVenc.cdata
-            except AttributeError: pass
-            insert = create_insert('s5003_infofgts', s5003_infofgts_dados)
-            resp = executar_sql(insert, True)
-            s5003_infofgts_id = resp[0][0]
-            #print s5003_infofgts_id
-
-            if 'ideEstabLot' in dir(infoFGTS) and infoFGTS.ideEstabLot.cdata != '':
-                for ideEstabLot in infoFGTS.ideEstabLot:
-                    s5003_ideestablot_dados = {}
-                    s5003_ideestablot_dados['s5003_infofgts_id'] = s5003_infofgts_id
-
-                    try: s5003_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
-                    except AttributeError: pass
-                    try: s5003_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
-                    except AttributeError: pass
-                    try: s5003_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
-                    except AttributeError: pass
-                    insert = create_insert('s5003_ideestablot', s5003_ideestablot_dados)
-                    resp = executar_sql(insert, True)
-                    s5003_ideestablot_id = resp[0][0]
-                    #print s5003_ideestablot_id
-
-            if 'infoTrabDps' in dir(infoFGTS.infoDpsFGTS) and infoFGTS.infoDpsFGTS.infoTrabDps.cdata != '':
-                for infoTrabDps in infoFGTS.infoDpsFGTS.infoTrabDps:
+    
+    try:
+        s5003_evtbasesfgts_dados['nrrecarqbase'] = evtBasesFGTS.ideEvento.nrRecArqBase.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s5003_evtbasesfgts_dados['perapur'] = evtBasesFGTS.ideEvento.perApur.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s5003_evtbasesfgts_dados['tpinsc'] = evtBasesFGTS.ideEmpregador.tpInsc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s5003_evtbasesfgts_dados['nrinsc'] = evtBasesFGTS.ideEmpregador.nrInsc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s5003_evtbasesfgts_dados['cpftrab'] = evtBasesFGTS.ideTrabalhador.cpfTrab.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s5003_evtbasesfgts_dados['nistrab'] = evtBasesFGTS.ideTrabalhador.nisTrab.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s5003_evtbasesfgts_dados['dtvenc'] = evtBasesFGTS.infoFGTS.dtVenc.cdata
+    except AttributeError: 
+        pass
+        
+    s5003_evtbasesfgts = s5003evtBasesFGTS.objects.create(**s5003_evtbasesfgts_dados)
+    
+    if 'ideEstabLot' in dir(evtBasesFGTS.infoFGTS):
+    
+        for ideEstabLot in evtBasesFGTS.infoFGTS.ideEstabLot:
+    
+            s5003_ideestablot_dados = {}
+            s5003_ideestablot_dados['s5003_evtbasesfgts_id'] = s5003_evtbasesfgts.id
+            
+            try:
+                s5003_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+            except AttributeError: 
+                pass
+            
+            try:
+                s5003_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+            except AttributeError: 
+                pass
+            
+            try:
+                s5003_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+            except AttributeError: 
+                pass
+    
+            s5003_ideestablot = s5003ideEstabLot.objects.create(**s5003_ideestablot_dados)
+            
+            if 'infoTrabFGTS' in dir(ideEstabLot):
+            
+                for infoTrabFGTS in ideEstabLot.infoTrabFGTS:
+            
+                    s5003_infotrabfgts_dados = {}
+                    s5003_infotrabfgts_dados['s5003_ideestablot_id'] = s5003_ideestablot.id
+                    
+                    try:
+                        s5003_infotrabfgts_dados['matricula'] = infoTrabFGTS.matricula.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s5003_infotrabfgts_dados['codcateg'] = infoTrabFGTS.codCateg.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s5003_infotrabfgts_dados['dtadm'] = infoTrabFGTS.dtAdm.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s5003_infotrabfgts_dados['dtdeslig'] = infoTrabFGTS.dtDeslig.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s5003_infotrabfgts_dados['dtinicio'] = infoTrabFGTS.dtInicio.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s5003_infotrabfgts_dados['mtvdeslig'] = infoTrabFGTS.mtvDeslig.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s5003_infotrabfgts_dados['dtterm'] = infoTrabFGTS.dtTerm.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s5003_infotrabfgts_dados['mtvdesligtsv'] = infoTrabFGTS.mtvDesligTSV.cdata
+                    except AttributeError: 
+                        pass
+            
+                    s5003_infotrabfgts = s5003infoTrabFGTS.objects.create(**s5003_infotrabfgts_dados)
+                    
+                    if 'infoBaseFGTS' in dir(infoTrabFGTS):
+                    
+                        for infoBaseFGTS in infoTrabFGTS.infoBaseFGTS:
+                    
+                            s5003_infobasefgts_dados = {}
+                            s5003_infobasefgts_dados['s5003_infotrabfgts_id'] = s5003_infotrabfgts.id
+                    
+                            s5003_infobasefgts = s5003infoBaseFGTS.objects.create(**s5003_infobasefgts_dados)
+                            
+                            if 'basePerApur' in dir(infoBaseFGTS):
+                            
+                                for basePerApur in infoBaseFGTS.basePerApur:
+                            
+                                    s5003_baseperapur_dados = {}
+                                    s5003_baseperapur_dados['s5003_infobasefgts_id'] = s5003_infobasefgts.id
+                                    
+                                    try:
+                                        s5003_baseperapur_dados['tpvalor'] = basePerApur.tpValor.cdata
+                                    except AttributeError: 
+                                        pass
+                                    
+                                    try:
+                                        s5003_baseperapur_dados['remfgts'] = basePerApur.remFGTS.cdata
+                                    except AttributeError: 
+                                        pass
+                            
+                                    s5003_baseperapur = s5003basePerApur.objects.create(**s5003_baseperapur_dados)
+                            
+                            if 'infoBasePerAntE' in dir(infoBaseFGTS):
+                            
+                                for infoBasePerAntE in infoBaseFGTS.infoBasePerAntE:
+                            
+                                    s5003_infobaseperante_dados = {}
+                                    s5003_infobaseperante_dados['s5003_infobasefgts_id'] = s5003_infobasefgts.id
+                                    
+                                    try:
+                                        s5003_infobaseperante_dados['perref'] = infoBasePerAntE.perRef.cdata
+                                    except AttributeError: 
+                                        pass
+                            
+                                    s5003_infobaseperante = s5003infoBasePerAntE.objects.create(**s5003_infobaseperante_dados)
+                                    
+                                    if 'basePerAntE' in dir(infoBasePerAntE):
+                                    
+                                        for basePerAntE in infoBasePerAntE.basePerAntE:
+                                    
+                                            s5003_baseperante_dados = {}
+                                            s5003_baseperante_dados['s5003_infobaseperante_id'] = s5003_infobaseperante.id
+                                            
+                                            try:
+                                                s5003_baseperante_dados['tpvalore'] = basePerAntE.tpValorE.cdata
+                                            except AttributeError: 
+                                                pass
+                                            
+                                            try:
+                                                s5003_baseperante_dados['remfgtse'] = basePerAntE.remFGTSE.cdata
+                                            except AttributeError: 
+                                                pass
+                                    
+                                            s5003_baseperante = s5003basePerAntE.objects.create(**s5003_baseperante_dados)
+    
+    if 'infoDpsFGTS' in dir(evtBasesFGTS.infoFGTS):
+    
+        for infoDpsFGTS in evtBasesFGTS.infoFGTS.infoDpsFGTS:
+    
+            s5003_infodpsfgts_dados = {}
+            s5003_infodpsfgts_dados['s5003_evtbasesfgts_id'] = s5003_evtbasesfgts.id
+    
+            s5003_infodpsfgts = s5003infoDpsFGTS.objects.create(**s5003_infodpsfgts_dados)
+            
+            if 'infoTrabDps' in dir(infoDpsFGTS):
+            
+                for infoTrabDps in infoDpsFGTS.infoTrabDps:
+            
                     s5003_infotrabdps_dados = {}
-                    s5003_infotrabdps_dados['s5003_infofgts_id'] = s5003_infofgts_id
+                    s5003_infotrabdps_dados['s5003_infodpsfgts_id'] = s5003_infodpsfgts.id
+                    
+                    try:
+                        s5003_infotrabdps_dados['matricula'] = infoTrabDps.matricula.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s5003_infotrabdps_dados['codcateg'] = infoTrabDps.codCateg.cdata
+                    except AttributeError: 
+                        pass
+            
+                    s5003_infotrabdps = s5003infoTrabDps.objects.create(**s5003_infotrabdps_dados)
+                    
+                    if 'dpsPerApur' in dir(infoTrabDps):
+                    
+                        for dpsPerApur in infoTrabDps.dpsPerApur:
+                    
+                            s5003_dpsperapur_dados = {}
+                            s5003_dpsperapur_dados['s5003_infotrabdps_id'] = s5003_infotrabdps.id
+                            
+                            try:
+                                s5003_dpsperapur_dados['tpdps'] = dpsPerApur.tpDps.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s5003_dpsperapur_dados['dpsfgts'] = dpsPerApur.dpsFGTS.cdata
+                            except AttributeError: 
+                                pass
+                    
+                            s5003_dpsperapur = s5003dpsPerApur.objects.create(**s5003_dpsperapur_dados)
+                    
+                    if 'infoDpsPerAntE' in dir(infoTrabDps):
+                    
+                        for infoDpsPerAntE in infoTrabDps.infoDpsPerAntE:
+                    
+                            s5003_infodpsperante_dados = {}
+                            s5003_infodpsperante_dados['s5003_infotrabdps_id'] = s5003_infotrabdps.id
+                            
+                            try:
+                                s5003_infodpsperante_dados['perref'] = infoDpsPerAntE.perRef.cdata
+                            except AttributeError: 
+                                pass
+                    
+                            s5003_infodpsperante = s5003infoDpsPerAntE.objects.create(**s5003_infodpsperante_dados)
+                            
+                            if 'dpsPerAntE' in dir(infoDpsPerAntE):
+                            
+                                for dpsPerAntE in infoDpsPerAntE.dpsPerAntE:
+                            
+                                    s5003_dpsperante_dados = {}
+                                    s5003_dpsperante_dados['s5003_infodpsperante_id'] = s5003_infodpsperante.id
+                                    
+                                    try:
+                                        s5003_dpsperante_dados['tpdpse'] = dpsPerAntE.tpDpsE.cdata
+                                    except AttributeError: 
+                                        pass
+                                    
+                                    try:
+                                        s5003_dpsperante_dados['dpsfgtse'] = dpsPerAntE.dpsFGTSE.cdata
+                                    except AttributeError: 
+                                        pass
+                            
+                                    s5003_dpsperante = s5003dpsPerAntE.objects.create(**s5003_dpsperante_dados)    
+    s5003_evtbasesfgts_dados['evento'] = 's5003'
+    s5003_evtbasesfgts_dados['id'] = s5003_evtbasesfgts.id
+    s5003_evtbasesfgts_dados['identidade_evento'] = doc.eSocial.evtBasesFGTS['Id']
+    s5003_evtbasesfgts_dados['status'] = STATUS_EVENTO_IMPORTADO
 
-                    try: s5003_infotrabdps_dados['matricula'] = infoTrabDps.matricula.cdata
-                    except AttributeError: pass
-                    try: s5003_infotrabdps_dados['codcateg'] = infoTrabDps.codCateg.cdata
-                    except AttributeError: pass
-                    insert = create_insert('s5003_infotrabdps', s5003_infotrabdps_dados)
-                    resp = executar_sql(insert, True)
-                    s5003_infotrabdps_id = resp[0][0]
-                    #print s5003_infotrabdps_id
 
-    from emensageriapro.esocial.views.s5003_evtbasesfgts_verificar import validar_evento_funcao
-    if validar: validar_evento_funcao(s5003_evtbasesfgts_id, 'default')
-    return dados
+    from emensageriapro.esocial.views.s5003_evtbasesfgts_validar_evento import validar_evento_funcao
+    if validar:
+        validar_evento_funcao(s5003_evtbasesfgts.id)
+    return s5003_evtbasesfgts_dados

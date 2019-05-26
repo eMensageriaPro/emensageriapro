@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações do dependente do plano privado de saúde."
-{% if show_fields.show_s2399_detoper or not s2399_detoper_id and 1 %}"Detalhamento dos valores pagos a Operadoras de Planos de Saúde.";{% endif %}{% if show_fields.show_tpdep or 1 %}"Tipo";{% endif %}{% if show_fields.show_cpfdep or 0 %}"CPF";{% endif %}{% if show_fields.show_nmdep or 1 %}"Nome";{% endif %}{% if show_fields.show_dtnascto or 1 %}"Data de nascimento";{% endif %}{% if show_fields.show_vlrpgdep or 1 %}"Valor pago relativo ao plano de saúde do dependente";{% endif %}
-{% for a in s2399_detplano_lista %}{% if show_fields.show_s2399_detoper or  not s2399_detoper_id and 1 %}"{{ a.s2399_detoper }}";{% endif %}{% if show_fields.show_tpdep or 1 %}"{{ a.get_tpdep_display }}";{% endif %}{% if show_fields.show_cpfdep or 0 %}"{{ a.cpfdep }}";{% endif %}{% if show_fields.show_nmdep or 1 %}"{{ a.nmdep }}";{% endif %}{% if show_fields.show_dtnascto or 1 %}"{{ a.dtnascto|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_vlrpgdep or 1 %}"{{ a.vlrpgdep }}";{% endif %}
-{% endfor %}

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2230_iniafastamento or 1 %}"Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.";{% endif %}{% if show_fields.show_cnpjcess or 1 %}"CNPJ do Cessionário";{% endif %}{% if show_fields.show_infonus or 1 %}"Onus da cessão/requisição";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2230_iniafastamento or 1 %}"{{ c.s2230_iniafastamento }}";{% endif %}{% if show_fields.show_cnpjcess or 1 %}"{{ c.cnpjcess }}";{% endif %}{% if show_fields.show_infonus or 1 %}"{{ c.infonus }}";{% endif %}
+{% endfor %}

@@ -1,281 +1,660 @@
 #coding:utf-8
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 import xmltodict
 import pprint
 import json
 import psycopg2
-from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
-
-
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
-    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+from emensageriapro.padrao import ler_arquivo
+from emensageriapro.esocial.models import *
+from emensageriapro.s1200.models import *
 
 
 
 def read_s1200_evtremun_string(dados, xml, validar=False):
+
     import untangle
     doc = untangle.parse(xml)
+
     if validar:
         status = STATUS_EVENTO_IMPORTADO
     else:
         status = STATUS_EVENTO_CADASTRADO
+
     dados = read_s1200_evtremun_obj(doc, status, validar)
     return dados
 
+
+
 def read_s1200_evtremun(dados, arquivo, validar=False):
+
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
+
     if validar:
         status = STATUS_EVENTO_IMPORTADO
+
     else:
         status = STATUS_EVENTO_CADASTRADO
+
     dados = read_s1200_evtremun_obj(doc, status, validar)
     return dados
 
 
 
 def read_s1200_evtremun_obj(doc, status, validar=False):
+
+    xmlns_lista = doc.eSocial['xmlns'].split('/')
+
     s1200_evtremun_dados = {}
     s1200_evtremun_dados['status'] = status
-    xmlns_lista = doc.eSocial['xmlns'].split('/')
     s1200_evtremun_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s1200_evtremun_dados['identidade'] = doc.eSocial.evtRemun['Id']
     evtRemun = doc.eSocial.evtRemun
-
-    try: s1200_evtremun_dados['indretif'] = evtRemun.ideEvento.indRetif.cdata
-    except AttributeError: pass
-    try: s1200_evtremun_dados['nrrecibo'] = evtRemun.ideEvento.nrRecibo.cdata
-    except AttributeError: pass
-    try: s1200_evtremun_dados['indapuracao'] = evtRemun.ideEvento.indApuracao.cdata
-    except AttributeError: pass
-    try: s1200_evtremun_dados['perapur'] = evtRemun.ideEvento.perApur.cdata
-    except AttributeError: pass
-    try: s1200_evtremun_dados['tpamb'] = evtRemun.ideEvento.tpAmb.cdata
-    except AttributeError: pass
-    try: s1200_evtremun_dados['procemi'] = evtRemun.ideEvento.procEmi.cdata
-    except AttributeError: pass
-    try: s1200_evtremun_dados['verproc'] = evtRemun.ideEvento.verProc.cdata
-    except AttributeError: pass
-    try: s1200_evtremun_dados['tpinsc'] = evtRemun.ideEmpregador.tpInsc.cdata
-    except AttributeError: pass
-    try: s1200_evtremun_dados['nrinsc'] = evtRemun.ideEmpregador.nrInsc.cdata
-    except AttributeError: pass
-    try: s1200_evtremun_dados['cpftrab'] = evtRemun.ideTrabalhador.cpfTrab.cdata
-    except AttributeError: pass
-    try: s1200_evtremun_dados['nistrab'] = evtRemun.ideTrabalhador.nisTrab.cdata
-    except AttributeError: pass
-    if 'inclusao' in dir(evtRemun.dmDev): s1200_evtremun_dados['operacao'] = 1
-    elif 'alteracao' in dir(evtRemun.dmDev): s1200_evtremun_dados['operacao'] = 2
-    elif 'exclusao' in dir(evtRemun.dmDev): s1200_evtremun_dados['operacao'] = 3
-    #print dados
-    insert = create_insert('s1200_evtremun', s1200_evtremun_dados)
-    resp = executar_sql(insert, True)
-    s1200_evtremun_id = resp[0][0]
-    dados = s1200_evtremun_dados
-    dados['evento'] = 's1200'
-    dados['id'] = s1200_evtremun_id
-    dados['identidade_evento'] = doc.eSocial.evtRemun['Id']
-    dados['status'] = STATUS_EVENTO_IMPORTADO
-
-    if 'infoMV' in dir(evtRemun.ideTrabalhador) and evtRemun.ideTrabalhador.infoMV.cdata != '':
+    
+    try:
+        s1200_evtremun_dados['indretif'] = evtRemun.ideEvento.indRetif.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s1200_evtremun_dados['nrrecibo'] = evtRemun.ideEvento.nrRecibo.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s1200_evtremun_dados['indapuracao'] = evtRemun.ideEvento.indApuracao.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s1200_evtremun_dados['perapur'] = evtRemun.ideEvento.perApur.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s1200_evtremun_dados['tpamb'] = evtRemun.ideEvento.tpAmb.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s1200_evtremun_dados['procemi'] = evtRemun.ideEvento.procEmi.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s1200_evtremun_dados['verproc'] = evtRemun.ideEvento.verProc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s1200_evtremun_dados['tpinsc'] = evtRemun.ideEmpregador.tpInsc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s1200_evtremun_dados['nrinsc'] = evtRemun.ideEmpregador.nrInsc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s1200_evtremun_dados['cpftrab'] = evtRemun.ideTrabalhador.cpfTrab.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s1200_evtremun_dados['nistrab'] = evtRemun.ideTrabalhador.nisTrab.cdata
+    except AttributeError: 
+        pass
+        
+    s1200_evtremun = s1200evtRemun.objects.create(**s1200_evtremun_dados)
+    
+    if 'infoMV' in dir(evtRemun.ideTrabalhador):
+    
         for infoMV in evtRemun.ideTrabalhador.infoMV:
+    
             s1200_infomv_dados = {}
-            s1200_infomv_dados['s1200_evtremun_id'] = s1200_evtremun_id
-
-            try: s1200_infomv_dados['indmv'] = infoMV.indMV.cdata
-            except AttributeError: pass
-            insert = create_insert('s1200_infomv', s1200_infomv_dados)
-            resp = executar_sql(insert, True)
-            s1200_infomv_id = resp[0][0]
-            #print s1200_infomv_id
-
-            if 'remunOutrEmpr' in dir(infoMV) and infoMV.remunOutrEmpr.cdata != '':
+            s1200_infomv_dados['s1200_evtremun_id'] = s1200_evtremun.id
+            
+            try:
+                s1200_infomv_dados['indmv'] = infoMV.indMV.cdata
+            except AttributeError: 
+                pass
+    
+            s1200_infomv = s1200infoMV.objects.create(**s1200_infomv_dados)
+            
+            if 'remunOutrEmpr' in dir(infoMV):
+            
                 for remunOutrEmpr in infoMV.remunOutrEmpr:
+            
                     s1200_remunoutrempr_dados = {}
-                    s1200_remunoutrempr_dados['s1200_infomv_id'] = s1200_infomv_id
-
-                    try: s1200_remunoutrempr_dados['tpinsc'] = remunOutrEmpr.tpInsc.cdata
-                    except AttributeError: pass
-                    try: s1200_remunoutrempr_dados['nrinsc'] = remunOutrEmpr.nrInsc.cdata
-                    except AttributeError: pass
-                    try: s1200_remunoutrempr_dados['codcateg'] = remunOutrEmpr.codCateg.cdata
-                    except AttributeError: pass
-                    try: s1200_remunoutrempr_dados['vlrremunoe'] = remunOutrEmpr.vlrRemunOE.cdata
-                    except AttributeError: pass
-                    insert = create_insert('s1200_remunoutrempr', s1200_remunoutrempr_dados)
-                    resp = executar_sql(insert, True)
-                    s1200_remunoutrempr_id = resp[0][0]
-                    #print s1200_remunoutrempr_id
-
-    if 'infoComplem' in dir(evtRemun.ideTrabalhador) and evtRemun.ideTrabalhador.infoComplem.cdata != '':
+                    s1200_remunoutrempr_dados['s1200_infomv_id'] = s1200_infomv.id
+                    
+                    try:
+                        s1200_remunoutrempr_dados['tpinsc'] = remunOutrEmpr.tpInsc.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s1200_remunoutrempr_dados['nrinsc'] = remunOutrEmpr.nrInsc.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s1200_remunoutrempr_dados['codcateg'] = remunOutrEmpr.codCateg.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s1200_remunoutrempr_dados['vlrremunoe'] = remunOutrEmpr.vlrRemunOE.cdata
+                    except AttributeError: 
+                        pass
+            
+                    s1200_remunoutrempr = s1200remunOutrEmpr.objects.create(**s1200_remunoutrempr_dados)
+    
+    if 'infoComplem' in dir(evtRemun.ideTrabalhador):
+    
         for infoComplem in evtRemun.ideTrabalhador.infoComplem:
+    
             s1200_infocomplem_dados = {}
-            s1200_infocomplem_dados['s1200_evtremun_id'] = s1200_evtremun_id
-
-            try: s1200_infocomplem_dados['nmtrab'] = infoComplem.nmTrab.cdata
-            except AttributeError: pass
-            try: s1200_infocomplem_dados['dtnascto'] = infoComplem.dtNascto.cdata
-            except AttributeError: pass
-            insert = create_insert('s1200_infocomplem', s1200_infocomplem_dados)
-            resp = executar_sql(insert, True)
-            s1200_infocomplem_id = resp[0][0]
-            #print s1200_infocomplem_id
-
-            if 'sucessaoVinc' in dir(infoComplem) and infoComplem.sucessaoVinc.cdata != '':
+            s1200_infocomplem_dados['s1200_evtremun_id'] = s1200_evtremun.id
+            
+            try:
+                s1200_infocomplem_dados['nmtrab'] = infoComplem.nmTrab.cdata
+            except AttributeError: 
+                pass
+            
+            try:
+                s1200_infocomplem_dados['dtnascto'] = infoComplem.dtNascto.cdata
+            except AttributeError: 
+                pass
+    
+            s1200_infocomplem = s1200infoComplem.objects.create(**s1200_infocomplem_dados)
+            
+            if 'sucessaoVinc' in dir(infoComplem):
+            
                 for sucessaoVinc in infoComplem.sucessaoVinc:
+            
                     s1200_sucessaovinc_dados = {}
-                    s1200_sucessaovinc_dados['s1200_infocomplem_id'] = s1200_infocomplem_id
-
-                    try: s1200_sucessaovinc_dados['tpinscant'] = sucessaoVinc.tpInscAnt.cdata
-                    except AttributeError: pass
-                    try: s1200_sucessaovinc_dados['cnpjempregant'] = sucessaoVinc.cnpjEmpregAnt.cdata
-                    except AttributeError: pass
-                    try: s1200_sucessaovinc_dados['matricant'] = sucessaoVinc.matricAnt.cdata
-                    except AttributeError: pass
-                    try: s1200_sucessaovinc_dados['dtadm'] = sucessaoVinc.dtAdm.cdata
-                    except AttributeError: pass
-                    try: s1200_sucessaovinc_dados['observacao'] = sucessaoVinc.observacao.cdata
-                    except AttributeError: pass
-                    insert = create_insert('s1200_sucessaovinc', s1200_sucessaovinc_dados)
-                    resp = executar_sql(insert, True)
-                    s1200_sucessaovinc_id = resp[0][0]
-                    #print s1200_sucessaovinc_id
-
-    if 'procJudTrab' in dir(evtRemun.ideTrabalhador) and evtRemun.ideTrabalhador.procJudTrab.cdata != '':
+                    s1200_sucessaovinc_dados['s1200_infocomplem_id'] = s1200_infocomplem.id
+                    
+                    try:
+                        s1200_sucessaovinc_dados['tpinscant'] = sucessaoVinc.tpInscAnt.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s1200_sucessaovinc_dados['cnpjempregant'] = sucessaoVinc.cnpjEmpregAnt.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s1200_sucessaovinc_dados['matricant'] = sucessaoVinc.matricAnt.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s1200_sucessaovinc_dados['dtadm'] = sucessaoVinc.dtAdm.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s1200_sucessaovinc_dados['observacao'] = sucessaoVinc.observacao.cdata
+                    except AttributeError: 
+                        pass
+            
+                    s1200_sucessaovinc = s1200sucessaoVinc.objects.create(**s1200_sucessaovinc_dados)
+    
+    if 'procJudTrab' in dir(evtRemun.ideTrabalhador):
+    
         for procJudTrab in evtRemun.ideTrabalhador.procJudTrab:
+    
             s1200_procjudtrab_dados = {}
-            s1200_procjudtrab_dados['s1200_evtremun_id'] = s1200_evtremun_id
-
-            try: s1200_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
-            except AttributeError: pass
-            try: s1200_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
-            except AttributeError: pass
-            try: s1200_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
-            except AttributeError: pass
-            insert = create_insert('s1200_procjudtrab', s1200_procjudtrab_dados)
-            resp = executar_sql(insert, True)
-            s1200_procjudtrab_id = resp[0][0]
-            #print s1200_procjudtrab_id
-
-    if 'infoInterm' in dir(evtRemun.ideTrabalhador) and evtRemun.ideTrabalhador.infoInterm.cdata != '':
+            s1200_procjudtrab_dados['s1200_evtremun_id'] = s1200_evtremun.id
+            
+            try:
+                s1200_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
+            except AttributeError: 
+                pass
+            
+            try:
+                s1200_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
+            except AttributeError: 
+                pass
+            
+            try:
+                s1200_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
+            except AttributeError: 
+                pass
+    
+            s1200_procjudtrab = s1200procJudTrab.objects.create(**s1200_procjudtrab_dados)
+    
+    if 'infoInterm' in dir(evtRemun.ideTrabalhador):
+    
         for infoInterm in evtRemun.ideTrabalhador.infoInterm:
+    
             s1200_infointerm_dados = {}
-            s1200_infointerm_dados['s1200_evtremun_id'] = s1200_evtremun_id
-
-            try: s1200_infointerm_dados['qtddiasinterm'] = infoInterm.qtdDiasInterm.cdata
-            except AttributeError: pass
-            insert = create_insert('s1200_infointerm', s1200_infointerm_dados)
-            resp = executar_sql(insert, True)
-            s1200_infointerm_id = resp[0][0]
-            #print s1200_infointerm_id
-
-    if 'dmDev' in dir(evtRemun) and evtRemun.dmDev.cdata != '':
+            s1200_infointerm_dados['s1200_evtremun_id'] = s1200_evtremun.id
+            
+            try:
+                s1200_infointerm_dados['qtddiasinterm'] = infoInterm.qtdDiasInterm.cdata
+            except AttributeError: 
+                pass
+    
+            s1200_infointerm = s1200infoInterm.objects.create(**s1200_infointerm_dados)
+    
+    if 'dmDev' in dir(evtRemun):
+    
         for dmDev in evtRemun.dmDev:
+    
             s1200_dmdev_dados = {}
-            s1200_dmdev_dados['s1200_evtremun_id'] = s1200_evtremun_id
-
-            try: s1200_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
-            except AttributeError: pass
-            try: s1200_dmdev_dados['codcateg'] = dmDev.codCateg.cdata
-            except AttributeError: pass
-            insert = create_insert('s1200_dmdev', s1200_dmdev_dados)
-            resp = executar_sql(insert, True)
-            s1200_dmdev_id = resp[0][0]
-            #print s1200_dmdev_id
-
-            if 'ideEstabLot' in dir(dmDev.infoPerApur) and dmDev.infoPerApur.ideEstabLot.cdata != '':
-                for ideEstabLot in dmDev.infoPerApur.ideEstabLot:
-                    s1200_infoperapur_ideestablot_dados = {}
-                    s1200_infoperapur_ideestablot_dados['s1200_dmdev_id'] = s1200_dmdev_id
-
-                    try: s1200_infoperapur_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
-                    except AttributeError: pass
-                    try: s1200_infoperapur_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
-                    except AttributeError: pass
-                    try: s1200_infoperapur_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
-                    except AttributeError: pass
-                    try: s1200_infoperapur_ideestablot_dados['qtddiasav'] = ideEstabLot.qtdDiasAv.cdata
-                    except AttributeError: pass
-                    insert = create_insert('s1200_infoperapur_ideestablot', s1200_infoperapur_ideestablot_dados)
-                    resp = executar_sql(insert, True)
-                    s1200_infoperapur_ideestablot_id = resp[0][0]
-                    #print s1200_infoperapur_ideestablot_id
-
-            if 'ideADC' in dir(dmDev.infoPerAnt) and dmDev.infoPerAnt.ideADC.cdata != '':
-                for ideADC in dmDev.infoPerAnt.ideADC:
-                    s1200_infoperant_ideadc_dados = {}
-                    s1200_infoperant_ideadc_dados['s1200_dmdev_id'] = s1200_dmdev_id
-
-                    try: s1200_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
-                    except AttributeError: pass
-                    try: s1200_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
-                    except AttributeError: pass
-                    try: s1200_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
-                    except AttributeError: pass
-                    try: s1200_infoperant_ideadc_dados['dtefacconv'] = ideADC.dtEfAcConv.cdata
-                    except AttributeError: pass
-                    try: s1200_infoperant_ideadc_dados['dsc'] = ideADC.dsc.cdata
-                    except AttributeError: pass
-                    try: s1200_infoperant_ideadc_dados['remunsuc'] = ideADC.remunSuc.cdata
-                    except AttributeError: pass
-                    insert = create_insert('s1200_infoperant_ideadc', s1200_infoperant_ideadc_dados)
-                    resp = executar_sql(insert, True)
-                    s1200_infoperant_ideadc_id = resp[0][0]
-                    #print s1200_infoperant_ideadc_id
-
-            if 'infoComplCont' in dir(dmDev) and dmDev.infoComplCont.cdata != '':
+            s1200_dmdev_dados['s1200_evtremun_id'] = s1200_evtremun.id
+            
+            try:
+                s1200_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
+            except AttributeError: 
+                pass
+            
+            try:
+                s1200_dmdev_dados['codcateg'] = dmDev.codCateg.cdata
+            except AttributeError: 
+                pass
+    
+            s1200_dmdev = s1200dmDev.objects.create(**s1200_dmdev_dados)
+            
+            if 'infoPerApur' in dir(dmDev):
+            
+                for infoPerApur in dmDev.infoPerApur:
+            
+                    s1200_infoperapur_dados = {}
+                    s1200_infoperapur_dados['s1200_dmdev_id'] = s1200_dmdev.id
+            
+                    s1200_infoperapur = s1200infoPerApur.objects.create(**s1200_infoperapur_dados)
+                    
+                    if 'ideEstabLot' in dir(infoPerApur):
+                    
+                        for ideEstabLot in infoPerApur.ideEstabLot:
+                    
+                            s1200_infoperapur_ideestablot_dados = {}
+                            s1200_infoperapur_ideestablot_dados['s1200_infoperapur_id'] = s1200_infoperapur.id
+                            
+                            try:
+                                s1200_infoperapur_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s1200_infoperapur_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s1200_infoperapur_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s1200_infoperapur_ideestablot_dados['qtddiasav'] = ideEstabLot.qtdDiasAv.cdata
+                            except AttributeError: 
+                                pass
+                    
+                            s1200_infoperapur_ideestablot = s1200infoPerApurideEstabLot.objects.create(**s1200_infoperapur_ideestablot_dados)
+                            
+                            if 'remunPerApur' in dir(ideEstabLot):
+                            
+                                for remunPerApur in ideEstabLot.remunPerApur:
+                            
+                                    s1200_infoperapur_remunperapur_dados = {}
+                                    s1200_infoperapur_remunperapur_dados['s1200_infoperapur_ideestablot_id'] = s1200_infoperapur_ideestablot.id
+                                    
+                                    try:
+                                        s1200_infoperapur_remunperapur_dados['matricula'] = remunPerApur.matricula.cdata
+                                    except AttributeError: 
+                                        pass
+                                    
+                                    try:
+                                        s1200_infoperapur_remunperapur_dados['indsimples'] = remunPerApur.indSimples.cdata
+                                    except AttributeError: 
+                                        pass
+                            
+                                    s1200_infoperapur_remunperapur = s1200infoPerApurremunPerApur.objects.create(**s1200_infoperapur_remunperapur_dados)
+                                    
+                                    if 'itensRemun' in dir(remunPerApur):
+                                    
+                                        for itensRemun in remunPerApur.itensRemun:
+                                    
+                                            s1200_infoperapur_itensremun_dados = {}
+                                            s1200_infoperapur_itensremun_dados['s1200_infoperapur_remunperapur_id'] = s1200_infoperapur_remunperapur.id
+                                            
+                                            try:
+                                                s1200_infoperapur_itensremun_dados['codrubr'] = itensRemun.codRubr.cdata
+                                            except AttributeError: 
+                                                pass
+                                            
+                                            try:
+                                                s1200_infoperapur_itensremun_dados['idetabrubr'] = itensRemun.ideTabRubr.cdata
+                                            except AttributeError: 
+                                                pass
+                                            
+                                            try:
+                                                s1200_infoperapur_itensremun_dados['qtdrubr'] = itensRemun.qtdRubr.cdata
+                                            except AttributeError: 
+                                                pass
+                                            
+                                            try:
+                                                s1200_infoperapur_itensremun_dados['fatorrubr'] = itensRemun.fatorRubr.cdata
+                                            except AttributeError: 
+                                                pass
+                                            
+                                            try:
+                                                s1200_infoperapur_itensremun_dados['vrunit'] = itensRemun.vrUnit.cdata
+                                            except AttributeError: 
+                                                pass
+                                            
+                                            try:
+                                                s1200_infoperapur_itensremun_dados['vrrubr'] = itensRemun.vrRubr.cdata
+                                            except AttributeError: 
+                                                pass
+                                    
+                                            s1200_infoperapur_itensremun = s1200infoPerApuritensRemun.objects.create(**s1200_infoperapur_itensremun_dados)
+                                    
+                                    if 'infoSaudeColet' in dir(remunPerApur):
+                                    
+                                        for infoSaudeColet in remunPerApur.infoSaudeColet:
+                                    
+                                            s1200_infoperapur_infosaudecolet_dados = {}
+                                            s1200_infoperapur_infosaudecolet_dados['s1200_infoperapur_remunperapur_id'] = s1200_infoperapur_remunperapur.id
+                                    
+                                            s1200_infoperapur_infosaudecolet = s1200infoPerApurinfoSaudeColet.objects.create(**s1200_infoperapur_infosaudecolet_dados)
+                                            
+                                            if 'detOper' in dir(infoSaudeColet):
+                                            
+                                                for detOper in infoSaudeColet.detOper:
+                                            
+                                                    s1200_infoperapur_detoper_dados = {}
+                                                    s1200_infoperapur_detoper_dados['s1200_infoperapur_infosaudecolet_id'] = s1200_infoperapur_infosaudecolet.id
+                                                    
+                                                    try:
+                                                        s1200_infoperapur_detoper_dados['cnpjoper'] = detOper.cnpjOper.cdata
+                                                    except AttributeError: 
+                                                        pass
+                                                    
+                                                    try:
+                                                        s1200_infoperapur_detoper_dados['regans'] = detOper.regANS.cdata
+                                                    except AttributeError: 
+                                                        pass
+                                                    
+                                                    try:
+                                                        s1200_infoperapur_detoper_dados['vrpgtit'] = detOper.vrPgTit.cdata
+                                                    except AttributeError: 
+                                                        pass
+                                            
+                                                    s1200_infoperapur_detoper = s1200infoPerApurdetOper.objects.create(**s1200_infoperapur_detoper_dados)
+                                                    
+                                                    if 'detPlano' in dir(detOper):
+                                                    
+                                                        for detPlano in detOper.detPlano:
+                                                    
+                                                            s1200_infoperapur_detplano_dados = {}
+                                                            s1200_infoperapur_detplano_dados['s1200_infoperapur_detoper_id'] = s1200_infoperapur_detoper.id
+                                                            
+                                                            try:
+                                                                s1200_infoperapur_detplano_dados['tpdep'] = detPlano.tpDep.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                            
+                                                            try:
+                                                                s1200_infoperapur_detplano_dados['cpfdep'] = detPlano.cpfDep.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                            
+                                                            try:
+                                                                s1200_infoperapur_detplano_dados['nmdep'] = detPlano.nmDep.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                            
+                                                            try:
+                                                                s1200_infoperapur_detplano_dados['dtnascto'] = detPlano.dtNascto.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                            
+                                                            try:
+                                                                s1200_infoperapur_detplano_dados['vlrpgdep'] = detPlano.vlrPgDep.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                    
+                                                            s1200_infoperapur_detplano = s1200infoPerApurdetPlano.objects.create(**s1200_infoperapur_detplano_dados)
+                                    
+                                    if 'infoAgNocivo' in dir(remunPerApur):
+                                    
+                                        for infoAgNocivo in remunPerApur.infoAgNocivo:
+                                    
+                                            s1200_infoperapur_infoagnocivo_dados = {}
+                                            s1200_infoperapur_infoagnocivo_dados['s1200_infoperapur_remunperapur_id'] = s1200_infoperapur_remunperapur.id
+                                            
+                                            try:
+                                                s1200_infoperapur_infoagnocivo_dados['grauexp'] = infoAgNocivo.grauExp.cdata
+                                            except AttributeError: 
+                                                pass
+                                    
+                                            s1200_infoperapur_infoagnocivo = s1200infoPerApurinfoAgNocivo.objects.create(**s1200_infoperapur_infoagnocivo_dados)
+                                    
+                                    if 'infoTrabInterm' in dir(remunPerApur):
+                                    
+                                        for infoTrabInterm in remunPerApur.infoTrabInterm:
+                                    
+                                            s1200_infoperapur_infotrabinterm_dados = {}
+                                            s1200_infoperapur_infotrabinterm_dados['s1200_infoperapur_remunperapur_id'] = s1200_infoperapur_remunperapur.id
+                                            
+                                            try:
+                                                s1200_infoperapur_infotrabinterm_dados['codconv'] = infoTrabInterm.codConv.cdata
+                                            except AttributeError: 
+                                                pass
+                                    
+                                            s1200_infoperapur_infotrabinterm = s1200infoPerApurinfoTrabInterm.objects.create(**s1200_infoperapur_infotrabinterm_dados)
+            
+            if 'infoPerAnt' in dir(dmDev):
+            
+                for infoPerAnt in dmDev.infoPerAnt:
+            
+                    s1200_infoperant_dados = {}
+                    s1200_infoperant_dados['s1200_dmdev_id'] = s1200_dmdev.id
+            
+                    s1200_infoperant = s1200infoPerAnt.objects.create(**s1200_infoperant_dados)
+                    
+                    if 'ideADC' in dir(infoPerAnt):
+                    
+                        for ideADC in infoPerAnt.ideADC:
+                    
+                            s1200_infoperant_ideadc_dados = {}
+                            s1200_infoperant_ideadc_dados['s1200_infoperant_id'] = s1200_infoperant.id
+                            
+                            try:
+                                s1200_infoperant_ideadc_dados['dtacconv'] = ideADC.dtAcConv.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s1200_infoperant_ideadc_dados['tpacconv'] = ideADC.tpAcConv.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s1200_infoperant_ideadc_dados['compacconv'] = ideADC.compAcConv.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s1200_infoperant_ideadc_dados['dtefacconv'] = ideADC.dtEfAcConv.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s1200_infoperant_ideadc_dados['dsc'] = ideADC.dsc.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s1200_infoperant_ideadc_dados['remunsuc'] = ideADC.remunSuc.cdata
+                            except AttributeError: 
+                                pass
+                    
+                            s1200_infoperant_ideadc = s1200infoPerAntideADC.objects.create(**s1200_infoperant_ideadc_dados)
+                            
+                            if 'idePeriodo' in dir(ideADC):
+                            
+                                for idePeriodo in ideADC.idePeriodo:
+                            
+                                    s1200_infoperant_ideperiodo_dados = {}
+                                    s1200_infoperant_ideperiodo_dados['s1200_infoperant_ideadc_id'] = s1200_infoperant_ideadc.id
+                                    
+                                    try:
+                                        s1200_infoperant_ideperiodo_dados['perref'] = idePeriodo.perRef.cdata
+                                    except AttributeError: 
+                                        pass
+                            
+                                    s1200_infoperant_ideperiodo = s1200infoPerAntidePeriodo.objects.create(**s1200_infoperant_ideperiodo_dados)
+                                    
+                                    if 'ideEstabLot' in dir(idePeriodo):
+                                    
+                                        for ideEstabLot in idePeriodo.ideEstabLot:
+                                    
+                                            s1200_infoperant_ideestablot_dados = {}
+                                            s1200_infoperant_ideestablot_dados['s1200_infoperant_ideperiodo_id'] = s1200_infoperant_ideperiodo.id
+                                            
+                                            try:
+                                                s1200_infoperant_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+                                            except AttributeError: 
+                                                pass
+                                            
+                                            try:
+                                                s1200_infoperant_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+                                            except AttributeError: 
+                                                pass
+                                            
+                                            try:
+                                                s1200_infoperant_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+                                            except AttributeError: 
+                                                pass
+                                    
+                                            s1200_infoperant_ideestablot = s1200infoPerAntideEstabLot.objects.create(**s1200_infoperant_ideestablot_dados)
+                                            
+                                            if 'remunPerAnt' in dir(ideEstabLot):
+                                            
+                                                for remunPerAnt in ideEstabLot.remunPerAnt:
+                                            
+                                                    s1200_infoperant_remunperant_dados = {}
+                                                    s1200_infoperant_remunperant_dados['s1200_infoperant_ideestablot_id'] = s1200_infoperant_ideestablot.id
+                                                    
+                                                    try:
+                                                        s1200_infoperant_remunperant_dados['matricula'] = remunPerAnt.matricula.cdata
+                                                    except AttributeError: 
+                                                        pass
+                                                    
+                                                    try:
+                                                        s1200_infoperant_remunperant_dados['indsimples'] = remunPerAnt.indSimples.cdata
+                                                    except AttributeError: 
+                                                        pass
+                                            
+                                                    s1200_infoperant_remunperant = s1200infoPerAntremunPerAnt.objects.create(**s1200_infoperant_remunperant_dados)
+                                                    
+                                                    if 'itensRemun' in dir(remunPerAnt):
+                                                    
+                                                        for itensRemun in remunPerAnt.itensRemun:
+                                                    
+                                                            s1200_infoperant_itensremun_dados = {}
+                                                            s1200_infoperant_itensremun_dados['s1200_infoperant_remunperant_id'] = s1200_infoperant_remunperant.id
+                                                            
+                                                            try:
+                                                                s1200_infoperant_itensremun_dados['codrubr'] = itensRemun.codRubr.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                            
+                                                            try:
+                                                                s1200_infoperant_itensremun_dados['idetabrubr'] = itensRemun.ideTabRubr.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                            
+                                                            try:
+                                                                s1200_infoperant_itensremun_dados['qtdrubr'] = itensRemun.qtdRubr.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                            
+                                                            try:
+                                                                s1200_infoperant_itensremun_dados['fatorrubr'] = itensRemun.fatorRubr.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                            
+                                                            try:
+                                                                s1200_infoperant_itensremun_dados['vrunit'] = itensRemun.vrUnit.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                            
+                                                            try:
+                                                                s1200_infoperant_itensremun_dados['vrrubr'] = itensRemun.vrRubr.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                    
+                                                            s1200_infoperant_itensremun = s1200infoPerAntitensRemun.objects.create(**s1200_infoperant_itensremun_dados)
+                                                    
+                                                    if 'infoAgNocivo' in dir(remunPerAnt):
+                                                    
+                                                        for infoAgNocivo in remunPerAnt.infoAgNocivo:
+                                                    
+                                                            s1200_infoperant_infoagnocivo_dados = {}
+                                                            s1200_infoperant_infoagnocivo_dados['s1200_infoperant_remunperant_id'] = s1200_infoperant_remunperant.id
+                                                            
+                                                            try:
+                                                                s1200_infoperant_infoagnocivo_dados['grauexp'] = infoAgNocivo.grauExp.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                    
+                                                            s1200_infoperant_infoagnocivo = s1200infoPerAntinfoAgNocivo.objects.create(**s1200_infoperant_infoagnocivo_dados)
+                                                    
+                                                    if 'infoTrabInterm' in dir(remunPerAnt):
+                                                    
+                                                        for infoTrabInterm in remunPerAnt.infoTrabInterm:
+                                                    
+                                                            s1200_infoperant_infotrabinterm_dados = {}
+                                                            s1200_infoperant_infotrabinterm_dados['s1200_infoperant_remunperant_id'] = s1200_infoperant_remunperant.id
+                                                            
+                                                            try:
+                                                                s1200_infoperant_infotrabinterm_dados['codconv'] = infoTrabInterm.codConv.cdata
+                                                            except AttributeError: 
+                                                                pass
+                                                    
+                                                            s1200_infoperant_infotrabinterm = s1200infoPerAntinfoTrabInterm.objects.create(**s1200_infoperant_infotrabinterm_dados)
+            
+            if 'infoComplCont' in dir(dmDev):
+            
                 for infoComplCont in dmDev.infoComplCont:
+            
                     s1200_infoperant_infocomplcont_dados = {}
-                    s1200_infoperant_infocomplcont_dados['s1200_dmdev_id'] = s1200_dmdev_id
+                    s1200_infoperant_infocomplcont_dados['s1200_dmdev_id'] = s1200_dmdev.id
+                    
+                    try:
+                        s1200_infoperant_infocomplcont_dados['codcbo'] = infoComplCont.codCBO.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s1200_infoperant_infocomplcont_dados['natatividade'] = infoComplCont.natAtividade.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s1200_infoperant_infocomplcont_dados['qtddiastrab'] = infoComplCont.qtdDiasTrab.cdata
+                    except AttributeError: 
+                        pass
+            
+                    s1200_infoperant_infocomplcont = s1200infoPerAntinfoComplCont.objects.create(**s1200_infoperant_infocomplcont_dados)    
+    s1200_evtremun_dados['evento'] = 's1200'
+    s1200_evtremun_dados['id'] = s1200_evtremun.id
+    s1200_evtremun_dados['identidade_evento'] = doc.eSocial.evtRemun['Id']
+    s1200_evtremun_dados['status'] = STATUS_EVENTO_IMPORTADO
 
-                    try: s1200_infoperant_infocomplcont_dados['codcbo'] = infoComplCont.codCBO.cdata
-                    except AttributeError: pass
-                    try: s1200_infoperant_infocomplcont_dados['natatividade'] = infoComplCont.natAtividade.cdata
-                    except AttributeError: pass
-                    try: s1200_infoperant_infocomplcont_dados['qtddiastrab'] = infoComplCont.qtdDiasTrab.cdata
-                    except AttributeError: pass
-                    insert = create_insert('s1200_infoperant_infocomplcont', s1200_infoperant_infocomplcont_dados)
-                    resp = executar_sql(insert, True)
-                    s1200_infoperant_infocomplcont_id = resp[0][0]
-                    #print s1200_infoperant_infocomplcont_id
 
-    from emensageriapro.esocial.views.s1200_evtremun_verificar import validar_evento_funcao
-    if validar: validar_evento_funcao(s1200_evtremun_id, 'default')
-    return dados
+    from emensageriapro.esocial.views.s1200_evtremun_validar_evento import validar_evento_funcao
+    if validar:
+        validar_evento_funcao(s1200_evtremun.id)
+    return s1200_evtremun_dados

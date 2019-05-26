@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.r2020.models import * 
-from emensageriapro.efdreinf.models import r2020evtServPrest 
+from emensageriapro.r2020.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,25 +40,22 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_r2020_infoprocretad(forms.ModelForm):
+
     valoradic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r2020_infoprocretad, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r2020_evtservprest'].queryset = r2020evtServPrest.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2020_evtservprest'].widget.attrs['required'] = True        
-        self.fields['tpprocretadic'].widget.attrs['required'] = True        
-        self.fields['nrprocretadic'].widget.attrs['required'] = True        
-        self.fields['valoradic'].widget.attrs['required'] = True
+        super(form_r2020_infoprocretad, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -78,29 +75,26 @@ class form_r2020_infoprocretad(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r2020infoProcRetAd
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r2020_infoprocretpr(forms.ModelForm):
+
     valorprinc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r2020_infoprocretpr, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r2020_evtservprest'].queryset = r2020evtServPrest.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2020_evtservprest'].widget.attrs['required'] = True        
-        self.fields['tpprocretprinc'].widget.attrs['required'] = True        
-        self.fields['nrprocretprinc'].widget.attrs['required'] = True        
-        self.fields['valorprinc'].widget.attrs['required'] = True
+        super(form_r2020_infoprocretpr, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -120,16 +114,17 @@ class form_r2020_infoprocretpr(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r2020infoProcRetPr
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r2020_infotpserv(forms.ModelForm):
+
     vlrbaseret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrretencao = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrretsub = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
@@ -140,17 +135,13 @@ class form_r2020_infotpserv(forms.ModelForm):
     vlradicional = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrnretadic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r2020_infotpserv, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r2020_nfs'].queryset = r2020nfs.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2020_nfs'].widget.attrs['required'] = True        
-        self.fields['tpservico'].widget.attrs['required'] = True        
-        self.fields['vlrbaseret'].widget.attrs['required'] = True        
-        self.fields['vlrretencao'].widget.attrs['required'] = True
+        super(form_r2020_infotpserv, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -170,30 +161,26 @@ class form_r2020_infotpserv(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r2020infoTpServ
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r2020_nfs(forms.ModelForm):
+
     vlrbruto = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r2020_nfs, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r2020_evtservprest'].queryset = r2020evtServPrest.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r2020_evtservprest'].widget.attrs['required'] = True        
-        self.fields['serie'].widget.attrs['required'] = True        
-        self.fields['numdocto'].widget.attrs['required'] = True        
-        self.fields['dtemissaonf'].widget.attrs['required'] = True        
-        self.fields['vlrbruto'].widget.attrs['required'] = True
+        super(form_r2020_nfs, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -213,10 +200,10 @@ class form_r2020_nfs(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r2020nfs
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

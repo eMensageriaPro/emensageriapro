@@ -3,8 +3,15 @@
 from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
-from emensageriapro.s2250.views import s2250_cancavprevio as s2250_cancavprevio_views
-from emensageriapro.s2250.views import s2250_detavprevio as s2250_detavprevio_views
+from rest_framework.authtoken import views
+from emensageriapro.s2250.views import s2250_detavprevio_apagar as s2250_detavprevio_apagar_views
+from emensageriapro.s2250.views import s2250_detavprevio_listar as s2250_detavprevio_listar_views
+from emensageriapro.s2250.views import s2250_detavprevio_salvar as s2250_detavprevio_salvar_views
+from emensageriapro.s2250.views import s2250_detavprevio_api as s2250_detavprevio_api_views
+from emensageriapro.s2250.views import s2250_cancavprevio_apagar as s2250_cancavprevio_apagar_views
+from emensageriapro.s2250.views import s2250_cancavprevio_listar as s2250_cancavprevio_listar_views
+from emensageriapro.s2250.views import s2250_cancavprevio_salvar as s2250_cancavprevio_salvar_views
+from emensageriapro.s2250.views import s2250_cancavprevio_api as s2250_cancavprevio_api_views
 
 
 
@@ -41,50 +48,45 @@ from emensageriapro.s2250.views import s2250_detavprevio as s2250_detavprevio_vi
 
 """
 
+
 urlpatterns = [
 
 
-
-url(r'^s2250-cancavprevio/apagar/(?P<hash>.*)/$', 
-        s2250_cancavprevio_views.apagar, 
-        name='s2250_cancavprevio_apagar'),
-
-url(r'^s2250-cancavprevio/api/$',
-            s2250_cancavprevio_views.s2250cancAvPrevioList.as_view() ),
-
-        url(r'^s2250-cancavprevio/api/(?P<pk>[0-9]+)/$',
-            s2250_cancavprevio_views.s2250cancAvPrevioDetail.as_view() ),
-
-url(r'^s2250-cancavprevio/listar/(?P<hash>.*)/$', 
-        s2250_cancavprevio_views.listar, 
-        name='s2250_cancavprevio'),
-
-url(r'^s2250-cancavprevio/salvar/(?P<hash>.*)/$', 
-        s2250_cancavprevio_views.salvar, 
-        name='s2250_cancavprevio_salvar'),
-
-
-
-url(r'^s2250-detavprevio/apagar/(?P<hash>.*)/$', 
-        s2250_detavprevio_views.apagar, 
+    url(r'^s2250-detavprevio/apagar/(?P<hash>.*)/$', 
+        s2250_detavprevio_apagar_views.apagar, 
         name='s2250_detavprevio_apagar'),
 
-url(r'^s2250-detavprevio/api/$',
-            s2250_detavprevio_views.s2250detAvPrevioList.as_view() ),
+    url(r'^s2250-detavprevio/api/$',
+        s2250_detavprevio_api_views.s2250detAvPrevioList.as_view() ),
 
-        url(r'^s2250-detavprevio/api/(?P<pk>[0-9]+)/$',
-            s2250_detavprevio_views.s2250detAvPrevioDetail.as_view() ),
+    url(r'^s2250-detavprevio/api/(?P<pk>[0-9]+)/$',
+        s2250_detavprevio_api_views.s2250detAvPrevioDetail.as_view() ),
 
-url(r'^s2250-detavprevio/listar/(?P<hash>.*)/$', 
-        s2250_detavprevio_views.listar, 
+    url(r'^s2250-detavprevio/listar/(?P<hash>.*)/$', 
+        s2250_detavprevio_listar_views.listar, 
         name='s2250_detavprevio'),
 
-url(r'^s2250-detavprevio/salvar/(?P<hash>.*)/$', 
-        s2250_detavprevio_views.salvar, 
+    url(r'^s2250-detavprevio/salvar/(?P<hash>.*)/$', 
+        s2250_detavprevio_salvar_views.salvar, 
         name='s2250_detavprevio_salvar'),
 
+    url(r'^s2250-cancavprevio/apagar/(?P<hash>.*)/$', 
+        s2250_cancavprevio_apagar_views.apagar, 
+        name='s2250_cancavprevio_apagar'),
 
+    url(r'^s2250-cancavprevio/api/$',
+        s2250_cancavprevio_api_views.s2250cancAvPrevioList.as_view() ),
 
+    url(r'^s2250-cancavprevio/api/(?P<pk>[0-9]+)/$',
+        s2250_cancavprevio_api_views.s2250cancAvPrevioDetail.as_view() ),
+
+    url(r'^s2250-cancavprevio/listar/(?P<hash>.*)/$', 
+        s2250_cancavprevio_listar_views.listar, 
+        name='s2250_cancavprevio'),
+
+    url(r'^s2250-cancavprevio/salvar/(?P<hash>.*)/$', 
+        s2250_cancavprevio_salvar_views.salvar, 
+        name='s2250_cancavprevio_salvar'),
 
 
 ]

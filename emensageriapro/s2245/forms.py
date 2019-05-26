@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s2245.models import * 
-from emensageriapro.esocial.models import s2245evtTreiCap 
+from emensageriapro.s2245.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,26 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s2245_ideprofresp(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2245_ideprofresp, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2245_infocomplem'].queryset = s2245infoComplem.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2245_infocomplem'].widget.attrs['required'] = True        
-        self.fields['nmprof'].widget.attrs['required'] = True        
-        self.fields['tpprof'].widget.attrs['required'] = True        
-        self.fields['formprof'].widget.attrs['required'] = True        
-        self.fields['codcbo'].widget.attrs['required'] = True        
-        self.fields['nacprof'].widget.attrs['required'] = True
+        super(form_s2245_ideprofresp, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -79,52 +74,10 @@ class form_s2245_ideprofresp(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2245ideProfResp
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
-
-
-class form_s2245_infocomplem(forms.ModelForm):
-    durtreicap = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
-
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2245_infocomplem, self).__init__(*args,**kwargs)
-        
-        self.fields['s2245_evttreicap'].widget.attrs['required'] = True        
-        self.fields['dttreicap'].widget.attrs['required'] = True        
-        self.fields['durtreicap'].widget.attrs['required'] = True        
-        self.fields['modtreicap'].widget.attrs['required'] = True        
-        self.fields['tptreicap'].widget.attrs['required'] = True
-
-    def save(self, commit=True, *args, **kwargs):
-        request = None
-        if kwargs.has_key('request'):
-            request = kwargs.pop('request')
-        
-        m =  super(form_s2245_infocomplem, self).save(commit=True, *args, **kwargs)
-
-        if request is not None:
-
-            if m.criado_por_id is None:
-                m.criado_por_id = request.user.id
-                m.criado_em = timezone.now()
-            m.modificado_por_id = request.user.id
-            m.modificado_em = timezone.now()
-            m.excluido = False
-            m.save()
-        
-        return m
-        
-    class Meta:
-        model = s2245infoComplem
-        exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

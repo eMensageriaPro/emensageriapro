@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2205_documentos or 1 %}"Informações do Registro Nacional de Estrangeiro";{% endif %}{% if show_fields.show_nrrne or 1 %}"Número do RNE";{% endif %}{% if show_fields.show_orgaoemissor or 1 %}"Órgão Emissor do RIC";{% endif %}{% if show_fields.show_dtexped or 1 %}"Data de Expedição do RIC";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2205_documentos or 1 %}"{{ c.s2205_documentos }}";{% endif %}{% if show_fields.show_nrrne or 1 %}"{{ c.nrrne }}";{% endif %}{% if show_fields.show_orgaoemissor or 1 %}"{{ c.orgaoemissor }}";{% endif %}{% if show_fields.show_dtexped or 1 %}"{{ c.dtexped }}";{% endif %}
+{% endfor %}

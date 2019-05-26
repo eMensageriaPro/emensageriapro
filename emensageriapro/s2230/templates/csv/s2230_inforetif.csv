@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2230_evtafasttemp or 1 %}"Informações de retificação do Afastamento Temporário";{% endif %}{% if show_fields.show_origretif or 1 %}"Origem da retificação";{% endif %}{% if show_fields.show_tpproc or 1 %}"Processo RAT";{% endif %}{% if show_fields.show_nrproc or 1 %}"Número do Processo";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2230_evtafasttemp or 1 %}"{{ c.s2230_evtafasttemp }}";{% endif %}{% if show_fields.show_origretif or 1 %}"{{ c.origretif }}";{% endif %}{% if show_fields.show_tpproc or 1 %}"{{ c.tpproc }}";{% endif %}{% if show_fields.show_nrproc or 1 %}"{{ c.nrproc }}";{% endif %}
+{% endfor %}

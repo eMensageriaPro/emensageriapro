@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r4010_infopgto or 1 %}"Rendimentos Isentos/Não Tributáveis";{% endif %}{% if show_fields.show_tpisencao or 1 %}"Tipo de Isenção";{% endif %}{% if show_fields.show_vlrisento or 1 %}"Valor da Parcela Isenta";{% endif %}{% if show_fields.show_descrendimento or 1 %}"Descrição do rendimento isento/Não tributável";{% endif %}{% if show_fields.show_dtlaudo or 1 %}"Data atribuída pelo laudo da moléstia grave";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r4010_infopgto or 1 %}"{{ c.r4010_infopgto }}";{% endif %}{% if show_fields.show_tpisencao or 1 %}"{{ c.tpisencao }}";{% endif %}{% if show_fields.show_vlrisento or 1 %}"{{ c.vlrisento }}";{% endif %}{% if show_fields.show_descrendimento or 1 %}"{{ c.descrendimento }}";{% endif %}{% if show_fields.show_dtlaudo or 1 %}"{{ c.dtlaudo }}";{% endif %}
+{% endfor %}

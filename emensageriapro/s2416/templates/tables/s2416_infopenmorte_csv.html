@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações relativas a pensão por morte"
-{% if show_fields.show_s2416_evtcdbenalt or not s2416_evtcdbenalt_id and 1 %}"Evento de cadastro de benefícios - Alteração";{% endif %}{% if show_fields.show_tppenmorte or 1 %}"Tipo de pensão por morte";{% endif %}
-{% for a in s2416_infopenmorte_lista %}{% if show_fields.show_s2416_evtcdbenalt or  not s2416_evtcdbenalt_id and 1 %}"{{ a.s2416_evtcdbenalt }}";{% endif %}{% if show_fields.show_tppenmorte or 1 %}"{{ a.get_tppenmorte_display }}";{% endif %}
-{% endfor %}

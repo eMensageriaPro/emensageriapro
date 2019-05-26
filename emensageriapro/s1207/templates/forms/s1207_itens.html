@@ -1,1 +1,88 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s1207_dmdev_id or s1207_dmdev_id != s1207_itens_form.s1207_dmdev.value %}<!-- inicio__s1207_itens__s1207_dmdev --><div class="col-md-12" id="s1207_itens__s1207_dmdev__div"><div class="form-group"><label id="s1207_itens__s1207_dmdev__label">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF*<a data-toggle="tooltip" title="Detalhamento dos valores devidos ao beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s1207_itens_form.s1207_dmdev.value %}<a id="s1207_itens__s1207_dmdev__div_acessar" href="{% url 's1207_dmdev_salvar' hash='{}'|json_id:s1207_itens_form.s1207_dmdev.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_s1207_dmdev').change(function(){ document.getElementById("s1207_itens__s1207_dmdev__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if s1207_itens_form.s1207_dmdev.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1207_itens_form.s1207_dmdev.errors }}</div>{% endif %} {% if s1207_itens_form.s1207_dmdev.field.widget.attrs.readonly %} {% if s1207_itens_form.s1207_dmdev.field.widget.attrs.disabled %} {{ s1207_itens_form.s1207_dmdev|addcss:'form-control' }}<input id="id_s1207_dmdev" name="s1207_dmdev" type="hidden" value="{% if s1207_itens_form.s1207_dmdev.value or s1207_itens_form.s1207_dmdev.value == 0 %}{{ s1207_itens_form.s1207_dmdev.value|valor }}{% endif %}">{% else %} {{ s1207_itens_form.s1207_dmdev|addcss:'form-control' }} {% endif %} {% else %} {{ s1207_itens_form.s1207_dmdev|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s1207_itens__s1207_dmdev -->{% else %}<input type="hidden" value="{{ s1207_dmdev_id|valor }}" id="id_s1207_dmdev" name="s1207_dmdev">{% endif %}<!-- inicio__s1207_itens__codrubr --><div class="col-md-6" id="s1207_itens__codrubr__div"><div class="form-group"><label id="s1207_itens__codrubr__label">Código da Rubrica*<a data-toggle="tooltip" title="Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1207_itens_form.codrubr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1207_itens_form.codrubr.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1207_itens_form.codrubr|addcss:'form-control' }}</div></div></div><!-- fim__s1207_itens__codrubr --><!-- inicio__s1207_itens__idetabrubr --><div class="col-md-6" id="s1207_itens__idetabrubr__div"><div class="form-group"><label id="s1207_itens__idetabrubr__label">Identificador tabela de rubricas*<a data-toggle="tooltip" title="Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}. Validação: Deve existir na tabela S-1010 (em conjunto com {codRubr}) vigente no período indicado em {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1207_itens_form.idetabrubr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1207_itens_form.idetabrubr.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1207_itens_form.idetabrubr|addcss:'form-control' }}</div></div></div><!-- fim__s1207_itens__idetabrubr --><!-- inicio__s1207_itens__vrrubr --><div class="col-md-6" id="s1207_itens__vrrubr__div"><div class="form-group"><label id="s1207_itens__vrrubr__label">Valor total*<a data-toggle="tooltip" title="Valor total da rubrica. Validação: Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1207_itens_form.vrrubr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1207_itens_form.vrrubr.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ s1207_itens_form.vrrubr|addcss:'form-control automate-money' }}</div></div></div><!-- fim__s1207_itens__vrrubr -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1207_itens__s1207_dmdev -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_s1207_dmdev').change(function(){
+       document.getElementById("s1207_itens__s1207_dmdev__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="s1207_itens__s1207_dmdev__div">
+  <div class="form-group">
+    <label id="s1207_itens__s1207_dmdev__label">Detalhamento dos valores devidos ao beneficiário*</label>
+    {% if not for_print %}
+      {% if s1207_itens_form.s1207_dmdev.value %}
+        <a id="s1207_itens__s1207_dmdev__div_acessar" href="{% url 's1207_dmdev_salvar' hash='{}'|json_id:s1207_itens_form.s1207_dmdev.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if s1207_itens_form.s1207_dmdev.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1207_itens_form.s1207_dmdev.errors }}
+      </div>
+    {% endif %}
+    {% if s1207_itens_form.s1207_dmdev.field.widget.attrs.readonly %}
+      {% if s1207_itens_form.s1207_dmdev.field.widget.attrs.disabled %}
+        {{ s1207_itens_form.s1207_dmdev|addcss:'form-control' }}
+        <input id="id_s1207_dmdev" name="s1207_dmdev" type="hidden" value="{% if s1207_itens_form.s1207_dmdev.value or s1207_itens_form.s1207_dmdev.value == 0 %}{{ s1207_itens_form.s1207_dmdev.value|valor }}{% endif %}">
+      {% else %}
+        {{ s1207_itens_form.s1207_dmdev|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s1207_itens_form.s1207_dmdev|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s1207_itens__s1207_dmdev -->
+<!-- inicio__s1207_itens__codrubr -->
+<div class="col-md-3" id="s1207_itens__codrubr__div">
+  <div class="form-group">
+    <label id="s1207_itens__codrubr__label">Código da Rubrica*</label>
+      {% if s1207_itens_form.codrubr.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1207_itens_form.codrubr.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1207_itens_form.codrubr|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1207_itens__codrubr -->
+<!-- inicio__s1207_itens__idetabrubr -->
+<div class="col-md-3" id="s1207_itens__idetabrubr__div">
+  <div class="form-group">
+    <label id="s1207_itens__idetabrubr__label">Identificador tabela de rubricas*</label>
+      {% if s1207_itens_form.idetabrubr.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1207_itens_form.idetabrubr.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1207_itens_form.idetabrubr|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1207_itens__idetabrubr -->
+<!-- inicio__s1207_itens__vrrubr -->
+<div class="col-md-3" id="s1207_itens__vrrubr__div">
+  <div class="form-group">
+    <label id="s1207_itens__vrrubr__label">Valor total*</label>
+    {% if s1207_itens_form.vrrubr.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s1207_itens_form.vrrubr.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ s1207_itens_form.vrrubr|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1207_itens__vrrubr -->

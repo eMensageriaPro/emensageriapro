@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Condições do ambiente de trabalho insalubre/periculoso - Início"
-{% if show_fields.show_s2241_evtinsapo or not s2241_evtinsapo_id and 1 %}"Insalubridade, periculosidade e aposentadoria especial";{% endif %}{% if show_fields.show_dtinicondicao or 1 %}"Data de início da condição";{% endif %}
-{% for a in s2241_iniinsalperic_lista %}{% if show_fields.show_s2241_evtinsapo or  not s2241_evtinsapo_id and 1 %}"{{ a.s2241_evtinsapo }}";{% endif %}{% if show_fields.show_dtinicondicao or 1 %}"{{ a.dtinicondicao|date:"d/m/Y" }}";{% endif %}
-{% endfor %}

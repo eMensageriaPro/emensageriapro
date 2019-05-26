@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2300_infocomplementares or 1 %}"Registro que apresenta o cargo e/ou função ocupada pelo trabalhador sem vínculo";{% endif %}{% if show_fields.show_codcargo or 1 %}"Código do Cargo";{% endif %}{% if show_fields.show_codfuncao or 1 %}"Código da Função";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2300_infocomplementares or 1 %}"{{ c.s2300_infocomplementares }}";{% endif %}{% if show_fields.show_codcargo or 1 %}"{{ c.codcargo }}";{% endif %}{% if show_fields.show_codfuncao or 1 %}"{{ c.codfuncao }}";{% endif %}
+{% endfor %}

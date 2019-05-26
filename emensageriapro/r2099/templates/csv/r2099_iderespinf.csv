@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r2099_evtfechaevper or 1 %}"Responsável pelas informações";{% endif %}{% if show_fields.show_nmresp or 1 %}"Nome do responsável pelas informações.";{% endif %}{% if show_fields.show_cpfresp or 1 %}"Preencher com o CPF do responsável";{% endif %}{% if show_fields.show_telefone or 1 %}"Informar o número do telefone, com DDD";{% endif %}{% if show_fields.show_email or 1 %}"Endereço eletrônico";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r2099_evtfechaevper or 1 %}"{{ c.r2099_evtfechaevper }}";{% endif %}{% if show_fields.show_nmresp or 1 %}"{{ c.nmresp }}";{% endif %}{% if show_fields.show_cpfresp or 1 %}"{{ c.cpfresp }}";{% endif %}{% if show_fields.show_telefone or 1 %}"{{ c.telefone }}";{% endif %}{% if show_fields.show_email or 1 %}"{{ c.email }}";{% endif %}
+{% endfor %}

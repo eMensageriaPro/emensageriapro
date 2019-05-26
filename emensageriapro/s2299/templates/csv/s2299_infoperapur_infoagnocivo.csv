@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2299_infoperapur_ideestablot or 1 %}"Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.";{% endif %}{% if show_fields.show_grauexp or 1 %}"Código";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2299_infoperapur_ideestablot or 1 %}"{{ c.s2299_infoperapur_ideestablot }}";{% endif %}{% if show_fields.show_grauexp or 1 %}"{{ c.grauexp }}";{% endif %}
+{% endfor %}

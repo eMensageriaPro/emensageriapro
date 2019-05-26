@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF"
-{% if show_fields.show_s2299_dmdev or not s2299_dmdev_id and 1 %}"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF";{% endif %}
-{% for a in s2299_infoperapur_lista %}{% if show_fields.show_s2299_dmdev or  not s2299_dmdev_id and 1 %}"{{ a.s2299_dmdev }}";{% endif %}
-{% endfor %}

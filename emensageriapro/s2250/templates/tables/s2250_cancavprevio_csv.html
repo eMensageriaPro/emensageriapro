@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Cancelamento do Aviso Prévio"
-{% if show_fields.show_s2250_evtavprevio or not s2250_evtavprevio_id and 1 %}"Evento Aviso Prévio";{% endif %}{% if show_fields.show_dtcancavprv or 1 %}"Data de cancelamento do aviso prévio";{% endif %}{% if show_fields.show_observacao or 0 %}"Observações";{% endif %}{% if show_fields.show_mtvcancavprevio or 1 %}"Motivo do cancelamento do aviso prévio";{% endif %}
-{% for a in s2250_cancavprevio_lista %}{% if show_fields.show_s2250_evtavprevio or  not s2250_evtavprevio_id and 1 %}"{{ a.s2250_evtavprevio }}";{% endif %}{% if show_fields.show_dtcancavprv or 1 %}"{{ a.dtcancavprv|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_observacao or 0 %}"{{ a.observacao }}";{% endif %}{% if show_fields.show_mtvcancavprevio or 1 %}"{{ a.get_mtvcancavprevio_display }}";{% endif %}
-{% endfor %}

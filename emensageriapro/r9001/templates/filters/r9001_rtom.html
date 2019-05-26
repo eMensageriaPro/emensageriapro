@@ -1,0 +1,86 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9001_rtom__r9001_infototal -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</label>
+    <select name="r9001_infototal" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in r9001_infototal_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r9001_infototal' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r9001_rtom__r9001_infototal -->
+
+<!-- inicio__r9001_rtom__cnpjprestador -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Preencher com o CNPJ do Prestador de Serviços</label>
+    <div name="cnpjprestador" class="input-group" style="width: 100%;">
+      <input type="text" name="cnpjprestador" class="form-control" value="{{ dict_fields|get_value_from_dict:'cnpjprestador' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rtom__cnpjprestador -->
+
+<!-- inicio__r9001_rtom__cno -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Número de inscrição no Cadastro Nacional de Obras - CNO</label>
+    <div name="cno" class="input-group" style="width: 100%;">
+      <input type="text" name="cno" class="form-control" value="{{ dict_fields|get_value_from_dict:'cno' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rtom__cno -->
+
+<!-- inicio__r9001_rtom__vlrtotalbaseret -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrtotalbaseret" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrtotalbaseret' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rtom__vlrtotalbaseret -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r9001_infototal" value="1" {% if show_fields|get_value_from_dict:'show_r9001_infototal' %}checked{% endif %} >Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_cnpjprestador" value="1" {% if show_fields|get_value_from_dict:'show_cnpjprestador' %}checked{% endif %} >Preencher com o CNPJ do Prestador de Serviços
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_cno" value="0" {% if show_fields|get_value_from_dict:'show_cno' %}checked{% endif %} >Número de inscrição no Cadastro Nacional de Obras - CNO
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrtotalbaseret" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalbaseret' %}checked{% endif %} >Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante
+    </div>
+</div>
+
+

@@ -1,1 +1,125 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento Serviços Prestados - Cessão de Mão de Obra ou Empreitada</label><select name="r2020_evtservprest" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in r2020_evtservprest_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2020_evtservprest' %}selected="selected"{% endifequal %}>{{ a.evtservprest }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.perapur }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.idecontri }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.infoservprest }} - {{ a.ideestabprest }} - {{ a.tpinscestabprest }} - {{ a.nrinscestabprest }} - {{ a.idetomador }} - {{ a.tpinsctomador }} - {{ a.nrinsctomador }} - {{ a.indobra }} - {{ a.vlrtotalbruto }} - {{ a.vlrtotalbaseret }} - {{ a.vlrtotalretprinc }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS</label><div name="serie__icontains" class="input-group" style="width: 100%;"><input type="text" name="serie__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'serie__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.</label><div name="numdocto__icontains" class="input-group" style="width: 100%;"><input type="text" name="numdocto__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'numdocto__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtemissaonf__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtemissaonf__range' %}{{ dict_fields|get_value_from_dict:'dtemissaonf__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrbruto" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbruto' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Observações</label><div name="obs__icontains" class="input-group" style="width: 100%;"><input type="text" name="obs__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'obs__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_r2020_evtservprest" value="1" {% if show_fields|get_value_from_dict:'show_r2020_evtservprest' %}checked{% endif %}>Evento Serviços Prestados - Cessão de Mão de Obra ou Empreitada</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_serie" value="1" {% if show_fields|get_value_from_dict:'show_serie' %}checked{% endif %}>Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_numdocto" value="1" {% if show_fields|get_value_from_dict:'show_numdocto' %}checked{% endif %}>Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtemissaonf" value="1" {% if show_fields|get_value_from_dict:'show_dtemissaonf' %}checked{% endif %}>Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrbruto" value="1" {% if show_fields|get_value_from_dict:'show_vlrbruto' %}checked{% endif %}>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_obs" value="1" {% if show_fields|get_value_from_dict:'show_obs' %}checked{% endif %}>Observações</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r2020_nfs__r2020_evtservprest -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior</label>
+    <select name="r2020_evtservprest" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r2020_evtservprest_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2020_evtservprest' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r2020_nfs__r2020_evtservprest -->
+
+<!-- inicio__r2020_nfs__serie -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS</label>
+    <div name="serie" class="input-group" style="width: 100%;">
+      <input type="text" name="serie" class="form-control" value="{{ dict_fields|get_value_from_dict:'serie' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2020_nfs__serie -->
+
+<!-- inicio__r2020_nfs__numdocto -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.</label>
+    <div name="numdocto" class="input-group" style="width: 100%;">
+      <input type="text" name="numdocto" class="form-control" value="{{ dict_fields|get_value_from_dict:'numdocto' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2020_nfs__numdocto -->
+
+<!-- inicio__r2020_nfs__dtemissaonf -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtemissaonf" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtemissaonf' %}{{ dict_fields|get_value_from_dict:'dtemissaonf' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2020_nfs__dtemissaonf -->
+
+<!-- inicio__r2020_nfs__vlrbruto -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbruto" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbruto' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2020_nfs__vlrbruto -->
+
+<!-- inicio__r2020_nfs__obs -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Observações</label>
+    <div name="obs" class="input-group" style="width: 100%;">
+      <input type="text" name="obs" class="form-control" value="{{ dict_fields|get_value_from_dict:'obs' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2020_nfs__obs -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r2020_evtservprest" value="1" {% if show_fields|get_value_from_dict:'show_r2020_evtservprest' %}checked{% endif %} >Detalhamento das notas fiscais de serviços prestados pela empresa identificada no registro superior
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_serie" value="1" {% if show_fields|get_value_from_dict:'show_serie' %}checked{% endif %} >Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_numdocto" value="1" {% if show_fields|get_value_from_dict:'show_numdocto' %}checked{% endif %} >Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtemissaonf" value="1" {% if show_fields|get_value_from_dict:'show_dtemissaonf' %}checked{% endif %} >Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbruto" value="1" {% if show_fields|get_value_from_dict:'show_vlrbruto' %}checked{% endif %} >Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_obs" value="0" {% if show_fields|get_value_from_dict:'show_obs' %}checked{% endif %} >Observações
+    </div>
+</div>
+
+

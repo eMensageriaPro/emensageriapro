@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Rendimentos Isentos/Não Tributáveis"
-{% if show_fields.show_r2070_pgtopf or not r2070_pgtopf_id and 1 %}"Beneficiário Pessoa Física - Residente no Brasil";{% endif %}{% if show_fields.show_tpisencao or 1 %}"Tipo de Isenção";{% endif %}{% if show_fields.show_vlrisento or 1 %}"Valor da Parcela Isenta";{% endif %}{% if show_fields.show_descrendimento or 0 %}"Descrição do rendimento isento/Não tributável";{% endif %}
-{% for a in r2070_rendisento_lista %}{% if show_fields.show_r2070_pgtopf or  not r2070_pgtopf_id and 1 %}"{{ a.r2070_pgtopf }}";{% endif %}{% if show_fields.show_tpisencao or 1 %}"{{ a.get_tpisencao_display }}";{% endif %}{% if show_fields.show_vlrisento or 1 %}"{{ a.vlrisento }}";{% endif %}{% if show_fields.show_descrendimento or 0 %}"{{ a.descrendimento }}";{% endif %}
-{% endfor %}

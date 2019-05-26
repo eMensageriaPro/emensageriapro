@@ -1,0 +1,148 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9002_totapurdia__r9002_infototal -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário</label>
+    <select name="r9002_infototal" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r9002_infototal_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r9002_infototal' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r9002_totapurdia__r9002_infototal -->
+
+<!-- inicio__r9002_totapurdia__perapurdia -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Período de apuração diário do Código de Receita - CR</label>
+    <div name="perapurdia" class="input-group" style="width: 100%;">
+      <input type="text" name="perapurdia" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'perapurdia' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurdia__perapurdia -->
+
+<!-- inicio__r9002_totapurdia__crdia -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código de Receita - CR relativo a tributo que possui período de apuração diário</label>
+    <div name="crdia" class="input-group" style="width: 100%;">
+      <input type="text" name="crdia" class="form-control" value="{{ dict_fields|get_value_from_dict:'crdia' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurdia__crdia -->
+
+<!-- inicio__r9002_totapurdia__vlrbasecrdia -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da base do tributo com período de apuração diário</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbasecrdia" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbasecrdia' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurdia__vlrbasecrdia -->
+
+<!-- inicio__r9002_totapurdia__vlrcrdia -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcrdia" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcrdia' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurdia__vlrcrdia -->
+
+<!-- inicio__r9002_totapurdia__vlrbasecrdiasusp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da base do tributo com período de apuração diário, com exigibilidade suspensa</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbasecrdiasusp" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbasecrdiasusp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurdia__vlrbasecrdiasusp -->
+
+<!-- inicio__r9002_totapurdia__vlrcrdiasusp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor do tributo com período de apuração diário, que deixou de ser retido</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcrdiasusp" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcrdiasusp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurdia__vlrcrdiasusp -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r9002_infototal" value="1" {% if show_fields|get_value_from_dict:'show_r9002_infototal' %}checked{% endif %} >Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_perapurdia" value="1" {% if show_fields|get_value_from_dict:'show_perapurdia' %}checked{% endif %} >Período de apuração diário do Código de Receita - CR
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_crdia" value="1" {% if show_fields|get_value_from_dict:'show_crdia' %}checked{% endif %} >Código de Receita - CR relativo a tributo que possui período de apuração diário
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbasecrdia" value="1" {% if show_fields|get_value_from_dict:'show_vlrbasecrdia' %}checked{% endif %} >Valor da base do tributo com período de apuração diário
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcrdia" value="1" {% if show_fields|get_value_from_dict:'show_vlrcrdia' %}checked{% endif %} >Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbasecrdiasusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrbasecrdiasusp' %}checked{% endif %} >Valor da base do tributo com período de apuração diário, com exigibilidade suspensa
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcrdiasusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrcrdiasusp' %}checked{% endif %} >Valor do tributo com período de apuração diário, que deixou de ser retido
+    </div>
+</div>
+
+

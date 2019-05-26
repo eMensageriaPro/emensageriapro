@@ -118,7 +118,7 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtPgtosDivs</td>
-            <td bgcolor="lightgray" colspan="3">Evento Pagamentos ou Créditos Efetuados - Retenções na Fonte de IR, CSLL, Cofins e PIS/PASEP. Regras de validação: REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_PAGTO_COMPATIB_CODPAGTO_BENEFIC REGRA_PAGTO_CONTROLE_DUPLICIDADE REGRA_PAGTO_IND_RETIFICACAO REGRA_VALIDA_ID_EVENTO</td>
+            <td bgcolor="lightgray" colspan="3">Evento Pagamentos ou Créditos Efetuados - Retenções na Fonte de IR, CSLL, Cofins e PIS/PASEP. <regras_validacao> REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_PAGTO_COMPATIB_CODPAGTO_BENEFIC REGRA_PAGTO_CONTROLE_DUPLICIDADE REGRA_PAGTO_IND_RETIFICACAO REGRA_VALIDA_ID_EVENTO</td>
         </tr>
     {% for r2070_evtpgtosdivs in r2070_evtpgtosdivs_lista %}
     {% ifequal 1 1 %}
@@ -129,8 +129,8 @@
 
         <tr {% if r2070_evtpgtosdivs.indretif|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.indretif" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indRetif</td>
-            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if r2070_evtpgtosdivs.indretif or r2070_evtpgtosdivs.indretif == 0 %}{{ r2070_evtpgtosdivs.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.indretif or r2070_evtpgtosdivs.indretif == 0 %}{{ r2070_evtpgtosdivs.indretif }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -148,7 +148,7 @@
 
         <tr {% if r2070_evtpgtosdivs.nrrecibo|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação.</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação.</td>
             <td width="200px"><b>{% if r2070_evtpgtosdivs.nrrecibo or r2070_evtpgtosdivs.nrrecibo == 0 %}{{ r2070_evtpgtosdivs.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -167,7 +167,7 @@
 
         <tr {% if r2070_evtpgtosdivs.perapur|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.perapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perApur</td>
-            <td width="500px">Informar o ano/mês de referência das informações no formato AAAA-MM. Validação: Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente.</td>
+            <td width="500px">Informar o ano/mês de referência das informações no formato AAAA-MM. <validacao> Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente.</td>
             <td width="200px"><b>{% if r2070_evtpgtosdivs.perapur or r2070_evtpgtosdivs.perapur == 0 %}{{ r2070_evtpgtosdivs.perapur }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -186,8 +186,8 @@
 
         <tr {% if r2070_evtpgtosdivs.tpamb|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita; Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if r2070_evtpgtosdivs.tpamb or r2070_evtpgtosdivs.tpamb == 0 %}{{ r2070_evtpgtosdivs.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.tpamb or r2070_evtpgtosdivs.tpamb == 0 %}{{ r2070_evtpgtosdivs.tpamb }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -205,8 +205,8 @@
 
         <tr {% if r2070_evtpgtosdivs.procemi|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if r2070_evtpgtosdivs.procemi or r2070_evtpgtosdivs.procemi == 0 %}{{ r2070_evtpgtosdivs.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.procemi or r2070_evtpgtosdivs.procemi == 0 %}{{ r2070_evtpgtosdivs.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -248,8 +248,8 @@
 
         <tr {% if r2070_evtpgtosdivs.tpinsc|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2</td>
-            <td width="200px"><b>{% if r2070_evtpgtosdivs.tpinsc or r2070_evtpgtosdivs.tpinsc == 0 %}{{ r2070_evtpgtosdivs.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF) <valores_validos> 1, 2</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.tpinsc or r2070_evtpgtosdivs.tpinsc == 0 %}{{ r2070_evtpgtosdivs.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -267,7 +267,7 @@
 
         <tr {% if r2070_evtpgtosdivs.nrinsc|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r2070_evtpgtosdivs.nrinsc or r2070_evtpgtosdivs.nrinsc == 0 %}{{ r2070_evtpgtosdivs.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -291,8 +291,8 @@
 
         <tr {% if r2070_evtpgtosdivs.codpgto|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.codpgto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codPgto</td>
-            <td width="500px">Preencher com o código do pagamento conforme tabela 01 - Códigos de Pagamentos Validação: Deve ser um código válido, existente na tabela 01</td>
-            <td width="200px"><b>{% if r2070_evtpgtosdivs.codpgto or r2070_evtpgtosdivs.codpgto == 0 %}{{ r2070_evtpgtosdivs.codpgto|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código do pagamento conforme tabela 1 - Códigos de Pagamentos <validacao> Deve ser um código válido, existente na tabela 1</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.codpgto or r2070_evtpgtosdivs.codpgto == 0 %}{{ r2070_evtpgtosdivs.codpgto }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -310,8 +310,8 @@
 
         <tr {% if r2070_evtpgtosdivs.tpinscbenef|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.tpinscbenef" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInscBenef</td>
-            <td width="500px">Tipo de Beneficiário: 1 - Pessoa Jurídica; 2 - Pessoa Física. Validação: O preenchimento é obrigatório exceto nos casos em que {codPgto} seja relativo a rendimento pago a residente ou domiciliado no exterior. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if r2070_evtpgtosdivs.tpinscbenef or r2070_evtpgtosdivs.tpinscbenef == 0 %}{{ r2070_evtpgtosdivs.tpinscbenef|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de Beneficiário<opcoes>1 - Pessoa Jurídica; 2 - Pessoa Física. <validacao> O preenchimento é obrigatório exceto nos casos em que {codPgto} seja relativo a rendimento pago a residente ou domiciliado no exterior. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r2070_evtpgtosdivs.tpinscbenef or r2070_evtpgtosdivs.tpinscbenef == 0 %}{{ r2070_evtpgtosdivs.tpinscbenef }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -329,7 +329,7 @@
 
         <tr {% if r2070_evtpgtosdivs.nrinscbenef|validacoes_esocial_efdreinf:"r2070_evtpgtosdivs.nrinscbenef" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInscBenef</td>
-            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Beneficiário do pagamento, de acordo com {tpInscBenef}. Validação: O preenchimento é obrigatório exceto nos casos em que o {codPgto} seja relativo a rendimento pago a residente ou domiciliado no exterior. Se informado, deve ser um CNPJ ou CPF válido, de acordo com{tpInscBenef}.</td>
+            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Beneficiário do pagamento, de acordo com {tpInscBenef}. <validacao> O preenchimento é obrigatório exceto nos casos em que o {codPgto} seja relativo a rendimento pago a residente ou domiciliado no exterior. Se informado, deve ser um CNPJ ou CPF válido, de acordo com{tpInscBenef}.</td>
             <td width="200px"><b>{% if r2070_evtpgtosdivs.nrinscbenef or r2070_evtpgtosdivs.nrinscbenef == 0 %}{{ r2070_evtpgtosdivs.nrinscbenef }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -378,7 +378,7 @@
 
         <tr {% if r2070_inforesidext.paisresid|validacoes_esocial_efdreinf:"r2070_inforesidext.paisresid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">paisResid</td>
-            <td width="500px">Preencher com o código do país de residência fiscal, conforme tabela 7. Validação: Deve ser um código existente na tabela</td>
+            <td width="500px">Preencher com o código do país de residência fiscal, conforme tabela 7. <validacao> Deve ser um código existente na tabela</td>
             <td width="200px"><b>{% if r2070_inforesidext.paisresid or r2070_inforesidext.paisresid == 0 %}{{ r2070_inforesidext.paisresid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -516,8 +516,8 @@
 
         <tr {% if r2070_inforesidext.indnif|validacoes_esocial_efdreinf:"r2070_inforesidext.indnif" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indNIF</td>
-            <td width="500px">Indicativo do Número de Identificação Fiscal: 1 - Beneficiário com NIF; 2 - Beneficiário dispensado do NIF; 3 - País não exige NIF. Valores Válidos: 1, 2, 3.</td>
-            <td width="200px"><b>{% if r2070_inforesidext.indnif or r2070_inforesidext.indnif == 0 %}{{ r2070_inforesidext.indnif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo do Número de Identificação Fiscal<opcoes>1 - Beneficiário com NIF; 2 - Beneficiário dispensado do NIF; 3 - País não exige NIF. <valores_validos> 1, 2, 3.</td>
+            <td width="200px"><b>{% if r2070_inforesidext.indnif or r2070_inforesidext.indnif == 0 %}{{ r2070_inforesidext.indnif }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -535,7 +535,7 @@
 
         <tr {% if r2070_inforesidext.nifbenef|validacoes_esocial_efdreinf:"r2070_inforesidext.nifbenef" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nifBenef</td>
-            <td width="500px">Número de Identificação Fiscal - NIF Validação: Obrigatório se {indNIF} = [1]</td>
+            <td width="500px">Número de Identificação Fiscal - NIF <validacao> Obrigatório se {indNIF} = [1]</td>
             <td width="200px"><b>{% if r2070_inforesidext.nifbenef or r2070_inforesidext.nifbenef == 0 %}{{ r2070_inforesidext.nifbenef }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -554,7 +554,7 @@
 
         <tr {% if r2070_inforesidext.relfontepagad|validacoes_esocial_efdreinf:"r2070_inforesidext.relfontepagad" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">relFontePagad</td>
-            <td width="500px">Relação fonte pagadora pessoa jurídica e beneficiário pessoa jurídica, conforme Tabela 05 - Informações sobre os Beneficiários dos Rendimentos Validação: Informação obrigatória se {ideBenef/tpInsc} = [1]. Não informar nos demais casos. O código informado deve existir na tabela 05.</td>
+            <td width="500px">Relação fonte pagadora pessoa jurídica e beneficiário pessoa jurídica, conforme tabela 5 - Informações sobre os Beneficiários dos Rendimentos <validacao> Informação obrigatória se {ideBenef/tpInsc} = [1]. Não informar nos demais casos. O código informado deve existir na tabela 5.</td>
             <td width="200px"><b>{% if r2070_inforesidext.relfontepagad or r2070_inforesidext.relfontepagad == 0 %}{{ r2070_inforesidext.relfontepagad }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -579,7 +579,7 @@
     {% ifequal r2070_infomolestia.r2070_evtpgtosdivs.id r2070_evtpgtosdivs.id %}
         <tr {% if r2070_infomolestia.dtlaudo|validacoes_esocial_efdreinf:"r2070_infomolestia.dtlaudo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtLaudo</td>
-            <td width="500px">Data atribuída pelo laudo da moléstia grave Validação: A data deve ser anterior ou igual ao período de apuração ao qual se refere o arquivo</td>
+            <td width="500px">Data atribuída pelo laudo da moléstia grave <validacao> A data deve ser anterior ou igual ao período de apuração ao qual se refere o arquivo</td>
             <td width="200px"><b>{% if r2070_infomolestia.dtlaudo or r2070_infomolestia.dtlaudo == 0 %}{{ r2070_infomolestia.dtlaudo|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -609,8 +609,8 @@
     {% ifequal r2070_ideestab.r2070_evtpgtosdivs.id r2070_evtpgtosdivs.id %}
         <tr {% if r2070_ideestab.tpinsc|validacoes_esocial_efdreinf:"r2070_ideestab.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) , [2] (CPF) ou [4] (CNO)</td>
-            <td width="200px"><b>{% if r2070_ideestab.tpinsc or r2070_ideestab.tpinsc == 0 %}{{ r2070_ideestab.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição <validacao> Deve ser igual a [1] (CNPJ) , [2] (CPF) ou [4] (CNO)</td>
+            <td width="200px"><b>{% if r2070_ideestab.tpinsc or r2070_ideestab.tpinsc == 0 %}{{ r2070_ideestab.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -628,7 +628,7 @@
 
         <tr {% if r2070_ideestab.nrinsc|validacoes_esocial_efdreinf:"r2070_ideestab.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido. Se {tpInsc} for igual a [4], deve ser um número de CNO válido</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido. Se {tpInsc} for igual a [4], deve ser um número de CNO válido</td>
             <td width="200px"><b>{% if r2070_ideestab.nrinsc or r2070_ideestab.nrinsc == 0 %}{{ r2070_ideestab.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -649,16 +649,17 @@
             <td bgcolor="lightgray" colspan="1" width="130px">pgtoResidBR</td>
             <td bgcolor="lightgray" colspan="3">Pagamento a Pessoa Física ou Jurídica residente ou domiciliada no Brasil</td>
         </tr>
-
+    {% for r2070_pgtoresidbr in r2070_pgtoresidbr_lista %}
+    {% ifequal r2070_pgtoresidbr.r2070_ideestab.id r2070_ideestab.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">pgtoPF</td>
             <td bgcolor="lightgray" colspan="3">Beneficiário Pessoa Física - Residente no Brasil</td>
         </tr>
     {% for r2070_pgtopf in r2070_pgtopf_lista %}
-    {% ifequal r2070_pgtopf.r2070_ideestab.id r2070_ideestab.id %}
+    {% ifequal r2070_pgtopf.r2070_pgtoresidbr.id r2070_pgtoresidbr.id %}
         <tr {% if r2070_pgtopf.dtpgto|validacoes_esocial_efdreinf:"r2070_pgtopf.dtpgto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtPgto</td>
-            <td width="500px">Informar a data de pagamento ou crédito, base para retenção. Validação: Deve estar compreendida no período de apuração ao qual se refere o arquivo</td>
+            <td width="500px">Informar a data de pagamento ou crédito, base para retenção. <validacao> Deve estar compreendida no período de apuração ao qual se refere o arquivo</td>
             <td width="200px"><b>{% if r2070_pgtopf.dtpgto or r2070_pgtopf.dtpgto == 0 %}{{ r2070_pgtopf.dtpgto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -677,7 +678,7 @@
 
         <tr {% if r2070_pgtopf.indsuspexig|validacoes_esocial_efdreinf:"r2070_pgtopf.indsuspexig" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indSuspExig</td>
-            <td width="500px">Indicativo de Exigibilidade Suspensa: S - Sim; N - Não. Validação: Vide regras na tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Tributação com Exigibilidade Suspensa. Valores Válidos: S, N.</td>
+            <td width="500px">Indicativo de Exigibilidade Suspensa<opcoes>S - Sim; N - Não. <validacao> Vide regras na tabela 2 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Tributação com Exigibilidade Suspensa. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if r2070_pgtopf.indsuspexig or r2070_pgtopf.indsuspexig == 0 %}{{ r2070_pgtopf.indsuspexig }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -696,7 +697,7 @@
 
         <tr {% if r2070_pgtopf.inddecterceiro|validacoes_esocial_efdreinf:"r2070_pgtopf.inddecterceiro" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indDecTerceiro</td>
-            <td width="500px">Indicativo de 13o Salário: S - Sim; N - Não. Validação: Vide regras na tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna 13o Salário. Valores Válidos: S, N.</td>
+            <td width="500px">Indicativo de 13o Salário<opcoes>S - Sim; N - Não. <validacao> Vide regras na tabela 2 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna 13o Salário. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if r2070_pgtopf.inddecterceiro or r2070_pgtopf.inddecterceiro == 0 %}{{ r2070_pgtopf.inddecterceiro }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -716,7 +717,7 @@
         <tr {% if r2070_pgtopf.vlrrendtributavel|validacoes_esocial_efdreinf:"r2070_pgtopf.vlrrendtributavel" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrRendTributavel</td>
             <td width="500px">Valor do rendimento tributável</td>
-            <td width="200px"><b>{% if r2070_pgtopf.vlrrendtributavel or r2070_pgtopf.vlrrendtributavel == 0 %}{{ r2070_pgtopf.vlrrendtributavel|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_pgtopf.vlrrendtributavel or r2070_pgtopf.vlrrendtributavel == 0 %}{{ r2070_pgtopf.vlrrendtributavel }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -735,7 +736,7 @@
         <tr {% if r2070_pgtopf.vlrirrf|validacoes_esocial_efdreinf:"r2070_pgtopf.vlrirrf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrIRRF</td>
             <td width="500px">Valor do Imposto Retido na Fonte.</td>
-            <td width="200px"><b>{% if r2070_pgtopf.vlrirrf or r2070_pgtopf.vlrirrf == 0 %}{{ r2070_pgtopf.vlrirrf|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_pgtopf.vlrirrf or r2070_pgtopf.vlrirrf == 0 %}{{ r2070_pgtopf.vlrirrf }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -759,8 +760,8 @@
     {% ifequal r2070_detdeducao.r2070_pgtopf.id r2070_pgtopf.id %}
         <tr {% if r2070_detdeducao.indtpdeducao|validacoes_esocial_efdreinf:"r2070_detdeducao.indtpdeducao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indTpDeducao</td>
-            <td width="500px">Indicativo do Tipo de Dedução: 1 - Previdência Oficial; 2 - Previdência Privada; 3 - Fapi; 4 - Funpresp; 5 - Pensão Alimentícia; 6 - Dependentes. Valores Válidos: 1, 2, 3, 4, 5, 6.</td>
-            <td width="200px"><b>{% if r2070_detdeducao.indtpdeducao or r2070_detdeducao.indtpdeducao == 0 %}{{ r2070_detdeducao.indtpdeducao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo do Tipo de Dedução<opcoes>1 - Previdência Oficial; 2 - Previdência Privada; 3 - Fapi; 4 - Funpresp; 5 - Pensão Alimentícia; 6 - Dependentes. <valores_validos> 1, 2, 3, 4, 5, 6.</td>
+            <td width="200px"><b>{% if r2070_detdeducao.indtpdeducao or r2070_detdeducao.indtpdeducao == 0 %}{{ r2070_detdeducao.indtpdeducao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -779,7 +780,7 @@
         <tr {% if r2070_detdeducao.vlrdeducao|validacoes_esocial_efdreinf:"r2070_detdeducao.vlrdeducao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrDeducao</td>
             <td width="500px">Preencher com o Valor da dedução da base de cálculo.</td>
-            <td width="200px"><b>{% if r2070_detdeducao.vlrdeducao or r2070_detdeducao.vlrdeducao == 0 %}{{ r2070_detdeducao.vlrdeducao|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_detdeducao.vlrdeducao or r2070_detdeducao.vlrdeducao == 0 %}{{ r2070_detdeducao.vlrdeducao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -803,8 +804,8 @@
     {% ifequal r2070_rendisento.r2070_pgtopf.id r2070_pgtopf.id %}
         <tr {% if r2070_rendisento.tpisencao|validacoes_esocial_efdreinf:"r2070_rendisento.tpisencao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpIsencao</td>
-            <td width="500px">Tipo de Isenção: 1 - Parcela Isenta 65 anos; 2 - Diária e Ajuda de Custo; 3 - Indenização e rescisão de contrato, inclusive a título de PDV; 4 - Abono pecuniário; 5 - Outros (especificar); 6 - Lucros e dividendos pagos a partir de 1996; 7 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis; 8 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço; 9 - Benefícios indiretos e/ou reembolso de despesas recebidas por voluntário da copa do mundo ou da copa das confederações; 10 - Bolsa de estudo recebida por médico-residente; 11 - Complementação de aposentadoria, correspondente às contribuições efetuadas no período de 01/01/1989 a 31/12/1995. Validação: Vide regras na tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Rendimentos Isentos. Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11</td>
-            <td width="200px"><b>{% if r2070_rendisento.tpisencao or r2070_rendisento.tpisencao == 0 %}{{ r2070_rendisento.tpisencao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de Isenção<opcoes>1 - Parcela Isenta 65 anos; 2 - Diária e Ajuda de Custo; 3 - Indenização e rescisão de contrato, inclusive a título de PDV; 4 - Abono pecuniário; 5 - Outros (especificar); 6 - Lucros e dividendos pagos a partir de 1996; 7 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis; 8 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço; 9 - Benefícios indiretos e/ou reembolso de despesas recebidas por voluntário da copa do mundo ou da copa das confederações; 10 - Bolsa de estudo recebida por médico-residente; 11 - Complementação de aposentadoria, correspondente às contribuições efetuadas no período de 01/01/1989 a 31/12/1995. <validacao> Vide regras na tabela 2 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Rendimentos Isentos. <valores_validos> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11</td>
+            <td width="200px"><b>{% if r2070_rendisento.tpisencao or r2070_rendisento.tpisencao == 0 %}{{ r2070_rendisento.tpisencao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -823,7 +824,7 @@
         <tr {% if r2070_rendisento.vlrisento|validacoes_esocial_efdreinf:"r2070_rendisento.vlrisento" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrIsento</td>
             <td width="500px">Valor da Parcela Isenta</td>
-            <td width="200px"><b>{% if r2070_rendisento.vlrisento or r2070_rendisento.vlrisento == 0 %}{{ r2070_rendisento.vlrisento|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_rendisento.vlrisento or r2070_rendisento.vlrisento == 0 %}{{ r2070_rendisento.vlrisento }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -841,7 +842,7 @@
 
         <tr {% if r2070_rendisento.descrendimento|validacoes_esocial_efdreinf:"r2070_rendisento.descrendimento" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">descRendimento</td>
-            <td width="500px">Descrição do rendimento isento/Não tributável. Validação: O (se {tpIsencao} = [05]) N (nos demais casos).</td>
+            <td width="500px">Descrição do rendimento isento/Não tributável. <validacao> O (se {tpIsencao} = [05]) N (nos demais casos).</td>
             <td width="200px"><b>{% if r2070_rendisento.descrendimento or r2070_rendisento.descrendimento == 0 %}{{ r2070_rendisento.descrendimento }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -866,8 +867,8 @@
     {% ifequal r2070_detcompet.r2070_pgtopf.id r2070_pgtopf.id %}
         <tr {% if r2070_detcompet.indperreferencia|validacoes_esocial_efdreinf:"r2070_detcompet.indperreferencia" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indPerReferencia</td>
-            <td width="500px">Indicativo de período de referência: 1 - Folha de Pagamento Mensal 2 - Folha do Décimo Terceiro Salário Validação: Deve ser igual a [1] se {indDecTerceiro} = [N]. Deve ser igual a [2] se {indDecTerceiro} = [S]. Valores Válidos: 1,2</td>
-            <td width="200px"><b>{% if r2070_detcompet.indperreferencia or r2070_detcompet.indperreferencia == 0 %}{{ r2070_detcompet.indperreferencia|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo de período de referência<opcoes>1 - Folha de Pagamento Mensal; 2 - Folha do Décimo Terceiro Salário. <validacao> Deve ser igual a [1] se {indDecTerceiro} = [N]. Deve ser igual a [2] se {indDecTerceiro} = [S]. <valores_validos> 1,2</td>
+            <td width="200px"><b>{% if r2070_detcompet.indperreferencia or r2070_detcompet.indperreferencia == 0 %}{{ r2070_detcompet.indperreferencia }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -885,7 +886,7 @@
 
         <tr {% if r2070_detcompet.perrefpagto|validacoes_esocial_efdreinf:"r2070_detcompet.perrefpagto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perRefPagto</td>
-            <td width="500px">Informar o período ao qual se refere o pagamento do rendimento, no formato AAAA-MM, no caso de pagamento de folha mensal, ou AAAA, no caso específico do 13º salário. Validação: Deve estar no formato AAAA-MM se {indPerReferencia} = [1], ou no formato AAAA se {indPerReferencia} = [2].</td>
+            <td width="500px">Informar o período ao qual se refere o pagamento do rendimento, no formato AAAA-MM, no caso de pagamento de folha mensal, ou AAAA, no caso específico do 13º salário. <validacao> Deve estar no formato AAAA-MM se {indPerReferencia} = [1], ou no formato AAAA se {indPerReferencia} = [2].</td>
             <td width="200px"><b>{% if r2070_detcompet.perrefpagto or r2070_detcompet.perrefpagto == 0 %}{{ r2070_detcompet.perrefpagto }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -904,8 +905,8 @@
 
         <tr {% if r2070_detcompet.vlrrendtributavel|validacoes_esocial_efdreinf:"r2070_detcompet.vlrrendtributavel" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrRendTributavel</td>
-            <td width="500px">Valor do rendimento tributável relativo ao período de referência. Validação: A soma do campo nos registros deve ser igual ao {vlrRendTributavel} indicado no registro superior.</td>
-            <td width="200px"><b>{% if r2070_detcompet.vlrrendtributavel or r2070_detcompet.vlrrendtributavel == 0 %}{{ r2070_detcompet.vlrrendtributavel|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor do rendimento tributável relativo ao período de referência. <validacao> A soma do campo nos registros deve ser igual ao {vlrRendTributavel} indicado no registro superior.</td>
+            <td width="200px"><b>{% if r2070_detcompet.vlrrendtributavel or r2070_detcompet.vlrrendtributavel == 0 %}{{ r2070_detcompet.vlrrendtributavel }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -929,8 +930,8 @@
     {% ifequal r2070_compjud.r2070_pgtopf.id r2070_pgtopf.id %}
         <tr {% if r2070_compjud.vlrcompanocalend|validacoes_esocial_efdreinf:"r2070_compjud.vlrcompanocalend" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCompAnoCalend</td>
-            <td width="500px">Compensação Judicial relativa ao ano calendário. Validação: Deve estar de acordo com a Tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Compensação do Imposto por Decisão Judicial.</td>
-            <td width="200px"><b>{% if r2070_compjud.vlrcompanocalend or r2070_compjud.vlrcompanocalend == 0 %}{{ r2070_compjud.vlrcompanocalend|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Compensação Judicial relativa ao ano calendário. <validacao> Deve estar de acordo com a tabela 2 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Compensação do Imposto por Decisão Judicial.</td>
+            <td width="200px"><b>{% if r2070_compjud.vlrcompanocalend or r2070_compjud.vlrcompanocalend == 0 %}{{ r2070_compjud.vlrcompanocalend }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -948,8 +949,8 @@
 
         <tr {% if r2070_compjud.vlrcompanoant|validacoes_esocial_efdreinf:"r2070_compjud.vlrcompanoant" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCompAnoAnt</td>
-            <td width="500px">Compensação Judicial relativa a anos anteriores ao ano calendário. Validação: Deve estar de acordo com a Tabela 02 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Compensação do Imposto por Decisão Judicial.</td>
-            <td width="200px"><b>{% if r2070_compjud.vlrcompanoant or r2070_compjud.vlrcompanoant == 0 %}{{ r2070_compjud.vlrcompanoant|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Compensação Judicial relativa a anos anteriores ao ano calendário. <validacao> Deve estar de acordo com a tabela 2 - Regras para Utilização dos Códigos de Pagamentos a Pessoas Físicas, na coluna Compensação do Imposto por Decisão Judicial.</td>
+            <td width="200px"><b>{% if r2070_compjud.vlrcompanoant or r2070_compjud.vlrcompanoant == 0 %}{{ r2070_compjud.vlrcompanoant }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -973,8 +974,8 @@
     {% ifequal r2070_inforra.r2070_pgtopf.id r2070_pgtopf.id %}
         <tr {% if r2070_inforra.tpprocrra|validacoes_esocial_efdreinf:"r2070_inforra.tpprocrra" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpProcRRA</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if r2070_inforra.tpprocrra or r2070_inforra.tpprocrra == 0 %}{{ r2070_inforra.tpprocrra|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de processo<opcoes>1 - Administrativo; 2 - Judicial. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r2070_inforra.tpprocrra or r2070_inforra.tpprocrra == 0 %}{{ r2070_inforra.tpprocrra }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -992,7 +993,7 @@
 
         <tr {% if r2070_inforra.nrprocrra|validacoes_esocial_efdreinf:"r2070_inforra.nrprocrra" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcRRA</td>
-            <td width="500px">Informar o número do processo/requerimento administrativo/judicial Validação: Obrigatório se {tpProcRRA} = [1]. Deve existir na tabela de processos (R-1070).</td>
+            <td width="500px">Informar o número do processo/requerimento administrativo/judicial <validacao> Obrigatório se {tpProcRRA} = [1]. Deve existir na tabela de processos (R-1070).</td>
             <td width="200px"><b>{% if r2070_inforra.nrprocrra or r2070_inforra.nrprocrra == 0 %}{{ r2070_inforra.nrprocrra }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1011,8 +1012,8 @@
 
         <tr {% if r2070_inforra.codsusp|validacoes_esocial_efdreinf:"r2070_inforra.codsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codSusp</td>
-            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcRRA}.</td>
-            <td width="200px"><b>{% if r2070_inforra.codsusp or r2070_inforra.codsusp == 0 %}{{ r2070_inforra.codsusp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcRRA}.</td>
+            <td width="200px"><b>{% if r2070_inforra.codsusp or r2070_inforra.codsusp == 0 %}{{ r2070_inforra.codsusp }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1050,7 +1051,7 @@
         <tr {% if r2070_inforra.qtdmesesrra|validacoes_esocial_efdreinf:"r2070_inforra.qtdmesesrra" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtdMesesRRA</td>
             <td width="500px">Quantidade de meses</td>
-            <td width="200px"><b>{% if r2070_inforra.qtdmesesrra or r2070_inforra.qtdmesesrra == 0 %}{{ r2070_inforra.qtdmesesrra|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_inforra.qtdmesesrra or r2070_inforra.qtdmesesrra == 0 %}{{ r2070_inforra.qtdmesesrra }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1075,7 +1076,7 @@
         <tr {% if r2070_inforra_despprocjud.vlrdespcustas|validacoes_esocial_efdreinf:"r2070_inforra_despprocjud.vlrdespcustas" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrDespCustas</td>
             <td width="500px">Preencher com o Valor da despesa com custas judiciais</td>
-            <td width="200px"><b>{% if r2070_inforra_despprocjud.vlrdespcustas or r2070_inforra_despprocjud.vlrdespcustas == 0 %}{{ r2070_inforra_despprocjud.vlrdespcustas|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_inforra_despprocjud.vlrdespcustas or r2070_inforra_despprocjud.vlrdespcustas == 0 %}{{ r2070_inforra_despprocjud.vlrdespcustas }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1094,7 +1095,7 @@
         <tr {% if r2070_inforra_despprocjud.vlrdespadvogados|validacoes_esocial_efdreinf:"r2070_inforra_despprocjud.vlrdespadvogados" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrDespAdvogados</td>
             <td width="500px">Preencher com o Valor da despesa com advogado(s)</td>
-            <td width="200px"><b>{% if r2070_inforra_despprocjud.vlrdespadvogados or r2070_inforra_despprocjud.vlrdespadvogados == 0 %}{{ r2070_inforra_despprocjud.vlrdespadvogados|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_inforra_despprocjud.vlrdespadvogados or r2070_inforra_despprocjud.vlrdespadvogados == 0 %}{{ r2070_inforra_despprocjud.vlrdespadvogados }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1118,8 +1119,8 @@
     {% ifequal r2070_inforra_ideadvogado.r2070_inforra_despprocjud.id r2070_inforra_despprocjud.id %}
         <tr {% if r2070_inforra_ideadvogado.tpinscadvogado|validacoes_esocial_efdreinf:"r2070_inforra_ideadvogado.tpinscadvogado" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInscAdvogado</td>
-            <td width="500px">Tipo de Inscrição do Advogado 1 - Pessoa Jurídica 2 - Pessoa Física Validação: Deve ser igual a [1], caso o advogado seja Pessoa Jurídica, ou [2], caso o advogado seja Pessoa Física. Valores Válidos: 1,2</td>
-            <td width="200px"><b>{% if r2070_inforra_ideadvogado.tpinscadvogado or r2070_inforra_ideadvogado.tpinscadvogado == 0 %}{{ r2070_inforra_ideadvogado.tpinscadvogado|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de Inscrição do Advogado 1 - Pessoa Jurídica 2 - Pessoa Física <validacao> Deve ser igual a [1], caso o advogado seja Pessoa Jurídica, ou [2], caso o advogado seja Pessoa Física. <valores_validos> 1,2</td>
+            <td width="200px"><b>{% if r2070_inforra_ideadvogado.tpinscadvogado or r2070_inforra_ideadvogado.tpinscadvogado == 0 %}{{ r2070_inforra_ideadvogado.tpinscadvogado }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1137,7 +1138,7 @@
 
         <tr {% if r2070_inforra_ideadvogado.nrinscadvogado|validacoes_esocial_efdreinf:"r2070_inforra_ideadvogado.nrinscadvogado" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInscAdvogado</td>
-            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Advogado. Validação: Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscAdvogado}.</td>
+            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Advogado. <validacao> Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscAdvogado}.</td>
             <td width="200px"><b>{% if r2070_inforra_ideadvogado.nrinscadvogado or r2070_inforra_ideadvogado.nrinscadvogado == 0 %}{{ r2070_inforra_ideadvogado.nrinscadvogado }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1157,7 +1158,7 @@
         <tr {% if r2070_inforra_ideadvogado.vlradvogado|validacoes_esocial_efdreinf:"r2070_inforra_ideadvogado.vlradvogado" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrAdvogado</td>
             <td width="500px">Valor da despesa com o advogado</td>
-            <td width="200px"><b>{% if r2070_inforra_ideadvogado.vlradvogado or r2070_inforra_ideadvogado.vlradvogado == 0 %}{{ r2070_inforra_ideadvogado.vlradvogado|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_inforra_ideadvogado.vlradvogado or r2070_inforra_ideadvogado.vlradvogado == 0 %}{{ r2070_inforra_ideadvogado.vlradvogado }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1181,7 +1182,7 @@
     {% ifequal r2070_infoprocjud.r2070_pgtopf.id r2070_pgtopf.id %}
         <tr {% if r2070_infoprocjud.nrprocjud|validacoes_esocial_efdreinf:"r2070_infoprocjud.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Preencher com o número do processo judicial. Validação: Deve existir na tabela de processos.</td>
+            <td width="500px">Preencher com o número do processo judicial. <validacao> Deve existir na tabela de processos.</td>
             <td width="200px"><b>{% if r2070_infoprocjud.nrprocjud or r2070_infoprocjud.nrprocjud == 0 %}{{ r2070_infoprocjud.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1200,8 +1201,8 @@
 
         <tr {% if r2070_infoprocjud.codsusp|validacoes_esocial_efdreinf:"r2070_infoprocjud.codsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codSusp</td>
-            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcJud}.</td>
-            <td width="200px"><b>{% if r2070_infoprocjud.codsusp or r2070_infoprocjud.codsusp == 0 %}{{ r2070_infoprocjud.codsusp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcJud}.</td>
+            <td width="200px"><b>{% if r2070_infoprocjud.codsusp or r2070_infoprocjud.codsusp == 0 %}{{ r2070_infoprocjud.codsusp }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1219,8 +1220,8 @@
 
         <tr {% if r2070_infoprocjud.indorigemrecursos|validacoes_esocial_efdreinf:"r2070_infoprocjud.indorigemrecursos" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indOrigemRecursos</td>
-            <td width="500px">Indicativo da origem dos recursos: 1 - Recursos do próprio declarante 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if r2070_infoprocjud.indorigemrecursos or r2070_infoprocjud.indorigemrecursos == 0 %}{{ r2070_infoprocjud.indorigemrecursos|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo da origem dos recursos<opcoes>1 - Recursos do próprio declarante; 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r2070_infoprocjud.indorigemrecursos or r2070_infoprocjud.indorigemrecursos == 0 %}{{ r2070_infoprocjud.indorigemrecursos }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1245,7 +1246,7 @@
         <tr {% if r2070_infoprocjud_despprocjud.vlrdespcustas|validacoes_esocial_efdreinf:"r2070_infoprocjud_despprocjud.vlrdespcustas" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrDespCustas</td>
             <td width="500px">Preencher com o Valor da despesa com custas judiciais</td>
-            <td width="200px"><b>{% if r2070_infoprocjud_despprocjud.vlrdespcustas or r2070_infoprocjud_despprocjud.vlrdespcustas == 0 %}{{ r2070_infoprocjud_despprocjud.vlrdespcustas|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_infoprocjud_despprocjud.vlrdespcustas or r2070_infoprocjud_despprocjud.vlrdespcustas == 0 %}{{ r2070_infoprocjud_despprocjud.vlrdespcustas }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1263,8 +1264,8 @@
 
         <tr {% if r2070_infoprocjud_despprocjud.vlrdespadvogados|validacoes_esocial_efdreinf:"r2070_infoprocjud_despprocjud.vlrdespadvogados" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrDespAdvogados</td>
-            <td width="500px">Preencher com o Valor da despesa com advogado(s) Validação: Deve corresponder a soma do {vlrAdvogado} informado nos registros vinculados</td>
-            <td width="200px"><b>{% if r2070_infoprocjud_despprocjud.vlrdespadvogados or r2070_infoprocjud_despprocjud.vlrdespadvogados == 0 %}{{ r2070_infoprocjud_despprocjud.vlrdespadvogados|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o Valor da despesa com advogado(s) <validacao> Deve corresponder a soma do {vlrAdvogado} informado nos registros vinculados</td>
+            <td width="200px"><b>{% if r2070_infoprocjud_despprocjud.vlrdespadvogados or r2070_infoprocjud_despprocjud.vlrdespadvogados == 0 %}{{ r2070_infoprocjud_despprocjud.vlrdespadvogados }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1288,8 +1289,8 @@
     {% ifequal r2070_infoprocjud_ideadvogado.r2070_infoprocjud_despprocjud.id r2070_infoprocjud_despprocjud.id %}
         <tr {% if r2070_infoprocjud_ideadvogado.tpinscadvogado|validacoes_esocial_efdreinf:"r2070_infoprocjud_ideadvogado.tpinscadvogado" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInscAdvogado</td>
-            <td width="500px">Tipo de Inscrição do Advogado 1 - Pessoa Jurídica 2 - Pessoa Física Validação: Deve ser igual a [1], caso o advogado seja Pessoa Jurídica, ou [2], caso o advogado seja Pessoa Física. Valores Válidos: 1,2</td>
-            <td width="200px"><b>{% if r2070_infoprocjud_ideadvogado.tpinscadvogado or r2070_infoprocjud_ideadvogado.tpinscadvogado == 0 %}{{ r2070_infoprocjud_ideadvogado.tpinscadvogado|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de Inscrição do Advogado 1 - Pessoa Jurídica 2 - Pessoa Física <validacao> Deve ser igual a [1], caso o advogado seja Pessoa Jurídica, ou [2], caso o advogado seja Pessoa Física. <valores_validos> 1,2</td>
+            <td width="200px"><b>{% if r2070_infoprocjud_ideadvogado.tpinscadvogado or r2070_infoprocjud_ideadvogado.tpinscadvogado == 0 %}{{ r2070_infoprocjud_ideadvogado.tpinscadvogado }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1307,7 +1308,7 @@
 
         <tr {% if r2070_infoprocjud_ideadvogado.nrinscadvogado|validacoes_esocial_efdreinf:"r2070_infoprocjud_ideadvogado.nrinscadvogado" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInscAdvogado</td>
-            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Advogado. Validação: Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscAdvogado}.</td>
+            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Advogado. <validacao> Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscAdvogado}.</td>
             <td width="200px"><b>{% if r2070_infoprocjud_ideadvogado.nrinscadvogado or r2070_infoprocjud_ideadvogado.nrinscadvogado == 0 %}{{ r2070_infoprocjud_ideadvogado.nrinscadvogado }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1326,8 +1327,8 @@
 
         <tr {% if r2070_infoprocjud_ideadvogado.vlradvogado|validacoes_esocial_efdreinf:"r2070_infoprocjud_ideadvogado.vlradvogado" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrAdvogado</td>
-            <td width="500px">Valor da despesa com o advogado Validação: Deve ser maior que zero</td>
-            <td width="200px"><b>{% if r2070_infoprocjud_ideadvogado.vlradvogado or r2070_infoprocjud_ideadvogado.vlradvogado == 0 %}{{ r2070_infoprocjud_ideadvogado.vlradvogado|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor da despesa com o advogado <validacao> Deve ser maior que zero</td>
+            <td width="200px"><b>{% if r2070_infoprocjud_ideadvogado.vlradvogado or r2070_infoprocjud_ideadvogado.vlradvogado == 0 %}{{ r2070_infoprocjud_ideadvogado.vlradvogado }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1376,8 +1377,8 @@
     {% ifequal r2070_depjudicial.r2070_pgtopf.id r2070_pgtopf.id %}
         <tr {% if r2070_depjudicial.vlrdepjudicial|validacoes_esocial_efdreinf:"r2070_depjudicial.vlrdepjudicial" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrDepJudicial</td>
-            <td width="500px">Preencher com o Valor do Depósito Judicial Validação: Somente pode ser preenchido se {indSuspExig} = [S].</td>
-            <td width="200px"><b>{% if r2070_depjudicial.vlrdepjudicial or r2070_depjudicial.vlrdepjudicial == 0 %}{{ r2070_depjudicial.vlrdepjudicial|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o Valor do Depósito Judicial <validacao> Somente pode ser preenchido se {indSuspExig} = [S].</td>
+            <td width="200px"><b>{% if r2070_depjudicial.vlrdepjudicial or r2070_depjudicial.vlrdepjudicial == 0 %}{{ r2070_depjudicial.vlrdepjudicial }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1398,10 +1399,10 @@
             <td bgcolor="lightgray" colspan="3">Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil</td>
         </tr>
     {% for r2070_pgtopj in r2070_pgtopj_lista %}
-    {% ifequal r2070_pgtopj.r2070_ideestab.id r2070_ideestab.id %}
+    {% ifequal r2070_pgtopj.r2070_pgtoresidbr.id r2070_pgtoresidbr.id %}
         <tr {% if r2070_pgtopj.dtpagto|validacoes_esocial_efdreinf:"r2070_pgtopj.dtpagto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtPagto</td>
-            <td width="500px">Informar a data de pagamento ou crédito, base para retenção. Validação: Deve ser igual ou anterior à data atual e deve estar compreendida dentro do período de apuração.</td>
+            <td width="500px">Informar a data de pagamento ou crédito, base para retenção. <validacao> Deve ser igual ou anterior à data atual e deve estar compreendida dentro do período de apuração.</td>
             <td width="200px"><b>{% if r2070_pgtopj.dtpagto or r2070_pgtopj.dtpagto == 0 %}{{ r2070_pgtopj.dtpagto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1421,7 +1422,7 @@
         <tr {% if r2070_pgtopj.vlrrendtributavel|validacoes_esocial_efdreinf:"r2070_pgtopj.vlrrendtributavel" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrRendTributavel</td>
             <td width="500px">Valor do rendimento tributável</td>
-            <td width="200px"><b>{% if r2070_pgtopj.vlrrendtributavel or r2070_pgtopj.vlrrendtributavel == 0 %}{{ r2070_pgtopj.vlrrendtributavel|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_pgtopj.vlrrendtributavel or r2070_pgtopj.vlrrendtributavel == 0 %}{{ r2070_pgtopj.vlrrendtributavel }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1440,7 +1441,7 @@
         <tr {% if r2070_pgtopj.vlrret|validacoes_esocial_efdreinf:"r2070_pgtopj.vlrret" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrRet</td>
             <td width="500px">Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.</td>
-            <td width="200px"><b>{% if r2070_pgtopj.vlrret or r2070_pgtopj.vlrret == 0 %}{{ r2070_pgtopj.vlrret|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_pgtopj.vlrret or r2070_pgtopj.vlrret == 0 %}{{ r2070_pgtopj.vlrret }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1483,8 +1484,8 @@
 
         <tr {% if r2070_pgtopj_infoprocjud.codsusp|validacoes_esocial_efdreinf:"r2070_pgtopj_infoprocjud.codsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codSusp</td>
-            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcJud}.</td>
-            <td width="200px"><b>{% if r2070_pgtopj_infoprocjud.codsusp or r2070_pgtopj_infoprocjud.codsusp == 0 %}{{ r2070_pgtopj_infoprocjud.codsusp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. <validacao> Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProcJud}.</td>
+            <td width="200px"><b>{% if r2070_pgtopj_infoprocjud.codsusp or r2070_pgtopj_infoprocjud.codsusp == 0 %}{{ r2070_pgtopj_infoprocjud.codsusp }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1502,8 +1503,8 @@
 
         <tr {% if r2070_pgtopj_infoprocjud.indorigemrecursos|validacoes_esocial_efdreinf:"r2070_pgtopj_infoprocjud.indorigemrecursos" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indOrigemRecursos</td>
-            <td width="500px">Indicativo da origem dos recursos: 1 - Recursos do próprio declarante 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if r2070_pgtopj_infoprocjud.indorigemrecursos or r2070_pgtopj_infoprocjud.indorigemrecursos == 0 %}{{ r2070_pgtopj_infoprocjud.indorigemrecursos|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo da origem dos recursos<opcoes>1 - Recursos do próprio declarante; 2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r2070_pgtopj_infoprocjud.indorigemrecursos or r2070_pgtopj_infoprocjud.indorigemrecursos == 0 %}{{ r2070_pgtopj_infoprocjud.indorigemrecursos }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1528,7 +1529,7 @@
         <tr {% if r2070_pgtopj_despprocjud.vlrdespcustas|validacoes_esocial_efdreinf:"r2070_pgtopj_despprocjud.vlrdespcustas" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrDespCustas</td>
             <td width="500px">Preencher com o Valor da despesa com custas judiciais</td>
-            <td width="200px"><b>{% if r2070_pgtopj_despprocjud.vlrdespcustas or r2070_pgtopj_despprocjud.vlrdespcustas == 0 %}{{ r2070_pgtopj_despprocjud.vlrdespcustas|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_pgtopj_despprocjud.vlrdespcustas or r2070_pgtopj_despprocjud.vlrdespcustas == 0 %}{{ r2070_pgtopj_despprocjud.vlrdespcustas }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1547,7 +1548,7 @@
         <tr {% if r2070_pgtopj_despprocjud.vlrdespadvogados|validacoes_esocial_efdreinf:"r2070_pgtopj_despprocjud.vlrdespadvogados" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrDespAdvogados</td>
             <td width="500px">Preencher com o Valor da despesa com advogado(s)</td>
-            <td width="200px"><b>{% if r2070_pgtopj_despprocjud.vlrdespadvogados or r2070_pgtopj_despprocjud.vlrdespadvogados == 0 %}{{ r2070_pgtopj_despprocjud.vlrdespadvogados|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_pgtopj_despprocjud.vlrdespadvogados or r2070_pgtopj_despprocjud.vlrdespadvogados == 0 %}{{ r2070_pgtopj_despprocjud.vlrdespadvogados }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1571,8 +1572,8 @@
     {% ifequal r2070_pgtopj_ideadvogado.r2070_pgtopj_despprocjud.id r2070_pgtopj_despprocjud.id %}
         <tr {% if r2070_pgtopj_ideadvogado.tpinscadvogado|validacoes_esocial_efdreinf:"r2070_pgtopj_ideadvogado.tpinscadvogado" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInscAdvogado</td>
-            <td width="500px">Tipo de Inscrição do Advogado 1 - Pessoa Jurídica 2 - Pessoa Física Validação: Deve ser igual a [1], caso o advogado seja Pessoa Jurídica, ou [2], caso o advogado seja Pessoa Física. Valores Válidos: 1,2</td>
-            <td width="200px"><b>{% if r2070_pgtopj_ideadvogado.tpinscadvogado or r2070_pgtopj_ideadvogado.tpinscadvogado == 0 %}{{ r2070_pgtopj_ideadvogado.tpinscadvogado|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de Inscrição do Advogado 1 - Pessoa Jurídica 2 - Pessoa Física <validacao> Deve ser igual a [1], caso o advogado seja Pessoa Jurídica, ou [2], caso o advogado seja Pessoa Física. <valores_validos> 1,2</td>
+            <td width="200px"><b>{% if r2070_pgtopj_ideadvogado.tpinscadvogado or r2070_pgtopj_ideadvogado.tpinscadvogado == 0 %}{{ r2070_pgtopj_ideadvogado.tpinscadvogado }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1590,7 +1591,7 @@
 
         <tr {% if r2070_pgtopj_ideadvogado.nrinscadvogado|validacoes_esocial_efdreinf:"r2070_pgtopj_ideadvogado.nrinscadvogado" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInscAdvogado</td>
-            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Advogado. Validação: Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscAdvogado}.</td>
+            <td width="500px">Preencher com o número de inscrição (CNPJ/CPF) do Advogado. <validacao> Deve ser um CNPJ ou CPF válido, conforme indicado em {tpInscAdvogado}.</td>
             <td width="200px"><b>{% if r2070_pgtopj_ideadvogado.nrinscadvogado or r2070_pgtopj_ideadvogado.nrinscadvogado == 0 %}{{ r2070_pgtopj_ideadvogado.nrinscadvogado }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1610,7 +1611,7 @@
         <tr {% if r2070_pgtopj_ideadvogado.vlradvogado|validacoes_esocial_efdreinf:"r2070_pgtopj_ideadvogado.vlradvogado" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrAdvogado</td>
             <td width="500px">Valor da despesa com o advogado</td>
-            <td width="200px"><b>{% if r2070_pgtopj_ideadvogado.vlradvogado or r2070_pgtopj_ideadvogado.vlradvogado == 0 %}{{ r2070_pgtopj_ideadvogado.vlradvogado|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_pgtopj_ideadvogado.vlradvogado or r2070_pgtopj_ideadvogado.vlradvogado == 0 %}{{ r2070_pgtopj_ideadvogado.vlradvogado }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1650,7 +1651,7 @@
             </td>
             {% endif %}
         </tr>
-    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} 
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">pgtoResidExt</td>
             <td bgcolor="lightgray" colspan="3">Pagamento a não residente ou domiciliado no exterior</td>
@@ -1659,7 +1660,7 @@
     {% ifequal r2070_pgtoresidext.r2070_ideestab.id r2070_ideestab.id %}
         <tr {% if r2070_pgtoresidext.dtpagto|validacoes_esocial_efdreinf:"r2070_pgtoresidext.dtpagto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtPagto</td>
-            <td width="500px">Informar a data de pagamento. Validação: A data informada deve ser igual ou anterior à data atual e deve estar compreendida dentro do período de apuração.</td>
+            <td width="500px">Informar a data de pagamento. <validacao> A data informada deve ser igual ou anterior à data atual e deve estar compreendida dentro do período de apuração.</td>
             <td width="200px"><b>{% if r2070_pgtoresidext.dtpagto or r2070_pgtoresidext.dtpagto == 0 %}{{ r2070_pgtoresidext.dtpagto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1678,8 +1679,8 @@
 
         <tr {% if r2070_pgtoresidext.tprendimento|validacoes_esocial_efdreinf:"r2070_pgtoresidext.tprendimento" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpRendimento</td>
-            <td width="500px">Tipo de Rendimento, conforme tabela 03 - Rendimentos de Beneficiários no Exterior Validação: Deve ser um código existente na tabela 03.</td>
-            <td width="200px"><b>{% if r2070_pgtoresidext.tprendimento or r2070_pgtoresidext.tprendimento == 0 %}{{ r2070_pgtoresidext.tprendimento|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de Rendimento, conforme tabela 3 - Rendimentos de Beneficiários no Exterior <validacao> Deve ser um código existente na tabela 3.</td>
+            <td width="200px"><b>{% if r2070_pgtoresidext.tprendimento or r2070_pgtoresidext.tprendimento == 0 %}{{ r2070_pgtoresidext.tprendimento }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1697,7 +1698,7 @@
 
         <tr {% if r2070_pgtoresidext.formatributacao|validacoes_esocial_efdreinf:"r2070_pgtoresidext.formatributacao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">formaTributacao</td>
-            <td width="500px">Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 04 - Formas de Tributação para Rendimentos de Beneficiários no Exterior. Validação: Deve ser um código existente na tabela</td>
+            <td width="500px">Forma de tributação, conforme tabela de informações sobre os rendimentos constante na tabela 4 - Formas de Tributação para Rendimentos de Beneficiários no Exterior. <validacao> Deve ser um código existente na tabela</td>
             <td width="200px"><b>{% if r2070_pgtoresidext.formatributacao or r2070_pgtoresidext.formatributacao == 0 %}{{ r2070_pgtoresidext.formatributacao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1717,7 +1718,7 @@
         <tr {% if r2070_pgtoresidext.vlrpgto|validacoes_esocial_efdreinf:"r2070_pgtoresidext.vlrpgto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrPgto</td>
             <td width="500px">Valor pago</td>
-            <td width="200px"><b>{% if r2070_pgtoresidext.vlrpgto or r2070_pgtoresidext.vlrpgto == 0 %}{{ r2070_pgtoresidext.vlrpgto|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_pgtoresidext.vlrpgto or r2070_pgtoresidext.vlrpgto == 0 %}{{ r2070_pgtoresidext.vlrpgto }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1736,7 +1737,7 @@
         <tr {% if r2070_pgtoresidext.vlrret|validacoes_esocial_efdreinf:"r2070_pgtoresidext.vlrret" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrRet</td>
             <td width="500px">Preencher com o Valor da retenção na Fonte.</td>
-            <td width="200px"><b>{% if r2070_pgtoresidext.vlrret or r2070_pgtoresidext.vlrret == 0 %}{{ r2070_pgtoresidext.vlrret|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r2070_pgtoresidext.vlrret or r2070_pgtoresidext.vlrret == 0 %}{{ r2070_pgtoresidext.vlrret }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>

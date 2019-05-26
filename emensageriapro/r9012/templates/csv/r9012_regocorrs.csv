@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r9012_evtretcons or 1 %}"Informações de ocorrências registradas";{% endif %}{% if show_fields.show_tpocorr or 1 %}"Tipo da ocorrência";{% endif %}{% if show_fields.show_localerroaviso or 1 %}"Campo que originou o erro ou aviso";{% endif %}{% if show_fields.show_codresp or 1 %}"Código do status da resposta do processamento da consulta";{% endif %}{% if show_fields.show_dscresp or 1 %}"Descrição literal da resposta do processamento da consulta";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r9012_evtretcons or 1 %}"{{ c.r9012_evtretcons }}";{% endif %}{% if show_fields.show_tpocorr or 1 %}"{{ c.tpocorr }}";{% endif %}{% if show_fields.show_localerroaviso or 1 %}"{{ c.localerroaviso }}";{% endif %}{% if show_fields.show_codresp or 1 %}"{{ c.codresp }}";{% endif %}{% if show_fields.show_dscresp or 1 %}"{{ c.dscresp }}";{% endif %}
+{% endfor %}

@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s1070.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,195 +45,41 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S1070_ALTERACAO_INDAUTORIA = (
-    (1, u'1 - Próprio contribuinte'),
-    (2, u'2 - Outra entidade, empresa ou empregado'),
-)
 
-CHOICES_S1070_ALTERACAO_INDDEPOSITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1070_ALTERACAO_INDMATPROC = (
-    (1, u'1 - Tributária'),
-    (2, u'2 - Autorização de trabalho de menor'),
-    (3, u'3 - Dispensa, ainda que parcial, de contratação de pessoa com deficiência (PCD)'),
-    (4, u'4 - Dispensa, ainda que parcial, de contratação de aprendiz'),
-    (5, u'5 - Segurança e Saúde do Trabalho'),
-    (6, u'6 - Conversão de Licença Saúde em Acidente de Trabalho'),
-    (7, u'7 - FGTS'),
-    (8, u'8 - Contribuição sindical'),
-    (99, u'99 - Outros assuntos'),
-)
-
-CHOICES_S1070_ALTERACAO_INDSUSP = (
-    ('01', u'01 - Liminar em Mandado de Segurança'),
-    ('02', u'02 - Depósito Judicial do Montante Integral'),
-    ('03', u'03 - Depósito Administrativo do Montante Integral'),
-    ('04', u'04 - Antecipação de Tutela'),
-    ('05', u'05 - Liminar em Medida Cautelar'),
-    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
-    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
-    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
-    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
-    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
-    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
-    ('14', u'14 - Contestação Administrativa FAP'),
-    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
-    ('92', u'92 - Sem suspensão da exigibilidade'),
-)
-
-CHOICES_S1070_ALTERACAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-    (3, u'3 - Número de Benefício (NB) do INSS'),
-)
-
-CHOICES_S1070_EXCLUSAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-    (3, u'3 - Número de Benefício (NB) do INSS'),
-)
-
-CHOICES_S1070_INCLUSAO_INDAUTORIA = (
-    (1, u'1 - Próprio contribuinte'),
-    (2, u'2 - Outra entidade, empresa ou empregado'),
-)
-
-CHOICES_S1070_INCLUSAO_INDDEPOSITO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1070_INCLUSAO_INDMATPROC = (
-    (1, u'1 - Tributária'),
-    (2, u'2 - Autorização de trabalho de menor'),
-    (3, u'3 - Dispensa, ainda que parcial, de contratação de pessoa com deficiência (PCD)'),
-    (4, u'4 - Dispensa, ainda que parcial, de contratação de aprendiz'),
-    (5, u'5 - Segurança e Saúde do Trabalho'),
-    (6, u'6 - Conversão de Licença Saúde em Acidente de Trabalho'),
-    (7, u'7 - FGTS'),
-    (8, u'8 - Contribuição sindical'),
-    (99, u'99 - Outros assuntos'),
-)
-
-CHOICES_S1070_INCLUSAO_INDSUSP = (
-    ('01', u'01 - Liminar em Mandado de Segurança'),
-    ('02', u'02 - Depósito Judicial do Montante Integral'),
-    ('03', u'03 - Depósito Administrativo do Montante Integral'),
-    ('04', u'04 - Antecipação de Tutela'),
-    ('05', u'05 - Liminar em Medida Cautelar'),
-    ('08', u'08 - Sentença em Mandado de Segurança Favorável ao Contribuinte'),
-    ('09', u'09 - Sentença em Ação Ordinária Favorável ao Contribuinte e Confirmada pelo TRF'),
-    ('10', u'10 - Acórdão do TRF Favorável ao Contribuinte'),
-    ('11', u'11 - Acórdão do STJ em Recurso Especial Favorável ao Contribuinte'),
-    ('12', u'12 - Acórdão do STF em Recurso Extraordinário Favorável ao Contribuinte'),
-    ('13', u'13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo'),
-    ('14', u'14 - Contestação Administrativa FAP'),
-    ('90', u'90 - Decisão Definitiva a favor do contribuinte'),
-    ('92', u'92 - Sem suspensão da exigibilidade'),
-)
-
-CHOICES_S1070_INCLUSAO_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-    (3, u'3 - Número de Benefício (NB) do INSS'),
-)
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
-
-PERIODOS = (
-    ('2017-01', u'Janeiro/2017'),
-    ('2017-02', u'Fevereiro/2017'),
-    ('2017-03', u'Março/2017'),
-    ('2017-04', u'Abril/2017'),
-    ('2017-05', u'Maio/2017'),
-    ('2017-06', u'Junho/2017'),
-    ('2017-07', u'Julho/2017'),
-    ('2017-08', u'Agosto/2017'),
-    ('2017-09', u'Setembro/2017'),
-    ('2017-10', u'Outubro/2017'),
-    ('2017-11', u'Novembro/2017'),
-    ('2017-12', u'Dezembro/2017'),
-    ('2018-01', u'Janeiro/2018'),
-    ('2018-02', u'Fevereiro/2018'),
-    ('2018-03', u'Março/2018'),
-    ('2018-04', u'Abril/2018'),
-    ('2018-05', u'Maio/2018'),
-    ('2018-06', u'Junho/2018'),
-    ('2018-07', u'Julho/2018'),
-    ('2018-08', u'Agosto/2018'),
-    ('2018-09', u'Setembro/2018'),
-    ('2018-10', u'Outubro/2018'),
-    ('2018-11', u'Novembro/2018'),
-    ('2018-12', u'Dezembro/2018'),
-    ('2019-01', u'Janeiro/2019'),
-    ('2019-02', u'Fevereiro/2019'),
-    ('2019-03', u'Março/2019'),
-    ('2019-04', u'Abril/2019'),
-    ('2019-05', u'Maio/2019'),
-    ('2019-06', u'Junho/2019'),
-    ('2019-07', u'Julho/2019'),
-    ('2019-08', u'Agosto/2019'),
-    ('2019-09', u'Setembro/2019'),
-    ('2019-10', u'Outubro/2019'),
-    ('2019-11', u'Novembro/2019'),
-    ('2019-12', u'Dezembro/2019'),
-)
 
 class s1070alteracao(SoftDeletionModel):
-    s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
-        related_name='%(class)s_s1070_evttabprocesso')
-    def evento(self): return self.s1070_evttabprocesso.evento()
-    tpproc = models.IntegerField(choices=CHOICES_S1070_ALTERACAO_TPPROC)
-    nrproc = models.CharField(max_length=21)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    indautoria = models.IntegerField(choices=CHOICES_S1070_ALTERACAO_INDAUTORIA, blank=True, null=True)
-    indmatproc = models.IntegerField(choices=CHOICES_S1070_ALTERACAO_INDMATPROC)
-    observacao = models.CharField(max_length=255, blank=True, null=True)
+
+    s1070_evttabprocesso = models.ForeignKey('esocial.s1070evtTabProcesso', 
+        related_name='%(class)s_s1070_evttabprocesso', )
+    
+    def evento(self): 
+        return self.s1070_evttabprocesso.evento()
+    tpproc = models.IntegerField(choices=CHOICES_S1070_TPPROC_ALTERACAO, null=True, )
+    nrproc = models.CharField(max_length=21, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    indautoria = models.IntegerField(choices=CHOICES_S1070_INDAUTORIA_ALTERACAO, blank=True, null=True, )
+    indmatproc = models.IntegerField(choices=CHOICES_S1070_INDMATPROC_ALTERACAO, null=True, )
+    observacao = models.CharField(max_length=255, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -229,50 +87,71 @@ class s1070alteracao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.indmatproc)
-    #s1070_alteracao_custom#
-
+        
+        lista = [
+            unicode(self.s1070_evttabprocesso),
+            unicode(self.tpproc),
+            unicode(self.nrproc),
+            unicode(self.inivalid),
+            unicode(self.indmatproc),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Alteração das informações'
         db_table = r's1070_alteracao'       
         managed = True # s1070_alteracao #
-        unique_together = (
-            #custom_unique_together_s1070_alteracao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1070_alteracao
-            #index_together_s1070_alteracao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1070_alteracao", "Can view s1070_alteracao"),
-            #custom_permissions_s1070_alteracao
-        )
-        ordering = ['s1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'indmatproc']
+            ("can_view_s1070_alteracao", "Can view s1070_alteracao"), )
+            
+        ordering = [
+            's1070_evttabprocesso',
+            'tpproc',
+            'nrproc',
+            'inivalid',
+            'indmatproc',]
 
 
 
 class s1070alteracaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1070alteracao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1070alteracaodadosProcJud(SoftDeletionModel):
-    s1070_alteracao = models.OneToOneField('s1070alteracao',
-        related_name='%(class)s_s1070_alteracao')
-    def evento(self): return self.s1070_alteracao.evento()
-    ufvara = models.CharField(choices=ESTADOS, max_length=2)
-    codmunic = models.TextField(max_length=7)
-    idvara = models.IntegerField()
+
+    s1070_alteracao = models.ForeignKey('s1070.s1070alteracao', 
+        related_name='%(class)s_s1070_alteracao', )
+    
+    def evento(self): 
+        return self.s1070_alteracao.evento()
+    ufvara = models.CharField(choices=ESTADOS, max_length=2, null=True, )
+    codmunic = models.TextField(null=True, )
+    idvara = models.IntegerField(null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -280,51 +159,70 @@ class s1070alteracaodadosProcJud(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1070_alteracao) + ' - ' + unicode(self.ufvara) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.idvara)
-    #s1070_alteracao_dadosprocjud_custom#
-
+        
+        lista = [
+            unicode(self.s1070_alteracao),
+            unicode(self.ufvara),
+            unicode(self.codmunic),
+            unicode(self.idvara),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações Complementares do Processo Judicial'
         db_table = r's1070_alteracao_dadosprocjud'       
         managed = True # s1070_alteracao_dadosprocjud #
-        unique_together = (
-            #custom_unique_together_s1070_alteracao_dadosprocjud#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1070_alteracao_dadosprocjud
-            #index_together_s1070_alteracao_dadosprocjud
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1070_alteracao_dadosprocjud", "Can view s1070_alteracao_dadosprocjud"),
-            #custom_permissions_s1070_alteracao_dadosprocjud
-        )
-        ordering = ['s1070_alteracao', 'ufvara', 'codmunic', 'idvara']
+            ("can_view_s1070_alteracao_dadosprocjud", "Can view s1070_alteracao_dadosprocjud"), )
+            
+        ordering = [
+            's1070_alteracao',
+            'ufvara',
+            'codmunic',
+            'idvara',]
 
 
 
 class s1070alteracaodadosProcJudSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1070alteracaodadosProcJud
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1070alteracaoinfoSusp(SoftDeletionModel):
-    s1070_alteracao = models.ForeignKey('s1070alteracao',
-        related_name='%(class)s_s1070_alteracao')
-    def evento(self): return self.s1070_alteracao.evento()
-    codsusp = models.IntegerField()
-    indsusp = models.CharField(choices=CHOICES_S1070_ALTERACAO_INDSUSP, max_length=2)
-    dtdecisao = models.DateField()
-    inddeposito = models.CharField(choices=CHOICES_S1070_ALTERACAO_INDDEPOSITO, max_length=1)
+
+    s1070_alteracao = models.ForeignKey('s1070.s1070alteracao', 
+        related_name='%(class)s_s1070_alteracao', )
+    
+    def evento(self): 
+        return self.s1070_alteracao.evento()
+    codsusp = models.IntegerField(null=True, )
+    indsusp = models.CharField(choices=CHOICES_S1070_INDSUSP_ALTERACAO, max_length=2, null=True, )
+    dtdecisao = models.DateField(null=True, )
+    inddeposito = models.CharField(choices=CHOICES_S1070_INDDEPOSITO_ALTERACAO, max_length=1, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -332,49 +230,70 @@ class s1070alteracaoinfoSusp(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1070_alteracao) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
-    #s1070_alteracao_infosusp_custom#
-
+        
+        lista = [
+            unicode(self.s1070_alteracao),
+            unicode(self.codsusp),
+            unicode(self.indsusp),
+            unicode(self.dtdecisao),
+            unicode(self.inddeposito),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.'
         db_table = r's1070_alteracao_infosusp'       
         managed = True # s1070_alteracao_infosusp #
-        unique_together = (
-            #custom_unique_together_s1070_alteracao_infosusp#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1070_alteracao_infosusp
-            #index_together_s1070_alteracao_infosusp
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1070_alteracao_infosusp", "Can view s1070_alteracao_infosusp"),
-            #custom_permissions_s1070_alteracao_infosusp
-        )
-        ordering = ['s1070_alteracao', 'codsusp', 'indsusp', 'dtdecisao', 'inddeposito']
+            ("can_view_s1070_alteracao_infosusp", "Can view s1070_alteracao_infosusp"), )
+            
+        ordering = [
+            's1070_alteracao',
+            'codsusp',
+            'indsusp',
+            'dtdecisao',
+            'inddeposito',]
 
 
 
 class s1070alteracaoinfoSuspSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1070alteracaoinfoSusp
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1070alteracaonovaValidade(SoftDeletionModel):
-    s1070_alteracao = models.OneToOneField('s1070alteracao',
-        related_name='%(class)s_s1070_alteracao')
-    def evento(self): return self.s1070_alteracao.evento()
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+
+    s1070_alteracao = models.ForeignKey('s1070.s1070alteracao', 
+        related_name='%(class)s_s1070_alteracao', )
+    
+    def evento(self): 
+        return self.s1070_alteracao.evento()
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -382,51 +301,66 @@ class s1070alteracaonovaValidade(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1070_alteracao) + ' - ' + unicode(self.inivalid)
-    #s1070_alteracao_novavalidade_custom#
-
+        
+        lista = [
+            unicode(self.s1070_alteracao),
+            unicode(self.inivalid),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1070_alteracao_novavalidade'       
         managed = True # s1070_alteracao_novavalidade #
-        unique_together = (
-            #custom_unique_together_s1070_alteracao_novavalidade#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1070_alteracao_novavalidade
-            #index_together_s1070_alteracao_novavalidade
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1070_alteracao_novavalidade", "Can view s1070_alteracao_novavalidade"),
-            #custom_permissions_s1070_alteracao_novavalidade
-        )
-        ordering = ['s1070_alteracao', 'inivalid']
+            ("can_view_s1070_alteracao_novavalidade", "Can view s1070_alteracao_novavalidade"), )
+            
+        ordering = [
+            's1070_alteracao',
+            'inivalid',]
 
 
 
 class s1070alteracaonovaValidadeSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1070alteracaonovaValidade
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1070exclusao(SoftDeletionModel):
-    s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
-        related_name='%(class)s_s1070_evttabprocesso')
-    def evento(self): return self.s1070_evttabprocesso.evento()
-    tpproc = models.IntegerField(choices=CHOICES_S1070_EXCLUSAO_TPPROC)
-    nrproc = models.CharField(max_length=21)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+
+    s1070_evttabprocesso = models.ForeignKey('esocial.s1070evtTabProcesso', 
+        related_name='%(class)s_s1070_evttabprocesso', )
+    
+    def evento(self): 
+        return self.s1070_evttabprocesso.evento()
+    tpproc = models.IntegerField(choices=CHOICES_S1070_TPPROC_EXCLUSAO, null=True, )
+    nrproc = models.CharField(max_length=21, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -434,54 +368,73 @@ class s1070exclusao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid)
-    #s1070_exclusao_custom#
-
+        
+        lista = [
+            unicode(self.s1070_evttabprocesso),
+            unicode(self.tpproc),
+            unicode(self.nrproc),
+            unicode(self.inivalid),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Exclusão das informações'
         db_table = r's1070_exclusao'       
         managed = True # s1070_exclusao #
-        unique_together = (
-            #custom_unique_together_s1070_exclusao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1070_exclusao
-            #index_together_s1070_exclusao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1070_exclusao", "Can view s1070_exclusao"),
-            #custom_permissions_s1070_exclusao
-        )
-        ordering = ['s1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid']
+            ("can_view_s1070_exclusao", "Can view s1070_exclusao"), )
+            
+        ordering = [
+            's1070_evttabprocesso',
+            'tpproc',
+            'nrproc',
+            'inivalid',]
 
 
 
 class s1070exclusaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1070exclusao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1070inclusao(SoftDeletionModel):
-    s1070_evttabprocesso = models.OneToOneField('esocial.s1070evtTabProcesso',
-        related_name='%(class)s_s1070_evttabprocesso')
-    def evento(self): return self.s1070_evttabprocesso.evento()
-    tpproc = models.IntegerField(choices=CHOICES_S1070_INCLUSAO_TPPROC)
-    nrproc = models.CharField(max_length=21)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    indautoria = models.IntegerField(choices=CHOICES_S1070_INCLUSAO_INDAUTORIA, blank=True, null=True)
-    indmatproc = models.IntegerField(choices=CHOICES_S1070_INCLUSAO_INDMATPROC)
-    observacao = models.CharField(max_length=255, blank=True, null=True)
+
+    s1070_evttabprocesso = models.ForeignKey('esocial.s1070evtTabProcesso', 
+        related_name='%(class)s_s1070_evttabprocesso', )
+    
+    def evento(self): 
+        return self.s1070_evttabprocesso.evento()
+    tpproc = models.IntegerField(choices=CHOICES_S1070_TPPROC_INCLUSAO, null=True, )
+    nrproc = models.CharField(max_length=21, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    indautoria = models.IntegerField(choices=CHOICES_S1070_INDAUTORIA_INCLUSAO, blank=True, null=True, )
+    indmatproc = models.IntegerField(choices=CHOICES_S1070_INDMATPROC_INCLUSAO, null=True, )
+    observacao = models.CharField(max_length=255, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -489,50 +442,71 @@ class s1070inclusao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1070_evttabprocesso) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.indmatproc)
-    #s1070_inclusao_custom#
-
+        
+        lista = [
+            unicode(self.s1070_evttabprocesso),
+            unicode(self.tpproc),
+            unicode(self.nrproc),
+            unicode(self.inivalid),
+            unicode(self.indmatproc),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Inclusão de novas informações'
         db_table = r's1070_inclusao'       
         managed = True # s1070_inclusao #
-        unique_together = (
-            #custom_unique_together_s1070_inclusao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1070_inclusao
-            #index_together_s1070_inclusao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1070_inclusao", "Can view s1070_inclusao"),
-            #custom_permissions_s1070_inclusao
-        )
-        ordering = ['s1070_evttabprocesso', 'tpproc', 'nrproc', 'inivalid', 'indmatproc']
+            ("can_view_s1070_inclusao", "Can view s1070_inclusao"), )
+            
+        ordering = [
+            's1070_evttabprocesso',
+            'tpproc',
+            'nrproc',
+            'inivalid',
+            'indmatproc',]
 
 
 
 class s1070inclusaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1070inclusao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1070inclusaodadosProcJud(SoftDeletionModel):
-    s1070_inclusao = models.OneToOneField('s1070inclusao',
-        related_name='%(class)s_s1070_inclusao')
-    def evento(self): return self.s1070_inclusao.evento()
-    ufvara = models.CharField(choices=ESTADOS, max_length=2)
-    codmunic = models.TextField(max_length=7)
-    idvara = models.IntegerField()
+
+    s1070_inclusao = models.ForeignKey('s1070.s1070inclusao', 
+        related_name='%(class)s_s1070_inclusao', )
+    
+    def evento(self): 
+        return self.s1070_inclusao.evento()
+    ufvara = models.CharField(choices=ESTADOS, max_length=2, null=True, )
+    codmunic = models.TextField(null=True, )
+    idvara = models.IntegerField(null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -540,51 +514,70 @@ class s1070inclusaodadosProcJud(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1070_inclusao) + ' - ' + unicode(self.ufvara) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.idvara)
-    #s1070_inclusao_dadosprocjud_custom#
-
+        
+        lista = [
+            unicode(self.s1070_inclusao),
+            unicode(self.ufvara),
+            unicode(self.codmunic),
+            unicode(self.idvara),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações Complementares do Processo Judicial'
         db_table = r's1070_inclusao_dadosprocjud'       
         managed = True # s1070_inclusao_dadosprocjud #
-        unique_together = (
-            #custom_unique_together_s1070_inclusao_dadosprocjud#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1070_inclusao_dadosprocjud
-            #index_together_s1070_inclusao_dadosprocjud
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1070_inclusao_dadosprocjud", "Can view s1070_inclusao_dadosprocjud"),
-            #custom_permissions_s1070_inclusao_dadosprocjud
-        )
-        ordering = ['s1070_inclusao', 'ufvara', 'codmunic', 'idvara']
+            ("can_view_s1070_inclusao_dadosprocjud", "Can view s1070_inclusao_dadosprocjud"), )
+            
+        ordering = [
+            's1070_inclusao',
+            'ufvara',
+            'codmunic',
+            'idvara',]
 
 
 
 class s1070inclusaodadosProcJudSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1070inclusaodadosProcJud
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1070inclusaoinfoSusp(SoftDeletionModel):
-    s1070_inclusao = models.ForeignKey('s1070inclusao',
-        related_name='%(class)s_s1070_inclusao')
-    def evento(self): return self.s1070_inclusao.evento()
-    codsusp = models.IntegerField()
-    indsusp = models.CharField(choices=CHOICES_S1070_INCLUSAO_INDSUSP, max_length=2)
-    dtdecisao = models.DateField()
-    inddeposito = models.CharField(choices=CHOICES_S1070_INCLUSAO_INDDEPOSITO, max_length=1)
+
+    s1070_inclusao = models.ForeignKey('s1070.s1070inclusao', 
+        related_name='%(class)s_s1070_inclusao', )
+    
+    def evento(self): 
+        return self.s1070_inclusao.evento()
+    codsusp = models.IntegerField(null=True, )
+    indsusp = models.CharField(choices=CHOICES_S1070_INDSUSP_INCLUSAO, max_length=2, null=True, )
+    dtdecisao = models.DateField(null=True, )
+    inddeposito = models.CharField(choices=CHOICES_S1070_INDDEPOSITO_INCLUSAO, max_length=1, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -592,41 +585,55 @@ class s1070inclusaoinfoSusp(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1070_inclusao) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.indsusp) + ' - ' + unicode(self.dtdecisao) + ' - ' + unicode(self.inddeposito)
-    #s1070_inclusao_infosusp_custom#
-
+        
+        lista = [
+            unicode(self.s1070_inclusao),
+            unicode(self.codsusp),
+            unicode(self.indsusp),
+            unicode(self.dtdecisao),
+            unicode(self.inddeposito),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.'
         db_table = r's1070_inclusao_infosusp'       
         managed = True # s1070_inclusao_infosusp #
-        unique_together = (
-            #custom_unique_together_s1070_inclusao_infosusp#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1070_inclusao_infosusp
-            #index_together_s1070_inclusao_infosusp
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1070_inclusao_infosusp", "Can view s1070_inclusao_infosusp"),
-            #custom_permissions_s1070_inclusao_infosusp
-        )
-        ordering = ['s1070_inclusao', 'codsusp', 'indsusp', 'dtdecisao', 'inddeposito']
+            ("can_view_s1070_inclusao_infosusp", "Can view s1070_inclusao_infosusp"), )
+            
+        ordering = [
+            's1070_inclusao',
+            'codsusp',
+            'indsusp',
+            'dtdecisao',
+            'inddeposito',]
 
 
 
 class s1070inclusaoinfoSuspSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1070inclusaoinfoSusp
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

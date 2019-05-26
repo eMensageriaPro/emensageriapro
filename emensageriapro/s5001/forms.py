@@ -1,12 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s5001.models import * 
-from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
-from emensageriapro.esocial.models import s5001evtBasesTrab 
+from emensageriapro.s5001.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -41,26 +40,23 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s5001_calcterc(forms.ModelForm):
+
     vrcssegterc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrdescterc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5001_calcterc, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5001_infocategincid'].queryset = s5001infoCategIncid.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5001_infocategincid'].widget.attrs['required'] = True        
-        self.fields['tpcr'].widget.attrs['required'] = True        
-        self.fields['vrcssegterc'].widget.attrs['required'] = True        
-        self.fields['vrdescterc'].widget.attrs['required'] = True
+        super(form_s5001_calcterc, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -80,28 +76,25 @@ class form_s5001_calcterc(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5001calcTerc
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s5001_ideestablot(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5001_ideestablot, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5001_evtbasestrab'].queryset = s5001evtBasesTrab.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5001_evtbasestrab'].widget.attrs['required'] = True        
-        self.fields['tpinsc'].widget.attrs['required'] = True        
-        self.fields['nrinsc'].widget.attrs['required'] = True        
-        self.fields['codlotacao'].widget.attrs['required'] = True
+        super(form_s5001_ideestablot, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -121,29 +114,26 @@ class form_s5001_ideestablot(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5001ideEstabLot
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s5001_infobasecs(forms.ModelForm):
+
     valor = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5001_infobasecs, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5001_infocategincid'].queryset = s5001infoCategIncid.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5001_infocategincid'].widget.attrs['required'] = True        
-        self.fields['ind13'].widget.attrs['required'] = True        
-        self.fields['tpvalor'].widget.attrs['required'] = True        
-        self.fields['valor'].widget.attrs['required'] = True
+        super(form_s5001_infobasecs, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -163,26 +153,25 @@ class form_s5001_infobasecs(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5001infoBaseCS
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s5001_infocategincid(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5001_infocategincid, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5001_ideestablot'].queryset = s5001ideEstabLot.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5001_ideestablot'].widget.attrs['required'] = True        
-        self.fields['codcateg'].widget.attrs['required'] = True
+        super(form_s5001_infocategincid, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -202,30 +191,65 @@ class form_s5001_infocategincid(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5001infoCategIncid
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
+
+class form_s5001_infocp(forms.ModelForm):
+
+
+    def __init__(self, *args, **kwargs):
+        
+        super(form_s5001_infocp, self).__init__(*args, **kwargs)
+        
+
+    def save(self, commit=True, *args, **kwargs):
+    
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s5001_infocp, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
+        
+    class Meta:
+    
+        model = s5001infoCp
+        exclude = [ 
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s5001_infocpcalc(forms.ModelForm):
+
     vrcpseg = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrdescseg = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5001_infocpcalc, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5001_evtbasestrab'].queryset = s5001evtBasesTrab.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5001_evtbasestrab'].widget.attrs['required'] = True        
-        self.fields['tpcr'].widget.attrs['required'] = True        
-        self.fields['vrcpseg'].widget.attrs['required'] = True        
-        self.fields['vrdescseg'].widget.attrs['required'] = True
+        super(form_s5001_infocpcalc, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -245,27 +269,25 @@ class form_s5001_infocpcalc(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5001infoCpCalc
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s5001_procjudtrab(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5001_procjudtrab, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5001_evtbasestrab'].queryset = s5001evtBasesTrab.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5001_evtbasestrab'].widget.attrs['required'] = True        
-        self.fields['nrprocjud'].widget.attrs['required'] = True        
-        self.fields['codsusp'].widget.attrs['required'] = True
+        super(form_s5001_procjudtrab, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -285,10 +307,10 @@ class form_s5001_procjudtrab(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5001procJudTrab
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

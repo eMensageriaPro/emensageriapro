@@ -1,1 +1,109 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not r5001_evttotal_id or r5001_evttotal_id != r5001_regocorrs_form.r5001_evttotal.value %}<!-- inicio__r5001_regocorrs__r5001_evttotal --><div class="col-md-12" id="r5001_regocorrs__r5001_evttotal__div"><div class="form-group"><label id="r5001_regocorrs__r5001_evttotal__label">Evento Totalização*<a data-toggle="tooltip" title="Informações de ocorrências registradas"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if r5001_regocorrs_form.r5001_evttotal.value %}<a id="r5001_regocorrs__r5001_evttotal__div_acessar" href="{% url 'r5001_evttotal_salvar' hash='{}'|json_id:r5001_regocorrs_form.r5001_evttotal.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_r5001_evttotal').change(function(){ document.getElementById("r5001_regocorrs__r5001_evttotal__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if r5001_regocorrs_form.r5001_evttotal.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r5001_regocorrs_form.r5001_evttotal.errors }}</div>{% endif %} {% if r5001_regocorrs_form.r5001_evttotal.field.widget.attrs.readonly %} {% if r5001_regocorrs_form.r5001_evttotal.field.widget.attrs.disabled %} {{ r5001_regocorrs_form.r5001_evttotal|addcss:'form-control' }}<input id="id_r5001_evttotal" name="r5001_evttotal" type="hidden" value="{% if r5001_regocorrs_form.r5001_evttotal.value or r5001_regocorrs_form.r5001_evttotal.value == 0 %}{{ r5001_regocorrs_form.r5001_evttotal.value|valor }}{% endif %}">{% else %} {{ r5001_regocorrs_form.r5001_evttotal|addcss:'form-control' }} {% endif %} {% else %} {{ r5001_regocorrs_form.r5001_evttotal|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__r5001_regocorrs__r5001_evttotal -->{% else %}<input type="hidden" value="{{ r5001_evttotal_id|valor }}" id="id_r5001_evttotal" name="r5001_evttotal">{% endif %}<!-- inicio__r5001_regocorrs__tpocorr --><div class="col-md-6" id="r5001_regocorrs__tpocorr__div"><div class="form-group"><label id="r5001_regocorrs__tpocorr__label">Tipo da ocorrência*<a data-toggle="tooltip" title="Tipo da ocorrência: 1 - Erro 2 - Aviso"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r5001_regocorrs_form.tpocorr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r5001_regocorrs_form.tpocorr.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if r5001_regocorrs_form.tpocorr.field.widget.attrs.readonly %} {% if r5001_regocorrs_form.tpocorr.field.widget.attrs.disabled %} {{ r5001_regocorrs_form.tpocorr|addcss:'form-control' }}<input id="id_tpocorr" name="tpocorr" type="hidden" value="{% if r5001_regocorrs_form.tpocorr.value or r5001_regocorrs_form.tpocorr.value == 0 %}{{ r5001_regocorrs_form.tpocorr.value|valor }}{% endif %}">{% else %} {{ r5001_regocorrs_form.tpocorr|addcss:'form-control' }} {% endif %} {% else %} {{ r5001_regocorrs_form.tpocorr|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__r5001_regocorrs__tpocorr --><!-- inicio__r5001_regocorrs__localerroaviso --><div class="col-md-6" id="r5001_regocorrs__localerroaviso__div"><div class="form-group"><label id="r5001_regocorrs__localerroaviso__label">Campo que originou o erro ou aviso*<a data-toggle="tooltip" title="Campo que originou o erro ou aviso"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r5001_regocorrs_form.localerroaviso.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r5001_regocorrs_form.localerroaviso.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ r5001_regocorrs_form.localerroaviso|addcss:'form-control' }}</div></div></div><!-- fim__r5001_regocorrs__localerroaviso --><!-- inicio__r5001_regocorrs__codresp --><div class="col-md-6" id="r5001_regocorrs__codresp__div"><div class="form-group"><label id="r5001_regocorrs__codresp__label">Código do status da resposta do processamento da consulta*<a data-toggle="tooltip" title="Código do status da resposta do processamento da consulta"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r5001_regocorrs_form.codresp.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r5001_regocorrs_form.codresp.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ r5001_regocorrs_form.codresp|addcss:'form-control' }}</div></div></div><!-- fim__r5001_regocorrs__codresp --><!-- inicio__r5001_regocorrs__dscresp --><div class="col-md-6" id="r5001_regocorrs__dscresp__div"><div class="form-group"><label id="r5001_regocorrs__dscresp__label">Descrição literal da resposta do processamento da consulta*<a data-toggle="tooltip" title="Descrição literal da resposta do processamento da consulta"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r5001_regocorrs_form.dscresp.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r5001_regocorrs_form.dscresp.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ r5001_regocorrs_form.dscresp|addcss:'form-control' }}</div></div></div><!-- fim__r5001_regocorrs__dscresp -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r5001_regocorrs__r5001_evttotal -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_r5001_evttotal').change(function(){
+       document.getElementById("r5001_regocorrs__r5001_evttotal__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="r5001_regocorrs__r5001_evttotal__div">
+  <div class="form-group">
+    <label id="r5001_regocorrs__r5001_evttotal__label">Informações de ocorrências registradas*</label>
+    {% if not for_print %}
+      {% if r5001_regocorrs_form.r5001_evttotal.value %}
+        <a id="r5001_regocorrs__r5001_evttotal__div_acessar" href="{% url 'r5001_evttotal_salvar' hash='{}'|json_id:r5001_regocorrs_form.r5001_evttotal.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if r5001_regocorrs_form.r5001_evttotal.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r5001_regocorrs_form.r5001_evttotal.errors }}
+      </div>
+    {% endif %}
+    {% if r5001_regocorrs_form.r5001_evttotal.field.widget.attrs.readonly %}
+      {% if r5001_regocorrs_form.r5001_evttotal.field.widget.attrs.disabled %}
+        {{ r5001_regocorrs_form.r5001_evttotal|addcss:'form-control' }}
+        <input id="id_r5001_evttotal" name="r5001_evttotal" type="hidden" value="{% if r5001_regocorrs_form.r5001_evttotal.value or r5001_regocorrs_form.r5001_evttotal.value == 0 %}{{ r5001_regocorrs_form.r5001_evttotal.value|valor }}{% endif %}">
+      {% else %}
+        {{ r5001_regocorrs_form.r5001_evttotal|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r5001_regocorrs_form.r5001_evttotal|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r5001_regocorrs__r5001_evttotal -->
+<!-- inicio__r5001_regocorrs__tpocorr -->
+<div class="col-md-6" id="r5001_regocorrs__tpocorr__div">
+  <div class="form-group">
+    <label id="r5001_regocorrs__tpocorr__label">Tipo da ocorrência*</label>
+    {% if r5001_regocorrs_form.tpocorr.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r5001_regocorrs_form.tpocorr.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r5001_regocorrs_form.tpocorr.field.widget.attrs.readonly %}
+        {% if r5001_regocorrs_form.tpocorr.field.widget.attrs.disabled %}
+          {{ r5001_regocorrs_form.tpocorr|addcss:'form-control' }}
+          <input id="id_tpocorr" name="tpocorr" type="hidden" value="{% if r5001_regocorrs_form.tpocorr.value or r5001_regocorrs_form.tpocorr.value == 0 %}{{ r5001_regocorrs_form.tpocorr.value|valor }}{% endif %}">
+        {% else %}
+          {{ r5001_regocorrs_form.tpocorr|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r5001_regocorrs_form.tpocorr|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r5001_regocorrs__tpocorr -->
+<!-- inicio__r5001_regocorrs__localerroaviso -->
+<div class="col-md-6" id="r5001_regocorrs__localerroaviso__div">
+  <div class="form-group">
+    <label id="r5001_regocorrs__localerroaviso__label">Campo que originou o erro ou aviso*</label>
+      {% if r5001_regocorrs_form.localerroaviso.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r5001_regocorrs_form.localerroaviso.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r5001_regocorrs_form.localerroaviso|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r5001_regocorrs__localerroaviso -->
+<!-- inicio__r5001_regocorrs__codresp -->
+<div class="col-md-6" id="r5001_regocorrs__codresp__div">
+  <div class="form-group">
+    <label id="r5001_regocorrs__codresp__label">Código do status da resposta do processamento da consulta*</label>
+      {% if r5001_regocorrs_form.codresp.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r5001_regocorrs_form.codresp.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r5001_regocorrs_form.codresp|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r5001_regocorrs__codresp -->
+<!-- inicio__r5001_regocorrs__dscresp -->
+<div class="col-md-6" id="r5001_regocorrs__dscresp__div">
+  <div class="form-group">
+    <label id="r5001_regocorrs__dscresp__label">Descrição literal da resposta do processamento da consulta*</label>
+      {% if r5001_regocorrs_form.dscresp.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r5001_regocorrs_form.dscresp.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r5001_regocorrs_form.dscresp|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r5001_regocorrs__dscresp -->

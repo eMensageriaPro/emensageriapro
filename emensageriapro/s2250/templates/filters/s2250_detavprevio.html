@@ -1,1 +1,113 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento Aviso Prévio</label><select name="s2250_evtavprevio" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2250_evtavprevio_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2250_evtavprevio' %}selected="selected"{% endifequal %}>{{ a.evtavprevio }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.idevinculo }} - {{ a.cpftrab }} - {{ a.nistrab }} - {{ a.matricula }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Data do aviso prévio</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtavprv__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtavprv__range' %}{{ dict_fields|get_value_from_dict:'dtavprv__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Data prevista para o desligamento</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtprevdeslig__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtprevdeslig__range' %}{{ dict_fields|get_value_from_dict:'dtprevdeslig__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Tipo de aviso prévio</label><div class="input-group" style="width: 100%;"><select name="tpavprevio" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpavprevio' %}selected="selected"{% endifequal %} >1 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de duas horas diárias [caput do art. 488 da CLT]</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpavprevio' %}selected="selected"{% endifequal %} >2 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de dias corridos [parágrafo único do art. 488 da CLT]</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpavprevio' %}selected="selected"{% endifequal %} >4 - Aviso prévio dado pelo empregado (pedido de demissão), não dispensado de seu cumprimento, sob pena de desconto, pelo empregador, dos salários correspondentes ao prazo respectivo (§2º do art. 487 da CLT)</option><option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpavprevio' %}selected="selected"{% endifequal %} >5 - Aviso prévio trabalhado dado pelo empregador rural ao empregado, com redução de um dia por semana ( art. 15 da Lei nº 5889/73)</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Observações</label><div name="observacao__icontains" class="input-group" style="width: 100%;"><input type="text" name="observacao__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'observacao__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2250_evtavprevio" value="1" {% if show_fields|get_value_from_dict:'show_s2250_evtavprevio' %}checked{% endif %}>Evento Aviso Prévio</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtavprv" value="1" {% if show_fields|get_value_from_dict:'show_dtavprv' %}checked{% endif %}>Data do aviso prévio</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtprevdeslig" value="1" {% if show_fields|get_value_from_dict:'show_dtprevdeslig' %}checked{% endif %}>Data prevista para o desligamento</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpavprevio" value="1" {% if show_fields|get_value_from_dict:'show_tpavprevio' %}checked{% endif %}>Tipo de aviso prévio</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_observacao" value="1" {% if show_fields|get_value_from_dict:'show_observacao' %}checked{% endif %}>Observações</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2250_detavprevio__s2250_evtavprevio -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Detalha as informações do evento trabalhista</label>
+    <select name="s2250_evtavprevio" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s2250_evtavprevio_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2250_evtavprevio' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2250_detavprevio__s2250_evtavprevio -->
+
+<!-- inicio__s2250_detavprevio__dtavprv -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data do aviso prévio</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtavprv" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtavprv' %}{{ dict_fields|get_value_from_dict:'dtavprv' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2250_detavprevio__dtavprv -->
+
+<!-- inicio__s2250_detavprevio__dtprevdeslig -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data prevista para o desligamento</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtprevdeslig" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtprevdeslig' %}{{ dict_fields|get_value_from_dict:'dtprevdeslig' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2250_detavprevio__dtprevdeslig -->
+
+<!-- inicio__s2250_detavprevio__tpavprevio -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo de aviso prévio</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpavprevio" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpavprevio' %}selected="selected"{% endifequal %} >1 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de duas horas diárias [caput do art. 488 da CLT]</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpavprevio' %}selected="selected"{% endifequal %} >2 - Aviso prévio trabalhado dado pelo empregador ao empregado, que optou pela redução de dias corridos [parágrafo único do art. 488 da CLT]</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpavprevio' %}selected="selected"{% endifequal %} >4 - Aviso prévio dado pelo empregado (pedido de demissão), não dispensado de seu cumprimento, sob pena de desconto, pelo empregador, dos salários correspondentes ao prazo respectivo (§2º do art. 487 da CLT)</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpavprevio' %}selected="selected"{% endifequal %} >5 - Aviso prévio trabalhado dado pelo empregador rural ao empregado, com redução de um dia por semana ( art. 15 da Lei nº 5889/73)</option>
+        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'tpavprevio' %}selected="selected"{% endifequal %} >6 - Aviso prévio trabalhado decorrente de acordo entre empregado e empregador (art. 484-A, 'caput', da CLT).</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2250_detavprevio__tpavprevio -->
+
+<!-- inicio__s2250_detavprevio__observacao -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Observações</label>
+    <div name="observacao" class="input-group" style="width: 100%;">
+      <input type="text" name="observacao" class="form-control" value="{{ dict_fields|get_value_from_dict:'observacao' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2250_detavprevio__observacao -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2250_evtavprevio" value="1" {% if show_fields|get_value_from_dict:'show_s2250_evtavprevio' %}checked{% endif %} >Detalha as informações do evento trabalhista
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtavprv" value="1" {% if show_fields|get_value_from_dict:'show_dtavprv' %}checked{% endif %} >Data do aviso prévio
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtprevdeslig" value="1" {% if show_fields|get_value_from_dict:'show_dtprevdeslig' %}checked{% endif %} >Data prevista para o desligamento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpavprevio" value="1" {% if show_fields|get_value_from_dict:'show_tpavprevio' %}checked{% endif %} >Tipo de aviso prévio
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_observacao" value="0" {% if show_fields|get_value_from_dict:'show_observacao' %}checked{% endif %} >Observações
+    </div>
+</div>
+
+

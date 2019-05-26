@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2240_iniexprisco_fatrisco or 1 %}"Equipamentos de Proteção Coletiva - EPC";{% endif %}{% if show_fields.show_codep or 1 %}"Preencher com o código atribuído pela empresa ao Equipamento de Proteção";{% endif %}{% if show_fields.show_dscepc or 1 %}"Descrição do EPC";{% endif %}{% if show_fields.show_eficepc or 1 %}"EPC é eficaz na neutralização";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2240_iniexprisco_fatrisco or 1 %}"{{ c.s2240_iniexprisco_fatrisco }}";{% endif %}{% if show_fields.show_codep or 1 %}"{{ c.codep }}";{% endif %}{% if show_fields.show_dscepc or 1 %}"{{ c.dscepc }}";{% endif %}{% if show_fields.show_eficepc or 1 %}"{{ c.eficepc }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2240_evtexprisco or 1 %}"Informações relativas ao responsável pelos registros ambientais";{% endif %}{% if show_fields.show_dtini or 1 %}"Data de início da responsabilidade";{% endif %}{% if show_fields.show_dtfim or 1 %}"Data de término da responsabilidade";{% endif %}{% if show_fields.show_nisresp or 1 %}"NIS";{% endif %}{% if show_fields.show_nroc or 1 %}"Número do OC";{% endif %}{% if show_fields.show_ufoc or 1 %}"UF do OC";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2240_evtexprisco or 1 %}"{{ c.s2240_evtexprisco }}";{% endif %}{% if show_fields.show_dtini or 1 %}"{{ c.dtini }}";{% endif %}{% if show_fields.show_dtfim or 1 %}"{{ c.dtfim }}";{% endif %}{% if show_fields.show_nisresp or 1 %}"{{ c.nisresp }}";{% endif %}{% if show_fields.show_nroc or 1 %}"{{ c.nroc }}";{% endif %}{% if show_fields.show_ufoc or 1 %}"{{ c.ufoc }}";{% endif %}
+{% endfor %}

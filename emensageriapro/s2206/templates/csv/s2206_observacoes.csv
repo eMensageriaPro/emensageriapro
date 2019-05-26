@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2206_evtaltcontratual or 1 %}"Observações do contrato de trabalho";{% endif %}{% if show_fields.show_observacao or 1 %}"Observações";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2206_evtaltcontratual or 1 %}"{{ c.s2206_evtaltcontratual }}";{% endif %}{% if show_fields.show_observacao or 1 %}"{{ c.observacao }}";{% endif %}
+{% endfor %}

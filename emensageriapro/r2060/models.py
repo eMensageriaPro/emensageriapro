@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.r2060.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,51 +45,38 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_R2060_CODAJUSTE = (
-    (1, u'1 - Ajuste da CPRB: Adoção do Regime de Caixa'),
-    (10, u'10 - O valor do aporte de recursos realizado nos termos do art 6 §3 inciso III da Lei 11.079/2004'),
-    (11, u'11 - Demais ajustes oriundos da Legislação Tributária, estorno ou outras situações'),
-    (2, u'2 - Ajuste da CPRB: Diferimento de Valores a recolher no período'),
-    (3, u'3 - Adição de valores Diferidos em Período(s) Anteriores(es)'),
-    (4, u'4 - Exportações diretas'),
-    (5, u'5 - Transporte internacional de cargas'),
-    (6, u'6 - Vendas canceladas e os descontos incondicionais concedidos'),
-    (7, u'7 - IPI, se incluído na receita bruta'),
-    (8, u'8 - ICMS, quando cobrado pelo vendedor dos bens ou prestador dos serviços na condição de substituto tributário'),
-    (9, u'9 - Receita bruta reconhecida pela construção, recuperação, reforma, ampliação ou melhoramento da infraestrutura, cuja contrapartida seja ativo intangível representativo de direito de exploração, no caso de contratos de concessão de serviços públicos'),
-)
 
-CHOICES_R2060_TPAJUSTE = (
-    (0, u'0 - Ajuste de redução'),
-    (1, u'1 - Ajuste de acréscimo'),
-)
-
-CHOICES_R2060_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-)
 
 class r2060infoProc(SoftDeletionModel):
-    r2060_tipocod = models.ForeignKey('r2060tipoCod',
-        related_name='%(class)s_r2060_tipocod')
-    def evento(self): return self.r2060_tipocod.evento()
-    tpproc = models.IntegerField(choices=CHOICES_R2060_TPPROC)
-    nrproc = models.CharField(max_length=21)
-    codsusp = models.IntegerField(blank=True, null=True)
-    vlrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    r2060_tipocod = models.ForeignKey('r2060.r2060tipoCod', 
+        related_name='%(class)s_r2060_tipocod', )
+    
+    def evento(self): 
+        return self.r2060_tipocod.evento()
+    tpproc = models.IntegerField(choices=CHOICES_R2060_TPPROC, null=True, )
+    nrproc = models.CharField(max_length=21, null=True, )
+    codsusp = models.IntegerField(blank=True, null=True, )
+    vlrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -85,52 +84,71 @@ class r2060infoProc(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.r2060_tipocod) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrcprbsusp)
-    #r2060_infoproc_custom#
-
+        
+        lista = [
+            unicode(self.r2060_tipocod),
+            unicode(self.tpproc),
+            unicode(self.nrproc),
+            unicode(self.vlrcprbsusp),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
         db_table = r'r2060_infoproc'       
         managed = True # r2060_infoproc #
-        unique_together = (
-            #custom_unique_together_r2060_infoproc#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_r2060_infoproc
-            #index_together_r2060_infoproc
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_r2060_infoproc", "Can view r2060_infoproc"),
-            #custom_permissions_r2060_infoproc
-        )
-        ordering = ['r2060_tipocod', 'tpproc', 'nrproc', 'vlrcprbsusp']
+            ("can_view_r2060_infoproc", "Can view r2060_infoproc"), )
+            
+        ordering = [
+            'r2060_tipocod',
+            'tpproc',
+            'nrproc',
+            'vlrcprbsusp',]
 
 
 
 class r2060infoProcSerializer(ModelSerializer):
+
     class Meta:
+    
         model = r2060infoProc
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class r2060tipoAjuste(SoftDeletionModel):
-    r2060_tipocod = models.ForeignKey('r2060tipoCod',
-        related_name='%(class)s_r2060_tipocod')
-    def evento(self): return self.r2060_tipocod.evento()
-    tpajuste = models.IntegerField(choices=CHOICES_R2060_TPAJUSTE)
-    codajuste = models.IntegerField(choices=CHOICES_R2060_CODAJUSTE)
-    vlrajuste = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    descajuste = models.CharField(max_length=20)
-    dtajuste = models.CharField(max_length=7)
+
+    r2060_tipocod = models.ForeignKey('r2060.r2060tipoCod', 
+        related_name='%(class)s_r2060_tipocod', )
+    
+    def evento(self): 
+        return self.r2060_tipocod.evento()
+    tpajuste = models.IntegerField(choices=CHOICES_R2060_TPAJUSTE, null=True, )
+    codajuste = models.IntegerField(choices=CHOICES_R2060_CODAJUSTE, null=True, )
+    vlrajuste = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    descajuste = models.CharField(max_length=20, null=True, )
+    dtajuste = models.CharField(max_length=7, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -138,53 +156,77 @@ class r2060tipoAjuste(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.r2060_tipocod) + ' - ' + unicode(self.tpajuste) + ' - ' + unicode(self.codajuste) + ' - ' + unicode(self.vlrajuste) + ' - ' + unicode(self.descajuste) + ' - ' + unicode(self.dtajuste)
-    #r2060_tipoajuste_custom#
-
+        
+        lista = [
+            unicode(self.r2060_tipocod),
+            unicode(self.tpajuste),
+            unicode(self.codajuste),
+            unicode(self.vlrajuste),
+            unicode(self.descajuste),
+            unicode(self.dtajuste),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.'
         db_table = r'r2060_tipoajuste'       
         managed = True # r2060_tipoajuste #
-        unique_together = (
-            #custom_unique_together_r2060_tipoajuste#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_r2060_tipoajuste
-            #index_together_r2060_tipoajuste
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_r2060_tipoajuste", "Can view r2060_tipoajuste"),
-            #custom_permissions_r2060_tipoajuste
-        )
-        ordering = ['r2060_tipocod', 'tpajuste', 'codajuste', 'vlrajuste', 'descajuste', 'dtajuste']
+            ("can_view_r2060_tipoajuste", "Can view r2060_tipoajuste"), )
+            
+        ordering = [
+            'r2060_tipocod',
+            'tpajuste',
+            'codajuste',
+            'vlrajuste',
+            'descajuste',
+            'dtajuste',]
 
 
 
 class r2060tipoAjusteSerializer(ModelSerializer):
+
     class Meta:
+    
         model = r2060tipoAjuste
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class r2060tipoCod(SoftDeletionModel):
-    r2060_evtcprb = models.ForeignKey('efdreinf.r2060evtCPRB',
-        related_name='%(class)s_r2060_evtcprb')
-    def evento(self): return self.r2060_evtcprb.evento()
-    codativecon = models.CharField(max_length=8)
-    vlrrecbrutaativ = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vlrexcrecbruta = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vlradicrecbruta = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vlrbccprb = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vlrcprbapur = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
+
+    r2060_evtcprb = models.ForeignKey('efdreinf.r2060evtCPRB', 
+        related_name='%(class)s_r2060_evtcprb', )
+    
+    def evento(self): 
+        return self.r2060_evtcprb.evento()
+    codativecon = models.CharField(max_length=8, null=True, )
+    vlrrecbrutaativ = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vlrexcrecbruta = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vlradicrecbruta = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vlrbccprb = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vlrcprbapur = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    observ = models.CharField(max_length=200, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -192,41 +234,57 @@ class r2060tipoCod(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.r2060_evtcprb) + ' - ' + unicode(self.codativecon) + ' - ' + unicode(self.vlrrecbrutaativ) + ' - ' + unicode(self.vlrexcrecbruta) + ' - ' + unicode(self.vlradicrecbruta) + ' - ' + unicode(self.vlrbccprb)
-    #r2060_tipocod_custom#
-
+        
+        lista = [
+            unicode(self.r2060_evtcprb),
+            unicode(self.codativecon),
+            unicode(self.vlrrecbrutaativ),
+            unicode(self.vlrexcrecbruta),
+            unicode(self.vlradicrecbruta),
+            unicode(self.vlrbccprb),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro que apresenta o valor total da receita por tipo de código de atividade econômica.'
         db_table = r'r2060_tipocod'       
         managed = True # r2060_tipocod #
-        unique_together = (
-            #custom_unique_together_r2060_tipocod#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_r2060_tipocod
-            #index_together_r2060_tipocod
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_r2060_tipocod", "Can view r2060_tipocod"),
-            #custom_permissions_r2060_tipocod
-        )
-        ordering = ['r2060_evtcprb', 'codativecon', 'vlrrecbrutaativ', 'vlrexcrecbruta', 'vlradicrecbruta', 'vlrbccprb']
+            ("can_view_r2060_tipocod", "Can view r2060_tipocod"), )
+            
+        ordering = [
+            'r2060_evtcprb',
+            'codativecon',
+            'vlrrecbrutaativ',
+            'vlrexcrecbruta',
+            'vlradicrecbruta',
+            'vlrbccprb',]
 
 
 
 class r2060tipoCodSerializer(ModelSerializer):
+
     class Meta:
+    
         model = r2060tipoCod
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

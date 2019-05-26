@@ -1,0 +1,64 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r9011_infototalcontrib or 1 %}
+            <th>Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060</th>
+            {% endif %}
+            {% if show_fields.show_crcprb or 1 %}
+            <th>Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrcprb or 1 %}
+            <th>Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r9011_rcprb_lista %}
+        <tr>
+            {% if show_fields.show_r9011_infototalcontrib or 1 %}
+            <td>{{ a.r9011_infototalcontrib }}</td>
+            {% endif %}
+            {% if show_fields.show_crcprb or 1 %}
+            <td>{{ a.crcprb }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcrcprb or 1 %}
+            <td>{{ a.vlrcrcprb }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r9011_rcprb_visualizar' %}
+                        <a href="{% url 'r9011_rcprb_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r9011_rcprb_editar' or dict_permissoes|get_permissao:'r9011_rcprb_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r9011_rcprb_apagar' %}
+                        <a href="{% url 'r9011_rcprb_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

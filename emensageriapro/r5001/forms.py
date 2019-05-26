@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.r5001.models import * 
-from emensageriapro.efdreinf.models import r5001evtTotal 
+from emensageriapro.r5001.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,25 +40,23 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_r5001_rcprb(forms.ModelForm):
+
     vlrcrcprb = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrcrcprbsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r5001_rcprb, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r5001_infototal'].queryset = r5001infoTotal.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5001_infototal'].widget.attrs['required'] = True        
-        self.fields['crcprb'].widget.attrs['required'] = True        
-        self.fields['vlrcrcprb'].widget.attrs['required'] = True
+        super(form_r5001_rcprb, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -78,29 +76,27 @@ class form_r5001_rcprb(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r5001RCPRB
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r5001_rcoml(forms.ModelForm):
+
     vlrcrcoml = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrcrcomlsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r5001_rcoml, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r5001_infototal'].queryset = r5001infoTotal.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5001_infototal'].widget.attrs['required'] = True        
-        self.fields['crcoml'].widget.attrs['required'] = True        
-        self.fields['vlrcrcoml'].widget.attrs['required'] = True
+        super(form_r5001_rcoml, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -120,33 +116,30 @@ class form_r5001_rcoml(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r5001RComl
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r5001_rprest(forms.ModelForm):
+
     vlrtotalbaseret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrtotalretprinc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrtotalretadic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrtotalnretprinc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrtotalnretadic = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r5001_rprest, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r5001_infototal'].widget.attrs['required'] = True        
-        self.fields['tpinsctomador'].widget.attrs['required'] = True        
-        self.fields['nrinsctomador'].widget.attrs['required'] = True        
-        self.fields['vlrtotalbaseret'].widget.attrs['required'] = True        
-        self.fields['vlrtotalretprinc'].widget.attrs['required'] = True
+        super(form_r5001_rprest, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -166,30 +159,28 @@ class form_r5001_rprest(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r5001RPrest
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r5001_rrecespetdesp(forms.ModelForm):
+
     vlrreceitatotal = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrcrrecespetdesp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrcrrecespetdespsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r5001_rrecespetdesp, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r5001_infototal'].widget.attrs['required'] = True        
-        self.fields['crrecespetdesp'].widget.attrs['required'] = True        
-        self.fields['vlrreceitatotal'].widget.attrs['required'] = True        
-        self.fields['vlrcrrecespetdesp'].widget.attrs['required'] = True
+        super(form_r5001_rrecespetdesp, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -209,32 +200,28 @@ class form_r5001_rrecespetdesp(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r5001RRecEspetDesp
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r5001_rrecrepad(forms.ModelForm):
+
     vlrtotalrep = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrcrrecrepad = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrcrrecrepadsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r5001_rrecrepad, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r5001_infototal'].queryset = r5001infoTotal.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5001_infototal'].widget.attrs['required'] = True        
-        self.fields['cnpjassocdesp'].widget.attrs['required'] = True        
-        self.fields['vlrtotalrep'].widget.attrs['required'] = True        
-        self.fields['crrecrepad'].widget.attrs['required'] = True        
-        self.fields['vlrcrrecrepad'].widget.attrs['required'] = True
+        super(form_r5001_rrecrepad, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -254,27 +241,26 @@ class form_r5001_rrecrepad(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r5001RRecRepAD
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r5001_rtom(forms.ModelForm):
+
     vlrtotalbaseret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r5001_rtom, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r5001_infototal'].widget.attrs['required'] = True        
-        self.fields['cnpjprestador'].widget.attrs['required'] = True        
-        self.fields['vlrtotalbaseret'].widget.attrs['required'] = True
+        super(form_r5001_rtom, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -294,28 +280,27 @@ class form_r5001_rtom(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r5001RTom
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r5001_infocrtom(forms.ModelForm):
+
     vlrcrtom = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vlrcrtomsusp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r5001_infocrtom, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r5001_rtom'].queryset = r5001RTom.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5001_rtom'].widget.attrs['required'] = True        
-        self.fields['crtom'].widget.attrs['required'] = True
+        super(form_r5001_infocrtom, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -335,26 +320,25 @@ class form_r5001_infocrtom(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r5001infoCRTom
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r5001_infototal(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r5001_infototal, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r5001_evttotal'].widget.attrs['required'] = True        
-        self.fields['tpinsc'].widget.attrs['required'] = True        
-        self.fields['nrinsc'].widget.attrs['required'] = True
+        super(form_r5001_infototal, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -374,29 +358,25 @@ class form_r5001_infototal(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r5001infoTotal
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_r5001_regocorrs(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_r5001_regocorrs, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['r5001_evttotal'].queryset = r5001evtTotal.objects.using( slug ).filter(excluido=False).all()
-        self.fields['r5001_evttotal'].widget.attrs['required'] = True        
-        self.fields['tpocorr'].widget.attrs['required'] = True        
-        self.fields['localerroaviso'].widget.attrs['required'] = True        
-        self.fields['codresp'].widget.attrs['required'] = True        
-        self.fields['dscresp'].widget.attrs['required'] = True
+        super(form_r5001_regocorrs, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -416,10 +396,10 @@ class form_r5001_regocorrs(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = r5001regOcorrs
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

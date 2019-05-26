@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil"
-{% if show_fields.show_r2070_ideestab or not r2070_ideestab_id and 1 %}"Identificação dos estabelecimentos da associação desportiva que receberam os recursos";{% endif %}{% if show_fields.show_dtpagto or 1 %}"Informar a data de pagamento ou crédito, base para retenção";{% endif %}{% if show_fields.show_vlrrendtributavel or 1 %}"Valor do rendimento tributável";{% endif %}{% if show_fields.show_vlrret or 1 %}"Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.";{% endif %}
-{% for a in r2070_pgtopj_lista %}{% if show_fields.show_r2070_ideestab or  not r2070_ideestab_id and 1 %}"{{ a.r2070_ideestab }}";{% endif %}{% if show_fields.show_dtpagto or 1 %}"{{ a.dtpagto|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_vlrrendtributavel or 1 %}"{{ a.vlrrendtributavel }}";{% endif %}{% if show_fields.show_vlrret or 1 %}"{{ a.vlrret }}";{% endif %}
-{% endfor %}

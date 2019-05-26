@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1020_inclusao_infoprocjudterceiros or 1 %}"Identificação do Processo Judicial";{% endif %}{% if show_fields.show_codterc or 1 %}"Código de Terceiros";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"Número do Processo Judicial";{% endif %}{% if show_fields.show_codsusp or 1 %}"Código do Indicativo da Suspensão";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1020_inclusao_infoprocjudterceiros or 1 %}"{{ c.s1020_inclusao_infoprocjudterceiros }}";{% endif %}{% if show_fields.show_codterc or 1 %}"{{ c.codterc }}";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"{{ c.nrprocjud }}";{% endif %}{% if show_fields.show_codsusp or 1 %}"{{ c.codsusp }}";{% endif %}
+{% endfor %}

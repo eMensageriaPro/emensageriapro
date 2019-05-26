@@ -1,0 +1,960 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2210_evtcat__evtcat -->
+<div class="col-md-12" id="s2210_evtcat__evtcat__div">
+  <h4>Evento Comunicação de Acidente de Trabalho</h4>
+</div>
+<!-- fim__s2210_evtcat__evtcat -->
+<!-- inicio__s2210_evtcat__identidade -->
+<div class="col-md-6" id="s2210_evtcat__identidade__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__identidade__label">Identidade do Registro</label>
+      {% if s2210_evtcat_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__identidade -->
+<!-- inicio__s2210_evtcat__ideevento -->
+<div class="col-md-12" id="s2210_evtcat__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s2210_evtcat__ideevento -->
+<!-- inicio__s2210_evtcat__indretif -->
+<div class="col-md-6" id="s2210_evtcat__indretif__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__indretif__label">Identificador de retificação*</label>
+    {% if s2210_evtcat_form.indretif.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.indretif.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.indretif.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.indretif.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.indretif|addcss:'form-control' }}
+          <input id="id_indretif" name="indretif" type="hidden" value="{% if s2210_evtcat_form.indretif.value or s2210_evtcat_form.indretif.value == 0 %}{{ s2210_evtcat_form.indretif.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.indretif|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.indretif|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__indretif -->
+<!-- inicio__s2210_evtcat__nrrecibo -->
+<div class="col-md-6" id="s2210_evtcat__nrrecibo__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__nrrecibo__label">Número do recibo</label>
+      {% if s2210_evtcat_form.nrrecibo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.nrrecibo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.nrrecibo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__nrrecibo -->
+<!-- inicio__s2210_evtcat__tpamb -->
+<div class="col-md-6" id="s2210_evtcat__tpamb__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__tpamb__label">Identificação do ambiente*</label>
+    {% if s2210_evtcat_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.tpamb.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.tpamb.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if s2210_evtcat_form.tpamb.value or s2210_evtcat_form.tpamb.value == 0 %}{{ s2210_evtcat_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__tpamb -->
+<!-- inicio__s2210_evtcat__procemi -->
+<div class="col-md-6" id="s2210_evtcat__procemi__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__procemi__label">Processo de emissão do evento*</label>
+    {% if s2210_evtcat_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.procemi.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.procemi.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if s2210_evtcat_form.procemi.value or s2210_evtcat_form.procemi.value == 0 %}{{ s2210_evtcat_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__procemi -->
+<!-- inicio__s2210_evtcat__verproc -->
+<div class="col-md-6" id="s2210_evtcat__verproc__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__verproc__label">Versão do processo*</label>
+      {% if s2210_evtcat_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__verproc -->
+<!-- inicio__s2210_evtcat__ideempregador -->
+<div class="col-md-12" id="s2210_evtcat__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s2210_evtcat__ideempregador -->
+<!-- inicio__s2210_evtcat__tpinsc -->
+<div class="col-md-6" id="s2210_evtcat__tpinsc__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__tpinsc__label">Tipo de inscrição*</label>
+    {% if s2210_evtcat_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s2210_evtcat_form.tpinsc.value or s2210_evtcat_form.tpinsc.value == 0 %}{{ s2210_evtcat_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__tpinsc -->
+<!-- inicio__s2210_evtcat__nrinsc -->
+<div class="col-md-6" id="s2210_evtcat__nrinsc__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s2210_evtcat_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__nrinsc -->
+<!-- inicio__s2210_evtcat__idevinculo -->
+<div class="col-md-12" id="s2210_evtcat__idevinculo__div">
+  <h4>Informações de Identificação do Trabalhador e do Vínculo</h4>
+</div>
+<!-- fim__s2210_evtcat__idevinculo -->
+<!-- inicio__s2210_evtcat__cpftrab -->
+<div class="col-md-6" id="s2210_evtcat__cpftrab__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__cpftrab__label">CPF*</label>
+      {% if s2210_evtcat_form.cpftrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.cpftrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.cpftrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__cpftrab -->
+<!-- inicio__s2210_evtcat__nistrab -->
+<div class="col-md-6" id="s2210_evtcat__nistrab__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__nistrab__label">NIS</label>
+      {% if s2210_evtcat_form.nistrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.nistrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.nistrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__nistrab -->
+<!-- inicio__s2210_evtcat__matricula -->
+<div class="col-md-6" id="s2210_evtcat__matricula__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__matricula__label">Matricula</label>
+      {% if s2210_evtcat_form.matricula.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.matricula.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.matricula|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__matricula -->
+<!-- inicio__s2210_evtcat__codcateg -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2210_evtcat__codcateg__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__codcateg__label">Código da Categoria</label>
+        {% if s2210_evtcat_form.codcateg.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2210_evtcat_form.codcateg.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat.codcateg }}{% endif %}" 
+        {% if s2210_evtcat_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2210_evtcat_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}{% if s2210_evtcat_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_codcateg" name="codcateg" value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat_form.codcateg.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codcateg').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-trabalhadores-categorias/json-search/" + request.term + "/", function (data) {
+          response($.map(data.esocial_trabalhadores_categorias, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codcateg').val(ui.item.value);
+        return false;
+      }});
+    {% if s2210_evtcat_form.codcateg.field.widget.attrs.required %}
+    $("#id_form_s2210_evtcat").submit(function(e) {
+      $('#txt_codcateg').disabled = true;
+        if ($('#id_codcateg').val() == "") {
+          $('#txt_codcateg').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Código da Categoria!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2210_evtcat__codcateg__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__codcateg__label">Código da Categoria</label>
+        {% if not for_print %}{% if s2210_evtcat_form.codcateg.value %}
+            <a id="s2210_evtcat__codcateg__div_acessar" href="{% url 'esocial-trabalhadores-categorias_salvar' hash='{}'|json_id:s2210_evtcat_form.codcateg.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat.codcateg }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2210_evtcat__codcateg -->
+<!-- inicio__s2210_evtcat__cat -->
+<div class="col-md-12" id="s2210_evtcat__cat__div">
+  <h4>Comunicação de Acidente de Trabalho.</h4>
+</div>
+<!-- fim__s2210_evtcat__cat -->
+<!-- inicio__s2210_evtcat__dtacid -->
+<div class="col-md-6" id="s2210_evtcat__dtacid__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__dtacid__label">Data do Acidente*</label>
+        {% if s2210_evtcat_form.dtacid.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2210_evtcat_form.dtacid.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.dtacid|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__dtacid -->
+<!-- inicio__s2210_evtcat__tpacid -->
+<div class="col-md-6" id="s2210_evtcat__tpacid__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__tpacid__label">Tipo de acidente*</label>
+    {% if s2210_evtcat_form.tpacid.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.tpacid.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.tpacid.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.tpacid.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.tpacid|addcss:'form-control' }}
+          <input id="id_tpacid" name="tpacid" type="hidden" value="{% if s2210_evtcat_form.tpacid.value or s2210_evtcat_form.tpacid.value == 0 %}{{ s2210_evtcat_form.tpacid.value }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.tpacid|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.tpacid|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__tpacid -->
+<!-- inicio__s2210_evtcat__hracid -->
+<div class="col-md-6" id="s2210_evtcat__hracid__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__hracid__label">Hora do acidente</label>
+      {% if s2210_evtcat_form.hracid.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.hracid.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.hracid|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__hracid -->
+<!-- inicio__s2210_evtcat__hrstrabantesacid -->
+<div class="col-md-6" id="s2210_evtcat__hrstrabantesacid__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__hrstrabantesacid__label">Quant. de horas trabalhadas antes do acidente*</label>
+      {% if s2210_evtcat_form.hrstrabantesacid.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.hrstrabantesacid.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.hrstrabantesacid|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__hrstrabantesacid -->
+<!-- inicio__s2210_evtcat__tpcat -->
+<div class="col-md-6" id="s2210_evtcat__tpcat__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__tpcat__label">Tipo de CAT*</label>
+    {% if s2210_evtcat_form.tpcat.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.tpcat.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.tpcat.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.tpcat.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.tpcat|addcss:'form-control' }}
+          <input id="id_tpcat" name="tpcat" type="hidden" value="{% if s2210_evtcat_form.tpcat.value or s2210_evtcat_form.tpcat.value == 0 %}{{ s2210_evtcat_form.tpcat.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.tpcat|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.tpcat|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__tpcat -->
+<!-- inicio__s2210_evtcat__indcatobito -->
+<div class="col-md-6" id="s2210_evtcat__indcatobito__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__indcatobito__label">Houve óbito*</label>
+    {% if s2210_evtcat_form.indcatobito.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.indcatobito.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.indcatobito.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.indcatobito.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.indcatobito|addcss:'form-control' }}
+          <input id="id_indcatobito" name="indcatobito" type="hidden" value="{% if s2210_evtcat_form.indcatobito.value or s2210_evtcat_form.indcatobito.value == 0 %}{{ s2210_evtcat_form.indcatobito.value }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.indcatobito|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.indcatobito|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__indcatobito -->
+<!-- inicio__s2210_evtcat__dtobito -->
+<div class="col-md-6" id="s2210_evtcat__dtobito__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__dtobito__label">Data do óbito</label>
+        {% if s2210_evtcat_form.dtobito.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2210_evtcat_form.dtobito.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.dtobito|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__dtobito -->
+<!-- inicio__s2210_evtcat__indcomunpolicia -->
+<div class="col-md-6" id="s2210_evtcat__indcomunpolicia__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__indcomunpolicia__label">Houve comunicação a autoridade policial*</label>
+    {% if s2210_evtcat_form.indcomunpolicia.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.indcomunpolicia.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.indcomunpolicia.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.indcomunpolicia.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.indcomunpolicia|addcss:'form-control' }}
+          <input id="id_indcomunpolicia" name="indcomunpolicia" type="hidden" value="{% if s2210_evtcat_form.indcomunpolicia.value or s2210_evtcat_form.indcomunpolicia.value == 0 %}{{ s2210_evtcat_form.indcomunpolicia.value }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.indcomunpolicia|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.indcomunpolicia|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__indcomunpolicia -->
+<!-- inicio__s2210_evtcat__codsitgeradora -->
+<div class="col-md-6" id="s2210_evtcat__codsitgeradora__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__codsitgeradora__label">Situação Geradora*</label>
+    {% if s2210_evtcat_form.codsitgeradora.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.codsitgeradora.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.codsitgeradora|addcss:'form-control' }}
+          <input id="id_codsitgeradora" name="codsitgeradora" type="hidden" value="{% if s2210_evtcat_form.codsitgeradora.value or s2210_evtcat_form.codsitgeradora.value == 0 %}{{ s2210_evtcat_form.codsitgeradora.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.codsitgeradora|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.codsitgeradora|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__codsitgeradora -->
+<!-- inicio__s2210_evtcat__iniciatcat -->
+<div class="col-md-6" id="s2210_evtcat__iniciatcat__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__iniciatcat__label">Emitido por*</label>
+    {% if s2210_evtcat_form.iniciatcat.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.iniciatcat.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.iniciatcat.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.iniciatcat.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.iniciatcat|addcss:'form-control' }}
+          <input id="id_iniciatcat" name="iniciatcat" type="hidden" value="{% if s2210_evtcat_form.iniciatcat.value or s2210_evtcat_form.iniciatcat.value == 0 %}{{ s2210_evtcat_form.iniciatcat.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.iniciatcat|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.iniciatcat|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__iniciatcat -->
+<!-- inicio__s2210_evtcat__obscat -->
+<div class="col-md-6" id="s2210_evtcat__obscat__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__obscat__label">Observação.</label>
+      {% if s2210_evtcat_form.obscat.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.obscat.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.obscat|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__obscat -->
+<!-- inicio__s2210_evtcat__observacao -->
+<div class="col-md-6" id="s2210_evtcat__observacao__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__observacao__label">Observações</label>
+      {% if s2210_evtcat_form.observacao.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.observacao.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.observacao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__observacao -->
+<!-- inicio__s2210_evtcat__localacidente -->
+<div class="col-md-12" id="s2210_evtcat__localacidente__div">
+  <h4>Local do Acidente</h4>
+</div>
+<!-- fim__s2210_evtcat__localacidente -->
+<!-- inicio__s2210_evtcat__tplocal -->
+<div class="col-md-6" id="s2210_evtcat__tplocal__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__tplocal__label">Tipo de logradouro*</label>
+    {% if s2210_evtcat_form.tplocal.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.tplocal.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.tplocal.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.tplocal.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.tplocal|addcss:'form-control' }}
+          <input id="id_tplocal" name="tplocal" type="hidden" value="{% if s2210_evtcat_form.tplocal.value or s2210_evtcat_form.tplocal.value == 0 %}{{ s2210_evtcat_form.tplocal.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.tplocal|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.tplocal|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__tplocal -->
+<!-- inicio__s2210_evtcat__dsclocal -->
+<div class="col-md-6" id="s2210_evtcat__dsclocal__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__dsclocal__label">Descrição</label>
+      {% if s2210_evtcat_form.dsclocal.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.dsclocal.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.dsclocal|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__dsclocal -->
+<!-- inicio__s2210_evtcat__codamb -->
+<div class="col-md-6" id="s2210_evtcat__codamb__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__codamb__label">Código do Ambiente</label>
+      {% if s2210_evtcat_form.codamb.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.codamb.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.codamb|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__codamb -->
+<!-- inicio__s2210_evtcat__tplograd -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2210_evtcat__tplograd__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__tplograd__label">Tipo de logradouro*</label>
+        {% if s2210_evtcat_form.tplograd.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2210_evtcat_form.tplograd.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_tplograd" name="txt_tplograd" class="form-control" value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat.tplograd }}{% endif %}" 
+        {% if s2210_evtcat_form.tplograd.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2210_evtcat_form.tplograd.field.widget.attrs.required %} required="required"{% endif %}{% if s2210_evtcat_form.tplograd.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_tplograd" name="tplograd" value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat_form.tplograd.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_tplograd').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-logradouros-tipos/json-search/" + request.term + "/", function (data) {
+          response($.map(data.esocial_logradouros_tipos, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_tplograd').val(ui.item.value);
+        return false;
+      }});
+    {% if s2210_evtcat_form.tplograd.field.widget.attrs.required %}
+    $("#id_form_s2210_evtcat").submit(function(e) {
+      $('#txt_tplograd').disabled = true;
+        if ($('#id_tplograd').val() == "") {
+          $('#txt_tplograd').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Tipo de logradouro!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2210_evtcat__tplograd__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__tplograd__label">Tipo de logradouro*</label>
+        {% if not for_print %}{% if s2210_evtcat_form.tplograd.value %}
+            <a id="s2210_evtcat__tplograd__div_acessar" href="{% url 'esocial-logradouros-tipos_salvar' hash='{}'|json_id:s2210_evtcat_form.tplograd.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_tplograd" name="txt_tplograd" class="form-control" value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat.tplograd }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2210_evtcat__tplograd -->
+<!-- inicio__s2210_evtcat__dsclograd -->
+<div class="col-md-6" id="s2210_evtcat__dsclograd__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__dsclograd__label">Logradouro*</label>
+      {% if s2210_evtcat_form.dsclograd.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.dsclograd.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.dsclograd|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__dsclograd -->
+<!-- inicio__s2210_evtcat__nrlograd -->
+<div class="col-md-6" id="s2210_evtcat__nrlograd__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__nrlograd__label">Número*</label>
+      {% if s2210_evtcat_form.nrlograd.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.nrlograd.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.nrlograd|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__nrlograd -->
+<!-- inicio__s2210_evtcat__complemento -->
+<div class="col-md-6" id="s2210_evtcat__complemento__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__complemento__label">Complemento</label>
+      {% if s2210_evtcat_form.complemento.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.complemento.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.complemento|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__complemento -->
+<!-- inicio__s2210_evtcat__bairro -->
+<div class="col-md-6" id="s2210_evtcat__bairro__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__bairro__label">Bairro</label>
+      {% if s2210_evtcat_form.bairro.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.bairro.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.bairro|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__bairro -->
+<!-- inicio__s2210_evtcat__cep -->
+<div class="col-md-6" id="s2210_evtcat__cep__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__cep__label">CEP</label>
+      {% if s2210_evtcat_form.cep.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.cep.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.cep|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__cep -->
+<!-- inicio__s2210_evtcat__codmunic -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2210_evtcat__codmunic__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__codmunic__label">Código do Município</label>
+        {% if s2210_evtcat_form.codmunic.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2210_evtcat_form.codmunic.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2210_evtcat.codmunic %}{{ s2210_evtcat.codmunic }}{% endif %}" 
+        {% if s2210_evtcat_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2210_evtcat_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}{% if s2210_evtcat_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_codmunic" name="codmunic" value="{% if s2210_evtcat.codmunic %}{{ s2210_evtcat_form.codmunic.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codmunic').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/municipios/json-search/" + request.term + "/", function (data) {
+          response($.map(data.municipios, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codmunic').val(ui.item.value);
+        return false;
+      }});
+    {% if s2210_evtcat_form.codmunic.field.widget.attrs.required %}
+    $("#id_form_s2210_evtcat").submit(function(e) {
+      $('#txt_codmunic').disabled = true;
+        if ($('#id_codmunic').val() == "") {
+          $('#txt_codmunic').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Código do Município!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2210_evtcat__codmunic__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__codmunic__label">Código do Município</label>
+        {% if not for_print %}{% if s2210_evtcat_form.codmunic.value %}
+            <a id="s2210_evtcat__codmunic__div_acessar" href="{% url 'municipios_salvar' hash='{}'|json_id:s2210_evtcat_form.codmunic.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2210_evtcat.codmunic %}{{ s2210_evtcat.codmunic }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2210_evtcat__codmunic -->
+<!-- inicio__s2210_evtcat__uf -->
+<div class="col-md-6" id="s2210_evtcat__uf__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__uf__label">UF</label>
+    {% if s2210_evtcat_form.uf.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.uf.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.uf.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.uf.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.uf|addcss:'form-control' }}
+          <input id="id_uf" name="uf" type="hidden" value="{% if s2210_evtcat_form.uf.value or s2210_evtcat_form.uf.value == 0 %}{{ s2210_evtcat_form.uf.value }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.uf|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.uf|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__uf -->
+<!-- inicio__s2210_evtcat__pais -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2210_evtcat__pais__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__pais__label">Pais</label>
+        {% if s2210_evtcat_form.pais.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2210_evtcat_form.pais.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_pais" name="txt_pais" class="form-control" value="{% if s2210_evtcat.pais %}{{ s2210_evtcat.pais }}{% endif %}" 
+        {% if s2210_evtcat_form.pais.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2210_evtcat_form.pais.field.widget.attrs.required %} required="required"{% endif %}{% if s2210_evtcat_form.pais.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_pais" name="pais" value="{% if s2210_evtcat.pais %}{{ s2210_evtcat_form.pais.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_pais').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-paises/json-search/" + request.term + "/", function (data) {
+          response($.map(data.esocial_paises, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_pais').val(ui.item.value);
+        return false;
+      }});
+    {% if s2210_evtcat_form.pais.field.widget.attrs.required %}
+    $("#id_form_s2210_evtcat").submit(function(e) {
+      $('#txt_pais').disabled = true;
+        if ($('#id_pais').val() == "") {
+          $('#txt_pais').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Pais!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2210_evtcat__pais__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__pais__label">Pais</label>
+        {% if not for_print %}{% if s2210_evtcat_form.pais.value %}
+            <a id="s2210_evtcat__pais__div_acessar" href="{% url 'esocial-paises_salvar' hash='{}'|json_id:s2210_evtcat_form.pais.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_pais" name="txt_pais" class="form-control" value="{% if s2210_evtcat.pais %}{{ s2210_evtcat.pais }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2210_evtcat__pais -->
+<!-- inicio__s2210_evtcat__codpostal -->
+<div class="col-md-6" id="s2210_evtcat__codpostal__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__codpostal__label">Código Postal</label>
+      {% if s2210_evtcat_form.codpostal.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2210_evtcat_form.codpostal.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2210_evtcat_form.codpostal|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__codpostal -->
+<!-- inicio__s2210_evtcat__versao -->
+<div class="col-md-3" id="s2210_evtcat__versao__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__versao__label">Versão</label>
+    {% if s2210_evtcat_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.versao.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.versao.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if s2210_evtcat_form.versao.value or s2210_evtcat_form.versao.value == 0 %}{{ s2210_evtcat_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__versao -->
+<!-- inicio__s2210_evtcat__transmissor_lote_esocial -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_esocial').change(function(){document.getElementById("s2210_evtcat__transmissor_lote_esocial__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="s2210_evtcat__transmissor_lote_esocial__div">
+<div class="form-group">
+  <label id="s2210_evtcat__transmissor_lote_esocial__label">Transmissor</label>
+  {% if not for_print %}
+    {% if s2210_evtcat_form.transmissor_lote_esocial.value %}
+    <a id="s2210_evtcat__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:s2210_evtcat_form.transmissor_lote_esocial.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if s2210_evtcat_form.transmissor_lote_esocial.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2210_evtcat_form.transmissor_lote_esocial.errors }}
+    </div>
+  {% endif %}
+  {% if s2210_evtcat_form.transmissor_lote_esocial.field.widget.attrs.readonly %}
+    {% if s2210_evtcat_form.transmissor_lote_esocial.field.widget.attrs.disabled %}
+      {{ s2210_evtcat_form.transmissor_lote_esocial|addcss:'form-control' }}
+      <input id="id_transmissor_lote_esocial" name="transmissor_lote_esocial" type="hidden" value="{% if s2210_evtcat_form.transmissor_lote_esocial.value or s2210_evtcat_form.transmissor_lote_esocial.value == 0 %}{{ s2210_evtcat_form.transmissor_lote_esocial.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ s2210_evtcat_form.transmissor_lote_esocial|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ s2210_evtcat_form.transmissor_lote_esocial|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__s2210_evtcat__transmissor_lote_esocial -->
+<!-- inicio__s2210_evtcat__status -->
+<div class="col-md-3" id="s2210_evtcat__status__div">
+  <div class="form-group">
+    <label id="s2210_evtcat__status__label">Status</label>
+    {% if s2210_evtcat_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2210_evtcat_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2210_evtcat_form.status.field.widget.attrs.readonly %}
+        {% if s2210_evtcat_form.status.field.widget.attrs.disabled %}
+          {{ s2210_evtcat_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if s2210_evtcat_form.status.value or s2210_evtcat_form.status.value == 0 %}{{ s2210_evtcat_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2210_evtcat_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2210_evtcat_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2210_evtcat__status -->

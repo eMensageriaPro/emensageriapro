@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s1050.models import * 
-from emensageriapro.esocial.models import s1050evtTabHorTur 
+from emensageriapro.s1050.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,26 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s1050_alteracao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1050_alteracao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1050_evttabhortur'].widget.attrs['required'] = True        
-        self.fields['codhorcontrat'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True        
-        self.fields['hrentr'].widget.attrs['required'] = True        
-        self.fields['hrsaida'].widget.attrs['required'] = True        
-        self.fields['durjornada'].widget.attrs['required'] = True        
-        self.fields['perhorflexivel'].widget.attrs['required'] = True
+        super(form_s1050_alteracao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -79,27 +74,25 @@ class form_s1050_alteracao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1050alteracao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1050_alteracao_horariointervalo(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1050_alteracao_horariointervalo, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1050_alteracao'].queryset = s1050alteracao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1050_alteracao'].widget.attrs['required'] = True        
-        self.fields['tpinterv'].widget.attrs['required'] = True        
-        self.fields['durinterv'].widget.attrs['required'] = True
+        super(form_s1050_alteracao_horariointervalo, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -119,25 +112,25 @@ class form_s1050_alteracao_horariointervalo(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1050alteracaohorarioIntervalo
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1050_alteracao_novavalidade(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1050_alteracao_novavalidade, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1050_alteracao'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        super(form_s1050_alteracao_novavalidade, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -157,26 +150,25 @@ class form_s1050_alteracao_novavalidade(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1050alteracaonovaValidade
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1050_exclusao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1050_exclusao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1050_evttabhortur'].widget.attrs['required'] = True        
-        self.fields['codhorcontrat'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        super(form_s1050_exclusao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -196,30 +188,25 @@ class form_s1050_exclusao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1050exclusao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1050_inclusao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1050_inclusao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1050_evttabhortur'].widget.attrs['required'] = True        
-        self.fields['codhorcontrat'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True        
-        self.fields['hrentr'].widget.attrs['required'] = True        
-        self.fields['hrsaida'].widget.attrs['required'] = True        
-        self.fields['durjornada'].widget.attrs['required'] = True        
-        self.fields['perhorflexivel'].widget.attrs['required'] = True
+        super(form_s1050_inclusao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -239,27 +226,25 @@ class form_s1050_inclusao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1050inclusao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1050_inclusao_horariointervalo(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1050_inclusao_horariointervalo, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1050_inclusao'].queryset = s1050inclusao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1050_inclusao'].widget.attrs['required'] = True        
-        self.fields['tpinterv'].widget.attrs['required'] = True        
-        self.fields['durinterv'].widget.attrs['required'] = True
+        super(form_s1050_inclusao_horariointervalo, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -279,10 +264,10 @@ class form_s1050_inclusao_horariointervalo(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1050inclusaohorarioIntervalo
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1260_tpcomerc or 1 %}"Identificação dos Adquirentes da Produção.";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Número de inscrição (CPF/CNPJ)";{% endif %}{% if show_fields.show_vrcomerc or 1 %}"Valor bruto da comercialização";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1260_tpcomerc or 1 %}"{{ c.s1260_tpcomerc }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ c.tpinsc }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ c.nrinsc }}";{% endif %}{% if show_fields.show_vrcomerc or 1 %}"{{ c.vrcomerc }}";{% endif %}
+{% endfor %}

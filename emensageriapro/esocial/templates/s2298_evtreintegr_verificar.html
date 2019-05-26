@@ -118,7 +118,7 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtReintegr</td>
-            <td bgcolor="lightgray" colspan="3">Evento Reintegração. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EXISTE_EVENTO_DESLIGAMENTO REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXISTE_VINCULO REGRA_EXTEMP_REINTEGRACAO REGRA_REINTEG_EXCLUSAO_EVENTO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_EMPREGADOR REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+            <td bgcolor="lightgray" colspan="3">Evento Reintegração. <regras_validacao> REGRA_EVENTOS_EXTEMP REGRA_EXISTE_EVENTO_DESLIGAMENTO REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXISTE_VINCULO REGRA_EXTEMP_REINTEGRACAO REGRA_REINTEG_EXCLUSAO_EVENTO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_EMPREGADOR REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
         </tr>
     {% for s2298_evtreintegr in s2298_evtreintegr_lista %}
     {% ifequal 1 1 %}
@@ -129,8 +129,8 @@
 
         <tr {% if s2298_evtreintegr.indretif|validacoes_esocial_efdreinf:"s2298_evtreintegr.indretif" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indRetif</td>
-            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if s2298_evtreintegr.indretif or s2298_evtreintegr.indretif == 0 %}{{ s2298_evtreintegr.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if s2298_evtreintegr.indretif or s2298_evtreintegr.indretif == 0 %}{{ s2298_evtreintegr.indretif }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -148,7 +148,7 @@
 
         <tr {% if s2298_evtreintegr.nrrecibo|validacoes_esocial_efdreinf:"s2298_evtreintegr.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s2298_evtreintegr.nrrecibo or s2298_evtreintegr.nrrecibo == 0 %}{{ s2298_evtreintegr.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -167,8 +167,8 @@
 
         <tr {% if s2298_evtreintegr.tpamb|validacoes_esocial_efdreinf:"s2298_evtreintegr.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if s2298_evtreintegr.tpamb or s2298_evtreintegr.tpamb == 0 %}{{ s2298_evtreintegr.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if s2298_evtreintegr.tpamb or s2298_evtreintegr.tpamb == 0 %}{{ s2298_evtreintegr.tpamb }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -186,8 +186,8 @@
 
         <tr {% if s2298_evtreintegr.procemi|validacoes_esocial_efdreinf:"s2298_evtreintegr.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
-            <td width="200px"><b>{% if s2298_evtreintegr.procemi or s2298_evtreintegr.procemi == 0 %}{{ s2298_evtreintegr.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2298_evtreintegr.procemi or s2298_evtreintegr.procemi == 0 %}{{ s2298_evtreintegr.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -229,8 +229,8 @@
 
         <tr {% if s2298_evtreintegr.tpinsc|validacoes_esocial_efdreinf:"s2298_evtreintegr.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
-            <td width="200px"><b>{% if s2298_evtreintegr.tpinsc or s2298_evtreintegr.tpinsc == 0 %}{{ s2298_evtreintegr.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s2298_evtreintegr.tpinsc or s2298_evtreintegr.tpinsc == 0 %}{{ s2298_evtreintegr.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -248,7 +248,7 @@
 
         <tr {% if s2298_evtreintegr.nrinsc|validacoes_esocial_efdreinf:"s2298_evtreintegr.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2298_evtreintegr.nrinsc or s2298_evtreintegr.nrinsc == 0 %}{{ s2298_evtreintegr.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -272,7 +272,7 @@
 
         <tr {% if s2298_evtreintegr.cpftrab|validacoes_esocial_efdreinf:"s2298_evtreintegr.cpftrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfTrab</td>
-            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2298_evtreintegr.cpftrab or s2298_evtreintegr.cpftrab == 0 %}{{ s2298_evtreintegr.cpftrab }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -310,7 +310,7 @@
 
         <tr {% if s2298_evtreintegr.matricula|validacoes_esocial_efdreinf:"s2298_evtreintegr.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
             <td width="200px"><b>{% if s2298_evtreintegr.matricula or s2298_evtreintegr.matricula == 0 %}{{ s2298_evtreintegr.matricula }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -334,8 +334,8 @@
 
         <tr {% if s2298_evtreintegr.tpreint|validacoes_esocial_efdreinf:"s2298_evtreintegr.tpreint" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpReint</td>
-            <td width="500px">Tipo de Reintegração: 1 - Reintegração por Decisão Judicial; 2 - Reintegração por Anistia Legal; 3 - Reversão de Servidor Público; 4 - Recondução de Servidor Público; 5 - Reinclusão de Militar; 9 - Outros. Validação: Os tipos [3,4,5] só podem ser informados por órgãos públicos. Valores Válidos: 1, 2, 3, 4, 5, 9.</td>
-            <td width="200px"><b>{% if s2298_evtreintegr.tpreint or s2298_evtreintegr.tpreint == 0 %}{{ s2298_evtreintegr.tpreint|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo de Reintegração<opcoes>1 - Reintegração por Decisão Judicial; 2 - Reintegração por Anistia Legal; 3 - Reversão de Servidor Público; 4 - Recondução de Servidor Público; 5 - Reinclusão de Militar; 9 - Outros. <validacao> Os tipos [3,4,5] só podem ser informados por órgãos públicos. <valores_validos> 1, 2, 3, 4, 5, 9.</td>
+            <td width="200px"><b>{% if s2298_evtreintegr.tpreint or s2298_evtreintegr.tpreint == 0 %}{{ s2298_evtreintegr.tpreint }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -353,7 +353,7 @@
 
         <tr {% if s2298_evtreintegr.nrprocjud|validacoes_esocial_efdreinf:"s2298_evtreintegr.nrprocjud" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrProcJud</td>
-            <td width="500px">Em caso de reintegração por determinação judicial, preencher com o número do processo. OBS.: Não é um processo vinculado à tabela de processos S-1070. Validação: Informação obrigatória se {tpReint} = [1]. Não preencher nos demais casos. Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos.</td>
+            <td width="500px">Em caso de reintegração por determinação judicial, preencher com o número do processo. OBS.: Não é um processo vinculado à tabela de processos S-1070. <validacao> Informação obrigatória se {tpReint} = [1]. Não preencher nos demais casos. Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos.</td>
             <td width="200px"><b>{% if s2298_evtreintegr.nrprocjud or s2298_evtreintegr.nrprocjud == 0 %}{{ s2298_evtreintegr.nrprocjud }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -372,7 +372,7 @@
 
         <tr {% if s2298_evtreintegr.nrleianistia|validacoes_esocial_efdreinf:"s2298_evtreintegr.nrleianistia" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrLeiAnistia</td>
-            <td width="500px">Informar a Lei de Anistia, descrevendo seu número e ano de publicação. Validação: Preenchimento obrigatório se {tpReint} = [2].</td>
+            <td width="500px">Informar a Lei de Anistia, descrevendo seu número e ano de publicação. <validacao> Preenchimento obrigatório se {tpReint} = [2].</td>
             <td width="200px"><b>{% if s2298_evtreintegr.nrleianistia or s2298_evtreintegr.nrleianistia == 0 %}{{ s2298_evtreintegr.nrleianistia }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -391,7 +391,7 @@
 
         <tr {% if s2298_evtreintegr.dtefetretorno|validacoes_esocial_efdreinf:"s2298_evtreintegr.dtefetretorno" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtEfetRetorno</td>
-            <td width="500px">Informar a data do efetivo retorno ao trabalho. Validação: Deve ser uma data válida posterior à data de desligamento do trabalhador.</td>
+            <td width="500px">Informar a data do efetivo retorno ao trabalho. <validacao> Deve ser uma data válida posterior à data de desligamento do trabalhador.</td>
             <td width="200px"><b>{% if s2298_evtreintegr.dtefetretorno or s2298_evtreintegr.dtefetretorno == 0 %}{{ s2298_evtreintegr.dtefetretorno|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -410,7 +410,7 @@
 
         <tr {% if s2298_evtreintegr.dtefeito|validacoes_esocial_efdreinf:"s2298_evtreintegr.dtefeito" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtEfeito</td>
-            <td width="500px">Data de início dos efeitos financeiros da reintegração. Validação: Deve ser uma data igual ou anterior à data do efetivo retorno ao trabalho e posterior à data do desligamento.</td>
+            <td width="500px">Data de início dos efeitos financeiros da reintegração. <validacao> Deve ser uma data igual ou anterior à data do efetivo retorno ao trabalho e posterior à data do desligamento.</td>
             <td width="200px"><b>{% if s2298_evtreintegr.dtefeito or s2298_evtreintegr.dtefeito == 0 %}{{ s2298_evtreintegr.dtefeito|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -429,7 +429,7 @@
 
         <tr {% if s2298_evtreintegr.indpagtojuizo|validacoes_esocial_efdreinf:"s2298_evtreintegr.indpagtojuizo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indPagtoJuizo</td>
-            <td width="500px">Indicar se as remunerações e correspondentes contribuições do período compreendido entre o desligamento e a reintegração foram pagas em juízo: S- Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="500px">Indicar se as remunerações e correspondentes contribuições do período compreendido entre o desligamento e a reintegração foram pagas em juízo<opcoes> S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s2298_evtreintegr.indpagtojuizo or s2298_evtreintegr.indpagtojuizo == 0 %}{{ s2298_evtreintegr.indpagtojuizo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

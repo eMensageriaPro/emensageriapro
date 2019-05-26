@@ -1,1 +1,46 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s2299_evtdeslig_id or s2299_evtdeslig_id != s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.value %}<!-- inicio__s2299_infotrabinterm_quarentena__s2299_evtdeslig --><div class="col-md-12" id="s2299_infotrabinterm_quarentena__s2299_evtdeslig__div"><div class="form-group"><label id="s2299_infotrabinterm_quarentena__s2299_evtdeslig__label">Evento Desligamento*<a data-toggle="tooltip" title="Informações sobre a 'quarentena' remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.value %}<a href="{% url 's2299_evtdeslig_salvar' hash='{}'|json_return_page:'s2299_infotrabinterm_quarentena_salvar'|json_return_hash:hash|json_id:s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.errors }}</div>{% endif %} {% if s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.field.widget.attrs.readonly %} {% if s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.field.widget.attrs.disabled %} {{ s2299_infotrabinterm_quarentena_form.s2299_evtdeslig|addcss:'form-control' }}<input id="id_s2299_evtdeslig" name="s2299_evtdeslig" type="hidden" value="{{ s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.value }}">{% else %} {{ s2299_infotrabinterm_quarentena_form.s2299_evtdeslig|addcss:'form-control' }} {% endif %} {% else %} {{ s2299_infotrabinterm_quarentena_form.s2299_evtdeslig|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2299_infotrabinterm_quarentena__s2299_evtdeslig -->{% else %}<input type="hidden" value="{{ s2299_evtdeslig_id|valor }}" id="id_s2299_evtdeslig" name="s2299_evtdeslig">{% endif %}<!-- inicio__s2299_infotrabinterm_quarentena__dtfimquar --><div class="col-md-6" id="s2299_infotrabinterm_quarentena__dtfimquar__div"><div class="form-group"><label id="s2299_infotrabinterm_quarentena__dtfimquar__label">Data do término da quarentena*<a data-toggle="tooltip" title="Preencher com a data final da quarentena a que está sujeito o trabalhador. Validação: Deve ser uma data posterior a data de término do contrato."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2299_infotrabinterm_quarentena_form.dtfimquar.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2299_infotrabinterm_quarentena_form.dtfimquar.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2299_infotrabinterm_quarentena_form.dtfimquar|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2299_infotrabinterm_quarentena__dtfimquar -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2299_infotrabinterm_quarentena__s2299_evtdeslig -->
+<div class="col-md-12" id="s2299_infotrabinterm_quarentena__s2299_evtdeslig__div">
+  <div class="form-group">
+    <label id="s2299_infotrabinterm_quarentena__s2299_evtdeslig__label">Informações sobre a 'quarentena' remunerada de trabalhador desligado*</label>
+    {% if not for_print %}{% if s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.value %}
+        <a href="{% url 's2299_evtdeslig_salvar' hash='{}'|json_return_page:'s2299_infotrabinterm_quarentena_salvar'|json_return_hash:hash|json_id:s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.errors }}
+      </div>
+    {% endif %}
+    {% if s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.field.widget.attrs.readonly %}
+      {% if s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.field.widget.attrs.disabled %}
+        {{ s2299_infotrabinterm_quarentena_form.s2299_evtdeslig|addcss:'form-control' }}
+        <input id="id_s2299_evtdeslig" name="s2299_evtdeslig" type="hidden" value="{{ s2299_infotrabinterm_quarentena_form.s2299_evtdeslig.value }}">
+      {% else %}
+        {{ s2299_infotrabinterm_quarentena_form.s2299_evtdeslig|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2299_infotrabinterm_quarentena_form.s2299_evtdeslig|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2299_infotrabinterm_quarentena__s2299_evtdeslig -->
+<!-- inicio__s2299_infotrabinterm_quarentena__dtfimquar -->
+<div class="col-md-6" id="s2299_infotrabinterm_quarentena__dtfimquar__div">
+  <div class="form-group">
+    <label id="s2299_infotrabinterm_quarentena__dtfimquar__label">Data do término da quarentena*</label>
+        {% if s2299_infotrabinterm_quarentena_form.dtfimquar.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2299_infotrabinterm_quarentena_form.dtfimquar.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_infotrabinterm_quarentena_form.dtfimquar|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_infotrabinterm_quarentena__dtfimquar -->

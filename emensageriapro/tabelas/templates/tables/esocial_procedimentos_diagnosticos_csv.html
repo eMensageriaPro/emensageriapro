@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"eSocial 27 - Procedimentos Diagnósticos"
-{% if show_fields.show_codigo or 1 %}"Código";{% endif %}{% if show_fields.show_descricao or 1 %}"Descrição";{% endif %}
-{% for a in esocial_procedimentos_diagnosticos_lista %}{% if show_fields.show_codigo or 1 %}"{{ a.codigo }}";{% endif %}{% if show_fields.show_descricao or 1 %}"{{ a.descricao }}";{% endif %}
-{% endfor %}

@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}."
-{% if show_fields.show_s5001_evtbasestrab or not s5001_evtbasestrab_id and 1 %}"Evento Bases por Trabalhador";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"Número do Processo Judicial";{% endif %}{% if show_fields.show_codsusp or 1 %}"Código do Indicativo da Suspensão";{% endif %}
-{% for a in s5001_procjudtrab_lista %}{% if show_fields.show_s5001_evtbasestrab or  not s5001_evtbasestrab_id and 1 %}"{{ a.s5001_evtbasestrab }}";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"{{ a.nrprocjud }}";{% endif %}{% if show_fields.show_codsusp or 1 %}"{{ a.codsusp }}";{% endif %}
-{% endfor %}

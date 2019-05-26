@@ -118,7 +118,7 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtCessao</td>
-            <td bgcolor="lightgray" colspan="3">Evento Cessão/Exercício em Outro Órgão Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXCLUI_EVENTO_CESSAO REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
+            <td bgcolor="lightgray" colspan="3">Evento Cessão/Exercício em Outro Órgão <regras_validacao> REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXCLUI_EVENTO_CESSAO REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</td>
         </tr>
     {% for s2231_evtcessao in s2231_evtcessao_lista %}
     {% ifequal 1 1 %}
@@ -129,8 +129,8 @@
 
         <tr {% if s2231_evtcessao.indretif|validacoes_esocial_efdreinf:"s2231_evtcessao.indretif" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indRetif</td>
-            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if s2231_evtcessao.indretif or s2231_evtcessao.indretif == 0 %}{{ s2231_evtcessao.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if s2231_evtcessao.indretif or s2231_evtcessao.indretif == 0 %}{{ s2231_evtcessao.indretif }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -148,7 +148,7 @@
 
         <tr {% if s2231_evtcessao.nrrecibo|validacoes_esocial_efdreinf:"s2231_evtcessao.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s2231_evtcessao.nrrecibo or s2231_evtcessao.nrrecibo == 0 %}{{ s2231_evtcessao.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -167,8 +167,8 @@
 
         <tr {% if s2231_evtcessao.tpamb|validacoes_esocial_efdreinf:"s2231_evtcessao.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if s2231_evtcessao.tpamb or s2231_evtcessao.tpamb == 0 %}{{ s2231_evtcessao.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if s2231_evtcessao.tpamb or s2231_evtcessao.tpamb == 0 %}{{ s2231_evtcessao.tpamb }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -186,8 +186,8 @@
 
         <tr {% if s2231_evtcessao.procemi|validacoes_esocial_efdreinf:"s2231_evtcessao.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
-            <td width="200px"><b>{% if s2231_evtcessao.procemi or s2231_evtcessao.procemi == 0 %}{{ s2231_evtcessao.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s2231_evtcessao.procemi or s2231_evtcessao.procemi == 0 %}{{ s2231_evtcessao.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -229,8 +229,8 @@
 
         <tr {% if s2231_evtcessao.tpinsc|validacoes_esocial_efdreinf:"s2231_evtcessao.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
-            <td width="200px"><b>{% if s2231_evtcessao.tpinsc or s2231_evtcessao.tpinsc == 0 %}{{ s2231_evtcessao.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s2231_evtcessao.tpinsc or s2231_evtcessao.tpinsc == 0 %}{{ s2231_evtcessao.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -248,7 +248,7 @@
 
         <tr {% if s2231_evtcessao.nrinsc|validacoes_esocial_efdreinf:"s2231_evtcessao.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica = ([101-5], [104-0], [107-4], [110-4], [113-9], [116-3], [119-8]), situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica = ([101-5], [104-0], [107-4], [110-4], [113-9], [116-3], [119-8]), situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2231_evtcessao.nrinsc or s2231_evtcessao.nrinsc == 0 %}{{ s2231_evtcessao.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -267,12 +267,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideVinculo</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo. Regra de validação: REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Trabalhador e do Vínculo. <regras_validacao> REGRA_VINCULO_ATIVO_NA_DTEVENTO</td>
         </tr>
 
         <tr {% if s2231_evtcessao.cpftrab|validacoes_esocial_efdreinf:"s2231_evtcessao.cpftrab" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfTrab</td>
-            <td width="500px">Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido.</td>
+            <td width="500px">Preencher com o número do CPF do trabalhador. <validacao> Deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s2231_evtcessao.cpftrab or s2231_evtcessao.cpftrab == 0 %}{{ s2231_evtcessao.cpftrab }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -310,7 +310,7 @@
 
         <tr {% if s2231_evtcessao.matricula|validacoes_esocial_efdreinf:"s2231_evtcessao.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
             <td width="200px"><b>{% if s2231_evtcessao.matricula or s2231_evtcessao.matricula == 0 %}{{ s2231_evtcessao.matricula }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -340,7 +340,7 @@
     {% ifequal s2231_inicessao.s2231_evtcessao.id s2231_evtcessao.id %}
         <tr {% if s2231_inicessao.dtinicessao|validacoes_esocial_efdreinf:"s2231_inicessao.dtinicessao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtIniCessao</td>
-            <td width="500px">Data de início da cessão/exercício em outro órgão. Validação: Deve-se obedecer às seguintes regras: a) Deve ser uma data válida, igual ou posterior a data de admissão/exercício do vínculo ao qual se refere o evento (no caso de sucessão, igual ou posterior à data da transferência); b) Não pode ser superior à data atual; c) É necessário que o trabalhador esteja, antes da data de início da cessão/exercício em outro órgão, em atividade no empregador/órgão público declarante, ou seja, não pode existir evento de cessão/exercício em outro órgão anterior a {dtIniCessao} sem que este tenha sido encerrado.</td>
+            <td width="500px">Data de início da cessão/exercício em outro órgão. <validacao> Deve-se obedecer às seguintes regras: a) Deve ser uma data válida, igual ou posterior a data de admissão/exercício do vínculo ao qual se refere o evento (no caso de sucessão, igual ou posterior à data da transferência); b) Não pode ser superior à data atual; c) É necessário que o trabalhador esteja, antes da data de início da cessão/exercício em outro órgão, em atividade no empregador/órgão público declarante, ou seja, não pode existir evento de cessão/exercício em outro órgão anterior a {dtIniCessao} sem que este tenha sido encerrado.</td>
             <td width="200px"><b>{% if s2231_inicessao.dtinicessao or s2231_inicessao.dtinicessao == 0 %}{{ s2231_inicessao.dtinicessao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -359,7 +359,7 @@
 
         <tr {% if s2231_inicessao.cnpjcess|validacoes_esocial_efdreinf:"s2231_inicessao.cnpjcess" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjCess</td>
-            <td width="500px">Preencher com o CNPJ do empregador/órgão público cessionário/de destino. Validação: Deve ser um CNPJ diferente do CNPJ do empregador/órgão público e diferente dos estabelecimentos informados através do evento S- 1005. Regra de validação: REGRA_VALIDA_CNPJ</td>
+            <td width="500px">Preencher com o CNPJ do empregador/órgão público cessionário/de destino. <validacao> Deve ser um CNPJ diferente do CNPJ do empregador/órgão público e diferente dos estabelecimentos informados através do evento S- 1005. <regras_validacao> REGRA_VALIDA_CNPJ</td>
             <td width="200px"><b>{% if s2231_inicessao.cnpjcess or s2231_inicessao.cnpjcess == 0 %}{{ s2231_inicessao.cnpjcess }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -378,8 +378,8 @@
 
         <tr {% if s2231_inicessao.infonus|validacoes_esocial_efdreinf:"s2231_inicessao.infonus" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">infOnus</td>
-            <td width="500px">Responsabilidade pelos pagamentos: 1 - Pagamento exclusivamente pelo cedente/origem; 2 - Pagamento exclusivamente pelo cessionário/destino; 3 - Pagamento pelo cedente/origem e pelo cessionário/destino; 4 - Pagamento pelo cedente/origem com ressarcimento pelo cessionário/destino. Valores Válidos: 1, 2, 3, 4.</td>
-            <td width="200px"><b>{% if s2231_inicessao.infonus or s2231_inicessao.infonus == 0 %}{{ s2231_inicessao.infonus|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Responsabilidade pelos pagamentos<opcoes>1 - Pagamento exclusivamente pelo cedente/origem; 2 - Pagamento exclusivamente pelo cessionário/destino; 3 - Pagamento pelo cedente/origem e pelo cessionário/destino; 4 - Pagamento pelo cedente/origem com ressarcimento pelo cessionário/destino. <valores_validos> 1, 2, 3, 4.</td>
+            <td width="200px"><b>{% if s2231_inicessao.infonus or s2231_inicessao.infonus == 0 %}{{ s2231_inicessao.infonus }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -397,8 +397,8 @@
 
         <tr {% if s2231_inicessao.indcessao|validacoes_esocial_efdreinf:"s2231_inicessao.indcessao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indCessao</td>
-            <td width="500px">Indicativo de cessão/exercício em outro órgão: 1 - Cessão; 2 - Agente público à disposição da Justiça Eleitoral; 3 - Exercício em outro órgão, em caso diferente de cessão. Valores Válidos: 1, 2, 3.</td>
-            <td width="200px"><b>{% if s2231_inicessao.indcessao or s2231_inicessao.indcessao == 0 %}{{ s2231_inicessao.indcessao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo de cessão/exercício em outro órgão<opcoes>1 - Cessão; 2 - Agente público à disposição da Justiça Eleitoral; 3 - Exercício em outro órgão, em caso diferente de cessão. <valores_validos> 1, 2, 3.</td>
+            <td width="200px"><b>{% if s2231_inicessao.indcessao or s2231_inicessao.indcessao == 0 %}{{ s2231_inicessao.indcessao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -416,7 +416,7 @@
 
         <tr {% if s2231_inicessao.dscsituacao|validacoes_esocial_efdreinf:"s2231_inicessao.dscsituacao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dscSituacao</td>
-            <td width="500px">Descrição da situação relativa a exercício em outro órgão, em caso diferente de cessão. Validação: Preenchimento obrigatório se {indCessao} = [3].</td>
+            <td width="500px">Descrição da situação relativa a exercício em outro órgão, em caso diferente de cessão. <validacao> Preenchimento obrigatório se {indCessao} = [3].</td>
             <td width="200px"><b>{% if s2231_inicessao.dscsituacao or s2231_inicessao.dscsituacao == 0 %}{{ s2231_inicessao.dscsituacao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -435,13 +435,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">fimCessao</td>
-            <td bgcolor="lightgray" colspan="3">Informações de término da cessão/exercício em outro órgão Regra de validação: REGRA_EXISTE_EVENTO_CESSAO</td>
+            <td bgcolor="lightgray" colspan="3">Informações de término da cessão/exercício em outro órgão <regras_validacao> REGRA_EXISTE_EVENTO_CESSAO</td>
         </tr>
     {% for s2231_fimcessao in s2231_fimcessao_lista %}
     {% ifequal s2231_fimcessao.s2231_evtcessao.id s2231_evtcessao.id %}
         <tr {% if s2231_fimcessao.dttermcessao|validacoes_esocial_efdreinf:"s2231_fimcessao.dttermcessao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtTermCessao</td>
-            <td width="500px">Preencher com a data de término da cessão/exercício em outro órgão. Validação: Deve-se obedecer às seguintes regras: a) Deve ser uma data válida, igual ou posterior à data de início da cessão/exercício em outro órgão; b) Deve ser uma data não superior à data atual.</td>
+            <td width="500px">Preencher com a data de término da cessão/exercício em outro órgão. <validacao> Deve-se obedecer às seguintes regras: a) Deve ser uma data válida, igual ou posterior à data de início da cessão/exercício em outro órgão; b) Deve ser uma data não superior à data atual.</td>
             <td width="200px"><b>{% if s2231_fimcessao.dttermcessao or s2231_fimcessao.dttermcessao == 0 %}{{ s2231_fimcessao.dttermcessao|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

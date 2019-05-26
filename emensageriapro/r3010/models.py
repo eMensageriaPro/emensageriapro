@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.r3010.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,98 +45,47 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_R3010_CATEGEVENTO = (
-    (1, u'1 - Internacional'),
-    (2, u'2 - Interestadual'),
-    (3, u'3 - Estadual'),
-    (4, u'4 - Local'),
-)
 
-CHOICES_R3010_TPCOMPETICAO = (
-    (1, u'1 - Oficial'),
-    (2, u'2 - Não Oficial'),
-)
-
-CHOICES_R3010_TPINGRESSO = (
-    (1, u'1 - Arquibancada'),
-    (2, u'2 - Geral'),
-    (3, u'3 - Cadeiras'),
-    (4, u'4 - Camarote'),
-)
-
-CHOICES_R3010_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-)
-
-CHOICES_R3010_TPRECEITA = (
-    (1, u'1 - Transmissão'),
-    (2, u'2 - Propaganda'),
-    (3, u'3 - Publicidade'),
-    (4, u'4 - Sorteio'),
-    (5, u'5 - Outros'),
-)
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
 
 class r3010boletim(SoftDeletionModel):
-    r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo',
-        related_name='%(class)s_r3010_evtespdesportivo')
-    def evento(self): return self.r3010_evtespdesportivo.evento()
-    nrboletim = models.CharField(max_length=4)
-    tpcompeticao = models.IntegerField(choices=CHOICES_R3010_TPCOMPETICAO)
-    categevento = models.IntegerField(choices=CHOICES_R3010_CATEGEVENTO)
-    moddesportiva = models.CharField(max_length=100)
-    nomecompeticao = models.CharField(max_length=100)
-    cnpjmandante = models.CharField(max_length=14)
-    cnpjvisitante = models.CharField(max_length=14, blank=True, null=True)
-    nomevisitante = models.CharField(max_length=80, blank=True, null=True)
-    pracadesportiva = models.CharField(max_length=100)
-    codmunic = models.TextField(max_length=7, blank=True, null=True)
-    uf = models.CharField(choices=ESTADOS, max_length=2)
-    qtdepagantes = models.IntegerField()
-    qtdenaopagantes = models.IntegerField()
+
+    r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo', 
+        related_name='%(class)s_r3010_evtespdesportivo', )
+    
+    def evento(self): 
+        return self.r3010_evtespdesportivo.evento()
+    nrboletim = models.CharField(max_length=4, null=True, )
+    tpcompeticao = models.IntegerField(choices=CHOICES_R3010_TPCOMPETICAO, null=True, )
+    categevento = models.IntegerField(choices=CHOICES_R3010_CATEGEVENTO, null=True, )
+    moddesportiva = models.CharField(max_length=100, null=True, )
+    nomecompeticao = models.CharField(max_length=100, null=True, )
+    cnpjmandante = models.CharField(max_length=14, null=True, )
+    cnpjvisitante = models.CharField(max_length=14, blank=True, null=True, )
+    nomevisitante = models.CharField(max_length=80, blank=True, null=True, )
+    pracadesportiva = models.CharField(max_length=100, null=True, )
+    codmunic = models.TextField(blank=True, null=True, )
+    uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
+    qtdepagantes = models.IntegerField(null=True, )
+    qtdenaopagantes = models.IntegerField(null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -132,51 +93,84 @@ class r3010boletim(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.r3010_evtespdesportivo) + ' - ' + unicode(self.nrboletim) + ' - ' + unicode(self.tpcompeticao) + ' - ' + unicode(self.categevento) + ' - ' + unicode(self.moddesportiva) + ' - ' + unicode(self.nomecompeticao) + ' - ' + unicode(self.cnpjmandante) + ' - ' + unicode(self.pracadesportiva) + ' - ' + unicode(self.uf) + ' - ' + unicode(self.qtdepagantes) + ' - ' + unicode(self.qtdenaopagantes)
-    #r3010_boletim_custom#
-
+        
+        lista = [
+            unicode(self.r3010_evtespdesportivo),
+            unicode(self.nrboletim),
+            unicode(self.tpcompeticao),
+            unicode(self.categevento),
+            unicode(self.moddesportiva),
+            unicode(self.nomecompeticao),
+            unicode(self.cnpjmandante),
+            unicode(self.pracadesportiva),
+            unicode(self.uf),
+            unicode(self.qtdepagantes),
+            unicode(self.qtdenaopagantes),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Boletim do Espetáculo Desportivo'
         db_table = r'r3010_boletim'       
         managed = True # r3010_boletim #
-        unique_together = (
-            #custom_unique_together_r3010_boletim#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_r3010_boletim
-            #index_together_r3010_boletim
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_r3010_boletim", "Can view r3010_boletim"),
-            #custom_permissions_r3010_boletim
-        )
-        ordering = ['r3010_evtespdesportivo', 'nrboletim', 'tpcompeticao', 'categevento', 'moddesportiva', 'nomecompeticao', 'cnpjmandante', 'pracadesportiva', 'uf', 'qtdepagantes', 'qtdenaopagantes']
+            ("can_view_r3010_boletim", "Can view r3010_boletim"), )
+            
+        ordering = [
+            'r3010_evtespdesportivo',
+            'nrboletim',
+            'tpcompeticao',
+            'categevento',
+            'moddesportiva',
+            'nomecompeticao',
+            'cnpjmandante',
+            'pracadesportiva',
+            'uf',
+            'qtdepagantes',
+            'qtdenaopagantes',]
 
 
 
 class r3010boletimSerializer(ModelSerializer):
+
     class Meta:
+    
         model = r3010boletim
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class r3010infoProc(SoftDeletionModel):
-    r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo',
-        related_name='%(class)s_r3010_evtespdesportivo')
-    def evento(self): return self.r3010_evtespdesportivo.evento()
-    tpproc = models.IntegerField(choices=CHOICES_R3010_TPPROC)
-    nrproc = models.CharField(max_length=21)
-    codsusp = models.IntegerField(blank=True, null=True)
-    vlrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    r3010_evtespdesportivo = models.ForeignKey('efdreinf.r3010evtEspDesportivo', 
+        related_name='%(class)s_r3010_evtespdesportivo', )
+    
+    def evento(self): 
+        return self.r3010_evtespdesportivo.evento()
+    tpproc = models.IntegerField(choices=CHOICES_R3010_TPPROC, null=True, )
+    nrproc = models.CharField(max_length=21, null=True, )
+    codsusp = models.IntegerField(blank=True, null=True, )
+    vlrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -184,50 +178,69 @@ class r3010infoProc(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.r3010_evtespdesportivo) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.vlrcpsusp)
-    #r3010_infoproc_custom#
-
+        
+        lista = [
+            unicode(self.r3010_evtespdesportivo),
+            unicode(self.tpproc),
+            unicode(self.nrproc),
+            unicode(self.vlrcpsusp),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações de processos relacionados a não retenção de contribuição previdenciária'
         db_table = r'r3010_infoproc'       
         managed = True # r3010_infoproc #
-        unique_together = (
-            #custom_unique_together_r3010_infoproc#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_r3010_infoproc
-            #index_together_r3010_infoproc
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_r3010_infoproc", "Can view r3010_infoproc"),
-            #custom_permissions_r3010_infoproc
-        )
-        ordering = ['r3010_evtespdesportivo', 'tpproc', 'nrproc', 'vlrcpsusp']
+            ("can_view_r3010_infoproc", "Can view r3010_infoproc"), )
+            
+        ordering = [
+            'r3010_evtespdesportivo',
+            'tpproc',
+            'nrproc',
+            'vlrcpsusp',]
 
 
 
 class r3010infoProcSerializer(ModelSerializer):
+
     class Meta:
+    
         model = r3010infoProc
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class r3010outrasReceitas(SoftDeletionModel):
-    r3010_boletim = models.ForeignKey('r3010boletim',
-        related_name='%(class)s_r3010_boletim')
-    def evento(self): return self.r3010_boletim.evento()
-    tpreceita = models.IntegerField(choices=CHOICES_R3010_TPRECEITA)
-    vlrreceita = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    descreceita = models.CharField(max_length=20)
+
+    r3010_boletim = models.ForeignKey('r3010.r3010boletim', 
+        related_name='%(class)s_r3010_boletim', )
+    
+    def evento(self): 
+        return self.r3010_boletim.evento()
+    tpreceita = models.IntegerField(choices=CHOICES_R3010_TPRECEITA, null=True, )
+    vlrreceita = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    descreceita = models.CharField(max_length=20, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -235,54 +248,73 @@ class r3010outrasReceitas(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.r3010_boletim) + ' - ' + unicode(self.tpreceita) + ' - ' + unicode(self.vlrreceita) + ' - ' + unicode(self.descreceita)
-    #r3010_outrasreceitas_custom#
-
+        
+        lista = [
+            unicode(self.r3010_boletim),
+            unicode(self.tpreceita),
+            unicode(self.vlrreceita),
+            unicode(self.descreceita),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Outras receitas do espetáculo'
         db_table = r'r3010_outrasreceitas'       
         managed = True # r3010_outrasreceitas #
-        unique_together = (
-            #custom_unique_together_r3010_outrasreceitas#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_r3010_outrasreceitas
-            #index_together_r3010_outrasreceitas
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_r3010_outrasreceitas", "Can view r3010_outrasreceitas"),
-            #custom_permissions_r3010_outrasreceitas
-        )
-        ordering = ['r3010_boletim', 'tpreceita', 'vlrreceita', 'descreceita']
+            ("can_view_r3010_outrasreceitas", "Can view r3010_outrasreceitas"), )
+            
+        ordering = [
+            'r3010_boletim',
+            'tpreceita',
+            'vlrreceita',
+            'descreceita',]
 
 
 
 class r3010outrasReceitasSerializer(ModelSerializer):
+
     class Meta:
+    
         model = r3010outrasReceitas
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class r3010receitaIngressos(SoftDeletionModel):
-    r3010_boletim = models.ForeignKey('r3010boletim',
-        related_name='%(class)s_r3010_boletim')
-    def evento(self): return self.r3010_boletim.evento()
-    tpingresso = models.IntegerField(choices=CHOICES_R3010_TPINGRESSO)
-    descingr = models.CharField(max_length=30)
-    qtdeingrvenda = models.IntegerField()
-    qtdeingrvendidos = models.IntegerField()
-    qtdeingrdev = models.IntegerField()
-    precoindiv = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vlrtotal = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    r3010_boletim = models.ForeignKey('r3010.r3010boletim', 
+        related_name='%(class)s_r3010_boletim', )
+    
+    def evento(self): 
+        return self.r3010_boletim.evento()
+    tpingresso = models.IntegerField(choices=CHOICES_R3010_TPINGRESSO, null=True, )
+    descingr = models.CharField(max_length=30, null=True, )
+    qtdeingrvenda = models.IntegerField(null=True, )
+    qtdeingrvendidos = models.IntegerField(null=True, )
+    qtdeingrdev = models.IntegerField(null=True, )
+    precoindiv = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vlrtotal = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -290,41 +322,61 @@ class r3010receitaIngressos(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.r3010_boletim) + ' - ' + unicode(self.tpingresso) + ' - ' + unicode(self.descingr) + ' - ' + unicode(self.qtdeingrvenda) + ' - ' + unicode(self.qtdeingrvendidos) + ' - ' + unicode(self.qtdeingrdev) + ' - ' + unicode(self.precoindiv) + ' - ' + unicode(self.vlrtotal)
-    #r3010_receitaingressos_custom#
-
+        
+        lista = [
+            unicode(self.r3010_boletim),
+            unicode(self.tpingresso),
+            unicode(self.descingr),
+            unicode(self.qtdeingrvenda),
+            unicode(self.qtdeingrvendidos),
+            unicode(self.qtdeingrdev),
+            unicode(self.precoindiv),
+            unicode(self.vlrtotal),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Receita da Venda de Ingressos'
         db_table = r'r3010_receitaingressos'       
         managed = True # r3010_receitaingressos #
-        unique_together = (
-            #custom_unique_together_r3010_receitaingressos#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_r3010_receitaingressos
-            #index_together_r3010_receitaingressos
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_r3010_receitaingressos", "Can view r3010_receitaingressos"),
-            #custom_permissions_r3010_receitaingressos
-        )
-        ordering = ['r3010_boletim', 'tpingresso', 'descingr', 'qtdeingrvenda', 'qtdeingrvendidos', 'qtdeingrdev', 'precoindiv', 'vlrtotal']
+            ("can_view_r3010_receitaingressos", "Can view r3010_receitaingressos"), )
+            
+        ordering = [
+            'r3010_boletim',
+            'tpingresso',
+            'descingr',
+            'qtdeingrvenda',
+            'qtdeingrvendidos',
+            'qtdeingrdev',
+            'precoindiv',
+            'vlrtotal',]
 
 
 
 class r3010receitaIngressosSerializer(ModelSerializer):
+
     class Meta:
+    
         model = r3010receitaIngressos
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

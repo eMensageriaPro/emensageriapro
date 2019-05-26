@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s2260.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,61 +45,42 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
+
 
 class s2260localTrabInterm(SoftDeletionModel):
-    s2260_evtconvinterm = models.OneToOneField('esocial.s2260evtConvInterm',
-        related_name='%(class)s_s2260_evtconvinterm')
-    def evento(self): return self.s2260_evtconvinterm.evento()
-    tplograd = models.TextField(max_length=4)
-    dsclograd = models.CharField(max_length=100)
-    nrlograd = models.CharField(max_length=10)
-    complem = models.CharField(max_length=30, blank=True, null=True)
-    bairro = models.CharField(max_length=90, blank=True, null=True)
-    cep = models.CharField(max_length=8)
-    codmunic = models.TextField(max_length=7)
-    uf = models.CharField(choices=ESTADOS, max_length=2)
+
+    s2260_evtconvinterm = models.ForeignKey('esocial.s2260evtConvInterm', 
+        related_name='%(class)s_s2260_evtconvinterm', )
+    
+    def evento(self): 
+        return self.s2260_evtconvinterm.evento()
+    tplograd = models.TextField(null=True, )
+    dsclograd = models.CharField(max_length=100, null=True, )
+    nrlograd = models.CharField(max_length=10, null=True, )
+    complem = models.CharField(max_length=30, blank=True, null=True, )
+    bairro = models.CharField(max_length=90, blank=True, null=True, )
+    cep = models.CharField(max_length=8, null=True, )
+    codmunic = models.TextField(null=True, )
+    uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -95,41 +88,59 @@ class s2260localTrabInterm(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2260_evtconvinterm) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
-    #s2260_localtrabinterm_custom#
-
+        
+        lista = [
+            unicode(self.s2260_evtconvinterm),
+            unicode(self.tplograd),
+            unicode(self.dsclograd),
+            unicode(self.nrlograd),
+            unicode(self.cep),
+            unicode(self.codmunic),
+            unicode(self.uf),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206'
         db_table = r's2260_localtrabinterm'       
         managed = True # s2260_localtrabinterm #
-        unique_together = (
-            #custom_unique_together_s2260_localtrabinterm#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2260_localtrabinterm
-            #index_together_s2260_localtrabinterm
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2260_localtrabinterm", "Can view s2260_localtrabinterm"),
-            #custom_permissions_s2260_localtrabinterm
-        )
-        ordering = ['s2260_evtconvinterm', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
+            ("can_view_s2260_localtrabinterm", "Can view s2260_localtrabinterm"), )
+            
+        ordering = [
+            's2260_evtconvinterm',
+            'tplograd',
+            'dsclograd',
+            'nrlograd',
+            'cep',
+            'codmunic',
+            'uf',]
 
 
 
 class s2260localTrabIntermSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2260localTrabInterm
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

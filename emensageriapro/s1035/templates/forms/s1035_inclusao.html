@@ -1,1 +1,173 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s1035_evttabcarreira_id or s1035_evttabcarreira_id != s1035_inclusao_form.s1035_evttabcarreira.value %}<!-- inicio__s1035_inclusao__s1035_evttabcarreira --><div class="col-md-12" id="s1035_inclusao__s1035_evttabcarreira__div"><div class="form-group"><label id="s1035_inclusao__s1035_evttabcarreira__label">Evento utilizado para inclusão, alteração e exclusão de registros na tabela de Carreiras Públicas*<a data-toggle="tooltip" title="Inclusão de novas informações."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s1035_inclusao_form.s1035_evttabcarreira.value %}<a href="{% url 's1035_evttabcarreira_salvar' hash='{}'|json_return_page:'s1035_inclusao_salvar'|json_return_hash:hash|json_id:s1035_inclusao_form.s1035_evttabcarreira.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s1035_inclusao_form.s1035_evttabcarreira.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1035_inclusao_form.s1035_evttabcarreira.errors }}</div>{% endif %} {% if s1035_inclusao_form.s1035_evttabcarreira.field.widget.attrs.readonly %} {% if s1035_inclusao_form.s1035_evttabcarreira.field.widget.attrs.disabled %} {{ s1035_inclusao_form.s1035_evttabcarreira|addcss:'form-control' }}<input id="id_s1035_evttabcarreira" name="s1035_evttabcarreira" type="hidden" value="{{ s1035_inclusao_form.s1035_evttabcarreira.value }}">{% else %} {{ s1035_inclusao_form.s1035_evttabcarreira|addcss:'form-control' }} {% endif %} {% else %} {{ s1035_inclusao_form.s1035_evttabcarreira|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s1035_inclusao__s1035_evttabcarreira -->{% else %}<input type="hidden" value="{{ s1035_evttabcarreira_id|valor }}" id="id_s1035_evttabcarreira" name="s1035_evttabcarreira">{% endif %}<!-- inicio__s1035_inclusao__idecarreira --><div class="col-md-12" id="s1035_inclusao__idecarreira__div"><h4>Informações de identificação da Carreira e validade das informações que estão sendo incluídas</h4></div><!-- fim__s1035_inclusao__idecarreira --><!-- inicio__s1035_inclusao__codcarreira --><div class="col-md-6" id="s1035_inclusao__codcarreira__div"><div class="form-group"><label id="s1035_inclusao__codcarreira__label">Código da Carreira*<a data-toggle="tooltip" title="Preencher com o código da carreira pública. Validação: O código atribuído não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1035_inclusao_form.codcarreira.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1035_inclusao_form.codcarreira.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1035_inclusao_form.codcarreira|addcss:'form-control' }}</div></div></div><!-- fim__s1035_inclusao__codcarreira --><!-- inicio__s1035_inclusao__inivalid --><div class="col-md-6" id="s1035_inclusao__inivalid__div"><div class="form-group"><label id="s1035_inclusao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA- (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1035_inclusao_form.inivalid.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1035_inclusao_form.inivalid.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1035_inclusao_form.inivalid.field.widget.attrs.readonly %} {% if s1035_inclusao_form.inivalid.field.widget.attrs.disabled %} {{ s1035_inclusao_form.inivalid|addcss:'form-control' }}<input id="id_inivalid" name="inivalid" type="hidden" value="{% if s1035_inclusao_form.inivalid.value or s1035_inclusao_form.inivalid.value == 0 %}{{ s1035_inclusao_form.inivalid.value }}{% endif %}">{% else %} {{ s1035_inclusao_form.inivalid|addcss:'form-control' }} {% endif %} {% else %} {{ s1035_inclusao_form.inivalid|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1035_inclusao__inivalid --><!-- inicio__s1035_inclusao__fimvalid --><div class="col-md-6" id="s1035_inclusao__fimvalid__div"><div class="form-group"><label id="s1035_inclusao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1035_inclusao_form.fimvalid.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1035_inclusao_form.fimvalid.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1035_inclusao_form.fimvalid.field.widget.attrs.readonly %} {% if s1035_inclusao_form.fimvalid.field.widget.attrs.disabled %} {{ s1035_inclusao_form.fimvalid|addcss:'form-control' }}<input id="id_fimvalid" name="fimvalid" type="hidden" value="{% if s1035_inclusao_form.fimvalid.value or s1035_inclusao_form.fimvalid.value == 0 %}{{ s1035_inclusao_form.fimvalid.value }}{% endif %}">{% else %} {{ s1035_inclusao_form.fimvalid|addcss:'form-control' }} {% endif %} {% else %} {{ s1035_inclusao_form.fimvalid|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1035_inclusao__fimvalid --><!-- inicio__s1035_inclusao__dadoscarreira --><div class="col-md-12" id="s1035_inclusao__dadoscarreira__div"><h4>Detalhamento das informações da Carreira que está sendo incluída</h4></div><!-- fim__s1035_inclusao__dadoscarreira --><!-- inicio__s1035_inclusao__dsccarreira --><div class="col-md-6" id="s1035_inclusao__dsccarreira__div"><div class="form-group"><label id="s1035_inclusao__dsccarreira__label">Descrição*<a data-toggle="tooltip" title="Descrição da Carreira Pública."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1035_inclusao_form.dsccarreira.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1035_inclusao_form.dsccarreira.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1035_inclusao_form.dsccarreira|addcss:'form-control' }}</div></div></div><!-- fim__s1035_inclusao__dsccarreira --><!-- inicio__s1035_inclusao__leicarr --><div class="col-md-6" id="s1035_inclusao__leicarr__div"><div class="form-group"><label id="s1035_inclusao__leicarr__label">Número da lei<a data-toggle="tooltip" title="Lei que criou a Carreira."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1035_inclusao_form.leicarr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1035_inclusao_form.leicarr.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1035_inclusao_form.leicarr|addcss:'form-control' }}</div></div></div><!-- fim__s1035_inclusao__leicarr --><!-- inicio__s1035_inclusao__dtleicarr --><div class="col-md-6" id="s1035_inclusao__dtleicarr__div"><div class="form-group"><label id="s1035_inclusao__dtleicarr__label">Data da lei*<a data-toggle="tooltip" title="Data da Lei que criou a Carreira."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1035_inclusao_form.dtleicarr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1035_inclusao_form.dtleicarr.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1035_inclusao_form.dtleicarr|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s1035_inclusao__dtleicarr --><!-- inicio__s1035_inclusao__sitcarr --><div class="col-md-6" id="s1035_inclusao__sitcarr__div"><div class="form-group"><label id="s1035_inclusao__sitcarr__label">Situação gerada pela lei*<a data-toggle="tooltip" title="Situação gerada pela Lei. Preencher com uma das opções: 1 - Criação; 2 - Extinção; 3 - Reestruturação. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1035_inclusao_form.sitcarr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1035_inclusao_form.sitcarr.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1035_inclusao_form.sitcarr.field.widget.attrs.readonly %} {% if s1035_inclusao_form.sitcarr.field.widget.attrs.disabled %} {{ s1035_inclusao_form.sitcarr|addcss:'form-control' }}<input id="id_sitcarr" name="sitcarr" type="hidden" value="{% if s1035_inclusao_form.sitcarr.value or s1035_inclusao_form.sitcarr.value == 0 %}{{ s1035_inclusao_form.sitcarr.value|valor }}{% endif %}">{% else %} {{ s1035_inclusao_form.sitcarr|addcss:'form-control' }} {% endif %} {% else %} {{ s1035_inclusao_form.sitcarr|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1035_inclusao__sitcarr -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1035_inclusao__s1035_evttabcarreira -->
+<div class="col-md-12" id="s1035_inclusao__s1035_evttabcarreira__div">
+  <div class="form-group">
+    <label id="s1035_inclusao__s1035_evttabcarreira__label">Inclusão de novas informações*</label>
+    {% if not for_print %}{% if s1035_inclusao_form.s1035_evttabcarreira.value %}
+        <a href="{% url 's1035_evttabcarreira_salvar' hash='{}'|json_return_page:'s1035_inclusao_salvar'|json_return_hash:hash|json_id:s1035_inclusao_form.s1035_evttabcarreira.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s1035_inclusao_form.s1035_evttabcarreira.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1035_inclusao_form.s1035_evttabcarreira.errors }}
+      </div>
+    {% endif %}
+    {% if s1035_inclusao_form.s1035_evttabcarreira.field.widget.attrs.readonly %}
+      {% if s1035_inclusao_form.s1035_evttabcarreira.field.widget.attrs.disabled %}
+        {{ s1035_inclusao_form.s1035_evttabcarreira|addcss:'form-control' }}
+        <input id="id_s1035_evttabcarreira" name="s1035_evttabcarreira" type="hidden" value="{{ s1035_inclusao_form.s1035_evttabcarreira.value }}">
+      {% else %}
+        {{ s1035_inclusao_form.s1035_evttabcarreira|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s1035_inclusao_form.s1035_evttabcarreira|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s1035_inclusao__s1035_evttabcarreira -->
+<!-- inicio__s1035_inclusao__idecarreira -->
+<div class="col-md-12" id="s1035_inclusao__idecarreira__div">
+  <h4>Informações de identificação da Carreira e validade das informações que estão sendo incluídas</h4>
+</div>
+<!-- fim__s1035_inclusao__idecarreira -->
+<!-- inicio__s1035_inclusao__codcarreira -->
+<div class="col-md-6" id="s1035_inclusao__codcarreira__div">
+  <div class="form-group">
+    <label id="s1035_inclusao__codcarreira__label">Código da Carreira*</label>
+      {% if s1035_inclusao_form.codcarreira.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1035_inclusao_form.codcarreira.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1035_inclusao_form.codcarreira|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1035_inclusao__codcarreira -->
+<!-- inicio__s1035_inclusao__inivalid -->
+<div class="col-md-6" id="s1035_inclusao__inivalid__div">
+  <div class="form-group">
+    <label id="s1035_inclusao__inivalid__label">Início da Validade*</label>
+    {% if s1035_inclusao_form.inivalid.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1035_inclusao_form.inivalid.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1035_inclusao_form.inivalid.field.widget.attrs.readonly %}
+        {% if s1035_inclusao_form.inivalid.field.widget.attrs.disabled %}
+          {{ s1035_inclusao_form.inivalid|addcss:'form-control' }}
+          <input id="id_inivalid" name="inivalid" type="hidden" value="{% if s1035_inclusao_form.inivalid.value or s1035_inclusao_form.inivalid.value == 0 %}{{ s1035_inclusao_form.inivalid.value }}{% endif %}">
+        {% else %}
+          {{ s1035_inclusao_form.inivalid|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1035_inclusao_form.inivalid|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1035_inclusao__inivalid -->
+<!-- inicio__s1035_inclusao__fimvalid -->
+<div class="col-md-6" id="s1035_inclusao__fimvalid__div">
+  <div class="form-group">
+    <label id="s1035_inclusao__fimvalid__label">Fim da Validade</label>
+    {% if s1035_inclusao_form.fimvalid.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1035_inclusao_form.fimvalid.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1035_inclusao_form.fimvalid.field.widget.attrs.readonly %}
+        {% if s1035_inclusao_form.fimvalid.field.widget.attrs.disabled %}
+          {{ s1035_inclusao_form.fimvalid|addcss:'form-control' }}
+          <input id="id_fimvalid" name="fimvalid" type="hidden" value="{% if s1035_inclusao_form.fimvalid.value or s1035_inclusao_form.fimvalid.value == 0 %}{{ s1035_inclusao_form.fimvalid.value }}{% endif %}">
+        {% else %}
+          {{ s1035_inclusao_form.fimvalid|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1035_inclusao_form.fimvalid|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1035_inclusao__fimvalid -->
+<!-- inicio__s1035_inclusao__dadoscarreira -->
+<div class="col-md-12" id="s1035_inclusao__dadoscarreira__div">
+  <h4>Detalhamento das informações da Carreira que está sendo incluída</h4>
+</div>
+<!-- fim__s1035_inclusao__dadoscarreira -->
+<!-- inicio__s1035_inclusao__dsccarreira -->
+<div class="col-md-6" id="s1035_inclusao__dsccarreira__div">
+  <div class="form-group">
+    <label id="s1035_inclusao__dsccarreira__label">Descrição*</label>
+      {% if s1035_inclusao_form.dsccarreira.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1035_inclusao_form.dsccarreira.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1035_inclusao_form.dsccarreira|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1035_inclusao__dsccarreira -->
+<!-- inicio__s1035_inclusao__leicarr -->
+<div class="col-md-6" id="s1035_inclusao__leicarr__div">
+  <div class="form-group">
+    <label id="s1035_inclusao__leicarr__label">Número da lei</label>
+      {% if s1035_inclusao_form.leicarr.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1035_inclusao_form.leicarr.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1035_inclusao_form.leicarr|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1035_inclusao__leicarr -->
+<!-- inicio__s1035_inclusao__dtleicarr -->
+<div class="col-md-6" id="s1035_inclusao__dtleicarr__div">
+  <div class="form-group">
+    <label id="s1035_inclusao__dtleicarr__label">Data da lei*</label>
+        {% if s1035_inclusao_form.dtleicarr.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s1035_inclusao_form.dtleicarr.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1035_inclusao_form.dtleicarr|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1035_inclusao__dtleicarr -->
+<!-- inicio__s1035_inclusao__sitcarr -->
+<div class="col-md-6" id="s1035_inclusao__sitcarr__div">
+  <div class="form-group">
+    <label id="s1035_inclusao__sitcarr__label">Situação gerada pela lei*</label>
+    {% if s1035_inclusao_form.sitcarr.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1035_inclusao_form.sitcarr.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1035_inclusao_form.sitcarr.field.widget.attrs.readonly %}
+        {% if s1035_inclusao_form.sitcarr.field.widget.attrs.disabled %}
+          {{ s1035_inclusao_form.sitcarr|addcss:'form-control' }}
+          <input id="id_sitcarr" name="sitcarr" type="hidden" value="{% if s1035_inclusao_form.sitcarr.value or s1035_inclusao_form.sitcarr.value == 0 %}{{ s1035_inclusao_form.sitcarr.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1035_inclusao_form.sitcarr|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1035_inclusao_form.sitcarr|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1035_inclusao__sitcarr -->

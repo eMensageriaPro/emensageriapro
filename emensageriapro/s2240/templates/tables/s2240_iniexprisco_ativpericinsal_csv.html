@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informação da(s) atividade(s) periculosa(s), insalubre(s) ou especial(is) desempenhada(s)"
-{% if show_fields.show_s2240_evtexprisco or not s2240_evtexprisco_id and 1 %}"Evento Condições Ambientais do Trabalho - Fatores de Risco";{% endif %}{% if show_fields.show_codativ or 1 %}"Atividade desempenhada";{% endif %}
-{% for a in s2240_iniexprisco_ativpericinsal_lista %}{% if show_fields.show_s2240_evtexprisco or  not s2240_evtexprisco_id and 1 %}"{{ a.s2240_evtexprisco }}";{% endif %}{% if show_fields.show_codativ or 1 %}"{{ a.codativ }}";{% endif %}
-{% endfor %}

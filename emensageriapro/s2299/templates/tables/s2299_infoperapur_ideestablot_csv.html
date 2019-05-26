@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)"
-{% if show_fields.show_s2299_dmdev or not s2299_dmdev_id and 1 %}"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Número de inscrição (CPF/CNPJ)";{% endif %}{% if show_fields.show_codlotacao or 1 %}"Código da Lotação";{% endif %}
-{% for a in s2299_infoperapur_ideestablot_lista %}{% if show_fields.show_s2299_dmdev or  not s2299_dmdev_id and 1 %}"{{ a.s2299_dmdev }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ a.get_tpinsc_display }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ a.nrinsc }}";{% endif %}{% if show_fields.show_codlotacao or 1 %}"{{ a.codlotacao }}";{% endif %}
-{% endfor %}

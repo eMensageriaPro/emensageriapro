@@ -1,1 +1,70 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s2230_iniafastamento_id or s2230_iniafastamento_id != s2230_infocessao_form.s2230_iniafastamento.value %}<!-- inicio__s2230_infocessao__s2230_iniafastamento --><div class="col-md-12" id="s2230_infocessao__s2230_iniafastamento__div"><div class="form-group"><label id="s2230_infocessao__s2230_iniafastamento__label">Informações do Afastamento Temporário - Início*<a data-toggle="tooltip" title="Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2230_infocessao_form.s2230_iniafastamento.value %}<a href="{% url 's2230_iniafastamento_salvar' hash='{}'|json_return_page:'s2230_infocessao_salvar'|json_return_hash:hash|json_id:s2230_infocessao_form.s2230_iniafastamento.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s2230_infocessao_form.s2230_iniafastamento.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2230_infocessao_form.s2230_iniafastamento.errors }}</div>{% endif %} {% if s2230_infocessao_form.s2230_iniafastamento.field.widget.attrs.readonly %} {% if s2230_infocessao_form.s2230_iniafastamento.field.widget.attrs.disabled %} {{ s2230_infocessao_form.s2230_iniafastamento|addcss:'form-control' }}<input id="id_s2230_iniafastamento" name="s2230_iniafastamento" type="hidden" value="{{ s2230_infocessao_form.s2230_iniafastamento.value }}">{% else %} {{ s2230_infocessao_form.s2230_iniafastamento|addcss:'form-control' }} {% endif %} {% else %} {{ s2230_infocessao_form.s2230_iniafastamento|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2230_infocessao__s2230_iniafastamento -->{% else %}<input type="hidden" value="{{ s2230_iniafastamento_id|valor }}" id="id_s2230_iniafastamento" name="s2230_iniafastamento">{% endif %}<!-- inicio__s2230_infocessao__cnpjcess --><div class="col-md-6" id="s2230_infocessao__cnpjcess__div"><div class="form-group"><label id="s2230_infocessao__cnpjcess__label">CNPJ do Cessionário*<a data-toggle="tooltip" title="Preencher com o CNPJ do órgão/entidade para o qual o trabalhador foi cedido/requisitado. Validação: Deve ser um CNPJ diferente do CNPJ do empregador e diferente dos estabelecimentos informados através do evento S-1005. Regra de validação: REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2230_infocessao_form.cnpjcess.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2230_infocessao_form.cnpjcess.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2230_infocessao_form.cnpjcess|addcss:'form-control' }}</div></div></div><!-- fim__s2230_infocessao__cnpjcess --><!-- inicio__s2230_infocessao__infonus --><div class="col-md-6" id="s2230_infocessao__infonus__div"><div class="form-group"><label id="s2230_infocessao__infonus__label">Onus da cessão/requisição*<a data-toggle="tooltip" title="Ônus da cessão/requisição: 1 - Ônus do Cedente; 2 - Ônus do Cessionário; 3 - Ônus do Cedente e Cessionário. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2230_infocessao_form.infonus.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2230_infocessao_form.infonus.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2230_infocessao_form.infonus.field.widget.attrs.readonly %} {% if s2230_infocessao_form.infonus.field.widget.attrs.disabled %} {{ s2230_infocessao_form.infonus|addcss:'form-control' }}<input id="id_infonus" name="infonus" type="hidden" value="{% if s2230_infocessao_form.infonus.value or s2230_infocessao_form.infonus.value == 0 %}{{ s2230_infocessao_form.infonus.value|valor }}{% endif %}">{% else %} {{ s2230_infocessao_form.infonus|addcss:'form-control' }} {% endif %} {% else %} {{ s2230_infocessao_form.infonus|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2230_infocessao__infonus -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2230_infocessao__s2230_iniafastamento -->
+<div class="col-md-12" id="s2230_infocessao__s2230_iniafastamento__div">
+  <div class="form-group">
+    <label id="s2230_infocessao__s2230_iniafastamento__label">Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.*</label>
+    {% if not for_print %}{% if s2230_infocessao_form.s2230_iniafastamento.value %}
+        <a href="{% url 's2230_iniafastamento_salvar' hash='{}'|json_return_page:'s2230_infocessao_salvar'|json_return_hash:hash|json_id:s2230_infocessao_form.s2230_iniafastamento.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s2230_infocessao_form.s2230_iniafastamento.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2230_infocessao_form.s2230_iniafastamento.errors }}
+      </div>
+    {% endif %}
+    {% if s2230_infocessao_form.s2230_iniafastamento.field.widget.attrs.readonly %}
+      {% if s2230_infocessao_form.s2230_iniafastamento.field.widget.attrs.disabled %}
+        {{ s2230_infocessao_form.s2230_iniafastamento|addcss:'form-control' }}
+        <input id="id_s2230_iniafastamento" name="s2230_iniafastamento" type="hidden" value="{{ s2230_infocessao_form.s2230_iniafastamento.value }}">
+      {% else %}
+        {{ s2230_infocessao_form.s2230_iniafastamento|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2230_infocessao_form.s2230_iniafastamento|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2230_infocessao__s2230_iniafastamento -->
+<!-- inicio__s2230_infocessao__cnpjcess -->
+<div class="col-md-4" id="s2230_infocessao__cnpjcess__div">
+  <div class="form-group">
+    <label id="s2230_infocessao__cnpjcess__label">CNPJ do Cessionário*</label>
+      {% if s2230_infocessao_form.cnpjcess.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2230_infocessao_form.cnpjcess.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2230_infocessao_form.cnpjcess|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2230_infocessao__cnpjcess -->
+<!-- inicio__s2230_infocessao__infonus -->
+<div class="col-md-4" id="s2230_infocessao__infonus__div">
+  <div class="form-group">
+    <label id="s2230_infocessao__infonus__label">Onus da cessão/requisição*</label>
+    {% if s2230_infocessao_form.infonus.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2230_infocessao_form.infonus.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2230_infocessao_form.infonus.field.widget.attrs.readonly %}
+        {% if s2230_infocessao_form.infonus.field.widget.attrs.disabled %}
+          {{ s2230_infocessao_form.infonus|addcss:'form-control' }}
+          <input id="id_infonus" name="infonus" type="hidden" value="{% if s2230_infocessao_form.infonus.value or s2230_infocessao_form.infonus.value == 0 %}{{ s2230_infocessao_form.infonus.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2230_infocessao_form.infonus|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2230_infocessao_form.infonus|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2230_infocessao__infonus -->

@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s1020.models import * 
-from emensageriapro.esocial.models import s1020evtTabLotacao 
+from emensageriapro.s1020.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,25 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s1020_alteracao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1020_alteracao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1020_evttablotacao'].widget.attrs['required'] = True        
-        self.fields['codlotacao'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True        
-        self.fields['tplotacao'].widget.attrs['required'] = True        
-        self.fields['fpas'].widget.attrs['required'] = True        
-        self.fields['codtercs'].widget.attrs['required'] = True
+        super(form_s1020_alteracao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -78,28 +74,25 @@ class form_s1020_alteracao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1020alteracao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1020_alteracao_infoemprparcial(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1020_alteracao_infoemprparcial, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1020_alteracao'].widget.attrs['required'] = True        
-        self.fields['tpinsccontrat'].widget.attrs['required'] = True        
-        self.fields['nrinsccontrat'].widget.attrs['required'] = True        
-        self.fields['tpinscprop'].widget.attrs['required'] = True        
-        self.fields['nrinscprop'].widget.attrs['required'] = True
+        super(form_s1020_alteracao_infoemprparcial, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -119,25 +112,63 @@ class form_s1020_alteracao_infoemprparcial(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1020alteracaoinfoEmprParcial
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
+
+class form_s1020_alteracao_infoprocjudterceiros(forms.ModelForm):
+
+
+    def __init__(self, *args, **kwargs):
+        
+        super(form_s1020_alteracao_infoprocjudterceiros, self).__init__(*args, **kwargs)
+        
+
+    def save(self, commit=True, *args, **kwargs):
+    
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1020_alteracao_infoprocjudterceiros, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
+        
+    class Meta:
+    
+        model = s1020alteracaoinfoProcJudTerceiros
+        exclude = [ 
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1020_alteracao_novavalidade(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1020_alteracao_novavalidade, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1020_alteracao'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        super(form_s1020_alteracao_novavalidade, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -157,28 +188,25 @@ class form_s1020_alteracao_novavalidade(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1020alteracaonovaValidade
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1020_alteracao_procjudterceiro(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1020_alteracao_procjudterceiro, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1020_alteracao'].queryset = s1020alteracao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1020_alteracao'].widget.attrs['required'] = True        
-        self.fields['codterc'].widget.attrs['required'] = True        
-        self.fields['nrprocjud'].widget.attrs['required'] = True        
-        self.fields['codsusp'].widget.attrs['required'] = True
+        super(form_s1020_alteracao_procjudterceiro, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -198,26 +226,25 @@ class form_s1020_alteracao_procjudterceiro(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1020alteracaoprocJudTerceiro
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1020_exclusao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1020_exclusao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1020_evttablotacao'].widget.attrs['required'] = True        
-        self.fields['codlotacao'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        super(form_s1020_exclusao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -237,29 +264,25 @@ class form_s1020_exclusao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1020exclusao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1020_inclusao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1020_inclusao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1020_evttablotacao'].widget.attrs['required'] = True        
-        self.fields['codlotacao'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True        
-        self.fields['tplotacao'].widget.attrs['required'] = True        
-        self.fields['fpas'].widget.attrs['required'] = True        
-        self.fields['codtercs'].widget.attrs['required'] = True
+        super(form_s1020_inclusao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -279,28 +302,25 @@ class form_s1020_inclusao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1020inclusao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1020_inclusao_infoemprparcial(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1020_inclusao_infoemprparcial, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1020_inclusao'].widget.attrs['required'] = True        
-        self.fields['tpinsccontrat'].widget.attrs['required'] = True        
-        self.fields['nrinsccontrat'].widget.attrs['required'] = True        
-        self.fields['tpinscprop'].widget.attrs['required'] = True        
-        self.fields['nrinscprop'].widget.attrs['required'] = True
+        super(form_s1020_inclusao_infoemprparcial, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -320,28 +340,63 @@ class form_s1020_inclusao_infoemprparcial(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1020inclusaoinfoEmprParcial
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
+
+class form_s1020_inclusao_infoprocjudterceiros(forms.ModelForm):
+
+
+    def __init__(self, *args, **kwargs):
+        
+        super(form_s1020_inclusao_infoprocjudterceiros, self).__init__(*args, **kwargs)
+        
+
+    def save(self, commit=True, *args, **kwargs):
+    
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s1020_inclusao_infoprocjudterceiros, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
+        
+    class Meta:
+    
+        model = s1020inclusaoinfoProcJudTerceiros
+        exclude = [ 
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1020_inclusao_procjudterceiro(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1020_inclusao_procjudterceiro, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1020_inclusao'].queryset = s1020inclusao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1020_inclusao'].widget.attrs['required'] = True        
-        self.fields['codterc'].widget.attrs['required'] = True        
-        self.fields['nrprocjud'].widget.attrs['required'] = True        
-        self.fields['codsusp'].widget.attrs['required'] = True
+        super(form_s1020_inclusao_procjudterceiro, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -361,10 +416,10 @@ class form_s1020_inclusao_procjudterceiro(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1020inclusaoprocJudTerceiro
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

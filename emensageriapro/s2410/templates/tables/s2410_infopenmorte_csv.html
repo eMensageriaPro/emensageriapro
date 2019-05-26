@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações relativas a pensão por morte"
-{% if show_fields.show_s2410_evtcdbenin or not s2410_evtcdbenin_id and 1 %}"Evento de cadastro de benefícios - Início";{% endif %}{% if show_fields.show_tppenmorte or 1 %}"Tipo de pensão por morte";{% endif %}
-{% for a in s2410_infopenmorte_lista %}{% if show_fields.show_s2410_evtcdbenin or  not s2410_evtcdbenin_id and 1 %}"{{ a.s2410_evtcdbenin }}";{% endif %}{% if show_fields.show_tppenmorte or 1 %}"{{ a.get_tppenmorte_display }}";{% endif %}
-{% endfor %}

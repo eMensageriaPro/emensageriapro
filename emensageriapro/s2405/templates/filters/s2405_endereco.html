@@ -1,1 +1,32 @@
-{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento de cadastro de beneficiários - Alteração</label><select name="s2405_evtcdbenefalt" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2405_evtcdbenefalt_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2405_evtcdbenefalt' %}selected="selected"{% endifequal %}>{{ a.evtcdbenefalt }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.idebenef }} - {{ a.cpfbenef }} - {{ a.alteracao }} - {{ a.dtalteracao }} - {{ a.dadosbenef }} - {{ a.nmbenefic }} - {{ a.sexo }} - {{ a.racacor }} - {{ a.incfismen }} - {{ a.dadosnasc }} - {{ a.paisnac }}</option>{% endfor %}</select></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2405_evtcdbenefalt" value="1" {% if show_fields|get_value_from_dict:'show_s2405_evtcdbenefalt' %}checked{% endif %}>Evento de cadastro de beneficiários - Alteração</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2405_endereco__s2405_evtcdbenefalt -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Grupo de informações do endereço do Trabalhador</label>
+    <select name="s2405_evtcdbenefalt" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s2405_evtcdbenefalt_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2405_evtcdbenefalt' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2405_endereco__s2405_evtcdbenefalt -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2405_evtcdbenefalt" value="1" {% if show_fields|get_value_from_dict:'show_s2405_evtcdbenefalt' %}checked{% endif %} >Grupo de informações do endereço do Trabalhador
+    </div>
+</div>
+
+

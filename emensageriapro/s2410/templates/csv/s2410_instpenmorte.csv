@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2410_infopenmorte or 1 %}"Informações do instituidor da pensão por morte";{% endif %}{% if show_fields.show_cpfinst or 1 %}"CPF do instituidor";{% endif %}{% if show_fields.show_dtinst or 1 %}"Data de óbito do instituidor da pensão por morte.";{% endif %}{% if show_fields.show_intaposentado or 1 %}"Informar se o instituidor da pensão por morte era aposentado";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2410_infopenmorte or 1 %}"{{ c.s2410_infopenmorte }}";{% endif %}{% if show_fields.show_cpfinst or 1 %}"{{ c.cpfinst }}";{% endif %}{% if show_fields.show_dtinst or 1 %}"{{ c.dtinst }}";{% endif %}{% if show_fields.show_intaposentado or 1 %}"{{ c.intaposentado }}";{% endif %}
+{% endfor %}

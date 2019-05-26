@@ -1,225 +1,416 @@
 #coding:utf-8
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 import xmltodict
 import pprint
 import json
 import psycopg2
-from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
-
-
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
-    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+from emensageriapro.padrao import ler_arquivo
+from emensageriapro.esocial.models import *
+from emensageriapro.s2399.models import *
 
 
 
 def read_s2399_evttsvtermino_string(dados, xml, validar=False):
+
     import untangle
     doc = untangle.parse(xml)
+
     if validar:
         status = STATUS_EVENTO_IMPORTADO
     else:
         status = STATUS_EVENTO_CADASTRADO
+
     dados = read_s2399_evttsvtermino_obj(doc, status, validar)
     return dados
 
+
+
 def read_s2399_evttsvtermino(dados, arquivo, validar=False):
+
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
+
     if validar:
         status = STATUS_EVENTO_IMPORTADO
+
     else:
         status = STATUS_EVENTO_CADASTRADO
+
     dados = read_s2399_evttsvtermino_obj(doc, status, validar)
     return dados
 
 
 
 def read_s2399_evttsvtermino_obj(doc, status, validar=False):
+
+    xmlns_lista = doc.eSocial['xmlns'].split('/')
+
     s2399_evttsvtermino_dados = {}
     s2399_evttsvtermino_dados['status'] = status
-    xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2399_evttsvtermino_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2399_evttsvtermino_dados['identidade'] = doc.eSocial.evtTSVTermino['Id']
     evtTSVTermino = doc.eSocial.evtTSVTermino
-
-    try: s2399_evttsvtermino_dados['indretif'] = evtTSVTermino.ideEvento.indRetif.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['nrrecibo'] = evtTSVTermino.ideEvento.nrRecibo.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['tpamb'] = evtTSVTermino.ideEvento.tpAmb.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['procemi'] = evtTSVTermino.ideEvento.procEmi.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['verproc'] = evtTSVTermino.ideEvento.verProc.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['tpinsc'] = evtTSVTermino.ideEmpregador.tpInsc.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['nrinsc'] = evtTSVTermino.ideEmpregador.nrInsc.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['cpftrab'] = evtTSVTermino.ideTrabSemVinculo.cpfTrab.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['nistrab'] = evtTSVTermino.ideTrabSemVinculo.nisTrab.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['codcateg'] = evtTSVTermino.ideTrabSemVinculo.codCateg.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['dtterm'] = evtTSVTermino.infoTSVTermino.dtTerm.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['mtvdesligtsv'] = evtTSVTermino.infoTSVTermino.mtvDesligTSV.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['pensalim'] = evtTSVTermino.infoTSVTermino.pensAlim.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['percaliment'] = evtTSVTermino.infoTSVTermino.percAliment.cdata
-    except AttributeError: pass
-    try: s2399_evttsvtermino_dados['vralim'] = evtTSVTermino.infoTSVTermino.vrAlim.cdata
-    except AttributeError: pass
-    if 'inclusao' in dir(evtTSVTermino.infoTSVTermino): s2399_evttsvtermino_dados['operacao'] = 1
-    elif 'alteracao' in dir(evtTSVTermino.infoTSVTermino): s2399_evttsvtermino_dados['operacao'] = 2
-    elif 'exclusao' in dir(evtTSVTermino.infoTSVTermino): s2399_evttsvtermino_dados['operacao'] = 3
-    #print dados
-    insert = create_insert('s2399_evttsvtermino', s2399_evttsvtermino_dados)
-    resp = executar_sql(insert, True)
-    s2399_evttsvtermino_id = resp[0][0]
-    dados = s2399_evttsvtermino_dados
-    dados['evento'] = 's2399'
-    dados['id'] = s2399_evttsvtermino_id
-    dados['identidade_evento'] = doc.eSocial.evtTSVTermino['Id']
-    dados['status'] = STATUS_EVENTO_IMPORTADO
-
-    if 'mudancaCPF' in dir(evtTSVTermino.infoTSVTermino) and evtTSVTermino.infoTSVTermino.mudancaCPF.cdata != '':
+    
+    try:
+        s2399_evttsvtermino_dados['indretif'] = evtTSVTermino.ideEvento.indRetif.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['nrrecibo'] = evtTSVTermino.ideEvento.nrRecibo.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['tpamb'] = evtTSVTermino.ideEvento.tpAmb.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['procemi'] = evtTSVTermino.ideEvento.procEmi.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['verproc'] = evtTSVTermino.ideEvento.verProc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['tpinsc'] = evtTSVTermino.ideEmpregador.tpInsc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['nrinsc'] = evtTSVTermino.ideEmpregador.nrInsc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['cpftrab'] = evtTSVTermino.ideTrabSemVinculo.cpfTrab.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['nistrab'] = evtTSVTermino.ideTrabSemVinculo.nisTrab.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['codcateg'] = evtTSVTermino.ideTrabSemVinculo.codCateg.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['dtterm'] = evtTSVTermino.infoTSVTermino.dtTerm.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['mtvdesligtsv'] = evtTSVTermino.infoTSVTermino.mtvDesligTSV.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['pensalim'] = evtTSVTermino.infoTSVTermino.pensAlim.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['percaliment'] = evtTSVTermino.infoTSVTermino.percAliment.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2399_evttsvtermino_dados['vralim'] = evtTSVTermino.infoTSVTermino.vrAlim.cdata
+    except AttributeError: 
+        pass
+        
+    s2399_evttsvtermino = s2399evtTSVTermino.objects.create(**s2399_evttsvtermino_dados)
+    
+    if 'mudancaCPF' in dir(evtTSVTermino.infoTSVTermino):
+    
         for mudancaCPF in evtTSVTermino.infoTSVTermino.mudancaCPF:
+    
             s2399_mudancacpf_dados = {}
-            s2399_mudancacpf_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino_id
-
-            try: s2399_mudancacpf_dados['novocpf'] = mudancaCPF.novoCPF.cdata
-            except AttributeError: pass
-            insert = create_insert('s2399_mudancacpf', s2399_mudancacpf_dados)
-            resp = executar_sql(insert, True)
-            s2399_mudancacpf_id = resp[0][0]
-            #print s2399_mudancacpf_id
-
-    if 'dmDev' in dir(evtTSVTermino.infoTSVTermino.verbasResc) and evtTSVTermino.infoTSVTermino.verbasResc.dmDev.cdata != '':
-        for dmDev in evtTSVTermino.infoTSVTermino.verbasResc.dmDev:
-            s2399_dmdev_dados = {}
-            s2399_dmdev_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino_id
-
-            try: s2399_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
-            except AttributeError: pass
-            insert = create_insert('s2399_dmdev', s2399_dmdev_dados)
-            resp = executar_sql(insert, True)
-            s2399_dmdev_id = resp[0][0]
-            #print s2399_dmdev_id
-
-            if 'ideEstabLot' in dir(dmDev) and dmDev.ideEstabLot.cdata != '':
-                for ideEstabLot in dmDev.ideEstabLot:
-                    s2399_ideestablot_dados = {}
-                    s2399_ideestablot_dados['s2399_dmdev_id'] = s2399_dmdev_id
-
-                    try: s2399_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
-                    except AttributeError: pass
-                    try: s2399_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
-                    except AttributeError: pass
-                    try: s2399_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
-                    except AttributeError: pass
-                    insert = create_insert('s2399_ideestablot', s2399_ideestablot_dados)
-                    resp = executar_sql(insert, True)
-                    s2399_ideestablot_id = resp[0][0]
-                    #print s2399_ideestablot_id
-
-    if 'procJudTrab' in dir(evtTSVTermino.infoTSVTermino.verbasResc) and evtTSVTermino.infoTSVTermino.verbasResc.procJudTrab.cdata != '':
-        for procJudTrab in evtTSVTermino.infoTSVTermino.verbasResc.procJudTrab:
-            s2399_procjudtrab_dados = {}
-            s2399_procjudtrab_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino_id
-
-            try: s2399_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
-            except AttributeError: pass
-            try: s2399_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
-            except AttributeError: pass
-            try: s2399_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
-            except AttributeError: pass
-            insert = create_insert('s2399_procjudtrab', s2399_procjudtrab_dados)
-            resp = executar_sql(insert, True)
-            s2399_procjudtrab_id = resp[0][0]
-            #print s2399_procjudtrab_id
-
-    if 'infoMV' in dir(evtTSVTermino.infoTSVTermino.verbasResc) and evtTSVTermino.infoTSVTermino.verbasResc.infoMV.cdata != '':
-        for infoMV in evtTSVTermino.infoTSVTermino.verbasResc.infoMV:
-            s2399_infomv_dados = {}
-            s2399_infomv_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino_id
-
-            try: s2399_infomv_dados['indmv'] = infoMV.indMV.cdata
-            except AttributeError: pass
-            insert = create_insert('s2399_infomv', s2399_infomv_dados)
-            resp = executar_sql(insert, True)
-            s2399_infomv_id = resp[0][0]
-            #print s2399_infomv_id
-
-            if 'remunOutrEmpr' in dir(infoMV) and infoMV.remunOutrEmpr.cdata != '':
-                for remunOutrEmpr in infoMV.remunOutrEmpr:
-                    s2399_remunoutrempr_dados = {}
-                    s2399_remunoutrempr_dados['s2399_infomv_id'] = s2399_infomv_id
-
-                    try: s2399_remunoutrempr_dados['tpinsc'] = remunOutrEmpr.tpInsc.cdata
-                    except AttributeError: pass
-                    try: s2399_remunoutrempr_dados['nrinsc'] = remunOutrEmpr.nrInsc.cdata
-                    except AttributeError: pass
-                    try: s2399_remunoutrempr_dados['codcateg'] = remunOutrEmpr.codCateg.cdata
-                    except AttributeError: pass
-                    try: s2399_remunoutrempr_dados['vlrremunoe'] = remunOutrEmpr.vlrRemunOE.cdata
-                    except AttributeError: pass
-                    insert = create_insert('s2399_remunoutrempr', s2399_remunoutrempr_dados)
-                    resp = executar_sql(insert, True)
-                    s2399_remunoutrempr_id = resp[0][0]
-                    #print s2399_remunoutrempr_id
-
-    if 'quarentena' in dir(evtTSVTermino.infoTSVTermino) and evtTSVTermino.infoTSVTermino.quarentena.cdata != '':
+            s2399_mudancacpf_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino.id
+            
+            try:
+                s2399_mudancacpf_dados['novocpf'] = mudancaCPF.novoCPF.cdata
+            except AttributeError: 
+                pass
+    
+            s2399_mudancacpf = s2399mudancaCPF.objects.create(**s2399_mudancacpf_dados)
+    
+    if 'verbasResc' in dir(evtTSVTermino.infoTSVTermino):
+    
+        for verbasResc in evtTSVTermino.infoTSVTermino.verbasResc:
+    
+            s2399_verbasresc_dados = {}
+            s2399_verbasresc_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino.id
+    
+            s2399_verbasresc = s2399verbasResc.objects.create(**s2399_verbasresc_dados)
+            
+            if 'dmDev' in dir(verbasResc):
+            
+                for dmDev in verbasResc.dmDev:
+            
+                    s2399_dmdev_dados = {}
+                    s2399_dmdev_dados['s2399_verbasresc_id'] = s2399_verbasresc.id
+                    
+                    try:
+                        s2399_dmdev_dados['idedmdev'] = dmDev.ideDmDev.cdata
+                    except AttributeError: 
+                        pass
+            
+                    s2399_dmdev = s2399dmDev.objects.create(**s2399_dmdev_dados)
+                    
+                    if 'ideEstabLot' in dir(dmDev):
+                    
+                        for ideEstabLot in dmDev.ideEstabLot:
+                    
+                            s2399_ideestablot_dados = {}
+                            s2399_ideestablot_dados['s2399_dmdev_id'] = s2399_dmdev.id
+                            
+                            try:
+                                s2399_ideestablot_dados['tpinsc'] = ideEstabLot.tpInsc.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s2399_ideestablot_dados['nrinsc'] = ideEstabLot.nrInsc.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s2399_ideestablot_dados['codlotacao'] = ideEstabLot.codLotacao.cdata
+                            except AttributeError: 
+                                pass
+                    
+                            s2399_ideestablot = s2399ideEstabLot.objects.create(**s2399_ideestablot_dados)
+                            
+                            if 'detVerbas' in dir(ideEstabLot):
+                            
+                                for detVerbas in ideEstabLot.detVerbas:
+                            
+                                    s2399_detverbas_dados = {}
+                                    s2399_detverbas_dados['s2399_ideestablot_id'] = s2399_ideestablot.id
+                                    
+                                    try:
+                                        s2399_detverbas_dados['codrubr'] = detVerbas.codRubr.cdata
+                                    except AttributeError: 
+                                        pass
+                                    
+                                    try:
+                                        s2399_detverbas_dados['idetabrubr'] = detVerbas.ideTabRubr.cdata
+                                    except AttributeError: 
+                                        pass
+                                    
+                                    try:
+                                        s2399_detverbas_dados['qtdrubr'] = detVerbas.qtdRubr.cdata
+                                    except AttributeError: 
+                                        pass
+                                    
+                                    try:
+                                        s2399_detverbas_dados['fatorrubr'] = detVerbas.fatorRubr.cdata
+                                    except AttributeError: 
+                                        pass
+                                    
+                                    try:
+                                        s2399_detverbas_dados['vrunit'] = detVerbas.vrUnit.cdata
+                                    except AttributeError: 
+                                        pass
+                                    
+                                    try:
+                                        s2399_detverbas_dados['vrrubr'] = detVerbas.vrRubr.cdata
+                                    except AttributeError: 
+                                        pass
+                            
+                                    s2399_detverbas = s2399detVerbas.objects.create(**s2399_detverbas_dados)
+                            
+                            if 'infoSaudeColet' in dir(ideEstabLot):
+                            
+                                for infoSaudeColet in ideEstabLot.infoSaudeColet:
+                            
+                                    s2399_infosaudecolet_dados = {}
+                                    s2399_infosaudecolet_dados['s2399_ideestablot_id'] = s2399_ideestablot.id
+                            
+                                    s2399_infosaudecolet = s2399infoSaudeColet.objects.create(**s2399_infosaudecolet_dados)
+                                    
+                                    if 'detOper' in dir(infoSaudeColet):
+                                    
+                                        for detOper in infoSaudeColet.detOper:
+                                    
+                                            s2399_detoper_dados = {}
+                                            s2399_detoper_dados['s2399_infosaudecolet_id'] = s2399_infosaudecolet.id
+                                            
+                                            try:
+                                                s2399_detoper_dados['cnpjoper'] = detOper.cnpjOper.cdata
+                                            except AttributeError: 
+                                                pass
+                                            
+                                            try:
+                                                s2399_detoper_dados['regans'] = detOper.regANS.cdata
+                                            except AttributeError: 
+                                                pass
+                                            
+                                            try:
+                                                s2399_detoper_dados['vrpgtit'] = detOper.vrPgTit.cdata
+                                            except AttributeError: 
+                                                pass
+                                    
+                                            s2399_detoper = s2399detOper.objects.create(**s2399_detoper_dados)
+                                            
+                                            if 'detPlano' in dir(detOper):
+                                            
+                                                for detPlano in detOper.detPlano:
+                                            
+                                                    s2399_detplano_dados = {}
+                                                    s2399_detplano_dados['s2399_detoper_id'] = s2399_detoper.id
+                                                    
+                                                    try:
+                                                        s2399_detplano_dados['tpdep'] = detPlano.tpDep.cdata
+                                                    except AttributeError: 
+                                                        pass
+                                                    
+                                                    try:
+                                                        s2399_detplano_dados['cpfdep'] = detPlano.cpfDep.cdata
+                                                    except AttributeError: 
+                                                        pass
+                                                    
+                                                    try:
+                                                        s2399_detplano_dados['nmdep'] = detPlano.nmDep.cdata
+                                                    except AttributeError: 
+                                                        pass
+                                                    
+                                                    try:
+                                                        s2399_detplano_dados['dtnascto'] = detPlano.dtNascto.cdata
+                                                    except AttributeError: 
+                                                        pass
+                                                    
+                                                    try:
+                                                        s2399_detplano_dados['vlrpgdep'] = detPlano.vlrPgDep.cdata
+                                                    except AttributeError: 
+                                                        pass
+                                            
+                                                    s2399_detplano = s2399detPlano.objects.create(**s2399_detplano_dados)
+                            
+                            if 'infoAgNocivo' in dir(ideEstabLot):
+                            
+                                for infoAgNocivo in ideEstabLot.infoAgNocivo:
+                            
+                                    s2399_infoagnocivo_dados = {}
+                                    s2399_infoagnocivo_dados['s2399_ideestablot_id'] = s2399_ideestablot.id
+                                    
+                                    try:
+                                        s2399_infoagnocivo_dados['grauexp'] = infoAgNocivo.grauExp.cdata
+                                    except AttributeError: 
+                                        pass
+                            
+                                    s2399_infoagnocivo = s2399infoAgNocivo.objects.create(**s2399_infoagnocivo_dados)
+                            
+                            if 'infoSimples' in dir(ideEstabLot):
+                            
+                                for infoSimples in ideEstabLot.infoSimples:
+                            
+                                    s2399_infosimples_dados = {}
+                                    s2399_infosimples_dados['s2399_ideestablot_id'] = s2399_ideestablot.id
+                                    
+                                    try:
+                                        s2399_infosimples_dados['indsimples'] = infoSimples.indSimples.cdata
+                                    except AttributeError: 
+                                        pass
+                            
+                                    s2399_infosimples = s2399infoSimples.objects.create(**s2399_infosimples_dados)
+            
+            if 'procJudTrab' in dir(verbasResc):
+            
+                for procJudTrab in verbasResc.procJudTrab:
+            
+                    s2399_procjudtrab_dados = {}
+                    s2399_procjudtrab_dados['s2399_verbasresc_id'] = s2399_verbasresc.id
+                    
+                    try:
+                        s2399_procjudtrab_dados['tptrib'] = procJudTrab.tpTrib.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s2399_procjudtrab_dados['nrprocjud'] = procJudTrab.nrProcJud.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s2399_procjudtrab_dados['codsusp'] = procJudTrab.codSusp.cdata
+                    except AttributeError: 
+                        pass
+            
+                    s2399_procjudtrab = s2399procJudTrab.objects.create(**s2399_procjudtrab_dados)
+            
+            if 'infoMV' in dir(verbasResc):
+            
+                for infoMV in verbasResc.infoMV:
+            
+                    s2399_infomv_dados = {}
+                    s2399_infomv_dados['s2399_verbasresc_id'] = s2399_verbasresc.id
+                    
+                    try:
+                        s2399_infomv_dados['indmv'] = infoMV.indMV.cdata
+                    except AttributeError: 
+                        pass
+            
+                    s2399_infomv = s2399infoMV.objects.create(**s2399_infomv_dados)
+                    
+                    if 'remunOutrEmpr' in dir(infoMV):
+                    
+                        for remunOutrEmpr in infoMV.remunOutrEmpr:
+                    
+                            s2399_remunoutrempr_dados = {}
+                            s2399_remunoutrempr_dados['s2399_infomv_id'] = s2399_infomv.id
+                            
+                            try:
+                                s2399_remunoutrempr_dados['tpinsc'] = remunOutrEmpr.tpInsc.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s2399_remunoutrempr_dados['nrinsc'] = remunOutrEmpr.nrInsc.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s2399_remunoutrempr_dados['codcateg'] = remunOutrEmpr.codCateg.cdata
+                            except AttributeError: 
+                                pass
+                            
+                            try:
+                                s2399_remunoutrempr_dados['vlrremunoe'] = remunOutrEmpr.vlrRemunOE.cdata
+                            except AttributeError: 
+                                pass
+                    
+                            s2399_remunoutrempr = s2399remunOutrEmpr.objects.create(**s2399_remunoutrempr_dados)
+    
+    if 'quarentena' in dir(evtTSVTermino.infoTSVTermino):
+    
         for quarentena in evtTSVTermino.infoTSVTermino.quarentena:
+    
             s2399_quarentena_dados = {}
-            s2399_quarentena_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino_id
+            s2399_quarentena_dados['s2399_evttsvtermino_id'] = s2399_evttsvtermino.id
+            
+            try:
+                s2399_quarentena_dados['dtfimquar'] = quarentena.dtFimQuar.cdata
+            except AttributeError: 
+                pass
+    
+            s2399_quarentena = s2399quarentena.objects.create(**s2399_quarentena_dados)    
+    s2399_evttsvtermino_dados['evento'] = 's2399'
+    s2399_evttsvtermino_dados['id'] = s2399_evttsvtermino.id
+    s2399_evttsvtermino_dados['identidade_evento'] = doc.eSocial.evtTSVTermino['Id']
+    s2399_evttsvtermino_dados['status'] = STATUS_EVENTO_IMPORTADO
 
-            try: s2399_quarentena_dados['dtfimquar'] = quarentena.dtFimQuar.cdata
-            except AttributeError: pass
-            insert = create_insert('s2399_quarentena', s2399_quarentena_dados)
-            resp = executar_sql(insert, True)
-            s2399_quarentena_id = resp[0][0]
-            #print s2399_quarentena_id
 
-    from emensageriapro.esocial.views.s2399_evttsvtermino_verificar import validar_evento_funcao
-    if validar: validar_evento_funcao(s2399_evttsvtermino_id, 'default')
-    return dados
+    from emensageriapro.esocial.views.s2399_evttsvtermino_validar_evento import validar_evento_funcao
+    if validar:
+        validar_evento_funcao(s2399_evttsvtermino.id)
+    return s2399_evttsvtermino_dados

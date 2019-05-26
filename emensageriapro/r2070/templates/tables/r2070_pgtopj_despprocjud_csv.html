@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Detalhamento das despesas de processo judicial"
-{% if show_fields.show_r2070_pgtopj_infoprocjud or not r2070_pgtopj_infoprocjud_id and 1 %}"Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial";{% endif %}{% if show_fields.show_vlrdespcustas or 1 %}"Preencher com o Valor da despesa com custas judiciais";{% endif %}{% if show_fields.show_vlrdespadvogados or 1 %}"Preencher com o Valor da despesa com advogado(s)";{% endif %}
-{% for a in r2070_pgtopj_despprocjud_lista %}{% if show_fields.show_r2070_pgtopj_infoprocjud or  not r2070_pgtopj_infoprocjud_id and 1 %}"{{ a.r2070_pgtopj_infoprocjud }}";{% endif %}{% if show_fields.show_vlrdespcustas or 1 %}"{{ a.vlrdespcustas }}";{% endif %}{% if show_fields.show_vlrdespadvogados or 1 %}"{{ a.vlrdespadvogados }}";{% endif %}
-{% endfor %}

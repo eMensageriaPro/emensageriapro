@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2206_evtaltcontratual or 1 %}"Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"Número do Processo Judicial";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2206_evtaltcontratual or 1 %}"{{ c.s2206_evtaltcontratual }}";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"{{ c.nrprocjud }}";{% endif %}
+{% endfor %}

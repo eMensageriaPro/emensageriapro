@@ -1,1 +1,139 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Identificação dos estabelecimentos da associação desportiva que receberam os recursos</label><select name="r2070_ideestab" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in r2070_ideestab_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2070_ideestab' %}selected="selected"{% endifequal %}>{{ a.r2070_evtpgtosdivs }} - {{ a.tpinsc }} - {{ a.nrinsc }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Informar a data de pagamento ou crédito, base para retenção</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtpagto__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtpagto__range' %}{{ dict_fields|get_value_from_dict:'dtpagto__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Tipo de Rendimento, conforme tabela 03 - Rendimentos de Beneficiários no Exterior</label><div name="tprendimento" class="input-group" style="width: 100%;"><input type="text" name="tprendimento" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tprendimento' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 04 - Formas de Tributação para Rendimentos de Beneficiários no Exterior</label><div name="formatributacao__icontains" class="input-group" style="width: 100%;"><input type="text" name="formatributacao__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'formatributacao__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor pago</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrpgto" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrpgto' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrret" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrret' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_r2070_ideestab" value="1" {% if show_fields|get_value_from_dict:'show_r2070_ideestab' %}checked{% endif %}>Identificação dos estabelecimentos da associação desportiva que receberam os recursos</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtpagto" value="1" {% if show_fields|get_value_from_dict:'show_dtpagto' %}checked{% endif %}>Informar a data de pagamento ou crédito, base para retenção</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tprendimento" value="1" {% if show_fields|get_value_from_dict:'show_tprendimento' %}checked{% endif %}>Tipo de Rendimento, conforme tabela 03 - Rendimentos de Beneficiários no Exterior</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_formatributacao" value="1" {% if show_fields|get_value_from_dict:'show_formatributacao' %}checked{% endif %}>Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 04 - Formas de Tributação para Rendimentos de Beneficiários no Exterior</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrpgto" value="1" {% if show_fields|get_value_from_dict:'show_vlrpgto' %}checked{% endif %}>Valor pago</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrret" value="1" {% if show_fields|get_value_from_dict:'show_vlrret' %}checked{% endif %}>Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r2070_pgtoresidext__r2070_ideestab -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Pagamento a não residente ou domiciliado no exterior</label>
+    <select name="r2070_ideestab" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in r2070_ideestab_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2070_ideestab' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r2070_pgtoresidext__r2070_ideestab -->
+
+<!-- inicio__r2070_pgtoresidext__dtpagto -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar a data de pagamento ou crédito, base para retenção</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtpagto" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtpagto' %}{{ dict_fields|get_value_from_dict:'dtpagto' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2070_pgtoresidext__dtpagto -->
+
+<!-- inicio__r2070_pgtoresidext__tprendimento -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo de Rendimento, conforme tabela 03 - Rendimentos de Beneficiários no Exterior</label>
+    <div name="tprendimento" class="input-group" style="width: 100%;">
+      <input type="text" name="tprendimento" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tprendimento' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2070_pgtoresidext__tprendimento -->
+
+<!-- inicio__r2070_pgtoresidext__formatributacao -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 04 - Formas de Tributação para Rendimentos de Beneficiários no Exterior</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="formatributacao" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="10" {% ifequal '10' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >10 - Retenção do IRRF - alíquota padrão.</option>
+        <option value="11" {% ifequal '11' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >11 - Retenção do IRRF - alíquota da tabela progressiva.</option>
+        <option value="12" {% ifequal '12' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >12 - Retenção do IRRF - alíquota diferenciada (países com tributação favorecida).</option>
+        <option value="13" {% ifequal '13' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >13 - Retenção do IRRF - alíquota limitada conforme cláusula em convênio.</option>
+        <option value="30" {% ifequal '30' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >30 - Retenção do IRRF - outras hipóteses.</option>
+        <option value="40" {% ifequal '40' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >40 - Não retenção do IRRF - isenção estabelecida em convênio.</option>
+        <option value="41" {% ifequal '41' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >41 - Não retenção do IRRF - isenção prevista em lei interna</option>
+        <option value="42" {% ifequal '42' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >42 - Não retenção do IRRF - alíquota Zero prevista em lei interna</option>
+        <option value="43" {% ifequal '43' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >43 - Não retenção do IRRF - pagamento antecipado do imposto</option>
+        <option value="44" {% ifequal '44' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >44 - Não retenção do IRRF - medida Judicial</option>
+        <option value="50" {% ifequal '50' dict_fields|get_value_from_dict:'formatributacao' %}selected="selected"{% endifequal %} >50 - Não retenção do IRRF - outras hipóteses</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r2070_pgtoresidext__formatributacao -->
+
+<!-- inicio__r2070_pgtoresidext__vlrpgto -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor pago</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrpgto" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrpgto' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2070_pgtoresidext__vlrpgto -->
+
+<!-- inicio__r2070_pgtoresidext__vlrret -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrret" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrret' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2070_pgtoresidext__vlrret -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r2070_ideestab" value="1" {% if show_fields|get_value_from_dict:'show_r2070_ideestab' %}checked{% endif %} >Pagamento a não residente ou domiciliado no exterior
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtpagto" value="1" {% if show_fields|get_value_from_dict:'show_dtpagto' %}checked{% endif %} >Informar a data de pagamento ou crédito, base para retenção
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tprendimento" value="1" {% if show_fields|get_value_from_dict:'show_tprendimento' %}checked{% endif %} >Tipo de Rendimento, conforme tabela 03 - Rendimentos de Beneficiários no Exterior
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_formatributacao" value="1" {% if show_fields|get_value_from_dict:'show_formatributacao' %}checked{% endif %} >Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 04 - Formas de Tributação para Rendimentos de Beneficiários no Exterior
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrpgto" value="1" {% if show_fields|get_value_from_dict:'show_vlrpgto' %}checked{% endif %} >Valor pago
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrret" value="1" {% if show_fields|get_value_from_dict:'show_vlrret' %}checked{% endif %} >Preencher com o valor da retenção na Fonte relativamente a IR, CSLL, Cofins, PIS/PASEP.
+    </div>
+</div>
+
+

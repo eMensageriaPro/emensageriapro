@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações do Término do Afastamento"
-{% if show_fields.show_s2230_evtafasttemp or not s2230_evtafasttemp_id and 1 %}"Evento Afastamento Temporário";{% endif %}{% if show_fields.show_dttermafast or 1 %}"Data de término no afastamento";{% endif %}
-{% for a in s2230_fimafastamento_lista %}{% if show_fields.show_s2230_evtafasttemp or  not s2230_evtafasttemp_id and 1 %}"{{ a.s2230_evtafasttemp }}";{% endif %}{% if show_fields.show_dttermafast or 1 %}"{{ a.dttermafast|date:"d/m/Y" }}";{% endif %}
-{% endfor %}

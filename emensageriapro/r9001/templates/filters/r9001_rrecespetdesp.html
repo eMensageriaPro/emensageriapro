@@ -1,0 +1,109 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9001_rrecespetdesp__r9001_infototal -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.</label>
+    <select name="r9001_infototal" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in r9001_infototal_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r9001_infototal' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r9001_rrecespetdesp__r9001_infototal -->
+
+<!-- inicio__r9001_rrecespetdesp__crrecespetdesp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor</label>
+    <div name="crrecespetdesp" class="input-group" style="width: 100%;">
+      <input type="text" name="crrecespetdesp" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'crrecespetdesp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rrecespetdesp__crrecespetdesp -->
+
+<!-- inicio__r9001_rrecespetdesp__vlrreceitatotal -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da receita bruta total</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrreceitatotal" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrreceitatotal' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rrecespetdesp__vlrreceitatotal -->
+
+<!-- inicio__r9001_rrecespetdesp__vlrcrrecespetdesp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcrrecespetdesp" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcrrecespetdesp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rrecespetdesp__vlrcrrecespetdesp -->
+
+<!-- inicio__r9001_rrecespetdesp__vlrcrrecespetdespsusp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcrrecespetdespsusp" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcrrecespetdespsusp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rrecespetdesp__vlrcrrecespetdespsusp -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r9001_infototal" value="1" {% if show_fields|get_value_from_dict:'show_r9001_infototal' %}checked{% endif %} >Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_crrecespetdesp" value="1" {% if show_fields|get_value_from_dict:'show_crrecespetdesp' %}checked{% endif %} >Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrreceitatotal" value="1" {% if show_fields|get_value_from_dict:'show_vlrreceitatotal' %}checked{% endif %} >Valor da receita bruta total
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcrrecespetdesp" value="1" {% if show_fields|get_value_from_dict:'show_vlrcrrecespetdesp' %}checked{% endif %} >Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcrrecespetdespsusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrcrrecespetdespsusp' %}checked{% endif %} >Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}
+    </div>
+</div>
+
+

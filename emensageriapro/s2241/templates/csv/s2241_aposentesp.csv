@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2241_evtinsapo or 1 %}"Informações sobre o trabalho exercido em condições que ensejam a aposentadoria especial.";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2241_evtinsapo or 1 %}"{{ c.s2241_evtinsapo }}";{% endif %}
+{% endfor %}

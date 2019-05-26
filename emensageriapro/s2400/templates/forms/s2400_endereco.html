@@ -1,1 +1,31 @@
-{% load templatetags %}{% load static %}{% if not s2400_evtcdbenefin_id or s2400_evtcdbenefin_id != s2400_endereco_form.s2400_evtcdbenefin.value %}<!-- inicio__s2400_endereco__s2400_evtcdbenefin --><div class="col-md-12" id="s2400_endereco__s2400_evtcdbenefin__div"><div class="form-group"><label id="s2400_endereco__s2400_evtcdbenefin__label">Evento de cadastro de beneficiários - Início*<a data-toggle="tooltip" title="Grupo de informações do endereço do beneficiário"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2400_endereco_form.s2400_evtcdbenefin.value %}<a href="{% url 's2400_evtcdbenefin_salvar' hash='{}'|json_return_page:'s2400_endereco_salvar'|json_return_hash:hash|json_id:s2400_endereco_form.s2400_evtcdbenefin.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s2400_endereco_form.s2400_evtcdbenefin.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2400_endereco_form.s2400_evtcdbenefin.errors }}</div>{% endif %} {% if s2400_endereco_form.s2400_evtcdbenefin.field.widget.attrs.readonly %} {% if s2400_endereco_form.s2400_evtcdbenefin.field.widget.attrs.disabled %} {{ s2400_endereco_form.s2400_evtcdbenefin|addcss:'form-control' }}<input id="id_s2400_evtcdbenefin" name="s2400_evtcdbenefin" type="hidden" value="{{ s2400_endereco_form.s2400_evtcdbenefin.value }}">{% else %} {{ s2400_endereco_form.s2400_evtcdbenefin|addcss:'form-control' }} {% endif %} {% else %} {{ s2400_endereco_form.s2400_evtcdbenefin|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2400_endereco__s2400_evtcdbenefin -->{% else %}<input type="hidden" value="{{ s2400_evtcdbenefin_id|valor }}" id="id_s2400_evtcdbenefin" name="s2400_evtcdbenefin">{% endif %}
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2400_endereco__s2400_evtcdbenefin -->
+<div class="col-md-12" id="s2400_endereco__s2400_evtcdbenefin__div">
+  <div class="form-group">
+    <label id="s2400_endereco__s2400_evtcdbenefin__label">Grupo de informações do endereço do Trabalhador*</label>
+    {% if not for_print %}{% if s2400_endereco_form.s2400_evtcdbenefin.value %}
+        <a href="{% url 's2400_evtcdbenefin_salvar' hash='{}'|json_return_page:'s2400_endereco_salvar'|json_return_hash:hash|json_id:s2400_endereco_form.s2400_evtcdbenefin.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s2400_endereco_form.s2400_evtcdbenefin.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2400_endereco_form.s2400_evtcdbenefin.errors }}
+      </div>
+    {% endif %}
+    {% if s2400_endereco_form.s2400_evtcdbenefin.field.widget.attrs.readonly %}
+      {% if s2400_endereco_form.s2400_evtcdbenefin.field.widget.attrs.disabled %}
+        {{ s2400_endereco_form.s2400_evtcdbenefin|addcss:'form-control' }}
+        <input id="id_s2400_evtcdbenefin" name="s2400_evtcdbenefin" type="hidden" value="{{ s2400_endereco_form.s2400_evtcdbenefin.value }}">
+      {% else %}
+        {{ s2400_endereco_form.s2400_evtcdbenefin|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2400_endereco_form.s2400_evtcdbenefin|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2400_endereco__s2400_evtcdbenefin -->

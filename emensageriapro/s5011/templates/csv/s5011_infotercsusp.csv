@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5011_idelotacao or 1 %}"Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).";{% endif %}{% if show_fields.show_codterc or 1 %}"Código de Terceiros";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5011_idelotacao or 1 %}"{{ c.s5011_idelotacao }}";{% endif %}{% if show_fields.show_codterc or 1 %}"{{ c.codterc }}";{% endif %}
+{% endfor %}

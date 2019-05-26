@@ -1,1 +1,95 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Boletim do Espetáculo Desportivo</label><select name="r3010_boletim" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in r3010_boletim_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r3010_boletim' %}selected="selected"{% endifequal %}>{{ a.r3010_evtespdesportivo }} - {{ a.nrboletim }} - {{ a.tpcompeticao }} - {{ a.categevento }} - {{ a.moddesportiva }} - {{ a.nomecompeticao }} - {{ a.cnpjmandante }} - {{ a.pracadesportiva }} - {{ a.uf }} - {{ a.qtdepagantes }} - {{ a.qtdenaopagantes }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Tipo de receita</label><div class="input-group" style="width: 100%;"><select name="tpreceita" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpreceita' %}selected="selected"{% endifequal %} >1 - Transmissão</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpreceita' %}selected="selected"{% endifequal %} >2 - Propaganda</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpreceita' %}selected="selected"{% endifequal %} >3 - Publicidade</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpreceita' %}selected="selected"{% endifequal %} >4 - Sorteio</option><option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpreceita' %}selected="selected"{% endifequal %} >5 - Outros</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor da receita auferida</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrreceita" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrreceita' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Descrição da receita</label><div name="descreceita__icontains" class="input-group" style="width: 100%;"><input type="text" name="descreceita__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'descreceita__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_r3010_boletim" value="1" {% if show_fields|get_value_from_dict:'show_r3010_boletim' %}checked{% endif %}>Boletim do Espetáculo Desportivo</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpreceita" value="1" {% if show_fields|get_value_from_dict:'show_tpreceita' %}checked{% endif %}>Tipo de receita</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrreceita" value="1" {% if show_fields|get_value_from_dict:'show_vlrreceita' %}checked{% endif %}>Valor da receita auferida</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_descreceita" value="1" {% if show_fields|get_value_from_dict:'show_descreceita' %}checked{% endif %}>Descrição da receita</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r3010_outrasreceitas__r3010_boletim -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Outras receitas do espetáculo</label>
+    <select name="r3010_boletim" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r3010_boletim_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r3010_boletim' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r3010_outrasreceitas__r3010_boletim -->
+
+<!-- inicio__r3010_outrasreceitas__tpreceita -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Tipo de receita</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpreceita" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpreceita' %}selected="selected"{% endifequal %} >1 - Transmissão</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpreceita' %}selected="selected"{% endifequal %} >2 - Propaganda</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpreceita' %}selected="selected"{% endifequal %} >3 - Publicidade</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpreceita' %}selected="selected"{% endifequal %} >4 - Sorteio</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpreceita' %}selected="selected"{% endifequal %} >5 - Outros.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r3010_outrasreceitas__tpreceita -->
+
+<!-- inicio__r3010_outrasreceitas__vlrreceita -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Valor da receita auferida</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrreceita" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrreceita' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r3010_outrasreceitas__vlrreceita -->
+
+<!-- inicio__r3010_outrasreceitas__descreceita -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Descrição da receita</label>
+    <div name="descreceita" class="input-group" style="width: 100%;">
+      <input type="text" name="descreceita" class="form-control" value="{{ dict_fields|get_value_from_dict:'descreceita' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r3010_outrasreceitas__descreceita -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r3010_boletim" value="1" {% if show_fields|get_value_from_dict:'show_r3010_boletim' %}checked{% endif %} >Outras receitas do espetáculo
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpreceita" value="1" {% if show_fields|get_value_from_dict:'show_tpreceita' %}checked{% endif %} >Tipo de receita
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrreceita" value="1" {% if show_fields|get_value_from_dict:'show_vlrreceita' %}checked{% endif %} >Valor da receita auferida
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_descreceita" value="1" {% if show_fields|get_value_from_dict:'show_descreceita' %}checked{% endif %} >Descrição da receita
+    </div>
+</div>
+
+

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1207_infoperapur_ideestab or 1 %}"Informações relativas a remuneração do trabalhador no período de apuração";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1207_infoperapur_ideestab or 1 %}"{{ c.s1207_infoperapur_ideestab }}";{% endif %}
+{% endfor %}

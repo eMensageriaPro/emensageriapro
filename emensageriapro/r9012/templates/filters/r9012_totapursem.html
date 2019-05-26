@@ -1,0 +1,148 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9012_totapursem__r9012_infototalcontrib -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</label>
+    <select name="r9012_infototalcontrib" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r9012_infototalcontrib_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r9012_infototalcontrib' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__r9012_infototalcontrib -->
+
+<!-- inicio__r9012_totapursem__perapursem -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Período de apuração semanal do Código de Receita - CR</label>
+    <div name="perapursem" class="input-group" style="width: 100%;">
+      <input type="text" name="perapursem" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'perapursem' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__perapursem -->
+
+<!-- inicio__r9012_totapursem__crsem -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código de Receita - CR relativo a tributo que possui período de apuração semanal</label>
+    <div name="crsem" class="input-group" style="width: 100%;">
+      <input type="text" name="crsem" class="form-control" value="{{ dict_fields|get_value_from_dict:'crsem' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__crsem -->
+
+<!-- inicio__r9012_totapursem__vlrbasecrsem -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da base do tributo com período de apuração semanal</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbasecrsem" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbasecrsem' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__vlrbasecrsem -->
+
+<!-- inicio__r9012_totapursem__vlrcrsem -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcrsem" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcrsem' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__vlrcrsem -->
+
+<!-- inicio__r9012_totapursem__vlrbasecrsemsusp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbasecrsemsusp" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbasecrsemsusp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__vlrbasecrsemsusp -->
+
+<!-- inicio__r9012_totapursem__vlrcrsemsusp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor do tributo com período de apuração semanal, que deixou de ser retido</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcrsemsusp" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcrsemsusp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__vlrcrsemsusp -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r9012_infototalcontrib" value="1" {% if show_fields|get_value_from_dict:'show_r9012_infototalcontrib' %}checked{% endif %} >Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_perapursem" value="1" {% if show_fields|get_value_from_dict:'show_perapursem' %}checked{% endif %} >Período de apuração semanal do Código de Receita - CR
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_crsem" value="1" {% if show_fields|get_value_from_dict:'show_crsem' %}checked{% endif %} >Código de Receita - CR relativo a tributo que possui período de apuração semanal
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbasecrsem" value="1" {% if show_fields|get_value_from_dict:'show_vlrbasecrsem' %}checked{% endif %} >Valor da base do tributo com período de apuração semanal
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcrsem" value="1" {% if show_fields|get_value_from_dict:'show_vlrcrsem' %}checked{% endif %} >Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbasecrsemsusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrbasecrsemsusp' %}checked{% endif %} >Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcrsemsusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrcrsemsusp' %}checked{% endif %} >Valor do tributo com período de apuração semanal, que deixou de ser retido
+    </div>
+</div>
+
+

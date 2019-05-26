@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2210_evtcat or 1 %}"Detalhamento do(s) agente(s) causador(es) do acidente de trabalho";{% endif %}{% if show_fields.show_codagntcausador or 1 %}"Agente Causador";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2210_evtcat or 1 %}"{{ c.s2210_evtcat }}";{% endif %}{% if show_fields.show_codagntcausador or 1 %}"{{ c.codagntcausador }}";{% endif %}
+{% endfor %}

@@ -1,1 +1,477 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12" id="s2298_evtreintegr__evtreintegr__div"><h4>Evento Reintegração</h4></div><div class="col-md-6"><div class="form-group"><label>Identidade do Registro</label><div name="identidade__icontains" class="input-group" style="width: 100%;"><input type="text" name="identidade__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'identidade__icontains' }}"></div></div></div><div class="col-md-12" id="s2298_evtreintegr__ideevento__div"><h4>Informações de Identificação do Evento</h4></div><div class="col-md-6"><div class="form-group"><label>Identificador de retificação</label><div class="input-group" style="width: 100%;"><select name="indretif" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'indretif' %}selected="selected"{% endifequal %} >1 - para arquivo original</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'indretif' %}selected="selected"{% endifequal %} >2 - para arquivo de retificação</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Número do recibo</label><div name="nrrecibo__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrrecibo__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrrecibo__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Identificação do ambiente</label><div class="input-group" style="width: 100%;"><select name="tpamb" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpamb' %}selected="selected"{% endifequal %} >1 - Produção</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpamb' %}selected="selected"{% endifequal %} >2 - Produção restrita</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Processo de emissão do evento</label><div class="input-group" style="width: 100%;"><select name="procemi" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >1 - Aplicativo do empregador</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >2 - Aplicativo governamental - Empregador Doméstico</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >3 - Aplicativo governamental - Web Geral</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >4 - Aplicativo governamental - Microempreendedor Individual(MEI)</option><option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >5 - Aplicativo governamental - Segurado Especial</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Versão do processo</label><div name="verproc__icontains" class="input-group" style="width: 100%;"><input type="text" name="verproc__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'verproc__icontains' }}"></div></div></div><div class="col-md-12" id="s2298_evtreintegr__ideempregador__div"><h4>Informações de identificação do empregador</h4></div><div class="col-md-6"><div class="form-group"><label>Tipo de inscrição</label><div class="input-group" style="width: 100%;"><select name="tpinsc" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >1 - CNPJ</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >2 - CPF</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Número de inscrição (CPF/CNPJ)</label><div name="nrinsc__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrinsc__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrinsc__icontains' }}"></div></div></div><div class="col-md-12" id="s2298_evtreintegr__idevinculo__div"><h4>Informações de Identificação do Trabalhador e do Vínculo</h4></div><div class="col-md-6"><div class="form-group"><label>CPF</label><div name="cpftrab__icontains" class="input-group" style="width: 100%;"><input type="text" name="cpftrab__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'cpftrab__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>NIS</label><div name="nistrab__icontains" class="input-group" style="width: 100%;"><input type="text" name="nistrab__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nistrab__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Matricula</label><div name="matricula__icontains" class="input-group" style="width: 100%;"><input type="text" name="matricula__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'matricula__icontains' }}"></div></div></div><div class="col-md-12" id="s2298_evtreintegr__inforeintegr__div"><h4>Reintegração</h4></div><div class="col-md-6"><div class="form-group"><label>Tipo de reintegração</label><div class="input-group" style="width: 100%;"><select name="tpreint" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >1 - Reintegração por Decisão Judicial</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >2 - Reintegração por Anistia Legal</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >3 - Reversão de Servidor Público</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >4 - Recondução de Servidor Público</option><option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >5 - Reinclusão de Militar</option><option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >9 - Outros</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Número do Processo Judicial</label><div name="nrprocjud__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrprocjud__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrprocjud__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Número da lei de anistia</label><div name="nrleianistia__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrleianistia__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrleianistia__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Data de efetivo retorno</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtefetretorno__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtefetretorno__range' %}{{ dict_fields|get_value_from_dict:'dtefetretorno__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Data do efeito da reintegração</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtefeito__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtefeito__range' %}{{ dict_fields|get_value_from_dict:'dtefeito__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Indicador de remunerações pagas em juízo</label><div class="input-group" style="width: 100%;"><select name="indpagtojuizo__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'indpagtojuizo__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'indpagtojuizo__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-4"><div class="form-group"><label>Versão</label><div class="input-group" style="width: 100%;"><select name="versao__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="v02_04_02" {% ifequal 'v02_04_02' dict_fields|get_value_from_dict:'versao__icontains' %}selected="selected"{% endifequal %} >Versão 2.04.02</option><option value="v02_05_00" {% ifequal 'v02_05_00' dict_fields|get_value_from_dict:'versao__icontains' %}selected="selected"{% endifequal %} >Versão 2.05.00</option></select></div></div></div><div class="col-md-4"><div class="form-group"><label>Transmissor</label><select name="transmissor_lote_esocial" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in transmissor_lote_esocial_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'transmissor_lote_esocial' %}selected="selected"{% endifequal %}>{{ a.transmissor }} - {{ a.empregador_tpinsc }} - {{ a.empregador_nrinsc }} - {{ a.resposta_codigo }} - {{ a.resposta_descricao }}</option>{% endfor %}</select></div></div><div class="col-md-4"><div class="form-group"><label>Status</label><div class="input-group" style="width: 100%;"><select name="status" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Cadastrado</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Importado</option><option value="10" {% ifequal 10 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando envio</option><option value="11" {% ifequal 11 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Enviado</option><option value="12" {% ifequal 12 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro no Envio/Consulta</option><option value="13" {% ifequal 13 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Processado</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Duplicado</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Gerado</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na Geração</option><option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Assinado</option><option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na Assinatura</option><option value="7" {% ifequal 7 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Validado</option><option value="8" {% ifequal 8 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na validação</option><option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando envio de precedência</option></select></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_retornos_eventos" value="1" {% if show_fields|get_value_from_dict:'show_retornos_eventos' %}checked{% endif %}>Retorno do Evento</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_ocorrencias" value="1" {% if show_fields|get_value_from_dict:'show_ocorrencias' %}checked{% endif %}>Ocorrências</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_validacao_precedencia" value="1" {% if show_fields|get_value_from_dict:'show_validacao_precedencia' %}checked{% endif %}>Validação de Precedência</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_validacoes" value="1" {% if show_fields|get_value_from_dict:'show_validacoes' %}checked{% endif %}>Validações</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_arquivo_original" value="1" {% if show_fields|get_value_from_dict:'show_arquivo_original' %}checked{% endif %}>Arquivo Original</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_arquivo" value="1" {% if show_fields|get_value_from_dict:'show_arquivo' %}checked{% endif %}>Arquivo</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_evtreintegr" value="1" {% if show_fields|get_value_from_dict:'show_evtreintegr' %}checked{% endif %}>Evento Reintegração</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_identidade" value="1" {% if show_fields|get_value_from_dict:'show_identidade' %}checked{% endif %}>Identidade do Registro</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_ideevento" value="1" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %}>Informações de Identificação do Evento</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_indretif" value="1" {% if show_fields|get_value_from_dict:'show_indretif' %}checked{% endif %}>Identificador de retificação</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrrecibo" value="1" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %}>Número do recibo</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpamb" value="1" {% if show_fields|get_value_from_dict:'show_tpamb' %}checked{% endif %}>Identificação do ambiente</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_procemi" value="1" {% if show_fields|get_value_from_dict:'show_procemi' %}checked{% endif %}>Processo de emissão do evento</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_verproc" value="1" {% if show_fields|get_value_from_dict:'show_verproc' %}checked{% endif %}>Versão do processo</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_ideempregador" value="1" {% if show_fields|get_value_from_dict:'show_ideempregador' %}checked{% endif %}>Informações de identificação do empregador</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpinsc" value="1" {% if show_fields|get_value_from_dict:'show_tpinsc' %}checked{% endif %}>Tipo de inscrição</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrinsc" value="1" {% if show_fields|get_value_from_dict:'show_nrinsc' %}checked{% endif %}>Número de inscrição (CPF/CNPJ)</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_idevinculo" value="1" {% if show_fields|get_value_from_dict:'show_idevinculo' %}checked{% endif %}>Informações de Identificação do Trabalhador e do Vínculo</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_cpftrab" value="1" {% if show_fields|get_value_from_dict:'show_cpftrab' %}checked{% endif %}>CPF</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nistrab" value="1" {% if show_fields|get_value_from_dict:'show_nistrab' %}checked{% endif %}>NIS</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_matricula" value="1" {% if show_fields|get_value_from_dict:'show_matricula' %}checked{% endif %}>Matricula</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_inforeintegr" value="1" {% if show_fields|get_value_from_dict:'show_inforeintegr' %}checked{% endif %}>Reintegração</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpreint" value="1" {% if show_fields|get_value_from_dict:'show_tpreint' %}checked{% endif %}>Tipo de reintegração</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrprocjud" value="1" {% if show_fields|get_value_from_dict:'show_nrprocjud' %}checked{% endif %}>Número do Processo Judicial</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrleianistia" value="1" {% if show_fields|get_value_from_dict:'show_nrleianistia' %}checked{% endif %}>Número da lei de anistia</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtefetretorno" value="1" {% if show_fields|get_value_from_dict:'show_dtefetretorno' %}checked{% endif %}>Data de efetivo retorno</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtefeito" value="1" {% if show_fields|get_value_from_dict:'show_dtefeito' %}checked{% endif %}>Data do efeito da reintegração</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_indpagtojuizo" value="1" {% if show_fields|get_value_from_dict:'show_indpagtojuizo' %}checked{% endif %}>Indicador de remunerações pagas em juízo</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_versao" value="1" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %}>Versão</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_transmissor_lote_esocial" value="1" {% if show_fields|get_value_from_dict:'show_transmissor_lote_esocial' %}checked{% endif %}>Transmissor</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_status" value="1" {% if show_fields|get_value_from_dict:'show_status' %}checked{% endif %}>Status</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2298_evtreintegr__evtreintegr -->
+<div class="col-md-12" id="s2298_evtreintegr__evtreintegr__div">
+  <h4>Evento Reintegração</h4>
+</div>
+<!-- fim__s2298_evtreintegr__evtreintegr -->
+
+<!-- inicio__s2298_evtreintegr__identidade -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Identidade do Registro</label>
+    <div name="identidade" class="input-group" style="width: 100%;">
+      <input type="text" name="identidade" class="form-control" value="{{ dict_fields|get_value_from_dict:'identidade' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__identidade -->
+
+<!-- inicio__s2298_evtreintegr__ideevento -->
+<div class="col-md-12" id="s2298_evtreintegr__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s2298_evtreintegr__ideevento -->
+
+<!-- inicio__s2298_evtreintegr__indretif -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Identificador de retificação</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="indretif" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'indretif' %}selected="selected"{% endifequal %} >1 - Arquivo original</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'indretif' %}selected="selected"{% endifequal %} >2 - Arquivo de Retificação.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__indretif -->
+
+<!-- inicio__s2298_evtreintegr__nrrecibo -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número do recibo</label>
+    <div name="nrrecibo" class="input-group" style="width: 100%;">
+      <input type="text" name="nrrecibo" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrrecibo' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__nrrecibo -->
+
+<!-- inicio__s2298_evtreintegr__tpamb -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Identificação do ambiente</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpamb" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpamb' %}selected="selected"{% endifequal %} >1 - Produção</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpamb' %}selected="selected"{% endifequal %} >2 - Produção restrita.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__tpamb -->
+
+<!-- inicio__s2298_evtreintegr__procemi -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Processo de emissão do evento</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="procemi" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >1 - Aplicativo do empregador</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >2 - Aplicativo governamental - Empregador Doméstico</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >3 - Aplicativo governamental - Web Geral</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >4 - Aplicativo governamental - Microempreendedor Individual (MEI)</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >5 - Aplicativo governamental - Segurado Especial.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__procemi -->
+
+<!-- inicio__s2298_evtreintegr__verproc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Versão do processo</label>
+    <div name="verproc" class="input-group" style="width: 100%;">
+      <input type="text" name="verproc" class="form-control" value="{{ dict_fields|get_value_from_dict:'verproc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__verproc -->
+
+<!-- inicio__s2298_evtreintegr__ideempregador -->
+<div class="col-md-12" id="s2298_evtreintegr__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s2298_evtreintegr__ideempregador -->
+
+<!-- inicio__s2298_evtreintegr__tpinsc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo de inscrição</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpinsc" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >2 - CPF</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >5 - CGC</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__tpinsc -->
+
+<!-- inicio__s2298_evtreintegr__nrinsc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número de inscrição (CPF/CNPJ)</label>
+    <div name="nrinsc" class="input-group" style="width: 100%;">
+      <input type="text" name="nrinsc" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrinsc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__nrinsc -->
+
+<!-- inicio__s2298_evtreintegr__idevinculo -->
+<div class="col-md-12" id="s2298_evtreintegr__idevinculo__div">
+  <h4>Informações de Identificação do Trabalhador e do Vínculo</h4>
+</div>
+<!-- fim__s2298_evtreintegr__idevinculo -->
+
+<!-- inicio__s2298_evtreintegr__cpftrab -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>CPF</label>
+    <div name="cpftrab" class="input-group" style="width: 100%;">
+      <input type="text" name="cpftrab" class="form-control" value="{{ dict_fields|get_value_from_dict:'cpftrab' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__cpftrab -->
+
+<!-- inicio__s2298_evtreintegr__nistrab -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>NIS</label>
+    <div name="nistrab" class="input-group" style="width: 100%;">
+      <input type="text" name="nistrab" class="form-control" value="{{ dict_fields|get_value_from_dict:'nistrab' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__nistrab -->
+
+<!-- inicio__s2298_evtreintegr__matricula -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Matricula</label>
+    <div name="matricula" class="input-group" style="width: 100%;">
+      <input type="text" name="matricula" class="form-control" value="{{ dict_fields|get_value_from_dict:'matricula' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__matricula -->
+
+<!-- inicio__s2298_evtreintegr__inforeintegr -->
+<div class="col-md-12" id="s2298_evtreintegr__inforeintegr__div">
+  <h4>Reintegração</h4>
+</div>
+<!-- fim__s2298_evtreintegr__inforeintegr -->
+
+<!-- inicio__s2298_evtreintegr__tpreint -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo de reintegração</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpreint" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >1 - Reintegração por Decisão Judicial</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >2 - Reintegração por Anistia Legal</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >3 - Reversão de Servidor Público</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >4 - Recondução de Servidor Público</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >5 - Reinclusão de Militar</option>
+        <option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'tpreint' %}selected="selected"{% endifequal %} >9 - Outros.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__tpreint -->
+
+<!-- inicio__s2298_evtreintegr__nrprocjud -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número do Processo Judicial</label>
+    <div name="nrprocjud" class="input-group" style="width: 100%;">
+      <input type="text" name="nrprocjud" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrprocjud' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__nrprocjud -->
+
+<!-- inicio__s2298_evtreintegr__nrleianistia -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número da lei de anistia</label>
+    <div name="nrleianistia" class="input-group" style="width: 100%;">
+      <input type="text" name="nrleianistia" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrleianistia' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__nrleianistia -->
+
+<!-- inicio__s2298_evtreintegr__dtefetretorno -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data de efetivo retorno</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtefetretorno" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtefetretorno' %}{{ dict_fields|get_value_from_dict:'dtefetretorno' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__dtefetretorno -->
+
+<!-- inicio__s2298_evtreintegr__dtefeito -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data do efeito da reintegração</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtefeito" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtefeito' %}{{ dict_fields|get_value_from_dict:'dtefeito' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__dtefeito -->
+
+<!-- inicio__s2298_evtreintegr__indpagtojuizo -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Indicador de remunerações pagas em juízo</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="indpagtojuizo" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'indpagtojuizo' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'indpagtojuizo' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__indpagtojuizo -->
+
+<!-- inicio__s2298_evtreintegr__versao -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Versão</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="versao" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="v02_04_02" {% ifequal 'v02_04_02' dict_fields|get_value_from_dict:'versao' %}selected="selected"{% endifequal %} >Versão 2.04.02</option>
+        <option value="v02_05_00" {% ifequal 'v02_05_00' dict_fields|get_value_from_dict:'versao' %}selected="selected"{% endifequal %} >Versão 2.05.00</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__versao -->
+
+<!-- inicio__s2298_evtreintegr__transmissor_lote_esocial -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Transmissor</label>
+    <select name="transmissor_lote_esocial" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in transmissor_lote_esocial_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'transmissor_lote_esocial' %}selected="selected"{% endifequal %}>{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__transmissor_lote_esocial -->
+
+<!-- inicio__s2298_evtreintegr__status -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Status</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="status" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="10" {% ifequal 10 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando envio</option>
+        <option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando envio de precedência</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Assinado</option>
+        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Cadastrado</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Duplicado</option>
+        <option value="11" {% ifequal 11 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Enviado</option>
+        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na Assinatura</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na Geração</option>
+        <option value="8" {% ifequal 8 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na validação</option>
+        <option value="12" {% ifequal 12 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro no Envio/Consulta</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Gerado</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Importado</option>
+        <option value="13" {% ifequal 13 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Processado</option>
+        <option value="7" {% ifequal 7 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Validado</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__status -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_evtreintegr" value="0" {% if show_fields|get_value_from_dict:'show_evtreintegr' %}checked{% endif %} >Evento Reintegração
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_identidade" value="1" {% if show_fields|get_value_from_dict:'show_identidade' %}checked{% endif %} >Identidade do Registro
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_ideevento" value="0" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_indretif" value="1" {% if show_fields|get_value_from_dict:'show_indretif' %}checked{% endif %} >Identificador de retificação
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrrecibo" value="0" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %} >Número do recibo
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpamb" value="1" {% if show_fields|get_value_from_dict:'show_tpamb' %}checked{% endif %} >Identificação do ambiente
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_procemi" value="1" {% if show_fields|get_value_from_dict:'show_procemi' %}checked{% endif %} >Processo de emissão do evento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_verproc" value="1" {% if show_fields|get_value_from_dict:'show_verproc' %}checked{% endif %} >Versão do processo
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_ideempregador" value="0" {% if show_fields|get_value_from_dict:'show_ideempregador' %}checked{% endif %} >Informações de identificação do empregador
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpinsc" value="1" {% if show_fields|get_value_from_dict:'show_tpinsc' %}checked{% endif %} >Tipo de inscrição
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrinsc" value="1" {% if show_fields|get_value_from_dict:'show_nrinsc' %}checked{% endif %} >Número de inscrição (CPF/CNPJ)
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_idevinculo" value="0" {% if show_fields|get_value_from_dict:'show_idevinculo' %}checked{% endif %} >Informações de Identificação do Trabalhador e do Vínculo
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_cpftrab" value="1" {% if show_fields|get_value_from_dict:'show_cpftrab' %}checked{% endif %} >CPF
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nistrab" value="1" {% if show_fields|get_value_from_dict:'show_nistrab' %}checked{% endif %} >NIS
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_matricula" value="1" {% if show_fields|get_value_from_dict:'show_matricula' %}checked{% endif %} >Matricula
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_inforeintegr" value="0" {% if show_fields|get_value_from_dict:'show_inforeintegr' %}checked{% endif %} >Reintegração
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpreint" value="1" {% if show_fields|get_value_from_dict:'show_tpreint' %}checked{% endif %} >Tipo de reintegração
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrprocjud" value="0" {% if show_fields|get_value_from_dict:'show_nrprocjud' %}checked{% endif %} >Número do Processo Judicial
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrleianistia" value="0" {% if show_fields|get_value_from_dict:'show_nrleianistia' %}checked{% endif %} >Número da lei de anistia
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtefetretorno" value="1" {% if show_fields|get_value_from_dict:'show_dtefetretorno' %}checked{% endif %} >Data de efetivo retorno
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtefeito" value="1" {% if show_fields|get_value_from_dict:'show_dtefeito' %}checked{% endif %} >Data do efeito da reintegração
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_indpagtojuizo" value="1" {% if show_fields|get_value_from_dict:'show_indpagtojuizo' %}checked{% endif %} >Indicador de remunerações pagas em juízo
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_versao" value="0" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_transmissor_lote_esocial" value="0" {% if show_fields|get_value_from_dict:'show_transmissor_lote_esocial' %}checked{% endif %} >Transmissor
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_status" value="1" {% if show_fields|get_value_from_dict:'show_status' %}checked{% endif %} >Status
+    </div>
+</div>
+
+

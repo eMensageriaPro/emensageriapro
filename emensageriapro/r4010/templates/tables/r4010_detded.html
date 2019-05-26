@@ -1,0 +1,64 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r4010_infopgto or 1 %}
+            <th>Detalhamento das deduções</th>
+            {% endif %}
+            {% if show_fields.show_indtpdeducao or 1 %}
+            <th>Indicativo do Tipo de Dedução</th>
+            {% endif %}
+            {% if show_fields.show_vlrdeducao or 1 %}
+            <th>Preencher com o Valor da dedução da base de cálculo.</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r4010_detded_lista %}
+        <tr>
+            {% if show_fields.show_r4010_infopgto or 1 %}
+            <td>{{ a.r4010_infopgto }}</td>
+            {% endif %}
+            {% if show_fields.show_indtpdeducao or 1 %}
+            <td>{{ a.get_indtpdeducao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrdeducao or 1 %}
+            <td>{{ a.vlrdeducao }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r4010_detded_visualizar' %}
+                        <a href="{% url 'r4010_detded_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r4010_detded_editar' or dict_permissoes|get_permissao:'r4010_detded_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r4010_detded_apagar' %}
+                        <a href="{% url 'r4010_detded_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

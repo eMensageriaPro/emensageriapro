@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080)."
-{% if show_fields.show_s5011_idelotacao or not s5011_idelotacao_id and 1 %}"Informações de identificação da lotação e validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_cnpjopportuario or 1 %}"CNPJ do Operador Portuário";{% endif %}{% if show_fields.show_aliqrat or 1 %}"Alíquota RAT";{% endif %}{% if show_fields.show_fap or 1 %}"FAP";{% endif %}{% if show_fields.show_aliqratajust or 1 %}"Alíquota RAT (Ajustada)";{% endif %}
-{% for a in s5011_dadosopport_lista %}{% if show_fields.show_s5011_idelotacao or  not s5011_idelotacao_id and 1 %}"{{ a.s5011_idelotacao }}";{% endif %}{% if show_fields.show_cnpjopportuario or 1 %}"{{ a.cnpjopportuario }}";{% endif %}{% if show_fields.show_aliqrat or 1 %}"{{ a.get_aliqrat_display }}";{% endif %}{% if show_fields.show_fap or 1 %}"{{ a.fap }}";{% endif %}{% if show_fields.show_aliqratajust or 1 %}"{{ a.aliqratajust }}";{% endif %}
-{% endfor %}

@@ -1,1 +1,55 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s5011_infoestab_id or s5011_infoestab_id != s5011_infocomplobra_form.s5011_infoestab.value %}<!-- inicio__s5011_infocomplobra__s5011_infoestab --><div class="col-md-12" id="s5011_infocomplobra__s5011_infoestab__div"><div class="form-group"><label id="s5011_infocomplobra__s5011_infoestab__label">Informações do Estabelecimento ou obra*<a data-toggle="tooltip" title="Informações complementares relativas a obras de construção civil."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s5011_infocomplobra_form.s5011_infoestab.value %}<a href="{% url 's5011_infoestab_salvar' hash='{}'|json_return_page:'s5011_infocomplobra_salvar'|json_return_hash:hash|json_id:s5011_infocomplobra_form.s5011_infoestab.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s5011_infocomplobra_form.s5011_infoestab.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5011_infocomplobra_form.s5011_infoestab.errors }}</div>{% endif %} {% if s5011_infocomplobra_form.s5011_infoestab.field.widget.attrs.readonly %} {% if s5011_infocomplobra_form.s5011_infoestab.field.widget.attrs.disabled %} {{ s5011_infocomplobra_form.s5011_infoestab|addcss:'form-control' }}<input id="id_s5011_infoestab" name="s5011_infoestab" type="hidden" value="{{ s5011_infocomplobra_form.s5011_infoestab.value }}">{% else %} {{ s5011_infocomplobra_form.s5011_infoestab|addcss:'form-control' }} {% endif %} {% else %} {{ s5011_infocomplobra_form.s5011_infoestab|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s5011_infocomplobra__s5011_infoestab -->{% else %}<input type="hidden" value="{{ s5011_infoestab_id|valor }}" id="id_s5011_infoestab" name="s5011_infoestab">{% endif %}<!-- inicio__s5011_infocomplobra__indsubstpatrobra --><div class="col-md-6" id="s5011_infocomplobra__indsubstpatrobra__div"><div class="form-group"><label id="s5011_infocomplobra__indsubstpatrobra__label">Substituição de CP patronal de Obra*<a data-toggle="tooltip" title="Indicativo de Substituição da Contribuição Patronal de Obra de Construção Civil, conforme definido no evento S-1005, campo {indSubstPatrObra}: 1 - Contribuição Patronal Substituída; 2 - Contribuição Patronal Não Substituída. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5011_infocomplobra_form.indsubstpatrobra.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5011_infocomplobra_form.indsubstpatrobra.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s5011_infocomplobra_form.indsubstpatrobra.field.widget.attrs.readonly %} {% if s5011_infocomplobra_form.indsubstpatrobra.field.widget.attrs.disabled %} {{ s5011_infocomplobra_form.indsubstpatrobra|addcss:'form-control' }}<input id="id_indsubstpatrobra" name="indsubstpatrobra" type="hidden" value="{% if s5011_infocomplobra_form.indsubstpatrobra.value or s5011_infocomplobra_form.indsubstpatrobra.value == 0 %}{{ s5011_infocomplobra_form.indsubstpatrobra.value|valor }}{% endif %}">{% else %} {{ s5011_infocomplobra_form.indsubstpatrobra|addcss:'form-control' }} {% endif %} {% else %} {{ s5011_infocomplobra_form.indsubstpatrobra|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s5011_infocomplobra__indsubstpatrobra -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5011_infocomplobra__s5011_infoestab -->
+<div class="col-md-12" id="s5011_infocomplobra__s5011_infoestab__div">
+  <div class="form-group">
+    <label id="s5011_infocomplobra__s5011_infoestab__label">Informações complementares relativas a obras de construção civil*</label>
+    {% if not for_print %}{% if s5011_infocomplobra_form.s5011_infoestab.value %}
+        <a href="{% url 's5011_infoestab_salvar' hash='{}'|json_return_page:'s5011_infocomplobra_salvar'|json_return_hash:hash|json_id:s5011_infocomplobra_form.s5011_infoestab.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s5011_infocomplobra_form.s5011_infoestab.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5011_infocomplobra_form.s5011_infoestab.errors }}
+      </div>
+    {% endif %}
+    {% if s5011_infocomplobra_form.s5011_infoestab.field.widget.attrs.readonly %}
+      {% if s5011_infocomplobra_form.s5011_infoestab.field.widget.attrs.disabled %}
+        {{ s5011_infocomplobra_form.s5011_infoestab|addcss:'form-control' }}
+        <input id="id_s5011_infoestab" name="s5011_infoestab" type="hidden" value="{{ s5011_infocomplobra_form.s5011_infoestab.value }}">
+      {% else %}
+        {{ s5011_infocomplobra_form.s5011_infoestab|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s5011_infocomplobra_form.s5011_infoestab|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s5011_infocomplobra__s5011_infoestab -->
+<!-- inicio__s5011_infocomplobra__indsubstpatrobra -->
+<div class="col-md-6" id="s5011_infocomplobra__indsubstpatrobra__div">
+  <div class="form-group">
+    <label id="s5011_infocomplobra__indsubstpatrobra__label">Substituição de CP patronal de Obra*</label>
+    {% if s5011_infocomplobra_form.indsubstpatrobra.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5011_infocomplobra_form.indsubstpatrobra.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s5011_infocomplobra_form.indsubstpatrobra.field.widget.attrs.readonly %}
+        {% if s5011_infocomplobra_form.indsubstpatrobra.field.widget.attrs.disabled %}
+          {{ s5011_infocomplobra_form.indsubstpatrobra|addcss:'form-control' }}
+          <input id="id_indsubstpatrobra" name="indsubstpatrobra" type="hidden" value="{% if s5011_infocomplobra_form.indsubstpatrobra.value or s5011_infocomplobra_form.indsubstpatrobra.value == 0 %}{{ s5011_infocomplobra_form.indsubstpatrobra.value|valor }}{% endif %}">
+        {% else %}
+          {{ s5011_infocomplobra_form.indsubstpatrobra|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s5011_infocomplobra_form.indsubstpatrobra|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_infocomplobra__indsubstpatrobra -->

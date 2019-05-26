@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações do instituidor da pensão por morte"
-{% if show_fields.show_s2410_infopenmorte or not s2410_infopenmorte_id and 1 %}"Informações relativas a pensão por morte";{% endif %}{% if show_fields.show_cpfinst or 1 %}"CPF do instituidor";{% endif %}{% if show_fields.show_dtinst or 1 %}"Data de óbito do instituidor da pensão por morte.";{% endif %}{% if show_fields.show_intaposentado or 1 %}"Informar se o instituidor da pensão por morte era aposentado";{% endif %}
-{% for a in s2410_instpenmorte_lista %}{% if show_fields.show_s2410_infopenmorte or  not s2410_infopenmorte_id and 1 %}"{{ a.s2410_infopenmorte }}";{% endif %}{% if show_fields.show_cpfinst or 1 %}"{{ a.cpfinst }}";{% endif %}{% if show_fields.show_dtinst or 1 %}"{{ a.dtinst|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_intaposentado or 1 %}"{{ a.get_intaposentado_display }}";{% endif %}
-{% endfor %}

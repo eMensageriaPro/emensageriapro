@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações complementares relativas a obras de construção civil"
-{% if show_fields.show_s5011_infoestab or not s5011_infoestab_id and 1 %}"Informações do Estabelecimento ou obra";{% endif %}{% if show_fields.show_indsubstpatrobra or 1 %}"Substituição de CP patronal de Obra";{% endif %}
-{% for a in s5011_infocomplobra_lista %}{% if show_fields.show_s5011_infoestab or  not s5011_infoestab_id and 1 %}"{{ a.s5011_infoestab }}";{% endif %}{% if show_fields.show_indsubstpatrobra or 1 %}"{{ a.get_indsubstpatrobra_display }}";{% endif %}
-{% endfor %}

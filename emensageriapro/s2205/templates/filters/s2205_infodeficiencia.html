@@ -1,1 +1,196 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento Alteração Cadastral do Trabalhador</label><select name="s2205_evtaltcadastral" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2205_evtaltcadastral_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2205_evtaltcadastral' %}selected="selected"{% endifequal %}>{{ a.evtaltcadastral }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.idetrabalhador }} - {{ a.cpftrab }} - {{ a.alteracao }} - {{ a.dtalteracao }} - {{ a.dadostrabalhador }} - {{ a.nmtrab }} - {{ a.sexo }} - {{ a.racacor }} - {{ a.grauinstr }} - {{ a.nascimento }} - {{ a.dtnascto }} - {{ a.paisnascto }} - {{ a.paisnac }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Possui Deficiência Física</label><div class="input-group" style="width: 100%;"><select name="deffisica__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'deffisica__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'deffisica__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Possui Deficiência Visual</label><div class="input-group" style="width: 100%;"><select name="defvisual__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'defvisual__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'defvisual__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Possui Deficiência Auditiva</label><div class="input-group" style="width: 100%;"><select name="defauditiva__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'defauditiva__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'defauditiva__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Possui Deficiência Mental</label><div class="input-group" style="width: 100%;"><select name="defmental__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'defmental__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'defmental__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Possui Deficiência Intelectual</label><div class="input-group" style="width: 100%;"><select name="defintelectual__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'defintelectual__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'defintelectual__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Reabilitado ou Readaptado</label><div class="input-group" style="width: 100%;"><select name="reabreadap__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'reabreadap__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'reabreadap__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Preenche cota de pessoas com deficientes</label><div class="input-group" style="width: 100%;"><select name="infocota__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'infocota__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'infocota__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Observações</label><div name="observacao__icontains" class="input-group" style="width: 100%;"><input type="text" name="observacao__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'observacao__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2205_evtaltcadastral" value="1" {% if show_fields|get_value_from_dict:'show_s2205_evtaltcadastral' %}checked{% endif %}>Evento Alteração Cadastral do Trabalhador</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_deffisica" value="1" {% if show_fields|get_value_from_dict:'show_deffisica' %}checked{% endif %}>Possui Deficiência Física</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_defvisual" value="1" {% if show_fields|get_value_from_dict:'show_defvisual' %}checked{% endif %}>Possui Deficiência Visual</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_defauditiva" value="1" {% if show_fields|get_value_from_dict:'show_defauditiva' %}checked{% endif %}>Possui Deficiência Auditiva</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_defmental" value="1" {% if show_fields|get_value_from_dict:'show_defmental' %}checked{% endif %}>Possui Deficiência Mental</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_defintelectual" value="1" {% if show_fields|get_value_from_dict:'show_defintelectual' %}checked{% endif %}>Possui Deficiência Intelectual</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_reabreadap" value="1" {% if show_fields|get_value_from_dict:'show_reabreadap' %}checked{% endif %}>Reabilitado ou Readaptado</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_infocota" value="1" {% if show_fields|get_value_from_dict:'show_infocota' %}checked{% endif %}>Preenche cota de pessoas com deficientes</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_observacao" value="1" {% if show_fields|get_value_from_dict:'show_observacao' %}checked{% endif %}>Observações</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2205_infodeficiencia__s2205_evtaltcadastral -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Pessoa com Deficiência</label>
+    <select name="s2205_evtaltcadastral" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s2205_evtaltcadastral_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2205_evtaltcadastral' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2205_infodeficiencia__s2205_evtaltcadastral -->
+
+<!-- inicio__s2205_infodeficiencia__deffisica -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Possui Deficiência Física</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="deffisica" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'deffisica' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'deffisica' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_infodeficiencia__deffisica -->
+
+<!-- inicio__s2205_infodeficiencia__defvisual -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Possui Deficiência Visual</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="defvisual" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'defvisual' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'defvisual' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_infodeficiencia__defvisual -->
+
+<!-- inicio__s2205_infodeficiencia__defauditiva -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Possui Deficiência Auditiva</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="defauditiva" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'defauditiva' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'defauditiva' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_infodeficiencia__defauditiva -->
+
+<!-- inicio__s2205_infodeficiencia__defmental -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Possui Deficiência Mental</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="defmental" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'defmental' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'defmental' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_infodeficiencia__defmental -->
+
+<!-- inicio__s2205_infodeficiencia__defintelectual -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Possui Deficiência Intelectual</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="defintelectual" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'defintelectual' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'defintelectual' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_infodeficiencia__defintelectual -->
+
+<!-- inicio__s2205_infodeficiencia__reabreadap -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Reabilitado ou Readaptado</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="reabreadap" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'reabreadap' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'reabreadap' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_infodeficiencia__reabreadap -->
+
+<!-- inicio__s2205_infodeficiencia__infocota -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preenche cota de pessoas com deficientes</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="infocota" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'infocota' %}selected="selected"{% endifequal %} >N - Não</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'infocota' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_infodeficiencia__infocota -->
+
+<!-- inicio__s2205_infodeficiencia__observacao -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Observações</label>
+    <div name="observacao" class="input-group" style="width: 100%;">
+      <input type="text" name="observacao" class="form-control" value="{{ dict_fields|get_value_from_dict:'observacao' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_infodeficiencia__observacao -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2205_evtaltcadastral" value="1" {% if show_fields|get_value_from_dict:'show_s2205_evtaltcadastral' %}checked{% endif %} >Pessoa com Deficiência
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_deffisica" value="1" {% if show_fields|get_value_from_dict:'show_deffisica' %}checked{% endif %} >Possui Deficiência Física
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_defvisual" value="1" {% if show_fields|get_value_from_dict:'show_defvisual' %}checked{% endif %} >Possui Deficiência Visual
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_defauditiva" value="1" {% if show_fields|get_value_from_dict:'show_defauditiva' %}checked{% endif %} >Possui Deficiência Auditiva
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_defmental" value="1" {% if show_fields|get_value_from_dict:'show_defmental' %}checked{% endif %} >Possui Deficiência Mental
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_defintelectual" value="1" {% if show_fields|get_value_from_dict:'show_defintelectual' %}checked{% endif %} >Possui Deficiência Intelectual
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_reabreadap" value="1" {% if show_fields|get_value_from_dict:'show_reabreadap' %}checked{% endif %} >Reabilitado ou Readaptado
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_infocota" value="0" {% if show_fields|get_value_from_dict:'show_infocota' %}checked{% endif %} >Preenche cota de pessoas com deficientes
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_observacao" value="0" {% if show_fields|get_value_from_dict:'show_observacao' %}checked{% endif %} >Observações
+    </div>
+</div>
+
+

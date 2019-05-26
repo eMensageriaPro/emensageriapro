@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_titulo or 1 %}"Título";{% endif %}{% if show_fields.show_campos or 1 %}"Lista dos Campos (separados por vírgula)";{% endif %}{% if show_fields.show_sql or 1 %}"SQL";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_titulo or 1 %}"{{ c.titulo }}";{% endif %}{% if show_fields.show_campos or 1 %}"{{ c.campos }}";{% endif %}{% if show_fields.show_sql or 1 %}"{{ c.sql }}";{% endif %}
+{% endfor %}

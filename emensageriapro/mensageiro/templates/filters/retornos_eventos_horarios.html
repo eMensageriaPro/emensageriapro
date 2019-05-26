@@ -1,1 +1,150 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Retornos</label><select name="retornos_eventos" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in retornos_eventos_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'retornos_eventos' %}selected="selected"{% endifequal %}>{{ a.transmissor_lote_esocial }} - {{ a.identidade }}</option>{% endfor %}</select></div></div><div class="col-md-4"><div class="form-group"><label>Dia</label><div class="input-group" style="width: 100%;"><select name="dia" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >1 - Segunda-Feira</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >2 - Terça-Feira</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >3 - Quarta-Feira</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >4 - Quinta-Feira</option><option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >5 - Sexta-Feira</option><option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >6 - Sábado</option><option value="7" {% ifequal 7 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >7 - Domingo</option><option value="8" {% ifequal 8 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >8 - Dia variável</option></select></div></div></div><div class="col-md-4"><div class="form-group"><label>Código do Horário Contratual</label><div name="codhorcontrat__icontains" class="input-group" style="width: 100%;"><input type="text" name="codhorcontrat__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'codhorcontrat__icontains' }}"></div></div></div><div class="col-md-4"><div class="form-group"><label>Hora de Entrada</label><div name="hrentr__icontains" class="input-group" style="width: 100%;"><input type="text" name="hrentr__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'hrentr__icontains' }}"></div></div></div><div class="col-md-4"><div class="form-group"><label>Hora de Saída</label><div name="hrsaida__icontains" class="input-group" style="width: 100%;"><input type="text" name="hrsaida__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'hrsaida__icontains' }}"></div></div></div><div class="col-md-4"><div class="form-group"><label>Duração da jornada (min)</label><div name="durjornada" class="input-group" style="width: 100%;"><input type="text" name="durjornada" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'durjornada' }}"></div></div></div><div class="col-md-4"><div class="form-group"><label>Horário Flexivel</label><div class="input-group" style="width: 100%;"><select name="perhorflexivel__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'perhorflexivel__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'perhorflexivel__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_retornos_eventos" value="1" {% if show_fields|get_value_from_dict:'show_retornos_eventos' %}checked{% endif %}>Retornos</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dia" value="1" {% if show_fields|get_value_from_dict:'show_dia' %}checked{% endif %}>Dia</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codhorcontrat" value="1" {% if show_fields|get_value_from_dict:'show_codhorcontrat' %}checked{% endif %}>Código do Horário Contratual</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_hrentr" value="1" {% if show_fields|get_value_from_dict:'show_hrentr' %}checked{% endif %}>Hora de Entrada</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_hrsaida" value="1" {% if show_fields|get_value_from_dict:'show_hrsaida' %}checked{% endif %}>Hora de Saída</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_durjornada" value="1" {% if show_fields|get_value_from_dict:'show_durjornada' %}checked{% endif %}>Duração da jornada (min)</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_perhorflexivel" value="1" {% if show_fields|get_value_from_dict:'show_perhorflexivel' %}checked{% endif %}>Horário Flexivel</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__retornos_eventos_horarios__retornos_eventos -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Retornos</label>
+    <select name="retornos_eventos" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in retornos_eventos_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'retornos_eventos' %}selected="selected"{% endifequal %}>{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__retornos_eventos_horarios__retornos_eventos -->
+
+<!-- inicio__retornos_eventos_horarios__dia -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Dia</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="dia" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >1 - Segunda-Feira</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >2 - Terça-Feira</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >3 - Quarta-Feira</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >4 - Quinta-Feira</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >5 - Sexta-Feira</option>
+        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >6 - Sábado</option>
+        <option value="7" {% ifequal 7 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >7 - Domingo</option>
+        <option value="8" {% ifequal 8 dict_fields|get_value_from_dict:'dia' %}selected="selected"{% endifequal %} >8 - Dia variável.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__retornos_eventos_horarios__dia -->
+
+<!-- inicio__retornos_eventos_horarios__codhorcontrat -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Código do Horário Contratual</label>
+    <div name="codhorcontrat" class="input-group" style="width: 100%;">
+      <input type="text" name="codhorcontrat" class="form-control" value="{{ dict_fields|get_value_from_dict:'codhorcontrat' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__retornos_eventos_horarios__codhorcontrat -->
+
+<!-- inicio__retornos_eventos_horarios__hrentr -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Hora de Entrada</label>
+    <div name="hrentr" class="input-group" style="width: 100%;">
+      <input type="text" name="hrentr" class="form-control" value="{{ dict_fields|get_value_from_dict:'hrentr' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__retornos_eventos_horarios__hrentr -->
+
+<!-- inicio__retornos_eventos_horarios__hrsaida -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Hora de Saída</label>
+    <div name="hrsaida" class="input-group" style="width: 100%;">
+      <input type="text" name="hrsaida" class="form-control" value="{{ dict_fields|get_value_from_dict:'hrsaida' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__retornos_eventos_horarios__hrsaida -->
+
+<!-- inicio__retornos_eventos_horarios__durjornada -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Duração da jornada (min)</label>
+    <div name="durjornada" class="input-group" style="width: 100%;">
+      <input type="text" name="durjornada" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'durjornada' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__retornos_eventos_horarios__durjornada -->
+
+<!-- inicio__retornos_eventos_horarios__perhorflexivel -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Horário Flexivel</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="perhorflexivel" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'perhorflexivel' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'perhorflexivel' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__retornos_eventos_horarios__perhorflexivel -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_retornos_eventos" value="1" {% if show_fields|get_value_from_dict:'show_retornos_eventos' %}checked{% endif %} >Retornos
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dia" value="0" {% if show_fields|get_value_from_dict:'show_dia' %}checked{% endif %} >Dia
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codhorcontrat" value="1" {% if show_fields|get_value_from_dict:'show_codhorcontrat' %}checked{% endif %} >Código do Horário Contratual
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_hrentr" value="0" {% if show_fields|get_value_from_dict:'show_hrentr' %}checked{% endif %} >Hora de Entrada
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_hrsaida" value="0" {% if show_fields|get_value_from_dict:'show_hrsaida' %}checked{% endif %} >Hora de Saída
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_durjornada" value="0" {% if show_fields|get_value_from_dict:'show_durjornada' %}checked{% endif %} >Duração da jornada (min)
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_perhorflexivel" value="0" {% if show_fields|get_value_from_dict:'show_perhorflexivel' %}checked{% endif %} >Horário Flexivel
+    </div>
+</div>
+
+

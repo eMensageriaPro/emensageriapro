@@ -1,1 +1,148 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not r2050_tipocom_id or r2050_tipocom_id != r2050_infoproc_form.r2050_tipocom.value %}<!-- inicio__r2050_infoproc__r2050_tipocom --><div class="col-md-12" id="r2050_infoproc__r2050_tipocom__div"><div class="form-group"><label id="r2050_infoproc__r2050_tipocom__label">Registro que apresenta o valor total da Receita Bruta por 'tipo' de comercialização.*<a data-toggle="tooltip" title="Informações de Processos Administrativos/Judiciais com decisão/sentença favorável ao contribuinte. Validações: a) A soma dos valores informados em {vlrCPSusp}, desconsiderando os processos cujo {indSusp} seja igual a [92], não pode ser superior a 2,5% de { (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if r2050_infoproc_form.r2050_tipocom.value %}<a id="r2050_infoproc__r2050_tipocom__div_acessar" href="{% url 'r2050_tipocom_salvar' hash='{}'|json_id:r2050_infoproc_form.r2050_tipocom.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_r2050_tipocom').change(function(){ document.getElementById("r2050_infoproc__r2050_tipocom__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if r2050_infoproc_form.r2050_tipocom.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2050_infoproc_form.r2050_tipocom.errors }}</div>{% endif %} {% if r2050_infoproc_form.r2050_tipocom.field.widget.attrs.readonly %} {% if r2050_infoproc_form.r2050_tipocom.field.widget.attrs.disabled %} {{ r2050_infoproc_form.r2050_tipocom|addcss:'form-control' }}<input id="id_r2050_tipocom" name="r2050_tipocom" type="hidden" value="{% if r2050_infoproc_form.r2050_tipocom.value or r2050_infoproc_form.r2050_tipocom.value == 0 %}{{ r2050_infoproc_form.r2050_tipocom.value|valor }}{% endif %}">{% else %} {{ r2050_infoproc_form.r2050_tipocom|addcss:'form-control' }} {% endif %} {% else %} {{ r2050_infoproc_form.r2050_tipocom|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__r2050_infoproc__r2050_tipocom -->{% else %}<input type="hidden" value="{{ r2050_tipocom_id|valor }}" id="id_r2050_tipocom" name="r2050_tipocom">{% endif %}<!-- inicio__r2050_infoproc__tpproc --><div class="col-md-6" id="r2050_infoproc__tpproc__div"><div class="form-group"><label id="r2050_infoproc__tpproc__label">Preencher com o código correspondente ao tipo de processo*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2050_infoproc_form.tpproc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2050_infoproc_form.tpproc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if r2050_infoproc_form.tpproc.field.widget.attrs.readonly %} {% if r2050_infoproc_form.tpproc.field.widget.attrs.disabled %} {{ r2050_infoproc_form.tpproc|addcss:'form-control' }}<input id="id_tpproc" name="tpproc" type="hidden" value="{% if r2050_infoproc_form.tpproc.value or r2050_infoproc_form.tpproc.value == 0 %}{{ r2050_infoproc_form.tpproc.value|valor }}{% endif %}">{% else %} {{ r2050_infoproc_form.tpproc|addcss:'form-control' }} {% endif %} {% else %} {{ r2050_infoproc_form.tpproc|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__r2050_infoproc__tpproc --><!-- inicio__r2050_infoproc__nrproc --><div class="col-md-6" id="r2050_infoproc__nrproc__div"><div class="form-group"><label id="r2050_infoproc__nrproc__label">Informar o número do processo administrativo/judicial*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2050_infoproc_form.nrproc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2050_infoproc_form.nrproc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ r2050_infoproc_form.nrproc|addcss:'form-control' }}</div></div></div><!-- fim__r2050_infoproc__nrproc --><!-- inicio__r2050_infoproc__codsusp --><div class="col-md-6" id="r2050_infoproc__codsusp__div"><div class="form-group"><label id="r2050_infoproc__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigat (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2050_infoproc_form.codsusp.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2050_infoproc_form.codsusp.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ r2050_infoproc_form.codsusp|addcss:'form-control' }}</div></div></div><!-- fim__r2050_infoproc__codsusp --><!-- inicio__r2050_infoproc__vlrcpsusp --><div class="col-md-6" id="r2050_infoproc__vlrcpsusp__div"><div class="form-group"><label id="r2050_infoproc__vlrcpsusp__label">Valor da Contribuição Previdenciária com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária com exigibilidade suspensa. Validação: Preenchimento obrigatório se {vlrRatSusp} e {vlrSenarSusp} não tiverem sido preenchidos. Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2050_infoproc_form.vlrcpsusp.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2050_infoproc_form.vlrcpsusp.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ r2050_infoproc_form.vlrcpsusp|addcss:'form-control automate-money' }}</div></div></div><!-- fim__r2050_infoproc__vlrcpsusp --><!-- inicio__r2050_infoproc__vlrratsusp --><div class="col-md-6" id="r2050_infoproc__vlrratsusp__div"><div class="form-group"><label id="r2050_infoproc__vlrratsusp__label">Valor da contribuição para Gilrat com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da contribuição para Gilrat com exigibilidade suspensa Validação: Preenchimento obrigatório se {vlrCPSusp} e {vlrSenarSusp} não tiverem sido preenchidos. Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2050_infoproc_form.vlrratsusp.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2050_infoproc_form.vlrratsusp.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ r2050_infoproc_form.vlrratsusp|addcss:'form-control automate-money' }}</div></div></div><!-- fim__r2050_infoproc__vlrratsusp --><!-- inicio__r2050_infoproc__vlrsenarsusp --><div class="col-md-6" id="r2050_infoproc__vlrsenarsusp__div"><div class="form-group"><label id="r2050_infoproc__vlrsenarsusp__label">Valor da contribuição para o Senar com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da contribuição para o Senar com exigibilidade suspensa Validação: Preenchimento obrigatório se {vlrCPSusp} e {vlrRatSusp} não tiverem sido preenchidos. Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2050_infoproc_form.vlrsenarsusp.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2050_infoproc_form.vlrsenarsusp.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ r2050_infoproc_form.vlrsenarsusp|addcss:'form-control automate-money' }}</div></div></div><!-- fim__r2050_infoproc__vlrsenarsusp -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r2050_infoproc__r2050_tipocom -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_r2050_tipocom').change(function(){
+       document.getElementById("r2050_infoproc__r2050_tipocom__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="r2050_infoproc__r2050_tipocom__div">
+  <div class="form-group">
+    <label id="r2050_infoproc__r2050_tipocom__label">Informações de processos relacionados a não retenção de contribuição previdenciária*</label>
+    {% if not for_print %}
+      {% if r2050_infoproc_form.r2050_tipocom.value %}
+        <a id="r2050_infoproc__r2050_tipocom__div_acessar" href="{% url 'r2050_tipocom_salvar' hash='{}'|json_id:r2050_infoproc_form.r2050_tipocom.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if r2050_infoproc_form.r2050_tipocom.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2050_infoproc_form.r2050_tipocom.errors }}
+      </div>
+    {% endif %}
+    {% if r2050_infoproc_form.r2050_tipocom.field.widget.attrs.readonly %}
+      {% if r2050_infoproc_form.r2050_tipocom.field.widget.attrs.disabled %}
+        {{ r2050_infoproc_form.r2050_tipocom|addcss:'form-control' }}
+        <input id="id_r2050_tipocom" name="r2050_tipocom" type="hidden" value="{% if r2050_infoproc_form.r2050_tipocom.value or r2050_infoproc_form.r2050_tipocom.value == 0 %}{{ r2050_infoproc_form.r2050_tipocom.value|valor }}{% endif %}">
+      {% else %}
+        {{ r2050_infoproc_form.r2050_tipocom|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r2050_infoproc_form.r2050_tipocom|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r2050_infoproc__r2050_tipocom -->
+<!-- inicio__r2050_infoproc__tpproc -->
+<div class="col-md-6" id="r2050_infoproc__tpproc__div">
+  <div class="form-group">
+    <label id="r2050_infoproc__tpproc__label">Preencher com o código correspondente ao tipo de processo*</label>
+    {% if r2050_infoproc_form.tpproc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2050_infoproc_form.tpproc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2050_infoproc_form.tpproc.field.widget.attrs.readonly %}
+        {% if r2050_infoproc_form.tpproc.field.widget.attrs.disabled %}
+          {{ r2050_infoproc_form.tpproc|addcss:'form-control' }}
+          <input id="id_tpproc" name="tpproc" type="hidden" value="{% if r2050_infoproc_form.tpproc.value or r2050_infoproc_form.tpproc.value == 0 %}{{ r2050_infoproc_form.tpproc.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2050_infoproc_form.tpproc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2050_infoproc_form.tpproc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2050_infoproc__tpproc -->
+<!-- inicio__r2050_infoproc__nrproc -->
+<div class="col-md-6" id="r2050_infoproc__nrproc__div">
+  <div class="form-group">
+    <label id="r2050_infoproc__nrproc__label">Informar o número do processo administrativo/judicial*</label>
+      {% if r2050_infoproc_form.nrproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2050_infoproc_form.nrproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2050_infoproc_form.nrproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2050_infoproc__nrproc -->
+<!-- inicio__r2050_infoproc__codsusp -->
+<div class="col-md-6" id="r2050_infoproc__codsusp__div">
+  <div class="form-group">
+    <label id="r2050_infoproc__codsusp__label">Código do Indicativo da Suspensão, atribuído pelo contribuinte</label>
+      {% if r2050_infoproc_form.codsusp.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2050_infoproc_form.codsusp.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2050_infoproc_form.codsusp|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2050_infoproc__codsusp -->
+<!-- inicio__r2050_infoproc__vlrcpsusp -->
+<div class="col-md-6" id="r2050_infoproc__vlrcpsusp__div">
+  <div class="form-group">
+    <label id="r2050_infoproc__vlrcpsusp__label">Valor da Contribuição Previdenciária com exigibilidade suspensa</label>
+    {% if r2050_infoproc_form.vlrcpsusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r2050_infoproc_form.vlrcpsusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r2050_infoproc_form.vlrcpsusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2050_infoproc__vlrcpsusp -->
+<!-- inicio__r2050_infoproc__vlrratsusp -->
+<div class="col-md-6" id="r2050_infoproc__vlrratsusp__div">
+  <div class="form-group">
+    <label id="r2050_infoproc__vlrratsusp__label">Valor da contribuição para Gilrat com exigibilidade suspensa</label>
+    {% if r2050_infoproc_form.vlrratsusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r2050_infoproc_form.vlrratsusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r2050_infoproc_form.vlrratsusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2050_infoproc__vlrratsusp -->
+<!-- inicio__r2050_infoproc__vlrsenarsusp -->
+<div class="col-md-6" id="r2050_infoproc__vlrsenarsusp__div">
+  <div class="form-group">
+    <label id="r2050_infoproc__vlrsenarsusp__label">Valor da contribuição para o Senar com exigibilidade suspensa</label>
+    {% if r2050_infoproc_form.vlrsenarsusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r2050_infoproc_form.vlrsenarsusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r2050_infoproc_form.vlrsenarsusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2050_infoproc__vlrsenarsusp -->

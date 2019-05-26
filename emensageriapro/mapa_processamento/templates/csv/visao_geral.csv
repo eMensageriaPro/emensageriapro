@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+
+{% for c in campos_lista %}
+{% endfor %}

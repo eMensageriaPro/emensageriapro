@@ -1,1 +1,53 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento de cadastro de benefícios - Alteração</label><select name="s2416_evtcdbenalt" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2416_evtcdbenalt_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2416_evtcdbenalt' %}selected="selected"{% endifequal %}>{{ a.evtcdbenalt }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.idebeneficio }} - {{ a.cpfbenef }} - {{ a.nrbeneficio }} - {{ a.infobenalteracao }} - {{ a.dtaltbeneficio }} - {{ a.dadosbeneficio }} - {{ a.tpbeneficio }} - {{ a.tpplanrp }} - {{ a.inddecjud }} - {{ a.indhomologtc }} - {{ a.indsuspensao }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Tipo de pensão por morte</label><div class="input-group" style="width: 100%;"><select name="tppenmorte" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tppenmorte' %}selected="selected"{% endifequal %} >1 - Vitalícia</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tppenmorte' %}selected="selected"{% endifequal %} >2 - Temporária</option></select></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2416_evtcdbenalt" value="1" {% if show_fields|get_value_from_dict:'show_s2416_evtcdbenalt' %}checked{% endif %}>Evento de cadastro de benefícios - Alteração</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tppenmorte" value="1" {% if show_fields|get_value_from_dict:'show_tppenmorte' %}checked{% endif %}>Tipo de pensão por morte</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2416_infopenmorte__s2416_evtcdbenalt -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações relativas a pensão por morte</label>
+    <select name="s2416_evtcdbenalt" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s2416_evtcdbenalt_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2416_evtcdbenalt' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2416_infopenmorte__s2416_evtcdbenalt -->
+
+<!-- inicio__s2416_infopenmorte__tppenmorte -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo de pensão por morte</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tppenmorte" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tppenmorte' %}selected="selected"{% endifequal %} >1 - Vitalícia</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tppenmorte' %}selected="selected"{% endifequal %} >2 - Temporária.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2416_infopenmorte__tppenmorte -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2416_evtcdbenalt" value="1" {% if show_fields|get_value_from_dict:'show_s2416_evtcdbenalt' %}checked{% endif %} >Informações relativas a pensão por morte
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tppenmorte" value="1" {% if show_fields|get_value_from_dict:'show_tppenmorte' %}checked{% endif %} >Tipo de pensão por morte
+    </div>
+</div>
+
+

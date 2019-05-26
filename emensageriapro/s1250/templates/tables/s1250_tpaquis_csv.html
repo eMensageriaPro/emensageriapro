@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física. O registro também deve ser preenchido nas seguintes situações: - Por PF, quando a mesma adqu (...)"
-{% if show_fields.show_s1250_evtaqprod or not s1250_evtaqprod_id and 1 %}"Possui informações sobre a aquisição de produto rural de pessoas físicas?";{% endif %}{% if show_fields.show_indaquis or 1 %}"Indicativo de aquisição";{% endif %}{% if show_fields.show_vlrtotaquis or 1 %}"Valor total da aquisição";{% endif %}
-{% for a in s1250_tpaquis_lista %}{% if show_fields.show_s1250_evtaqprod or  not s1250_evtaqprod_id and 1 %}"{{ a.s1250_evtaqprod }}";{% endif %}{% if show_fields.show_indaquis or 1 %}"{{ a.indaquis }}";{% endif %}{% if show_fields.show_vlrtotaquis or 1 %}"{{ a.vlrtotaquis }}";{% endif %}
-{% endfor %}

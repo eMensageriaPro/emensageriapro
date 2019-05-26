@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r4020_infopgto or 1 %}"Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial";{% endif %}{% if show_fields.show_nrproc or 1 %}"Informar o número do processo administrativo/judicial";{% endif %}{% if show_fields.show_indorigemrecursos or 1 %}"Indicativo da origem dos recursos";{% endif %}{% if show_fields.show_desc or 1 %}"Descrição";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r4020_infopgto or 1 %}"{{ c.r4020_infopgto }}";{% endif %}{% if show_fields.show_nrproc or 1 %}"{{ c.nrproc }}";{% endif %}{% if show_fields.show_indorigemrecursos or 1 %}"{{ c.indorigemrecursos }}";{% endif %}{% if show_fields.show_desc or 1 %}"{{ c.desc }}";{% endif %}
+{% endfor %}

@@ -1,1 +1,91 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s5011_ideestab_id or s5011_ideestab_id != s5011_infocrestab_form.s5011_ideestab.value %}<!-- inicio__s5011_infocrestab__s5011_ideestab --><div class="col-md-12" id="s5011_infocrestab__s5011_ideestab__div"><div class="form-group"><label id="s5011_infocrestab__s5011_ideestab__label">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas*<a data-toggle="tooltip" title="Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s5011_infocrestab_form.s5011_ideestab.value %}<a id="s5011_infocrestab__s5011_ideestab__div_acessar" href="{% url 's5011_ideestab_salvar' hash='{}'|json_id:s5011_infocrestab_form.s5011_ideestab.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_s5011_ideestab').change(function(){ document.getElementById("s5011_infocrestab__s5011_ideestab__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if s5011_infocrestab_form.s5011_ideestab.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5011_infocrestab_form.s5011_ideestab.errors }}</div>{% endif %} {% if s5011_infocrestab_form.s5011_ideestab.field.widget.attrs.readonly %} {% if s5011_infocrestab_form.s5011_ideestab.field.widget.attrs.disabled %} {{ s5011_infocrestab_form.s5011_ideestab|addcss:'form-control' }}<input id="id_s5011_ideestab" name="s5011_ideestab" type="hidden" value="{% if s5011_infocrestab_form.s5011_ideestab.value or s5011_infocrestab_form.s5011_ideestab.value == 0 %}{{ s5011_infocrestab_form.s5011_ideestab.value|valor }}{% endif %}">{% else %} {{ s5011_infocrestab_form.s5011_ideestab|addcss:'form-control' }} {% endif %} {% else %} {{ s5011_infocrestab_form.s5011_ideestab|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s5011_infocrestab__s5011_ideestab -->{% else %}<input type="hidden" value="{{ s5011_ideestab_id|valor }}" id="id_s5011_ideestab" name="s5011_ideestab">{% endif %}<!-- inicio__s5011_infocrestab__tpcr --><div class="col-md-6" id="s5011_infocrestab__tpcr__div"><div class="form-group"><label id="s5011_infocrestab__tpcr__label">Código da Receita (CR)*<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência. Validação: Deve ser um código válido, compatível com a classificação tributária do (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5011_infocrestab_form.tpcr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5011_infocrestab_form.tpcr.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s5011_infocrestab_form.tpcr|addcss:'form-control' }}</div></div></div><!-- fim__s5011_infocrestab__tpcr --><!-- inicio__s5011_infocrestab__vrcr --><div class="col-md-6" id="s5011_infocrestab__vrcr__div"><div class="form-group"><label id="s5011_infocrestab__vrcr__label">Valor do CR apurado*<a data-toggle="tooltip" title="Valor correspondente ao Código de Receita - CR apurado. Validação: Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5011_infocrestab_form.vrcr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5011_infocrestab_form.vrcr.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ s5011_infocrestab_form.vrcr|addcss:'form-control automate-money' }}</div></div></div><!-- fim__s5011_infocrestab__vrcr --><!-- inicio__s5011_infocrestab__vrsuspcr --><div class="col-md-6" id="s5011_infocrestab__vrsuspcr__div"><div class="form-group"><label id="s5011_infocrestab__vrsuspcr__label">Valor suspenso correspondente ao CR<a data-toggle="tooltip" title="Valor suspenso correspondente ao Código de Receita - CR apurado. Validação: Deve ser apurado de acordo com as informações de processos judiciais e administrativos."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5011_infocrestab_form.vrsuspcr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5011_infocrestab_form.vrsuspcr.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ s5011_infocrestab_form.vrsuspcr|addcss:'form-control automate-money' }}</div></div></div><!-- fim__s5011_infocrestab__vrsuspcr -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5011_infocrestab__s5011_ideestab -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_s5011_ideestab').change(function(){
+       document.getElementById("s5011_infocrestab__s5011_ideestab__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="s5011_infocrestab__s5011_ideestab__div">
+  <div class="form-group">
+    <label id="s5011_infocrestab__s5011_ideestab__label">Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.*</label>
+    {% if not for_print %}
+      {% if s5011_infocrestab_form.s5011_ideestab.value %}
+        <a id="s5011_infocrestab__s5011_ideestab__div_acessar" href="{% url 's5011_ideestab_salvar' hash='{}'|json_id:s5011_infocrestab_form.s5011_ideestab.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if s5011_infocrestab_form.s5011_ideestab.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5011_infocrestab_form.s5011_ideestab.errors }}
+      </div>
+    {% endif %}
+    {% if s5011_infocrestab_form.s5011_ideestab.field.widget.attrs.readonly %}
+      {% if s5011_infocrestab_form.s5011_ideestab.field.widget.attrs.disabled %}
+        {{ s5011_infocrestab_form.s5011_ideestab|addcss:'form-control' }}
+        <input id="id_s5011_ideestab" name="s5011_ideestab" type="hidden" value="{% if s5011_infocrestab_form.s5011_ideestab.value or s5011_infocrestab_form.s5011_ideestab.value == 0 %}{{ s5011_infocrestab_form.s5011_ideestab.value|valor }}{% endif %}">
+      {% else %}
+        {{ s5011_infocrestab_form.s5011_ideestab|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s5011_infocrestab_form.s5011_ideestab|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s5011_infocrestab__s5011_ideestab -->
+<!-- inicio__s5011_infocrestab__tpcr -->
+<div class="col-md-3" id="s5011_infocrestab__tpcr__div">
+  <div class="form-group">
+    <label id="s5011_infocrestab__tpcr__label">Código da Receita (CR)*</label>
+      {% if s5011_infocrestab_form.tpcr.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5011_infocrestab_form.tpcr.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s5011_infocrestab_form.tpcr|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_infocrestab__tpcr -->
+<!-- inicio__s5011_infocrestab__vrcr -->
+<div class="col-md-3" id="s5011_infocrestab__vrcr__div">
+  <div class="form-group">
+    <label id="s5011_infocrestab__vrcr__label">Valor do CR apurado*</label>
+    {% if s5011_infocrestab_form.vrcr.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s5011_infocrestab_form.vrcr.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ s5011_infocrestab_form.vrcr|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_infocrestab__vrcr -->
+<!-- inicio__s5011_infocrestab__vrsuspcr -->
+<div class="col-md-3" id="s5011_infocrestab__vrsuspcr__div">
+  <div class="form-group">
+    <label id="s5011_infocrestab__vrsuspcr__label">Valor suspenso correspondente ao CR</label>
+    {% if s5011_infocrestab_form.vrsuspcr.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s5011_infocrestab_form.vrsuspcr.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ s5011_infocrestab_form.vrsuspcr|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_infocrestab__vrsuspcr -->

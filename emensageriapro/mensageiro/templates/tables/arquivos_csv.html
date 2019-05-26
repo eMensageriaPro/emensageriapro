@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Arquivos"
-{% if show_fields.show_arquivo or 1 %}"Arquivo";{% endif %}{% if show_fields.show_data_criacao or 1 %}"Data de Criação";{% endif %}{% if show_fields.show_permite_recuperacao or 1 %}"Permite Recuperação";{% endif %}
-{% for a in arquivos_lista %}{% if show_fields.show_arquivo or 1 %}"{{ a.arquivo }}";{% endif %}{% if show_fields.show_data_criacao or 1 %}"{{ a.data_criacao|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_permite_recuperacao or 1 %}"{{ a.get_permite_recuperacao_display }}";{% endif %}
-{% endfor %}

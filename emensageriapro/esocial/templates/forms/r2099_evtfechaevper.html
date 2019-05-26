@@ -1,0 +1,418 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r2099_evtfechaevper__evtfechaevper -->
+<div class="col-md-12" id="r2099_evtfechaevper__evtfechaevper__div">
+  <h4>Evento de Fechamento</h4>
+</div>
+<!-- fim__r2099_evtfechaevper__evtfechaevper -->
+<!-- inicio__r2099_evtfechaevper__identidade -->
+<div class="col-md-6" id="r2099_evtfechaevper__identidade__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__identidade__label">Identificação única do evento</label>
+      {% if r2099_evtfechaevper_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2099_evtfechaevper_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2099_evtfechaevper_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__identidade -->
+<!-- inicio__r2099_evtfechaevper__ideevento -->
+<div class="col-md-12" id="r2099_evtfechaevper__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__r2099_evtfechaevper__ideevento -->
+<!-- inicio__r2099_evtfechaevper__perapur -->
+<div class="col-md-6" id="r2099_evtfechaevper__perapur__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*</label>
+      {% if r2099_evtfechaevper_form.perapur.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2099_evtfechaevper_form.perapur.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2099_evtfechaevper_form.perapur|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__perapur -->
+<!-- inicio__r2099_evtfechaevper__tpamb -->
+<div class="col-md-6" id="r2099_evtfechaevper__tpamb__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__tpamb__label">Identificação do ambiente*</label>
+    {% if r2099_evtfechaevper_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.tpamb.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.tpamb.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if r2099_evtfechaevper_form.tpamb.value or r2099_evtfechaevper_form.tpamb.value == 0 %}{{ r2099_evtfechaevper_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__tpamb -->
+<!-- inicio__r2099_evtfechaevper__procemi -->
+<div class="col-md-6" id="r2099_evtfechaevper__procemi__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__procemi__label">Processo de emissão do evento*</label>
+    {% if r2099_evtfechaevper_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.procemi.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.procemi.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if r2099_evtfechaevper_form.procemi.value or r2099_evtfechaevper_form.procemi.value == 0 %}{{ r2099_evtfechaevper_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__procemi -->
+<!-- inicio__r2099_evtfechaevper__verproc -->
+<div class="col-md-6" id="r2099_evtfechaevper__verproc__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__verproc__label">Versão do processo de emissão do evento*</label>
+      {% if r2099_evtfechaevper_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2099_evtfechaevper_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2099_evtfechaevper_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__verproc -->
+<!-- inicio__r2099_evtfechaevper__idecontri -->
+<div class="col-md-12" id="r2099_evtfechaevper__idecontri__div">
+  <h4>Informações de identificação do contribuinte</h4>
+</div>
+<!-- fim__r2099_evtfechaevper__idecontri -->
+<!-- inicio__r2099_evtfechaevper__tpinsc -->
+<div class="col-md-6" id="r2099_evtfechaevper__tpinsc__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+    {% if r2099_evtfechaevper_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.tpinsc.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.tpinsc.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r2099_evtfechaevper_form.tpinsc.value or r2099_evtfechaevper_form.tpinsc.value == 0 %}{{ r2099_evtfechaevper_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__tpinsc -->
+<!-- inicio__r2099_evtfechaevper__nrinsc -->
+<div class="col-md-6" id="r2099_evtfechaevper__nrinsc__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+      {% if r2099_evtfechaevper_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2099_evtfechaevper_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2099_evtfechaevper_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__nrinsc -->
+<!-- inicio__r2099_evtfechaevper__infofech -->
+<div class="col-md-12" id="r2099_evtfechaevper__infofech__div">
+  <h4>Informações do Fechamento</h4>
+</div>
+<!-- fim__r2099_evtfechaevper__infofech -->
+<!-- inicio__r2099_evtfechaevper__evtservtm -->
+<div class="col-md-6" id="r2099_evtfechaevper__evtservtm__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__evtservtm__label">Contratou serviços sujeitos à retenção de contribuição previdenciária?*</label>
+    {% if r2099_evtfechaevper_form.evtservtm.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.evtservtm.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.evtservtm.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.evtservtm.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.evtservtm|addcss:'form-control' }}
+          <input id="id_evtservtm" name="evtservtm" type="hidden" value="{% if r2099_evtfechaevper_form.evtservtm.value or r2099_evtfechaevper_form.evtservtm.value == 0 %}{{ r2099_evtfechaevper_form.evtservtm.value }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.evtservtm|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.evtservtm|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__evtservtm -->
+<!-- inicio__r2099_evtfechaevper__evtservpr -->
+<div class="col-md-6" id="r2099_evtfechaevper__evtservpr__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__evtservpr__label">Prestou serviços sujeitos à retenção de contribuição previdenciária?*</label>
+    {% if r2099_evtfechaevper_form.evtservpr.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.evtservpr.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.evtservpr.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.evtservpr.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.evtservpr|addcss:'form-control' }}
+          <input id="id_evtservpr" name="evtservpr" type="hidden" value="{% if r2099_evtfechaevper_form.evtservpr.value or r2099_evtfechaevper_form.evtservpr.value == 0 %}{{ r2099_evtfechaevper_form.evtservpr.value }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.evtservpr|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.evtservpr|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__evtservpr -->
+<!-- inicio__r2099_evtfechaevper__evtassdesprec -->
+<div class="col-md-6" id="r2099_evtfechaevper__evtassdesprec__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__evtassdesprec__label">A associação desportiva que mantém equipe de futebol profissional, possui informações sobre recursos recebidos?*</label>
+    {% if r2099_evtfechaevper_form.evtassdesprec.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.evtassdesprec.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.evtassdesprec.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.evtassdesprec.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.evtassdesprec|addcss:'form-control' }}
+          <input id="id_evtassdesprec" name="evtassdesprec" type="hidden" value="{% if r2099_evtfechaevper_form.evtassdesprec.value or r2099_evtfechaevper_form.evtassdesprec.value == 0 %}{{ r2099_evtfechaevper_form.evtassdesprec.value }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.evtassdesprec|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.evtassdesprec|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__evtassdesprec -->
+<!-- inicio__r2099_evtfechaevper__evtassdesprep -->
+<div class="col-md-6" id="r2099_evtfechaevper__evtassdesprep__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__evtassdesprep__label">Possui informações sobre repasses efetuados à associação desportiva que mantém equipe de futebol profissional?*</label>
+    {% if r2099_evtfechaevper_form.evtassdesprep.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.evtassdesprep.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.evtassdesprep.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.evtassdesprep.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.evtassdesprep|addcss:'form-control' }}
+          <input id="id_evtassdesprep" name="evtassdesprep" type="hidden" value="{% if r2099_evtfechaevper_form.evtassdesprep.value or r2099_evtfechaevper_form.evtassdesprep.value == 0 %}{{ r2099_evtfechaevper_form.evtassdesprep.value }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.evtassdesprep|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.evtassdesprep|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__evtassdesprep -->
+<!-- inicio__r2099_evtfechaevper__evtcomprod -->
+<div class="col-md-6" id="r2099_evtfechaevper__evtcomprod__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__evtcomprod__label">Evento Comercialização da Produção*</label>
+    {% if r2099_evtfechaevper_form.evtcomprod.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.evtcomprod.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.evtcomprod.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.evtcomprod.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.evtcomprod|addcss:'form-control' }}
+          <input id="id_evtcomprod" name="evtcomprod" type="hidden" value="{% if r2099_evtfechaevper_form.evtcomprod.value or r2099_evtfechaevper_form.evtcomprod.value == 0 %}{{ r2099_evtfechaevper_form.evtcomprod.value }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.evtcomprod|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.evtcomprod|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__evtcomprod -->
+<!-- inicio__r2099_evtfechaevper__evtcprb -->
+<div class="col-md-6" id="r2099_evtfechaevper__evtcprb__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__evtcprb__label">Evento da contribuição previdenciária sobre a receita bruta - CPRB*</label>
+    {% if r2099_evtfechaevper_form.evtcprb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.evtcprb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.evtcprb.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.evtcprb.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.evtcprb|addcss:'form-control' }}
+          <input id="id_evtcprb" name="evtcprb" type="hidden" value="{% if r2099_evtfechaevper_form.evtcprb.value or r2099_evtfechaevper_form.evtcprb.value == 0 %}{{ r2099_evtfechaevper_form.evtcprb.value }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.evtcprb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.evtcprb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__evtcprb -->
+<!-- inicio__r2099_evtfechaevper__evtpgtos -->
+<div class="col-md-6" id="r2099_evtfechaevper__evtpgtos__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__evtpgtos__label">Possui informações de pagamentos diversos no período de apuração?</label>
+    {% if r2099_evtfechaevper_form.evtpgtos.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.evtpgtos.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.evtpgtos.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.evtpgtos.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.evtpgtos|addcss:'form-control' }}
+          <input id="id_evtpgtos" name="evtpgtos" type="hidden" value="{% if r2099_evtfechaevper_form.evtpgtos.value or r2099_evtfechaevper_form.evtpgtos.value == 0 %}{{ r2099_evtfechaevper_form.evtpgtos.value }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.evtpgtos|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.evtpgtos|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__evtpgtos -->
+<!-- inicio__r2099_evtfechaevper__compsemmovto -->
+<div class="col-md-6" id="r2099_evtfechaevper__compsemmovto__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__compsemmovto__label">Informar a primeira competência a partir da qual não houve movimento, cuja situação perdura até a competência atual</label>
+      {% if r2099_evtfechaevper_form.compsemmovto.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2099_evtfechaevper_form.compsemmovto.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2099_evtfechaevper_form.compsemmovto|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__compsemmovto -->
+<!-- inicio__r2099_evtfechaevper__versao -->
+<div class="col-md-3" id="r2099_evtfechaevper__versao__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__versao__label">Versão</label>
+    {% if r2099_evtfechaevper_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.versao.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.versao.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if r2099_evtfechaevper_form.versao.value or r2099_evtfechaevper_form.versao.value == 0 %}{{ r2099_evtfechaevper_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__versao -->
+<!-- inicio__r2099_evtfechaevper__transmissor_lote_efdreinf -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_efdreinf').change(function(){document.getElementById("r2099_evtfechaevper__transmissor_lote_efdreinf__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="r2099_evtfechaevper__transmissor_lote_efdreinf__div">
+<div class="form-group">
+  <label id="r2099_evtfechaevper__transmissor_lote_efdreinf__label">Transmissor</label>
+  {% if not for_print %}
+    {% if r2099_evtfechaevper_form.transmissor_lote_efdreinf.value %}
+    <a id="r2099_evtfechaevper__transmissor_lote_efdreinf__div_acessar" href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_id:r2099_evtfechaevper_form.transmissor_lote_efdreinf.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if r2099_evtfechaevper_form.transmissor_lote_efdreinf.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r2099_evtfechaevper_form.transmissor_lote_efdreinf.errors }}
+    </div>
+  {% endif %}
+  {% if r2099_evtfechaevper_form.transmissor_lote_efdreinf.field.widget.attrs.readonly %}
+    {% if r2099_evtfechaevper_form.transmissor_lote_efdreinf.field.widget.attrs.disabled %}
+      {{ r2099_evtfechaevper_form.transmissor_lote_efdreinf|addcss:'form-control' }}
+      <input id="id_transmissor_lote_efdreinf" name="transmissor_lote_efdreinf" type="hidden" value="{% if r2099_evtfechaevper_form.transmissor_lote_efdreinf.value or r2099_evtfechaevper_form.transmissor_lote_efdreinf.value == 0 %}{{ r2099_evtfechaevper_form.transmissor_lote_efdreinf.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ r2099_evtfechaevper_form.transmissor_lote_efdreinf|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ r2099_evtfechaevper_form.transmissor_lote_efdreinf|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__r2099_evtfechaevper__transmissor_lote_efdreinf -->
+<!-- inicio__r2099_evtfechaevper__status -->
+<div class="col-md-3" id="r2099_evtfechaevper__status__div">
+  <div class="form-group">
+    <label id="r2099_evtfechaevper__status__label">Status</label>
+    {% if r2099_evtfechaevper_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2099_evtfechaevper_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2099_evtfechaevper_form.status.field.widget.attrs.readonly %}
+        {% if r2099_evtfechaevper_form.status.field.widget.attrs.disabled %}
+          {{ r2099_evtfechaevper_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if r2099_evtfechaevper_form.status.value or r2099_evtfechaevper_form.status.value == 0 %}{{ r2099_evtfechaevper_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2099_evtfechaevper_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2099_evtfechaevper_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2099_evtfechaevper__status -->

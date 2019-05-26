@@ -118,19 +118,19 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtInfoContri</td>
-            <td bgcolor="lightgray" colspan="3">Evento de informações do Contribuinte. Regras de validação: REGRA_INFO_ PERIODO_CONFLITANTE REGRA_INFO_ VALIDA_DTINICIAL REGRA_INFO_ VALIDA_RAIZ_CNPJ REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_CONTRIBUINTE</td>
+            <td bgcolor="lightgray" colspan="3">Evento de informações do Contribuinte. <regras_validacao> REGRA_INFO_ PERIODO_CONFLITANTE REGRA_INFO_ VALIDA_DTINICIAL REGRA_INFO_ VALIDA_RAIZ_CNPJ REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TAB_PERMITE_EXCLUSAO REGRA_TAB_VALIDA_DT_FUTURA REGRA_VALIDA_CONTRIBUINTE</td>
         </tr>
     {% for r1000_evtinfocontri in r1000_evtinfocontri_lista %}
     {% ifequal 1 1 %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
-            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de Identificação do Evento.</td>
         </tr>
 
         <tr {% if r1000_evtinfocontri.tpamb|validacoes_esocial_efdreinf:"r1000_evtinfocontri.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if r1000_evtinfocontri.tpamb or r1000_evtinfocontri.tpamb == 0 %}{{ r1000_evtinfocontri.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r1000_evtinfocontri.tpamb or r1000_evtinfocontri.tpamb == 0 %}{{ r1000_evtinfocontri.tpamb }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -148,8 +148,8 @@
 
         <tr {% if r1000_evtinfocontri.procemi|validacoes_esocial_efdreinf:"r1000_evtinfocontri.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if r1000_evtinfocontri.procemi or r1000_evtinfocontri.procemi == 0 %}{{ r1000_evtinfocontri.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r1000_evtinfocontri.procemi or r1000_evtinfocontri.procemi == 0 %}{{ r1000_evtinfocontri.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -186,13 +186,13 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
-            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
         </tr>
 
         <tr {% if r1000_evtinfocontri.tpinsc|validacoes_esocial_efdreinf:"r1000_evtinfocontri.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2</td>
-            <td width="200px"><b>{% if r1000_evtinfocontri.tpinsc or r1000_evtinfocontri.tpinsc == 0 %}{{ r1000_evtinfocontri.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r1000_evtinfocontri.tpinsc or r1000_evtinfocontri.tpinsc == 0 %}{{ r1000_evtinfocontri.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -210,7 +210,7 @@
 
         <tr {% if r1000_evtinfocontri.nrinsc|validacoes_esocial_efdreinf:"r1000_evtinfocontri.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r1000_evtinfocontri.nrinsc or r1000_evtinfocontri.nrinsc == 0 %}{{ r1000_evtinfocontri.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -234,18 +234,18 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">inclusao</td>
-            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações</td>
+            <td bgcolor="lightgray" colspan="3">Inclusão de novas informações.</td>
         </tr>
     {% for r1000_inclusao in r1000_inclusao_lista %}
     {% ifequal r1000_inclusao.r1000_evtinfocontri.id r1000_evtinfocontri.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">idePeriodo</td>
-            <td bgcolor="lightgray" colspan="3">Período de validade das informações incluídas</td>
+            <td bgcolor="lightgray" colspan="3">Período de validade das informações incluídas.</td>
         </tr>
 
         <tr {% if r1000_inclusao.inivalid|validacoes_esocial_efdreinf:"r1000_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação da EFD-Reinf, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data inicial de implantação da EFD-Reinf, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if r1000_inclusao.inivalid or r1000_inclusao.inivalid == 0 %}{{ r1000_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -264,7 +264,7 @@
 
         <tr {% if r1000_inclusao.fimvalid|validacoes_esocial_efdreinf:"r1000_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if r1000_inclusao.fimvalid or r1000_inclusao.fimvalid == 0 %}{{ r1000_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -283,12 +283,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoCadastro</td>
-            <td bgcolor="lightgray" colspan="3">Informações do Contribuinte</td>
+            <td bgcolor="lightgray" colspan="3">Informações do Contribuinte.</td>
         </tr>
 
         <tr {% if r1000_inclusao.classtrib|validacoes_esocial_efdreinf:"r1000_inclusao.classtrib" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">classTrib</td>
-            <td width="500px">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8. Validação: Deve ser um dos códigos existentes na tabela 08. Os códigos [21] e [22] somente podem ser utilizados se {tpInsc} for igual a [2]. Para os demais códigos, {tpInsc} deve ser igual a [1].</td>
+            <td width="500px">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8. <validacao> Deve ser um dos códigos existentes na tabela 8. Os códigos [21] e [22] somente podem ser utilizados se {tpInsc} for igual a [2]. Para os demais códigos, {tpInsc} deve ser igual a [1].</td>
             <td width="200px"><b>{% if r1000_inclusao.classtrib or r1000_inclusao.classtrib == 0 %}{{ r1000_inclusao.classtrib }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -307,8 +307,8 @@
 
         <tr {% if r1000_inclusao.indescrituracao|validacoes_esocial_efdreinf:"r1000_inclusao.indescrituracao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indEscrituracao</td>
-            <td width="500px">Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital: 0 - Empresa Não obrigada à ECD; 1 - Empresa obrigada à ECD. Valores Válidos: 0, 1.</td>
-            <td width="200px"><b>{% if r1000_inclusao.indescrituracao or r1000_inclusao.indescrituracao == 0 %}{{ r1000_inclusao.indescrituracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital<opcoes>0 - Empresa Não obrigada à ECD; 1 - Empresa obrigada à ECD. <valores_validos> 0, 1.</td>
+            <td width="200px"><b>{% if r1000_inclusao.indescrituracao or r1000_inclusao.indescrituracao == 0 %}{{ r1000_inclusao.indescrituracao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -326,8 +326,8 @@
 
         <tr {% if r1000_inclusao.inddesoneracao|validacoes_esocial_efdreinf:"r1000_inclusao.inddesoneracao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indDesoneracao</td>
-            <td width="500px">Indicativo de desoneração da folha de pagamento: 0 - Não Aplicável; 1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011. Validação: Pode ser igual a [1] apenas se a classificação tributária for igual a [02, 03, 99]. Nos demais casos deve ser igual a [0]. Valores Válidos: 0, 1.</td>
-            <td width="200px"><b>{% if r1000_inclusao.inddesoneracao or r1000_inclusao.inddesoneracao == 0 %}{{ r1000_inclusao.inddesoneracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo de desoneração da folha de pagamento<opcoes>0 - Não Aplicável; 1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011. <validacao> Pode ser igual a [1] apenas se a classificação tributária for igual a [02, 03, 99]. Nos demais casos deve ser igual a [0]. <valores_validos> 0, 1.</td>
+            <td width="200px"><b>{% if r1000_inclusao.inddesoneracao or r1000_inclusao.inddesoneracao == 0 %}{{ r1000_inclusao.inddesoneracao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -345,8 +345,8 @@
 
         <tr {% if r1000_inclusao.indacordoisenmulta|validacoes_esocial_efdreinf:"r1000_inclusao.indacordoisenmulta" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indAcordoIsenMulta</td>
-            <td width="500px">Indicativo da existência de acordo internacional para isenção de multa: 0 - Sem acordo; 1 - Com acordo. Validação: Só pode ser igual a [1] se {classTrib} for igual a [60]. Valores Válidos: 0, 1.</td>
-            <td width="200px"><b>{% if r1000_inclusao.indacordoisenmulta or r1000_inclusao.indacordoisenmulta == 0 %}{{ r1000_inclusao.indacordoisenmulta|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo da existência de acordo internacional para isenção de multa<opcoes>0 - Sem acordo; 1 - Com acordo. <validacao> Só pode ser igual a [1] se {classTrib} for igual a [60]. <valores_validos> 0, 1.</td>
+            <td width="200px"><b>{% if r1000_inclusao.indacordoisenmulta or r1000_inclusao.indacordoisenmulta == 0 %}{{ r1000_inclusao.indacordoisenmulta }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -364,8 +364,8 @@
 
         <tr {% if r1000_inclusao.indsitpj|validacoes_esocial_efdreinf:"r1000_inclusao.indsitpj" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indSitPJ</td>
-            <td width="500px">Indicativo da Situação da Pessoa Jurídica: 0 - Situação Normal; 1 - Extinção; 2 - Fusão; 3 - Cisão; 4 - Incorporação. Validação: Preenchimento obrigatório apenas para Pessoa Jurídica. Não preencher nas demais situações. Valores Válidos: 0, 1, 2, 3, 4.</td>
-            <td width="200px"><b>{% if r1000_inclusao.indsitpj or r1000_inclusao.indsitpj == 0 %}{{ r1000_inclusao.indsitpj|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo da Situação da Pessoa Jurídica<opcoes>0 - Situação Normal; 1 - Extinção; 2 - Fusão; 3 - Cisão; 4 - Incorporação. <validacao> Preenchimento obrigatório apenas para Pessoa Jurídica. Não preencher nas demais situações. <valores_validos> 0, 1, 2, 3, 4.</td>
+            <td width="200px"><b>{% if r1000_inclusao.indsitpj or r1000_inclusao.indsitpj == 0 %}{{ r1000_inclusao.indsitpj }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -383,7 +383,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">contato</td>
-            <td bgcolor="lightgray" colspan="3">Informações de contato</td>
+            <td bgcolor="lightgray" colspan="3">Informações de contato.</td>
         </tr>
 
         <tr {% if r1000_inclusao.nmctt|validacoes_esocial_efdreinf:"r1000_inclusao.nmctt" %}bgcolor="lightcoral"{% endif %}>
@@ -426,7 +426,7 @@
 
         <tr {% if r1000_inclusao.fonefixo|validacoes_esocial_efdreinf:"r1000_inclusao.fonefixo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">foneFixo</td>
-            <td width="500px">Informar o número do telefone, com DDD. Validação: O preenchimento é obrigatório se o campo {foneCel} não for preenchido. Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="500px">Informar o número do telefone, com DDD. <validacao> O preenchimento é obrigatório se o campo {foneCel} não for preenchido. Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_inclusao.fonefixo or r1000_inclusao.fonefixo == 0 %}{{ r1000_inclusao.fonefixo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -445,7 +445,7 @@
 
         <tr {% if r1000_inclusao.fonecel|validacoes_esocial_efdreinf:"r1000_inclusao.fonecel" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">foneCel</td>
-            <td width="500px">Telefone celular, com DDD Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="500px">Telefone celular, com DDD. <validacao> Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_inclusao.fonecel or r1000_inclusao.fonecel == 0 %}{{ r1000_inclusao.fonecel }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -464,7 +464,7 @@
 
         <tr {% if r1000_inclusao.email|validacoes_esocial_efdreinf:"r1000_inclusao.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico Validação: O e-mail deve possuir o caractere '@' e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no final do endereço informado.</td>
+            <td width="500px">Endereço eletrônico. <validacao> O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
             <td width="200px"><b>{% if r1000_inclusao.email or r1000_inclusao.email == 0 %}{{ r1000_inclusao.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -546,7 +546,7 @@
 
         <tr {% if r1000_inclusao_softhouse.telefone|validacoes_esocial_efdreinf:"r1000_inclusao_softhouse.telefone" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">telefone</td>
-            <td width="500px">Informar o número do telefone, com DDD. Validação: Se preenchido, deve conter apenas números com o mínimo de dez dígitos.</td>
+            <td width="500px">Informar o número do telefone, com DDD. <validacao> Se preenchido, deve conter apenas números com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_inclusao_softhouse.telefone or r1000_inclusao_softhouse.telefone == 0 %}{{ r1000_inclusao_softhouse.telefone }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -565,7 +565,7 @@
 
         <tr {% if r1000_inclusao_softhouse.email|validacoes_esocial_efdreinf:"r1000_inclusao_softhouse.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico Validação: O e-mail deve possuir o caractere '@' e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no final do endereço informado.</td>
+            <td width="500px">Endereço eletrônico. <validacao> O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
             <td width="200px"><b>{% if r1000_inclusao_softhouse.email or r1000_inclusao_softhouse.email == 0 %}{{ r1000_inclusao_softhouse.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -584,13 +584,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoEFR</td>
-            <td bgcolor="lightgray" colspan="3">Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR</td>
+            <td bgcolor="lightgray" colspan="3">Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR.</td>
         </tr>
     {% for r1000_inclusao_infoefr in r1000_inclusao_infoefr_lista %}
     {% ifequal r1000_inclusao_infoefr.r1000_inclusao.id r1000_inclusao.id %}
         <tr {% if r1000_inclusao_infoefr.ideefr|validacoes_esocial_efdreinf:"r1000_inclusao_infoefr.ideefr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ideEFR</td>
-            <td width="500px">Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR: S - É EFR; N - Não é EFR. Validação: Essa informação é validada no cadastro do CNPJ na RFB. Valores Válidos: S, N.</td>
+            <td width="500px">Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR<opcoes>S - É EFR; N - Não é EFR. <validacao> Essa informação é validada no cadastro do CNPJ na RFB. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if r1000_inclusao_infoefr.ideefr or r1000_inclusao_infoefr.ideefr == 0 %}{{ r1000_inclusao_infoefr.ideefr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -609,7 +609,7 @@
 
         <tr {% if r1000_inclusao_infoefr.cnpjefr|validacoes_esocial_efdreinf:"r1000_inclusao_infoefr.cnpjefr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjEFR</td>
-            <td width="500px">CNPJ do Ente Federativo Responsável - EFR Validação: Preenchimento obrigatório e exclusivo se {ideEFR} = [N]. Informação validada no cadastro do CNPJ da RFB.</td>
+            <td width="500px">CNPJ do Ente Federativo Responsável - EFR. <validacao> Preenchimento obrigatório e exclusivo se {ideEFR} = [N]. Informação validada no cadastro do CNPJ da RFB.</td>
             <td width="200px"><b>{% if r1000_inclusao_infoefr.cnpjefr or r1000_inclusao_infoefr.cnpjefr == 0 %}{{ r1000_inclusao_infoefr.cnpjefr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -628,18 +628,18 @@
     {% endifequal %}{% endfor %}     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">alteracao</td>
-            <td bgcolor="lightgray" colspan="3">Alteração das informações</td>
+            <td bgcolor="lightgray" colspan="3">Alteração das informações.</td>
         </tr>
     {% for r1000_alteracao in r1000_alteracao_lista %}
     {% ifequal r1000_alteracao.r1000_evtinfocontri.id r1000_evtinfocontri.id %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">idePeriodo</td>
-            <td bgcolor="lightgray" colspan="3">Período de validade das informações alteradas</td>
+            <td bgcolor="lightgray" colspan="3">Período de validade das informações alteradas.</td>
         </tr>
 
         <tr {% if r1000_alteracao.inivalid|validacoes_esocial_efdreinf:"r1000_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
             <td width="200px"><b>{% if r1000_alteracao.inivalid or r1000_alteracao.inivalid == 0 %}{{ r1000_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -658,7 +658,7 @@
 
         <tr {% if r1000_alteracao.fimvalid|validacoes_esocial_efdreinf:"r1000_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver Validação: Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
             <td width="200px"><b>{% if r1000_alteracao.fimvalid or r1000_alteracao.fimvalid == 0 %}{{ r1000_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -677,12 +677,12 @@
  
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoCadastro</td>
-            <td bgcolor="lightgray" colspan="3">Informações do contribuinte</td>
+            <td bgcolor="lightgray" colspan="3">Informações do contribuinte.</td>
         </tr>
 
         <tr {% if r1000_alteracao.classtrib|validacoes_esocial_efdreinf:"r1000_alteracao.classtrib" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">classTrib</td>
-            <td width="500px">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8. Validação: Deve ser um dos códigos existentes na tabela 08. Os códigos [21] e [22] somente podem ser utilizados se {tpInsc} for igual a [2]. Para os demais códigos, {tpInsc} deve ser igual a [1].</td>
+            <td width="500px">Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8. <validacao> Deve ser um dos códigos existentes na tabela 8. Os códigos [21] e [22] somente podem ser utilizados se {tpInsc} for igual a [2]. Para os demais códigos, {tpInsc} deve ser igual a [1].</td>
             <td width="200px"><b>{% if r1000_alteracao.classtrib or r1000_alteracao.classtrib == 0 %}{{ r1000_alteracao.classtrib }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -701,8 +701,8 @@
 
         <tr {% if r1000_alteracao.indescrituracao|validacoes_esocial_efdreinf:"r1000_alteracao.indescrituracao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indEscrituracao</td>
-            <td width="500px">Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital: 0 - Empresa Não obrigada à ECD; 1 - Empresa obrigada à ECD. Valores Válidos: 0, 1.</td>
-            <td width="200px"><b>{% if r1000_alteracao.indescrituracao or r1000_alteracao.indescrituracao == 0 %}{{ r1000_alteracao.indescrituracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital<opcoes>0 - Empresa Não obrigada à ECD; 1 - Empresa obrigada à ECD. <valores_validos> 0, 1.</td>
+            <td width="200px"><b>{% if r1000_alteracao.indescrituracao or r1000_alteracao.indescrituracao == 0 %}{{ r1000_alteracao.indescrituracao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -720,8 +720,8 @@
 
         <tr {% if r1000_alteracao.inddesoneracao|validacoes_esocial_efdreinf:"r1000_alteracao.inddesoneracao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indDesoneracao</td>
-            <td width="500px">Indicativo de desoneração da folha de pagamento: 0 - Não Aplicável; 1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011. Validação: Pode ser igual a [1] apenas se a classificação tributária for igual a [02, 03, 99]. Nos demais casos deve ser igual a [0]. Valores Válidos: 0, 1.</td>
-            <td width="200px"><b>{% if r1000_alteracao.inddesoneracao or r1000_alteracao.inddesoneracao == 0 %}{{ r1000_alteracao.inddesoneracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo de desoneração da folha de pagamento<opcoes>0 - Não Aplicável; 1 - Empresa enquadrada nos artigos 7° a 9° da Lei 12.546/2011. <validacao> Pode ser igual a [1] apenas se a classificação tributária for igual a [02, 03, 99]. Nos demais casos deve ser igual a [0]. <valores_validos> 0, 1.</td>
+            <td width="200px"><b>{% if r1000_alteracao.inddesoneracao or r1000_alteracao.inddesoneracao == 0 %}{{ r1000_alteracao.inddesoneracao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -739,8 +739,8 @@
 
         <tr {% if r1000_alteracao.indacordoisenmulta|validacoes_esocial_efdreinf:"r1000_alteracao.indacordoisenmulta" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indAcordoIsenMulta</td>
-            <td width="500px">Indicativo da existência de acordo internacional para isenção de multa: 0 - Sem acordo; 1 - Com acordo. Validação: Só pode ser igual a [1] se {classTrib} for igual a [60]. Valores Válidos: 0, 1.</td>
-            <td width="200px"><b>{% if r1000_alteracao.indacordoisenmulta or r1000_alteracao.indacordoisenmulta == 0 %}{{ r1000_alteracao.indacordoisenmulta|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo da existência de acordo internacional para isenção de multa<opcoes>0 - Sem acordo; 1 - Com acordo. <validacao> Só pode ser igual a [1] se {classTrib} for igual a [60]. <valores_validos> 0, 1.</td>
+            <td width="200px"><b>{% if r1000_alteracao.indacordoisenmulta or r1000_alteracao.indacordoisenmulta == 0 %}{{ r1000_alteracao.indacordoisenmulta }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -758,8 +758,8 @@
 
         <tr {% if r1000_alteracao.indsitpj|validacoes_esocial_efdreinf:"r1000_alteracao.indsitpj" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indSitPJ</td>
-            <td width="500px">Indicativo da Situação da Pessoa Jurídica: 0 - Situação Normal; 1 - Extinção; 2 - Fusão; 3 - Cisão; 4 - Incorporação. Validação: Preenchimento obrigatório apenas para Pessoa Jurídica. Não preencher nas demais situações. Valores Válidos: 0, 1, 2, 3, 4.</td>
-            <td width="200px"><b>{% if r1000_alteracao.indsitpj or r1000_alteracao.indsitpj == 0 %}{{ r1000_alteracao.indsitpj|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo da Situação da Pessoa Jurídica<opcoes>0 - Situação Normal; 1 - Extinção; 2 - Fusão; 3 - Cisão; 4 - Incorporação. <validacao> Preenchimento obrigatório apenas para Pessoa Jurídica. Não preencher nas demais situações. <valores_validos> 0, 1, 2, 3, 4.</td>
+            <td width="200px"><b>{% if r1000_alteracao.indsitpj or r1000_alteracao.indsitpj == 0 %}{{ r1000_alteracao.indsitpj }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -777,7 +777,7 @@
 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">contato</td>
-            <td bgcolor="lightgray" colspan="3">Informações de contato</td>
+            <td bgcolor="lightgray" colspan="3">Informações de contato.</td>
         </tr>
 
         <tr {% if r1000_alteracao.nmctt|validacoes_esocial_efdreinf:"r1000_alteracao.nmctt" %}bgcolor="lightcoral"{% endif %}>
@@ -820,7 +820,7 @@
 
         <tr {% if r1000_alteracao.fonefixo|validacoes_esocial_efdreinf:"r1000_alteracao.fonefixo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">foneFixo</td>
-            <td width="500px">Informar o número do telefone, com DDD. Validação: O preenchimento é obrigatório se o campo {foneCel} não for preenchido. Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="500px">Informar o número do telefone, com DDD. <validacao> O preenchimento é obrigatório se o campo {foneCel} não for preenchido. Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_alteracao.fonefixo or r1000_alteracao.fonefixo == 0 %}{{ r1000_alteracao.fonefixo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -839,7 +839,7 @@
 
         <tr {% if r1000_alteracao.fonecel|validacoes_esocial_efdreinf:"r1000_alteracao.fonecel" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">foneCel</td>
-            <td width="500px">Telefone celular, com DDD Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
+            <td width="500px">Telefone celular, com DDD. <validacao> Se preenchido, deve conter apenas números, com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_alteracao.fonecel or r1000_alteracao.fonecel == 0 %}{{ r1000_alteracao.fonecel }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -858,7 +858,7 @@
 
         <tr {% if r1000_alteracao.email|validacoes_esocial_efdreinf:"r1000_alteracao.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico Validação: O e-mail deve possuir o caractere '@' e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no final do endereço informado.</td>
+            <td width="500px">Endereço eletrônico. <validacao> O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
             <td width="200px"><b>{% if r1000_alteracao.email or r1000_alteracao.email == 0 %}{{ r1000_alteracao.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -940,7 +940,7 @@
 
         <tr {% if r1000_alteracao_softhouse.telefone|validacoes_esocial_efdreinf:"r1000_alteracao_softhouse.telefone" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">telefone</td>
-            <td width="500px">Informar o número do telefone, com DDD. Validação: Se preenchido, deve conter apenas números com o mínimo de dez dígitos.</td>
+            <td width="500px">Informar o número do telefone, com DDD. <validacao> Se preenchido, deve conter apenas números com o mínimo de dez dígitos.</td>
             <td width="200px"><b>{% if r1000_alteracao_softhouse.telefone or r1000_alteracao_softhouse.telefone == 0 %}{{ r1000_alteracao_softhouse.telefone }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -959,7 +959,7 @@
 
         <tr {% if r1000_alteracao_softhouse.email|validacoes_esocial_efdreinf:"r1000_alteracao_softhouse.email" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">email</td>
-            <td width="500px">Endereço eletrônico Validação: O e-mail deve possuir o caractere '@' e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere '.' depois do @ e não pode estar no final do endereço informado.</td>
+            <td width="500px">Endereço eletrônico. <validacao> O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado.</td>
             <td width="200px"><b>{% if r1000_alteracao_softhouse.email or r1000_alteracao_softhouse.email == 0 %}{{ r1000_alteracao_softhouse.email }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -978,13 +978,13 @@
     {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">infoEFR</td>
-            <td bgcolor="lightgray" colspan="3">Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR</td>
+            <td bgcolor="lightgray" colspan="3">Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR.</td>
         </tr>
     {% for r1000_alteracao_infoefr in r1000_alteracao_infoefr_lista %}
     {% ifequal r1000_alteracao_infoefr.r1000_alteracao.id r1000_alteracao.id %}
         <tr {% if r1000_alteracao_infoefr.ideefr|validacoes_esocial_efdreinf:"r1000_alteracao_infoefr.ideefr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ideEFR</td>
-            <td width="500px">Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR: S - É EFR; N - Não é EFR. Validação: Essa informação é validada no cadastro do CNPJ na RFB. Valores Válidos: S, N.</td>
+            <td width="500px">Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR<opcoes>S - É EFR; N - Não é EFR. <validacao> Essa informação é validada no cadastro do CNPJ na RFB. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if r1000_alteracao_infoefr.ideefr or r1000_alteracao_infoefr.ideefr == 0 %}{{ r1000_alteracao_infoefr.ideefr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1003,7 +1003,7 @@
 
         <tr {% if r1000_alteracao_infoefr.cnpjefr|validacoes_esocial_efdreinf:"r1000_alteracao_infoefr.cnpjefr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjEFR</td>
-            <td width="500px">CNPJ do Ente Federativo Responsável - EFR Validação: Preenchimento obrigatório e exclusivo se {ideEFR} = [N]. Informação validada no cadastro do CNPJ da RFB.</td>
+            <td width="500px">CNPJ do Ente Federativo Responsável - EFR. <validacao> Preenchimento obrigatório e exclusivo se {ideEFR} = [N]. Informação validada no cadastro do CNPJ da RFB.</td>
             <td width="200px"><b>{% if r1000_alteracao_infoefr.cnpjefr or r1000_alteracao_infoefr.cnpjefr == 0 %}{{ r1000_alteracao_infoefr.cnpjefr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1022,13 +1022,13 @@
     {% endifequal %}{% endfor %} 
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">novaValidade</td>
-            <td bgcolor="lightgray" colspan="3">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade</td>
+            <td bgcolor="lightgray" colspan="3">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</td>
         </tr>
     {% for r1000_alteracao_novavalidade in r1000_alteracao_novavalidade_lista %}
     {% ifequal r1000_alteracao_novavalidade.r1000_alteracao.id r1000_alteracao.id %}
         <tr {% if r1000_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"r1000_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data inicial de implantação da EFD-Reinf, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data inicial de implantação da EFD-Reinf, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if r1000_alteracao_novavalidade.inivalid or r1000_alteracao_novavalidade.inivalid == 0 %}{{ r1000_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1047,7 +1047,7 @@
 
         <tr {% if r1000_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"r1000_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if r1000_alteracao_novavalidade.fimvalid or r1000_alteracao_novavalidade.fimvalid == 0 %}{{ r1000_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1066,7 +1066,7 @@
     {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %}
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">exclusao</td>
-            <td bgcolor="lightgray" colspan="3">Exclusão das informações</td>
+            <td bgcolor="lightgray" colspan="3">Exclusão das informações.</td>
         </tr>
     {% for r1000_exclusao in r1000_exclusao_lista %}
     {% ifequal r1000_exclusao.r1000_evtinfocontri.id r1000_evtinfocontri.id %}
@@ -1077,7 +1077,7 @@
 
         <tr {% if r1000_exclusao.inivalid|validacoes_esocial_efdreinf:"r1000_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
             <td width="200px"><b>{% if r1000_exclusao.inivalid or r1000_exclusao.inivalid == 0 %}{{ r1000_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1096,7 +1096,7 @@
 
         <tr {% if r1000_exclusao.fimvalid|validacoes_esocial_efdreinf:"r1000_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver Validação: Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.</td>
             <td width="200px"><b>{% if r1000_exclusao.fimvalid or r1000_exclusao.fimvalid == 0 %}{{ r1000_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

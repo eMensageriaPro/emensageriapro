@@ -1,13 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s2260.models import * 
-from emensageriapro.tabelas.models import Municipios 
-from emensageriapro.tabelas.models import eSocialLogradourosTipos 
-from emensageriapro.esocial.models import s2260evtConvInterm 
+from emensageriapro.s2260.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -42,26 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s2260_localtrabinterm(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2260_localtrabinterm, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2260_evtconvinterm'].widget.attrs['required'] = True        
-        self.fields['tplograd'].widget.attrs['required'] = True        
-        self.fields['dsclograd'].widget.attrs['required'] = True        
-        self.fields['nrlograd'].widget.attrs['required'] = True        
-        self.fields['cep'].widget.attrs['required'] = True        
-        self.fields['codmunic'].widget.attrs['required'] = True        
-        self.fields['uf'].widget.attrs['required'] = True
+        super(form_s2260_localtrabinterm, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -81,10 +74,10 @@ class form_s2260_localtrabinterm(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2260localTrabInterm
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

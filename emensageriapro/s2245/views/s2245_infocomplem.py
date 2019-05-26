@@ -214,11 +214,11 @@ def listar(request, hash):
         request.session["retorno_pagina"] = 's2245_infocomplem'
         context = {
             's2245_infocomplem_lista': s2245_infocomplem_lista,
-  
+
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
@@ -271,10 +271,10 @@ def listar(request, hash):
     else:
         context = {
             'usuario': usuario,
-  
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -337,7 +337,7 @@ def salvar(request, hash):
                     gravar_auditoria(json.dumps(model_to_dict(s2245_infocomplem), indent=4, sort_keys=True, default=str),
                                      json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str),
                                      's2245_infocomplem', s2245_infocomplem_id, usuario_id, 2)
-                  
+
                 if request.session['retorno_pagina'] not in ('s2245_infocomplem_apagar', 's2245_infocomplem_salvar', 's2245_infocomplem'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
                 if s2245_infocomplem_id != obj.id:
@@ -384,14 +384,14 @@ def salvar(request, hash):
             'mensagem': mensagem,
             's2245_infocomplem_id': int(s2245_infocomplem_id),
             'usuario': usuario,
-  
+
             'hash': hash,
 
             's2245_ideprofresp_form': s2245_ideprofresp_form,
             's2245_ideprofresp_lista': s2245_ideprofresp_lista,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,
@@ -435,10 +435,10 @@ def salvar(request, hash):
     else:
         context = {
             'usuario': usuario,
-  
+
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
+
             'permissao': permissao,
             'data': datetime.datetime.now(),
             'pagina': pagina,

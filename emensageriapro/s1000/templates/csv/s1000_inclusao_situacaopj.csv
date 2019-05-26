@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1000_inclusao or 1 %}"Informações Complementares - Pessoa Jurídica";{% endif %}{% if show_fields.show_indsitpj or 1 %}"Situação PJ";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1000_inclusao or 1 %}"{{ c.s1000_inclusao }}";{% endif %}{% if show_fields.show_indsitpj or 1 %}"{{ c.indsitpj }}";{% endif %}
+{% endfor %}

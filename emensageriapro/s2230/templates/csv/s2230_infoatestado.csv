@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2230_iniafastamento or 1 %}"Informações complementares relativas ao atestado médico";{% endif %}{% if show_fields.show_codcid or 1 %}"CID";{% endif %}{% if show_fields.show_qtddiasafast or 1 %}"Quant. de dias afastados";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2230_iniafastamento or 1 %}"{{ c.s2230_iniafastamento }}";{% endif %}{% if show_fields.show_codcid or 1 %}"{{ c.codcid }}";{% endif %}{% if show_fields.show_qtddiasafast or 1 %}"{{ c.qtddiasafast }}";{% endif %}
+{% endfor %}

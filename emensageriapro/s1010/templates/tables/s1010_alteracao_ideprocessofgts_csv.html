@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado a (...)"
-{% if show_fields.show_s1010_alteracao or not s1010_alteracao_id and 1 %}"Alteração das informações";{% endif %}{% if show_fields.show_nrproc or 1 %}"Número do Processo";{% endif %}
-{% for a in s1010_alteracao_ideprocessofgts_lista %}{% if show_fields.show_s1010_alteracao or  not s1010_alteracao_id and 1 %}"{{ a.s1010_alteracao }}";{% endif %}{% if show_fields.show_nrproc or 1 %}"{{ a.nrproc }}";{% endif %}
-{% endfor %}

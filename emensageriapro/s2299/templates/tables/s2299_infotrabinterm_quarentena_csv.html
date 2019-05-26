@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações sobre a 'quarentena' remunerada de trabalhador desligado. O registro deve ser preenchido apenas no caso do trabalhador que recebe remuneração após o desligamento por estar impossibilitado de exercer atividade remunerada."
-{% if show_fields.show_s2299_evtdeslig or not s2299_evtdeslig_id and 1 %}"Evento Desligamento";{% endif %}{% if show_fields.show_dtfimquar or 1 %}"Data do término da quarentena";{% endif %}
-{% for a in s2299_infotrabinterm_quarentena_lista %}{% if show_fields.show_s2299_evtdeslig or  not s2299_evtdeslig_id and 1 %}"{{ a.s2299_evtdeslig }}";{% endif %}{% if show_fields.show_dtfimquar or 1 %}"{{ a.dtfimquar|date:"d/m/Y" }}";{% endif %}
-{% endfor %}

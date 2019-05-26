@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Início"
-{% if show_fields.show_s2300_evttsvinicio or not s2300_evttsvinicio_id and 1 %}"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Início";{% endif %}
-{% for a in s2300_documentos_lista %}{% if show_fields.show_s2300_evttsvinicio or  not s2300_evttsvinicio_id and 1 %}"{{ a.s2300_evttsvinicio }}";{% endif %}
-{% endfor %}

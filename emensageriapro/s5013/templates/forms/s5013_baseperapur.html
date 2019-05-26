@@ -1,1 +1,82 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s5013_evtfgts_id or s5013_evtfgts_id != s5013_baseperapur_form.s5013_evtfgts.value %}<!-- inicio__s5013_baseperapur__s5013_evtfgts --><div class="col-md-12" id="s5013_baseperapur__s5013_evtfgts__div"><div class="form-group"><label id="s5013_baseperapur__s5013_evtfgts__label">Evento consolidado por contribuinte referente ao FGTS devido.*<a data-toggle="tooltip" title="Informações consolidadas das bases de cálculo do FGTS do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-5003."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s5013_baseperapur_form.s5013_evtfgts.value %}<a id="s5013_baseperapur__s5013_evtfgts__div_acessar" href="{% url 's5013_evtfgts_salvar' hash='{}'|json_id:s5013_baseperapur_form.s5013_evtfgts.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_s5013_evtfgts').change(function(){ document.getElementById("s5013_baseperapur__s5013_evtfgts__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if s5013_baseperapur_form.s5013_evtfgts.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5013_baseperapur_form.s5013_evtfgts.errors }}</div>{% endif %} {% if s5013_baseperapur_form.s5013_evtfgts.field.widget.attrs.readonly %} {% if s5013_baseperapur_form.s5013_evtfgts.field.widget.attrs.disabled %} {{ s5013_baseperapur_form.s5013_evtfgts|addcss:'form-control' }}<input id="id_s5013_evtfgts" name="s5013_evtfgts" type="hidden" value="{% if s5013_baseperapur_form.s5013_evtfgts.value or s5013_baseperapur_form.s5013_evtfgts.value == 0 %}{{ s5013_baseperapur_form.s5013_evtfgts.value|valor }}{% endif %}">{% else %} {{ s5013_baseperapur_form.s5013_evtfgts|addcss:'form-control' }} {% endif %} {% else %} {{ s5013_baseperapur_form.s5013_evtfgts|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s5013_baseperapur__s5013_evtfgts -->{% else %}<input type="hidden" value="{{ s5013_evtfgts_id|valor }}" id="id_s5013_evtfgts" name="s5013_evtfgts">{% endif %}<!-- inicio__s5013_baseperapur__tpvalor --><div class="col-md-6" id="s5013_baseperapur__tpvalor__div"><div class="form-group"><label id="s5013_baseperapur__tpvalor__label">Tipo de Valor*<a data-toggle="tooltip" title="Tipo de valor que influi na apuração do FGTS: 11 - Base de Cálculo do FGTS; 12 - Base de Cálculo do FGTS 13° Salário; 13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 15 - Base de Cálculo do FGTS - Aprendiz; 16 - Ba (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5013_baseperapur_form.tpvalor.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5013_baseperapur_form.tpvalor.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s5013_baseperapur_form.tpvalor.field.widget.attrs.readonly %} {% if s5013_baseperapur_form.tpvalor.field.widget.attrs.disabled %} {{ s5013_baseperapur_form.tpvalor|addcss:'form-control' }}<input id="id_tpvalor" name="tpvalor" type="hidden" value="{% if s5013_baseperapur_form.tpvalor.value or s5013_baseperapur_form.tpvalor.value == 0 %}{{ s5013_baseperapur_form.tpvalor.value|valor }}{% endif %}">{% else %} {{ s5013_baseperapur_form.tpvalor|addcss:'form-control' }} {% endif %} {% else %} {{ s5013_baseperapur_form.tpvalor|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s5013_baseperapur__tpvalor --><!-- inicio__s5013_baseperapur__basefgts --><div class="col-md-6" id="s5013_baseperapur__basefgts__div"><div class="form-group"><label id="s5013_baseperapur__basefgts__label">Remuneração (valor da base de cálculo) do FGTS*<a data-toggle="tooltip" title="Remuneração (valor da base de cálculo) do FGTS. Evento de origem: S-5003. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTS}, agrupados por {tpValor}."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5013_baseperapur_form.basefgts.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5013_baseperapur_form.basefgts.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ s5013_baseperapur_form.basefgts|addcss:'form-control automate-money' }}</div></div></div><!-- fim__s5013_baseperapur__basefgts -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5013_baseperapur__s5013_infobasefgts -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_s5013_infobasefgts').change(function(){
+       document.getElementById("s5013_baseperapur__s5013_infobasefgts__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="s5013_baseperapur__s5013_infobasefgts__div">
+  <div class="form-group">
+    <label id="s5013_baseperapur__s5013_infobasefgts__label">Informações sobre bases de cálculo do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-1200, S-2299 ou S-2399.*</label>
+    {% if not for_print %}
+      {% if s5013_baseperapur_form.s5013_infobasefgts.value %}
+        <a id="s5013_baseperapur__s5013_infobasefgts__div_acessar" href="{% url 's5013_infobasefgts_salvar' hash='{}'|json_id:s5013_baseperapur_form.s5013_infobasefgts.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if s5013_baseperapur_form.s5013_infobasefgts.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5013_baseperapur_form.s5013_infobasefgts.errors }}
+      </div>
+    {% endif %}
+    {% if s5013_baseperapur_form.s5013_infobasefgts.field.widget.attrs.readonly %}
+      {% if s5013_baseperapur_form.s5013_infobasefgts.field.widget.attrs.disabled %}
+        {{ s5013_baseperapur_form.s5013_infobasefgts|addcss:'form-control' }}
+        <input id="id_s5013_infobasefgts" name="s5013_infobasefgts" type="hidden" value="{% if s5013_baseperapur_form.s5013_infobasefgts.value or s5013_baseperapur_form.s5013_infobasefgts.value == 0 %}{{ s5013_baseperapur_form.s5013_infobasefgts.value|valor }}{% endif %}">
+      {% else %}
+        {{ s5013_baseperapur_form.s5013_infobasefgts|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s5013_baseperapur_form.s5013_infobasefgts|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s5013_baseperapur__s5013_infobasefgts -->
+<!-- inicio__s5013_baseperapur__tpvalor -->
+<div class="col-md-4" id="s5013_baseperapur__tpvalor__div">
+  <div class="form-group">
+    <label id="s5013_baseperapur__tpvalor__label">Tipo de Valor*</label>
+    {% if s5013_baseperapur_form.tpvalor.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5013_baseperapur_form.tpvalor.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s5013_baseperapur_form.tpvalor.field.widget.attrs.readonly %}
+        {% if s5013_baseperapur_form.tpvalor.field.widget.attrs.disabled %}
+          {{ s5013_baseperapur_form.tpvalor|addcss:'form-control' }}
+          <input id="id_tpvalor" name="tpvalor" type="hidden" value="{% if s5013_baseperapur_form.tpvalor.value or s5013_baseperapur_form.tpvalor.value == 0 %}{{ s5013_baseperapur_form.tpvalor.value|valor }}{% endif %}">
+        {% else %}
+          {{ s5013_baseperapur_form.tpvalor|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s5013_baseperapur_form.tpvalor|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s5013_baseperapur__tpvalor -->
+<!-- inicio__s5013_baseperapur__basefgts -->
+<div class="col-md-4" id="s5013_baseperapur__basefgts__div">
+  <div class="form-group">
+    <label id="s5013_baseperapur__basefgts__label">Remuneração (valor da base de cálculo) do FGTS*</label>
+    {% if s5013_baseperapur_form.basefgts.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s5013_baseperapur_form.basefgts.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ s5013_baseperapur_form.basefgts|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5013_baseperapur__basefgts -->

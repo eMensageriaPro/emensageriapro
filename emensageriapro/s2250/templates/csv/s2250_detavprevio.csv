@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2250_evtavprevio or 1 %}"Detalha as informações do evento trabalhista";{% endif %}{% if show_fields.show_dtavprv or 1 %}"Data do aviso prévio";{% endif %}{% if show_fields.show_dtprevdeslig or 1 %}"Data prevista para o desligamento";{% endif %}{% if show_fields.show_tpavprevio or 1 %}"Tipo de aviso prévio";{% endif %}{% if show_fields.show_observacao or 1 %}"Observações";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2250_evtavprevio or 1 %}"{{ c.s2250_evtavprevio }}";{% endif %}{% if show_fields.show_dtavprv or 1 %}"{{ c.dtavprv }}";{% endif %}{% if show_fields.show_dtprevdeslig or 1 %}"{{ c.dtprevdeslig }}";{% endif %}{% if show_fields.show_tpavprevio or 1 %}"{{ c.tpavprevio }}";{% endif %}{% if show_fields.show_observacao or 1 %}"{{ c.observacao }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,131 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9002_totapurmen__r9002_infototal -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal</label>
+    <select name="r9002_infototal" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r9002_infototal_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r9002_infototal' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r9002_totapurmen__r9002_infototal -->
+
+<!-- inicio__r9002_totapurmen__crmen -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código de Receita - CR relativo ao tributo que possui período de apuração mensal</label>
+    <div name="crmen" class="input-group" style="width: 100%;">
+      <input type="text" name="crmen" class="form-control" value="{{ dict_fields|get_value_from_dict:'crmen' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurmen__crmen -->
+
+<!-- inicio__r9002_totapurmen__vlrbasecrmen -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da base do tributo com período de apuração mensal</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbasecrmen" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbasecrmen' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurmen__vlrbasecrmen -->
+
+<!-- inicio__r9002_totapurmen__vlrcrmen -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor do tributo retido com período de apuração mensal, calculado segundo as regras estabelecidas na legislação em vigor</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcrmen" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcrmen' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurmen__vlrcrmen -->
+
+<!-- inicio__r9002_totapurmen__vlrbasecrmensusp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbasecrmensusp" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbasecrmensusp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurmen__vlrbasecrmensusp -->
+
+<!-- inicio__r9002_totapurmen__vlrcrmensusp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor do tributo com período de apuração mensal, que deixou de ser retido</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcrmensusp" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcrmensusp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9002_totapurmen__vlrcrmensusp -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r9002_infototal" value="1" {% if show_fields|get_value_from_dict:'show_r9002_infototal' %}checked{% endif %} >Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_crmen" value="1" {% if show_fields|get_value_from_dict:'show_crmen' %}checked{% endif %} >Código de Receita - CR relativo ao tributo que possui período de apuração mensal
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbasecrmen" value="1" {% if show_fields|get_value_from_dict:'show_vlrbasecrmen' %}checked{% endif %} >Valor da base do tributo com período de apuração mensal
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcrmen" value="1" {% if show_fields|get_value_from_dict:'show_vlrcrmen' %}checked{% endif %} >Valor do tributo retido com período de apuração mensal, calculado segundo as regras estabelecidas na legislação em vigor
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbasecrmensusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrbasecrmensusp' %}checked{% endif %} >Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcrmensusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrcrmensusp' %}checked{% endif %} >Valor do tributo com período de apuração mensal, que deixou de ser retido
+    </div>
+</div>
+
+

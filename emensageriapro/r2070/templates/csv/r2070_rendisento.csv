@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r2070_pgtopf or 1 %}"Rendimentos Isentos/Não Tributáveis";{% endif %}{% if show_fields.show_tpisencao or 1 %}"Tipo de Isenção";{% endif %}{% if show_fields.show_vlrisento or 1 %}"Valor da Parcela Isenta";{% endif %}{% if show_fields.show_descrendimento or 1 %}"Descrição do rendimento isento/Não tributável";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r2070_pgtopf or 1 %}"{{ c.r2070_pgtopf }}";{% endif %}{% if show_fields.show_tpisencao or 1 %}"{{ c.tpisencao }}";{% endif %}{% if show_fields.show_vlrisento or 1 %}"{{ c.vlrisento }}";{% endif %}{% if show_fields.show_descrendimento or 1 %}"{{ c.descrendimento }}";{% endif %}
+{% endfor %}

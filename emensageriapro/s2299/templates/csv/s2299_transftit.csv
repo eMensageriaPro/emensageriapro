@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2299_evtdeslig or 1 %}"Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar";{% endif %}{% if show_fields.show_cpfsubstituto or 1 %}"Preencher com o CPF do novo titular";{% endif %}{% if show_fields.show_dtnascto or 1 %}"Data de nascimento";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2299_evtdeslig or 1 %}"{{ c.s2299_evtdeslig }}";{% endif %}{% if show_fields.show_cpfsubstituto or 1 %}"{{ c.cpfsubstituto }}";{% endif %}{% if show_fields.show_dtnascto or 1 %}"{{ c.dtnascto }}";{% endif %}
+{% endfor %}

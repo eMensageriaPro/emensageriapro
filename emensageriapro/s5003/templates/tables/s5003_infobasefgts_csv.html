@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações relativas à matrícula e categoria do trabalhador."
-{% if show_fields.show_s5003_infotrabfgts or not s5003_infotrabfgts_id and 1 %}"Informações relativas à matrícula e categoria do trabalhador.";{% endif %}
-{% for a in s5003_infobasefgts_lista %}{% if show_fields.show_s5003_infotrabfgts or  not s5003_infotrabfgts_id and 1 %}"{{ a.s5003_infotrabfgts }}";{% endif %}
-{% endfor %}

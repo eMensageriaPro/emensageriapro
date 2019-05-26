@@ -1,0 +1,151 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9001_rprest__r9001_infototal -->
+<div class="col-md-12" id="r9001_rprest__r9001_infototal__div">
+  <div class="form-group">
+    <label id="r9001_rprest__r9001_infototal__label">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020*</label>
+    {% if not for_print %}{% if r9001_rprest_form.r9001_infototal.value %}
+        <a href="{% url 'r9001_infototal_salvar' hash='{}'|json_return_page:'r9001_rprest_salvar'|json_return_hash:hash|json_id:r9001_rprest_form.r9001_infototal.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if r9001_rprest_form.r9001_infototal.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9001_rprest_form.r9001_infototal.errors }}
+      </div>
+    {% endif %}
+    {% if r9001_rprest_form.r9001_infototal.field.widget.attrs.readonly %}
+      {% if r9001_rprest_form.r9001_infototal.field.widget.attrs.disabled %}
+        {{ r9001_rprest_form.r9001_infototal|addcss:'form-control' }}
+        <input id="id_r9001_infototal" name="r9001_infototal" type="hidden" value="{{ r9001_rprest_form.r9001_infototal.value }}">
+      {% else %}
+        {{ r9001_rprest_form.r9001_infototal|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r9001_rprest_form.r9001_infototal|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r9001_rprest__r9001_infototal -->
+<!-- inicio__r9001_rprest__tpinsctomador -->
+<div class="col-md-6" id="r9001_rprest__tpinsctomador__div">
+  <div class="form-group">
+    <label id="r9001_rprest__tpinsctomador__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+      {% if r9001_rprest_form.tpinsctomador.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9001_rprest_form.tpinsctomador.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9001_rprest_form.tpinsctomador|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rprest__tpinsctomador -->
+<!-- inicio__r9001_rprest__nrinsctomador -->
+<div class="col-md-6" id="r9001_rprest__nrinsctomador__div">
+  <div class="form-group">
+    <label id="r9001_rprest__nrinsctomador__label">Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}*</label>
+      {% if r9001_rprest_form.nrinsctomador.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9001_rprest_form.nrinsctomador.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9001_rprest_form.nrinsctomador|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rprest__nrinsctomador -->
+<!-- inicio__r9001_rprest__vlrtotalbaseret -->
+<div class="col-md-6" id="r9001_rprest__vlrtotalbaseret__div">
+  <div class="form-group">
+    <label id="r9001_rprest__vlrtotalbaseret__label">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante*</label>
+    {% if r9001_rprest_form.vlrtotalbaseret.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9001_rprest_form.vlrtotalbaseret.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9001_rprest_form.vlrtotalbaseret|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rprest__vlrtotalbaseret -->
+<!-- inicio__r9001_rprest__vlrtotalretprinc -->
+<div class="col-md-6" id="r9001_rprest__vlrtotalretprinc__div">
+  <div class="form-group">
+    <label id="r9001_rprest__vlrtotalretprinc__label">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante*</label>
+    {% if r9001_rprest_form.vlrtotalretprinc.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9001_rprest_form.vlrtotalretprinc.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9001_rprest_form.vlrtotalretprinc|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rprest__vlrtotalretprinc -->
+<!-- inicio__r9001_rprest__vlrtotalretadic -->
+<div class="col-md-6" id="r9001_rprest__vlrtotalretadic__div">
+  <div class="form-group">
+    <label id="r9001_rprest__vlrtotalretadic__label">Soma do valor do adicional de retenção das notas fiscais</label>
+    {% if r9001_rprest_form.vlrtotalretadic.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9001_rprest_form.vlrtotalretadic.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9001_rprest_form.vlrtotalretadic|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rprest__vlrtotalretadic -->
+<!-- inicio__r9001_rprest__vlrtotalnretprinc -->
+<div class="col-md-6" id="r9001_rprest__vlrtotalnretprinc__div">
+  <div class="form-group">
+    <label id="r9001_rprest__vlrtotalnretprinc__label">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</label>
+    {% if r9001_rprest_form.vlrtotalnretprinc.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9001_rprest_form.vlrtotalnretprinc.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9001_rprest_form.vlrtotalnretprinc|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rprest__vlrtotalnretprinc -->
+<!-- inicio__r9001_rprest__vlrtotalnretadic -->
+<div class="col-md-6" id="r9001_rprest__vlrtotalnretadic__div">
+  <div class="form-group">
+    <label id="r9001_rprest__vlrtotalnretadic__label">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</label>
+    {% if r9001_rprest_form.vlrtotalnretadic.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9001_rprest_form.vlrtotalnretadic.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9001_rprest_form.vlrtotalnretadic|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9001_rprest__vlrtotalnretadic -->

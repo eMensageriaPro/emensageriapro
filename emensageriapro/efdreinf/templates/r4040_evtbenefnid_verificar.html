@@ -1,0 +1,470 @@
+{% extends 'base.html' %}{% load templatetags %}{% block content %}
+<!--
+
+    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->
+{% if not for_print %}
+
+    <section class="content-header">
+      <h1>
+        R-4040 - Retenções na Fonte - Beneficiários não identificados
+        <small>Verificações</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">R-4040 - Retenções na Fonte - Beneficiários não identificados</a></li>
+        <li class="active">Verificar</li>
+      </ol>
+    </section>
+    <section class="content">
+
+        {% if messages %}
+                <div class="pad margin no-print">
+            {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                        {{ message }}
+                    </div>
+            {% endfor %}
+                </div>
+        {% endif %}
+
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">R-4040 - Retenções na Fonte - Beneficiários não identificados<br>Identidade: {{ r4040_evtbenefnid.identidade }}</h3>
+              <div class="text-right">
+                <a href="{% url 'r4040_evtbenefnid_verificar' hash='{}'|json_id:r4040_evtbenefnid_id|json_print:1|base64_encode_me %}" target="_blank">
+                  <button id="btnImprimir" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</button>
+                </a>
+
+
+
+                  <div class="btn-group">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                        aria-expanded="false"><span class="caret"></span><span class="sr-only">Exportar</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="text-left"><a
+                                            href="{% url 'r4040_evtbenefnid_verificar' hash='{}'|json_id:r4040_evtbenefnid_id|json_print:2|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                    <li class="text-left"><a
+                                            href="{% url 'r4040_evtbenefnid_verificar' hash='{}'|json_id:r4040_evtbenefnid_id|json_print:3|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                    <!--<li class="text-left"><a
+                                            href="{% url 'r4040_evtbenefnid_verificar' hash='{}'|json_id:r4040_evtbenefnid_id|json_print:4|base64_encode_me %}"
+                                            target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>-->
+                                </ul>
+                            </div>&nbsp;
+
+              </div>              
+            </div>
+            <div class="box-body">
+{% else %} 
+   <section class="invoice">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            R-4040 - Retenções na Fonte - Beneficiários não identificados<br>Identidade: {{ r4040_evtbenefnid.identidade }}
+            <small class="pull-right">Usuário: {{ usuario.nome }}<br>Data: {{ data }}<br></small>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+{% endif %} 
+
+
+
+
+      <h4>Layout</h4>
+
+
+
+
+<table {% if not for_print %}class="table table-bordered"{% else %}border=1 border="0.5px" cellpadding="5px" width="100%"{% endif %}>
+              
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">evtBenefNId</td>
+            <td bgcolor="lightgray" colspan="3">Evento Beneficiários não identificados. <regras_validacao> REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</td>
+        </tr>
+    {% for r4040_evtbenefnid in r4040_evtbenefnid_lista %}
+    {% ifequal 1 1 %}
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEvento</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do evento.</td>
+        </tr>
+
+        <tr {% if r4040_evtbenefnid.indretif|validacoes_esocial_efdreinf:"r4040_evtbenefnid.indretif" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">indRetif</td>
+            <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r4040_evtbenefnid.indretif or r4040_evtbenefnid.indretif == 0 %}{{ r4040_evtbenefnid.indretif }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                <a href="{% url 'r4040_evtbenefnid_salvar'  hash='{}'|json_id:r4040_evtbenefnid.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_evtbenefnid.nrrecibo|validacoes_esocial_efdreinf:"r4040_evtbenefnid.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrRecibo</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação.</td>
+            <td width="200px"><b>{% if r4040_evtbenefnid.nrrecibo or r4040_evtbenefnid.nrrecibo == 0 %}{{ r4040_evtbenefnid.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                <a href="{% url 'r4040_evtbenefnid_salvar'  hash='{}'|json_id:r4040_evtbenefnid.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_evtbenefnid.perapur|validacoes_esocial_efdreinf:"r4040_evtbenefnid.perapur" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">perApur</td>
+            <td width="500px">Informar o ano/mês de referência das informações no formato AAAA-MM. <validacao> Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente.</td>
+            <td width="200px"><b>{% if r4040_evtbenefnid.perapur or r4040_evtbenefnid.perapur == 0 %}{{ r4040_evtbenefnid.perapur }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                <a href="{% url 'r4040_evtbenefnid_salvar'  hash='{}'|json_id:r4040_evtbenefnid.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_evtbenefnid.tpamb|validacoes_esocial_efdreinf:"r4040_evtbenefnid.tpamb" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpAmb</td>
+            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r4040_evtbenefnid.tpamb or r4040_evtbenefnid.tpamb == 0 %}{{ r4040_evtbenefnid.tpamb }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                <a href="{% url 'r4040_evtbenefnid_salvar'  hash='{}'|json_id:r4040_evtbenefnid.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_evtbenefnid.procemi|validacoes_esocial_efdreinf:"r4040_evtbenefnid.procemi" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">procEmi</td>
+            <td width="500px">Processo de emissão do evento<opcoes>1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r4040_evtbenefnid.procemi or r4040_evtbenefnid.procemi == 0 %}{{ r4040_evtbenefnid.procemi }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                <a href="{% url 'r4040_evtbenefnid_salvar'  hash='{}'|json_id:r4040_evtbenefnid.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_evtbenefnid.verproc|validacoes_esocial_efdreinf:"r4040_evtbenefnid.verproc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">verProc</td>
+            <td width="500px">Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento.</td>
+            <td width="200px"><b>{% if r4040_evtbenefnid.verproc or r4040_evtbenefnid.verproc == 0 %}{{ r4040_evtbenefnid.verproc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                <a href="{% url 'r4040_evtbenefnid_salvar'  hash='{}'|json_id:r4040_evtbenefnid.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideContri</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do contribuinte.</td>
+        </tr>
+
+        <tr {% if r4040_evtbenefnid.tpinsc|validacoes_esocial_efdreinf:"r4040_evtbenefnid.tpinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInsc</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF). <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if r4040_evtbenefnid.tpinsc or r4040_evtbenefnid.tpinsc == 0 %}{{ r4040_evtbenefnid.tpinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                <a href="{% url 'r4040_evtbenefnid_salvar'  hash='{}'|json_id:r4040_evtbenefnid.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_evtbenefnid.nrinsc|validacoes_esocial_efdreinf:"r4040_evtbenefnid.nrinsc" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInsc</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="200px"><b>{% if r4040_evtbenefnid.nrinsc or r4040_evtbenefnid.nrinsc == 0 %}{{ r4040_evtbenefnid.nrinsc }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                <a href="{% url 'r4040_evtbenefnid_salvar'  hash='{}'|json_id:r4040_evtbenefnid.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+ 
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideEstab</td>
+            <td bgcolor="lightgray" colspan="3">Informações de identificação do estabelecimento.</td>
+        </tr>
+
+        <tr {% if r4040_evtbenefnid.tpinscestab|validacoes_esocial_efdreinf:"r4040_evtbenefnid.tpinscestab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">tpInscEstab</td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ). <valores_validos> 1.</td>
+            <td width="200px"><b>{% if r4040_evtbenefnid.tpinscestab or r4040_evtbenefnid.tpinscestab == 0 %}{{ r4040_evtbenefnid.tpinscestab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                <a href="{% url 'r4040_evtbenefnid_salvar'  hash='{}'|json_id:r4040_evtbenefnid.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_evtbenefnid.nrinscestab|validacoes_esocial_efdreinf:"r4040_evtbenefnid.nrinscestab" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">nrInscEstab</td>
+            <td width="500px">Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}. <validacao> A inscrição informada deve ser compatível com o {tpInscEstab}.</td>
+            <td width="200px"><b>{% if r4040_evtbenefnid.nrinscestab or r4040_evtbenefnid.nrinscestab == 0 %}{{ r4040_evtbenefnid.nrinscestab }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                <a href="{% url 'r4040_evtbenefnid_salvar'  hash='{}'|json_id:r4040_evtbenefnid.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">ideNat</td>
+            <td bgcolor="lightgray" colspan="3">Identificação da natureza do rendimento.</td>
+        </tr>
+    {% for r4040_idenat in r4040_idenat_lista %}
+    {% ifequal r4040_idenat.r4040_evtbenefnid.id r4040_evtbenefnid.id %}
+        <tr {% if r4040_idenat.natrendim|validacoes_esocial_efdreinf:"r4040_idenat.natrendim" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">natRendim</td>
+            <td width="500px">Informar a natureza dos rendimentos pagos a beneficiários não identificados, conforme opções a seguir<opcoes>1 - Rendimentos do trabalho; 9 - Demais rendimentos. <valores_validos> 1, 9.</td>
+            <td width="200px"><b>{% if r4040_idenat.natrendim or r4040_idenat.natrendim == 0 %}{{ r4040_idenat.natrendim }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_idenat_visualizar' %}
+                <a href="{% url 'r4040_idenat_salvar'  hash='{}'|json_id:r4040_idenat.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <td bgcolor="lightgray" colspan="1" width="130px">infoPgto</td>
+            <td bgcolor="lightgray" colspan="3">Informações de pagamentos a beneficiários não indentificados.</td>
+        </tr>
+    {% for r4040_infopgto in r4040_infopgto_lista %}
+    {% ifequal r4040_infopgto.r4040_idenat.id r4040_idenat.id %}
+        <tr {% if r4040_infopgto.dtfg|validacoes_esocial_efdreinf:"r4040_infopgto.dtfg" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">dtFG</td>
+            <td width="500px">Informar a data do fato gerador ou pagamento/crédito. <validacao> A data informada deve estar compreendida no período de apuração ao qual se refere o arquivo, conforme informado em (perApur}.</td>
+            <td width="200px"><b>{% if r4040_infopgto.dtfg or r4040_infopgto.dtfg == 0 %}{{ r4040_infopgto.dtfg|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_infopgto_visualizar' %}
+                <a href="{% url 'r4040_infopgto_salvar'  hash='{}'|json_id:r4040_infopgto.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_infopgto.vlrliq|validacoes_esocial_efdreinf:"r4040_infopgto.vlrliq" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrLiq</td>
+            <td width="500px">Valor líquido do pagamento. <validacao> Deve ser maior que 0 (zero).</td>
+            <td width="200px"><b>{% if r4040_infopgto.vlrliq or r4040_infopgto.vlrliq == 0 %}{{ r4040_infopgto.vlrliq }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_infopgto_visualizar' %}
+                <a href="{% url 'r4040_infopgto_salvar'  hash='{}'|json_id:r4040_infopgto.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_infopgto.vlrreaj|validacoes_esocial_efdreinf:"r4040_infopgto.vlrreaj" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrReaj</td>
+            <td width="500px">Valor reajustado, considerado como valor bruto da base de cálculo do IRRF. <validacao> Deve corresponder a ({vlrLiq} / 0,65).</td>
+            <td width="200px"><b>{% if r4040_infopgto.vlrreaj or r4040_infopgto.vlrreaj == 0 %}{{ r4040_infopgto.vlrreaj }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_infopgto_visualizar' %}
+                <a href="{% url 'r4040_infopgto_salvar'  hash='{}'|json_id:r4040_infopgto.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_infopgto.vlrir|validacoes_esocial_efdreinf:"r4040_infopgto.vlrir" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">vlrIR</td>
+            <td width="500px">Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação.</td>
+            <td width="200px"><b>{% if r4040_infopgto.vlrir or r4040_infopgto.vlrir == 0 %}{{ r4040_infopgto.vlrir }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_infopgto_visualizar' %}
+                <a href="{% url 'r4040_infopgto_salvar'  hash='{}'|json_id:r4040_infopgto.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+
+        <tr {% if r4040_infopgto.descr|validacoes_esocial_efdreinf:"r4040_infopgto.descr" %}bgcolor="lightcoral"{% endif %}>
+            <td width="130px">descr</td>
+            <td width="500px">Descrição do pagamento.</td>
+            <td width="200px"><b>{% if r4040_infopgto.descr or r4040_infopgto.descr == 0 %}{{ r4040_infopgto.descr }}{% else %}(vazio){% endif %}</b></td>
+            {% if not for_print %}
+            <td width="40px">
+              <div>
+                {% if dict_permissoes|get_permissao:'r4040_infopgto_visualizar' %}
+                <a href="{% url 'r4040_infopgto_salvar'  hash='{}'|json_id:r4040_infopgto.id|json_print:0|base64_encode_me %}">
+                    <span class="btn btn-primary">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </span>
+                </a>
+                {% endif %}
+              </div>
+            </td>
+            {% endif %}
+        </tr>
+    {% endifequal %}{% endfor %}    {% endifequal %}{% endfor %} {% endifequal %}{% endfor %}
+</table>
+{% if not for_print %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %} 
+
+        </div>
+      </div>
+    </section>
+{% endif %}  
+
+{% endblock content %}

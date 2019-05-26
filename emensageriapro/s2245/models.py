@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s2245.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,53 +45,40 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S2245_MODTREICAP = (
-    (1, u'1 - Presencial'),
-    (2, u'2 - Educação a Distância (EaD)'),
-    (3, u'3 - Semipresencial'),
-)
 
-CHOICES_S2245_NACPROF = (
-    (1, u'1 - Brasileiro'),
-    (2, u'2 - Estrangeiro'),
-)
-
-CHOICES_S2245_TPPROF = (
-    (1, u'1 - Profissional empregado do declarante'),
-    (2, u'2 - Profissional sem vínculo de emprego/estatutário com o declarante'),
-)
-
-CHOICES_S2245_TPTREICAP = (
-    (1, u'1 - Inicial'),
-    (2, u'2 - Periódico'),
-    (3, u'3 - Reciclagem'),
-    (4, u'4 - Eventual'),
-    (5, u'5 - Outros'),
-)
 
 class s2245ideProfResp(SoftDeletionModel):
-    s2245_infocomplem = models.ForeignKey('s2245infoComplem',
-        related_name='%(class)s_s2245_infocomplem')
-    def evento(self): return self.s2245_infocomplem.evento()
-    cpfprof = models.CharField(max_length=11, blank=True, null=True)
-    nmprof = models.CharField(max_length=70)
-    tpprof = models.IntegerField(choices=CHOICES_S2245_TPPROF)
-    formprof = models.CharField(max_length=255)
-    codcbo = models.CharField(max_length=6)
-    nacprof = models.IntegerField(choices=CHOICES_S2245_NACPROF)
+
+    s2245_evttreicap = models.ForeignKey('esocial.s2245evtTreiCap', 
+        related_name='%(class)s_s2245_evttreicap', )
+    
+    def evento(self): 
+        return self.s2245_evttreicap.evento()
+    cpfprof = models.CharField(max_length=11, blank=True, null=True, )
+    nmprof = models.CharField(max_length=70, null=True, )
+    tpprof = models.IntegerField(choices=CHOICES_S2245_TPPROF, null=True, )
+    formprof = models.CharField(max_length=255, null=True, )
+    codcbo = models.CharField(max_length=6, null=True, )
+    nacprof = models.IntegerField(choices=CHOICES_S2245_NACPROF, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -87,93 +86,57 @@ class s2245ideProfResp(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2245_infocomplem) + ' - ' + unicode(self.nmprof) + ' - ' + unicode(self.tpprof) + ' - ' + unicode(self.formprof) + ' - ' + unicode(self.codcbo) + ' - ' + unicode(self.nacprof)
-    #s2245_ideprofresp_custom#
-
+        
+        lista = [
+            unicode(self.s2245_evttreicap),
+            unicode(self.nmprof),
+            unicode(self.tpprof),
+            unicode(self.formprof),
+            unicode(self.codcbo),
+            unicode(self.nacprof),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações relativas ao profissional responsável pelo treinamento/capacitação'
         db_table = r's2245_ideprofresp'       
         managed = True # s2245_ideprofresp #
-        unique_together = (
-            #custom_unique_together_s2245_ideprofresp#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2245_ideprofresp
-            #index_together_s2245_ideprofresp
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2245_ideprofresp", "Can view s2245_ideprofresp"),
-            #custom_permissions_s2245_ideprofresp
-        )
-        ordering = ['s2245_infocomplem', 'nmprof', 'tpprof', 'formprof', 'codcbo', 'nacprof']
+            ("can_view_s2245_ideprofresp", "Can view s2245_ideprofresp"), )
+            
+        ordering = [
+            's2245_evttreicap',
+            'nmprof',
+            'tpprof',
+            'formprof',
+            'codcbo',
+            'nacprof',]
 
 
 
 class s2245ideProfRespSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2245ideProfResp
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-class s2245infoComplem(SoftDeletionModel):
-    s2245_evttreicap = models.OneToOneField('esocial.s2245evtTreiCap',
-        related_name='%(class)s_s2245_evttreicap')
-    def evento(self): return self.s2245_evttreicap.evento()
-    dttreicap = models.DateField()
-    durtreicap = models.DecimalField(max_digits=15, decimal_places=2, max_length=6)
-    modtreicap = models.IntegerField(choices=CHOICES_S2245_MODTREICAP)
-    tptreicap = models.IntegerField(choices=CHOICES_S2245_TPTREICAP)
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    def __unicode__(self):
-        return unicode(self.s2245_evttreicap) + ' - ' + unicode(self.dttreicap) + ' - ' + unicode(self.durtreicap) + ' - ' + unicode(self.modtreicap) + ' - ' + unicode(self.tptreicap)
-    #s2245_infocomplem_custom#
-
-    class Meta:
-        # verbose_name = u'Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de "trabalhador sem vínculo". No caso das categorias em que o envio do evento TSV é opc (...)'
-        db_table = r's2245_infocomplem'       
-        managed = True # s2245_infocomplem #
-        unique_together = (
-            #custom_unique_together_s2245_infocomplem#
-            
-        )
-        index_together = (
-            #custom_index_together_s2245_infocomplem
-            #index_together_s2245_infocomplem
-        )
-        permissions = (
-            ("can_view_s2245_infocomplem", "Can view s2245_infocomplem"),
-            #custom_permissions_s2245_infocomplem
-        )
-        ordering = ['s2245_evttreicap', 'dttreicap', 'durtreicap', 'modtreicap', 'tptreicap']
-
-
-
-class s2245infoComplemSerializer(ModelSerializer):
-    class Meta:
-        model = s2245infoComplem
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

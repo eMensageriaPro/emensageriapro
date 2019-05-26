@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2205_evtaltcadastral or 1 %}"Informações dos documentos pessoais do trabalhador";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2205_evtaltcadastral or 1 %}"{{ c.s2205_evtaltcadastral }}";{% endif %}
+{% endfor %}

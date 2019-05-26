@@ -1,1 +1,126 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Informações dos pagamentos efetuados</label><select name="s1210_infopgto" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s1210_infopgto_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1210_infopgto' %}selected="selected"{% endifequal %}>{{ a.s1210_evtpgtos }} - {{ a.dtpgto }} - {{ a.tppgto }} - {{ a.indresbr }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Período de Referência</label><div name="perref__icontains" class="input-group" style="width: 100%;"><input type="text" name="perref__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'perref__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Identificador dos demostrativos de pagamento</label><div name="idedmdev__icontains" class="input-group" style="width: 100%;"><input type="text" name="idedmdev__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'idedmdev__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Indicador de pagamento total ou parcial</label><div class="input-group" style="width: 100%;"><select name="indpgtott__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'indpgtott__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'indpgtott__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor liquido</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vrliq" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrliq' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Número do recibo</label><div name="nrrecarq__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrrecarq__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrrecarq__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s1210_infopgto" value="1" {% if show_fields|get_value_from_dict:'show_s1210_infopgto' %}checked{% endif %}>Informações dos pagamentos efetuados</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_perref" value="1" {% if show_fields|get_value_from_dict:'show_perref' %}checked{% endif %}>Período de Referência</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_idedmdev" value="1" {% if show_fields|get_value_from_dict:'show_idedmdev' %}checked{% endif %}>Identificador dos demostrativos de pagamento</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_indpgtott" value="1" {% if show_fields|get_value_from_dict:'show_indpgtott' %}checked{% endif %}>Indicador de pagamento total ou parcial</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vrliq" value="1" {% if show_fields|get_value_from_dict:'show_vrliq' %}checked{% endif %}>Valor liquido</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrrecarq" value="1" {% if show_fields|get_value_from_dict:'show_nrrecarq' %}checked{% endif %}>Número do recibo</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1210_detpgtofl__s1210_infopgto -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399</label>
+    <select name="s1210_infopgto" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in s1210_infopgto_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1210_infopgto' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s1210_detpgtofl__s1210_infopgto -->
+
+<!-- inicio__s1210_detpgtofl__perref -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Período de Referência</label>
+    <div name="perref" class="input-group" style="width: 100%;">
+      <input type="text" name="perref" class="form-control" value="{{ dict_fields|get_value_from_dict:'perref' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1210_detpgtofl__perref -->
+
+<!-- inicio__s1210_detpgtofl__idedmdev -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Identificador dos demostrativos de pagamento</label>
+    <div name="idedmdev" class="input-group" style="width: 100%;">
+      <input type="text" name="idedmdev" class="form-control" value="{{ dict_fields|get_value_from_dict:'idedmdev' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1210_detpgtofl__idedmdev -->
+
+<!-- inicio__s1210_detpgtofl__indpgtott -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Indicador de pagamento total ou parcial</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="indpgtott" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'indpgtott' %}selected="selected"{% endifequal %} >N - O valor que está sendo pago é inferior ao previsto nos eventosS - 1200,S - 1202,S - 2299 ouS - 2399 em {dmDev}, neste caso, significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'indpgtott' %}selected="selected"{% endifequal %} >S - O valor que está sendo pago é exatamente o previsto nos eventosS - 1200,S - 1202,S - 2299 ouS - 2399 em {dmDev}</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1210_detpgtofl__indpgtott -->
+
+<!-- inicio__s1210_detpgtofl__vrliq -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor liquido</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrliq" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrliq' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1210_detpgtofl__vrliq -->
+
+<!-- inicio__s1210_detpgtofl__nrrecarq -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número do recibo</label>
+    <div name="nrrecarq" class="input-group" style="width: 100%;">
+      <input type="text" name="nrrecarq" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrrecarq' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1210_detpgtofl__nrrecarq -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s1210_infopgto" value="1" {% if show_fields|get_value_from_dict:'show_s1210_infopgto' %}checked{% endif %} >Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_perref" value="0" {% if show_fields|get_value_from_dict:'show_perref' %}checked{% endif %} >Período de Referência
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_idedmdev" value="1" {% if show_fields|get_value_from_dict:'show_idedmdev' %}checked{% endif %} >Identificador dos demostrativos de pagamento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_indpgtott" value="1" {% if show_fields|get_value_from_dict:'show_indpgtott' %}checked{% endif %} >Indicador de pagamento total ou parcial
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrliq" value="1" {% if show_fields|get_value_from_dict:'show_vrliq' %}checked{% endif %} >Valor liquido
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrrecarq" value="0" {% if show_fields|get_value_from_dict:'show_nrrecarq' %}checked{% endif %} >Número do recibo
+    </div>
+</div>
+
+

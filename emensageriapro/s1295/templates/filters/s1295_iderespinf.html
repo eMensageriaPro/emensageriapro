@@ -1,1 +1,100 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Solicitação contingencial de totalização de bases de cálculo/contribuições</label><select name="s1295_evttotconting" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s1295_evttotconting_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1295_evttotconting' %}selected="selected"{% endifequal %}>{{ a.evttotconting }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indapuracao }} - {{ a.perapur }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Nome do Responsável pelas Informações</label><div name="nmresp__icontains" class="input-group" style="width: 100%;"><input type="text" name="nmresp__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nmresp__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>CPF</label><div name="cpfresp__icontains" class="input-group" style="width: 100%;"><input type="text" name="cpfresp__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'cpfresp__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Telefone</label><div name="telefone__icontains" class="input-group" style="width: 100%;"><input type="text" name="telefone__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'telefone__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>E-mail</label><div name="email__icontains" class="input-group" style="width: 100%;"><input type="text" name="email__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'email__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s1295_evttotconting" value="1" {% if show_fields|get_value_from_dict:'show_s1295_evttotconting' %}checked{% endif %}>Solicitação contingencial de totalização de bases de cálculo/contribuições</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nmresp" value="1" {% if show_fields|get_value_from_dict:'show_nmresp' %}checked{% endif %}>Nome do Responsável pelas Informações</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_cpfresp" value="1" {% if show_fields|get_value_from_dict:'show_cpfresp' %}checked{% endif %}>CPF</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_telefone" value="1" {% if show_fields|get_value_from_dict:'show_telefone' %}checked{% endif %}>Telefone</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_email" value="1" {% if show_fields|get_value_from_dict:'show_email' %}checked{% endif %}>E-mail</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1295_iderespinf__s1295_evttotconting -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Responsável pelas informações</label>
+    <select name="s1295_evttotconting" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s1295_evttotconting_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1295_evttotconting' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s1295_iderespinf__s1295_evttotconting -->
+
+<!-- inicio__s1295_iderespinf__nmresp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Nome do Responsável pelas Informações</label>
+    <div name="nmresp" class="input-group" style="width: 100%;">
+      <input type="text" name="nmresp" class="form-control" value="{{ dict_fields|get_value_from_dict:'nmresp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1295_iderespinf__nmresp -->
+
+<!-- inicio__s1295_iderespinf__cpfresp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>CPF</label>
+    <div name="cpfresp" class="input-group" style="width: 100%;">
+      <input type="text" name="cpfresp" class="form-control" value="{{ dict_fields|get_value_from_dict:'cpfresp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1295_iderespinf__cpfresp -->
+
+<!-- inicio__s1295_iderespinf__telefone -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Telefone</label>
+    <div name="telefone" class="input-group" style="width: 100%;">
+      <input type="text" name="telefone" class="form-control" value="{{ dict_fields|get_value_from_dict:'telefone' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1295_iderespinf__telefone -->
+
+<!-- inicio__s1295_iderespinf__email -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>E-mail</label>
+    <div name="email" class="input-group" style="width: 100%;">
+      <input type="text" name="email" class="form-control" value="{{ dict_fields|get_value_from_dict:'email' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1295_iderespinf__email -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s1295_evttotconting" value="1" {% if show_fields|get_value_from_dict:'show_s1295_evttotconting' %}checked{% endif %} >Responsável pelas informações
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nmresp" value="1" {% if show_fields|get_value_from_dict:'show_nmresp' %}checked{% endif %} >Nome do Responsável pelas Informações
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_cpfresp" value="1" {% if show_fields|get_value_from_dict:'show_cpfresp' %}checked{% endif %} >CPF
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_telefone" value="1" {% if show_fields|get_value_from_dict:'show_telefone' %}checked{% endif %} >Telefone
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_email" value="0" {% if show_fields|get_value_from_dict:'show_email' %}checked{% endif %} >E-mail
+    </div>
+</div>
+
+

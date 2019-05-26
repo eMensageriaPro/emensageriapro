@@ -1,1 +1,113 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Inclusão de novas informações</label><select name="s1020_inclusao" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s1020_inclusao_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1020_inclusao' %}selected="selected"{% endifequal %}>{{ a.s1020_evttablotacao }} - {{ a.idelotacao }} - {{ a.codlotacao }} - {{ a.inivalid }} - {{ a.dadoslotacao }} - {{ a.tplotacao }} - {{ a.fpaslotacao }} - {{ a.fpas }} - {{ a.codtercs }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Código de Terceiros</label><div name="codterc__icontains" class="input-group" style="width: 100%;"><input type="text" name="codterc__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'codterc__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Número do Processo Judicial</label><div name="nrprocjud__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrprocjud__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrprocjud__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Código do Indicativo da Suspensão</label><div name="codsusp" class="input-group" style="width: 100%;"><input type="text" name="codsusp" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'codsusp' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s1020_inclusao" value="1" {% if show_fields|get_value_from_dict:'show_s1020_inclusao' %}checked{% endif %}>Inclusão de novas informações</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codterc" value="1" {% if show_fields|get_value_from_dict:'show_codterc' %}checked{% endif %}>Código de Terceiros</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrprocjud" value="1" {% if show_fields|get_value_from_dict:'show_nrprocjud' %}checked{% endif %}>Número do Processo Judicial</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codsusp" value="1" {% if show_fields|get_value_from_dict:'show_codsusp' %}checked{% endif %}>Código do Indicativo da Suspensão</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1020_inclusao_procjudterceiro__s1020_inclusao_infoprocjudterceiros -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Identificação do Processo Judicial</label>
+    <select name="s1020_inclusao_infoprocjudterceiros" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in s1020_inclusao_infoprocjudterceiros_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1020_inclusao_infoprocjudterceiros' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s1020_inclusao_procjudterceiro__s1020_inclusao_infoprocjudterceiros -->
+
+<!-- inicio__s1020_inclusao_procjudterceiro__codterc -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Código de Terceiros</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="codterc" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="507" {% ifequal '507' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >507 - 507</option>
+        <option value="515" {% ifequal '515' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >515 - 515</option>
+        <option value="523" {% ifequal '523' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >523 - 523</option>
+        <option value="531" {% ifequal '531' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >531 - 531</option>
+        <option value="540" {% ifequal '540' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >540 - 540</option>
+        <option value="558" {% ifequal '558' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >558 - 558</option>
+        <option value="566" {% ifequal '566' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >566 - 566</option>
+        <option value="574" {% ifequal '574' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >574 - 574</option>
+        <option value="582" {% ifequal '582' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >582 - 582</option>
+        <option value="590" {% ifequal '590' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >590 - 590</option>
+        <option value="604" {% ifequal '604' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >604 - 604</option>
+        <option value="612" {% ifequal '612' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >612 - 612</option>
+        <option value="620" {% ifequal '620' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >620 - 620</option>
+        <option value="639" {% ifequal '639' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >639 - 639</option>
+        <option value="647" {% ifequal '647' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >647 - 647</option>
+        <option value="655" {% ifequal '655' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >655 - 655</option>
+        <option value="680" {% ifequal '680' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >680 - 680</option>
+        <option value="736" {% ifequal '736' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >736 - 736</option>
+        <option value="744" {% ifequal '744' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >744 - 744</option>
+        <option value="779" {% ifequal '779' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >779 - 779</option>
+        <option value="787" {% ifequal '787' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >787 - 787</option>
+        <option value="795" {% ifequal '795' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >795 - 795</option>
+        <option value="825" {% ifequal '825' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >825 - 825</option>
+        <option value="833" {% ifequal '833' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >833 - 833</option>
+        <option value="868" {% ifequal '868' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >868 - 868</option>
+        <option value="876" {% ifequal '876' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >876 - 876</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1020_inclusao_procjudterceiro__codterc -->
+
+<!-- inicio__s1020_inclusao_procjudterceiro__nrprocjud -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Número do Processo Judicial</label>
+    <div name="nrprocjud" class="input-group" style="width: 100%;">
+      <input type="text" name="nrprocjud" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrprocjud' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1020_inclusao_procjudterceiro__nrprocjud -->
+
+<!-- inicio__s1020_inclusao_procjudterceiro__codsusp -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Código do Indicativo da Suspensão</label>
+    <div name="codsusp" class="input-group" style="width: 100%;">
+      <input type="text" name="codsusp" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'codsusp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1020_inclusao_procjudterceiro__codsusp -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s1020_inclusao_infoprocjudterceiros" value="1" {% if show_fields|get_value_from_dict:'show_s1020_inclusao_infoprocjudterceiros' %}checked{% endif %} >Identificação do Processo Judicial
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codterc" value="1" {% if show_fields|get_value_from_dict:'show_codterc' %}checked{% endif %} >Código de Terceiros
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrprocjud" value="1" {% if show_fields|get_value_from_dict:'show_nrprocjud' %}checked{% endif %} >Número do Processo Judicial
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codsusp" value="1" {% if show_fields|get_value_from_dict:'show_codsusp' %}checked{% endif %} >Código do Indicativo da Suspensão
+    </div>
+</div>
+
+

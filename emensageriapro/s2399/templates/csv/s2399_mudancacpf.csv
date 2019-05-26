@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2399_evttsvtermino or 1 %}"Informações de mudança de CPF do trabalhador.";{% endif %}{% if show_fields.show_novocpf or 1 %}"Preencher com o novo CPF do trabalhador. Validação: Deve ser um CPF válido e diferente do CPF do empregador e do antigo CPF do trabalhador.";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2399_evttsvtermino or 1 %}"{{ c.s2399_evttsvtermino }}";{% endif %}{% if show_fields.show_novocpf or 1 %}"{{ c.novocpf }}";{% endif %}
+{% endfor %}

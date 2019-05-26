@@ -1,177 +1,217 @@
 #coding:utf-8
-"""
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
-
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
-
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
-
-"""
 import xmltodict
 import pprint
 import json
 import psycopg2
-from emensageriapro.padrao import ler_arquivo, create_insert, executar_sql
-
-
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
-    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+from emensageriapro.padrao import ler_arquivo
+from emensageriapro.esocial.models import *
+from emensageriapro.s2410.models import *
 
 
 
 def read_s2410_evtcdbenin_string(dados, xml, validar=False):
+
     import untangle
     doc = untangle.parse(xml)
+
     if validar:
         status = STATUS_EVENTO_IMPORTADO
     else:
         status = STATUS_EVENTO_CADASTRADO
+
     dados = read_s2410_evtcdbenin_obj(doc, status, validar)
     return dados
 
+
+
 def read_s2410_evtcdbenin(dados, arquivo, validar=False):
+
     import untangle
     xml = ler_arquivo(arquivo).replace("s:", "")
     doc = untangle.parse(xml)
+
     if validar:
         status = STATUS_EVENTO_IMPORTADO
+
     else:
         status = STATUS_EVENTO_CADASTRADO
+
     dados = read_s2410_evtcdbenin_obj(doc, status, validar)
     return dados
 
 
 
 def read_s2410_evtcdbenin_obj(doc, status, validar=False):
+
+    xmlns_lista = doc.eSocial['xmlns'].split('/')
+
     s2410_evtcdbenin_dados = {}
     s2410_evtcdbenin_dados['status'] = status
-    xmlns_lista = doc.eSocial['xmlns'].split('/')
     s2410_evtcdbenin_dados['versao'] = xmlns_lista[len(xmlns_lista)-1]
     s2410_evtcdbenin_dados['identidade'] = doc.eSocial.evtCdBenIn['Id']
     evtCdBenIn = doc.eSocial.evtCdBenIn
-
-    try: s2410_evtcdbenin_dados['indretif'] = evtCdBenIn.ideEvento.indRetif.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['nrrecibo'] = evtCdBenIn.ideEvento.nrRecibo.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['tpamb'] = evtCdBenIn.ideEvento.tpAmb.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['procemi'] = evtCdBenIn.ideEvento.procEmi.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['verproc'] = evtCdBenIn.ideEvento.verProc.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['tpinsc'] = evtCdBenIn.ideEmpregador.tpInsc.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['nrinsc'] = evtCdBenIn.ideEmpregador.nrInsc.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['cpfbenef'] = evtCdBenIn.beneficiario.cpfBenef.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['matricula'] = evtCdBenIn.beneficiario.matricula.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['cnpjorigem'] = evtCdBenIn.beneficiario.cnpjOrigem.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['cadini'] = evtCdBenIn.infoBenInicio.cadIni.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['nrbeneficio'] = evtCdBenIn.infoBenInicio.nrBeneficio.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['dtinibeneficio'] = evtCdBenIn.infoBenInicio.dtIniBeneficio.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['tpbeneficio'] = evtCdBenIn.infoBenInicio.dadosBeneficio.tpBeneficio.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['vrbeneficio'] = evtCdBenIn.infoBenInicio.dadosBeneficio.vrBeneficio.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['tpplanrp'] = evtCdBenIn.infoBenInicio.dadosBeneficio.tpPlanRP.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['dsc'] = evtCdBenIn.infoBenInicio.dadosBeneficio.dsc.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['inddecjud'] = evtCdBenIn.infoBenInicio.dadosBeneficio.indDecJud.cdata
-    except AttributeError: pass
-    try: s2410_evtcdbenin_dados['indhomologtc'] = evtCdBenIn.infoBenInicio.dadosBeneficio.indHomologTC.cdata
-    except AttributeError: pass
-    if 'inclusao' in dir(evtCdBenIn.infoBenInicio): s2410_evtcdbenin_dados['operacao'] = 1
-    elif 'alteracao' in dir(evtCdBenIn.infoBenInicio): s2410_evtcdbenin_dados['operacao'] = 2
-    elif 'exclusao' in dir(evtCdBenIn.infoBenInicio): s2410_evtcdbenin_dados['operacao'] = 3
-    #print dados
-    insert = create_insert('s2410_evtcdbenin', s2410_evtcdbenin_dados)
-    resp = executar_sql(insert, True)
-    s2410_evtcdbenin_id = resp[0][0]
-    dados = s2410_evtcdbenin_dados
-    dados['evento'] = 's2410'
-    dados['id'] = s2410_evtcdbenin_id
-    dados['identidade_evento'] = doc.eSocial.evtCdBenIn['Id']
-    dados['status'] = STATUS_EVENTO_IMPORTADO
-
-    if 'infoPenMorte' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio) and evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte.cdata != '':
+    
+    try:
+        s2410_evtcdbenin_dados['indretif'] = evtCdBenIn.ideEvento.indRetif.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['nrrecibo'] = evtCdBenIn.ideEvento.nrRecibo.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['tpamb'] = evtCdBenIn.ideEvento.tpAmb.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['procemi'] = evtCdBenIn.ideEvento.procEmi.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['verproc'] = evtCdBenIn.ideEvento.verProc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['tpinsc'] = evtCdBenIn.ideEmpregador.tpInsc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['nrinsc'] = evtCdBenIn.ideEmpregador.nrInsc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['cpfbenef'] = evtCdBenIn.beneficiario.cpfBenef.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['matricula'] = evtCdBenIn.beneficiario.matricula.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['cnpjorigem'] = evtCdBenIn.beneficiario.cnpjOrigem.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['cadini'] = evtCdBenIn.infoBenInicio.cadIni.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['nrbeneficio'] = evtCdBenIn.infoBenInicio.nrBeneficio.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['dtinibeneficio'] = evtCdBenIn.infoBenInicio.dtIniBeneficio.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['tpbeneficio'] = evtCdBenIn.infoBenInicio.dadosBeneficio.tpBeneficio.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['vrbeneficio'] = evtCdBenIn.infoBenInicio.dadosBeneficio.vrBeneficio.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['tpplanrp'] = evtCdBenIn.infoBenInicio.dadosBeneficio.tpPlanRP.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['dsc'] = evtCdBenIn.infoBenInicio.dadosBeneficio.dsc.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['inddecjud'] = evtCdBenIn.infoBenInicio.dadosBeneficio.indDecJud.cdata
+    except AttributeError: 
+        pass
+    
+    try:
+        s2410_evtcdbenin_dados['indhomologtc'] = evtCdBenIn.infoBenInicio.dadosBeneficio.indHomologTC.cdata
+    except AttributeError: 
+        pass
+        
+    s2410_evtcdbenin = s2410evtCdBenIn.objects.create(**s2410_evtcdbenin_dados)
+    
+    if 'infoPenMorte' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
+    
         for infoPenMorte in evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte:
+    
             s2410_infopenmorte_dados = {}
-            s2410_infopenmorte_dados['s2410_evtcdbenin_id'] = s2410_evtcdbenin_id
-
-            try: s2410_infopenmorte_dados['tppenmorte'] = infoPenMorte.tpPenMorte.cdata
-            except AttributeError: pass
-            insert = create_insert('s2410_infopenmorte', s2410_infopenmorte_dados)
-            resp = executar_sql(insert, True)
-            s2410_infopenmorte_id = resp[0][0]
-            #print s2410_infopenmorte_id
-
-            if 'instPenMorte' in dir(infoPenMorte) and infoPenMorte.instPenMorte.cdata != '':
+            s2410_infopenmorte_dados['s2410_evtcdbenin_id'] = s2410_evtcdbenin.id
+            
+            try:
+                s2410_infopenmorte_dados['tppenmorte'] = infoPenMorte.tpPenMorte.cdata
+            except AttributeError: 
+                pass
+    
+            s2410_infopenmorte = s2410infoPenMorte.objects.create(**s2410_infopenmorte_dados)
+            
+            if 'instPenMorte' in dir(infoPenMorte):
+            
                 for instPenMorte in infoPenMorte.instPenMorte:
+            
                     s2410_instpenmorte_dados = {}
-                    s2410_instpenmorte_dados['s2410_infopenmorte_id'] = s2410_infopenmorte_id
-
-                    try: s2410_instpenmorte_dados['cpfinst'] = instPenMorte.cpfInst.cdata
-                    except AttributeError: pass
-                    try: s2410_instpenmorte_dados['dtinst'] = instPenMorte.dtInst.cdata
-                    except AttributeError: pass
-                    try: s2410_instpenmorte_dados['intaposentado'] = instPenMorte.intAposentado.cdata
-                    except AttributeError: pass
-                    insert = create_insert('s2410_instpenmorte', s2410_instpenmorte_dados)
-                    resp = executar_sql(insert, True)
-                    s2410_instpenmorte_id = resp[0][0]
-                    #print s2410_instpenmorte_id
-
-    if 'homologTC' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio) and evtCdBenIn.infoBenInicio.dadosBeneficio.homologTC.cdata != '':
+                    s2410_instpenmorte_dados['s2410_infopenmorte_id'] = s2410_infopenmorte.id
+                    
+                    try:
+                        s2410_instpenmorte_dados['cpfinst'] = instPenMorte.cpfInst.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s2410_instpenmorte_dados['dtinst'] = instPenMorte.dtInst.cdata
+                    except AttributeError: 
+                        pass
+                    
+                    try:
+                        s2410_instpenmorte_dados['intaposentado'] = instPenMorte.intAposentado.cdata
+                    except AttributeError: 
+                        pass
+            
+                    s2410_instpenmorte = s2410instPenMorte.objects.create(**s2410_instpenmorte_dados)
+    
+    if 'homologTC' in dir(evtCdBenIn.infoBenInicio.dadosBeneficio):
+    
         for homologTC in evtCdBenIn.infoBenInicio.dadosBeneficio.homologTC:
+    
             s2410_homologtc_dados = {}
-            s2410_homologtc_dados['s2410_evtcdbenin_id'] = s2410_evtcdbenin_id
+            s2410_homologtc_dados['s2410_evtcdbenin_id'] = s2410_evtcdbenin.id
+            
+            try:
+                s2410_homologtc_dados['dthomol'] = homologTC.dtHomol.cdata
+            except AttributeError: 
+                pass
+            
+            try:
+                s2410_homologtc_dados['nratolegal'] = homologTC.nrAtoLegal.cdata
+            except AttributeError: 
+                pass
+    
+            s2410_homologtc = s2410homologTC.objects.create(**s2410_homologtc_dados)    
+    s2410_evtcdbenin_dados['evento'] = 's2410'
+    s2410_evtcdbenin_dados['id'] = s2410_evtcdbenin.id
+    s2410_evtcdbenin_dados['identidade_evento'] = doc.eSocial.evtCdBenIn['Id']
+    s2410_evtcdbenin_dados['status'] = STATUS_EVENTO_IMPORTADO
 
-            try: s2410_homologtc_dados['dthomol'] = homologTC.dtHomol.cdata
-            except AttributeError: pass
-            try: s2410_homologtc_dados['nratolegal'] = homologTC.nrAtoLegal.cdata
-            except AttributeError: pass
-            insert = create_insert('s2410_homologtc', s2410_homologtc_dados)
-            resp = executar_sql(insert, True)
-            s2410_homologtc_id = resp[0][0]
-            #print s2410_homologtc_id
 
-    from emensageriapro.esocial.views.s2410_evtcdbenin_verificar import validar_evento_funcao
-    if validar: validar_evento_funcao(s2410_evtcdbenin_id, 'default')
-    return dados
+    from emensageriapro.esocial.views.s2410_evtcdbenin_validar_evento import validar_evento_funcao
+    if validar:
+        validar_evento_funcao(s2410_evtcdbenin.id)
+    return s2410_evtcdbenin_dados

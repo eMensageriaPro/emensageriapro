@@ -129,7 +129,7 @@
 
         <tr {% if r5001_evttotal.perapur|validacoes_esocial_efdreinf:"r5001_evttotal.perapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perApur</td>
-            <td width="500px">Informar o ano/mês no formato AAAA-MM ou ano/mês/dia no formato AAAA-MM-DD de referência das informações. O formato diário refere-se a consolidação de bases e tributos informados apenas através do evento R-3010. Validação: Deve ser uma data, igual ou posterior a implementação da EFD- Reinf. Não pode ser maior que o ano/mês corrente.</td>
+            <td width="500px">Informar o ano/mês no formato AAAA-MM ou ano/mês/dia no formato AAAA-MM-DD de referência das informações. O formato diário refere-se a consolidação de bases e tributos informados apenas através do evento R-3010. <validacao> Deve ser uma data, igual ou posterior a implementação da EFD- Reinf. Não pode ser maior que o ano/mês corrente.</td>
             <td width="200px"><b>{% if r5001_evttotal.perapur or r5001_evttotal.perapur == 0 %}{{ r5001_evttotal.perapur }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -153,8 +153,8 @@
 
         <tr {% if r5001_evttotal.tpinsc|validacoes_esocial_efdreinf:"r5001_evttotal.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2</td>
-            <td width="200px"><b>{% if r5001_evttotal.tpinsc or r5001_evttotal.tpinsc == 0 %}{{ r5001_evttotal.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF) <valores_validos> 1, 2</td>
+            <td width="200px"><b>{% if r5001_evttotal.tpinsc or r5001_evttotal.tpinsc == 0 %}{{ r5001_evttotal.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -172,7 +172,7 @@
 
         <tr {% if r5001_evttotal.nrinsc|validacoes_esocial_efdreinf:"r5001_evttotal.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if r5001_evttotal.nrinsc or r5001_evttotal.nrinsc == 0 %}{{ r5001_evttotal.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -201,7 +201,7 @@
 
         <tr {% if r5001_evttotal.cdretorno|validacoes_esocial_efdreinf:"r5001_evttotal.cdretorno" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cdRetorno</td>
-            <td width="500px">Código do Retorno: 0 - Sucesso 1 - Erro 2 - Em processamento</td>
+            <td width="500px">Código do Retorno<opcoes>0 - Sucesso 1 - Erro 2 - Em processamento</td>
             <td width="200px"><b>{% if r5001_evttotal.cdretorno or r5001_evttotal.cdretorno == 0 %}{{ r5001_evttotal.cdretorno }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -245,8 +245,8 @@
     {% ifequal r5001_regocorrs.r5001_evttotal.id r5001_evttotal.id %}
         <tr {% if r5001_regocorrs.tpocorr|validacoes_esocial_efdreinf:"r5001_regocorrs.tpocorr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpOcorr</td>
-            <td width="500px">Tipo da ocorrência: 1 - Erro 2 - Aviso</td>
-            <td width="200px"><b>{% if r5001_regocorrs.tpocorr or r5001_regocorrs.tpocorr == 0 %}{{ r5001_regocorrs.tpocorr|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Tipo da ocorrência<opcoes>1 - Erro;2 - Aviso</td>
+            <td width="200px"><b>{% if r5001_regocorrs.tpocorr or r5001_regocorrs.tpocorr == 0 %}{{ r5001_regocorrs.tpocorr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -427,7 +427,7 @@
     {% ifequal r5001_infototal.r5001_evttotal.id r5001_evttotal.id %}
         <tr {% if r5001_infototal.nrrecarqbase|validacoes_esocial_efdreinf:"r5001_infototal.nrrecarqbase" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecArqBase</td>
-            <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte. Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem a este arquivo totalizador.</td>
+            <td width="500px">Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte. <validacao> Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem a este arquivo totalizador.</td>
             <td width="200px"><b>{% if r5001_infototal.nrrecarqbase or r5001_infototal.nrrecarqbase == 0 %}{{ r5001_infototal.nrrecarqbase }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -451,8 +451,8 @@
 
         <tr {% if r5001_infototal.tpinsc|validacoes_esocial_efdreinf:"r5001_infototal.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] (CNO) Valores Válidos: 1, 4.</td>
-            <td width="200px"><b>{% if r5001_infototal.tpinsc or r5001_infototal.tpinsc == 0 %}{{ r5001_infototal.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. <validacao> Deve ser igual a [1] (CNPJ) ou [4] (CNO) <valores_validos> 1, 4.</td>
+            <td width="200px"><b>{% if r5001_infototal.tpinsc or r5001_infototal.tpinsc == 0 %}{{ r5001_infototal.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -470,7 +470,7 @@
 
         <tr {% if r5001_infototal.nrinsc|validacoes_esocial_efdreinf:"r5001_infototal.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Validação: O número de inscrição informado deve ser válido e compatível com {tpInsc}.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. <validacao> O número de inscrição informado deve ser válido e compatível com {tpInsc}.</td>
             <td width="200px"><b>{% if r5001_infototal.nrinsc or r5001_infototal.nrinsc == 0 %}{{ r5001_infototal.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -534,7 +534,7 @@
         <tr {% if r5001_rtom.vlrtotalbaseret|validacoes_esocial_efdreinf:"r5001_rtom.vlrtotalbaseret" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalBaseRet</td>
             <td width="500px">Base de cálculo da retenção da contribuição previdenciária. Origem: R-2010.</td>
-            <td width="200px"><b>{% if r5001_rtom.vlrtotalbaseret or r5001_rtom.vlrtotalbaseret == 0 %}{{ r5001_rtom.vlrtotalbaseret|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rtom.vlrtotalbaseret or r5001_rtom.vlrtotalbaseret == 0 %}{{ r5001_rtom.vlrtotalbaseret }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -558,8 +558,8 @@
     {% ifequal r5001_infocrtom.r5001_rtom.id r5001_rtom.id %}
         <tr {% if r5001_infocrtom.crtom|validacoes_esocial_efdreinf:"r5001_infocrtom.crtom" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">CRTom</td>
-            <td width="500px">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos Valores Válidos: 1141-06, 1162-01</td>
-            <td width="200px"><b>{% if r5001_infocrtom.crtom or r5001_infocrtom.crtom == 0 %}{{ r5001_infocrtom.crtom|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social sobre serviços tomados. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos <valores_validos> 1141-06, 1162-01</td>
+            <td width="200px"><b>{% if r5001_infocrtom.crtom or r5001_infocrtom.crtom == 0 %}{{ r5001_infocrtom.crtom }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -577,8 +577,8 @@
 
         <tr {% if r5001_infocrtom.vlrcrtom|validacoes_esocial_efdreinf:"r5001_infocrtom.vlrcrtom" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCRTom</td>
-            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}. Validação: Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero).</td>
-            <td width="200px"><b>{% if r5001_infocrtom.vlrcrtom or r5001_infocrtom.vlrcrtom == 0 %}{{ r5001_infocrtom.vlrcrtom|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRTom}. <validacao> Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero).</td>
+            <td width="200px"><b>{% if r5001_infocrtom.vlrcrtom or r5001_infocrtom.vlrcrtom == 0 %}{{ r5001_infocrtom.vlrcrtom }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -596,8 +596,8 @@
 
         <tr {% if r5001_infocrtom.vlrcrtomsusp|validacoes_esocial_efdreinf:"r5001_infocrtom.vlrcrtomsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCRTomSusp</td>
-            <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}. Valores Válidos: Deve ser maior que 0 (zero).</td>
-            <td width="200px"><b>{% if r5001_infocrtom.vlrcrtomsusp or r5001_infocrtom.vlrcrtomsusp == 0 %}{{ r5001_infocrtom.vlrcrtomsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao código de Receita - CR informado em {CRTom}. <validacao> Deve ser maior que 0 (zero).</td>
+            <td width="200px"><b>{% if r5001_infocrtom.vlrcrtomsusp or r5001_infocrtom.vlrcrtomsusp == 0 %}{{ r5001_infocrtom.vlrcrtomsusp }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -621,8 +621,8 @@
     {% ifequal r5001_rprest.r5001_infototal.id r5001_infototal.id %}
         <tr {% if r5001_rprest.tpinsctomador|validacoes_esocial_efdreinf:"r5001_rprest.tpinsctomador" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInscTomador</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Origem: R-2020. Valores Válidos: 1,4</td>
-            <td width="200px"><b>{% if r5001_rprest.tpinsctomador or r5001_rprest.tpinsctomador == 0 %}{{ r5001_rprest.tpinsctomador|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição. Origem: R-2020. <valores_validos> 1,4</td>
+            <td width="200px"><b>{% if r5001_rprest.tpinsctomador or r5001_rprest.tpinsctomador == 0 %}{{ r5001_rprest.tpinsctomador }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -660,7 +660,7 @@
         <tr {% if r5001_rprest.vlrtotalbaseret|validacoes_esocial_efdreinf:"r5001_rprest.vlrtotalbaseret" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalBaseRet</td>
             <td width="500px">Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante</td>
-            <td width="200px"><b>{% if r5001_rprest.vlrtotalbaseret or r5001_rprest.vlrtotalbaseret == 0 %}{{ r5001_rprest.vlrtotalbaseret|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rprest.vlrtotalbaseret or r5001_rprest.vlrtotalbaseret == 0 %}{{ r5001_rprest.vlrtotalbaseret }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -679,7 +679,7 @@
         <tr {% if r5001_rprest.vlrtotalretprinc|validacoes_esocial_efdreinf:"r5001_rprest.vlrtotalretprinc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalRetPrinc</td>
             <td width="500px">Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante</td>
-            <td width="200px"><b>{% if r5001_rprest.vlrtotalretprinc or r5001_rprest.vlrtotalretprinc == 0 %}{{ r5001_rprest.vlrtotalretprinc|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rprest.vlrtotalretprinc or r5001_rprest.vlrtotalretprinc == 0 %}{{ r5001_rprest.vlrtotalretprinc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -698,7 +698,7 @@
         <tr {% if r5001_rprest.vlrtotalretadic|validacoes_esocial_efdreinf:"r5001_rprest.vlrtotalretadic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalRetAdic</td>
             <td width="500px">Soma do valor do adicional de retenção das notas fiscais</td>
-            <td width="200px"><b>{% if r5001_rprest.vlrtotalretadic or r5001_rprest.vlrtotalretadic == 0 %}{{ r5001_rprest.vlrtotalretadic|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rprest.vlrtotalretadic or r5001_rprest.vlrtotalretadic == 0 %}{{ r5001_rprest.vlrtotalretadic }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -717,7 +717,7 @@
         <tr {% if r5001_rprest.vlrtotalnretprinc|validacoes_esocial_efdreinf:"r5001_rprest.vlrtotalnretprinc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalNRetPrinc</td>
             <td width="500px">Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</td>
-            <td width="200px"><b>{% if r5001_rprest.vlrtotalnretprinc or r5001_rprest.vlrtotalnretprinc == 0 %}{{ r5001_rprest.vlrtotalnretprinc|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rprest.vlrtotalnretprinc or r5001_rprest.vlrtotalnretprinc == 0 %}{{ r5001_rprest.vlrtotalnretprinc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -736,7 +736,7 @@
         <tr {% if r5001_rprest.vlrtotalnretadic|validacoes_esocial_efdreinf:"r5001_rprest.vlrtotalnretadic" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalNRetAdic</td>
             <td width="500px">Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial</td>
-            <td width="200px"><b>{% if r5001_rprest.vlrtotalnretadic or r5001_rprest.vlrtotalnretadic == 0 %}{{ r5001_rprest.vlrtotalnretadic|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rprest.vlrtotalnretadic or r5001_rprest.vlrtotalnretadic == 0 %}{{ r5001_rprest.vlrtotalnretadic }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -780,7 +780,7 @@
         <tr {% if r5001_rrecrepad.vlrtotalrep|validacoes_esocial_efdreinf:"r5001_rrecrepad.vlrtotalrep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrTotalRep</td>
             <td width="500px">Valor bruto dos recursos repassados. Origem: R- 2040.</td>
-            <td width="200px"><b>{% if r5001_rrecrepad.vlrtotalrep or r5001_rrecrepad.vlrtotalrep == 0 %}{{ r5001_rrecrepad.vlrtotalrep|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rrecrepad.vlrtotalrep or r5001_rrecrepad.vlrtotalrep == 0 %}{{ r5001_rrecrepad.vlrtotalrep }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -798,8 +798,8 @@
 
         <tr {% if r5001_rrecrepad.crrecrepad|validacoes_esocial_efdreinf:"r5001_rrecrepad.crrecrepad" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">CRRecRepAD</td>
-            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Deve ser maior que 0 (zero). Valores Válidos: 1151-02</td>
-            <td width="200px"><b>{% if r5001_rrecrepad.crrecrepad or r5001_rrecrepad.crrecrepad == 0 %}{{ r5001_rrecrepad.crrecrepad|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre recursos repassados a Associação Desportiva que mantenha equipe de futebol profissional, calculada segundo as regras estabelecidas na legislação em vigor. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Deve ser maior que 0 (zero). <valores_validos> 1151-02</td>
+            <td width="200px"><b>{% if r5001_rrecrepad.crrecrepad or r5001_rrecrepad.crrecrepad == 0 %}{{ r5001_rrecrepad.crrecrepad }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -817,8 +817,8 @@
 
         <tr {% if r5001_rrecrepad.vlrcrrecrepad|validacoes_esocial_efdreinf:"r5001_rrecrepad.vlrcrrecrepad" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCRRecRepAD</td>
-            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.</td>
-            <td width="200px"><b>{% if r5001_rrecrepad.vlrcrrecrepad or r5001_rrecrepad.vlrcrrecrepad == 0 %}{{ r5001_rrecrepad.vlrcrrecrepad|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040 <validacao> Deve ser apurado de acordo com a legislação em vigor na competência.</td>
+            <td width="200px"><b>{% if r5001_rrecrepad.vlrcrrecrepad or r5001_rrecrepad.vlrcrrecrepad == 0 %}{{ r5001_rrecrepad.vlrcrrecrepad }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -837,7 +837,7 @@
         <tr {% if r5001_rrecrepad.vlrcrrecrepadsusp|validacoes_esocial_efdreinf:"r5001_rrecrepad.vlrcrrecrepadsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCRRecRepADSusp</td>
             <td width="500px">Valor da retenção da contribuição previdenciária que deixou de ser efetuada ou que foi depositada em juízo em decorência de decisão judicial/administrativa, correspondente ao Código de Receita - CR informado em {CRRecRepAD}. Origem: R-2040</td>
-            <td width="200px"><b>{% if r5001_rrecrepad.vlrcrrecrepadsusp or r5001_rrecrepad.vlrcrrecrepadsusp == 0 %}{{ r5001_rrecrepad.vlrcrrecrepadsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rrecrepad.vlrcrrecrepadsusp or r5001_rrecrepad.vlrcrrecrepadsusp == 0 %}{{ r5001_rrecrepad.vlrcrrecrepadsusp }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -861,8 +861,8 @@
     {% ifequal r5001_rcoml.r5001_infototal.id r5001_infototal.id %}
         <tr {% if r5001_rcoml.crcoml|validacoes_esocial_efdreinf:"r5001_rcoml.crcoml" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">CRComl</td>
-            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos, observando o que segue: a) 1657-01 se {classTrib} = [7] b) 1657-02 se {classTrib} <> [7], c) 1646-05 se {classTrib} = [7], d) 1646-06 se {classTrib} <> [7], e) 1213-02 se {classTrib} = [7], f) 1213-04 se {classTrib} <> [7]. Valores Válidos: 1657-01, 1657-02, 1646-05, 1646-06, 1213-02, 1213-04.</td>
-            <td width="200px"><b>{% if r5001_rcoml.crcoml or r5001_rcoml.crcoml == 0 %}{{ r5001_rcoml.crcoml|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Comercialização de Produção, calculada segundo as regras estabelecidas na legislação em vigor. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos, observando o que segue: a) 1657-01 se {classTrib} = [7] b) 1657-02 se {classTrib} <> [7], c) 1646-05 se {classTrib} = [7], d) 1646-06 se {classTrib} <> [7], e) 1213-02 se {classTrib} = [7], f) 1213-04 se {classTrib} <> [7]. <valores_validos> 1657-01, 1657-02, 1646-05, 1646-06, 1213-02, 1213-04.</td>
+            <td width="200px"><b>{% if r5001_rcoml.crcoml or r5001_rcoml.crcoml == 0 %}{{ r5001_rcoml.crcoml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -880,8 +880,8 @@
 
         <tr {% if r5001_rcoml.vlrcrcoml|validacoes_esocial_efdreinf:"r5001_rcoml.vlrcrcoml" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCRComl</td>
-            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.</td>
-            <td width="200px"><b>{% if r5001_rcoml.vlrcrcoml or r5001_rcoml.vlrcrcoml == 0 %}{{ r5001_rcoml.vlrcrcoml|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050 <validacao> Deve ser apurado de acordo com a legislação em vigor na competência.</td>
+            <td width="200px"><b>{% if r5001_rcoml.vlrcrcoml or r5001_rcoml.vlrcrcoml == 0 %}{{ r5001_rcoml.vlrcrcoml }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -900,7 +900,7 @@
         <tr {% if r5001_rcoml.vlrcrcomlsusp|validacoes_esocial_efdreinf:"r5001_rcoml.vlrcrcomlsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCRComlSusp</td>
             <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRComl}. Origem: R-2050</td>
-            <td width="200px"><b>{% if r5001_rcoml.vlrcrcomlsusp or r5001_rcoml.vlrcrcomlsusp == 0 %}{{ r5001_rcoml.vlrcrcomlsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rcoml.vlrcrcomlsusp or r5001_rcoml.vlrcrcomlsusp == 0 %}{{ r5001_rcoml.vlrcrcomlsusp }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -924,8 +924,8 @@
     {% ifequal r5001_rcprb.r5001_infototal.id r5001_infototal.id %}
         <tr {% if r5001_rcprb.crcprb|validacoes_esocial_efdreinf:"r5001_rcprb.crcprb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">CRCPRB</td>
-            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Valores Válidos: 2991-01, 2985-01, 2985-04, 2985-06 (sem os hífens).</td>
-            <td width="200px"><b>{% if r5001_rcprb.crcprb or r5001_rcprb.crcprb == 0 %}{{ r5001_rcprb.crcprb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos. <valores_validos> 2991-01, 2985-01, 2985-04, 2985-06 (sem os hífens).</td>
+            <td width="200px"><b>{% if r5001_rcprb.crcprb or r5001_rcprb.crcprb == 0 %}{{ r5001_rcprb.crcprb }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -944,7 +944,7 @@
         <tr {% if r5001_rcprb.vlrcrcprb|validacoes_esocial_efdreinf:"r5001_rcprb.vlrcrcprb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCRCPRB</td>
             <td width="500px">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.</td>
-            <td width="200px"><b>{% if r5001_rcprb.vlrcrcprb or r5001_rcprb.vlrcrcprb == 0 %}{{ r5001_rcprb.vlrcrcprb|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rcprb.vlrcrcprb or r5001_rcprb.vlrcrcprb == 0 %}{{ r5001_rcprb.vlrcrcprb }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -963,7 +963,7 @@
         <tr {% if r5001_rcprb.vlrcrcprbsusp|validacoes_esocial_efdreinf:"r5001_rcprb.vlrcrcprbsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCRCPRBSusp</td>
             <td width="500px">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060</td>
-            <td width="200px"><b>{% if r5001_rcprb.vlrcrcprbsusp or r5001_rcprb.vlrcrcprbsusp == 0 %}{{ r5001_rcprb.vlrcrcprbsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rcprb.vlrcrcprbsusp or r5001_rcprb.vlrcrcprbsusp == 0 %}{{ r5001_rcprb.vlrcrcprbsusp }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -987,8 +987,8 @@
     {% ifequal r5001_rrecespetdesp.r5001_infototal.id r5001_infototal.id %}
         <tr {% if r5001_rrecespetdesp.crrecespetdesp|validacoes_esocial_efdreinf:"r5001_rrecespetdesp.crrecespetdesp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">CRRecEspetDesp</td>
-            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Valores Válidos: 1151-01</td>
-            <td width="200px"><b>{% if r5001_rrecespetdesp.crrecespetdesp or r5001_rrecespetdesp.crrecespetdesp == 0 %}{{ r5001_rrecespetdesp.crrecespetdesp|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor. <validacao> Deve ser um código válido, compatível com as informações prestadas nos demais eventos. <valores_validos> 1151-01</td>
+            <td width="200px"><b>{% if r5001_rrecespetdesp.crrecespetdesp or r5001_rrecespetdesp.crrecespetdesp == 0 %}{{ r5001_rrecespetdesp.crrecespetdesp }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1007,7 +1007,7 @@
         <tr {% if r5001_rrecespetdesp.vlrreceitatotal|validacoes_esocial_efdreinf:"r5001_rrecespetdesp.vlrreceitatotal" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrReceitaTotal</td>
             <td width="500px">Valor da receita bruta total auferida em espetáculos desportivos. Origem: R-3010 - somatório dos valores informados no campo {vlrReceitaTotal}.</td>
-            <td width="200px"><b>{% if r5001_rrecespetdesp.vlrreceitatotal or r5001_rrecespetdesp.vlrreceitatotal == 0 %}{{ r5001_rrecespetdesp.vlrreceitatotal|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rrecespetdesp.vlrreceitatotal or r5001_rrecespetdesp.vlrreceitatotal == 0 %}{{ r5001_rrecespetdesp.vlrreceitatotal }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1025,8 +1025,8 @@
 
         <tr {% if r5001_rrecespetdesp.vlrcrrecespetdesp|validacoes_esocial_efdreinf:"r5001_rrecespetdesp.vlrcrrecespetdesp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCRRecEspetDesp</td>
-            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010 Validação: Deve ser igual ao somatório dos valores informados no campo {vlrReceitaTotal} multiplicado por 5%.</td>
-            <td width="200px"><b>{% if r5001_rrecespetdesp.vlrcrrecespetdesp or r5001_rrecespetdesp.vlrcrrecespetdesp == 0 %}{{ r5001_rrecespetdesp.vlrcrrecespetdesp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem: R-3010 <validacao> Deve ser igual ao somatório dos valores informados no campo {vlrReceitaTotal} multiplicado por 5%.</td>
+            <td width="200px"><b>{% if r5001_rrecespetdesp.vlrcrrecespetdesp or r5001_rrecespetdesp.vlrcrrecespetdesp == 0 %}{{ r5001_rrecespetdesp.vlrcrrecespetdesp }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1045,7 +1045,7 @@
         <tr {% if r5001_rrecespetdesp.vlrcrrecespetdespsusp|validacoes_esocial_efdreinf:"r5001_rrecespetdesp.vlrcrrecespetdespsusp" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrCRRecEspetDespSusp</td>
             <td width="500px">Valor da contribuição previdenciária com exigibilidade suspensa correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem: R-3010</td>
-            <td width="200px"><b>{% if r5001_rrecespetdesp.vlrcrrecespetdespsusp or r5001_rrecespetdesp.vlrcrrecespetdespsusp == 0 %}{{ r5001_rrecespetdesp.vlrcrrecespetdespsusp|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if r5001_rrecespetdesp.vlrcrrecespetdespsusp or r5001_rrecespetdesp.vlrcrrecespetdespsusp == 0 %}{{ r5001_rrecespetdesp.vlrcrrecespetdespsusp }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>

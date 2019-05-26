@@ -1,0 +1,142 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9012_totapursem__r9012_infototalcontrib -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_r9012_infototalcontrib').change(function(){
+       document.getElementById("r9012_totapursem__r9012_infototalcontrib__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="r9012_totapursem__r9012_infototalcontrib__div">
+  <div class="form-group">
+    <label id="r9012_totapursem__r9012_infototalcontrib__label">Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal*</label>
+    {% if not for_print %}
+      {% if r9012_totapursem_form.r9012_infototalcontrib.value %}
+        <a id="r9012_totapursem__r9012_infototalcontrib__div_acessar" href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_id:r9012_totapursem_form.r9012_infototalcontrib.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if r9012_totapursem_form.r9012_infototalcontrib.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r9012_totapursem_form.r9012_infototalcontrib.errors }}
+      </div>
+    {% endif %}
+    {% if r9012_totapursem_form.r9012_infototalcontrib.field.widget.attrs.readonly %}
+      {% if r9012_totapursem_form.r9012_infototalcontrib.field.widget.attrs.disabled %}
+        {{ r9012_totapursem_form.r9012_infototalcontrib|addcss:'form-control' }}
+        <input id="id_r9012_infototalcontrib" name="r9012_infototalcontrib" type="hidden" value="{% if r9012_totapursem_form.r9012_infototalcontrib.value or r9012_totapursem_form.r9012_infototalcontrib.value == 0 %}{{ r9012_totapursem_form.r9012_infototalcontrib.value|valor }}{% endif %}">
+      {% else %}
+        {{ r9012_totapursem_form.r9012_infototalcontrib|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r9012_totapursem_form.r9012_infototalcontrib|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r9012_totapursem__r9012_infototalcontrib -->
+<!-- inicio__r9012_totapursem__perapursem -->
+<div class="col-md-6" id="r9012_totapursem__perapursem__div">
+  <div class="form-group">
+    <label id="r9012_totapursem__perapursem__label">Período de apuração semanal do Código de Receita - CR*</label>
+      {% if r9012_totapursem_form.perapursem.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_totapursem_form.perapursem.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_totapursem_form.perapursem|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__perapursem -->
+<!-- inicio__r9012_totapursem__crsem -->
+<div class="col-md-6" id="r9012_totapursem__crsem__div">
+  <div class="form-group">
+    <label id="r9012_totapursem__crsem__label">Código de Receita - CR relativo a tributo que possui período de apuração semanal*</label>
+      {% if r9012_totapursem_form.crsem.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_totapursem_form.crsem.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_totapursem_form.crsem|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__crsem -->
+<!-- inicio__r9012_totapursem__vlrbasecrsem -->
+<div class="col-md-6" id="r9012_totapursem__vlrbasecrsem__div">
+  <div class="form-group">
+    <label id="r9012_totapursem__vlrbasecrsem__label">Valor da base do tributo com período de apuração semanal*</label>
+    {% if r9012_totapursem_form.vlrbasecrsem.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapursem_form.vlrbasecrsem.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapursem_form.vlrbasecrsem|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__vlrbasecrsem -->
+<!-- inicio__r9012_totapursem__vlrcrsem -->
+<div class="col-md-6" id="r9012_totapursem__vlrcrsem__div">
+  <div class="form-group">
+    <label id="r9012_totapursem__vlrcrsem__label">Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor*</label>
+    {% if r9012_totapursem_form.vlrcrsem.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapursem_form.vlrcrsem.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapursem_form.vlrcrsem|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__vlrcrsem -->
+<!-- inicio__r9012_totapursem__vlrbasecrsemsusp -->
+<div class="col-md-6" id="r9012_totapursem__vlrbasecrsemsusp__div">
+  <div class="form-group">
+    <label id="r9012_totapursem__vlrbasecrsemsusp__label">Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa</label>
+    {% if r9012_totapursem_form.vlrbasecrsemsusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapursem_form.vlrbasecrsemsusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapursem_form.vlrbasecrsemsusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__vlrbasecrsemsusp -->
+<!-- inicio__r9012_totapursem__vlrcrsemsusp -->
+<div class="col-md-6" id="r9012_totapursem__vlrcrsemsusp__div">
+  <div class="form-group">
+    <label id="r9012_totapursem__vlrcrsemsusp__label">Valor do tributo com período de apuração semanal, que deixou de ser retido</label>
+    {% if r9012_totapursem_form.vlrcrsemsusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapursem_form.vlrcrsemsusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapursem_form.vlrcrsemsusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapursem__vlrcrsemsusp -->

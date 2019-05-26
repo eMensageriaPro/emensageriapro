@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações relativas à matrícula e categoria do trabalhador."
-{% if show_fields.show_s5003_infofgts or not s5003_infofgts_id and 1 %}"Informações relativas ao FGTS.";{% endif %}{% if show_fields.show_matricula or 0 %}"Matricula";{% endif %}{% if show_fields.show_codcateg or not esocial_trabalhadores_categorias_id and 1 %}"Código da Categoria";{% endif %}
-{% for a in s5003_infotrabdps_lista %}{% if show_fields.show_s5003_infofgts or  not s5003_infofgts_id and 1 %}"{{ a.s5003_infofgts }}";{% endif %}{% if show_fields.show_matricula or 0 %}"{{ a.matricula }}";{% endif %}{% if show_fields.show_codcateg or  not esocial_trabalhadores_categorias_id and 1 %}"{{ a.codcateg }}";{% endif %}
-{% endfor %}

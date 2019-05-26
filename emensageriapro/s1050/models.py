@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s1050.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,89 +45,41 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S1050_ALTERACAO_PERHORFLEXIVEL = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
 
-CHOICES_S1050_ALTERACAO_TPINTERV = (
-    (1, u'1 - Intervalo em Horário Fixo'),
-    (2, u'2 - Intervalo em Horário Variável'),
-)
-
-CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1050_INCLUSAO_TPINTERV = (
-    (1, u'1 - Intervalo em Horário Fixo'),
-    (2, u'2 - Intervalo em Horário Variável'),
-)
-
-PERIODOS = (
-    ('2017-01', u'Janeiro/2017'),
-    ('2017-02', u'Fevereiro/2017'),
-    ('2017-03', u'Março/2017'),
-    ('2017-04', u'Abril/2017'),
-    ('2017-05', u'Maio/2017'),
-    ('2017-06', u'Junho/2017'),
-    ('2017-07', u'Julho/2017'),
-    ('2017-08', u'Agosto/2017'),
-    ('2017-09', u'Setembro/2017'),
-    ('2017-10', u'Outubro/2017'),
-    ('2017-11', u'Novembro/2017'),
-    ('2017-12', u'Dezembro/2017'),
-    ('2018-01', u'Janeiro/2018'),
-    ('2018-02', u'Fevereiro/2018'),
-    ('2018-03', u'Março/2018'),
-    ('2018-04', u'Abril/2018'),
-    ('2018-05', u'Maio/2018'),
-    ('2018-06', u'Junho/2018'),
-    ('2018-07', u'Julho/2018'),
-    ('2018-08', u'Agosto/2018'),
-    ('2018-09', u'Setembro/2018'),
-    ('2018-10', u'Outubro/2018'),
-    ('2018-11', u'Novembro/2018'),
-    ('2018-12', u'Dezembro/2018'),
-    ('2019-01', u'Janeiro/2019'),
-    ('2019-02', u'Fevereiro/2019'),
-    ('2019-03', u'Março/2019'),
-    ('2019-04', u'Abril/2019'),
-    ('2019-05', u'Maio/2019'),
-    ('2019-06', u'Junho/2019'),
-    ('2019-07', u'Julho/2019'),
-    ('2019-08', u'Agosto/2019'),
-    ('2019-09', u'Setembro/2019'),
-    ('2019-10', u'Outubro/2019'),
-    ('2019-11', u'Novembro/2019'),
-    ('2019-12', u'Dezembro/2019'),
-)
 
 class s1050alteracao(SoftDeletionModel):
-    s1050_evttabhortur = models.OneToOneField('esocial.s1050evtTabHorTur',
-        related_name='%(class)s_s1050_evttabhortur')
-    def evento(self): return self.s1050_evttabhortur.evento()
-    codhorcontrat = models.CharField(max_length=30)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    hrentr = models.CharField(max_length=4)
-    hrsaida = models.CharField(max_length=4)
-    durjornada = models.IntegerField()
-    perhorflexivel = models.CharField(choices=CHOICES_S1050_ALTERACAO_PERHORFLEXIVEL, max_length=1)
+
+    s1050_evttabhortur = models.ForeignKey('esocial.s1050evtTabHorTur', 
+        related_name='%(class)s_s1050_evttabhortur', )
+    
+    def evento(self): 
+        return self.s1050_evttabhortur.evento()
+    codhorcontrat = models.CharField(max_length=30, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    hrentr = models.CharField(max_length=4, null=True, )
+    hrsaida = models.CharField(max_length=4, null=True, )
+    durjornada = models.IntegerField(null=True, )
+    perhorflexivel = models.CharField(choices=CHOICES_S1050_PERHORFLEXIVEL_ALTERACAO, max_length=1, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -123,51 +87,76 @@ class s1050alteracao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1050_evttabhortur) + ' - ' + unicode(self.codhorcontrat) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.hrentr) + ' - ' + unicode(self.hrsaida) + ' - ' + unicode(self.durjornada) + ' - ' + unicode(self.perhorflexivel)
-    #s1050_alteracao_custom#
-
+        
+        lista = [
+            unicode(self.s1050_evttabhortur),
+            unicode(self.codhorcontrat),
+            unicode(self.inivalid),
+            unicode(self.hrentr),
+            unicode(self.hrsaida),
+            unicode(self.durjornada),
+            unicode(self.perhorflexivel),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Alteração das informações'
         db_table = r's1050_alteracao'       
         managed = True # s1050_alteracao #
-        unique_together = (
-            #custom_unique_together_s1050_alteracao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1050_alteracao
-            #index_together_s1050_alteracao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1050_alteracao", "Can view s1050_alteracao"),
-            #custom_permissions_s1050_alteracao
-        )
-        ordering = ['s1050_evttabhortur', 'codhorcontrat', 'inivalid', 'hrentr', 'hrsaida', 'durjornada', 'perhorflexivel']
+            ("can_view_s1050_alteracao", "Can view s1050_alteracao"), )
+            
+        ordering = [
+            's1050_evttabhortur',
+            'codhorcontrat',
+            'inivalid',
+            'hrentr',
+            'hrsaida',
+            'durjornada',
+            'perhorflexivel',]
 
 
 
 class s1050alteracaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1050alteracao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1050alteracaohorarioIntervalo(SoftDeletionModel):
-    s1050_alteracao = models.ForeignKey('s1050alteracao',
-        related_name='%(class)s_s1050_alteracao')
-    def evento(self): return self.s1050_alteracao.evento()
-    tpinterv = models.IntegerField(choices=CHOICES_S1050_ALTERACAO_TPINTERV)
-    durinterv = models.IntegerField()
-    iniinterv = models.CharField(max_length=4, blank=True, null=True)
-    terminterv = models.CharField(max_length=4, blank=True, null=True)
+
+    s1050_alteracao = models.ForeignKey('s1050.s1050alteracao', 
+        related_name='%(class)s_s1050_alteracao', )
+    
+    def evento(self): 
+        return self.s1050_alteracao.evento()
+    tpinterv = models.IntegerField(choices=CHOICES_S1050_TPINTERV_ALTERACAO, null=True, )
+    durinterv = models.IntegerField(null=True, )
+    iniinterv = models.CharField(max_length=4, blank=True, null=True, )
+    terminterv = models.CharField(max_length=4, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -175,49 +164,66 @@ class s1050alteracaohorarioIntervalo(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1050_alteracao) + ' - ' + unicode(self.tpinterv) + ' - ' + unicode(self.durinterv)
-    #s1050_alteracao_horariointervalo_custom#
-
+        
+        lista = [
+            unicode(self.s1050_alteracao),
+            unicode(self.tpinterv),
+            unicode(self.durinterv),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.'
         db_table = r's1050_alteracao_horariointervalo'       
         managed = True # s1050_alteracao_horariointervalo #
-        unique_together = (
-            #custom_unique_together_s1050_alteracao_horariointervalo#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1050_alteracao_horariointervalo
-            #index_together_s1050_alteracao_horariointervalo
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1050_alteracao_horariointervalo", "Can view s1050_alteracao_horariointervalo"),
-            #custom_permissions_s1050_alteracao_horariointervalo
-        )
-        ordering = ['s1050_alteracao', 'tpinterv', 'durinterv']
+            ("can_view_s1050_alteracao_horariointervalo", "Can view s1050_alteracao_horariointervalo"), )
+            
+        ordering = [
+            's1050_alteracao',
+            'tpinterv',
+            'durinterv',]
 
 
 
 class s1050alteracaohorarioIntervaloSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1050alteracaohorarioIntervalo
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1050alteracaonovaValidade(SoftDeletionModel):
-    s1050_alteracao = models.OneToOneField('s1050alteracao',
-        related_name='%(class)s_s1050_alteracao')
-    def evento(self): return self.s1050_alteracao.evento()
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+
+    s1050_alteracao = models.ForeignKey('s1050.s1050alteracao', 
+        related_name='%(class)s_s1050_alteracao', )
+    
+    def evento(self): 
+        return self.s1050_alteracao.evento()
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -225,50 +231,65 @@ class s1050alteracaonovaValidade(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1050_alteracao) + ' - ' + unicode(self.inivalid)
-    #s1050_alteracao_novavalidade_custom#
-
+        
+        lista = [
+            unicode(self.s1050_alteracao),
+            unicode(self.inivalid),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1050_alteracao_novavalidade'       
         managed = True # s1050_alteracao_novavalidade #
-        unique_together = (
-            #custom_unique_together_s1050_alteracao_novavalidade#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1050_alteracao_novavalidade
-            #index_together_s1050_alteracao_novavalidade
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1050_alteracao_novavalidade", "Can view s1050_alteracao_novavalidade"),
-            #custom_permissions_s1050_alteracao_novavalidade
-        )
-        ordering = ['s1050_alteracao', 'inivalid']
+            ("can_view_s1050_alteracao_novavalidade", "Can view s1050_alteracao_novavalidade"), )
+            
+        ordering = [
+            's1050_alteracao',
+            'inivalid',]
 
 
 
 class s1050alteracaonovaValidadeSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1050alteracaonovaValidade
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1050exclusao(SoftDeletionModel):
-    s1050_evttabhortur = models.OneToOneField('esocial.s1050evtTabHorTur',
-        related_name='%(class)s_s1050_evttabhortur')
-    def evento(self): return self.s1050_evttabhortur.evento()
-    codhorcontrat = models.CharField(max_length=30)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+
+    s1050_evttabhortur = models.ForeignKey('esocial.s1050evtTabHorTur', 
+        related_name='%(class)s_s1050_evttabhortur', )
+    
+    def evento(self): 
+        return self.s1050_evttabhortur.evento()
+    codhorcontrat = models.CharField(max_length=30, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -276,54 +297,71 @@ class s1050exclusao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1050_evttabhortur) + ' - ' + unicode(self.codhorcontrat) + ' - ' + unicode(self.inivalid)
-    #s1050_exclusao_custom#
-
+        
+        lista = [
+            unicode(self.s1050_evttabhortur),
+            unicode(self.codhorcontrat),
+            unicode(self.inivalid),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Exclusão das informações'
         db_table = r's1050_exclusao'       
         managed = True # s1050_exclusao #
-        unique_together = (
-            #custom_unique_together_s1050_exclusao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1050_exclusao
-            #index_together_s1050_exclusao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1050_exclusao", "Can view s1050_exclusao"),
-            #custom_permissions_s1050_exclusao
-        )
-        ordering = ['s1050_evttabhortur', 'codhorcontrat', 'inivalid']
+            ("can_view_s1050_exclusao", "Can view s1050_exclusao"), )
+            
+        ordering = [
+            's1050_evttabhortur',
+            'codhorcontrat',
+            'inivalid',]
 
 
 
 class s1050exclusaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1050exclusao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1050inclusao(SoftDeletionModel):
-    s1050_evttabhortur = models.OneToOneField('esocial.s1050evtTabHorTur',
-        related_name='%(class)s_s1050_evttabhortur')
-    def evento(self): return self.s1050_evttabhortur.evento()
-    codhorcontrat = models.CharField(max_length=30)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    hrentr = models.CharField(max_length=4)
-    hrsaida = models.CharField(max_length=4)
-    durjornada = models.IntegerField()
-    perhorflexivel = models.CharField(choices=CHOICES_S1050_INCLUSAO_PERHORFLEXIVEL, max_length=1)
+
+    s1050_evttabhortur = models.ForeignKey('esocial.s1050evtTabHorTur', 
+        related_name='%(class)s_s1050_evttabhortur', )
+    
+    def evento(self): 
+        return self.s1050_evttabhortur.evento()
+    codhorcontrat = models.CharField(max_length=30, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    hrentr = models.CharField(max_length=4, null=True, )
+    hrsaida = models.CharField(max_length=4, null=True, )
+    durjornada = models.IntegerField(null=True, )
+    perhorflexivel = models.CharField(choices=CHOICES_S1050_PERHORFLEXIVEL_INCLUSAO, max_length=1, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -331,51 +369,76 @@ class s1050inclusao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1050_evttabhortur) + ' - ' + unicode(self.codhorcontrat) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.hrentr) + ' - ' + unicode(self.hrsaida) + ' - ' + unicode(self.durjornada) + ' - ' + unicode(self.perhorflexivel)
-    #s1050_inclusao_custom#
-
+        
+        lista = [
+            unicode(self.s1050_evttabhortur),
+            unicode(self.codhorcontrat),
+            unicode(self.inivalid),
+            unicode(self.hrentr),
+            unicode(self.hrsaida),
+            unicode(self.durjornada),
+            unicode(self.perhorflexivel),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Inclusão de novas informações'
         db_table = r's1050_inclusao'       
         managed = True # s1050_inclusao #
-        unique_together = (
-            #custom_unique_together_s1050_inclusao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1050_inclusao
-            #index_together_s1050_inclusao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1050_inclusao", "Can view s1050_inclusao"),
-            #custom_permissions_s1050_inclusao
-        )
-        ordering = ['s1050_evttabhortur', 'codhorcontrat', 'inivalid', 'hrentr', 'hrsaida', 'durjornada', 'perhorflexivel']
+            ("can_view_s1050_inclusao", "Can view s1050_inclusao"), )
+            
+        ordering = [
+            's1050_evttabhortur',
+            'codhorcontrat',
+            'inivalid',
+            'hrentr',
+            'hrsaida',
+            'durjornada',
+            'perhorflexivel',]
 
 
 
 class s1050inclusaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1050inclusao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1050inclusaohorarioIntervalo(SoftDeletionModel):
-    s1050_inclusao = models.ForeignKey('s1050inclusao',
-        related_name='%(class)s_s1050_inclusao')
-    def evento(self): return self.s1050_inclusao.evento()
-    tpinterv = models.IntegerField(choices=CHOICES_S1050_INCLUSAO_TPINTERV)
-    durinterv = models.IntegerField()
-    iniinterv = models.CharField(max_length=4, blank=True, null=True)
-    terminterv = models.CharField(max_length=4, blank=True, null=True)
+
+    s1050_inclusao = models.ForeignKey('s1050.s1050inclusao', 
+        related_name='%(class)s_s1050_inclusao', )
+    
+    def evento(self): 
+        return self.s1050_inclusao.evento()
+    tpinterv = models.IntegerField(choices=CHOICES_S1050_TPINTERV_INCLUSAO, null=True, )
+    durinterv = models.IntegerField(null=True, )
+    iniinterv = models.CharField(max_length=4, blank=True, null=True, )
+    terminterv = models.CharField(max_length=4, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -383,41 +446,51 @@ class s1050inclusaohorarioIntervalo(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1050_inclusao) + ' - ' + unicode(self.tpinterv) + ' - ' + unicode(self.durinterv)
-    #s1050_inclusao_horariointervalo_custom#
-
+        
+        lista = [
+            unicode(self.s1050_inclusao),
+            unicode(self.tpinterv),
+            unicode(self.durinterv),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo.'
         db_table = r's1050_inclusao_horariointervalo'       
         managed = True # s1050_inclusao_horariointervalo #
-        unique_together = (
-            #custom_unique_together_s1050_inclusao_horariointervalo#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1050_inclusao_horariointervalo
-            #index_together_s1050_inclusao_horariointervalo
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1050_inclusao_horariointervalo", "Can view s1050_inclusao_horariointervalo"),
-            #custom_permissions_s1050_inclusao_horariointervalo
-        )
-        ordering = ['s1050_inclusao', 'tpinterv', 'durinterv']
+            ("can_view_s1050_inclusao_horariointervalo", "Can view s1050_inclusao_horariointervalo"), )
+            
+        ordering = [
+            's1050_inclusao',
+            'tpinterv',
+            'durinterv',]
 
 
 
 class s1050inclusaohorarioIntervaloSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1050inclusaohorarioIntervalo
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

@@ -1,0 +1,841 @@
+<!--
+
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->{% extends 'base.html' %}
+{% load templatetags %}
+{% block content %}
+
+<section class="content-header">
+    <h1>
+        r9002infoTotal
+        <small>Cadastrar/Editar</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">r9002infoTotal</a></li>
+        <li class="active">Cadastrar/Editar</li>
+    </ol>
+</section>
+
+{% if not for_print %}
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if dict_permissoes|get_permissao:'r9002_infototal_visualizar' %}
+                    <li {% if not tab %}class="active"{% endif %} >
+                            <a href="{% url 'r9002_infototal_salvar' hash='{}'|json_return_page:'r9002_infototal_salvar'|json_return_hash:hash|json_id:r9002_infototal_id|json_print:0|base64_encode_me %}">
+                            Informações relativas a totalizadores de bases e tributos
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if r9002_infototal_id %}
+                        
+                            {% if dict_permissoes|get_permissao:'r9002_totapurmen_visualizar' %}
+                                <li {% if tab == 'r9002_totapurmen' %} class="active"{% endif %} >
+                                    <a href="{% url 'r9002_infototal_salvar' hash='{}'|json_id:r9002_infototal_id|json_print:0|json_tab:'r9002_totapurmen'|base64_encode_me %}">
+                                    Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'r9002_totapurqui_visualizar' %}
+                                <li {% if tab == 'r9002_totapurqui' %} class="active"{% endif %} >
+                                    <a href="{% url 'r9002_infototal_salvar' hash='{}'|json_id:r9002_infototal_id|json_print:0|json_tab:'r9002_totapurqui'|base64_encode_me %}">
+                                    Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'r9002_totapurdec_visualizar' %}
+                                <li {% if tab == 'r9002_totapurdec' %} class="active"{% endif %} >
+                                    <a href="{% url 'r9002_infototal_salvar' hash='{}'|json_id:r9002_infototal_id|json_print:0|json_tab:'r9002_totapurdec'|base64_encode_me %}">
+                                    Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'r9002_totapursem_visualizar' %}
+                                <li {% if tab == 'r9002_totapursem' %} class="active"{% endif %} >
+                                    <a href="{% url 'r9002_infototal_salvar' hash='{}'|json_id:r9002_infototal_id|json_print:0|json_tab:'r9002_totapursem'|base64_encode_me %}">
+                                    Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'r9002_totapurdia_visualizar' %}
+                                <li {% if tab == 'r9002_totapurdia' %} class="active"{% endif %} >
+                                    <a href="{% url 'r9002_infototal_salvar' hash='{}'|json_id:r9002_infototal_id|json_print:0|json_tab:'r9002_totapurdia'|base64_encode_me %}">
+                                    Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário</a>
+                                </li>
+                            {% endif %}
+                        
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+
+<section class="invoice">
+
+{% endif %}
+  
+                  
+{% if not for_print %}
+
+    {% if messages %}
+
+    <div class="row">
+        <div class="pad margin no-print">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endif %}
+
+      
+    {% if r9002_infototal_form.errors %}
+
+    <div class="row">
+        <div class="pad margin no-print">
+            {% for error in r9002_infototal_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endif %}
+   
+{% endif %}
+
+
+
+
+
+   {% if r9002_infototal_id %}
+   {% if r9002_infototal.evento.ocorrencias %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-red">
+            <div class="inner">
+               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+               <p>{% autoescape off %}{{ r9002_infototal.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% if r9002_infototal.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r9002_infototal.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
+   {% if not r9002_infototal.evento.validacao_precedencia %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-yellow">
+            <div class="inner">
+               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% if r9002_infototal.evento.validacoes %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-red">
+            <div class="inner">
+               <strong>Erros de validação:</strong><br>
+               <p>{% autoescape off %}{{ r9002_infototal.evento.validacoes }}{% endautoescape %}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% endif %}
+   {% endif %} 
+
+
+{% if not tab %}
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+        {% if not for_print %}
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Informações relativas a totalizadores de bases e tributos</h3>
+                </div>
+
+        {% else %}
+
+            <div class="row">
+
+        {% endif %}
+
+
+        {% if not for_print %}
+            {% if dict_permissoes|get_permissao:'r9002_infototal_editar' or dict_permissoes|get_permissao:'r9002_infototal_cadastrar' %}
+                <form action="#" id="id_form_r9002_infototal" method="POST" content="text/html; charset=UTF-8">
+                {% csrf_token %}
+            {% endif %}
+        {% endif %}
+
+                <div class="box-body">
+                    <div class="row">
+                        {% include 'forms/r9002_infototal.html' %}
+                    </div>
+                </div>
+
+
+                {% if not for_print %}
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <div class="box-footer text-left">
+                            <font color="red">* Campos Obrigatórios.
+                            </font>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <div class="box-footer text-right">
+                            <!-- botões especiais -->
+                            {% if r9002_infototal_id %}
+
+                                {% if dict_permissoes|get_permissao:'r9002_infototal_cadastrar' %}
+                                    <a href="{% url 'r9002_infototal_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                                        <span class="btn btn-info">
+                                            <i class="fa fa-plus-circle"></i>
+                                            &nbsp;Cadastrar
+                                        </span>
+                                    </a>
+
+                                {% endif %}
+
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'r9002_infototal_listar' or dict_permissoes|get_permissao:'r9002_infototal_listar' %}
+                                <a href="{% url 'r9002_infototal'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                                    <span class="btn btn-primary">
+                                        <i class="fa fa-list"></i>
+                                        &nbsp;Listagem
+                                    </span>
+                                </a>&nbsp;
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'r9002_infototal_visualizar' and r9002_infototal_id %}
+                                <a href="{% url 'r9002_infototal_salvar' hash='{}'|json_id:r9002_infototal_id|json_print:1|base64_encode_me %}" target="_blank">
+                                    <span class="btn btn-primary">
+                                        <i class="fa fa-print"></i>
+                                        &nbsp;Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            {% endif %}
+                            
+                            {% if dict_permissoes|get_permissao:'r9002_infototal_visualizar' and r9002_infototal_id %}
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fa fa-download"></i>
+                                        &nbsp;Exportar
+                                    </button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Exportar</span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 'r9002_infototal_salvar' hash='{}'|json_id:r9002_infototal_id|json_print:2|base64_encode_me %}"
+                                            target="_blank">
+                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
+                                                    <i class="fa fa-file-pdf-o"></i>
+                                                    &nbsp;PDF
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>&nbsp;
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'r9002_infototal_editar' or dict_permissoes|get_permissao:'r9002_infototal_cadastrar' %}
+                            
+                            <button type="submit" class="btn btn-primary" >
+                                <i class="fa fa-save"></i>
+                                &nbsp;Salvar
+                            </button>&nbsp;
+
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'r9002_infototal_apagar' and r9002_infototal_id %}
+
+                            <a href="{% url 'r9002_infototal_apagar' hash='{}'|json_id:r9002_infototal_id|json_print:0|base64_encode_me %}">
+                                <span class="btn btn-danger">
+                                    <i class="fa fa-remove"></i> &nbsp;Apagar
+                                </span>
+                            </a>&nbsp;
+
+                            {% endif %}
+
+                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>
+                                &nbsp;Voltar
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if not for_print %}
+
+                    {% if dict_permissoes|get_permissao:'r9002_infototal_editar' or dict_permissoes|get_permissao:'r9002_infototal_cadastrar' %}
+                        </form>
+                    {% endif %}
+
+                {% endif %}
+
+
+            </div>    
+
+        <!-- TEXTO_ABAIXO_FORMULARIO -->
+
+        </div>
+    </div>
+
+    {% endif %}
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+
+    {% if r9002_infototal_id %}
+
+        
+            
+            <!-- begin_r9002_totapurmen -->
+
+            {% if tab == 'r9002_totapurmen' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'r9002_totapurmen_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'r9002_totapurmen_editar' or dict_permissoes|get_permissao:'r9002_totapurmen_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'r9002_totapurmen_editar' or dict_permissoes|get_permissao:'r9002_totapurmen_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'r9002_totapurmen_cadastrar' %}            
+                                    <!-- begin_form_r9002_totapurmen --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_r9002_totapurmen" action="{% url 'r9002_totapurmen_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/r9002_totapurmen.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_r9002_totapurmen -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_r9002_totapurmen --> 
+
+                                    {% include 'tables/r9002_totapurmen.html' %}
+                                        
+                                    <!-- end_table_r9002_totapurmen --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_r9002_totapurmen -->
+
+        
+            
+            <!-- begin_r9002_totapurqui -->
+
+            {% if tab == 'r9002_totapurqui' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'r9002_totapurqui_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'r9002_totapurqui_editar' or dict_permissoes|get_permissao:'r9002_totapurqui_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'r9002_totapurqui_editar' or dict_permissoes|get_permissao:'r9002_totapurqui_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'r9002_totapurqui_cadastrar' %}            
+                                    <!-- begin_form_r9002_totapurqui --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_r9002_totapurqui" action="{% url 'r9002_totapurqui_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/r9002_totapurqui.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_r9002_totapurqui -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_r9002_totapurqui --> 
+
+                                    {% include 'tables/r9002_totapurqui.html' %}
+                                        
+                                    <!-- end_table_r9002_totapurqui --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_r9002_totapurqui -->
+
+        
+            
+            <!-- begin_r9002_totapurdec -->
+
+            {% if tab == 'r9002_totapurdec' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'r9002_totapurdec_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'r9002_totapurdec_editar' or dict_permissoes|get_permissao:'r9002_totapurdec_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'r9002_totapurdec_editar' or dict_permissoes|get_permissao:'r9002_totapurdec_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'r9002_totapurdec_cadastrar' %}            
+                                    <!-- begin_form_r9002_totapurdec --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_r9002_totapurdec" action="{% url 'r9002_totapurdec_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/r9002_totapurdec.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_r9002_totapurdec -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_r9002_totapurdec --> 
+
+                                    {% include 'tables/r9002_totapurdec.html' %}
+                                        
+                                    <!-- end_table_r9002_totapurdec --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_r9002_totapurdec -->
+
+        
+            
+            <!-- begin_r9002_totapursem -->
+
+            {% if tab == 'r9002_totapursem' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'r9002_totapursem_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'r9002_totapursem_editar' or dict_permissoes|get_permissao:'r9002_totapursem_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'r9002_totapursem_editar' or dict_permissoes|get_permissao:'r9002_totapursem_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'r9002_totapursem_cadastrar' %}            
+                                    <!-- begin_form_r9002_totapursem --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_r9002_totapursem" action="{% url 'r9002_totapursem_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/r9002_totapursem.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_r9002_totapursem -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_r9002_totapursem --> 
+
+                                    {% include 'tables/r9002_totapursem.html' %}
+                                        
+                                    <!-- end_table_r9002_totapursem --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_r9002_totapursem -->
+
+        
+            
+            <!-- begin_r9002_totapurdia -->
+
+            {% if tab == 'r9002_totapurdia' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'r9002_totapurdia_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'r9002_totapurdia_editar' or dict_permissoes|get_permissao:'r9002_totapurdia_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'r9002_totapurdia_editar' or dict_permissoes|get_permissao:'r9002_totapurdia_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'r9002_totapurdia_cadastrar' %}            
+                                    <!-- begin_form_r9002_totapurdia --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_r9002_totapurdia" action="{% url 'r9002_totapurdia_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/r9002_totapurdia.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_r9002_totapurdia -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_r9002_totapurdia --> 
+
+                                    {% include 'tables/r9002_totapurdia.html' %}
+                                        
+                                    <!-- end_table_r9002_totapurdia --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_r9002_totapurdia -->
+
+        
+
+    {% endif %}
+
+</section>
+
+<!-- script -->
+<!--- javascript -->
+
+{% endblock content %}

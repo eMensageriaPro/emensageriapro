@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR"
-{% if show_fields.show_r1000_inclusao or not r1000_inclusao_id and 1 %}"Inclusão de novas informações";{% endif %}{% if show_fields.show_ideefr or 1 %}"Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR";{% endif %}{% if show_fields.show_cnpjefr or 0 %}"CNPJ do Ente Federativo Responsável - EFR";{% endif %}
-{% for a in r1000_inclusao_infoefr_lista %}{% if show_fields.show_r1000_inclusao or  not r1000_inclusao_id and 1 %}"{{ a.r1000_inclusao }}";{% endif %}{% if show_fields.show_ideefr or 1 %}"{{ a.get_ideefr_display }}";{% endif %}{% if show_fields.show_cnpjefr or 0 %}"{{ a.cnpjefr }}";{% endif %}
-{% endfor %}

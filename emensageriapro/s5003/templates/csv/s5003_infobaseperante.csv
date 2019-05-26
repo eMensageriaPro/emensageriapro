@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5003_infobasefgts or 1 %}"Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E].";{% endif %}{% if show_fields.show_perref or 1 %}"Período de Referência";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5003_infobasefgts or 1 %}"{{ c.s5003_infobasefgts }}";{% endif %}{% if show_fields.show_perref or 1 %}"{{ c.perref }}";{% endif %}
+{% endfor %}

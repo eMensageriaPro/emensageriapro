@@ -1,1 +1,70 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s1005_inclusao_id or s1005_inclusao_id != s1005_inclusao_infopcd_form.s1005_inclusao.value %}<!-- inicio__s1005_inclusao_infopcd__s1005_inclusao --><div class="col-md-12" id="s1005_inclusao_infopcd__s1005_inclusao__div"><div class="form-group"><label id="s1005_inclusao_infopcd__s1005_inclusao__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s1005_inclusao_infopcd_form.s1005_inclusao.value %}<a href="{% url 's1005_inclusao_salvar' hash='{}'|json_return_page:'s1005_inclusao_infopcd_salvar'|json_return_hash:hash|json_id:s1005_inclusao_infopcd_form.s1005_inclusao.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s1005_inclusao_infopcd_form.s1005_inclusao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1005_inclusao_infopcd_form.s1005_inclusao.errors }}</div>{% endif %} {% if s1005_inclusao_infopcd_form.s1005_inclusao.field.widget.attrs.readonly %} {% if s1005_inclusao_infopcd_form.s1005_inclusao.field.widget.attrs.disabled %} {{ s1005_inclusao_infopcd_form.s1005_inclusao|addcss:'form-control' }}<input id="id_s1005_inclusao" name="s1005_inclusao" type="hidden" value="{{ s1005_inclusao_infopcd_form.s1005_inclusao.value }}">{% else %} {{ s1005_inclusao_infopcd_form.s1005_inclusao|addcss:'form-control' }} {% endif %} {% else %} {{ s1005_inclusao_infopcd_form.s1005_inclusao|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s1005_inclusao_infopcd__s1005_inclusao -->{% else %}<input type="hidden" value="{{ s1005_inclusao_id|valor }}" id="id_s1005_inclusao" name="s1005_inclusao">{% endif %}<!-- inicio__s1005_inclusao_infopcd__contpcd --><div class="col-md-6" id="s1005_inclusao_infopcd__contpcd__div"><div class="form-group"><label id="s1005_inclusao_infopcd__contpcd__label">Situação PCD*<a data-toggle="tooltip" title="Indicativo de contratação de PCD: 0 - Dispensado de acordo com a lei; 1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial; 2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministéri (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1005_inclusao_infopcd_form.contpcd.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1005_inclusao_infopcd_form.contpcd.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1005_inclusao_infopcd_form.contpcd.field.widget.attrs.readonly %} {% if s1005_inclusao_infopcd_form.contpcd.field.widget.attrs.disabled %} {{ s1005_inclusao_infopcd_form.contpcd|addcss:'form-control' }}<input id="id_contpcd" name="contpcd" type="hidden" value="{% if s1005_inclusao_infopcd_form.contpcd.value or s1005_inclusao_infopcd_form.contpcd.value == 0 %}{{ s1005_inclusao_infopcd_form.contpcd.value|valor }}{% endif %}">{% else %} {{ s1005_inclusao_infopcd_form.contpcd|addcss:'form-control' }} {% endif %} {% else %} {{ s1005_inclusao_infopcd_form.contpcd|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1005_inclusao_infopcd__contpcd --><!-- inicio__s1005_inclusao_infopcd__nrprocjud --><div class="col-md-6" id="s1005_inclusao_infopcd__nrprocjud__div"><div class="form-group"><label id="s1005_inclusao_infopcd__nrprocjud__label">Número do Processo Judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial. Validação: Informação obrigatória se {contPCD} = [1]. Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos - S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1005_inclusao_infopcd_form.nrprocjud.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1005_inclusao_infopcd_form.nrprocjud.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1005_inclusao_infopcd_form.nrprocjud|addcss:'form-control' }}</div></div></div><!-- fim__s1005_inclusao_infopcd__nrprocjud -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1005_inclusao_infopcd__s1005_inclusao -->
+<div class="col-md-12" id="s1005_inclusao_infopcd__s1005_inclusao__div">
+  <div class="form-group">
+    <label id="s1005_inclusao_infopcd__s1005_inclusao__label">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.*</label>
+    {% if not for_print %}{% if s1005_inclusao_infopcd_form.s1005_inclusao.value %}
+        <a href="{% url 's1005_inclusao_salvar' hash='{}'|json_return_page:'s1005_inclusao_infopcd_salvar'|json_return_hash:hash|json_id:s1005_inclusao_infopcd_form.s1005_inclusao.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s1005_inclusao_infopcd_form.s1005_inclusao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1005_inclusao_infopcd_form.s1005_inclusao.errors }}
+      </div>
+    {% endif %}
+    {% if s1005_inclusao_infopcd_form.s1005_inclusao.field.widget.attrs.readonly %}
+      {% if s1005_inclusao_infopcd_form.s1005_inclusao.field.widget.attrs.disabled %}
+        {{ s1005_inclusao_infopcd_form.s1005_inclusao|addcss:'form-control' }}
+        <input id="id_s1005_inclusao" name="s1005_inclusao" type="hidden" value="{{ s1005_inclusao_infopcd_form.s1005_inclusao.value }}">
+      {% else %}
+        {{ s1005_inclusao_infopcd_form.s1005_inclusao|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s1005_inclusao_infopcd_form.s1005_inclusao|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s1005_inclusao_infopcd__s1005_inclusao -->
+<!-- inicio__s1005_inclusao_infopcd__contpcd -->
+<div class="col-md-4" id="s1005_inclusao_infopcd__contpcd__div">
+  <div class="form-group">
+    <label id="s1005_inclusao_infopcd__contpcd__label">Situação PCD*</label>
+    {% if s1005_inclusao_infopcd_form.contpcd.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1005_inclusao_infopcd_form.contpcd.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1005_inclusao_infopcd_form.contpcd.field.widget.attrs.readonly %}
+        {% if s1005_inclusao_infopcd_form.contpcd.field.widget.attrs.disabled %}
+          {{ s1005_inclusao_infopcd_form.contpcd|addcss:'form-control' }}
+          <input id="id_contpcd" name="contpcd" type="hidden" value="{% if s1005_inclusao_infopcd_form.contpcd.value or s1005_inclusao_infopcd_form.contpcd.value == 0 %}{{ s1005_inclusao_infopcd_form.contpcd.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1005_inclusao_infopcd_form.contpcd|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1005_inclusao_infopcd_form.contpcd|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1005_inclusao_infopcd__contpcd -->
+<!-- inicio__s1005_inclusao_infopcd__nrprocjud -->
+<div class="col-md-4" id="s1005_inclusao_infopcd__nrprocjud__div">
+  <div class="form-group">
+    <label id="s1005_inclusao_infopcd__nrprocjud__label">Número do Processo Judicial</label>
+      {% if s1005_inclusao_infopcd_form.nrprocjud.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1005_inclusao_infopcd_form.nrprocjud.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1005_inclusao_infopcd_form.nrprocjud|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1005_inclusao_infopcd__nrprocjud -->

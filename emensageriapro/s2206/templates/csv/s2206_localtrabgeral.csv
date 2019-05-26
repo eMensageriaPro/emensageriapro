@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2206_evtaltcontratual or 1 %}"Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Número de inscrição (CPF/CNPJ)";{% endif %}{% if show_fields.show_desccomp or 1 %}"Descrição";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2206_evtaltcontratual or 1 %}"{{ c.s2206_evtaltcontratual }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ c.tpinsc }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ c.nrinsc }}";{% endif %}{% if show_fields.show_desccomp or 1 %}"{{ c.desccomp }}";{% endif %}
+{% endfor %}

@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos traba (...)"
-{% if show_fields.show_s1005_alteracao or not s1005_alteracao_id and 1 %}"Alteração das informações";{% endif %}{% if show_fields.show_indsubstpatrobra or 1 %}"Substituição de CP patronal de Obra";{% endif %}
-{% for a in s1005_alteracao_infoobra_lista %}{% if show_fields.show_s1005_alteracao or  not s1005_alteracao_id and 1 %}"{{ a.s1005_alteracao }}";{% endif %}{% if show_fields.show_indsubstpatrobra or 1 %}"{{ a.get_indsubstpatrobra_display }}";{% endif %}
-{% endfor %}

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_titulo or 1 %}"Título";{% endif %}{% if show_fields.show_slug or 1 %}"Slug (Não alterar)";{% endif %}{% if show_fields.show_modulo_pai or 1 %}"Módulo-Pai";{% endif %}{% if show_fields.show_ordem or 1 %}"Ordem";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_titulo or 1 %}"{{ c.titulo }}";{% endif %}{% if show_fields.show_slug or 1 %}"{{ c.slug }}";{% endif %}{% if show_fields.show_modulo_pai or 1 %}"{{ c.modulo_pai }}";{% endif %}{% if show_fields.show_ordem or 1 %}"{{ c.ordem }}";{% endif %}
+{% endfor %}

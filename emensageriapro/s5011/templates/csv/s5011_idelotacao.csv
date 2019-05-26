@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5011_ideestab or 1 %}"Informações de identificação da lotação e validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_codlotacao or 1 %}"Código da Lotação";{% endif %}{% if show_fields.show_fpas or 1 %}"FPAS";{% endif %}{% if show_fields.show_codtercs or 1 %}"Código de Terceiros";{% endif %}{% if show_fields.show_codtercssusp or 1 %}"Código de Terceiros (Suspensão)";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5011_ideestab or 1 %}"{{ c.s5011_ideestab }}";{% endif %}{% if show_fields.show_codlotacao or 1 %}"{{ c.codlotacao }}";{% endif %}{% if show_fields.show_fpas or 1 %}"{{ c.fpas }}";{% endif %}{% if show_fields.show_codtercs or 1 %}"{{ c.codtercs }}";{% endif %}{% if show_fields.show_codtercssusp or 1 %}"{{ c.codtercssusp }}";{% endif %}
+{% endfor %}

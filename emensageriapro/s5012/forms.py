@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s5012.models import * 
-from emensageriapro.esocial.models import s5012evtIrrf 
+from emensageriapro.s5012.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,24 +40,22 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s5012_infocrcontrib(forms.ModelForm):
+
     vrcr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5012_infocrcontrib, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5012_evtirrf'].queryset = s5012evtIrrf.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5012_evtirrf'].widget.attrs['required'] = True        
-        self.fields['tpcr'].widget.attrs['required'] = True        
-        self.fields['vrcr'].widget.attrs['required'] = True
+        super(form_s5012_infocrcontrib, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -77,10 +75,10 @@ class form_s5012_infocrcontrib(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5012infoCRContrib
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

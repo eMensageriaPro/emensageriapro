@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s1280.models import * 
-from emensageriapro.esocial.models import s1280evtInfoComplPer 
+from emensageriapro.s1280.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,24 +40,23 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s1280_infoativconcom(forms.ModelForm):
-    fatormes = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
-    fator13 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1280_infoativconcom, self).__init__(*args,**kwargs)
+    fatormes = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=True, )
+    fator13 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=True, )
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1280_evtinfocomplper'].widget.attrs['required'] = True        
-        self.fields['fatormes'].widget.attrs['required'] = True        
-        self.fields['fator13'].widget.attrs['required'] = True
+        super(form_s1280_infoativconcom, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -77,27 +76,26 @@ class form_s1280_infoativconcom(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1280infoAtivConcom
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1280_infosubstpatr(forms.ModelForm):
-    percredcontrib = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=False)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1280_infosubstpatr, self).__init__(*args,**kwargs)
+    percredcontrib = forms.DecimalField(max_digits=15, decimal_places=2, localize=True, required=True, )
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1280_evtinfocomplper'].widget.attrs['required'] = True        
-        self.fields['indsubstpatr'].widget.attrs['required'] = True        
-        self.fields['percredcontrib'].widget.attrs['required'] = True
+        super(form_s1280_infosubstpatr, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -117,26 +115,25 @@ class form_s1280_infosubstpatr(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1280infoSubstPatr
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1280_infosubstpatropport(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1280_infosubstpatropport, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1280_evtinfocomplper'].queryset = s1280evtInfoComplPer.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1280_evtinfocomplper'].widget.attrs['required'] = True        
-        self.fields['cnpjopportuario'].widget.attrs['required'] = True
+        super(form_s1280_infosubstpatropport, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -156,10 +153,10 @@ class form_s1280_infosubstpatropport(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1280infoSubstPatrOpPort
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

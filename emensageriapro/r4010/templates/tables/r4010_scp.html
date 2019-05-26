@@ -1,0 +1,64 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r4010_infopgto or 1 %}
+            <th>Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</th>
+            {% endif %}
+            {% if show_fields.show_nrinscscp or 1 %}
+            <th>Número de inscrição no CNPJ da Sociedade em Conta de Participação da qual o beneficiário faça parte e o declarante seja sócio ostensivo</th>
+            {% endif %}
+            {% if show_fields.show_percscp or 1 %}
+            <th>Percentual que o beneficiário possui na Sociedade em Conta de Participação</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r4010_scp_lista %}
+        <tr>
+            {% if show_fields.show_r4010_infopgto or 1 %}
+            <td>{{ a.r4010_infopgto }}</td>
+            {% endif %}
+            {% if show_fields.show_nrinscscp or 1 %}
+            <td>{{ a.nrinscscp }}</td>
+            {% endif %}
+            {% if show_fields.show_percscp or 1 %}
+            <td>{{ a.percscp }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r4010_scp_visualizar' %}
+                        <a href="{% url 'r4010_scp_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r4010_scp_editar' or dict_permissoes|get_permissao:'r4010_scp_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r4010_scp_apagar' %}
+                        <a href="{% url 'r4010_scp_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,12 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s2241.models import * 
-from emensageriapro.tabelas.models import eSocialFatoresRisco 
-from emensageriapro.esocial.models import s2241evtInsApo 
+from emensageriapro.s2241.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -41,21 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s2241_altaposentesp(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_altaposentesp, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
-        self.fields['dtaltcondicao'].widget.attrs['required'] = True
+        super(form_s2241_altaposentesp, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -75,26 +74,25 @@ class form_s2241_altaposentesp(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241altAposentEsp
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_altaposentesp_fatrisco(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_altaposentesp_fatrisco, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_altaposentesp_infoamb'].queryset = s2241altAposentEspinfoamb.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2241_altaposentesp_infoamb'].widget.attrs['required'] = True        
-        self.fields['codfatris'].widget.attrs['required'] = True
+        super(form_s2241_altaposentesp_fatrisco, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -114,26 +112,25 @@ class form_s2241_altaposentesp_fatrisco(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241altAposentEspfatRisco
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_altaposentesp_infoamb(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_altaposentesp_infoamb, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_altaposentesp'].queryset = s2241altAposentEsp.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2241_altaposentesp'].widget.attrs['required'] = True        
-        self.fields['codamb'].widget.attrs['required'] = True
+        super(form_s2241_altaposentesp_infoamb, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -153,25 +150,25 @@ class form_s2241_altaposentesp_infoamb(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241altAposentEspinfoamb
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_altinsalperic(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_altinsalperic, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
-        self.fields['dtaltcondicao'].widget.attrs['required'] = True
+        super(form_s2241_altinsalperic, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -191,26 +188,25 @@ class form_s2241_altinsalperic(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241altInsalPeric
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_altinsalperic_fatrisco(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_altinsalperic_fatrisco, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_altinsalperic_infoamb'].queryset = s2241altInsalPericinfoamb.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2241_altinsalperic_infoamb'].widget.attrs['required'] = True        
-        self.fields['codfatris'].widget.attrs['required'] = True
+        super(form_s2241_altinsalperic_fatrisco, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -230,26 +226,25 @@ class form_s2241_altinsalperic_fatrisco(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241altInsalPericfatRisco
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_altinsalperic_infoamb(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_altinsalperic_infoamb, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_altinsalperic'].queryset = s2241altInsalPeric.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2241_altinsalperic'].widget.attrs['required'] = True        
-        self.fields['codamb'].widget.attrs['required'] = True
+        super(form_s2241_altinsalperic_infoamb, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -269,25 +264,63 @@ class form_s2241_altinsalperic_infoamb(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241altInsalPericinfoamb
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
+
+class form_s2241_aposentesp(forms.ModelForm):
+
+
+    def __init__(self, *args, **kwargs):
+        
+        super(form_s2241_aposentesp, self).__init__(*args, **kwargs)
+        
+
+    def save(self, commit=True, *args, **kwargs):
+    
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_aposentesp, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
+        
+    class Meta:
+    
+        model = s2241aposentEsp
+        exclude = [ 
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_fimaposentesp(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_fimaposentesp, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
-        self.fields['dtfimcondicao'].widget.attrs['required'] = True
+        super(form_s2241_fimaposentesp, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -307,26 +340,25 @@ class form_s2241_fimaposentesp(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241fimAposentEsp
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_fimaposentesp_infoamb(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_fimaposentesp_infoamb, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_fimaposentesp'].queryset = s2241fimAposentEsp.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2241_fimaposentesp'].widget.attrs['required'] = True        
-        self.fields['codamb'].widget.attrs['required'] = True
+        super(form_s2241_fimaposentesp_infoamb, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -346,25 +378,25 @@ class form_s2241_fimaposentesp_infoamb(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241fimAposentEspinfoAmb
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_fiminsalperic(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_fiminsalperic, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
-        self.fields['dtfimcondicao'].widget.attrs['required'] = True
+        super(form_s2241_fiminsalperic, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -384,26 +416,25 @@ class form_s2241_fiminsalperic(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241fimInsalPeric
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_fiminsalperic_infoamb(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_fiminsalperic_infoamb, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_fiminsalperic'].queryset = s2241fimInsalPeric.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2241_fiminsalperic'].widget.attrs['required'] = True        
-        self.fields['codamb'].widget.attrs['required'] = True
+        super(form_s2241_fiminsalperic_infoamb, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -423,25 +454,25 @@ class form_s2241_fiminsalperic_infoamb(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241fimInsalPericinfoAmb
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_iniaposentesp(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_iniaposentesp, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
-        self.fields['dtinicondicao'].widget.attrs['required'] = True
+        super(form_s2241_iniaposentesp, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -461,26 +492,25 @@ class form_s2241_iniaposentesp(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241iniAposentEsp
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_iniaposentesp_fatrisco(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_iniaposentesp_fatrisco, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_iniaposentesp_infoamb'].queryset = s2241iniAposentEspinfoAmb.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2241_iniaposentesp_infoamb'].widget.attrs['required'] = True        
-        self.fields['codfatris'].widget.attrs['required'] = True
+        super(form_s2241_iniaposentesp_fatrisco, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -500,26 +530,25 @@ class form_s2241_iniaposentesp_fatrisco(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241iniAposentEspfatRisco
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_iniaposentesp_infoamb(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_iniaposentesp_infoamb, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_iniaposentesp'].queryset = s2241iniAposentEsp.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2241_iniaposentesp'].widget.attrs['required'] = True        
-        self.fields['codamb'].widget.attrs['required'] = True
+        super(form_s2241_iniaposentesp_infoamb, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -539,25 +568,25 @@ class form_s2241_iniaposentesp_infoamb(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241iniAposentEspinfoAmb
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_iniinsalperic(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_iniinsalperic, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_evtinsapo'].widget.attrs['required'] = True        
-        self.fields['dtinicondicao'].widget.attrs['required'] = True
+        super(form_s2241_iniinsalperic, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -577,26 +606,25 @@ class form_s2241_iniinsalperic(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241iniInsalPeric
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_iniinsalperic_fatrisco(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_iniinsalperic_fatrisco, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_iniinsalperic_infoamb'].queryset = s2241iniInsalPericinfoAmb.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2241_iniinsalperic_infoamb'].widget.attrs['required'] = True        
-        self.fields['codfatris'].widget.attrs['required'] = True
+        super(form_s2241_iniinsalperic_fatrisco, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -616,26 +644,25 @@ class form_s2241_iniinsalperic_fatrisco(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241iniInsalPericfatRisco
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2241_iniinsalperic_infoamb(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2241_iniinsalperic_infoamb, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2241_iniinsalperic'].queryset = s2241iniInsalPeric.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2241_iniinsalperic'].widget.attrs['required'] = True        
-        self.fields['codamb'].widget.attrs['required'] = True
+        super(form_s2241_iniinsalperic_infoamb, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -655,10 +682,48 @@ class form_s2241_iniinsalperic_infoamb(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2241iniInsalPericinfoAmb
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
+
+class form_s2241_insalperic(forms.ModelForm):
+
+
+    def __init__(self, *args, **kwargs):
+        
+        super(form_s2241_insalperic, self).__init__(*args, **kwargs)
+        
+
+    def save(self, commit=True, *args, **kwargs):
+    
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2241_insalperic, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
+        
+    class Meta:
+    
+        model = s2241insalPeric
+        exclude = [ 
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

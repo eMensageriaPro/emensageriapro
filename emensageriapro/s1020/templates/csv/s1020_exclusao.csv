@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1020_evttablotacao or 1 %}"Exclusão das informações";{% endif %}{% if show_fields.show_idelotacao or 1 %}"Informações de identificação da lotação e validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_codlotacao or 1 %}"Código da Lotação";{% endif %}{% if show_fields.show_inivalid or 1 %}"Início da Validade";{% endif %}{% if show_fields.show_fimvalid or 1 %}"Fim da Validade";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1020_evttablotacao or 1 %}"{{ c.s1020_evttablotacao }}";{% endif %}{% if show_fields.show_idelotacao or 1 %}"{{ c.idelotacao }}";{% endif %}{% if show_fields.show_codlotacao or 1 %}"{{ c.codlotacao }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ c.inivalid }}";{% endif %}{% if show_fields.show_fimvalid or 1 %}"{{ c.fimvalid }}";{% endif %}
+{% endfor %}

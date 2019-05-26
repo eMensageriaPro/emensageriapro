@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s2220.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,49 +45,42 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S2220_INDRESULT = (
-    (1, u'1 - Normal'),
-    (2, u'2 - Alterado'),
-    (3, u'3 - Estável'),
-    (4, u'4 - Agravamento'),
-)
 
-CHOICES_S2220_INTERPREXM = (
-    (1, u'1 - EE'),
-    (2, u'2 - SC'),
-    (3, u'3 - SC+'),
-)
-
-CHOICES_S2220_ORDEXAME = (
-    (1, u'1 - Referencial'),
-    (2, u'2 - Sequencial'),
-)
 
 class s2220exame(SoftDeletionModel):
-    s2220_evtmonit = models.ForeignKey('esocial.s2220evtMonit',
-        related_name='%(class)s_s2220_evtmonit')
-    def evento(self): return self.s2220_evtmonit.evento()
-    dtexm = models.DateField()
-    procrealizado = models.IntegerField()
-    obsproc = models.CharField(max_length=999, blank=True, null=True)
-    interprexm = models.IntegerField(choices=CHOICES_S2220_INTERPREXM)
-    ordexame = models.IntegerField(choices=CHOICES_S2220_ORDEXAME)
-    dtinimonit = models.DateField()
-    dtfimmonit = models.DateField(blank=True, null=True)
-    indresult = models.IntegerField(choices=CHOICES_S2220_INDRESULT, blank=True, null=True)
+
+    s2220_evtmonit = models.ForeignKey('esocial.s2220evtMonit', 
+        related_name='%(class)s_s2220_evtmonit', )
+    
+    def evento(self): 
+        return self.s2220_evtmonit.evento()
+    dtexm = models.DateField(null=True, )
+    procrealizado = models.IntegerField(null=True, )
+    obsproc = models.CharField(max_length=999, blank=True, null=True, )
+    interprexm = models.IntegerField(choices=CHOICES_S2220_INTERPREXM, null=True, )
+    ordexame = models.IntegerField(choices=CHOICES_S2220_ORDEXAME, null=True, )
+    dtinimonit = models.DateField(null=True, )
+    dtfimmonit = models.DateField(blank=True, null=True, )
+    indresult = models.IntegerField(choices=CHOICES_S2220_INDRESULT, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -83,41 +88,57 @@ class s2220exame(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2220_evtmonit) + ' - ' + unicode(self.dtexm) + ' - ' + unicode(self.procrealizado) + ' - ' + unicode(self.interprexm) + ' - ' + unicode(self.ordexame) + ' - ' + unicode(self.dtinimonit)
-    #s2220_exame_custom#
-
+        
+        lista = [
+            unicode(self.s2220_evtmonit),
+            unicode(self.dtexm),
+            unicode(self.procrealizado),
+            unicode(self.interprexm),
+            unicode(self.ordexame),
+            unicode(self.dtinimonit),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
-        # verbose_name = u'Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO. O não preenchimento siginifica a não realização de e (...)'
+    
+        # verbose_name = u'Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO'
         db_table = r's2220_exame'       
         managed = True # s2220_exame #
-        unique_together = (
-            #custom_unique_together_s2220_exame#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2220_exame
-            #index_together_s2220_exame
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2220_exame", "Can view s2220_exame"),
-            #custom_permissions_s2220_exame
-        )
-        ordering = ['s2220_evtmonit', 'dtexm', 'procrealizado', 'interprexm', 'ordexame', 'dtinimonit']
+            ("can_view_s2220_exame", "Can view s2220_exame"), )
+            
+        ordering = [
+            's2220_evtmonit',
+            'dtexm',
+            'procrealizado',
+            'interprexm',
+            'ordexame',
+            'dtinimonit',]
 
 
 
 class s2220exameSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2220exame
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

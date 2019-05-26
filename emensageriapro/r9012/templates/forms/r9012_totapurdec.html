@@ -1,0 +1,151 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9012_totapurdec__r9012_infototalcontrib -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_r9012_infototalcontrib').change(function(){
+       document.getElementById("r9012_totapurdec__r9012_infototalcontrib__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="r9012_totapurdec__r9012_infototalcontrib__div">
+  <div class="form-group">
+    <label id="r9012_totapurdec__r9012_infototalcontrib__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial*</label>
+    {% if not for_print %}
+      {% if r9012_totapurdec_form.r9012_infototalcontrib.value %}
+        <a id="r9012_totapurdec__r9012_infototalcontrib__div_acessar" href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_id:r9012_totapurdec_form.r9012_infototalcontrib.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if r9012_totapurdec_form.r9012_infototalcontrib.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r9012_totapurdec_form.r9012_infototalcontrib.errors }}
+      </div>
+    {% endif %}
+    {% if r9012_totapurdec_form.r9012_infototalcontrib.field.widget.attrs.readonly %}
+      {% if r9012_totapurdec_form.r9012_infototalcontrib.field.widget.attrs.disabled %}
+        {{ r9012_totapurdec_form.r9012_infototalcontrib|addcss:'form-control' }}
+        <input id="id_r9012_infototalcontrib" name="r9012_infototalcontrib" type="hidden" value="{% if r9012_totapurdec_form.r9012_infototalcontrib.value or r9012_totapurdec_form.r9012_infototalcontrib.value == 0 %}{{ r9012_totapurdec_form.r9012_infototalcontrib.value|valor }}{% endif %}">
+      {% else %}
+        {{ r9012_totapurdec_form.r9012_infototalcontrib|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r9012_totapurdec_form.r9012_infototalcontrib|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r9012_totapurdec__r9012_infototalcontrib -->
+<!-- inicio__r9012_totapurdec__perapurdec -->
+<div class="col-md-6" id="r9012_totapurdec__perapurdec__div">
+  <div class="form-group">
+    <label id="r9012_totapurdec__perapurdec__label">Período de apuração decenal do Código de Receita - CR*</label>
+    {% if r9012_totapurdec_form.perapurdec.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r9012_totapurdec_form.perapurdec.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r9012_totapurdec_form.perapurdec.field.widget.attrs.readonly %}
+        {% if r9012_totapurdec_form.perapurdec.field.widget.attrs.disabled %}
+          {{ r9012_totapurdec_form.perapurdec|addcss:'form-control' }}
+          <input id="id_perapurdec" name="perapurdec" type="hidden" value="{% if r9012_totapurdec_form.perapurdec.value or r9012_totapurdec_form.perapurdec.value == 0 %}{{ r9012_totapurdec_form.perapurdec.value|valor }}{% endif %}">
+        {% else %}
+          {{ r9012_totapurdec_form.perapurdec|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r9012_totapurdec_form.perapurdec|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurdec__perapurdec -->
+<!-- inicio__r9012_totapurdec__crdec -->
+<div class="col-md-6" id="r9012_totapurdec__crdec__div">
+  <div class="form-group">
+    <label id="r9012_totapurdec__crdec__label">Código de Receita - CR relativo a tributo que possui período de apuração decendial*</label>
+      {% if r9012_totapurdec_form.crdec.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_totapurdec_form.crdec.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_totapurdec_form.crdec|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurdec__crdec -->
+<!-- inicio__r9012_totapurdec__vlrbasecrdec -->
+<div class="col-md-6" id="r9012_totapurdec__vlrbasecrdec__div">
+  <div class="form-group">
+    <label id="r9012_totapurdec__vlrbasecrdec__label">Valor da base do tributo com período de apuração decendial*</label>
+    {% if r9012_totapurdec_form.vlrbasecrdec.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapurdec_form.vlrbasecrdec.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapurdec_form.vlrbasecrdec|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurdec__vlrbasecrdec -->
+<!-- inicio__r9012_totapurdec__vlrcrdec -->
+<div class="col-md-6" id="r9012_totapurdec__vlrcrdec__div">
+  <div class="form-group">
+    <label id="r9012_totapurdec__vlrcrdec__label">Valor do tributo retido com período de apuração decendial, calculado segundo as regras estabelecidas na legislação em vigor*</label>
+    {% if r9012_totapurdec_form.vlrcrdec.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapurdec_form.vlrcrdec.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapurdec_form.vlrcrdec|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurdec__vlrcrdec -->
+<!-- inicio__r9012_totapurdec__vlrbasecrdecsusp -->
+<div class="col-md-6" id="r9012_totapurdec__vlrbasecrdecsusp__div">
+  <div class="form-group">
+    <label id="r9012_totapurdec__vlrbasecrdecsusp__label">Valor da base do tributo com período de apuração decendial, com exigibilidade suspensa</label>
+    {% if r9012_totapurdec_form.vlrbasecrdecsusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapurdec_form.vlrbasecrdecsusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapurdec_form.vlrbasecrdecsusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurdec__vlrbasecrdecsusp -->
+<!-- inicio__r9012_totapurdec__vlrcrdecsusp -->
+<div class="col-md-6" id="r9012_totapurdec__vlrcrdecsusp__div">
+  <div class="form-group">
+    <label id="r9012_totapurdec__vlrcrdecsusp__label">Valor do tributo com período de apuração decendial, que deixou de ser retido</label>
+    {% if r9012_totapurdec_form.vlrcrdecsusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapurdec_form.vlrcrdecsusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapurdec_form.vlrcrdecsusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurdec__vlrcrdecsusp -->

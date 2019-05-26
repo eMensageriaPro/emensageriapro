@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial."
-{% if show_fields.show_s1070_inclusao or not s1070_inclusao_id and 1 %}"Inclusão de novas informações";{% endif %}{% if show_fields.show_codsusp or 1 %}"Código do Indicativo da Suspensão";{% endif %}{% if show_fields.show_indsusp or 1 %}"Suspensão de exigibilidade";{% endif %}{% if show_fields.show_dtdecisao or 1 %}"Data da decisão";{% endif %}{% if show_fields.show_inddeposito or 1 %}"Depósito do montante integral";{% endif %}
-{% for a in s1070_inclusao_infosusp_lista %}{% if show_fields.show_s1070_inclusao or  not s1070_inclusao_id and 1 %}"{{ a.s1070_inclusao }}";{% endif %}{% if show_fields.show_codsusp or 1 %}"{{ a.codsusp }}";{% endif %}{% if show_fields.show_indsusp or 1 %}"{{ a.get_indsusp_display }}";{% endif %}{% if show_fields.show_dtdecisao or 1 %}"{{ a.dtdecisao|date:"d/m/Y" }}";{% endif %}{% if show_fields.show_inddeposito or 1 %}"{{ a.get_inddeposito_display }}";{% endif %}
-{% endfor %}

@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF"
-{% if show_fields.show_s1200_evtremun or not s1200_evtremun_id and 1 %}"Possui informações relativas remuneração de trabalhadores no período de apuração?";{% endif %}{% if show_fields.show_idedmdev or 1 %}"Identificador dos demostrativos de pagamento";{% endif %}{% if show_fields.show_codcateg or not esocial_trabalhadores_categorias_id and 1 %}"Código da Categoria";{% endif %}
-{% for a in s1200_dmdev_lista %}{% if show_fields.show_s1200_evtremun or  not s1200_evtremun_id and 1 %}"{{ a.s1200_evtremun }}";{% endif %}{% if show_fields.show_idedmdev or 1 %}"{{ a.idedmdev }}";{% endif %}{% if show_fields.show_codcateg or  not esocial_trabalhadores_categorias_id and 1 %}"{{ a.codcateg }}";{% endif %}
-{% endfor %}

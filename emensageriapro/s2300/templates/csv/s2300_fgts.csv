@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2300_infocomplementares or 1 %}"Informações relativas ao FGTS.";{% endif %}{% if show_fields.show_opcfgts or 1 %}"Opção pelo FGTS";{% endif %}{% if show_fields.show_dtopcfgts or 1 %}"Data da opção pelo FGTS";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2300_infocomplementares or 1 %}"{{ c.s2300_infocomplementares }}";{% endif %}{% if show_fields.show_opcfgts or 1 %}"{{ c.opcfgts }}";{% endif %}{% if show_fields.show_dtopcfgts or 1 %}"{{ c.dtopcfgts }}";{% endif %}
+{% endfor %}

@@ -118,7 +118,7 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtPgtos</td>
-            <td bgcolor="lightgray" colspan="3">Evento pagtos. de rendimentos do trabalho. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EXISTE_INFO_EMPREGADOR REGRA_PAGTO_IND_RETIFICACAO REGRA_PAGTO_PERMITE_EXCLUSAO REGRA_RUBRICA_COMPATIVEL_CATEGORIA REGRA_RUBRICA_SIMPLIF_TAB_PADRAO REGRA_VALIDA_DT_PGTO REGRA_VALIDA_PER_APUR_PGTO</td>
+            <td bgcolor="lightgray" colspan="3">Evento pagtos. de rendimentos do trabalho. <regras_validacao> REGRA_EVENTOS_EXTEMP REGRA_EXISTE_INFO_EMPREGADOR REGRA_PAGTO_IND_RETIFICACAO REGRA_PAGTO_PERMITE_EXCLUSAO REGRA_RUBRICA_COMPATIVEL_CATEGORIA REGRA_RUBRICA_SIMPLIF_TAB_PADRAO REGRA_VALIDA_DT_PGTO REGRA_VALIDA_PER_APUR_PGTO</td>
         </tr>
     {% for s1210_evtpgtos in s1210_evtpgtos_lista %}
     {% ifequal 1 1 %}
@@ -129,8 +129,8 @@
 
         <tr {% if s1210_evtpgtos.indretif|validacoes_esocial_efdreinf:"s1210_evtpgtos.indretif" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indRetif</td>
-            <td width="500px">Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if s1210_evtpgtos.indretif or s1210_evtpgtos.indretif == 0 %}{{ s1210_evtpgtos.indretif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Identificador de Retificação<opcoes>1 - Arquivo original; 2 - Arquivo de Retificação. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if s1210_evtpgtos.indretif or s1210_evtpgtos.indretif == 0 %}{{ s1210_evtpgtos.indretif }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -148,7 +148,7 @@
 
         <tr {% if s1210_evtpgtos.nrrecibo|validacoes_esocial_efdreinf:"s1210_evtpgtos.nrrecibo" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecibo</td>
-            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
+            <td width="500px">Preencher com o número do recibo do arquivo a ser retificado. <validacao> O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado.</td>
             <td width="200px"><b>{% if s1210_evtpgtos.nrrecibo or s1210_evtpgtos.nrrecibo == 0 %}{{ s1210_evtpgtos.nrrecibo }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -167,8 +167,8 @@
 
         <tr {% if s1210_evtpgtos.indapuracao|validacoes_esocial_efdreinf:"s1210_evtpgtos.indapuracao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indApuracao</td>
-            <td width="500px">Indicativo de período de apuração: 1 - Mensal. Valores Válidos: 1.</td>
-            <td width="200px"><b>{% if s1210_evtpgtos.indapuracao or s1210_evtpgtos.indapuracao == 0 %}{{ s1210_evtpgtos.indapuracao|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo de período de apuração<opcoes>1 - Mensal. <valores_validos> 1.</td>
+            <td width="200px"><b>{% if s1210_evtpgtos.indapuracao or s1210_evtpgtos.indapuracao == 0 %}{{ s1210_evtpgtos.indapuracao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -186,7 +186,7 @@
 
         <tr {% if s1210_evtpgtos.perapur|validacoes_esocial_efdreinf:"s1210_evtpgtos.perapur" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perApur</td>
-            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações. Validação: Deve ser um mês/ano válido, igual ou posterior a implementação do eSocial.</td>
+            <td width="500px">Informar o mês/ano (formato AAAA-MM) de referência das informações. <validacao> Deve ser um mês/ano válido, igual ou posterior a implementação do eSocial.</td>
             <td width="200px"><b>{% if s1210_evtpgtos.perapur or s1210_evtpgtos.perapur == 0 %}{{ s1210_evtpgtos.perapur }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -205,8 +205,8 @@
 
         <tr {% if s1210_evtpgtos.tpamb|validacoes_esocial_efdreinf:"s1210_evtpgtos.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if s1210_evtpgtos.tpamb or s1210_evtpgtos.tpamb == 0 %}{{ s1210_evtpgtos.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if s1210_evtpgtos.tpamb or s1210_evtpgtos.tpamb == 0 %}{{ s1210_evtpgtos.tpamb }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -224,8 +224,8 @@
 
         <tr {% if s1210_evtpgtos.procemi|validacoes_esocial_efdreinf:"s1210_evtpgtos.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
-            <td width="200px"><b>{% if s1210_evtpgtos.procemi or s1210_evtpgtos.procemi == 0 %}{{ s1210_evtpgtos.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s1210_evtpgtos.procemi or s1210_evtpgtos.procemi == 0 %}{{ s1210_evtpgtos.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -267,8 +267,8 @@
 
         <tr {% if s1210_evtpgtos.tpinsc|validacoes_esocial_efdreinf:"s1210_evtpgtos.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
-            <td width="200px"><b>{% if s1210_evtpgtos.tpinsc or s1210_evtpgtos.tpinsc == 0 %}{{ s1210_evtpgtos.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s1210_evtpgtos.tpinsc or s1210_evtpgtos.tpinsc == 0 %}{{ s1210_evtpgtos.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -286,7 +286,7 @@
 
         <tr {% if s1210_evtpgtos.nrinsc|validacoes_esocial_efdreinf:"s1210_evtpgtos.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1210_evtpgtos.nrinsc or s1210_evtpgtos.nrinsc == 0 %}{{ s1210_evtpgtos.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -310,7 +310,7 @@
 
         <tr {% if s1210_evtpgtos.cpfbenef|validacoes_esocial_efdreinf:"s1210_evtpgtos.cpfbenef" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfBenef</td>
-            <td width="500px">Informar o CPF do beneficiário. Validação: Deve ser um CPF válido. Se o pagamento refere-se a: a) verbas informadas nos eventos de remuneração ou desligamento (S-1200, S-1202, S-2299 ou S-2399), o CPF deve ser o mesmo que o informado nos mesmos; b) férias (grupo {detPgtoFer}), o CPF informado deve constar no RET; c) competências anteriores ao início de obrigatoriedade dos eventos periódicos (grupo {detPgtoAnt}), o CPF informado deve constar no RET, exceto se for referente a TSVE.</td>
+            <td width="500px">Informar o CPF do beneficiário. <validacao> Deve ser um CPF válido. Se o pagamento refere-se a: a) verbas informadas nos eventos de remuneração ou desligamento (S-1200, S-1202, S-2299 ou S-2399), o CPF deve ser o mesmo que o informado nos mesmos; b) férias (grupo {detPgtoFer}), o CPF informado deve constar no RET; c) competências anteriores ao início de obrigatoriedade dos eventos periódicos (grupo {detPgtoAnt}), o CPF informado deve constar no RET, exceto se for referente a TSVE.</td>
             <td width="200px"><b>{% if s1210_evtpgtos.cpfbenef or s1210_evtpgtos.cpfbenef == 0 %}{{ s1210_evtpgtos.cpfbenef }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -336,7 +336,7 @@
         <tr {% if s1210_deps.vrdeddep|validacoes_esocial_efdreinf:"s1210_deps.vrdeddep" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrDedDep</td>
             <td width="500px">Valor da dedução da base de cálculo do IRRF relativo aos dependentes do beneficiário do pagamento, correspondente ao número de dependentes multiplicado pelo valor de dedução por dependente previsto na legislação do Imposto de Renda.</td>
-            <td width="200px"><b>{% if s1210_deps.vrdeddep or s1210_deps.vrdeddep == 0 %}{{ s1210_deps.vrdeddep|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_deps.vrdeddep or s1210_deps.vrdeddep == 0 %}{{ s1210_deps.vrdeddep }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -360,7 +360,7 @@
     {% ifequal s1210_infopgto.s1210_evtpgtos.id s1210_evtpgtos.id %}
         <tr {% if s1210_infopgto.dtpgto|validacoes_esocial_efdreinf:"s1210_infopgto.dtpgto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtPgto</td>
-            <td width="500px">Informar a data de pagamento. Validação: A data informada deve estar compreendida no período de apuração ({perApur}), exceto se {procEmi} = [2, 4].</td>
+            <td width="500px">Informar a data de pagamento. <validacao> A data informada deve estar compreendida no período de apuração ({perApur}), exceto se {procEmi} = [2, 4].</td>
             <td width="200px"><b>{% if s1210_infopgto.dtpgto or s1210_infopgto.dtpgto == 0 %}{{ s1210_infopgto.dtpgto|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -379,8 +379,8 @@
 
         <tr {% if s1210_infopgto.tppgto|validacoes_esocial_efdreinf:"s1210_infopgto.tppgto" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpPgto</td>
-            <td width="500px">Informar o tipo de pagamento, de acordo com as opções a seguir: 1 - Pagamento de remuneração, conforme apurado em {dmDev} do S-1200; 2 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2299; 3 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2399; 5 - Pagamento de remuneração conforme apurado em {dmDev} do S-1202; 6 - Pagamento de Benefícios Previdenciários, conforme apurado em {dmDev} do S-1207; 7 - Recibo de férias; 9 - Pagamento relativo a competências anteriores ao início de obrigatoriedade dos eventos periódicos para o contribuinte. Valores Válidos: 1, 2, 3, 5, 6, 7, 9.</td>
-            <td width="200px"><b>{% if s1210_infopgto.tppgto or s1210_infopgto.tppgto == 0 %}{{ s1210_infopgto.tppgto|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Informar o tipo de pagamento, de acordo com as opções a seguir<opcoes>1 - Pagamento de remuneração, conforme apurado em {dmDev} do S-1200; 2 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2299; 3 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2399; 5 - Pagamento de remuneração conforme apurado em {dmDev} do S-1202; 6 - Pagamento de Benefícios Previdenciários, conforme apurado em {dmDev} do S-1207; 7 - Recibo de férias; 9 - Pagamento relativo a competências anteriores ao início de obrigatoriedade dos eventos periódicos para o contribuinte. <valores_validos> 1, 2, 3, 5, 6, 7, 9.</td>
+            <td width="200px"><b>{% if s1210_infopgto.tppgto or s1210_infopgto.tppgto == 0 %}{{ s1210_infopgto.tppgto }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -398,7 +398,7 @@
 
         <tr {% if s1210_infopgto.indresbr|validacoes_esocial_efdreinf:"s1210_infopgto.indresbr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indResBr</td>
-            <td width="500px">Indicar se o beneficiário do pagamento é residente fiscal no Brasil: S - Sim; N - Não. Valores Válidos: S, N.</td>
+            <td width="500px">Indicar se o beneficiário do pagamento é residente fiscal no Brasil<opcoes>S - Sim; N - Não. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s1210_infopgto.indresbr or s1210_infopgto.indresbr == 0 %}{{ s1210_infopgto.indresbr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -423,7 +423,7 @@
     {% ifequal s1210_detpgtofl.s1210_infopgto.id s1210_infopgto.id %}
         <tr {% if s1210_detpgtofl.perref|validacoes_esocial_efdreinf:"s1210_detpgtofl.perref" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perRef</td>
-            <td width="500px">Informar a competência à qual se refere a folha de pagamento no formato AAAA-MM, se for relativa a folha de pagamento normal (mensal, quinzenal, etc.) ou AAAA, se for relativa a folha de 13° salário. Validação: Informação obrigatória se {tpPgto} = [1,5]. Não pode haver informação nos demais casos. Deve estar no formato AAAA-MM ou AAAA.</td>
+            <td width="500px">Informar a competência declarada no campo {perApur} do evento remuneratório a que se refere o pagamento, no formato AAAA-MM, se for relativa a folha de pagamento normal (mensal, quinzenal, etc.) ou AAAA, se for relativa a folha de 13° salário. <validacao> Informação obrigatória se {tpPgto} = [1,5]. Não pode haver informação nos demais casos. Deve estar no formato AAAA-MM ou AAAA</td>
             <td width="200px"><b>{% if s1210_detpgtofl.perref or s1210_detpgtofl.perref == 0 %}{{ s1210_detpgtofl.perref }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -442,7 +442,7 @@
 
         <tr {% if s1210_detpgtofl.idedmdev|validacoes_esocial_efdreinf:"s1210_detpgtofl.idedmdev" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ideDmDev</td>
-            <td width="500px">Identificador atribuído pela fonte pagadora para o demonstrativo de valores devidos ao trabalhador conforme definido em S-1200, S-1202, S-2299 ou S- 2399. Validação: Deve ser um valor atribuído pela fonte pagadora em S-1200, S- 1202, S-2299 ou S-2399 no campo {ideDmDev}, obedecendo a relação: Se {tpPgto} = [1], em S-1200; Se {tpPgto} = [2], em S-2299; Se {tpPgto} = [3], em S-2399; Se {tpPgto} = [5], em S-1202.</td>
+            <td width="500px">Identificador atribuído pela fonte pagadora para o demonstrativo de valores devidos ao trabalhador conforme definido em S-1200, S-1202, S-2299 ou S- 2399. <validacao> Deve ser um valor atribuído pela fonte pagadora em S-1200, S- 1202, S-2299 ou S-2399 no campo {ideDmDev}, obedecendo a relação: Se {tpPgto} = [1], em S-1200; Se {tpPgto} = [2], em S-2299; Se {tpPgto} = [3], em S-2399; Se {tpPgto} = [5], em S-1202.</td>
             <td width="200px"><b>{% if s1210_detpgtofl.idedmdev or s1210_detpgtofl.idedmdev == 0 %}{{ s1210_detpgtofl.idedmdev }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -461,7 +461,7 @@
 
         <tr {% if s1210_detpgtofl.indpgtott|validacoes_esocial_efdreinf:"s1210_detpgtofl.indpgtott" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indPgtoTt</td>
-            <td width="500px">Indicativo de pagamento total ou parcial. Informar [S] se o valor que está sendo pago é exatamente o previsto nos eventos S-1200, S-1202, S-2299 ou S-2399 em {dmDev}. Informar [N] se o valor que está sendo pago é inferior ao previsto nos eventos S-1200, S-1202, S-2299 ou S-2399 em {dmDev}. Se for informado [N], significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas. Valores Válidos: S, N.</td>
+            <td width="500px">Indicativo de pagamento total ou parcial<opcoes>S - O valor que está sendo pago é exatamente o previsto nos eventosS - 1200,S - 1202,S - 2299 ouS - 2399 em {dmDev}; N - O valor que está sendo pago é inferior ao previsto nos eventosS - 1200,S - 1202,S - 2299 ouS - 2399 em {dmDev}, neste caso, significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s1210_detpgtofl.indpgtott or s1210_detpgtofl.indpgtott == 0 %}{{ s1210_detpgtofl.indpgtott }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -480,8 +480,8 @@
 
         <tr {% if s1210_detpgtofl.vrliq|validacoes_esocial_efdreinf:"s1210_detpgtofl.vrliq" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrLiq</td>
-            <td width="500px">Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). Validação: Não pode ser um valor negativo. Se {indPgtoTt} = [S] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas: a) nos eventos S-1200, S-1202, S-2299 e S-2399; e b) no grupo inferior ({retPgtoTot}). Se {indPgtoTt} = [N] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas em {infoPgtoParc} do registro inferior.</td>
-            <td width="200px"><b>{% if s1210_detpgtofl.vrliq or s1210_detpgtofl.vrliq == 0 %}{{ s1210_detpgtofl.vrliq|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). <validacao> Não pode ser um valor negativo. Se {indPgtoTt} = [S] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas: a) nos eventos S-1200, S-1202, S-2299 e S-2399; e b) no grupo inferior ({retPgtoTot}). Se {indPgtoTt} = [N] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas em {infoPgtoParc} do registro inferior.</td>
+            <td width="200px"><b>{% if s1210_detpgtofl.vrliq or s1210_detpgtofl.vrliq == 0 %}{{ s1210_detpgtofl.vrliq }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -499,7 +499,7 @@
 
         <tr {% if s1210_detpgtofl.nrrecarq|validacoes_esocial_efdreinf:"s1210_detpgtofl.nrrecarq" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrRecArq</td>
-            <td width="500px">Preencher com o número do recibo do arquivo que contém as informações da rescisão contratual que originou o pagamento. Validação: Informação obrigatória se {tpPgto} = [2,3]. Não pode ser informado nos demais casos. Se {tpPgto} = [2] deve ser um recibo de arquivo gerado no leiaute S-2299. Se {tpPgto} = [3], deve ser um recibo de arquivo gerado no leiaute S-2399.</td>
+            <td width="500px">Preencher com o número do recibo do arquivo que contém as informações da rescisão contratual que originou o pagamento. <validacao> Informação obrigatória se {tpPgto} = [2,3]. Não pode ser informado nos demais casos. Se {tpPgto} = [2] deve ser um recibo de arquivo gerado no leiaute S-2299. Se {tpPgto} = [3], deve ser um recibo de arquivo gerado no leiaute S-2399.</td>
             <td width="200px"><b>{% if s1210_detpgtofl.nrrecarq or s1210_detpgtofl.nrrecarq == 0 %}{{ s1210_detpgtofl.nrrecarq }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -524,7 +524,7 @@
     {% ifequal s1210_detpgtofl_retpgtotot.s1210_detpgtofl.id s1210_detpgtofl.id %}
         <tr {% if s1210_detpgtofl_retpgtotot.codrubr|validacoes_esocial_efdreinf:"s1210_detpgtofl_retpgtotot.codrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codRubr</td>
-            <td width="500px">Informar as rubricas de folha de pagamento que representam os descontos de IRRF e pensão alimentícia. Deve-se informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no período indicado em {perApur}. Só pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
+            <td width="500px">Informar as rubricas de folha de pagamento que representam os descontos de IRRF e pensão alimentícia. Deve-se informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. <validacao> O código informado deve existir na tabela S-1010 - tabela de Rubricas, vigente no período indicado em {perApur}. Só pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
             <td width="200px"><b>{% if s1210_detpgtofl_retpgtotot.codrubr or s1210_detpgtofl_retpgtotot.codrubr == 0 %}{{ s1210_detpgtofl_retpgtotot.codrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -563,7 +563,7 @@
         <tr {% if s1210_detpgtofl_retpgtotot.qtdrubr|validacoes_esocial_efdreinf:"s1210_detpgtofl_retpgtotot.qtdrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtdRubr</td>
             <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc.</td>
-            <td width="200px"><b>{% if s1210_detpgtofl_retpgtotot.qtdrubr or s1210_detpgtofl_retpgtotot.qtdrubr == 0 %}{{ s1210_detpgtofl_retpgtotot.qtdrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofl_retpgtotot.qtdrubr or s1210_detpgtofl_retpgtotot.qtdrubr == 0 %}{{ s1210_detpgtofl_retpgtotot.qtdrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -582,7 +582,7 @@
         <tr {% if s1210_detpgtofl_retpgtotot.fatorrubr|validacoes_esocial_efdreinf:"s1210_detpgtofl_retpgtotot.fatorrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fatorRubr</td>
             <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
-            <td width="200px"><b>{% if s1210_detpgtofl_retpgtotot.fatorrubr or s1210_detpgtofl_retpgtotot.fatorrubr == 0 %}{{ s1210_detpgtofl_retpgtotot.fatorrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofl_retpgtotot.fatorrubr or s1210_detpgtofl_retpgtotot.fatorrubr == 0 %}{{ s1210_detpgtofl_retpgtotot.fatorrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -601,7 +601,7 @@
         <tr {% if s1210_detpgtofl_retpgtotot.vrunit|validacoes_esocial_efdreinf:"s1210_detpgtofl_retpgtotot.vrunit" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrUnit</td>
             <td width="500px">Preencher com o valor unitário da rubrica.</td>
-            <td width="200px"><b>{% if s1210_detpgtofl_retpgtotot.vrunit or s1210_detpgtofl_retpgtotot.vrunit == 0 %}{{ s1210_detpgtofl_retpgtotot.vrunit|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofl_retpgtotot.vrunit or s1210_detpgtofl_retpgtotot.vrunit == 0 %}{{ s1210_detpgtofl_retpgtotot.vrunit }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -619,8 +619,8 @@
 
         <tr {% if s1210_detpgtofl_retpgtotot.vrrubr|validacoes_esocial_efdreinf:"s1210_detpgtofl_retpgtotot.vrrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrRubr</td>
-            <td width="500px">Valor total da rubrica. Validação: Deve ser maior que zero.</td>
-            <td width="200px"><b>{% if s1210_detpgtofl_retpgtotot.vrrubr or s1210_detpgtofl_retpgtotot.vrrubr == 0 %}{{ s1210_detpgtofl_retpgtotot.vrrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor total da rubrica. <validacao> Deve ser maior que zero.</td>
+            <td width="200px"><b>{% if s1210_detpgtofl_retpgtotot.vrrubr or s1210_detpgtofl_retpgtotot.vrrubr == 0 %}{{ s1210_detpgtofl_retpgtotot.vrrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -644,7 +644,7 @@
     {% ifequal s1210_detpgtofl_penalim.s1210_detpgtofl_retpgtotot.id s1210_detpgtofl_retpgtotot.id %}
         <tr {% if s1210_detpgtofl_penalim.cpfbenef|validacoes_esocial_efdreinf:"s1210_detpgtofl_penalim.cpfbenef" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfBenef</td>
-            <td width="500px">Informar o CPF do beneficiário. Validação: Deve ser um CPF válido. Deve ser diferente do CPF do trabalhador. Em arquivo gerado por pessoa física não pode ser igual ao CPF do empregador.</td>
+            <td width="500px">Informar o CPF do beneficiário. <validacao> Deve ser um CPF válido. Deve ser diferente do CPF do trabalhador. Em arquivo gerado por pessoa física não pode ser igual ao CPF do empregador.</td>
             <td width="200px"><b>{% if s1210_detpgtofl_penalim.cpfbenef or s1210_detpgtofl_penalim.cpfbenef == 0 %}{{ s1210_detpgtofl_penalim.cpfbenef }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -663,7 +663,7 @@
 
         <tr {% if s1210_detpgtofl_penalim.dtnasctobenef|validacoes_esocial_efdreinf:"s1210_detpgtofl_penalim.dtnasctobenef" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtNasctoBenef</td>
-            <td width="500px">Data de nascimento do beneficiário da pensão. Validação: Deve ser maior ou igual que 01/01/1890 e menor que a data atual.</td>
+            <td width="500px">Data de nascimento do beneficiário da pensão. <validacao> Deve ser maior ou igual que 01/01/1890 e menor que a data atual.</td>
             <td width="200px"><b>{% if s1210_detpgtofl_penalim.dtnasctobenef or s1210_detpgtofl_penalim.dtnasctobenef == 0 %}{{ s1210_detpgtofl_penalim.dtnasctobenef|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -702,7 +702,7 @@
         <tr {% if s1210_detpgtofl_penalim.vlrpensao|validacoes_esocial_efdreinf:"s1210_detpgtofl_penalim.vlrpensao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrPensao</td>
             <td width="500px">Valor da pensão alimentícia.</td>
-            <td width="200px"><b>{% if s1210_detpgtofl_penalim.vlrpensao or s1210_detpgtofl_penalim.vlrpensao == 0 %}{{ s1210_detpgtofl_penalim.vlrpensao|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofl_penalim.vlrpensao or s1210_detpgtofl_penalim.vlrpensao == 0 %}{{ s1210_detpgtofl_penalim.vlrpensao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -726,7 +726,7 @@
     {% ifequal s1210_detpgtofl_infopgtoparc.s1210_detpgtofl.id s1210_detpgtofl.id %}
         <tr {% if s1210_detpgtofl_infopgtoparc.matricula|validacoes_esocial_efdreinf:"s1210_detpgtofl_infopgtoparc.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Deve corresponder à matrícula informada pelo empregador no evento remuneratório (S-1200 ou S-1202, S-2299) do respectivo demonstrativo.</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> Deve corresponder à matrícula informada pelo empregador no evento remuneratório (S-1200 ou S-1202, S-2299) do respectivo demonstrativo.</td>
             <td width="200px"><b>{% if s1210_detpgtofl_infopgtoparc.matricula or s1210_detpgtofl_infopgtoparc.matricula == 0 %}{{ s1210_detpgtofl_infopgtoparc.matricula }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -745,7 +745,7 @@
 
         <tr {% if s1210_detpgtofl_infopgtoparc.codrubr|validacoes_esocial_efdreinf:"s1210_detpgtofl_infopgtoparc.codrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codRubr</td>
-            <td width="500px">Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. Validação: Deve ser utilizada rubrica: a) que integra o demonstrativo de valores devidos ao trabalhador ({ideDmDev}) do respectivo evento (S-1200, S-1202, S-2299, S-2399) que deu origem ao presente pagamento parcial; ou b) cujo {codIncIRRF} em S-1010 for igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]. O código informado deve existir na tabela S-1010 com vigência no período indicado em {perRef}.</td>
+            <td width="500px">Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. <validacao> Deve ser utilizada rubrica: a) que integra o demonstrativo de valores devidos ao trabalhador ({ideDmDev}) do respectivo evento (S-1200, S-1202, S-2299, S-2399) que deu origem ao presente pagamento parcial; ou b) cujo {codIncIRRF} em S-1010 for igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]. O código informado deve existir na tabela S-1010 com vigência no período indicado em {perRef}.</td>
             <td width="200px"><b>{% if s1210_detpgtofl_infopgtoparc.codrubr or s1210_detpgtofl_infopgtoparc.codrubr == 0 %}{{ s1210_detpgtofl_infopgtoparc.codrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -784,7 +784,7 @@
         <tr {% if s1210_detpgtofl_infopgtoparc.qtdrubr|validacoes_esocial_efdreinf:"s1210_detpgtofl_infopgtoparc.qtdrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtdRubr</td>
             <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc.</td>
-            <td width="200px"><b>{% if s1210_detpgtofl_infopgtoparc.qtdrubr or s1210_detpgtofl_infopgtoparc.qtdrubr == 0 %}{{ s1210_detpgtofl_infopgtoparc.qtdrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofl_infopgtoparc.qtdrubr or s1210_detpgtofl_infopgtoparc.qtdrubr == 0 %}{{ s1210_detpgtofl_infopgtoparc.qtdrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -803,7 +803,7 @@
         <tr {% if s1210_detpgtofl_infopgtoparc.fatorrubr|validacoes_esocial_efdreinf:"s1210_detpgtofl_infopgtoparc.fatorrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fatorRubr</td>
             <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
-            <td width="200px"><b>{% if s1210_detpgtofl_infopgtoparc.fatorrubr or s1210_detpgtofl_infopgtoparc.fatorrubr == 0 %}{{ s1210_detpgtofl_infopgtoparc.fatorrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofl_infopgtoparc.fatorrubr or s1210_detpgtofl_infopgtoparc.fatorrubr == 0 %}{{ s1210_detpgtofl_infopgtoparc.fatorrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -822,7 +822,7 @@
         <tr {% if s1210_detpgtofl_infopgtoparc.vrunit|validacoes_esocial_efdreinf:"s1210_detpgtofl_infopgtoparc.vrunit" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrUnit</td>
             <td width="500px">Preencher com o valor unitário da rubrica.</td>
-            <td width="200px"><b>{% if s1210_detpgtofl_infopgtoparc.vrunit or s1210_detpgtofl_infopgtoparc.vrunit == 0 %}{{ s1210_detpgtofl_infopgtoparc.vrunit|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofl_infopgtoparc.vrunit or s1210_detpgtofl_infopgtoparc.vrunit == 0 %}{{ s1210_detpgtofl_infopgtoparc.vrunit }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -840,8 +840,8 @@
 
         <tr {% if s1210_detpgtofl_infopgtoparc.vrrubr|validacoes_esocial_efdreinf:"s1210_detpgtofl_infopgtoparc.vrrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrRubr</td>
-            <td width="500px">Valor total da rubrica. Validação: Deve ser maior que zero.</td>
-            <td width="200px"><b>{% if s1210_detpgtofl_infopgtoparc.vrrubr or s1210_detpgtofl_infopgtoparc.vrrubr == 0 %}{{ s1210_detpgtofl_infopgtoparc.vrrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor total da rubrica. <validacao> Deve ser maior que zero.</td>
+            <td width="200px"><b>{% if s1210_detpgtofl_infopgtoparc.vrrubr or s1210_detpgtofl_infopgtoparc.vrrubr == 0 %}{{ s1210_detpgtofl_infopgtoparc.vrrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -865,7 +865,7 @@
     {% ifequal s1210_detpgtobenpr.s1210_infopgto.id s1210_infopgto.id %}
         <tr {% if s1210_detpgtobenpr.perref|validacoes_esocial_efdreinf:"s1210_detpgtobenpr.perref" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">perRef</td>
-            <td width="500px">Informar o período ao qual se refere o pagamento no formato AAAA-MM. Validação: Deve estar no formato AAAA-MM.</td>
+            <td width="500px">Informar o período ao qual se refere o pagamento no formato AAAA-MM. <validacao> Deve estar no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1210_detpgtobenpr.perref or s1210_detpgtobenpr.perref == 0 %}{{ s1210_detpgtobenpr.perref }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -884,7 +884,7 @@
 
         <tr {% if s1210_detpgtobenpr.idedmdev|validacoes_esocial_efdreinf:"s1210_detpgtobenpr.idedmdev" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">ideDmDev</td>
-            <td width="500px">Identificador atribuído pelo Órgão Público ou Instituto de Previdência para o recibo de pagamento, conforme definido em S-1207. Validação: Deve ser um valor atribuído pela empresa em S-1207.</td>
+            <td width="500px">Identificador atribuído pelo Órgão Público ou Instituto de Previdência para o recibo de pagamento, conforme definido em S-1207. <validacao> Deve ser um valor atribuído pela empresa em S-1207.</td>
             <td width="200px"><b>{% if s1210_detpgtobenpr.idedmdev or s1210_detpgtobenpr.idedmdev == 0 %}{{ s1210_detpgtobenpr.idedmdev }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -903,7 +903,7 @@
 
         <tr {% if s1210_detpgtobenpr.indpgtott|validacoes_esocial_efdreinf:"s1210_detpgtobenpr.indpgtott" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indPgtoTt</td>
-            <td width="500px">Indicativo de pagamento total ou parcial. Informar [S] se o valor que está sendo pago é exatamente o previsto no evento S-1207 em {dmDev}. Informar [N] se o valor que está sendo pago é inferior ao previsto no evento S-1207 em {dmDev}. Se for informado [N], significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas. Valores Válidos: S, N.</td>
+            <td width="500px">Indicativo de pagamento total ou parcial<opcoes>S - O valor que está sendo pago é exatamente o previsto no eventoS - 1207 em {dmDev}; N - O valor que está sendo pago é inferior ao previsto no eventoS - 1207 em {dmDev}. neste caso, significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas. <valores_validos> S, N.</td>
             <td width="200px"><b>{% if s1210_detpgtobenpr.indpgtott or s1210_detpgtobenpr.indpgtott == 0 %}{{ s1210_detpgtobenpr.indpgtott }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -922,8 +922,8 @@
 
         <tr {% if s1210_detpgtobenpr.vrliq|validacoes_esocial_efdreinf:"s1210_detpgtobenpr.vrliq" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrLiq</td>
-            <td width="500px">Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). Validação: Não pode ser um valor negativo. Se {indPgtoTt} = [S] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas: a) no evento S-1207; e b) no grupo inferior ({retPgtoTot}). Se {indPgtoTt} = [N] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas em {infoPgtoParc} do registro inferior.</td>
-            <td width="200px"><b>{% if s1210_detpgtobenpr.vrliq or s1210_detpgtobenpr.vrliq == 0 %}{{ s1210_detpgtobenpr.vrliq|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). <validacao> Não pode ser um valor negativo. Se {indPgtoTt} = [S] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas: a) no evento S-1207; e b) no grupo inferior ({retPgtoTot}). Se {indPgtoTt} = [N] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas em {infoPgtoParc} do registro inferior.</td>
+            <td width="200px"><b>{% if s1210_detpgtobenpr.vrliq or s1210_detpgtobenpr.vrliq == 0 %}{{ s1210_detpgtobenpr.vrliq }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -947,7 +947,7 @@
     {% ifequal s1210_detpgtobenpr_retpgtotot.s1210_detpgtobenpr.id s1210_detpgtobenpr.id %}
         <tr {% if s1210_detpgtobenpr_retpgtotot.codrubr|validacoes_esocial_efdreinf:"s1210_detpgtobenpr_retpgtotot.codrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codRubr</td>
-            <td width="500px">Informar as rubricas de folha de pagamento que representam os descontos de IRRF e pensão alimentícia. Deve-se informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no período indicado em {perApur}. Só pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
+            <td width="500px">Informar as rubricas de folha de pagamento que representam os descontos de IRRF e pensão alimentícia. Deve-se informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. <validacao> O código informado deve existir na tabela S-1010 - tabela de Rubricas, vigente no período indicado em {perApur}. Só pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83].</td>
             <td width="200px"><b>{% if s1210_detpgtobenpr_retpgtotot.codrubr or s1210_detpgtobenpr_retpgtotot.codrubr == 0 %}{{ s1210_detpgtobenpr_retpgtotot.codrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -986,7 +986,7 @@
         <tr {% if s1210_detpgtobenpr_retpgtotot.qtdrubr|validacoes_esocial_efdreinf:"s1210_detpgtobenpr_retpgtotot.qtdrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtdRubr</td>
             <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc.</td>
-            <td width="200px"><b>{% if s1210_detpgtobenpr_retpgtotot.qtdrubr or s1210_detpgtobenpr_retpgtotot.qtdrubr == 0 %}{{ s1210_detpgtobenpr_retpgtotot.qtdrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtobenpr_retpgtotot.qtdrubr or s1210_detpgtobenpr_retpgtotot.qtdrubr == 0 %}{{ s1210_detpgtobenpr_retpgtotot.qtdrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1005,7 +1005,7 @@
         <tr {% if s1210_detpgtobenpr_retpgtotot.fatorrubr|validacoes_esocial_efdreinf:"s1210_detpgtobenpr_retpgtotot.fatorrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fatorRubr</td>
             <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
-            <td width="200px"><b>{% if s1210_detpgtobenpr_retpgtotot.fatorrubr or s1210_detpgtobenpr_retpgtotot.fatorrubr == 0 %}{{ s1210_detpgtobenpr_retpgtotot.fatorrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtobenpr_retpgtotot.fatorrubr or s1210_detpgtobenpr_retpgtotot.fatorrubr == 0 %}{{ s1210_detpgtobenpr_retpgtotot.fatorrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1024,7 +1024,7 @@
         <tr {% if s1210_detpgtobenpr_retpgtotot.vrunit|validacoes_esocial_efdreinf:"s1210_detpgtobenpr_retpgtotot.vrunit" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrUnit</td>
             <td width="500px">Preencher com o valor unitário da rubrica.</td>
-            <td width="200px"><b>{% if s1210_detpgtobenpr_retpgtotot.vrunit or s1210_detpgtobenpr_retpgtotot.vrunit == 0 %}{{ s1210_detpgtobenpr_retpgtotot.vrunit|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtobenpr_retpgtotot.vrunit or s1210_detpgtobenpr_retpgtotot.vrunit == 0 %}{{ s1210_detpgtobenpr_retpgtotot.vrunit }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1042,8 +1042,8 @@
 
         <tr {% if s1210_detpgtobenpr_retpgtotot.vrrubr|validacoes_esocial_efdreinf:"s1210_detpgtobenpr_retpgtotot.vrrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrRubr</td>
-            <td width="500px">Valor total da rubrica. Validação: Deve ser maior que zero.</td>
-            <td width="200px"><b>{% if s1210_detpgtobenpr_retpgtotot.vrrubr or s1210_detpgtobenpr_retpgtotot.vrrubr == 0 %}{{ s1210_detpgtobenpr_retpgtotot.vrrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor total da rubrica. <validacao> Deve ser maior que zero.</td>
+            <td width="200px"><b>{% if s1210_detpgtobenpr_retpgtotot.vrrubr or s1210_detpgtobenpr_retpgtotot.vrrubr == 0 %}{{ s1210_detpgtobenpr_retpgtotot.vrrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1067,7 +1067,7 @@
     {% ifequal s1210_detpgtobenpr_infopgtoparc.s1210_detpgtobenpr.id s1210_detpgtobenpr.id %}
         <tr {% if s1210_detpgtobenpr_infopgtoparc.codrubr|validacoes_esocial_efdreinf:"s1210_detpgtobenpr_infopgtoparc.codrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codRubr</td>
-            <td width="500px">Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. Validação: Deve ser utilizada rubrica: a) que integra o demonstrativo de valores devidos ao trabalhador ({ideDmDev}) do respectivo evento (S-1207) que deu origem ao presente pagamento parcial; ou b) cujo {codIncIRRF} em S-1010 for igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]. O código informado deve existir na tabela S-1010 com vigência no período indicado em {perRef}.</td>
+            <td width="500px">Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. <validacao> Deve ser utilizada rubrica: a) que integra o demonstrativo de valores devidos ao trabalhador ({ideDmDev}) do respectivo evento (S-1207) que deu origem ao presente pagamento parcial; ou b) cujo {codIncIRRF} em S-1010 for igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]. O código informado deve existir na tabela S-1010 com vigência no período indicado em {perRef}.</td>
             <td width="200px"><b>{% if s1210_detpgtobenpr_infopgtoparc.codrubr or s1210_detpgtobenpr_infopgtoparc.codrubr == 0 %}{{ s1210_detpgtobenpr_infopgtoparc.codrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1106,7 +1106,7 @@
         <tr {% if s1210_detpgtobenpr_infopgtoparc.qtdrubr|validacoes_esocial_efdreinf:"s1210_detpgtobenpr_infopgtoparc.qtdrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtdRubr</td>
             <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc.</td>
-            <td width="200px"><b>{% if s1210_detpgtobenpr_infopgtoparc.qtdrubr or s1210_detpgtobenpr_infopgtoparc.qtdrubr == 0 %}{{ s1210_detpgtobenpr_infopgtoparc.qtdrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtobenpr_infopgtoparc.qtdrubr or s1210_detpgtobenpr_infopgtoparc.qtdrubr == 0 %}{{ s1210_detpgtobenpr_infopgtoparc.qtdrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1125,7 +1125,7 @@
         <tr {% if s1210_detpgtobenpr_infopgtoparc.fatorrubr|validacoes_esocial_efdreinf:"s1210_detpgtobenpr_infopgtoparc.fatorrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fatorRubr</td>
             <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
-            <td width="200px"><b>{% if s1210_detpgtobenpr_infopgtoparc.fatorrubr or s1210_detpgtobenpr_infopgtoparc.fatorrubr == 0 %}{{ s1210_detpgtobenpr_infopgtoparc.fatorrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtobenpr_infopgtoparc.fatorrubr or s1210_detpgtobenpr_infopgtoparc.fatorrubr == 0 %}{{ s1210_detpgtobenpr_infopgtoparc.fatorrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1144,7 +1144,7 @@
         <tr {% if s1210_detpgtobenpr_infopgtoparc.vrunit|validacoes_esocial_efdreinf:"s1210_detpgtobenpr_infopgtoparc.vrunit" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrUnit</td>
             <td width="500px">Preencher com o valor unitário da rubrica.</td>
-            <td width="200px"><b>{% if s1210_detpgtobenpr_infopgtoparc.vrunit or s1210_detpgtobenpr_infopgtoparc.vrunit == 0 %}{{ s1210_detpgtobenpr_infopgtoparc.vrunit|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtobenpr_infopgtoparc.vrunit or s1210_detpgtobenpr_infopgtoparc.vrunit == 0 %}{{ s1210_detpgtobenpr_infopgtoparc.vrunit }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1162,8 +1162,8 @@
 
         <tr {% if s1210_detpgtobenpr_infopgtoparc.vrrubr|validacoes_esocial_efdreinf:"s1210_detpgtobenpr_infopgtoparc.vrrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrRubr</td>
-            <td width="500px">Valor total da rubrica. Validação: Deve ser maior que zero.</td>
-            <td width="200px"><b>{% if s1210_detpgtobenpr_infopgtoparc.vrrubr or s1210_detpgtobenpr_infopgtoparc.vrrubr == 0 %}{{ s1210_detpgtobenpr_infopgtoparc.vrrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor total da rubrica. <validacao> Deve ser maior que zero.</td>
+            <td width="200px"><b>{% if s1210_detpgtobenpr_infopgtoparc.vrrubr or s1210_detpgtobenpr_infopgtoparc.vrrubr == 0 %}{{ s1210_detpgtobenpr_infopgtoparc.vrrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1187,8 +1187,8 @@
     {% ifequal s1210_detpgtofer.s1210_infopgto.id s1210_infopgto.id %}
         <tr {% if s1210_detpgtofer.codcateg|validacoes_esocial_efdreinf:"s1210_detpgtofer.codcateg" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCateg</td>
-            <td width="500px">Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1).</td>
-            <td width="200px"><b>{% if s1210_detpgtofer.codcateg or s1210_detpgtofer.codcateg == 0 %}{{ s1210_detpgtofer.codcateg|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1).</td>
+            <td width="200px"><b>{% if s1210_detpgtofer.codcateg or s1210_detpgtofer.codcateg == 0 %}{{ s1210_detpgtofer.codcateg }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1206,7 +1206,7 @@
 
         <tr {% if s1210_detpgtofer.matricula|validacoes_esocial_efdreinf:"s1210_detpgtofer.matricula" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">matricula</td>
-            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Informação obrigatória para trabalhadores das categorias 'empregados' e 'agentes públicos'. Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
+            <td width="500px">Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. <validacao> Informação obrigatória para trabalhadores das categorias 'empregados' e 'agentes públicos'. Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista.</td>
             <td width="200px"><b>{% if s1210_detpgtofer.matricula or s1210_detpgtofer.matricula == 0 %}{{ s1210_detpgtofer.matricula }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1245,7 +1245,7 @@
         <tr {% if s1210_detpgtofer.qtdias|validacoes_esocial_efdreinf:"s1210_detpgtofer.qtdias" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtDias</td>
             <td width="500px">Quantidade de dias de férias gozadas. Não devem ser incluídos os dias referentes ao abono pecuniário.</td>
-            <td width="200px"><b>{% if s1210_detpgtofer.qtdias or s1210_detpgtofer.qtdias == 0 %}{{ s1210_detpgtofer.qtdias|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofer.qtdias or s1210_detpgtofer.qtdias == 0 %}{{ s1210_detpgtofer.qtdias }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1263,8 +1263,8 @@
 
         <tr {% if s1210_detpgtofer.vrliq|validacoes_esocial_efdreinf:"s1210_detpgtofer.vrliq" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrLiq</td>
-            <td width="500px">Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). Validação: Deve corresponder ao somatório dos valores de vencimentos e descontos descritos em {detRubrFer}. Não pode ser um valor negativo.</td>
-            <td width="200px"><b>{% if s1210_detpgtofer.vrliq or s1210_detpgtofer.vrliq == 0 %}{{ s1210_detpgtofer.vrliq|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). <validacao> Deve corresponder ao somatório dos valores de vencimentos e descontos descritos em {detRubrFer}. Não pode ser um valor negativo.</td>
+            <td width="200px"><b>{% if s1210_detpgtofer.vrliq or s1210_detpgtofer.vrliq == 0 %}{{ s1210_detpgtofer.vrliq }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1288,7 +1288,7 @@
     {% ifequal s1210_detpgtofer_detrubrfer.s1210_detpgtofer.id s1210_detpgtofer.id %}
         <tr {% if s1210_detpgtofer_detrubrfer.codrubr|validacoes_esocial_efdreinf:"s1210_detpgtofer_detrubrfer.codrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codRubr</td>
-            <td width="500px">Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no período indicado em {perApur}. Só pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [00, 01, 09, 13, 33, 43, 46, 53, 63, 75, 93].</td>
+            <td width="500px">Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. <validacao> O código informado deve existir na tabela S-1010 - tabela de Rubricas, vigente no período indicado em {perApur}. Só pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [00, 01, 09, 13, 33, 43, 46, 53, 63, 75, 93].</td>
             <td width="200px"><b>{% if s1210_detpgtofer_detrubrfer.codrubr or s1210_detpgtofer_detrubrfer.codrubr == 0 %}{{ s1210_detpgtofer_detrubrfer.codrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1327,7 +1327,7 @@
         <tr {% if s1210_detpgtofer_detrubrfer.qtdrubr|validacoes_esocial_efdreinf:"s1210_detpgtofer_detrubrfer.qtdrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">qtdRubr</td>
             <td width="500px">Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc.</td>
-            <td width="200px"><b>{% if s1210_detpgtofer_detrubrfer.qtdrubr or s1210_detpgtofer_detrubrfer.qtdrubr == 0 %}{{ s1210_detpgtofer_detrubrfer.qtdrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofer_detrubrfer.qtdrubr or s1210_detpgtofer_detrubrfer.qtdrubr == 0 %}{{ s1210_detpgtofer_detrubrfer.qtdrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1346,7 +1346,7 @@
         <tr {% if s1210_detpgtofer_detrubrfer.fatorrubr|validacoes_esocial_efdreinf:"s1210_detpgtofer_detrubrfer.fatorrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fatorRubr</td>
             <td width="500px">Informar o fator, percentual, etc, da rubrica, quando necessário. Exs: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50, percentual de contribuição previdenciária de 11% relacionado a uma rubrica de desconto de contribuição previdenciária: Fator = 11.</td>
-            <td width="200px"><b>{% if s1210_detpgtofer_detrubrfer.fatorrubr or s1210_detpgtofer_detrubrfer.fatorrubr == 0 %}{{ s1210_detpgtofer_detrubrfer.fatorrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofer_detrubrfer.fatorrubr or s1210_detpgtofer_detrubrfer.fatorrubr == 0 %}{{ s1210_detpgtofer_detrubrfer.fatorrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1365,7 +1365,7 @@
         <tr {% if s1210_detpgtofer_detrubrfer.vrunit|validacoes_esocial_efdreinf:"s1210_detpgtofer_detrubrfer.vrunit" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrUnit</td>
             <td width="500px">Preencher com o valor unitário da rubrica.</td>
-            <td width="200px"><b>{% if s1210_detpgtofer_detrubrfer.vrunit or s1210_detpgtofer_detrubrfer.vrunit == 0 %}{{ s1210_detpgtofer_detrubrfer.vrunit|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofer_detrubrfer.vrunit or s1210_detpgtofer_detrubrfer.vrunit == 0 %}{{ s1210_detpgtofer_detrubrfer.vrunit }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1383,8 +1383,8 @@
 
         <tr {% if s1210_detpgtofer_detrubrfer.vrrubr|validacoes_esocial_efdreinf:"s1210_detpgtofer_detrubrfer.vrrubr" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrRubr</td>
-            <td width="500px">Valor total da rubrica. Validação: Deve ser maior que zero.</td>
-            <td width="200px"><b>{% if s1210_detpgtofer_detrubrfer.vrrubr or s1210_detpgtofer_detrubrfer.vrrubr == 0 %}{{ s1210_detpgtofer_detrubrfer.vrrubr|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor total da rubrica. <validacao> Deve ser maior que zero.</td>
+            <td width="200px"><b>{% if s1210_detpgtofer_detrubrfer.vrrubr or s1210_detpgtofer_detrubrfer.vrrubr == 0 %}{{ s1210_detpgtofer_detrubrfer.vrrubr }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1408,7 +1408,7 @@
     {% ifequal s1210_detpgtofer_penalim.s1210_detpgtofer_detrubrfer.id s1210_detpgtofer_detrubrfer.id %}
         <tr {% if s1210_detpgtofer_penalim.cpfbenef|validacoes_esocial_efdreinf:"s1210_detpgtofer_penalim.cpfbenef" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cpfBenef</td>
-            <td width="500px">Informar o CPF do beneficiário. Validação: Deve ser um CPF válido. Deve ser diferente do CPF do trabalhador. Em arquivo gerado por pessoa física não pode ser igual ao CPF do empregador.</td>
+            <td width="500px">Informar o CPF do beneficiário. <validacao> Deve ser um CPF válido. Deve ser diferente do CPF do trabalhador. Em arquivo gerado por pessoa física não pode ser igual ao CPF do empregador.</td>
             <td width="200px"><b>{% if s1210_detpgtofer_penalim.cpfbenef or s1210_detpgtofer_penalim.cpfbenef == 0 %}{{ s1210_detpgtofer_penalim.cpfbenef }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1427,7 +1427,7 @@
 
         <tr {% if s1210_detpgtofer_penalim.dtnasctobenef|validacoes_esocial_efdreinf:"s1210_detpgtofer_penalim.dtnasctobenef" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">dtNasctoBenef</td>
-            <td width="500px">Data de nascimento do beneficiário da pensão. Validação: Deve ser maior ou igual que 01/01/1890 e menor que a data atual.</td>
+            <td width="500px">Data de nascimento do beneficiário da pensão. <validacao> Deve ser maior ou igual que 01/01/1890 e menor que a data atual.</td>
             <td width="200px"><b>{% if s1210_detpgtofer_penalim.dtnasctobenef or s1210_detpgtofer_penalim.dtnasctobenef == 0 %}{{ s1210_detpgtofer_penalim.dtnasctobenef|date:"Y-m-d" }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1466,7 +1466,7 @@
         <tr {% if s1210_detpgtofer_penalim.vlrpensao|validacoes_esocial_efdreinf:"s1210_detpgtofer_penalim.vlrpensao" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vlrPensao</td>
             <td width="500px">Valor da pensão alimentícia.</td>
-            <td width="200px"><b>{% if s1210_detpgtofer_penalim.vlrpensao or s1210_detpgtofer_penalim.vlrpensao == 0 %}{{ s1210_detpgtofer_penalim.vlrpensao|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="200px"><b>{% if s1210_detpgtofer_penalim.vlrpensao or s1210_detpgtofer_penalim.vlrpensao == 0 %}{{ s1210_detpgtofer_penalim.vlrpensao }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1490,8 +1490,8 @@
     {% ifequal s1210_detpgtoant.s1210_infopgto.id s1210_infopgto.id %}
         <tr {% if s1210_detpgtoant.codcateg|validacoes_esocial_efdreinf:"s1210_detpgtoant.codcateg" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codCateg</td>
-            <td width="500px">Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1).</td>
-            <td width="200px"><b>{% if s1210_detpgtoant.codcateg or s1210_detpgtoant.codcateg == 0 %}{{ s1210_detpgtoant.codcateg|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código da categoria do trabalhador, conforme tabela 1. <validacao> Deve existir na tabela de Categorias de Trabalhadores (tabela 1).</td>
+            <td width="200px"><b>{% if s1210_detpgtoant.codcateg or s1210_detpgtoant.codcateg == 0 %}{{ s1210_detpgtoant.codcateg }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1515,7 +1515,7 @@
     {% ifequal s1210_detpgtoant_infopgtoant.s1210_detpgtoant.id s1210_detpgtoant.id %}
         <tr {% if s1210_detpgtoant_infopgtoant.tpbcirrf|validacoes_esocial_efdreinf:"s1210_detpgtoant_infopgtoant.tpbcirrf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpBcIRRF</td>
-            <td width="500px">Tipo de base de cálculo, dedução ou isenção do IRRF relacionado ao valor do pagamento, conforme opções abaixo: Rendimentos não tributáveis: 00 - Rendimento não tributável; 01 - Rendimento não tributável em função de acordos internacionais de bitributação; 09 - Outras verbas não consideradas como base de cálculo ou rendimento; Rendimentos tributáveis - base de cálculo do IRRF: 11 - Remuneração Mensal; 12 - 13o Salário; 13 - Férias; 14 - PLR; 15 - Rendimentos Recebidos Acumuladamente - RRA; Retenções do IRRF efetuadas sobre: 31 - Remuneração mensal; 32 - 13o Salário; 33 - Férias; 34 - PLR; 35 - RRA; Deduções da base de cálculo do IRRF: 41 - Previdência Social Oficial - PSO - Remuner. Mensal; 42 - PSO - 13° salário; 43 - PSO - Férias; 44 - PSO - RRA; 46 - Previdência Privada - salário mensal; 47 - Previdência Privada - 13° salário; 51 - Pensão Alimentícia - Remuneração Mensal; 52 - Pensão Alimentícia - 13° salário; 53 - Pensão Alimentícia - Férias; 54 - Pensão Alimentícia - PLR; 55 - Pensão Alimentícia - RRA; 61 - Fundo de Aposentadoria Programada Individual - FAPI - Remuneração Mensal; 62 - Fundo de Aposentadoria Programada Individual - FAPI - 13° salário; 63 - Fundação de Previdência Complementar do Servidor Público - Funpresp - Remuneração Mensal; 64 - Fundação de Previdência Complementar do Servidor Público - Funpresp - 13° salário; Isenções do IRRF: 70 - Parcela Isenta 65 anos - Remuneração Mensal; 71 - Parcela Isenta 65 anos - 13° salário; 72 - Diárias; 73 - Ajuda de Custo; 74 - Indenização e rescisão de contrato, inclusive a título de PDV e acidentes de trabalho; 75 - Abono pecuniário; 76 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - Remuneração Mensal; 77 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - 13° salário; 78 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis; 79 - Outras isenções (o nome da rubrica deve ser claro para identificação da natureza dos valores); Demandas Judiciais: 81 - Depósito Judicial; 82 - Compensação Judicial do ano calendário; 83 - Compensação Judicial de anos anteriores; Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: 91 - Remuneração Mensal; 92 - 13o Salário; 93 - Férias; 94 - PLR; 95 - RRA. Valores Válidos: 00,01,09,11,12,13,14,15, 31,32,33,34,35, 41,42,43,44,46,47, 51,52,53,54,55, 61,62,63,64, 70,71,72,73,74,75,76,77,78,79, 81,82,83, 91,92,93,94,95.</td>
+            <td width="500px">Tipo de base de cálculo, dedução ou isenção do IRRF relacionado ao valor do pagamento, conforme opções abaixo: Rendimentos não tributáveis: 00 - Rendimento não tributável; 01 - Rendimento não tributável em função de acordos internacionais de bitributação; 09 - Outras verbas não consideradas como base de cálculo ou rendimento; Rendimentos tributáveis - base de cálculo do IRRF<opcoes>11 - Remuneração Mensal; 12 - 13o Salário; 13 - Férias; 14 - PLR; 15 - Rendimentos Recebidos Acumuladamente - RRA; 31 - (Retenções do IRRF efetuadas sobre) Remuneração mensal; 32 - (Retenções do IRRF efetuadas sobre) 13o Salário; 33 - (Retenções do IRRF efetuadas sobre) Férias; 34 - (Retenções do IRRF efetuadas sobre) PLR; 35 - (Retenções do IRRF efetuadas sobre) RRA; 41 - (Deduções da base de cálculo do IRRF) Previdência Social Oficial - PSO - Remuner. Mensal; 42 - (Deduções da base de cálculo do IRRF) PSO - 13° salário; 43 - (Deduções da base de cálculo do IRRF) PSO - Férias; 44 - (Deduções da base de cálculo do IRRF) PSO - RRA; 46 - (Deduções da base de cálculo do IRRF) Previdência Privada - salário mensal; 47 - (Deduções da base de cálculo do IRRF) Previdência Privada - 13° salário; 51 - (Deduções da base de cálculo do IRRF) Pensão Alimentícia - Remuneração Mensal; 52 - (Deduções da base de cálculo do IRRF) Pensão Alimentícia - 13° salário; 53 - (Deduções da base de cálculo do IRRF) Pensão Alimentícia - Férias; 54 - (Deduções da base de cálculo do IRRF) Pensão Alimentícia - PLR; 55 - (Deduções da base de cálculo do IRRF) Pensão Alimentícia - RRA; 61 - (Deduções da base de cálculo do IRRF) Fundo de Aposentadoria Programada Individual - FAPI - Remuneração Mensal; 62 - (Deduções da base de cálculo do IRRF) Fundo de Aposentadoria Programada Individual - FAPI - 13° salário; 63 - (Deduções da base de cálculo do IRRF) Fundação de Previdência Complementar do Servidor Público - Funpresp - Remuneração Mensal; 64 - (Deduções da base de cálculo do IRRF) Fundação de Previdência Complementar do Servidor Público - Funpresp - 13° salário; 70 - (Isenções do IRRF) Parcela Isenta 65 anos - Remuneração Mensal; 71 - (Isenções do IRRF) Parcela Isenta 65 anos - 13° salário; 72 - (Isenções do IRRF) Diárias; 73 - (Isenções do IRRF) Ajuda de Custo; 74 - (Isenções do IRRF) Indenização e rescisão de contrato, inclusive a título de PDV e acidentes de trabalho; 75 - (Isenções do IRRF) Abono pecuniário; 76 - (Isenções do IRRF) Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - Remuneração Mensal; 77 - (Isenções do IRRF) Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - 13° salário; 78 - (Isenções do IRRF) Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis; 79 - (Isenções do IRRF) Outras isenções (o nome da rubrica deve ser claro para identificação da natureza dos valores); 81 - (Demandas Judiciais) Depósito Judicial; 82 - (Demandas Judiciais) Compensação Judicial do ano calendário; 83 - (Demandas Judiciais) Compensação Judicial de anos anteriores; 91 - (Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre) Remuneração Mensal; 92 - (Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre) 13o Salário; 93 - (Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre) Férias; 94 - (Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre) PLR; 95 - (Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre) RRA.<valores_validos> 00,01,09,11,12,13,14,15, 31,32,33,34,35, 41,42,43,44,46,47, 51,52,53,54,55, 61,62,63,64, 70,71,72,73,74,75,76,77,78,79, 81,82,83, 91,92,93,94,95.</td>
             <td width="200px"><b>{% if s1210_detpgtoant_infopgtoant.tpbcirrf or s1210_detpgtoant_infopgtoant.tpbcirrf == 0 %}{{ s1210_detpgtoant_infopgtoant.tpbcirrf }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1534,8 +1534,8 @@
 
         <tr {% if s1210_detpgtoant_infopgtoant.vrbcirrf|validacoes_esocial_efdreinf:"s1210_detpgtoant_infopgtoant.vrbcirrf" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">vrBcIRRF</td>
-            <td width="500px">Valor da base de cálculo, retenção, dedução ou Isenção do IRRF incidente sobre o valor devido ao trabalhador de acordo com {tpBcIRRF}. Validação: Deve ser maior que zero.</td>
-            <td width="200px"><b>{% if s1210_detpgtoant_infopgtoant.vrbcirrf or s1210_detpgtoant_infopgtoant.vrbcirrf == 0 %}{{ s1210_detpgtoant_infopgtoant.vrbcirrf|format_number_2dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Valor da base de cálculo, retenção, dedução ou Isenção do IRRF incidente sobre o valor devido ao trabalhador de acordo com {tpBcIRRF}. <validacao> Deve ser maior que zero.</td>
+            <td width="200px"><b>{% if s1210_detpgtoant_infopgtoant.vrbcirrf or s1210_detpgtoant_infopgtoant.vrbcirrf == 0 %}{{ s1210_detpgtoant_infopgtoant.vrbcirrf }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1564,7 +1564,7 @@
 
         <tr {% if s1210_idepgtoext.codpais|validacoes_esocial_efdreinf:"s1210_idepgtoext.codpais" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">codPais</td>
-            <td width="500px">Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela de países.</td>
+            <td width="500px">Preencher com o código do país, conforme tabela 6. <validacao> Deve ser um código existente na tabela de países.</td>
             <td width="200px"><b>{% if s1210_idepgtoext.codpais or s1210_idepgtoext.codpais == 0 %}{{ s1210_idepgtoext.codpais }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -1583,8 +1583,8 @@
 
         <tr {% if s1210_idepgtoext.indnif|validacoes_esocial_efdreinf:"s1210_idepgtoext.indnif" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">indNIF</td>
-            <td width="500px">Indicativo do Número de Identificação Fiscal: 1 - Beneficiário com NIF; 2 - Beneficiário dispensado do NIF; 3 - País não exige NIF. Valores Válidos: 1, 2, 3.</td>
-            <td width="200px"><b>{% if s1210_idepgtoext.indnif or s1210_idepgtoext.indnif == 0 %}{{ s1210_idepgtoext.indnif|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Indicativo do Número de Identificação Fiscal<opcoes>1 - Beneficiário com NIF; 2 - Beneficiário dispensado do NIF; 3 - País não exige NIF. <valores_validos> 1, 2, 3.</td>
+            <td width="200px"><b>{% if s1210_idepgtoext.indnif or s1210_idepgtoext.indnif == 0 %}{{ s1210_idepgtoext.indnif }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -1602,7 +1602,7 @@
 
         <tr {% if s1210_idepgtoext.nifbenef|validacoes_esocial_efdreinf:"s1210_idepgtoext.nifbenef" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nifBenef</td>
-            <td width="500px">Número de Identificação Fiscal - NIF. Validação: Obrigatório se {indNIF} = [1].</td>
+            <td width="500px">Número de Identificação Fiscal - NIF. <validacao> Obrigatório se {indNIF} = [1].</td>
             <td width="200px"><b>{% if s1210_idepgtoext.nifbenef or s1210_idepgtoext.nifbenef == 0 %}{{ s1210_idepgtoext.nifbenef }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

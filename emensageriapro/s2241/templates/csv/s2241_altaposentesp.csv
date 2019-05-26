@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2241_aposentesp or 1 %}"Condições do ambiente de trabalho que ensejam aposentadoria especial - Alteração";{% endif %}{% if show_fields.show_dtaltcondicao or 1 %}"Data de alteração de condição";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2241_aposentesp or 1 %}"{{ c.s2241_aposentesp }}";{% endif %}{% if show_fields.show_dtaltcondicao or 1 %}"{{ c.dtaltcondicao }}";{% endif %}
+{% endfor %}

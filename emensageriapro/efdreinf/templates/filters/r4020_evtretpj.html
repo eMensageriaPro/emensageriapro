@@ -1,0 +1,422 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4020_evtretpj__evtretpj -->
+<div class="col-md-12" id="r4020_evtretpj__evtretpj__div">
+  <h4>Evento Retenções na Fonte - IR, CSLL, Cofins e PIS/PASEP</h4>
+</div>
+<!-- fim__r4020_evtretpj__evtretpj -->
+
+<!-- inicio__r4020_evtretpj__identidade -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Identificação única do evento</label>
+    <div name="identidade" class="input-group" style="width: 100%;">
+      <input type="text" name="identidade" class="form-control" value="{{ dict_fields|get_value_from_dict:'identidade' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__identidade -->
+
+<!-- inicio__r4020_evtretpj__ideevento -->
+<div class="col-md-12" id="r4020_evtretpj__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__r4020_evtretpj__ideevento -->
+
+<!-- inicio__r4020_evtretpj__indretif -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informe [1] para arquivo original ou [2] para arquivo de retificação</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="indretif" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'indretif' %}selected="selected"{% endifequal %} >1 - Arquivo original</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'indretif' %}selected="selected"{% endifequal %} >2 - Arquivo de Retificação.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__indretif -->
+
+<!-- inicio__r4020_evtretpj__nrrecibo -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o número do recibo do arquivo a ser retificado</label>
+    <div name="nrrecibo" class="input-group" style="width: 100%;">
+      <input type="text" name="nrrecibo" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrrecibo' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__nrrecibo -->
+
+<!-- inicio__r4020_evtretpj__perapur -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o ano/mês de referência das informações no formato AAAA-MM</label>
+    <div name="perapur" class="input-group" style="width: 100%;">
+      <input type="text" name="perapur" class="form-control" value="{{ dict_fields|get_value_from_dict:'perapur' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__perapur -->
+
+<!-- inicio__r4020_evtretpj__tpamb -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Identificação do ambiente</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpamb" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpamb' %}selected="selected"{% endifequal %} >1 - Produção</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpamb' %}selected="selected"{% endifequal %} >2 - Produção restrita.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__tpamb -->
+
+<!-- inicio__r4020_evtretpj__procemi -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Processo de emissão do evento</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="procemi" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >1 - Aplicativo do contribuinte</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'procemi' %}selected="selected"{% endifequal %} >2 - Aplicativo governamental.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__procemi -->
+
+<!-- inicio__r4020_evtretpj__verproc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Versão do processo de emissão do evento</label>
+    <div name="verproc" class="input-group" style="width: 100%;">
+      <input type="text" name="verproc" class="form-control" value="{{ dict_fields|get_value_from_dict:'verproc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__verproc -->
+
+<!-- inicio__r4020_evtretpj__idecontri -->
+<div class="col-md-12" id="r4020_evtretpj__idecontri__div">
+  <h4>Informações de identificação do contribuinte</h4>
+</div>
+<!-- fim__r4020_evtretpj__idecontri -->
+
+<!-- inicio__r4020_evtretpj__tpinsc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o código correspondente ao tipo de inscrição</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpinsc" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >2 - CPF</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >5 - CGC</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__tpinsc -->
+
+<!-- inicio__r4020_evtretpj__nrinsc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</label>
+    <div name="nrinsc" class="input-group" style="width: 100%;">
+      <input type="text" name="nrinsc" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrinsc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__nrinsc -->
+
+<!-- inicio__r4020_evtretpj__ideestab -->
+<div class="col-md-12" id="r4020_evtretpj__ideestab__div">
+  <h4>Identificação dos estabelecimentos da associação desportiva que receberam os recursos</h4>
+</div>
+<!-- fim__r4020_evtretpj__ideestab -->
+
+<!-- inicio__r4020_evtretpj__tpinscestab -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o código correspondente ao tipo de inscrição</label>
+    <div name="tpinscestab" class="input-group" style="width: 100%;">
+      <input type="text" name="tpinscestab" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tpinscestab' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__tpinscestab -->
+
+<!-- inicio__r4020_evtretpj__nrinscestab -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}.</label>
+    <div name="nrinscestab" class="input-group" style="width: 100%;">
+      <input type="text" name="nrinscestab" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrinscestab' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__nrinscestab -->
+
+<!-- inicio__r4020_evtretpj__idebenef -->
+<div class="col-md-12" id="r4020_evtretpj__idebenef__div">
+  <h4>Identificação do Beneficiário e do Rendimento</h4>
+</div>
+<!-- fim__r4020_evtretpj__idebenef -->
+
+<!-- inicio__r4020_evtretpj__cnpjbenef -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o CNPJ do beneficiário do crédito ou pagamento</label>
+    <div name="cnpjbenef" class="input-group" style="width: 100%;">
+      <input type="text" name="cnpjbenef" class="form-control" value="{{ dict_fields|get_value_from_dict:'cnpjbenef' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__cnpjbenef -->
+
+<!-- inicio__r4020_evtretpj__nmbenef -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Nome do beneficiário</label>
+    <div name="nmbenef" class="input-group" style="width: 100%;">
+      <input type="text" name="nmbenef" class="form-control" value="{{ dict_fields|get_value_from_dict:'nmbenef' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__nmbenef -->
+
+<!-- inicio__r4020_evtretpj__isenimun -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informações sobre isenção e imunidade</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="isenimun" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'isenimun' %}selected="selected"{% endifequal %} >1 - Não isenta/não imune</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'isenimun' %}selected="selected"{% endifequal %} >2 - Instituição de educação e de assistência social sem fins lucrativos, a que se refere o art. 12 da Lei nº 9.532, de 10 de dezembro de 1997</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'isenimun' %}selected="selected"{% endifequal %} >3 - Instituição de caráter filantrópico, recreativo, cultural, científico e às associações civis, a que se refere o art. 15 da Lei nº 9.532, de 1997.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__isenimun -->
+
+<!-- inicio__r4020_evtretpj__versao -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Versão</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="versao" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="v1_03_02" {% ifequal 'v1_03_02' dict_fields|get_value_from_dict:'versao' %}selected="selected"{% endifequal %} >Versão 1.03.02</option>
+        <option value="v1_04_00" {% ifequal 'v1_04_00' dict_fields|get_value_from_dict:'versao' %}selected="selected"{% endifequal %} >Versão 1.04.00</option>
+        <option value="v2_00_00" {% ifequal 'v2_00_00' dict_fields|get_value_from_dict:'versao' %}selected="selected"{% endifequal %} >Versão 2.00.00</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__versao -->
+
+<!-- inicio__r4020_evtretpj__transmissor_lote_efdreinf -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Transmissor</label>
+    <select name="transmissor_lote_efdreinf" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in transmissor_lote_efdreinf_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'transmissor_lote_efdreinf' %}selected="selected"{% endifequal %}>{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__transmissor_lote_efdreinf -->
+
+<!-- inicio__r4020_evtretpj__status -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Status</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="status" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="10" {% ifequal 10 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando envio</option>
+        <option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Aguardando envio de precedência</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Assinado</option>
+        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Cadastrado</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Duplicado</option>
+        <option value="11" {% ifequal 11 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Enviado</option>
+        <option value="6" {% ifequal 6 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na Assinatura</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na Geração</option>
+        <option value="8" {% ifequal 8 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na validação</option>
+        <option value="12" {% ifequal 12 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro no Envio/Consulta</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Gerado</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Importado</option>
+        <option value="13" {% ifequal 13 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Processado</option>
+        <option value="7" {% ifequal 7 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Validado</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__status -->
+
+<!-- inicio__r4020_evtretpj__cdretorno -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Código do Retorno</label>
+    <div name="cdretorno" class="input-group" style="width: 100%;">
+      <input type="text" name="cdretorno" class="form-control" value="{{ dict_fields|get_value_from_dict:'cdretorno' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_evtretpj__cdretorno -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_evtretpj" value="0" {% if show_fields|get_value_from_dict:'show_evtretpj' %}checked{% endif %} >Evento Retenções na Fonte - IR, CSLL, Cofins e PIS/PASEP
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_identidade" value="1" {% if show_fields|get_value_from_dict:'show_identidade' %}checked{% endif %} >Identificação única do evento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_ideevento" value="0" {% if show_fields|get_value_from_dict:'show_ideevento' %}checked{% endif %} >Informações de Identificação do Evento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_indretif" value="1" {% if show_fields|get_value_from_dict:'show_indretif' %}checked{% endif %} >Informe [1] para arquivo original ou [2] para arquivo de retificação
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrrecibo" value="0" {% if show_fields|get_value_from_dict:'show_nrrecibo' %}checked{% endif %} >Preencher com o número do recibo do arquivo a ser retificado
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_perapur" value="1" {% if show_fields|get_value_from_dict:'show_perapur' %}checked{% endif %} >Informar o ano/mês de referência das informações no formato AAAA-MM
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpamb" value="1" {% if show_fields|get_value_from_dict:'show_tpamb' %}checked{% endif %} >Identificação do ambiente
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_procemi" value="1" {% if show_fields|get_value_from_dict:'show_procemi' %}checked{% endif %} >Processo de emissão do evento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_verproc" value="1" {% if show_fields|get_value_from_dict:'show_verproc' %}checked{% endif %} >Versão do processo de emissão do evento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_idecontri" value="0" {% if show_fields|get_value_from_dict:'show_idecontri' %}checked{% endif %} >Informações de identificação do contribuinte
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpinsc" value="1" {% if show_fields|get_value_from_dict:'show_tpinsc' %}checked{% endif %} >Preencher com o código correspondente ao tipo de inscrição
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrinsc" value="1" {% if show_fields|get_value_from_dict:'show_nrinsc' %}checked{% endif %} >Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_ideestab" value="0" {% if show_fields|get_value_from_dict:'show_ideestab' %}checked{% endif %} >Identificação dos estabelecimentos da associação desportiva que receberam os recursos
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpinscestab" value="1" {% if show_fields|get_value_from_dict:'show_tpinscestab' %}checked{% endif %} >Preencher com o código correspondente ao tipo de inscrição
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrinscestab" value="1" {% if show_fields|get_value_from_dict:'show_nrinscestab' %}checked{% endif %} >Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_idebenef" value="0" {% if show_fields|get_value_from_dict:'show_idebenef' %}checked{% endif %} >Identificação do Beneficiário e do Rendimento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_cnpjbenef" value="0" {% if show_fields|get_value_from_dict:'show_cnpjbenef' %}checked{% endif %} >Informar o CNPJ do beneficiário do crédito ou pagamento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nmbenef" value="0" {% if show_fields|get_value_from_dict:'show_nmbenef' %}checked{% endif %} >Nome do beneficiário
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_isenimun" value="1" {% if show_fields|get_value_from_dict:'show_isenimun' %}checked{% endif %} >Informações sobre isenção e imunidade
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_versao" value="0" {% if show_fields|get_value_from_dict:'show_versao' %}checked{% endif %} >Versão
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_transmissor_lote_efdreinf" value="0" {% if show_fields|get_value_from_dict:'show_transmissor_lote_efdreinf' %}checked{% endif %} >Transmissor
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_status" value="1" {% if show_fields|get_value_from_dict:'show_status' %}checked{% endif %} >Status
+    </div>
+</div>
+
+

@@ -1,1 +1,945 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% extends 'base.html' %}{% load templatetags %}{% block content %}<section class="content-header"><h1>Informações de identificação da lotação e validade das informações que estão sendo incluídas<small>Cadastrar/Editar</small></h1><ol class="breadcrumb"><li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li><li><a href="#">Informações de identificação da lotação e validade das informações que estão sendo incluídas</a></li><li class="active">Cadastrar/Editar</li></ol></section>{% if not for_print %}<section class="content"><div class="row"><div class="col-xs-12"><div class="nav-tabs-custom"><ul class="nav nav-tabs">{% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' %}<li {% if not tab %}class="active"{% endif %}><a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_return_page:'s5011_idelotacao_salvar'|json_return_hash:hash|json_id:s5011_idelotacao_id|json_print:0|base64_encode_me %}">Informações de identificação da lotação e validade das informações que estão sendo incluídas</a></li>{% endif %}{% if s5011_idelotacao_id %}<!-- ANTES-TABS-s5011_infotercsusp -->{% if dict_permissoes|get_permissao:'s5011_infotercsusp_visualizar' %}<li {% if tab == 's5011_infotercsusp' %}class="active"{% endif %}><a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_infotercsusp'|base64_encode_me %}">Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).</a></li>{% endif %}<!-- DEPOIS-TABS-s5011_infotercsusp --><!-- ANTES-TABS-s5011_infoemprparcial -->{% if dict_permissoes|get_permissao:'s5011_infoemprparcial_visualizar' %}<li {% if tab == 's5011_infoemprparcial' %}class="active"{% endif %}><a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_infoemprparcial'|base64_encode_me %}">Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} seja igua (...)</a></li>{% endif %}<!-- DEPOIS-TABS-s5011_infoemprparcial --><!-- ANTES-TABS-s5011_dadosopport -->{% if dict_permissoes|get_permissao:'s5011_dadosopport_visualizar' %}<li {% if tab == 's5011_dadosopport' %}class="active"{% endif %}><a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_dadosopport'|base64_encode_me %}">Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</a></li>{% endif %}<!-- DEPOIS-TABS-s5011_dadosopport --><!-- ANTES-TABS-s5011_basesremun -->{% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}<li {% if tab == 's5011_basesremun' %}class="active"{% endif %}><a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_basesremun'|base64_encode_me %}">Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</a></li>{% endif %}<!-- DEPOIS-TABS-s5011_basesremun --><!-- ANTES-TABS-s5011_basesavnport -->{% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %}<li {% if tab == 's5011_basesavnport' %}class="active"{% endif %}><a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_basesavnport'|base64_encode_me %}">Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários</a></li>{% endif %}<!-- DEPOIS-TABS-s5011_basesavnport --><!-- ANTES-TABS-s5011_infosubstpatropport -->{% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_visualizar' %}<li {% if tab == 's5011_infosubstpatropport' %}class="active"{% endif %}><a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_infosubstpatropport'|base64_encode_me %}">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</a></li>{% endif %}<!-- DEPOIS-TABS-s5011_infosubstpatropport -->{% endif %}</ul></div></div></div>{% else %}<section class="invoice">{% endif %} {% if not for_print %} {% if messages %}<div class="row"><div class="pad margin no-print">{% for message in messages %}<div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div></div>{% endif %} {% if s5011_idelotacao_form.errors %}<div class="row"><div class="pad margin no-print">{% for error in s5011_idelotacao_form.non_field_errors %}<div class="alert alert-error" style="margin-bottom: 0!important;">{{ error|escape }}</div>{% endfor %}</div></div>{% endif %} {% if s5011_idelotacao_id %} {% if ocorrencias %}<div class="row"><div class="col-xs-12"><div class="small-box bg-red"><div class="inner"><strong>OCORRÊNCIAS REPORTADAS:</strong><br><p>{% autoescape off %}{{ ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p></div></div></div></div>{% endif %} {% if status == STATUS_EVENTO_VALIDADO %} {% if not validacao_precedencia %}<div class="row"><div class="col-xs-12"><div class="small-box bg-yellow"><div class="inner"><p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p></div></div></div></div>{% endif %} {% if validacoes %}<div class="row"><div class="col-xs-12"><div class="small-box bg-red"><div class="inner"><strong>Erros de validação:</strong><br><p>{% autoescape off %}{{ validacoes }}{% endautoescape %}</p></div></div></div></div>{% endif %} {% endif %} {% endif %} {% endif %} {% if not tab %}<div class="row"><div class="col-md-12">{% if not for_print %}<div class="box box-primary"><div class="box-header with-border"><h3 class="box-title">Cadastrar/Editar Informações de identificação da lotação e validade das informações que estão sendo incluídas</h3></div>{% else %}<div class="row">{% endif %} {% if not for_print %} {% if dict_permissoes|get_permissao:'s5011_idelotacao_editar' or dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %} {% if status == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s5011_idelotacao" method="POST" content="text/html; charset=UTF-8">{% endif %} {% if status == STATUS_EVENTO_CADASTRADO %}{% csrf_token %}{% endif %} {% endif %} {% endif %}<div class="box-body"><div class="row">{% include 'forms/s5011_idelotacao.html' %}</div></div>{% if not for_print %}<div class="row"><div class="form-group col-md-4"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-8"><div class="box-footer text-right"><!-- botões especiais -->{% if s5011_idelotacao_id %}{% if status == STATUS_EVENTO_CADASTRADO %} {% if dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}<a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %} {% endif %} {% endif %} {% if dict_permissoes|get_permissao:'s5011_idelotacao_listar' or dict_permissoes|get_permissao:'s5011_idelotacao_listar' %}<a href="{% url 's5011_idelotacao' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}<!-- {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' and s5011_idelotacao_id %}<a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}-->{% if status == STATUS_EVENTO_CADASTRADO %} {% if dict_permissoes|get_permissao:'s5011_idelotacao_editar' or dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}{% endif %}{% if status == STATUS_EVENTO_CADASTRADO %} {% if dict_permissoes|get_permissao:'s5011_idelotacao_apagar' and s5011_idelotacao_id %}<a href="{% url 's5011_idelotacao_apagar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}{% endif %}<a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a></div></div></div>{% endif %} {% if not for_print %}{% if status == STATUS_EVENTO_CADASTRADO %} {% if dict_permissoes|get_permissao:'s5011_idelotacao_editar' or dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}</form>{% endif %} {% endif %} {% endif %}</div>{% if controle_alteracoes %}<!-- inicio controle de alterações --><div class="row"><div class="col-md-12"><div class="box box-primary collapsed-box"><div class="box-header with-border"><h3 class="box-title">Controle de Alterações</h3><div class="pull-right box-tools"><button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button></div></div><div class="box-body"><table class="table table-bordered table-striped automate-data-table"><thead><tr><th>Data</th><th>Situação Anterior</th><th>Situação Posterior</th><th>Modificado por</th></tr></thead><tbody>{% for c in controle_alteracoes %}<tr><td>{{ c.criado_em }}</td><td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td><td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td><td>{{ c.modificado_por }}</td></tr>{% endfor %}</tbody></table></div></div></div></div><!-- fim controle de alterações -->{% endif %}</div></div></div></div>{% endif %}<!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->{% if s5011_idelotacao_id %}<!-- begin_Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros). -->{% if tab == 's5011_infotercsusp' or for_print %} {% if dict_permissoes|get_permissao:'s5011_infotercsusp_visualizar' %} {% if dict_permissoes|get_permissao:'s5011_infotercsusp_editar' or dict_permissoes|get_permissao:'s5011_infotercsusp_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s5011_infotercsusp_editar' or dict_permissoes|get_permissao:'s5011_infotercsusp_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s5011_infotercsusp_cadastrar' %}<!-- begin_form_s5011_infotercsusp --><div id="cadastrar" style="display:none"><form id="id_form_s5011_infotercsusp" action="{% url 's5011_infotercsusp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s5011_infotercsusp.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s5011_infotercsusp -->{% endif %}<div id="listar"><!-- begin_table_s5011_infotercsusp -->{% include 'tables/s5011_infotercsusp.html' %}<!-- end_table_s5011_infotercsusp --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros). --><!-- begin_Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} seja igua (...) -->{% if tab == 's5011_infoemprparcial' or for_print %} {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_visualizar' %} {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_editar' or dict_permissoes|get_permissao:'s5011_infoemprparcial_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} seja igua (...)</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s5011_infoemprparcial_editar' or dict_permissoes|get_permissao:'s5011_infoemprparcial_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s5011_infoemprparcial_cadastrar' %}<!-- begin_form_s5011_infoemprparcial --><div id="cadastrar" style="display:none"><form id="id_form_s5011_infoemprparcial" action="{% url 's5011_infoemprparcial_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s5011_infoemprparcial.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s5011_infoemprparcial -->{% endif %}<div id="listar"><!-- begin_table_s5011_infoemprparcial -->{% include 'tables/s5011_infoemprparcial.html' %}<!-- end_table_s5011_infoemprparcial --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada. A informação é preenchida exclusivamente para lotações cujo {tpLotacao} seja igua (...) --><!-- begin_Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080). -->{% if tab == 's5011_dadosopport' or for_print %} {% if dict_permissoes|get_permissao:'s5011_dadosopport_visualizar' %} {% if dict_permissoes|get_permissao:'s5011_dadosopport_editar' or dict_permissoes|get_permissao:'s5011_dadosopport_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s5011_dadosopport_editar' or dict_permissoes|get_permissao:'s5011_dadosopport_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s5011_dadosopport_cadastrar' %}<!-- begin_form_s5011_dadosopport --><div id="cadastrar" style="display:none"><form id="id_form_s5011_dadosopport" action="{% url 's5011_dadosopport_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s5011_dadosopport.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s5011_dadosopport -->{% endif %}<div id="listar"><!-- begin_table_s5011_dadosopport -->{% include 'tables/s5011_dadosopport.html' %}<!-- end_table_s5011_dadosopport --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080). --><!-- begin_Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria. -->{% if tab == 's5011_basesremun' or for_print %} {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %} {% if dict_permissoes|get_permissao:'s5011_basesremun_editar' or dict_permissoes|get_permissao:'s5011_basesremun_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s5011_basesremun_editar' or dict_permissoes|get_permissao:'s5011_basesremun_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s5011_basesremun_cadastrar' %}<!-- begin_form_s5011_basesremun --><div id="cadastrar" style="display:none"><form id="id_form_s5011_basesremun" action="{% url 's5011_basesremun_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s5011_basesremun.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s5011_basesremun -->{% endif %}<div id="listar"><!-- begin_table_s5011_basesremun -->{% include 'tables/s5011_basesremun.html' %}<!-- end_table_s5011_basesremun --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria. --><!-- begin_Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários -->{% if tab == 's5011_basesavnport' or for_print %} {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %} {% if dict_permissoes|get_permissao:'s5011_basesavnport_editar' or dict_permissoes|get_permissao:'s5011_basesavnport_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s5011_basesavnport_editar' or dict_permissoes|get_permissao:'s5011_basesavnport_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s5011_basesavnport_cadastrar' %}<!-- begin_form_s5011_basesavnport --><div id="cadastrar" style="display:none"><form id="id_form_s5011_basesavnport" action="{% url 's5011_basesavnport_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s5011_basesavnport.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s5011_basesavnport -->{% endif %}<div id="listar"><!-- begin_table_s5011_basesavnport -->{% include 'tables/s5011_basesavnport.html' %}<!-- end_table_s5011_basesavnport --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários --><!-- begin_Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011. -->{% if tab == 's5011_infosubstpatropport' or for_print %} {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_visualizar' %} {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_editar' or dict_permissoes|get_permissao:'s5011_infosubstpatropport_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_editar' or dict_permissoes|get_permissao:'s5011_infosubstpatropport_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_cadastrar' %}<!-- begin_form_s5011_infosubstpatropport --><div id="cadastrar" style="display:none"><form id="id_form_s5011_infosubstpatropport" action="{% url 's5011_infosubstpatropport_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s5011_infosubstpatropport.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s5011_infosubstpatropport -->{% endif %}<div id="listar"><!-- begin_table_s5011_infosubstpatropport -->{% include 'tables/s5011_infosubstpatropport.html' %}<!-- end_table_s5011_infosubstpatropport --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011. -->{% endif %}</section><!-- script --><!--- javascript -->{% endblock content %}
+<!--
+
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->{% extends 'base.html' %}
+{% load templatetags %}
+{% block content %}
+
+<section class="content-header">
+    <h1>
+        s5011ideLotacao
+        <small>Cadastrar/Editar</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">s5011ideLotacao</a></li>
+        <li class="active">Cadastrar/Editar</li>
+    </ol>
+</section>
+
+{% if not for_print %}
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' %}
+                    <li {% if not tab %}class="active"{% endif %} >
+                            <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_return_page:'s5011_idelotacao_salvar'|json_return_hash:hash|json_id:s5011_idelotacao_id|json_print:0|base64_encode_me %}">
+                            Informações de identificação da lotação e validade das informações que estão sendo incluídas
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if s5011_idelotacao_id %}
+                        
+                            {% if dict_permissoes|get_permissao:'s5011_infotercsusp_visualizar' %}
+                                <li {% if tab == 's5011_infotercsusp' %} class="active"{% endif %} >
+                                    <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_infotercsusp'|base64_encode_me %}">
+                                    Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_visualizar' %}
+                                <li {% if tab == 's5011_infoemprparcial' %} class="active"{% endif %} >
+                                    <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_infoemprparcial'|base64_encode_me %}">
+                                    Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'s5011_dadosopport_visualizar' %}
+                                <li {% if tab == 's5011_dadosopport' %} class="active"{% endif %} >
+                                    <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_dadosopport'|base64_encode_me %}">
+                                    Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                                <li {% if tab == 's5011_basesremun' %} class="active"{% endif %} >
+                                    <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_basesremun'|base64_encode_me %}">
+                                    Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %}
+                                <li {% if tab == 's5011_basesavnport' %} class="active"{% endif %} >
+                                    <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_basesavnport'|base64_encode_me %}">
+                                    Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_visualizar' %}
+                                <li {% if tab == 's5011_infosubstpatropport' %} class="active"{% endif %} >
+                                    <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_infosubstpatropport'|base64_encode_me %}">
+                                    Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</a>
+                                </li>
+                            {% endif %}
+                        
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+
+<section class="invoice">
+
+{% endif %}
+  
+                  
+{% if not for_print %}
+
+    {% if messages %}
+
+    <div class="row">
+        <div class="pad margin no-print">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endif %}
+
+      
+    {% if s5011_idelotacao_form.errors %}
+
+    <div class="row">
+        <div class="pad margin no-print">
+            {% for error in s5011_idelotacao_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endif %}
+   
+{% endif %}
+
+
+
+
+
+   {% if s5011_idelotacao_id %}
+   {% if s5011_idelotacao.evento.ocorrencias %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-red">
+            <div class="inner">
+               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+               <p>{% autoescape off %}{{ s5011_idelotacao.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% if s5011_idelotacao.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s5011_idelotacao.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
+   {% if not s5011_idelotacao.evento.validacao_precedencia %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-yellow">
+            <div class="inner">
+               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% if s5011_idelotacao.evento.validacoes %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-red">
+            <div class="inner">
+               <strong>Erros de validação:</strong><br>
+               <p>{% autoescape off %}{{ s5011_idelotacao.evento.validacoes }}{% endautoescape %}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% endif %}
+   {% endif %} 
+
+
+{% if not tab %}
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+        {% if not for_print %}
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Informações de identificação da lotação e validade das informações que estão sendo incluídas</h3>
+                </div>
+
+        {% else %}
+
+            <div class="row">
+
+        {% endif %}
+
+
+        {% if not for_print %}
+            {% if dict_permissoes|get_permissao:'s5011_idelotacao_editar' or dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}
+                <form action="#" id="id_form_s5011_idelotacao" method="POST" content="text/html; charset=UTF-8">
+                {% csrf_token %}
+            {% endif %}
+        {% endif %}
+
+                <div class="box-body">
+                    <div class="row">
+                        {% include 'forms/s5011_idelotacao.html' %}
+                    </div>
+                </div>
+
+
+                {% if not for_print %}
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <div class="box-footer text-left">
+                            <font color="red">* Campos Obrigatórios.
+                            </font>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <div class="box-footer text-right">
+                            <!-- botões especiais -->
+                            {% if s5011_idelotacao_id %}
+
+                                {% if dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}
+                                    <a href="{% url 's5011_idelotacao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                                        <span class="btn btn-info">
+                                            <i class="fa fa-plus-circle"></i>
+                                            &nbsp;Cadastrar
+                                        </span>
+                                    </a>
+
+                                {% endif %}
+
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_listar' or dict_permissoes|get_permissao:'s5011_idelotacao_listar' %}
+                                <a href="{% url 's5011_idelotacao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                                    <span class="btn btn-primary">
+                                        <i class="fa fa-list"></i>
+                                        &nbsp;Listagem
+                                    </span>
+                                </a>&nbsp;
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' and s5011_idelotacao_id %}
+                                <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:1|base64_encode_me %}" target="_blank">
+                                    <span class="btn btn-primary">
+                                        <i class="fa fa-print"></i>
+                                        &nbsp;Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            {% endif %}
+                            
+                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' and s5011_idelotacao_id %}
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fa fa-download"></i>
+                                        &nbsp;Exportar
+                                    </button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Exportar</span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:2|base64_encode_me %}"
+                                            target="_blank">
+                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
+                                                    <i class="fa fa-file-pdf-o"></i>
+                                                    &nbsp;PDF
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>&nbsp;
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_editar' or dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}
+                            
+                            <button type="submit" class="btn btn-primary" >
+                                <i class="fa fa-save"></i>
+                                &nbsp;Salvar
+                            </button>&nbsp;
+
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_apagar' and s5011_idelotacao_id %}
+
+                            <a href="{% url 's5011_idelotacao_apagar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|base64_encode_me %}">
+                                <span class="btn btn-danger">
+                                    <i class="fa fa-remove"></i> &nbsp;Apagar
+                                </span>
+                            </a>&nbsp;
+
+                            {% endif %}
+
+                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>
+                                &nbsp;Voltar
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if not for_print %}
+
+                    {% if dict_permissoes|get_permissao:'s5011_idelotacao_editar' or dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}
+                        </form>
+                    {% endif %}
+
+                {% endif %}
+
+
+            </div>    
+
+        <!-- TEXTO_ABAIXO_FORMULARIO -->
+
+        </div>
+    </div>
+
+    {% endif %}
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+
+    {% if s5011_idelotacao_id %}
+
+        
+            
+            <!-- begin_s5011_infotercsusp -->
+
+            {% if tab == 's5011_infotercsusp' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s5011_infotercsusp_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s5011_infotercsusp_editar' or dict_permissoes|get_permissao:'s5011_infotercsusp_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s5011_infotercsusp_editar' or dict_permissoes|get_permissao:'s5011_infotercsusp_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s5011_infotercsusp_cadastrar' %}            
+                                    <!-- begin_form_s5011_infotercsusp --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s5011_infotercsusp" action="{% url 's5011_infotercsusp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s5011_infotercsusp.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s5011_infotercsusp -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s5011_infotercsusp --> 
+
+                                    {% include 'tables/s5011_infotercsusp.html' %}
+                                        
+                                    <!-- end_table_s5011_infotercsusp --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s5011_infotercsusp -->
+
+        
+            
+            <!-- begin_s5011_infoemprparcial -->
+
+            {% if tab == 's5011_infoemprparcial' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_editar' or dict_permissoes|get_permissao:'s5011_infoemprparcial_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_editar' or dict_permissoes|get_permissao:'s5011_infoemprparcial_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_cadastrar' %}            
+                                    <!-- begin_form_s5011_infoemprparcial --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s5011_infoemprparcial" action="{% url 's5011_infoemprparcial_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s5011_infoemprparcial.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s5011_infoemprparcial -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s5011_infoemprparcial --> 
+
+                                    {% include 'tables/s5011_infoemprparcial.html' %}
+                                        
+                                    <!-- end_table_s5011_infoemprparcial --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s5011_infoemprparcial -->
+
+        
+            
+            <!-- begin_s5011_dadosopport -->
+
+            {% if tab == 's5011_dadosopport' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s5011_dadosopport_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s5011_dadosopport_editar' or dict_permissoes|get_permissao:'s5011_dadosopport_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s5011_dadosopport_editar' or dict_permissoes|get_permissao:'s5011_dadosopport_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s5011_dadosopport_cadastrar' %}            
+                                    <!-- begin_form_s5011_dadosopport --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s5011_dadosopport" action="{% url 's5011_dadosopport_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s5011_dadosopport.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s5011_dadosopport -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s5011_dadosopport --> 
+
+                                    {% include 'tables/s5011_dadosopport.html' %}
+                                        
+                                    <!-- end_table_s5011_dadosopport --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s5011_dadosopport -->
+
+        
+            
+            <!-- begin_s5011_basesremun -->
+
+            {% if tab == 's5011_basesremun' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s5011_basesremun_editar' or dict_permissoes|get_permissao:'s5011_basesremun_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s5011_basesremun_editar' or dict_permissoes|get_permissao:'s5011_basesremun_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s5011_basesremun_cadastrar' %}            
+                                    <!-- begin_form_s5011_basesremun --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s5011_basesremun" action="{% url 's5011_basesremun_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s5011_basesremun.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s5011_basesremun -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s5011_basesremun --> 
+
+                                    {% include 'tables/s5011_basesremun.html' %}
+                                        
+                                    <!-- end_table_s5011_basesremun --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s5011_basesremun -->
+
+        
+            
+            <!-- begin_s5011_basesavnport -->
+
+            {% if tab == 's5011_basesavnport' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s5011_basesavnport_editar' or dict_permissoes|get_permissao:'s5011_basesavnport_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s5011_basesavnport_editar' or dict_permissoes|get_permissao:'s5011_basesavnport_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s5011_basesavnport_cadastrar' %}            
+                                    <!-- begin_form_s5011_basesavnport --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s5011_basesavnport" action="{% url 's5011_basesavnport_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s5011_basesavnport.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s5011_basesavnport -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s5011_basesavnport --> 
+
+                                    {% include 'tables/s5011_basesavnport.html' %}
+                                        
+                                    <!-- end_table_s5011_basesavnport --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s5011_basesavnport -->
+
+        
+            
+            <!-- begin_s5011_infosubstpatropport -->
+
+            {% if tab == 's5011_infosubstpatropport' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_editar' or dict_permissoes|get_permissao:'s5011_infosubstpatropport_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_editar' or dict_permissoes|get_permissao:'s5011_infosubstpatropport_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_cadastrar' %}            
+                                    <!-- begin_form_s5011_infosubstpatropport --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s5011_infosubstpatropport" action="{% url 's5011_infosubstpatropport_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s5011_infosubstpatropport.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s5011_infosubstpatropport -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s5011_infosubstpatropport --> 
+
+                                    {% include 'tables/s5011_infosubstpatropport.html' %}
+                                        
+                                    <!-- end_table_s5011_infosubstpatropport --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s5011_infosubstpatropport -->
+
+        
+
+    {% endif %}
+
+</section>
+
+<!-- script -->
+<!--- javascript -->
+
+{% endblock content %}

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1210_infopgto or 1 %}"Pagamento relativo a competências anteriores ao início de obrigatoriedade do eSocial";{% endif %}{% if show_fields.show_codcateg or 1 %}"Código da Categoria";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1210_infopgto or 1 %}"{{ c.s1210_infopgto }}";{% endif %}{% if show_fields.show_codcateg or 1 %}"{{ c.codcateg }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,58 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r4040_evtbenefnid or 1 %}
+            <th>Identificação da natureza do rendimento</th>
+            {% endif %}
+            {% if show_fields.show_natrendim or 1 %}
+            <th>Informar a natureza dos rendimentos pagos a beneficiários não identificados</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r4040_idenat_lista %}
+        <tr>
+            {% if show_fields.show_r4040_evtbenefnid or 1 %}
+            <td>{{ a.r4040_evtbenefnid }}</td>
+            {% endif %}
+            {% if show_fields.show_natrendim or 1 %}
+            <td>{{ a.get_natrendim_display }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r4040_idenat_visualizar' %}
+                        <a href="{% url 'r4040_idenat_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r4040_idenat_editar' or dict_permissoes|get_permissao:'r4040_idenat_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r4040_idenat_apagar' %}
+                        <a href="{% url 'r4040_idenat_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

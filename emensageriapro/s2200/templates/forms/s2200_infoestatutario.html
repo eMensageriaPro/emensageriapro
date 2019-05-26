@@ -1,1 +1,265 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s2200_evtadmissao_id or s2200_evtadmissao_id != s2200_infoestatutario_form.s2200_evtadmissao.value %}<!-- inicio__s2200_infoestatutario__s2200_evtadmissao --><div class="col-md-12" id="s2200_infoestatutario__s2200_evtadmissao__div"><div class="form-group"><label id="s2200_infoestatutario__s2200_evtadmissao__label">Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador*<a data-toggle="tooltip" title="Informações de Trabalhador Estatutário."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2200_infoestatutario_form.s2200_evtadmissao.value %}<a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_return_page:'s2200_infoestatutario_salvar'|json_return_hash:hash|json_id:s2200_infoestatutario_form.s2200_evtadmissao.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s2200_infoestatutario_form.s2200_evtadmissao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.s2200_evtadmissao.errors }}</div>{% endif %} {% if s2200_infoestatutario_form.s2200_evtadmissao.field.widget.attrs.readonly %} {% if s2200_infoestatutario_form.s2200_evtadmissao.field.widget.attrs.disabled %} {{ s2200_infoestatutario_form.s2200_evtadmissao|addcss:'form-control' }}<input id="id_s2200_evtadmissao" name="s2200_evtadmissao" type="hidden" value="{{ s2200_infoestatutario_form.s2200_evtadmissao.value }}">{% else %} {{ s2200_infoestatutario_form.s2200_evtadmissao|addcss:'form-control' }} {% endif %} {% else %} {{ s2200_infoestatutario_form.s2200_evtadmissao|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2200_infoestatutario__s2200_evtadmissao -->{% else %}<input type="hidden" value="{{ s2200_evtadmissao_id|valor }}" id="id_s2200_evtadmissao" name="s2200_evtadmissao">{% endif %}<!-- inicio__s2200_infoestatutario__indprovim --><div class="col-md-6" id="s2200_infoestatutario__indprovim__div"><div class="form-group"><label id="s2200_infoestatutario__indprovim__label">Indicador de Provimento*<a data-toggle="tooltip" title="Preencher de acordo com as opções: 1 - Normal; 2 - Decorrente de Decisão Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.indprovim.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.indprovim.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2200_infoestatutario_form.indprovim.field.widget.attrs.readonly %} {% if s2200_infoestatutario_form.indprovim.field.widget.attrs.disabled %} {{ s2200_infoestatutario_form.indprovim|addcss:'form-control' }}<input id="id_indprovim" name="indprovim" type="hidden" value="{% if s2200_infoestatutario_form.indprovim.value or s2200_infoestatutario_form.indprovim.value == 0 %}{{ s2200_infoestatutario_form.indprovim.value|valor }}{% endif %}">{% else %} {{ s2200_infoestatutario_form.indprovim|addcss:'form-control' }} {% endif %} {% else %} {{ s2200_infoestatutario_form.indprovim|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2200_infoestatutario__indprovim --><!-- inicio__s2200_infoestatutario__tpprov --><div class="col-md-6" id="s2200_infoestatutario__tpprov__div"><div class="form-group"><label id="s2200_infoestatutario__tpprov__label">Tipo de Provimento*<a data-toggle="tooltip" title="Preencher com o tipo de provimento, de acordo com as opções a seguir: 1 - Nomeação em cargo efetivo; 2 - Nomeação em cargo em comissão; 3 - Incorporação (militar); 4 - Matrícula (militar); 5 - Reinclusão (militar); 6 - Diplomação; 99 - Outros não relaciona (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.tpprov.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.tpprov.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2200_infoestatutario_form.tpprov.field.widget.attrs.readonly %} {% if s2200_infoestatutario_form.tpprov.field.widget.attrs.disabled %} {{ s2200_infoestatutario_form.tpprov|addcss:'form-control' }}<input id="id_tpprov" name="tpprov" type="hidden" value="{% if s2200_infoestatutario_form.tpprov.value or s2200_infoestatutario_form.tpprov.value == 0 %}{{ s2200_infoestatutario_form.tpprov.value|valor }}{% endif %}">{% else %} {{ s2200_infoestatutario_form.tpprov|addcss:'form-control' }} {% endif %} {% else %} {{ s2200_infoestatutario_form.tpprov|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2200_infoestatutario__tpprov --><!-- inicio__s2200_infoestatutario__dtnomeacao --><div class="col-md-6" id="s2200_infoestatutario__dtnomeacao__div"><div class="form-group"><label id="s2200_infoestatutario__dtnomeacao__label">Data de nomeação*<a data-toggle="tooltip" title="Preencher com a data da nomeação do servidor. Validação: Deve ser posterior à data de nascimento do trabalhador e igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.dtnomeacao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.dtnomeacao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_infoestatutario_form.dtnomeacao|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2200_infoestatutario__dtnomeacao --><!-- inicio__s2200_infoestatutario__dtposse --><div class="col-md-6" id="s2200_infoestatutario__dtposse__div"><div class="form-group"><label id="s2200_infoestatutario__dtposse__label">Data de posse*<a data-toggle="tooltip" title="Data da posse do servidor. Validação: Deve ser igual ou posterior a data de nomeação do servidor."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.dtposse.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.dtposse.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_infoestatutario_form.dtposse|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2200_infoestatutario__dtposse --><!-- inicio__s2200_infoestatutario__dtexercicio --><div class="col-md-6" id="s2200_infoestatutario__dtexercicio__div"><div class="form-group"><label id="s2200_infoestatutario__dtexercicio__label">Data de exercício*<a data-toggle="tooltip" title="Data da entrada em exercício pelo servidor. Validação: Devem ser observadas as seguintes regras: a) Deve ser igual ou posterior a data da posse; b) Se {cadIni} = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o e (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.dtexercicio.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.dtexercicio.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_infoestatutario_form.dtexercicio|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2200_infoestatutario__dtexercicio --><!-- inicio__s2200_infoestatutario__dtingsvpub --><div class="col-md-6" id="s2200_infoestatutario__dtingsvpub__div"><div class="form-group"><label id="s2200_infoestatutario__dtingsvpub__label">Data de ingresso no serviço público*<a data-toggle="tooltip" title="Data de ingresso no serviço público. Validação: Deve ser uma data válida, igual ou anterior a {dtExercicio}."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.dtingsvpub.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.dtingsvpub.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_infoestatutario_form.dtingsvpub|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2200_infoestatutario__dtingsvpub --><!-- inicio__s2200_infoestatutario__tpplanrp --><div class="col-md-6" id="s2200_infoestatutario__tpplanrp__div"><div class="form-group"><label id="s2200_infoestatutario__tpplanrp__label">Tipo de plano de segregação de massa<a data-toggle="tooltip" title="Tipo de plano de segregação da massa: 1 - Plano previdenciário ou único; 2 - Plano financeiro. Validação: Preenchimento obrigatório se {tpRegPrev} = [2]. Não preencher nos demais casos. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.tpplanrp.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.tpplanrp.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2200_infoestatutario_form.tpplanrp.field.widget.attrs.readonly %} {% if s2200_infoestatutario_form.tpplanrp.field.widget.attrs.disabled %} {{ s2200_infoestatutario_form.tpplanrp|addcss:'form-control' }}<input id="id_tpplanrp" name="tpplanrp" type="hidden" value="{% if s2200_infoestatutario_form.tpplanrp.value or s2200_infoestatutario_form.tpplanrp.value == 0 %}{{ s2200_infoestatutario_form.tpplanrp.value|valor }}{% endif %}">{% else %} {{ s2200_infoestatutario_form.tpplanrp|addcss:'form-control' }} {% endif %} {% else %} {{ s2200_infoestatutario_form.tpplanrp|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2200_infoestatutario__tpplanrp --><!-- inicio__s2200_infoestatutario__indtetorgps --><div class="col-md-6" id="s2200_infoestatutario__indtetorgps__div"><div class="form-group"><label id="s2200_infoestatutario__indtetorgps__label">Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar<a data-toggle="tooltip" title="Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.indtetorgps.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.indtetorgps.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2200_infoestatutario_form.indtetorgps.field.widget.attrs.readonly %} {% if s2200_infoestatutario_form.indtetorgps.field.widget.attrs.disabled %} {{ s2200_infoestatutario_form.indtetorgps|addcss:'form-control' }}<input id="id_indtetorgps" name="indtetorgps" type="hidden" value="{% if s2200_infoestatutario_form.indtetorgps.value or s2200_infoestatutario_form.indtetorgps.value == 0 %}{{ s2200_infoestatutario_form.indtetorgps.value }}{% endif %}">{% else %} {{ s2200_infoestatutario_form.indtetorgps|addcss:'form-control' }} {% endif %} {% else %} {{ s2200_infoestatutario_form.indtetorgps|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2200_infoestatutario__indtetorgps --><!-- inicio__s2200_infoestatutario__indabonoperm --><div class="col-md-6" id="s2200_infoestatutario__indabonoperm__div"><div class="form-group"><label id="s2200_infoestatutario__indabonoperm__label">Indicar se o servidor recebe abono permanência<a data-toggle="tooltip" title="Indicar se o servidor recebe abono permanência: S - Sim; N - Não. Validação: Preenchimento obrigatório se {tpRegPrev} = [2]. Não preencher nos demais casos. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.indabonoperm.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.indabonoperm.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2200_infoestatutario_form.indabonoperm.field.widget.attrs.readonly %} {% if s2200_infoestatutario_form.indabonoperm.field.widget.attrs.disabled %} {{ s2200_infoestatutario_form.indabonoperm|addcss:'form-control' }}<input id="id_indabonoperm" name="indabonoperm" type="hidden" value="{% if s2200_infoestatutario_form.indabonoperm.value or s2200_infoestatutario_form.indabonoperm.value == 0 %}{{ s2200_infoestatutario_form.indabonoperm.value }}{% endif %}">{% else %} {{ s2200_infoestatutario_form.indabonoperm|addcss:'form-control' }} {% endif %} {% else %} {{ s2200_infoestatutario_form.indabonoperm|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2200_infoestatutario__indabonoperm --><!-- inicio__s2200_infoestatutario__dtiniabono --><div class="col-md-6" id="s2200_infoestatutario__dtiniabono__div"><div class="form-group"><label id="s2200_infoestatutario__dtiniabono__label">Informar a data de inicio do abono permanência<a data-toggle="tooltip" title="Informar a data de inicio do abono permanência. Validação: Não informar se {indAbonoPerm} = [N]. Se preenchida, devem ser observadas as seguintes regras: a) Deve ser uma data válida, igual ou posterior à data de exercício do servidor; b) Se {cadIni} = [S], (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.dtiniabono.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.dtiniabono.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_infoestatutario_form.dtiniabono|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2200_infoestatutario__dtiniabono --><!-- inicio__s2200_infoestatutario__indparcremun --><div class="col-md-6" id="s2200_infoestatutario__indparcremun__div"><div class="form-group"><label id="s2200_infoestatutario__indparcremun__label">Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § (...)<a data-toggle="tooltip" title="Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.indparcremun.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.indparcremun.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2200_infoestatutario_form.indparcremun.field.widget.attrs.readonly %} {% if s2200_infoestatutario_form.indparcremun.field.widget.attrs.disabled %} {{ s2200_infoestatutario_form.indparcremun|addcss:'form-control' }}<input id="id_indparcremun" name="indparcremun" type="hidden" value="{% if s2200_infoestatutario_form.indparcremun.value or s2200_infoestatutario_form.indparcremun.value == 0 %}{{ s2200_infoestatutario_form.indparcremun.value }}{% endif %}">{% else %} {{ s2200_infoestatutario_form.indparcremun|addcss:'form-control' }} {% endif %} {% else %} {{ s2200_infoestatutario_form.indparcremun|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2200_infoestatutario__indparcremun --><!-- inicio__s2200_infoestatutario__dtiniparc --><div class="col-md-6" id="s2200_infoestatutario__dtiniparc__div"><div class="form-group"><label id="s2200_infoestatutario__dtiniparc__label">Informar a data de inicio da opção do servidor pelas parcelas remuneratórias<a data-toggle="tooltip" title="Informar a data de inicio da opção do servidor pelas parcelas remuneratórias. Validação: Não informar se {indParcRemun} = [N]. Se preenchida, devem ser observadas as seguintes regras: a) Deve ser uma data válida, igual ou posterior à data de exercício do s (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_infoestatutario_form.dtiniparc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_infoestatutario_form.dtiniparc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_infoestatutario_form.dtiniparc|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2200_infoestatutario__dtiniparc -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2200_infoestatutario__s2200_evtadmissao -->
+<div class="col-md-12" id="s2200_infoestatutario__s2200_evtadmissao__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__s2200_evtadmissao__label">Informações de Trabalhador Estatutário*</label>
+    {% if not for_print %}{% if s2200_infoestatutario_form.s2200_evtadmissao.value %}
+        <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_return_page:'s2200_infoestatutario_salvar'|json_return_hash:hash|json_id:s2200_infoestatutario_form.s2200_evtadmissao.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s2200_infoestatutario_form.s2200_evtadmissao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_infoestatutario_form.s2200_evtadmissao.errors }}
+      </div>
+    {% endif %}
+    {% if s2200_infoestatutario_form.s2200_evtadmissao.field.widget.attrs.readonly %}
+      {% if s2200_infoestatutario_form.s2200_evtadmissao.field.widget.attrs.disabled %}
+        {{ s2200_infoestatutario_form.s2200_evtadmissao|addcss:'form-control' }}
+        <input id="id_s2200_evtadmissao" name="s2200_evtadmissao" type="hidden" value="{{ s2200_infoestatutario_form.s2200_evtadmissao.value }}">
+      {% else %}
+        {{ s2200_infoestatutario_form.s2200_evtadmissao|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2200_infoestatutario_form.s2200_evtadmissao|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__s2200_evtadmissao -->
+<!-- inicio__s2200_infoestatutario__indprovim -->
+<div class="col-md-6" id="s2200_infoestatutario__indprovim__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__indprovim__label">Indicador de Provimento*</label>
+    {% if s2200_infoestatutario_form.indprovim.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_infoestatutario_form.indprovim.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_infoestatutario_form.indprovim.field.widget.attrs.readonly %}
+        {% if s2200_infoestatutario_form.indprovim.field.widget.attrs.disabled %}
+          {{ s2200_infoestatutario_form.indprovim|addcss:'form-control' }}
+          <input id="id_indprovim" name="indprovim" type="hidden" value="{% if s2200_infoestatutario_form.indprovim.value or s2200_infoestatutario_form.indprovim.value == 0 %}{{ s2200_infoestatutario_form.indprovim.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_infoestatutario_form.indprovim|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_infoestatutario_form.indprovim|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__indprovim -->
+<!-- inicio__s2200_infoestatutario__tpprov -->
+<div class="col-md-6" id="s2200_infoestatutario__tpprov__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__tpprov__label">Tipo de Provimento*</label>
+    {% if s2200_infoestatutario_form.tpprov.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_infoestatutario_form.tpprov.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_infoestatutario_form.tpprov.field.widget.attrs.readonly %}
+        {% if s2200_infoestatutario_form.tpprov.field.widget.attrs.disabled %}
+          {{ s2200_infoestatutario_form.tpprov|addcss:'form-control' }}
+          <input id="id_tpprov" name="tpprov" type="hidden" value="{% if s2200_infoestatutario_form.tpprov.value or s2200_infoestatutario_form.tpprov.value == 0 %}{{ s2200_infoestatutario_form.tpprov.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_infoestatutario_form.tpprov|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_infoestatutario_form.tpprov|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__tpprov -->
+<!-- inicio__s2200_infoestatutario__dtnomeacao -->
+<div class="col-md-6" id="s2200_infoestatutario__dtnomeacao__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__dtnomeacao__label">Data de nomeação*</label>
+        {% if s2200_infoestatutario_form.dtnomeacao.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_infoestatutario_form.dtnomeacao.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_infoestatutario_form.dtnomeacao|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__dtnomeacao -->
+<!-- inicio__s2200_infoestatutario__dtposse -->
+<div class="col-md-6" id="s2200_infoestatutario__dtposse__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__dtposse__label">Data de posse*</label>
+        {% if s2200_infoestatutario_form.dtposse.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_infoestatutario_form.dtposse.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_infoestatutario_form.dtposse|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__dtposse -->
+<!-- inicio__s2200_infoestatutario__dtexercicio -->
+<div class="col-md-6" id="s2200_infoestatutario__dtexercicio__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__dtexercicio__label">Data de exercício*</label>
+        {% if s2200_infoestatutario_form.dtexercicio.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_infoestatutario_form.dtexercicio.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_infoestatutario_form.dtexercicio|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__dtexercicio -->
+<!-- inicio__s2200_infoestatutario__dtingsvpub -->
+<div class="col-md-6" id="s2200_infoestatutario__dtingsvpub__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__dtingsvpub__label">Data de ingresso no serviço público*</label>
+        {% if s2200_infoestatutario_form.dtingsvpub.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_infoestatutario_form.dtingsvpub.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_infoestatutario_form.dtingsvpub|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__dtingsvpub -->
+<!-- inicio__s2200_infoestatutario__tpplanrp -->
+<div class="col-md-6" id="s2200_infoestatutario__tpplanrp__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__tpplanrp__label">Tipo de plano de segregação de massa</label>
+    {% if s2200_infoestatutario_form.tpplanrp.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_infoestatutario_form.tpplanrp.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_infoestatutario_form.tpplanrp.field.widget.attrs.readonly %}
+        {% if s2200_infoestatutario_form.tpplanrp.field.widget.attrs.disabled %}
+          {{ s2200_infoestatutario_form.tpplanrp|addcss:'form-control' }}
+          <input id="id_tpplanrp" name="tpplanrp" type="hidden" value="{% if s2200_infoestatutario_form.tpplanrp.value or s2200_infoestatutario_form.tpplanrp.value == 0 %}{{ s2200_infoestatutario_form.tpplanrp.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_infoestatutario_form.tpplanrp|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_infoestatutario_form.tpplanrp|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__tpplanrp -->
+<!-- inicio__s2200_infoestatutario__indtetorgps -->
+<div class="col-md-6" id="s2200_infoestatutario__indtetorgps__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__indtetorgps__label">Informar se o servidor está sujeito ao Teto do Regime Geral pela instituição do regime de previdência complementar</label>
+    {% if s2200_infoestatutario_form.indtetorgps.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_infoestatutario_form.indtetorgps.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_infoestatutario_form.indtetorgps.field.widget.attrs.readonly %}
+        {% if s2200_infoestatutario_form.indtetorgps.field.widget.attrs.disabled %}
+          {{ s2200_infoestatutario_form.indtetorgps|addcss:'form-control' }}
+          <input id="id_indtetorgps" name="indtetorgps" type="hidden" value="{% if s2200_infoestatutario_form.indtetorgps.value or s2200_infoestatutario_form.indtetorgps.value == 0 %}{{ s2200_infoestatutario_form.indtetorgps.value }}{% endif %}">
+        {% else %}
+          {{ s2200_infoestatutario_form.indtetorgps|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_infoestatutario_form.indtetorgps|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__indtetorgps -->
+<!-- inicio__s2200_infoestatutario__indabonoperm -->
+<div class="col-md-6" id="s2200_infoestatutario__indabonoperm__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__indabonoperm__label">Indicar se o servidor recebe abono permanência</label>
+    {% if s2200_infoestatutario_form.indabonoperm.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_infoestatutario_form.indabonoperm.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_infoestatutario_form.indabonoperm.field.widget.attrs.readonly %}
+        {% if s2200_infoestatutario_form.indabonoperm.field.widget.attrs.disabled %}
+          {{ s2200_infoestatutario_form.indabonoperm|addcss:'form-control' }}
+          <input id="id_indabonoperm" name="indabonoperm" type="hidden" value="{% if s2200_infoestatutario_form.indabonoperm.value or s2200_infoestatutario_form.indabonoperm.value == 0 %}{{ s2200_infoestatutario_form.indabonoperm.value }}{% endif %}">
+        {% else %}
+          {{ s2200_infoestatutario_form.indabonoperm|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_infoestatutario_form.indabonoperm|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__indabonoperm -->
+<!-- inicio__s2200_infoestatutario__dtiniabono -->
+<div class="col-md-6" id="s2200_infoestatutario__dtiniabono__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__dtiniabono__label">Informar a data de inicio do abono permanência</label>
+        {% if s2200_infoestatutario_form.dtiniabono.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_infoestatutario_form.dtiniabono.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_infoestatutario_form.dtiniabono|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__dtiniabono -->
+<!-- inicio__s2200_infoestatutario__indparcremun -->
+<div class="col-md-6" id="s2200_infoestatutario__indparcremun__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__indparcremun__label">Informar se o servidor fez a opção pela inclusão na base de cálculo da contribuição de parcelas remuneratórias percebidas em decorrência de local de trabalho e do exercício de cargo em comissão ou de função comissionada ou gratificada, conforme art. 4º, § 2º, da Lei nº 10.887/2004</label>
+    {% if s2200_infoestatutario_form.indparcremun.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_infoestatutario_form.indparcremun.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_infoestatutario_form.indparcremun.field.widget.attrs.readonly %}
+        {% if s2200_infoestatutario_form.indparcremun.field.widget.attrs.disabled %}
+          {{ s2200_infoestatutario_form.indparcremun|addcss:'form-control' }}
+          <input id="id_indparcremun" name="indparcremun" type="hidden" value="{% if s2200_infoestatutario_form.indparcremun.value or s2200_infoestatutario_form.indparcremun.value == 0 %}{{ s2200_infoestatutario_form.indparcremun.value }}{% endif %}">
+        {% else %}
+          {{ s2200_infoestatutario_form.indparcremun|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_infoestatutario_form.indparcremun|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__indparcremun -->
+<!-- inicio__s2200_infoestatutario__dtiniparc -->
+<div class="col-md-6" id="s2200_infoestatutario__dtiniparc__div">
+  <div class="form-group">
+    <label id="s2200_infoestatutario__dtiniparc__label">Informar a data de inicio da opção do servidor pelas parcelas remuneratórias</label>
+        {% if s2200_infoestatutario_form.dtiniparc.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_infoestatutario_form.dtiniparc.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_infoestatutario_form.dtiniparc|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_infoestatutario__dtiniparc -->

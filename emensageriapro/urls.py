@@ -1,23 +1,55 @@
 #coding:utf-8
-#from django.conf.urls import patterns, include, url
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from django.contrib import admin
+admin.autodiscover()
 
-#LICENCA
+"""
+
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+"""
 
 urlpatterns = [
-    # Examples:
+
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^$', 
         auth_views.login,
         name='home'),
 
-
     url(r'^', include('emensageriapro.controle_de_acesso.urls')),
     url(r'^efdreinf/', include('emensageriapro.efdreinf.urls')),
+    url(r'^esocial/', include('emensageriapro.esocial.urls')),
     url(r'^mapa-processamento/', include('emensageriapro.mapa_processamento.urls')),
     url(r'^mensageiro/', include('emensageriapro.mensageiro.urls')),
     url(r'^r1000/', include('emensageriapro.r1000.urls')),
@@ -32,9 +64,18 @@ urlpatterns = [
     url(r'^r2098/', include('emensageriapro.r2098.urls')),
     url(r'^r2099/', include('emensageriapro.r2099.urls')),
     url(r'^r3010/', include('emensageriapro.r3010.urls')),
+    url(r'^r4010/', include('emensageriapro.r4010.urls')),
+    url(r'^r4020/', include('emensageriapro.r4020.urls')),
+    url(r'^r4040/', include('emensageriapro.r4040.urls')),
+    url(r'^r4098/', include('emensageriapro.r4098.urls')),
+    url(r'^r4099/', include('emensageriapro.r4099.urls')),
     url(r'^r5001/', include('emensageriapro.r5001.urls')),
     url(r'^r5011/', include('emensageriapro.r5011.urls')),
     url(r'^r9000/', include('emensageriapro.r9000.urls')),
+    url(r'^r9001/', include('emensageriapro.r9001.urls')),
+    url(r'^r9002/', include('emensageriapro.r9002.urls')),
+    url(r'^r9011/', include('emensageriapro.r9011.urls')),
+    url(r'^r9012/', include('emensageriapro.r9012.urls')),
     url(r'^s1000/', include('emensageriapro.s1000.urls')),
     url(r'^s1005/', include('emensageriapro.s1005.urls')),
     url(r'^s1010/', include('emensageriapro.s1010.urls')),
@@ -90,11 +131,7 @@ urlpatterns = [
     url(r'^s5012/', include('emensageriapro.s5012.urls')),
     url(r'^s5013/', include('emensageriapro.s5013.urls')),
     url(r'^tabelas/', include('emensageriapro.tabelas.urls')),
-    url(r'^esocial/', include('emensageriapro.esocial.urls')),
-
-#URLS
 
     url(r'^admin/', include(admin.site.urls)),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

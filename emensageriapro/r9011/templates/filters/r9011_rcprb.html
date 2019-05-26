@@ -1,0 +1,91 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9011_rcprb__r9011_infototalcontrib -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060</label>
+    <select name="r9011_infototalcontrib" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r9011_infototalcontrib_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r9011_infototalcontrib' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r9011_rcprb__r9011_infototalcontrib -->
+
+<!-- inicio__r9011_rcprb__crcprb -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB</label>
+    <div name="crcprb" class="input-group" style="width: 100%;">
+      <input type="text" name="crcprb" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'crcprb' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9011_rcprb__crcprb -->
+
+<!-- inicio__r9011_rcprb__vlrcrcprb -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcrcprb" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcrcprb' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9011_rcprb__vlrcrcprb -->
+
+<!-- inicio__r9011_rcprb__vlrcrcprbsusp -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrcrcprbsusp" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrcrcprbsusp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9011_rcprb__vlrcrcprbsusp -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r9011_infototalcontrib" value="1" {% if show_fields|get_value_from_dict:'show_r9011_infototalcontrib' %}checked{% endif %} >Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_crcprb" value="1" {% if show_fields|get_value_from_dict:'show_crcprb' %}checked{% endif %} >Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcrcprb" value="1" {% if show_fields|get_value_from_dict:'show_vlrcrcprb' %}checked{% endif %} >Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrcrcprbsusp" value="0" {% if show_fields|get_value_from_dict:'show_vlrcrcprbsusp' %}checked{% endif %} >Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060
+    </div>
+</div>
+
+

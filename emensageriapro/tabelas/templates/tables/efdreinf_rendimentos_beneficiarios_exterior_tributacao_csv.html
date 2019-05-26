@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"EFD-Reinf 04 - Forma de Tributação para rendimentos de beneficiários no Exterior"
-{% if show_fields.show_codigo or 1 %}"Código";{% endif %}{% if show_fields.show_descricao or 1 %}"Descrição";{% endif %}
-{% for a in efdreinf_rendimentos_beneficiarios_exterior_tributacao_lista %}{% if show_fields.show_codigo or 1 %}"{{ a.codigo }}";{% endif %}{% if show_fields.show_descricao or 1 %}"{{ a.descricao }}";{% endif %}
-{% endfor %}

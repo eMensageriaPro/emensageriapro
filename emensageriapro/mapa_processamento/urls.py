@@ -3,6 +3,7 @@
 from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.authtoken import views
 from emensageriapro.mapa_processamento.views import mapa_importacoes as mapa_importacoes_views
 from emensageriapro.mapa_processamento.views import mapa_esocial as mapa_esocial_views
 from emensageriapro.mapa_processamento.views import mapa_efdreinf as mapa_efdreinf_views
@@ -45,82 +46,81 @@ from emensageriapro.mapa_processamento.views import visao_geral as visao_geral_v
 
 """
 
+
 urlpatterns = [
 
-url(r'^importacoes/(?P<hash>.*)/$',
+
+    url(r'^importacoes/(?P<hash>.*)/$',
         mapa_importacoes_views.listar,
         name='mapa_importacoes'),
 
-url(r'^esocial/(?P<hash>.*)/$',
+    url(r'^esocial/(?P<hash>.*)/$',
         mapa_esocial_views.listar,
         name='mapa_esocial'),
 
-url(r'^efdreinf/(?P<hash>.*)/$',
+    url(r'^efdreinf/(?P<hash>.*)/$',
         mapa_efdreinf_views.listar,
         name='mapa_efdreinf'),
 
-url(r'^esocial-validar/$',
+    url(r'^esocial-validar/$',
         funcoes_automaticas_esocial_views.validar,
         name='esocial_validar'),
 
-url(r'^esocial-validar/(?P<hash>.*)/$',
+    url(r'^esocial-validar/(?P<hash>.*)/$',
         funcoes_automaticas_esocial_views.validar,
         name='esocial_validar'),
 
-url(r'^esocial-enviar/$',
+    url(r'^esocial-enviar/$',
         funcoes_automaticas_esocial_views.enviar,
         name='esocial_enviar'),
 
-url(r'^esocial-enviar/(?P<hash>.*)/$',
+    url(r'^esocial-enviar/(?P<hash>.*)/$',
         funcoes_automaticas_esocial_views.enviar,
         name='esocial_enviar'),
 
-url(r'^esocial-consultar/$',
+    url(r'^esocial-consultar/$',
         funcoes_automaticas_esocial_views.consultar,
         name='esocial_consultar'),
 
-url(r'^esocial-consultar/(?P<hash>.*)/$',
+    url(r'^esocial-consultar/(?P<hash>.*)/$',
         funcoes_automaticas_esocial_views.consultar,
         name='esocial_consultar'),
 
-url(r'^efdreinf-validar/$',
+    url(r'^efdreinf-validar/$',
         funcoes_automaticas_efdreinf_views.validar,
         name='efdreinf_validar'),
 
-url(r'^efdreinf-validar/(?P<hash>.*)/$',
+    url(r'^efdreinf-validar/(?P<hash>.*)/$',
         funcoes_automaticas_efdreinf_views.validar,
         name='efdreinf_validar'),
 
-url(r'^efdreinf-enviar/$',
+    url(r'^efdreinf-enviar/$',
         funcoes_automaticas_efdreinf_views.enviar,
         name='efdreinf_enviar'),
 
-url(r'^efdreinf-enviar/(?P<hash>.*)/$',
+    url(r'^efdreinf-enviar/(?P<hash>.*)/$',
         funcoes_automaticas_efdreinf_views.enviar,
         name='efdreinf_enviar'),
 
-url(r'^efdreinf-consultar/$',
+    url(r'^efdreinf-consultar/$',
         funcoes_automaticas_efdreinf_views.consultar,
         name='efdreinf_consultar'),
 
-url(r'^efdreinf-consultar/(?P<hash>.*)/$',
+    url(r'^efdreinf-consultar/(?P<hash>.*)/$',
         funcoes_automaticas_efdreinf_views.consultar,
         name='efdreinf_consultar'),
 
-url(r'^visao-geral/(?P<hash>.*)/$',
+    url(r'^visao-geral/(?P<hash>.*)/$',
         visao_geral_views.listar,
         name='visao_geral'),
 
+    
 
+    
 
+    
 
-
-
-
-
-
-
-
+    
 
 
 ]

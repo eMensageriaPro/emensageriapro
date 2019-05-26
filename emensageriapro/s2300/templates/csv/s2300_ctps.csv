@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2300_documentos or 1 %}"Informações da Carteira de Trabalho e Previdência Social";{% endif %}{% if show_fields.show_nrctps or 1 %}"Número da CTPS";{% endif %}{% if show_fields.show_seriectps or 1 %}"Série da CTPS";{% endif %}{% if show_fields.show_ufctps or 1 %}"UF da CTPS";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2300_documentos or 1 %}"{{ c.s2300_documentos }}";{% endif %}{% if show_fields.show_nrctps or 1 %}"{{ c.nrctps }}";{% endif %}{% if show_fields.show_seriectps or 1 %}"{{ c.seriectps }}";{% endif %}{% if show_fields.show_ufctps or 1 %}"{{ c.ufctps }}";{% endif %}
+{% endfor %}

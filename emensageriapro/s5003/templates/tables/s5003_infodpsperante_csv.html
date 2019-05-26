@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E]."
-{% if show_fields.show_s5003_infotrabdps or not s5003_infotrabdps_id and 1 %}"Informações relativas à matrícula e categoria do trabalhador.";{% endif %}{% if show_fields.show_perref or 1 %}"Período de Referência";{% endif %}
-{% for a in s5003_infodpsperante_lista %}{% if show_fields.show_s5003_infotrabdps or  not s5003_infotrabdps_id and 1 %}"{{ a.s5003_infotrabdps }}";{% endif %}{% if show_fields.show_perref or 1 %}"{{ a.perref }}";{% endif %}
-{% endfor %}

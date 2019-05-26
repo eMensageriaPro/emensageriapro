@@ -1,1 +1,72 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Alteração das informações</label><select name="s1005_alteracao" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s1005_alteracao_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1005_alteracao' %}selected="selected"{% endifequal %}>{{ a.s1005_evttabestab }} - {{ a.ideestab }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.inivalid }} - {{ a.dadosestab }} - {{ a.cnaeprep }} - {{ a.aliqgilrat }} - {{ a.aliqrat }} - {{ a.infotrab }} - {{ a.regpt }} - {{ a.infoapr }} - {{ a.contapr }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Situação PCD</label><div class="input-group" style="width: 100%;"><select name="contpcd" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'contpcd' %}selected="selected"{% endifequal %} >0 - Dispensado de acordo com a lei</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'contpcd' %}selected="selected"{% endifequal %} >1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'contpcd' %}selected="selected"{% endifequal %} >2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho</option><option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'contpcd' %}selected="selected"{% endifequal %} >9 - Obrigado</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Número do Processo Judicial</label><div name="nrprocjud__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrprocjud__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrprocjud__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s1005_alteracao" value="1" {% if show_fields|get_value_from_dict:'show_s1005_alteracao' %}checked{% endif %}>Alteração das informações</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_contpcd" value="1" {% if show_fields|get_value_from_dict:'show_contpcd' %}checked{% endif %}>Situação PCD</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrprocjud" value="1" {% if show_fields|get_value_from_dict:'show_nrprocjud' %}checked{% endif %}>Número do Processo Judicial</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1005_alteracao_infopcd__s1005_alteracao -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</label>
+    <select name="s1005_alteracao" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s1005_alteracao_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1005_alteracao' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s1005_alteracao_infopcd__s1005_alteracao -->
+
+<!-- inicio__s1005_alteracao_infopcd__contpcd -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Situação PCD</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="contpcd" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'contpcd' %}selected="selected"{% endifequal %} >0 - Dispensado de acordo com a lei</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'contpcd' %}selected="selected"{% endifequal %} >1 - Dispensado, mesmo que parcialmente, em virtude de processo judicial</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'contpcd' %}selected="selected"{% endifequal %} >2 - Com exigibilidade suspensa, mesmo que parcialmente em virtude de Termo de Compromisso firmado com o Ministério do Trabalho</option>
+        <option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'contpcd' %}selected="selected"{% endifequal %} >9 - Obrigado.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1005_alteracao_infopcd__contpcd -->
+
+<!-- inicio__s1005_alteracao_infopcd__nrprocjud -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Número do Processo Judicial</label>
+    <div name="nrprocjud" class="input-group" style="width: 100%;">
+      <input type="text" name="nrprocjud" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrprocjud' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1005_alteracao_infopcd__nrprocjud -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s1005_alteracao" value="1" {% if show_fields|get_value_from_dict:'show_s1005_alteracao' %}checked{% endif %} >Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_contpcd" value="1" {% if show_fields|get_value_from_dict:'show_contpcd' %}checked{% endif %} >Situação PCD
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrprocjud" value="0" {% if show_fields|get_value_from_dict:'show_nrprocjud' %}checked{% endif %} >Número do Processo Judicial
+    </div>
+</div>
+
+

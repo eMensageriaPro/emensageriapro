@@ -1,0 +1,82 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r4040_idenat or 1 %}
+            <th>Informações do Pagamento</th>
+            {% endif %}
+            {% if show_fields.show_dtfg or 1 %}
+            <th>Informar a data do fato gerador ou pagamento/crédito</th>
+            {% endif %}
+            {% if show_fields.show_vlrliq or 1 %}
+            <th>Valor líquido do pagamento</th>
+            {% endif %}
+            {% if show_fields.show_vlrreaj or 1 %}
+            <th>Valor reajustado, considerado como valor bruto da base de cálculo do IRRF</th>
+            {% endif %}
+            {% if show_fields.show_vlrir or 1 %}
+            <th>Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação</th>
+            {% endif %}
+            {% if show_fields.show_descr or 1 %}
+            <th>Descrição do pagamento</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r4040_infopgto_lista %}
+        <tr>
+            {% if show_fields.show_r4040_idenat or 1 %}
+            <td>{{ a.r4040_idenat }}</td>
+            {% endif %}
+            {% if show_fields.show_dtfg or 1 %}
+            <td><span style="display:none">{{ a.dtfg|date:"Y-m-d" }}</span>{{ a.dtfg|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrliq or 1 %}
+            <td>{{ a.vlrliq }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrreaj or 1 %}
+            <td>{{ a.vlrreaj }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrir or 1 %}
+            <td>{{ a.vlrir }}</td>
+            {% endif %}
+            {% if show_fields.show_descr or 1 %}
+            <td>{{ a.descr }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r4040_infopgto_visualizar' %}
+                        <a href="{% url 'r4040_infopgto_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r4040_infopgto_editar' or dict_permissoes|get_permissao:'r4040_infopgto_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r4040_infopgto_apagar' %}
+                        <a href="{% url 'r4040_infopgto_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

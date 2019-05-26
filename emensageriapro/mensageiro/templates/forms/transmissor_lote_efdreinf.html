@@ -1,1 +1,253 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not transmissores_id or transmissores_id != transmissor_lote_efdreinf_form.transmissor.value %}<!-- inicio__transmissor_lote_efdreinf__transmissor --><div class="col-md-12" id="transmissor_lote_efdreinf__transmissor__div"><div class="form-group"><label id="transmissor_lote_efdreinf__transmissor__label">Transmissor</label>{% if not for_print %}{% if transmissor_lote_efdreinf_form.transmissor.value %}<a id="transmissor_lote_efdreinf__transmissor__div_acessar" href="{% url 'transmissores_salvar' hash='{}'|json_id:transmissor_lote_efdreinf_form.transmissor.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_transmissor').change(function(){ document.getElementById("transmissor_lote_efdreinf__transmissor__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if transmissor_lote_efdreinf_form.transmissor.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.transmissor.errors }}</div>{% endif %} {% if transmissor_lote_efdreinf_form.transmissor.field.widget.attrs.readonly %} {% if transmissor_lote_efdreinf_form.transmissor.field.widget.attrs.disabled %} {{ transmissor_lote_efdreinf_form.transmissor|addcss:'form-control' }}<input id="id_transmissor" name="transmissor" type="hidden" value="{% if transmissor_lote_efdreinf_form.transmissor.value or transmissor_lote_efdreinf_form.transmissor.value == 0 %}{{ transmissor_lote_efdreinf_form.transmissor.value|valor }}{% endif %}">{% else %} {{ transmissor_lote_efdreinf_form.transmissor|addcss:'form-control' }} {% endif %} {% else %} {{ transmissor_lote_efdreinf_form.transmissor|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__transmissor_lote_efdreinf__transmissor -->{% else %}<input type="hidden" value="{{ transmissores_id|valor }}" id="id_transmissor" name="transmissor">{% endif %}<!-- inicio__transmissor_lote_efdreinf__contribuinte_tpinsc --><div class="col-md-6" id="transmissor_lote_efdreinf__contribuinte_tpinsc__div"><div class="form-group"><label id="transmissor_lote_efdreinf__contribuinte_tpinsc__label">Tipo de Inscrição do Contribuinte*</label>{% if transmissor_lote_efdreinf_form.contribuinte_tpinsc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.contribuinte_tpinsc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if transmissor_lote_efdreinf_form.contribuinte_tpinsc.field.widget.attrs.readonly %} {% if transmissor_lote_efdreinf_form.contribuinte_tpinsc.field.widget.attrs.disabled %} {{ transmissor_lote_efdreinf_form.contribuinte_tpinsc|addcss:'form-control' }}<input id="id_contribuinte_tpinsc" name="contribuinte_tpinsc" type="hidden" value="{% if transmissor_lote_efdreinf_form.contribuinte_tpinsc.value or transmissor_lote_efdreinf_form.contribuinte_tpinsc.value == 0 %}{{ transmissor_lote_efdreinf_form.contribuinte_tpinsc.value|valor }}{% endif %}">{% else %} {{ transmissor_lote_efdreinf_form.contribuinte_tpinsc|addcss:'form-control' }} {% endif %} {% else %} {{ transmissor_lote_efdreinf_form.contribuinte_tpinsc|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__transmissor_lote_efdreinf__contribuinte_tpinsc --><!-- inicio__transmissor_lote_efdreinf__contribuinte_nrinsc --><div class="col-md-6" id="transmissor_lote_efdreinf__contribuinte_nrinsc__div"><div class="form-group"><label id="transmissor_lote_efdreinf__contribuinte_nrinsc__label">Número de Inscrição do Contribuinte*</label>{% if transmissor_lote_efdreinf_form.contribuinte_nrinsc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.contribuinte_nrinsc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ transmissor_lote_efdreinf_form.contribuinte_nrinsc|addcss:'form-control' }}</div></div></div><!-- fim__transmissor_lote_efdreinf__contribuinte_nrinsc --><!-- inicio__transmissor_lote_efdreinf__grupo --><div class="col-md-4" id="transmissor_lote_efdreinf__grupo__div"><div class="form-group"><label id="transmissor_lote_efdreinf__grupo__label">Grupo*</label>{% if transmissor_lote_efdreinf_form.grupo.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.grupo.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if transmissor_lote_efdreinf_form.grupo.field.widget.attrs.readonly %} {% if transmissor_lote_efdreinf_form.grupo.field.widget.attrs.disabled %} {{ transmissor_lote_efdreinf_form.grupo|addcss:'form-control' }}<input id="id_grupo" name="grupo" type="hidden" value="{% if transmissor_lote_efdreinf_form.grupo.value or transmissor_lote_efdreinf_form.grupo.value == 0 %}{{ transmissor_lote_efdreinf_form.grupo.value|valor }}{% endif %}">{% else %} {{ transmissor_lote_efdreinf_form.grupo|addcss:'form-control' }} {% endif %} {% else %} {{ transmissor_lote_efdreinf_form.grupo|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__transmissor_lote_efdreinf__grupo --><!-- inicio__transmissor_lote_efdreinf__status --><div class="col-md-4" id="transmissor_lote_efdreinf__status__div"><div class="form-group"><label id="transmissor_lote_efdreinf__status__label">Status*</label>{% if transmissor_lote_efdreinf_form.status.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.status.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if transmissor_lote_efdreinf_form.status.field.widget.attrs.readonly %} {% if transmissor_lote_efdreinf_form.status.field.widget.attrs.disabled %} {{ transmissor_lote_efdreinf_form.status|addcss:'form-control' }}<input id="id_status" name="status" type="hidden" value="{% if transmissor_lote_efdreinf_form.status.value or transmissor_lote_efdreinf_form.status.value == 0 %}{{ transmissor_lote_efdreinf_form.status.value|valor }}{% endif %}">{% else %} {{ transmissor_lote_efdreinf_form.status|addcss:'form-control' }} {% endif %} {% else %} {{ transmissor_lote_efdreinf_form.status|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__transmissor_lote_efdreinf__status --><!-- inicio__transmissor_lote_efdreinf__identidade_transmissor --><div class="col-md-4" id="transmissor_lote_efdreinf__identidade_transmissor__div"><div class="form-group"><label id="transmissor_lote_efdreinf__identidade_transmissor__label">Identidade do Transmissor</label>{% if transmissor_lote_efdreinf_form.identidade_transmissor.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.identidade_transmissor.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ transmissor_lote_efdreinf_form.identidade_transmissor|addcss:'form-control' }}</div></div></div><!-- fim__transmissor_lote_efdreinf__identidade_transmissor --><!-- inicio__transmissor_lote_efdreinf__codigo_status --><div class="col-md-4" id="transmissor_lote_efdreinf__codigo_status__div"><div class="form-group"><label id="transmissor_lote_efdreinf__codigo_status__label">Código da Resposta</label>{% if transmissor_lote_efdreinf_form.codigo_status.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.codigo_status.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if transmissor_lote_efdreinf_form.codigo_status.field.widget.attrs.readonly %} {% if transmissor_lote_efdreinf_form.codigo_status.field.widget.attrs.disabled %} {{ transmissor_lote_efdreinf_form.codigo_status|addcss:'form-control' }}<input id="id_codigo_status" name="codigo_status" type="hidden" value="{% if transmissor_lote_efdreinf_form.codigo_status.value or transmissor_lote_efdreinf_form.codigo_status.value == 0 %}{{ transmissor_lote_efdreinf_form.codigo_status.value|valor }}{% endif %}">{% else %} {{ transmissor_lote_efdreinf_form.codigo_status|addcss:'form-control' }} {% endif %} {% else %} {{ transmissor_lote_efdreinf_form.codigo_status|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__transmissor_lote_efdreinf__codigo_status --><!-- inicio__transmissor_lote_efdreinf__recepcao_data_hora --><div class="col-md-4" id="transmissor_lote_efdreinf__recepcao_data_hora__div"><div class="form-group"><label id="transmissor_lote_efdreinf__recepcao_data_hora__label">Data/Hora de Recepção</label>{% if transmissor_lote_efdreinf_form.recepcao_data_hora.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.recepcao_data_hora.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ transmissor_lote_efdreinf_form.recepcao_data_hora|addcss:'form-control automate-datetime' }}</div></div></div><!-- fim__transmissor_lote_efdreinf__recepcao_data_hora --><!-- inicio__transmissor_lote_efdreinf__recepcao_versao_aplicativo --><div class="col-md-4" id="transmissor_lote_efdreinf__recepcao_versao_aplicativo__div"><div class="form-group"><label id="transmissor_lote_efdreinf__recepcao_versao_aplicativo__label">Versão do Aplicativo de Recepção</label>{% if transmissor_lote_efdreinf_form.recepcao_versao_aplicativo.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.recepcao_versao_aplicativo.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ transmissor_lote_efdreinf_form.recepcao_versao_aplicativo|addcss:'form-control' }}</div></div></div><!-- fim__transmissor_lote_efdreinf__recepcao_versao_aplicativo --><!-- inicio__transmissor_lote_efdreinf__protocolo --><div class="col-md-4" id="transmissor_lote_efdreinf__protocolo__div"><div class="form-group"><label id="transmissor_lote_efdreinf__protocolo__label">Protocolo de Envio</label>{% if transmissor_lote_efdreinf_form.protocolo.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.protocolo.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ transmissor_lote_efdreinf_form.protocolo|addcss:'form-control' }}</div></div></div><!-- fim__transmissor_lote_efdreinf__protocolo --><!-- inicio__transmissor_lote_efdreinf__numero_protocolo_fechamento --><div class="col-md-4" id="transmissor_lote_efdreinf__numero_protocolo_fechamento__div"><div class="form-group"><label id="transmissor_lote_efdreinf__numero_protocolo_fechamento__label">Número do Protocolo de Fechamento</label>{% if transmissor_lote_efdreinf_form.numero_protocolo_fechamento.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.numero_protocolo_fechamento.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ transmissor_lote_efdreinf_form.numero_protocolo_fechamento|addcss:'form-control' }}</div></div></div><!-- fim__transmissor_lote_efdreinf__numero_protocolo_fechamento --><!-- inicio__transmissor_lote_efdreinf__processamento_versao_aplicativo --><div class="col-md-4" id="transmissor_lote_efdreinf__processamento_versao_aplicativo__div"><div class="form-group"><label id="transmissor_lote_efdreinf__processamento_versao_aplicativo__label">Versão do Aplicativo de Processamento</label>{% if transmissor_lote_efdreinf_form.processamento_versao_aplicativo.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.processamento_versao_aplicativo.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ transmissor_lote_efdreinf_form.processamento_versao_aplicativo|addcss:'form-control' }}</div></div></div><!-- fim__transmissor_lote_efdreinf__processamento_versao_aplicativo --><!-- inicio__transmissor_lote_efdreinf__tempo_estimado_conclusao --><div class="col-md-4" id="transmissor_lote_efdreinf__tempo_estimado_conclusao__div"><div class="form-group"><label id="transmissor_lote_efdreinf__tempo_estimado_conclusao__label">Tempo Estimado de Conclusão</label>{% if transmissor_lote_efdreinf_form.tempo_estimado_conclusao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ transmissor_lote_efdreinf_form.tempo_estimado_conclusao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ transmissor_lote_efdreinf_form.tempo_estimado_conclusao|addcss:'form-control' }}</div></div></div><!-- fim__transmissor_lote_efdreinf__tempo_estimado_conclusao -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__transmissor_lote_efdreinf__transmissor -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor').change(function(){document.getElementById("transmissor_lote_efdreinf__transmissor__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-12" id="transmissor_lote_efdreinf__transmissor__div">
+<div class="form-group">
+  <label id="transmissor_lote_efdreinf__transmissor__label">Transmissor</label>
+  
+  {% if not for_print %}
+    {% if transmissor_lote_efdreinf_form.transmissor.value %}
+    <a id="transmissor_lote_efdreinf__transmissor__div_acessar" href="{% url 'transmissores_salvar' hash='{}'|json_id:transmissor_lote_efdreinf_form.transmissor.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  
+  {% if transmissor_lote_efdreinf_form.transmissor.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ transmissor_lote_efdreinf_form.transmissor.errors }}
+    </div>
+  {% endif %}
+  {% if transmissor_lote_efdreinf_form.transmissor.field.widget.attrs.readonly %}
+    {% if transmissor_lote_efdreinf_form.transmissor.field.widget.attrs.disabled %}
+      {{ transmissor_lote_efdreinf_form.transmissor|addcss:'form-control' }}
+      <input id="id_transmissor" name="transmissor" type="hidden" value="{% if transmissor_lote_efdreinf_form.transmissor.value or transmissor_lote_efdreinf_form.transmissor.value == 0 %}{{ transmissor_lote_efdreinf_form.transmissor.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ transmissor_lote_efdreinf_form.transmissor|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ transmissor_lote_efdreinf_form.transmissor|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__transmissor -->
+<!-- inicio__transmissor_lote_efdreinf__contribuinte_tpinsc -->
+<div class="col-md-6" id="transmissor_lote_efdreinf__contribuinte_tpinsc__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__contribuinte_tpinsc__label">Tipo de Inscrição do Contribuinte*</label>
+    {% if transmissor_lote_efdreinf_form.contribuinte_tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ transmissor_lote_efdreinf_form.contribuinte_tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if transmissor_lote_efdreinf_form.contribuinte_tpinsc.field.widget.attrs.readonly %}
+        {% if transmissor_lote_efdreinf_form.contribuinte_tpinsc.field.widget.attrs.disabled %}
+          {{ transmissor_lote_efdreinf_form.contribuinte_tpinsc|addcss:'form-control' }}
+          <input id="id_contribuinte_tpinsc" name="contribuinte_tpinsc" type="hidden" value="{% if transmissor_lote_efdreinf_form.contribuinte_tpinsc.value or transmissor_lote_efdreinf_form.contribuinte_tpinsc.value == 0 %}{{ transmissor_lote_efdreinf_form.contribuinte_tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ transmissor_lote_efdreinf_form.contribuinte_tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ transmissor_lote_efdreinf_form.contribuinte_tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__contribuinte_tpinsc -->
+<!-- inicio__transmissor_lote_efdreinf__contribuinte_nrinsc -->
+<div class="col-md-6" id="transmissor_lote_efdreinf__contribuinte_nrinsc__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__contribuinte_nrinsc__label">Número de Inscrição do Contribuinte*</label>
+      {% if transmissor_lote_efdreinf_form.contribuinte_nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ transmissor_lote_efdreinf_form.contribuinte_nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ transmissor_lote_efdreinf_form.contribuinte_nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__contribuinte_nrinsc -->
+<!-- inicio__transmissor_lote_efdreinf__grupo -->
+<div class="col-md-4" id="transmissor_lote_efdreinf__grupo__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__grupo__label">Grupo*</label>
+    {% if transmissor_lote_efdreinf_form.grupo.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ transmissor_lote_efdreinf_form.grupo.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if transmissor_lote_efdreinf_form.grupo.field.widget.attrs.readonly %}
+        {% if transmissor_lote_efdreinf_form.grupo.field.widget.attrs.disabled %}
+          {{ transmissor_lote_efdreinf_form.grupo|addcss:'form-control' }}
+          <input id="id_grupo" name="grupo" type="hidden" value="{% if transmissor_lote_efdreinf_form.grupo.value or transmissor_lote_efdreinf_form.grupo.value == 0 %}{{ transmissor_lote_efdreinf_form.grupo.value|valor }}{% endif %}">
+        {% else %}
+          {{ transmissor_lote_efdreinf_form.grupo|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ transmissor_lote_efdreinf_form.grupo|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__grupo -->
+<!-- inicio__transmissor_lote_efdreinf__status -->
+<div class="col-md-4" id="transmissor_lote_efdreinf__status__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__status__label">Status</label>
+    {% if transmissor_lote_efdreinf_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ transmissor_lote_efdreinf_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if transmissor_lote_efdreinf_form.status.field.widget.attrs.readonly %}
+        {% if transmissor_lote_efdreinf_form.status.field.widget.attrs.disabled %}
+          {{ transmissor_lote_efdreinf_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if transmissor_lote_efdreinf_form.status.value or transmissor_lote_efdreinf_form.status.value == 0 %}{{ transmissor_lote_efdreinf_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ transmissor_lote_efdreinf_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ transmissor_lote_efdreinf_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__status -->
+<!-- inicio__transmissor_lote_efdreinf__identidade_transmissor -->
+<div class="col-md-4" id="transmissor_lote_efdreinf__identidade_transmissor__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__identidade_transmissor__label">Identidade do Transmissor</label>
+      {% if transmissor_lote_efdreinf_form.identidade_transmissor.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ transmissor_lote_efdreinf_form.identidade_transmissor.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ transmissor_lote_efdreinf_form.identidade_transmissor|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__identidade_transmissor -->
+<!-- inicio__transmissor_lote_efdreinf__codigo_status -->
+<div class="col-md-4" id="transmissor_lote_efdreinf__codigo_status__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__codigo_status__label">Código da Resposta</label>
+    {% if transmissor_lote_efdreinf_form.codigo_status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ transmissor_lote_efdreinf_form.codigo_status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if transmissor_lote_efdreinf_form.codigo_status.field.widget.attrs.readonly %}
+        {% if transmissor_lote_efdreinf_form.codigo_status.field.widget.attrs.disabled %}
+          {{ transmissor_lote_efdreinf_form.codigo_status|addcss:'form-control' }}
+          <input id="id_codigo_status" name="codigo_status" type="hidden" value="{% if transmissor_lote_efdreinf_form.codigo_status.value or transmissor_lote_efdreinf_form.codigo_status.value == 0 %}{{ transmissor_lote_efdreinf_form.codigo_status.value|valor }}{% endif %}">
+        {% else %}
+          {{ transmissor_lote_efdreinf_form.codigo_status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ transmissor_lote_efdreinf_form.codigo_status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__codigo_status -->
+<!-- inicio__transmissor_lote_efdreinf__recepcao_data_hora -->
+<div class="col-md-4" id="transmissor_lote_efdreinf__recepcao_data_hora__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__recepcao_data_hora__label">Data/Hora de Recepção</label>
+    {% if transmissor_lote_efdreinf_form.recepcao_data_hora.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ transmissor_lote_efdreinf_form.recepcao_data_hora.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ transmissor_lote_efdreinf_form.recepcao_data_hora|addcss:'form-control automate-datetime' }}     
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__recepcao_data_hora -->
+<!-- inicio__transmissor_lote_efdreinf__recepcao_versao_aplicativo -->
+<div class="col-md-4" id="transmissor_lote_efdreinf__recepcao_versao_aplicativo__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__recepcao_versao_aplicativo__label">Versão do Aplicativo de Recepção</label>
+      {% if transmissor_lote_efdreinf_form.recepcao_versao_aplicativo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ transmissor_lote_efdreinf_form.recepcao_versao_aplicativo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ transmissor_lote_efdreinf_form.recepcao_versao_aplicativo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__recepcao_versao_aplicativo -->
+<!-- inicio__transmissor_lote_efdreinf__protocolo -->
+<div class="col-md-4" id="transmissor_lote_efdreinf__protocolo__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__protocolo__label">Protocolo de Envio</label>
+      {% if transmissor_lote_efdreinf_form.protocolo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ transmissor_lote_efdreinf_form.protocolo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ transmissor_lote_efdreinf_form.protocolo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__protocolo -->
+<!-- inicio__transmissor_lote_efdreinf__numero_protocolo_fechamento -->
+<div class="col-md-4" id="transmissor_lote_efdreinf__numero_protocolo_fechamento__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__numero_protocolo_fechamento__label">Número do Protocolo de Fechamento</label>
+      {% if transmissor_lote_efdreinf_form.numero_protocolo_fechamento.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ transmissor_lote_efdreinf_form.numero_protocolo_fechamento.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ transmissor_lote_efdreinf_form.numero_protocolo_fechamento|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__numero_protocolo_fechamento -->
+<!-- inicio__transmissor_lote_efdreinf__processamento_versao_aplicativo -->
+<div class="col-md-4" id="transmissor_lote_efdreinf__processamento_versao_aplicativo__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__processamento_versao_aplicativo__label">Versão do Aplicativo de Processamento</label>
+      {% if transmissor_lote_efdreinf_form.processamento_versao_aplicativo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ transmissor_lote_efdreinf_form.processamento_versao_aplicativo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ transmissor_lote_efdreinf_form.processamento_versao_aplicativo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__processamento_versao_aplicativo -->
+<!-- inicio__transmissor_lote_efdreinf__tempo_estimado_conclusao -->
+<div class="col-md-4" id="transmissor_lote_efdreinf__tempo_estimado_conclusao__div">
+  <div class="form-group">
+    <label id="transmissor_lote_efdreinf__tempo_estimado_conclusao__label">Tempo Estimado de Conclusão</label>
+      {% if transmissor_lote_efdreinf_form.tempo_estimado_conclusao.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ transmissor_lote_efdreinf_form.tempo_estimado_conclusao.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ transmissor_lote_efdreinf_form.tempo_estimado_conclusao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_efdreinf__tempo_estimado_conclusao -->

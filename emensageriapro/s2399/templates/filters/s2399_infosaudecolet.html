@@ -1,1 +1,32 @@
-{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)</label><select name="s2399_ideestablot" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2399_ideestablot_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2399_ideestablot' %}selected="selected"{% endifequal %}>{{ a.s2399_dmdev }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.codlotacao }}</option>{% endfor %}</select></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2399_ideestablot" value="1" {% if show_fields|get_value_from_dict:'show_s2399_ideestablot' %}checked{% endif %}>Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no registro pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (...)</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2399_infosaudecolet__s2399_ideestablot -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações de plano privado coletivo empresarial de assistência à saúde</label>
+    <select name="s2399_ideestablot" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s2399_ideestablot_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2399_ideestablot' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2399_infosaudecolet__s2399_ideestablot -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2399_ideestablot" value="1" {% if show_fields|get_value_from_dict:'show_s2399_ideestablot' %}checked{% endif %} >Informações de plano privado coletivo empresarial de assistência à saúde
+    </div>
+</div>
+
+

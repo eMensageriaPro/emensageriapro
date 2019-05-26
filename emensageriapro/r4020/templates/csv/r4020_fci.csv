@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r4020_infopgto or 1 %}"Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante";{% endif %}{% if show_fields.show_nrinscfci or 1 %}"Número de inscrição no CNPJ do fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r4020_infopgto or 1 %}"{{ c.r4020_infopgto }}";{% endif %}{% if show_fields.show_nrinscfci or 1 %}"{{ c.nrinscfci }}";{% endif %}
+{% endfor %}

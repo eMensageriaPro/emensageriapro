@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s2405.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,81 +45,42 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S2405_DEPFINSPREV = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
 
-CHOICES_S2405_DEPIRRF = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2405_INCFISMEN = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2405_SEXODEP = (
-    ('F', u'F - Feminino'),
-    ('M', u'M - Masculino'),
-)
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
 
 class s2405brasil(SoftDeletionModel):
-    s2405_evtcdbenefalt = models.OneToOneField('esocial.s2405evtCdBenefAlt',
-        related_name='%(class)s_s2405_evtcdbenefalt')
-    def evento(self): return self.s2405_evtcdbenefalt.evento()
-    tplograd = models.TextField(max_length=4)
-    dsclograd = models.CharField(max_length=80)
-    nrlograd = models.CharField(max_length=10)
-    complemento = models.CharField(max_length=30, blank=True, null=True)
-    bairro = models.CharField(max_length=60, blank=True, null=True)
-    cep = models.CharField(max_length=8)
-    codmunic = models.TextField(max_length=7)
-    uf = models.CharField(choices=ESTADOS, max_length=2)
+
+    s2405_endereco = models.ForeignKey('s2405.s2405endereco', 
+        related_name='%(class)s_s2405_endereco', )
+    
+    def evento(self): 
+        return self.s2405_endereco.evento()
+    tplograd = models.TextField(null=True, )
+    dsclograd = models.CharField(max_length=80, null=True, )
+    nrlograd = models.CharField(max_length=10, null=True, )
+    complemento = models.CharField(max_length=30, blank=True, null=True, )
+    bairro = models.CharField(max_length=60, blank=True, null=True, )
+    cep = models.CharField(max_length=8, null=True, )
+    codmunic = models.TextField(null=True, )
+    uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -115,55 +88,80 @@ class s2405brasil(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2405_evtcdbenefalt) + ' - ' + unicode(self.tplograd) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.cep) + ' - ' + unicode(self.codmunic) + ' - ' + unicode(self.uf)
-    #s2405_brasil_custom#
-
+        
+        lista = [
+            unicode(self.s2405_endereco),
+            unicode(self.tplograd),
+            unicode(self.dsclograd),
+            unicode(self.nrlograd),
+            unicode(self.cep),
+            unicode(self.codmunic),
+            unicode(self.uf),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Preenchimento obrigatório para trabalhador residente no Brasil.'
         db_table = r's2405_brasil'       
         managed = True # s2405_brasil #
-        unique_together = (
-            #custom_unique_together_s2405_brasil#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2405_brasil
-            #index_together_s2405_brasil
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2405_brasil", "Can view s2405_brasil"),
-            #custom_permissions_s2405_brasil
-        )
-        ordering = ['s2405_evtcdbenefalt', 'tplograd', 'dsclograd', 'nrlograd', 'cep', 'codmunic', 'uf']
+            ("can_view_s2405_brasil", "Can view s2405_brasil"), )
+            
+        ordering = [
+            's2405_endereco',
+            'tplograd',
+            'dsclograd',
+            'nrlograd',
+            'cep',
+            'codmunic',
+            'uf',]
 
 
 
 class s2405brasilSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2405brasil
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2405dependente(SoftDeletionModel):
-    s2405_evtcdbenefalt = models.ForeignKey('esocial.s2405evtCdBenefAlt',
-        related_name='%(class)s_s2405_evtcdbenefalt')
-    def evento(self): return self.s2405_evtcdbenefalt.evento()
-    tpdep = models.CharField(max_length=2)
-    nmdep = models.CharField(max_length=70)
-    dtnascto = models.DateField()
-    cpfdep = models.CharField(max_length=11, blank=True, null=True)
-    sexodep = models.CharField(choices=CHOICES_S2405_SEXODEP, max_length=1)
-    depirrf = models.CharField(choices=CHOICES_S2405_DEPIRRF, max_length=1)
-    incfismen = models.CharField(choices=CHOICES_S2405_INCFISMEN, max_length=1)
-    depfinsprev = models.CharField(choices=CHOICES_S2405_DEPFINSPREV, max_length=1)
+
+    s2405_evtcdbenefalt = models.ForeignKey('esocial.s2405evtCdBenefAlt', 
+        related_name='%(class)s_s2405_evtcdbenefalt', )
+    
+    def evento(self): 
+        return self.s2405_evtcdbenefalt.evento()
+    tpdep = models.CharField(choices=CHOICES_S2405_TPDEP, max_length=2, null=True, )
+    nmdep = models.CharField(max_length=70, null=True, )
+    dtnascto = models.DateField(null=True, )
+    cpfdep = models.CharField(max_length=11, blank=True, null=True, )
+    sexodep = models.CharField(choices=CHOICES_S2405_SEXODEP, max_length=1, null=True, )
+    depirrf = models.CharField(choices=CHOICES_S2405_DEPIRRF, max_length=1, null=True, )
+    incfismen = models.CharField(choices=CHOICES_S2405_INCFISMEN, max_length=1, null=True, )
+    depfinsprev = models.CharField(choices=CHOICES_S2405_DEPFINSPREV, max_length=1, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -171,54 +169,74 @@ class s2405dependente(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2405_evtcdbenefalt) + ' - ' + unicode(self.tpdep) + ' - ' + unicode(self.nmdep) + ' - ' + unicode(self.dtnascto) + ' - ' + unicode(self.sexodep) + ' - ' + unicode(self.depirrf) + ' - ' + unicode(self.incfismen) + ' - ' + unicode(self.depfinsprev)
-    #s2405_dependente_custom#
-
+        
+        lista = [
+            unicode(self.s2405_evtcdbenefalt),
+            unicode(self.tpdep),
+            unicode(self.nmdep),
+            unicode(self.dtnascto),
+            unicode(self.sexodep),
+            unicode(self.depirrf),
+            unicode(self.incfismen),
+            unicode(self.depfinsprev),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações dos dependentes'
         db_table = r's2405_dependente'       
         managed = True # s2405_dependente #
-        unique_together = (
-            #custom_unique_together_s2405_dependente#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2405_dependente
-            #index_together_s2405_dependente
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2405_dependente", "Can view s2405_dependente"),
-            #custom_permissions_s2405_dependente
-        )
-        ordering = ['s2405_evtcdbenefalt', 'tpdep', 'nmdep', 'dtnascto', 'sexodep', 'depirrf', 'incfismen', 'depfinsprev']
+            ("can_view_s2405_dependente", "Can view s2405_dependente"), )
+            
+        ordering = [
+            's2405_evtcdbenefalt',
+            'tpdep',
+            'nmdep',
+            'dtnascto',
+            'sexodep',
+            'depirrf',
+            'incfismen',
+            'depfinsprev',]
 
 
 
 class s2405dependenteSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2405dependente
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
 
-class s2405exterior(SoftDeletionModel):
-    s2405_evtcdbenefalt = models.OneToOneField('esocial.s2405evtCdBenefAlt',
-        related_name='%(class)s_s2405_evtcdbenefalt')
-    def evento(self): return self.s2405_evtcdbenefalt.evento()
-    paisresid = models.TextField(max_length=3)
-    dsclograd = models.CharField(max_length=80)
-    nrlograd = models.CharField(max_length=10)
-    complemento = models.CharField(max_length=30, blank=True, null=True)
-    bairro = models.CharField(max_length=60, blank=True, null=True)
-    nmcid = models.CharField(max_length=50)
-    codpostal = models.CharField(max_length=12, blank=True, null=True)
+
+class s2405endereco(SoftDeletionModel):
+
+    s2405_evtcdbenefalt = models.ForeignKey('esocial.s2405evtCdBenefAlt', 
+        related_name='%(class)s_s2405_evtcdbenefalt', )
+    
+    def evento(self): 
+        return self.s2405_evtcdbenefalt.evento()
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -226,41 +244,123 @@ class s2405exterior(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2405_evtcdbenefalt) + ' - ' + unicode(self.paisresid) + ' - ' + unicode(self.dsclograd) + ' - ' + unicode(self.nrlograd) + ' - ' + unicode(self.nmcid)
-    #s2405_exterior_custom#
-
-    class Meta:
-        # verbose_name = u'Preenchido em caso de trabalhador residente no exterior.'
-        db_table = r's2405_exterior'       
-        managed = True # s2405_exterior #
-        unique_together = (
-            #custom_unique_together_s2405_exterior#
+        
+        lista = [
+            unicode(self.s2405_evtcdbenefalt),]
             
-        )
-        index_together = (
-            #custom_index_together_s2405_exterior
-            #index_together_s2405_exterior
-        )
-        permissions = (
-            ("can_view_s2405_exterior", "Can view s2405_exterior"),
-            #custom_permissions_s2405_exterior
-        )
-        ordering = ['s2405_evtcdbenefalt', 'paisresid', 'dsclograd', 'nrlograd', 'nmcid']
-
-
-
-class s2405exteriorSerializer(ModelSerializer):
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
-        model = s2405exterior
+    
+        # verbose_name = u'Grupo de informações do endereço do Trabalhador'
+        db_table = r's2405_endereco'       
+        managed = True # s2405_endereco #
+        
+        unique_together = ()
+            
+        index_together = ()
+        
+        permissions = (
+            ("can_view_s2405_endereco", "Can view s2405_endereco"), )
+            
+        ordering = [
+            's2405_evtcdbenefalt',]
+
+
+
+class s2405enderecoSerializer(ModelSerializer):
+
+    class Meta:
+    
+        model = s2405endereco
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
 
-#VIEWS_MODELS
+
+class s2405exterior(SoftDeletionModel):
+
+    s2405_endereco = models.ForeignKey('s2405.s2405endereco', 
+        related_name='%(class)s_s2405_endereco', )
+    
+    def evento(self): 
+        return self.s2405_endereco.evento()
+    paisresid = models.TextField(null=True, )
+    dsclograd = models.CharField(max_length=80, null=True, )
+    nrlograd = models.CharField(max_length=10, null=True, )
+    complemento = models.CharField(max_length=30, blank=True, null=True, )
+    bairro = models.CharField(max_length=60, blank=True, null=True, )
+    nmcid = models.CharField(max_length=50, null=True, )
+    codpostal = models.CharField(max_length=12, blank=True, null=True, )
+    
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
+    def __unicode__(self):
+        
+        lista = [
+            unicode(self.s2405_endereco),
+            unicode(self.paisresid),
+            unicode(self.dsclograd),
+            unicode(self.nrlograd),
+            unicode(self.nmcid),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
+    class Meta:
+    
+        # verbose_name = u'Preenchido em caso de trabalhador residente no exterior.'
+        db_table = r's2405_exterior'       
+        managed = True # s2405_exterior #
+        
+        unique_together = ()
+            
+        index_together = ()
+        
+        permissions = (
+            ("can_view_s2405_exterior", "Can view s2405_exterior"), )
+            
+        ordering = [
+            's2405_endereco',
+            'paisresid',
+            'dsclograd',
+            'nrlograd',
+            'nmcid',]
+
+
+
+class s2405exteriorSerializer(ModelSerializer):
+
+    class Meta:
+    
+        model = s2405exterior
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+    
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()

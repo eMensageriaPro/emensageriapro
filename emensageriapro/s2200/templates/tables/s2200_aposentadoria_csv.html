@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informação de aposentadoria do trabalhador"
-{% if show_fields.show_s2200_evtadmissao or not s2200_evtadmissao_id and 1 %}"Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador";{% endif %}{% if show_fields.show_trabaposent or 1 %}"Aposentado";{% endif %}
-{% for a in s2200_aposentadoria_lista %}{% if show_fields.show_s2200_evtadmissao or  not s2200_evtadmissao_id and 1 %}"{{ a.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_trabaposent or 1 %}"{{ a.get_trabaposent_display }}";{% endif %}
-{% endfor %}

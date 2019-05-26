@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,21 +46,113 @@ def validacoes_s2298_evtreintegr(arquivo):
     validacoes_lista = []
     xmlns = doc.eSocial['xmlns'].split('/')
     evtReintegr = doc.eSocial.evtReintegr
-
-    if 'indRetif' in dir(evtReintegr.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.ideEvento.indRetif', evtReintegr.ideEvento.indRetif.cdata, 1, u'1;2')
-    if 'nrRecibo' in dir(evtReintegr.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.ideEvento.nrRecibo', evtReintegr.ideEvento.nrRecibo.cdata, 0, u'')
-    if 'tpAmb' in dir(evtReintegr.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.ideEvento.tpAmb', evtReintegr.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtReintegr.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.ideEvento.procEmi', evtReintegr.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
-    if 'verProc' in dir(evtReintegr.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.ideEvento.verProc', evtReintegr.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtReintegr.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.ideEmpregador.tpInsc', evtReintegr.ideEmpregador.tpInsc.cdata, 1, u'1;2;3;4')
-    if 'nrInsc' in dir(evtReintegr.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.ideEmpregador.nrInsc', evtReintegr.ideEmpregador.nrInsc.cdata, 1, u'')
-    if 'cpfTrab' in dir(evtReintegr.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.ideVinculo.cpfTrab', evtReintegr.ideVinculo.cpfTrab.cdata, 1, u'')
-    if 'nisTrab' in dir(evtReintegr.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.ideVinculo.nisTrab', evtReintegr.ideVinculo.nisTrab.cdata, 1, u'')
-    if 'matricula' in dir(evtReintegr.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.ideVinculo.matricula', evtReintegr.ideVinculo.matricula.cdata, 1, u'')
-    if 'tpReint' in dir(evtReintegr.infoReintegr): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.infoReintegr.tpReint', evtReintegr.infoReintegr.tpReint.cdata, 1, u'1;2;3;4;5;9')
-    if 'nrProcJud' in dir(evtReintegr.infoReintegr): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.infoReintegr.nrProcJud', evtReintegr.infoReintegr.nrProcJud.cdata, 0, u'')
-    if 'nrLeiAnistia' in dir(evtReintegr.infoReintegr): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.infoReintegr.nrLeiAnistia', evtReintegr.infoReintegr.nrLeiAnistia.cdata, 0, u'')
-    if 'dtEfetRetorno' in dir(evtReintegr.infoReintegr): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.infoReintegr.dtEfetRetorno', evtReintegr.infoReintegr.dtEfetRetorno.cdata, 1, u'')
-    if 'dtEfeito' in dir(evtReintegr.infoReintegr): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.infoReintegr.dtEfeito', evtReintegr.infoReintegr.dtEfeito.cdata, 1, u'')
-    if 'indPagtoJuizo' in dir(evtReintegr.infoReintegr): validacoes_lista = validar_campo(validacoes_lista,'evtReintegr.infoReintegr.indPagtoJuizo', evtReintegr.infoReintegr.indPagtoJuizo.cdata, 1, u'S;N')
+    #variaveis
+    
+    if 'ideEvento' in dir(evtReintegr.ideEvento):
+        for ideEvento in evtReintegr.ideEvento:
+            
+            if 'indRetif' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.indRetif', 
+                                                  ideEvento.indRetif.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'nrRecibo' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.nrRecibo', 
+                                                  ideEvento.nrRecibo.cdata, 
+                                                  0, u'None')
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideEmpregador' in dir(evtReintegr.ideEmpregador):
+        for ideEmpregador in evtReintegr.ideEmpregador:
+            
+            if 'tpInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.tpInsc', 
+                                                  ideEmpregador.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.nrInsc', 
+                                                  ideEmpregador.nrInsc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideVinculo' in dir(evtReintegr.ideVinculo):
+        for ideVinculo in evtReintegr.ideVinculo:
+            
+            if 'cpfTrab' in dir(ideVinculo):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideVinculo.cpfTrab', 
+                                                  ideVinculo.cpfTrab.cdata, 
+                                                  1, u'None')
+            
+            if 'nisTrab' in dir(ideVinculo):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideVinculo.nisTrab', 
+                                                  ideVinculo.nisTrab.cdata, 
+                                                  1, u'None')
+            
+            if 'matricula' in dir(ideVinculo):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideVinculo.matricula', 
+                                                  ideVinculo.matricula.cdata, 
+                                                  1, u'None')
+    
+    if 'infoReintegr' in dir(evtReintegr.infoReintegr):
+        for infoReintegr in evtReintegr.infoReintegr:
+            
+            if 'tpReint' in dir(infoReintegr):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoReintegr.tpReint', 
+                                                  infoReintegr.tpReint.cdata, 
+                                                  1, u'1, 2, 3, 4, 5, 9')
+            
+            if 'nrProcJud' in dir(infoReintegr):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoReintegr.nrProcJud', 
+                                                  infoReintegr.nrProcJud.cdata, 
+                                                  0, u'None')
+            
+            if 'nrLeiAnistia' in dir(infoReintegr):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoReintegr.nrLeiAnistia', 
+                                                  infoReintegr.nrLeiAnistia.cdata, 
+                                                  0, u'None')
+            
+            if 'dtEfetRetorno' in dir(infoReintegr):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoReintegr.dtEfetRetorno', 
+                                                  infoReintegr.dtEfetRetorno.cdata, 
+                                                  1, u'None')
+            
+            if 'dtEfeito' in dir(infoReintegr):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoReintegr.dtEfeito', 
+                                                  infoReintegr.dtEfeito.cdata, 
+                                                  1, u'None')
+            
+            if 'indPagtoJuizo' in dir(infoReintegr):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoReintegr.indPagtoJuizo', 
+                                                  infoReintegr.indPagtoJuizo.cdata, 
+                                                  1, u'S, N')
     return validacoes_lista

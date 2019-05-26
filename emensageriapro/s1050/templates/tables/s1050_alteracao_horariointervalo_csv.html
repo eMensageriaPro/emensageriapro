@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Registro que detalha os intervalos para a jornada. O preenchimento do registro é obrigatório se existir ao menos um intervalo."
-{% if show_fields.show_s1050_alteracao or not s1050_alteracao_id and 1 %}"Alteração das informações";{% endif %}{% if show_fields.show_tpinterv or 1 %}"Tipo de intervalo da jornada";{% endif %}{% if show_fields.show_durinterv or 1 %}"Duração do intervalo (min)";{% endif %}{% if show_fields.show_iniinterv or 0 %}"Hora de início";{% endif %}{% if show_fields.show_terminterv or 0 %}"Hora de término";{% endif %}
-{% for a in s1050_alteracao_horariointervalo_lista %}{% if show_fields.show_s1050_alteracao or  not s1050_alteracao_id and 1 %}"{{ a.s1050_alteracao }}";{% endif %}{% if show_fields.show_tpinterv or 1 %}"{{ a.get_tpinterv_display }}";{% endif %}{% if show_fields.show_durinterv or 1 %}"{{ a.durinterv }}";{% endif %}{% if show_fields.show_iniinterv or 0 %}"{{ a.iniinterv }}";{% endif %}{% if show_fields.show_terminterv or 0 %}"{{ a.terminterv }}";{% endif %}
-{% endfor %}

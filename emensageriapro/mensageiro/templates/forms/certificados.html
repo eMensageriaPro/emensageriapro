@@ -1,0 +1,37 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__certificados__nome -->
+<div class="col-md-8" id="certificados__nome__div">
+  <div class="form-group">
+    <label id="certificados__nome__label">Nome*</label>
+      {% if certificados_form.nome.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ certificados_form.nome.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ certificados_form.nome|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__certificados__nome -->
+<!-- inicio__certificados__certificado -->
+<div class="col-md-12" id="certificados__certificado__div">
+    <div class="form-group">
+      <label id="certificados__certificado__label">Arquivo do Certificado*</label>
+          {% if certificados_form.certificado.errors %}
+            <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+                {{ certificados_form.certificado.errors }}
+            </div>
+          {% endif %}
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-file"></i>
+        </div>
+        {{ certificados_form.certificado|addcss:'form-control' }}
+      </div>
+    </div>
+</div>
+<!-- fim__certificados__certificado -->

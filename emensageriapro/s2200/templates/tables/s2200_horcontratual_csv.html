@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1]."
-{% if show_fields.show_s2200_evtadmissao or not s2200_evtadmissao_id and 1 %}"Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador";{% endif %}{% if show_fields.show_qtdhrssem or 0 %}"Quant. de horas semanais";{% endif %}{% if show_fields.show_tpjornada or 1 %}"Tipo de jornada";{% endif %}{% if show_fields.show_dsctpjorn or 0 %}"Descrição do tipo de jornada";{% endif %}{% if show_fields.show_tmpparc or 1 %}"Contrato em tempo parcial";{% endif %}
-{% for a in s2200_horcontratual_lista %}{% if show_fields.show_s2200_evtadmissao or  not s2200_evtadmissao_id and 1 %}"{{ a.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_qtdhrssem or 0 %}"{{ a.qtdhrssem }}";{% endif %}{% if show_fields.show_tpjornada or 1 %}"{{ a.get_tpjornada_display }}";{% endif %}{% if show_fields.show_dsctpjorn or 0 %}"{{ a.dsctpjorn }}";{% endif %}{% if show_fields.show_tmpparc or 1 %}"{{ a.get_tmpparc_display }}";{% endif %}
-{% endfor %}

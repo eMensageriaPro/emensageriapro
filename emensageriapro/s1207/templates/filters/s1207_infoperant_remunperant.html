@@ -1,1 +1,34 @@
-{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</label><select name="s1207_infoperant_ideestab" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s1207_infoperant_ideestab_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1207_infoperant_ideestab' %}selected="selected"{% endifequal %}>{{ a.s1207_infoperant_ideperiodo }} - {{ a.tpinsc }} - {{ a.nrinsc }}</option>{% endfor %}</select></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s1207_infoperant_ideestab" value="1" {% if show_fields|get_value_from_dict:'show_s1207_infoperant_ideestab' %}checked{% endif %}>Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1207_infoperant_remunperant__s1207_infoperant_ideestab -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração</label>
+    <select name="s1207_infoperant_ideestab" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in s1207_infoperant_ideestab_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1207_infoperant_ideestab' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s1207_infoperant_remunperant__s1207_infoperant_ideestab -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s1207_infoperant_ideestab" value="1" {% if show_fields|get_value_from_dict:'show_s1207_infoperant_ideestab' %}checked{% endif %} >Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração
+    </div>
+</div>
+
+

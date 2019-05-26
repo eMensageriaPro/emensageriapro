@@ -1,12 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s5002.models import * 
-from emensageriapro.tabelas.models import eSocialTrabalhadoresCategorias 
-from emensageriapro.esocial.models import s5002evtIrrfBenef 
+from emensageriapro.s5002.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -41,24 +40,22 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s5002_basesirrf(forms.ModelForm):
+
     valor = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5002_basesirrf, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5002_infoirrf'].queryset = s5002infoIrrf.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5002_infoirrf'].widget.attrs['required'] = True        
-        self.fields['tpvalor'].widget.attrs['required'] = True        
-        self.fields['valor'].widget.attrs['required'] = True
+        super(form_s5002_basesirrf, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -78,28 +75,25 @@ class form_s5002_basesirrf(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5002basesIrrf
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s5002_idepgtoext(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5002_idepgtoext, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5002_infoirrf'].widget.attrs['required'] = True        
-        self.fields['codpais'].widget.attrs['required'] = True        
-        self.fields['indnif'].widget.attrs['required'] = True        
-        self.fields['dsclograd'].widget.attrs['required'] = True        
-        self.fields['nmcid'].widget.attrs['required'] = True
+        super(form_s5002_idepgtoext, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -119,26 +113,26 @@ class form_s5002_idepgtoext(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5002idePgtoExt
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s5002_infodep(forms.ModelForm):
+
     vrdeddep = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5002_infodep, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5002_evtirrfbenef'].widget.attrs['required'] = True        
-        self.fields['vrdeddep'].widget.attrs['required'] = True
+        super(form_s5002_infodep, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -158,26 +152,25 @@ class form_s5002_infodep(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5002infoDep
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s5002_infoirrf(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5002_infoirrf, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5002_evtirrfbenef'].queryset = s5002evtIrrfBenef.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5002_evtirrfbenef'].widget.attrs['required'] = True        
-        self.fields['indresbr'].widget.attrs['required'] = True
+        super(form_s5002_infoirrf, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -197,28 +190,26 @@ class form_s5002_infoirrf(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5002infoIrrf
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s5002_irrf(forms.ModelForm):
+
     vrirrfdesc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s5002_irrf, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s5002_infoirrf'].queryset = s5002infoIrrf.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s5002_infoirrf'].widget.attrs['required'] = True        
-        self.fields['tpcr'].widget.attrs['required'] = True        
-        self.fields['vrirrfdesc'].widget.attrs['required'] = True
+        super(form_s5002_irrf, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -238,10 +229,10 @@ class form_s5002_irrf(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s5002irrf
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

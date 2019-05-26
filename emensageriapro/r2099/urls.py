@@ -3,7 +3,11 @@
 from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
-from emensageriapro.r2099.views import r2099_iderespinf as r2099_iderespinf_views
+from rest_framework.authtoken import views
+from emensageriapro.r2099.views import r2099_iderespinf_apagar as r2099_iderespinf_apagar_views
+from emensageriapro.r2099.views import r2099_iderespinf_listar as r2099_iderespinf_listar_views
+from emensageriapro.r2099.views import r2099_iderespinf_salvar as r2099_iderespinf_salvar_views
+from emensageriapro.r2099.views import r2099_iderespinf_api as r2099_iderespinf_api_views
 
 
 
@@ -40,30 +44,27 @@ from emensageriapro.r2099.views import r2099_iderespinf as r2099_iderespinf_view
 
 """
 
+
 urlpatterns = [
 
 
-
-url(r'^r2099-iderespinf/apagar/(?P<hash>.*)/$', 
-        r2099_iderespinf_views.apagar, 
+    url(r'^r2099-iderespinf/apagar/(?P<hash>.*)/$', 
+        r2099_iderespinf_apagar_views.apagar, 
         name='r2099_iderespinf_apagar'),
 
-url(r'^r2099-iderespinf/api/$',
-            r2099_iderespinf_views.r2099ideRespInfList.as_view() ),
+    url(r'^r2099-iderespinf/api/$',
+        r2099_iderespinf_api_views.r2099ideRespInfList.as_view() ),
 
-        url(r'^r2099-iderespinf/api/(?P<pk>[0-9]+)/$',
-            r2099_iderespinf_views.r2099ideRespInfDetail.as_view() ),
+    url(r'^r2099-iderespinf/api/(?P<pk>[0-9]+)/$',
+        r2099_iderespinf_api_views.r2099ideRespInfDetail.as_view() ),
 
-url(r'^r2099-iderespinf/listar/(?P<hash>.*)/$', 
-        r2099_iderespinf_views.listar, 
+    url(r'^r2099-iderespinf/listar/(?P<hash>.*)/$', 
+        r2099_iderespinf_listar_views.listar, 
         name='r2099_iderespinf'),
 
-url(r'^r2099-iderespinf/salvar/(?P<hash>.*)/$', 
-        r2099_iderespinf_views.salvar, 
+    url(r'^r2099-iderespinf/salvar/(?P<hash>.*)/$', 
+        r2099_iderespinf_salvar_views.salvar, 
         name='r2099_iderespinf_salvar'),
-
-
-
 
 
 ]

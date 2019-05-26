@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,13 +46,62 @@ def validacoes_r9000_evtexclusao(arquivo):
     validacoes_lista = []
     xmlns = doc.Reinf['xmlns'].split('/')
     evtExclusao = doc.Reinf.evtExclusao
-
-    if 'tpAmb' in dir(evtExclusao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtExclusao.ideEvento.tpAmb', evtExclusao.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtExclusao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtExclusao.ideEvento.procEmi', evtExclusao.ideEvento.procEmi.cdata, 1, u'1;2')
-    if 'verProc' in dir(evtExclusao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtExclusao.ideEvento.verProc', evtExclusao.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtExclusao.ideContri): validacoes_lista = validar_campo(validacoes_lista,'evtExclusao.ideContri.tpInsc', evtExclusao.ideContri.tpInsc.cdata, 1, u'1;2')
-    if 'nrInsc' in dir(evtExclusao.ideContri): validacoes_lista = validar_campo(validacoes_lista,'evtExclusao.ideContri.nrInsc', evtExclusao.ideContri.nrInsc.cdata, 1, u'')
-    if 'tpEvento' in dir(evtExclusao.infoExclusao): validacoes_lista = validar_campo(validacoes_lista,'evtExclusao.infoExclusao.tpEvento', evtExclusao.infoExclusao.tpEvento.cdata, 1, u'')
-    if 'nrRecEvt' in dir(evtExclusao.infoExclusao): validacoes_lista = validar_campo(validacoes_lista,'evtExclusao.infoExclusao.nrRecEvt', evtExclusao.infoExclusao.nrRecEvt.cdata, 1, u'')
-    if 'perApur' in dir(evtExclusao.infoExclusao): validacoes_lista = validar_campo(validacoes_lista,'evtExclusao.infoExclusao.perApur', evtExclusao.infoExclusao.perApur.cdata, 1, u'')
+    #variaveis
+    
+    if 'ideEvento' in dir(evtExclusao.ideEvento):
+        for ideEvento in evtExclusao.ideEvento:
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideContri' in dir(evtExclusao.ideContri):
+        for ideContri in evtExclusao.ideContri:
+            
+            if 'tpInsc' in dir(ideContri):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideContri.tpInsc', 
+                                                  ideContri.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideContri):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideContri.nrInsc', 
+                                                  ideContri.nrInsc.cdata, 
+                                                  1, u'None')
+    
+    if 'infoExclusao' in dir(evtExclusao.infoExclusao):
+        for infoExclusao in evtExclusao.infoExclusao:
+            
+            if 'tpEvento' in dir(infoExclusao):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoExclusao.tpEvento', 
+                                                  infoExclusao.tpEvento.cdata, 
+                                                  1, u'R-1000, R-1070, R-2010, R-2020, R-2030, R-2040, R-2050, R-2060, R-2098, R-2099, R-3010, R-4010, R-4020, R-4040, R-4098, R-4099, R-9000, R-9001, R-9002, R-9011, R-9012')
+            
+            if 'nrRecEvt' in dir(infoExclusao):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoExclusao.nrRecEvt', 
+                                                  infoExclusao.nrRecEvt.cdata, 
+                                                  1, u'None')
+            
+            if 'perApur' in dir(infoExclusao):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoExclusao.perApur', 
+                                                  infoExclusao.perApur.cdata, 
+                                                  1, u'None')
     return validacoes_lista

@@ -33,13 +33,18 @@
 
 """
 
-import psycopg2
 import datetime
-import os
 from django.contrib import messages
-#from emensageriapro.settings import BASE_DIR
-from emensageriapro.mensageiro.functions.funcoes_status import atualizar_status_efdreinf
 from emensageriapro.mensageiro.models import *
+from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
+    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
+    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
+    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
+    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
+    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
+    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
+from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import TRANSMISSOR_STATUS_CADASTRADO, TRANSMISSOR_STATUS_ENVIADO,\
+    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO, definir_status_evento
 
 
 REQUEST_RECEBER_LOTE_EVENTOS_EFDREINF = u"""
@@ -75,22 +80,6 @@ REQUEST_CONSULTA_INFORMACOES_CONSOLIDADES_EFDREINF = u"""
 </soapenv:Envelope>"""
 
 
-#https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/RecepcaoLoteReinf.svc?singleWSDL
-
-#https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/ConsultasReinf.svc?singleWSDL
-
-from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO, \
-    STATUS_EVENTO_DUPLICADO, STATUS_EVENTO_GERADO, \
-    STATUS_EVENTO_GERADO_ERRO, STATUS_EVENTO_ASSINADO, \
-    STATUS_EVENTO_ASSINADO_ERRO, STATUS_EVENTO_VALIDADO, \
-    STATUS_EVENTO_VALIDADO_ERRO, STATUS_EVENTO_AGUARD_PRECEDENCIA, \
-    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_ENVIADO, \
-    STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_PROCESSADO
-
-from emensageriapro.mensageiro.functions.funcoes_esocial import TRANSMISSOR_STATUS_CADASTRADO, TRANSMISSOR_STATUS_ENVIADO,\
-    TRANSMISSOR_STATUS_ENVIADO_ERRO, TRANSMISSOR_STATUS_CONSULTADO, TRANSMISSOR_STATUS_CONSULTADO_ERRO
-
-
 def gravar_nome_arquivo(arquivo, permite_recuperacao):
 
     dados = {}
@@ -106,81 +95,91 @@ def gravar_nome_arquivo(arquivo, permite_recuperacao):
 
 
 def salvar_arquivo_efdreinf(arquivo, texto, permite_recuperacao):
+
+    import codecs
     from emensageriapro.settings import BASE_DIR
+
     arquivo1 = BASE_DIR+'/'+arquivo
     arquivo1 = arquivo1.replace('//', '/').replace('//', '/')
-    # try:
-    #     file = open(arquivo1, "w")
-    #     file.write( texto )
-    #     file.close()
-    # except:
-    import codecs
     file = codecs.open(arquivo1, "w", "utf-8")
     file.write(texto)
     file.close()
     gravar_nome_arquivo(arquivo, permite_recuperacao)
 
 
-# def ler_arquivo(arquivo):
-#     from emensageriapro.settings import BASE_DIR
-#     arquivo = BASE_DIR+'/'+arquivo
-#     file = open(arquivo, 'r')
-#     texto = file.read()
-#     file.close()
-#     return texto
-
-
 def ler_arquivo(arquivo):
-    from emensageriapro.settings import BASE_DIR
-    arquivo = BASE_DIR+'/'+arquivo
+
     import codecs
+    from emensageriapro.settings import BASE_DIR
+
+    arquivo = BASE_DIR+'/'+arquivo
     file = codecs.open(arquivo, "r", "utf-8")
     texto = file.read()
     file.close()
+
     return texto.encode('utf-8')
 
 
-def create_pem_files(CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE):
+def create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file):
+
     import os.path
     from emensageriapro.padrao import salvar_arquivo
     from OpenSSL import crypto
 
-    pkcs12 = crypto.load_pkcs12(open(CERT_HOST, 'rb').read(), CERT_PASS)
+    pkcs12 = crypto.load_pkcs12(open(cert_host, 'rb').read(), cert_pass)
 
-    if not os.path.isfile(CERT_PEM_FILE):
+    if not os.path.isfile(cert_pem_file):
+
         cert_str = crypto.dump_certificate(crypto.FILETYPE_PEM, pkcs12.get_certificate())
-        salvar_arquivo(CERT_PEM_FILE, cert_str)
+        salvar_arquivo(cert_pem_file, cert_str)
 
-    if not os.path.isfile(KEY_PEM_FILE):
+    if not os.path.isfile(key_pem_file):
+
         key_str = crypto.dump_privatekey(crypto.FILETYPE_PEM, pkcs12.get_privatekey())
-        salvar_arquivo(KEY_PEM_FILE, key_str)
+        salvar_arquivo(key_pem_file, key_str)
 
 
 def get_identidade_evento(xml):
+
     a = xml.split('id="')
     b = a[1].split('"')
+
     return b[0]
 
 
-def assinar_efdreinf(xml):
+def assinar_efdreinf(request, xml, transmissor_id):
+
     from lxml import etree
     from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, BASE_DIR
     from signxml import XMLSigner, methods
-    from emensageriapro.settings import CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
+    #from emensageriapro.settings import CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
 
-    cert_host = BASE_DIR + '/' + CERT_HOST
-    cert_pem_file = CERT_PEM_FILE
-    key_pem_file = KEY_PEM_FILE
+    tra = TransmissorLoteEfdreinf.objects. \
+        get(id=transmissor_id)
 
+    if tra.transmissor.efdreinf_certificado:
+
+        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.efdreinf_certificado.certificado)
+        cert_pass = tra.transmissor.efdreinf_certificado.senha
+        cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.efdreinf_certificado.id
+        key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.efdreinf_certificado.id
+
+    else:
+
+        messages.error(request,
+                       'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
+
+        return xml
 
     if FORCE_PRODUCAO_RESTRITA:
+
         xml = xml.replace('<tpAmb>1</tpAmb>','<tpAmb>2</tpAmb>')
 
     identidade = get_identidade_evento(xml)
 
-    if CERT_HOST:
+    if cert_host:
 
-        create_pem_files(cert_host, CERT_PASS, cert_pem_file, key_pem_file)
+        create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
 
         cert_str = ler_arquivo(cert_pem_file)
         key_str = ler_arquivo(key_pem_file)
@@ -203,17 +202,15 @@ def assinar_efdreinf(xml):
         return xml
 
 
-
-
-
-
 def get_transmissor_name(transmissor_id):
+
     number = str(transmissor_id)
+
     while len(number) < 9:
+
         number = '0'+number
+
     return number
-
-
 
 
 def create_request(dados):
@@ -222,7 +219,7 @@ def create_request(dados):
 
         xml_temp = ''
 
-        eventos = TransmissorEventosEfdreinf.objects.using('default'). \
+        eventos = TransmissorEventosEfdreinf.objects. \
             filter(transmissor_lote_efdreinf_id=dados['transmissor_id'],
                    status=STATUS_EVENTO_AGUARD_ENVIO).all()
 
@@ -238,7 +235,7 @@ def create_request(dados):
 
     elif dados['service'] == 'ConsultasReinf':
 
-        a = TransmissorLoteEfdreinf.objects.using('default'). \
+        a = TransmissorLoteEfdreinf.objects. \
             get(id=dados['transmissor_id'])
 
         text = REQUEST_CONSULTA_INFORMACOES_CONSOLIDADES_EFDREINF % a.__dict__
@@ -246,66 +243,87 @@ def create_request(dados):
     salvar_arquivo_efdreinf(dados['request'], text, 0)
 
 
-
-#https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/RecepcaoLoteReinf.svc?singleWSDL
-#https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/ConsultasReinf.svc?singleWSDL
-
-
 def send_xml(request, transmissor_id, service):
-    from emensageriapro.settings import BASE_DIR
-    from datetime import datetime
-    data_atual = str(datetime.now()).replace(':','-').replace(' ','-').replace('.','-')
 
-    from datetime import datetime
     import os
-    from emensageriapro.settings import CERT_PEM_FILE, KEY_PEM_FILE, CA_CERT_PEM_FILE, FORCE_PRODUCAO_RESTRITA, TP_AMB, CERT_HOST, CERT_PASS
+    from datetime import datetime
+    from emensageriapro.settings import BASE_DIR
 
-    CERT_HOST = BASE_DIR + '/' + CERT_HOST
-    if TP_AMB == '1': # Produção
+    from emensageriapro.settings import CA_CERT_PEM_FILE, FORCE_PRODUCAO_RESTRITA, TP_AMB
+
+    # from emensageriapro.settings import CERT_PEM_FILE, KEY_PEM_FILE, \
+    #     CA_CERT_PEM_FILE, FORCE_PRODUCAO_RESTRITA, TP_AMB, CERT_HOST, CERT_PASS
+
+
+    data_atual = str(datetime.now()).replace(':', '-').replace(' ', '-').replace('.', '-')
+
+    if TP_AMB == '1':  # Produção
+
         if service == 'RecepcaoLoteReinf':
-            URL = "https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/RecepcaoLoteReinf.svc"
+
+            URL = "https://reinf.receita.fazenda.gov.br/WsREINF/RecepcaoLoteReinf.svc"
             ACTION = "http://sped.fazenda.gov.br/RecepcaoLoteReinf/ReceberLoteEventos"
+
         elif service == 'ConsultasReinf':
-            URL = "https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/ConsultasReinf.svc"
+
+            URL = "https://reinf.receita.fazenda.gov.br/WsReinfConsultas/ConsultasReinf.svc"
             ACTION = "http://sped.fazenda.gov.br/ConsultasReinf/ConsultaInformacoesConsolidadas"
-    elif TP_AMB == '2': # Produção-Restrita
+
+    elif TP_AMB == '2':  # Produção-Restrita
+
         if service == 'RecepcaoLoteReinf':
-            URL = "https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/RecepcaoLoteReinf.svc"
+
+            URL = "https://preprodefdreinf.receita.fazenda.gov.br/wsreinf/RecepcaoLoteReinf.svc"
             ACTION = "http://sped.fazenda.gov.br/RecepcaoLoteReinf/ReceberLoteEventos"
+
         elif service == 'ConsultasReinf':
-            URL = "https://preprodefdreinf.receita.fazenda.gov.br/WsREINF/ConsultasReinf.svc"
+
+            URL = "https://preprodefdreinf.receita.fazenda.gov.br/WsReinfConsultas/ConsultasReinf.svc"
             ACTION = "http://sped.fazenda.gov.br/ConsultasReinf/ConsultaInformacoesConsolidadas"
-    dados = {}
+
+
     name = get_transmissor_name(transmissor_id)
 
-    tra = TransmissorLoteEfdreinf.objects.using('default').\
+    tra = TransmissorLoteEfdreinf.objects.\
             get(id=transmissor_id)
 
-    # tra = executar_sql("""
-    #     SELECT te.contribuinte_tpinsc, te.contribuinte_nrinsc,
-    #                t.transmissor_tpinsc, t.transmissor_nrinsc,
-    #                t.efdreinf_lote_min, t.efdreinf_lote_max,
-    #                t.efdreinf_timeout, t.efdreinf_certificado, t.efdreinf_senha
-    #           FROM public.transmissor_lote_efdreinf te
-    #           JOIN public.transmissores t ON t.id = te.transmissor_id
-    #          WHERE te.id=%s;
-    # """ % transmissor_id, True)
+    if tra.transmissor.efdreinf_certificado:
 
+        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.efdreinf_certificado.certificado)
+        cert_pass = tra.transmissor.efdreinf_certificado.senha
+        cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.efdreinf_certificado.id
+        key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.efdreinf_certificado.id
+
+    else:
+
+        messages.error(request, 'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
+
+        return None
+
+    dados = {}
     dados['contribuinte_tpinsc'] = tra.contribuinte_tpinsc
     dados['contribuinte_nrinsc'] = tra.contribuinte_nrinsc
     dados['transmissor_id'] = transmissor_id
     dados['efdreinf_lote_min'] = tra.transmissor.efdreinf_lote_min
     dados['efdreinf_lote_max'] = tra.transmissor.efdreinf_lote_max
     dados['efdreinf_timeout'] = int(tra.transmissor.efdreinf_timeout)
-    # dados['efdreinf_certificado'] = 'uploads/'+tra.transmissor.efdreinf_certificado
-    # dados['efdreinf_senha'] = tra.transmissor.efdreinf_senha
 
-    cert_pem_file = BASE_DIR+'/'+ CERT_PEM_FILE
-    key_pem_file = BASE_DIR+'/'+ KEY_PEM_FILE
+    if not os.path.isfile(cert_pem_file) and cert_host:
 
-    if not os.path.isfile(cert_pem_file) and CERT_HOST:
-        create_pem_files(CERT_HOST, CERT_PASS,
+        create_pem_files(cert_host, cert_pass,
                          cert_pem_file, key_pem_file)
+
+    lista_pastas = [
+        '%s/arquivos/Comunicacao/%s/header/' % (BASE_DIR, service),
+        '%s/arquivos/Comunicacao/%s/request/' % (BASE_DIR, service),
+        '%s/arquivos/Comunicacao/%s/response/' % (BASE_DIR, service),
+    ]
+
+    for pasta in lista_pastas:
+
+        if not os.path.exists(pasta):
+
+            os.system('mkdir -p %s' % pasta)
 
     dados['transmissor_id'] = transmissor_id
     dados['header'] = 'arquivos/Comunicacao/%s/header/%s_%s.xml' % (service, name, data_atual)
@@ -318,21 +336,15 @@ def send_xml(request, transmissor_id, service):
     dados['url'] = URL
     dados['cert'] = cert_pem_file
     dados['cacert'] = '%s/%s' % (BASE_DIR, CA_CERT_PEM_FILE)
-    dados['key'] = KEY_PEM_FILE
+    dados['key'] = key_pem_file
     dados['action'] = ACTION
     dados['timeout'] = dados['efdreinf_timeout']
 
-    # qt_ev_validados = executar_sql("""
-    #     SELECT count(*) FROM transmissor_eventos_efdreinf
-    #      WHERE transmissor_lote_efdreinf_id=%s AND status=4""" % transmissor_id, True)
-    # quant_eventos_validados = qt_ev_validados[0][0]
-
-    quant_eventos = TransmissorEventosEfdreinf.objects.using('default'). \
+    quant_eventos = TransmissorEventosEfdreinf.objects. \
         filter(transmissor_lote_efdreinf_id=transmissor_id,
                status=STATUS_EVENTO_AGUARD_ENVIO).count()
 
-    if CERT_HOST and ( quant_eventos or service == 'ConsultasReinf' ):
-
+    if tra.transmissor.efdreinf_certificado and (quant_eventos or service == 'ConsultasReinf'):
 
         if (quant_eventos >= dados['efdreinf_lote_min'] and \
                 quant_eventos <= dados['efdreinf_lote_max'] and \
@@ -340,37 +352,39 @@ def send_xml(request, transmissor_id, service):
 
             create_request(dados)
 
-            command = '''curl --connect-timeout %(timeout)s --insecure
-                              --cert %(cert)s
-                              --key %(key)s
-                              --cacert %(cacert)s
-                              -H "Content-Type: text/xml;charset=UTF-8" 
-                              -H "SOAPAction:%(action)s" 
-                              --dump-header %(header_completo)s
-                              --output %(response_completo)s 
-                              -d@%(request_completo)s 
-                              %(url)s''' % dados
+            command = '''curl --connect-timeout %(timeout)s --insecure 
+                --cert %(cert)s 
+                --key %(key)s 
+                --cacert %(cacert)s 
+                -H "Content-Type: text/xml;charset=UTF-8" 
+                -H "SOAPAction:%(action)s" 
+                --dump-header %(header_completo)s 
+                --output %(response_completo)s 
+                -d@%(request_completo)s 
+                %(url)s''' % dados
 
-            command = command.replace('\n', '')
-            for n in range(10):
-                command = command.replace('  ', ' ')
-
-            os.system(command)
+            os.system(command.replace('\n', ''))
 
             if not os.path.isfile(BASE_DIR + '/' + dados['response']):
+
                 messages.error(request, '''O servidor demorou mais que o esperado 
-                                            para efetuar a conexão! Caso necessário solicite ao 
-                                            administrador do sistema para que aumente o tempo do 
-                                            Timeout. Timeout atual %(timeout)s''' % dados)
+                    para efetuar a conexão! Caso necessário solicite ao 
+                    administrador do sistema para que aumente o tempo do 
+                    Timeout. Timeout atual %(timeout)s''' % dados)
+
                 return None
 
             if service == 'RecepcaoLoteReinf':
+
                 from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_envioLoteEventos
+
                 read_envioLoteEventos(dados['response'], transmissor_id)
                 messages.success(request, 'Lote enviado com sucesso!')
 
             elif service == 'ConsultasReinf':
+
                 from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_consultaLoteEventos
+
                 read_consultaLoteEventos(dados['response'], transmissor_id)
                 messages.success(request, 'Lote consultado com sucesso!')
 
@@ -379,49 +393,58 @@ def send_xml(request, transmissor_id, service):
             gravar_nome_arquivo(dados['response'], 0)
 
             if 'HTTP/1.1 200 OK' not in ler_arquivo(dados['header']):
+
                 messages.warning(request, 'Retorno do servidor: ' + ler_arquivo(dados['header']) )
 
             if service == 'RecepcaoLoteReinf':
-                TransmissorLoteEfdreinf.objects.using('default').filter(id=transmissor_id).\
+
+                TransmissorLoteEfdreinf.objects.\
+                    filter(id=transmissor_id).\
                     update(status=TRANSMISSOR_STATUS_ENVIADO)
-                #alterar_status_transmissor(transmissor_id, 7)
 
             elif service == 'ConsultasReinf':
-                TransmissorLoteEfdreinf.objects.using('default').filter(id=transmissor_id).\
+
+                TransmissorLoteEfdreinf.objects.\
+                    filter(id=transmissor_id).\
                     update(status=TRANSMISSOR_STATUS_CONSULTADO)
-                #alterar_status_transmissor(transmissor_id, 9)
 
-        elif (quant_eventos < dados['efdreinf_lote_min'] and \
-                    service == 'RecepcaoLoteReinf'):
+        elif quant_eventos < dados['efdreinf_lote_min'] and service == 'RecepcaoLoteReinf':
+
             messages.error(request, 'Lote com quantidade inferior a mínima permitida!')
-            TransmissorLoteEfdreinf.objects.using('default').\
-                filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_CADASTRADO)
-            #alterar_status_transmissor(transmissor_id, 0)
+            
+            TransmissorLoteEfdreinf.objects.\
+                filter(id=transmissor_id).\
+                update(status=TRANSMISSOR_STATUS_CADASTRADO)
 
-        elif (quant_eventos > dados['efdreinf_lote_max'] and \
-                  service == 'RecepcaoLoteReinf'):
+        elif quant_eventos > dados['efdreinf_lote_max'] and service == 'RecepcaoLoteReinf':
+
             messages.error(request, 'Lote com quantidade de eventos superior a máxima permitida!')
-            TransmissorLoteEfdreinf.objects.using('default').\
-                filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_CADASTRADO)
-            #alterar_status_transmissor(transmissor_id, 0)
+            
+            TransmissorLoteEfdreinf.objects.\
+                filter(id=transmissor_id).\
+                update(status=TRANSMISSOR_STATUS_CADASTRADO)
 
         else:
+            
             messages.error(request, 'Erro ao enviar o lote!')
+            
             if service == 'RecepcaoLoteReinf':
-                TransmissorLoteEfdreinf.objects.using('default').\
-                    filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_ENVIADO_ERRO)
-                #alterar_status_transmissor(transmissor_id, 5)
+                
+                TransmissorLoteEfdreinf.objects.\
+                    filter(id=transmissor_id).\
+                    update(status=TRANSMISSOR_STATUS_ENVIADO_ERRO)
 
             elif service == 'ConsultasReinf':
-                TransmissorLoteEfdreinf.objects.using('default').\
-                    filter(id=transmissor_id).update(status=TRANSMISSOR_STATUS_CONSULTADO_ERRO)
-                #alterar_status_transmissor(transmissor_id, 8)
+                
+                TransmissorLoteEfdreinf.objects.\
+                    filter(id=transmissor_id).\
+                    update(status=TRANSMISSOR_STATUS_CONSULTADO_ERRO)
 
     else:
 
         messages.error(request, 'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
 
-    atualizar_status_efdreinf()
+    definir_status_evento(transmissor_id)
 
 
 

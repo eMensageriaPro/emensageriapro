@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações referentes à suspensão do benefício"
-{% if show_fields.show_s2416_evtcdbenalt or not s2416_evtcdbenalt_id and 1 %}"Evento de cadastro de benefícios - Alteração";{% endif %}{% if show_fields.show_mtvsuspensao or 1 %}"Motivo da suspensão do benefício";{% endif %}{% if show_fields.show_dscsuspensao or 0 %}"Descrição do motivo da suspensão do benefício";{% endif %}
-{% for a in s2416_suspensao_lista %}{% if show_fields.show_s2416_evtcdbenalt or  not s2416_evtcdbenalt_id and 1 %}"{{ a.s2416_evtcdbenalt }}";{% endif %}{% if show_fields.show_mtvsuspensao or 1 %}"{{ a.get_mtvsuspensao_display }}";{% endif %}{% if show_fields.show_dscsuspensao or 0 %}"{{ a.dscsuspensao }}";{% endif %}
-{% endfor %}

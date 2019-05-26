@@ -1,1 +1,55 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s1000_inclusao_id or s1000_inclusao_id != s1000_inclusao_infoorginternacional_form.s1000_inclusao.value %}<!-- inicio__s1000_inclusao_infoorginternacional__s1000_inclusao --><div class="col-md-12" id="s1000_inclusao_infoorginternacional__s1000_inclusao__div"><div class="form-group"><label id="s1000_inclusao_infoorginternacional__s1000_inclusao__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Informações exclusivas de organismos internacionais e outras instituições extraterritoriais."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s1000_inclusao_infoorginternacional_form.s1000_inclusao.value %}<a href="{% url 's1000_inclusao_salvar' hash='{}'|json_return_page:'s1000_inclusao_infoorginternacional_salvar'|json_return_hash:hash|json_id:s1000_inclusao_infoorginternacional_form.s1000_inclusao.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s1000_inclusao_infoorginternacional_form.s1000_inclusao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1000_inclusao_infoorginternacional_form.s1000_inclusao.errors }}</div>{% endif %} {% if s1000_inclusao_infoorginternacional_form.s1000_inclusao.field.widget.attrs.readonly %} {% if s1000_inclusao_infoorginternacional_form.s1000_inclusao.field.widget.attrs.disabled %} {{ s1000_inclusao_infoorginternacional_form.s1000_inclusao|addcss:'form-control' }}<input id="id_s1000_inclusao" name="s1000_inclusao" type="hidden" value="{{ s1000_inclusao_infoorginternacional_form.s1000_inclusao.value }}">{% else %} {{ s1000_inclusao_infoorginternacional_form.s1000_inclusao|addcss:'form-control' }} {% endif %} {% else %} {{ s1000_inclusao_infoorginternacional_form.s1000_inclusao|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s1000_inclusao_infoorginternacional__s1000_inclusao -->{% else %}<input type="hidden" value="{{ s1000_inclusao_id|valor }}" id="id_s1000_inclusao" name="s1000_inclusao">{% endif %}<!-- inicio__s1000_inclusao_infoorginternacional__indacordoisenmulta --><div class="col-md-6" id="s1000_inclusao_infoorginternacional__indacordoisenmulta__div"><div class="form-group"><label id="s1000_inclusao_infoorginternacional__indacordoisenmulta__label">Acordo internacional*<a data-toggle="tooltip" title="Indicativo da existência de acordo internacional para isenção de multa: 0 - Sem acordo; 1 - Com acordo. Valores Válidos: 0, 1."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1000_inclusao_infoorginternacional_form.indacordoisenmulta.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1000_inclusao_infoorginternacional_form.indacordoisenmulta.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1000_inclusao_infoorginternacional_form.indacordoisenmulta.field.widget.attrs.readonly %} {% if s1000_inclusao_infoorginternacional_form.indacordoisenmulta.field.widget.attrs.disabled %} {{ s1000_inclusao_infoorginternacional_form.indacordoisenmulta|addcss:'form-control' }}<input id="id_indacordoisenmulta" name="indacordoisenmulta" type="hidden" value="{% if s1000_inclusao_infoorginternacional_form.indacordoisenmulta.value or s1000_inclusao_infoorginternacional_form.indacordoisenmulta.value == 0 %}{{ s1000_inclusao_infoorginternacional_form.indacordoisenmulta.value|valor }}{% endif %}">{% else %} {{ s1000_inclusao_infoorginternacional_form.indacordoisenmulta|addcss:'form-control' }} {% endif %} {% else %} {{ s1000_inclusao_infoorginternacional_form.indacordoisenmulta|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1000_inclusao_infoorginternacional__indacordoisenmulta -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1000_inclusao_infoorginternacional__s1000_inclusao -->
+<div class="col-md-12" id="s1000_inclusao_infoorginternacional__s1000_inclusao__div">
+  <div class="form-group">
+    <label id="s1000_inclusao_infoorginternacional__s1000_inclusao__label">Informações exclusivas de organismos internacionais e outras instituições extraterritoriais*</label>
+    {% if not for_print %}{% if s1000_inclusao_infoorginternacional_form.s1000_inclusao.value %}
+        <a href="{% url 's1000_inclusao_salvar' hash='{}'|json_return_page:'s1000_inclusao_infoorginternacional_salvar'|json_return_hash:hash|json_id:s1000_inclusao_infoorginternacional_form.s1000_inclusao.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s1000_inclusao_infoorginternacional_form.s1000_inclusao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1000_inclusao_infoorginternacional_form.s1000_inclusao.errors }}
+      </div>
+    {% endif %}
+    {% if s1000_inclusao_infoorginternacional_form.s1000_inclusao.field.widget.attrs.readonly %}
+      {% if s1000_inclusao_infoorginternacional_form.s1000_inclusao.field.widget.attrs.disabled %}
+        {{ s1000_inclusao_infoorginternacional_form.s1000_inclusao|addcss:'form-control' }}
+        <input id="id_s1000_inclusao" name="s1000_inclusao" type="hidden" value="{{ s1000_inclusao_infoorginternacional_form.s1000_inclusao.value }}">
+      {% else %}
+        {{ s1000_inclusao_infoorginternacional_form.s1000_inclusao|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s1000_inclusao_infoorginternacional_form.s1000_inclusao|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s1000_inclusao_infoorginternacional__s1000_inclusao -->
+<!-- inicio__s1000_inclusao_infoorginternacional__indacordoisenmulta -->
+<div class="col-md-6" id="s1000_inclusao_infoorginternacional__indacordoisenmulta__div">
+  <div class="form-group">
+    <label id="s1000_inclusao_infoorginternacional__indacordoisenmulta__label">Acordo internacional*</label>
+    {% if s1000_inclusao_infoorginternacional_form.indacordoisenmulta.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1000_inclusao_infoorginternacional_form.indacordoisenmulta.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1000_inclusao_infoorginternacional_form.indacordoisenmulta.field.widget.attrs.readonly %}
+        {% if s1000_inclusao_infoorginternacional_form.indacordoisenmulta.field.widget.attrs.disabled %}
+          {{ s1000_inclusao_infoorginternacional_form.indacordoisenmulta|addcss:'form-control' }}
+          <input id="id_indacordoisenmulta" name="indacordoisenmulta" type="hidden" value="{% if s1000_inclusao_infoorginternacional_form.indacordoisenmulta.value or s1000_inclusao_infoorginternacional_form.indacordoisenmulta.value == 0 %}{{ s1000_inclusao_infoorginternacional_form.indacordoisenmulta.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1000_inclusao_infoorginternacional_form.indacordoisenmulta|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1000_inclusao_infoorginternacional_form.indacordoisenmulta|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1000_inclusao_infoorginternacional__indacordoisenmulta -->

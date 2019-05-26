@@ -1,1 +1,166 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not importacao_arquivos_id or importacao_arquivos_id != importacao_arquivos_eventos_form.importacao_arquivos.value %}<!-- inicio__importacao_arquivos_eventos__importacao_arquivos --><div class="col-md-12" id="importacao_arquivos_eventos__importacao_arquivos__div"><div class="form-group"><label id="importacao_arquivos_eventos__importacao_arquivos__label">Arquivo de Importação*</label>{% if not for_print %}{% if importacao_arquivos_eventos_form.importacao_arquivos.value %}<a id="importacao_arquivos_eventos__importacao_arquivos__div_acessar" href="{% url 'importacao_arquivos_salvar' hash='{}'|json_id:importacao_arquivos_eventos_form.importacao_arquivos.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_importacao_arquivos').change(function(){ document.getElementById("importacao_arquivos_eventos__importacao_arquivos__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if importacao_arquivos_eventos_form.importacao_arquivos.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ importacao_arquivos_eventos_form.importacao_arquivos.errors }}</div>{% endif %} {% if importacao_arquivos_eventos_form.importacao_arquivos.field.widget.attrs.readonly %} {% if importacao_arquivos_eventos_form.importacao_arquivos.field.widget.attrs.disabled %} {{ importacao_arquivos_eventos_form.importacao_arquivos|addcss:'form-control' }}<input id="id_importacao_arquivos" name="importacao_arquivos" type="hidden" value="{% if importacao_arquivos_eventos_form.importacao_arquivos.value or importacao_arquivos_eventos_form.importacao_arquivos.value == 0 %}{{ importacao_arquivos_eventos_form.importacao_arquivos.value|valor }}{% endif %}">{% else %} {{ importacao_arquivos_eventos_form.importacao_arquivos|addcss:'form-control' }} {% endif %} {% else %} {{ importacao_arquivos_eventos_form.importacao_arquivos|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__importacao_arquivos_eventos__importacao_arquivos -->{% else %}<input type="hidden" value="{{ importacao_arquivos_id|valor }}" id="id_importacao_arquivos" name="importacao_arquivos">{% endif %}<!-- inicio__importacao_arquivos_eventos__arquivo --><div class="col-md-12" id="importacao_arquivos_eventos__arquivo__div"><div class="form-group"><label id="importacao_arquivos_eventos__arquivo__label">Nome do Arquivo</label>{% if importacao_arquivos_eventos_form.arquivo.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ importacao_arquivos_eventos_form.arquivo.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ importacao_arquivos_eventos_form.arquivo|addcss:'form-control' }}</div></div></div><!-- fim__importacao_arquivos_eventos__arquivo --><!-- inicio__importacao_arquivos_eventos__evento --><div class="col-md-4" id="importacao_arquivos_eventos__evento__div"><div class="form-group"><label id="importacao_arquivos_eventos__evento__label">Evento</label>{% if importacao_arquivos_eventos_form.evento.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ importacao_arquivos_eventos_form.evento.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ importacao_arquivos_eventos_form.evento|addcss:'form-control' }}</div></div></div><!-- fim__importacao_arquivos_eventos__evento --><!-- inicio__importacao_arquivos_eventos__versao --><div class="col-md-4" id="importacao_arquivos_eventos__versao__div"><div class="form-group"><label id="importacao_arquivos_eventos__versao__label">Versão</label>{% if importacao_arquivos_eventos_form.versao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ importacao_arquivos_eventos_form.versao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ importacao_arquivos_eventos_form.versao|addcss:'form-control' }}</div></div></div><!-- fim__importacao_arquivos_eventos__versao --><!-- inicio__importacao_arquivos_eventos__identidade_evento --><div class="col-md-4" id="importacao_arquivos_eventos__identidade_evento__div"><div class="form-group"><label id="importacao_arquivos_eventos__identidade_evento__label">Identidade do evento</label>{% if importacao_arquivos_eventos_form.identidade_evento.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ importacao_arquivos_eventos_form.identidade_evento.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ importacao_arquivos_eventos_form.identidade_evento|addcss:'form-control' }}</div></div></div><!-- fim__importacao_arquivos_eventos__identidade_evento --><!-- inicio__importacao_arquivos_eventos__identidade --><div class="col-md-4" id="importacao_arquivos_eventos__identidade__div"><div class="form-group"><label id="importacao_arquivos_eventos__identidade__label">identidade da tabela</label>{% if importacao_arquivos_eventos_form.identidade.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ importacao_arquivos_eventos_form.identidade.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ importacao_arquivos_eventos_form.identidade|addcss:'form-control' }}</div></div></div><!-- fim__importacao_arquivos_eventos__identidade --><!-- inicio__importacao_arquivos_eventos__status --><div class="col-md-4" id="importacao_arquivos_eventos__status__div"><div class="form-group"><label id="importacao_arquivos_eventos__status__label">Status</label>{% if importacao_arquivos_eventos_form.status.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ importacao_arquivos_eventos_form.status.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if importacao_arquivos_eventos_form.status.field.widget.attrs.readonly %} {% if importacao_arquivos_eventos_form.status.field.widget.attrs.disabled %} {{ importacao_arquivos_eventos_form.status|addcss:'form-control' }}<input id="id_status" name="status" type="hidden" value="{% if importacao_arquivos_eventos_form.status.value or importacao_arquivos_eventos_form.status.value == 0 %}{{ importacao_arquivos_eventos_form.status.value|valor }}{% endif %}">{% else %} {{ importacao_arquivos_eventos_form.status|addcss:'form-control' }} {% endif %} {% else %} {{ importacao_arquivos_eventos_form.status|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__importacao_arquivos_eventos__status --><!-- inicio__importacao_arquivos_eventos__data_hora --><div class="col-md-4" id="importacao_arquivos_eventos__data_hora__div"><div class="form-group"><label id="importacao_arquivos_eventos__data_hora__label">Data/Hora de Importação</label>{% if importacao_arquivos_eventos_form.data_hora.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ importacao_arquivos_eventos_form.data_hora.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ importacao_arquivos_eventos_form.data_hora|addcss:'form-control automate-datetime' }}</div></div></div><!-- fim__importacao_arquivos_eventos__data_hora --><!-- inicio__importacao_arquivos_eventos__validacoes --><div class="col-md-12" id="importacao_arquivos_eventos__validacoes__div"><div class="form-group"><label id="importacao_arquivos_eventos__validacoes__label">Validações</label>{% if importacao_arquivos_eventos_form.validacoes.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ importacao_arquivos_eventos_form.validacoes.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ importacao_arquivos_eventos_form.validacoes|addcss:'form-control' }}</div></div></div><!-- fim__importacao_arquivos_eventos__validacoes -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__importacao_arquivos_eventos__importacao_arquivos -->
+<script type="text/javascript">$(document).ready(function(){$('#id_importacao_arquivos').change(function(){document.getElementById("importacao_arquivos_eventos__importacao_arquivos__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-12" id="importacao_arquivos_eventos__importacao_arquivos__div">
+<div class="form-group">
+  <label id="importacao_arquivos_eventos__importacao_arquivos__label">Arquivo de Importação</label>
+  
+  {% if not for_print %}
+    {% if importacao_arquivos_eventos_form.importacao_arquivos.value %}
+    <a id="importacao_arquivos_eventos__importacao_arquivos__div_acessar" href="{% url 'importacao_arquivos_salvar' hash='{}'|json_id:importacao_arquivos_eventos_form.importacao_arquivos.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  
+  {% if importacao_arquivos_eventos_form.importacao_arquivos.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ importacao_arquivos_eventos_form.importacao_arquivos.errors }}
+    </div>
+  {% endif %}
+  {% if importacao_arquivos_eventos_form.importacao_arquivos.field.widget.attrs.readonly %}
+    {% if importacao_arquivos_eventos_form.importacao_arquivos.field.widget.attrs.disabled %}
+      {{ importacao_arquivos_eventos_form.importacao_arquivos|addcss:'form-control' }}
+      <input id="id_importacao_arquivos" name="importacao_arquivos" type="hidden" value="{% if importacao_arquivos_eventos_form.importacao_arquivos.value or importacao_arquivos_eventos_form.importacao_arquivos.value == 0 %}{{ importacao_arquivos_eventos_form.importacao_arquivos.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ importacao_arquivos_eventos_form.importacao_arquivos|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ importacao_arquivos_eventos_form.importacao_arquivos|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__importacao_arquivos_eventos__importacao_arquivos -->
+<!-- inicio__importacao_arquivos_eventos__arquivo -->
+<div class="col-md-12" id="importacao_arquivos_eventos__arquivo__div">
+  <div class="form-group">
+    <label id="importacao_arquivos_eventos__arquivo__label">Nome do Arquivo</label>
+      {% if importacao_arquivos_eventos_form.arquivo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ importacao_arquivos_eventos_form.arquivo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ importacao_arquivos_eventos_form.arquivo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__importacao_arquivos_eventos__arquivo -->
+<!-- inicio__importacao_arquivos_eventos__evento -->
+<div class="col-md-4" id="importacao_arquivos_eventos__evento__div">
+  <div class="form-group">
+    <label id="importacao_arquivos_eventos__evento__label">Evento</label>
+      {% if importacao_arquivos_eventos_form.evento.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ importacao_arquivos_eventos_form.evento.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ importacao_arquivos_eventos_form.evento|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__importacao_arquivos_eventos__evento -->
+<!-- inicio__importacao_arquivos_eventos__versao -->
+<div class="col-md-4" id="importacao_arquivos_eventos__versao__div">
+  <div class="form-group">
+    <label id="importacao_arquivos_eventos__versao__label">Versão</label>
+      {% if importacao_arquivos_eventos_form.versao.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ importacao_arquivos_eventos_form.versao.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ importacao_arquivos_eventos_form.versao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__importacao_arquivos_eventos__versao -->
+<!-- inicio__importacao_arquivos_eventos__identidade_evento -->
+<div class="col-md-4" id="importacao_arquivos_eventos__identidade_evento__div">
+  <div class="form-group">
+    <label id="importacao_arquivos_eventos__identidade_evento__label">Identidade do evento</label>
+      {% if importacao_arquivos_eventos_form.identidade_evento.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ importacao_arquivos_eventos_form.identidade_evento.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ importacao_arquivos_eventos_form.identidade_evento|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__importacao_arquivos_eventos__identidade_evento -->
+<!-- inicio__importacao_arquivos_eventos__identidade -->
+<div class="col-md-4" id="importacao_arquivos_eventos__identidade__div">
+  <div class="form-group">
+    <label id="importacao_arquivos_eventos__identidade__label">identidade da tabela</label>
+      {% if importacao_arquivos_eventos_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ importacao_arquivos_eventos_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ importacao_arquivos_eventos_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__importacao_arquivos_eventos__identidade -->
+<!-- inicio__importacao_arquivos_eventos__status -->
+<div class="col-md-4" id="importacao_arquivos_eventos__status__div">
+  <div class="form-group">
+    <label id="importacao_arquivos_eventos__status__label">Status</label>
+    {% if importacao_arquivos_eventos_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ importacao_arquivos_eventos_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if importacao_arquivos_eventos_form.status.field.widget.attrs.readonly %}
+        {% if importacao_arquivos_eventos_form.status.field.widget.attrs.disabled %}
+          {{ importacao_arquivos_eventos_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if importacao_arquivos_eventos_form.status.value or importacao_arquivos_eventos_form.status.value == 0 %}{{ importacao_arquivos_eventos_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ importacao_arquivos_eventos_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ importacao_arquivos_eventos_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__importacao_arquivos_eventos__status -->
+<!-- inicio__importacao_arquivos_eventos__data_hora -->
+<div class="col-md-4" id="importacao_arquivos_eventos__data_hora__div">
+  <div class="form-group">
+    <label id="importacao_arquivos_eventos__data_hora__label">Data/Hora de Importação</label>
+    {% if importacao_arquivos_eventos_form.data_hora.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ importacao_arquivos_eventos_form.data_hora.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ importacao_arquivos_eventos_form.data_hora|addcss:'form-control automate-datetime' }}     
+    </div>
+  </div>
+</div>
+<!-- fim__importacao_arquivos_eventos__data_hora -->
+<!-- inicio__importacao_arquivos_eventos__validacoes -->
+<div class="col-md-12" id="importacao_arquivos_eventos__validacoes__div">
+  <div class="form-group">
+    <label id="importacao_arquivos_eventos__validacoes__label">Validações</label>
+        {% if importacao_arquivos_eventos_form.validacoes.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ importacao_arquivos_eventos_form.validacoes.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ importacao_arquivos_eventos_form.validacoes|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__importacao_arquivos_eventos__validacoes -->

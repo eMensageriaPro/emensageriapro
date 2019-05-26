@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Identificação dos estabelecimentos da associação desportiva que receberam os recursos"
-{% if show_fields.show_r2070_ideestab or not r2070_ideestab_id and 1 %}"Identificação dos estabelecimentos da associação desportiva que receberam os recursos";{% endif %}
-{% for a in r2070_pgtoresidbr_lista %}{% if show_fields.show_r2070_ideestab or  not r2070_ideestab_id and 1 %}"{{ a.r2070_ideestab }}";{% endif %}
-{% endfor %}

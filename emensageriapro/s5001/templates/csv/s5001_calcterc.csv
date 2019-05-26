@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5001_infocategincid or 1 %}"Cálculo das contribuições sociais devidas a Outras Entidades e Fundos.";{% endif %}{% if show_fields.show_tpcr or 1 %}"Código da Receita (CR)";{% endif %}{% if show_fields.show_vrcssegterc or 1 %}"Valor da CS devida a outras entidades";{% endif %}{% if show_fields.show_vrdescterc or 1 %}"Valor total descontado do segurado";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5001_infocategincid or 1 %}"{{ c.s5001_infocategincid }}";{% endif %}{% if show_fields.show_tpcr or 1 %}"{{ c.tpcr }}";{% endif %}{% if show_fields.show_vrcssegterc or 1 %}"{{ c.vrcssegterc }}";{% endif %}{% if show_fields.show_vrdescterc or 1 %}"{{ c.vrdescterc }}";{% endif %}
+{% endfor %}

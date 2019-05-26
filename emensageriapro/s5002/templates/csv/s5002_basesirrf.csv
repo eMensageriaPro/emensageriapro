@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5002_infoirrf or 1 %}"Bases, deduções, isenções e retenções do IRRF";{% endif %}{% if show_fields.show_tpvalor or 1 %}"Tipo de Valor";{% endif %}{% if show_fields.show_valor or 1 %}"Valor da base de cálculo, dedução ou desconto da CP";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5002_infoirrf or 1 %}"{{ c.s5002_infoirrf }}";{% endif %}{% if show_fields.show_tpvalor or 1 %}"{{ c.tpvalor }}";{% endif %}{% if show_fields.show_valor or 1 %}"{{ c.valor }}";{% endif %}
+{% endfor %}

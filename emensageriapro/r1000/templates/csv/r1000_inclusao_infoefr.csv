@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r1000_inclusao or 1 %}"Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR";{% endif %}{% if show_fields.show_ideefr or 1 %}"Informar se o Órgão Público é o Ente Federativo Responsável - EFR ou se é uma unidade administrativa autônoma vinculada a um EFR";{% endif %}{% if show_fields.show_cnpjefr or 1 %}"CNPJ do Ente Federativo Responsável - EFR";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r1000_inclusao or 1 %}"{{ c.r1000_inclusao }}";{% endif %}{% if show_fields.show_ideefr or 1 %}"{{ c.ideefr }}";{% endif %}{% if show_fields.show_cnpjefr or 1 %}"{{ c.cnpjefr }}";{% endif %}
+{% endfor %}

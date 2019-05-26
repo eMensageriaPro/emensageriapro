@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações de mudança de CPF do trabalhador."
-{% if show_fields.show_s2399_evttsvtermino or not s2399_evttsvtermino_id and 1 %}"Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Término";{% endif %}{% if show_fields.show_novocpf or 1 %}"Preencher com o novo CPF do trabalhador. Validação: Deve ser um CPF válido e diferente do CPF do empregador e do antigo CPF do trabalhador.";{% endif %}
-{% for a in s2399_mudancacpf_lista %}{% if show_fields.show_s2399_evttsvtermino or  not s2399_evttsvtermino_id and 1 %}"{{ a.s2399_evttsvtermino }}";{% endif %}{% if show_fields.show_novocpf or 1 %}"{{ a.novocpf }}";{% endif %}
-{% endfor %}

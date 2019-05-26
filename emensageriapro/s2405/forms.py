@@ -1,14 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s2405.models import * 
-from emensageriapro.tabelas.models import Municipios 
-from emensageriapro.tabelas.models import eSocialPaises 
-from emensageriapro.tabelas.models import eSocialLogradourosTipos 
-from emensageriapro.esocial.models import s2405evtCdBenefAlt 
+from emensageriapro.s2405.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -43,26 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s2405_brasil(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2405_brasil, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2405_evtcdbenefalt'].widget.attrs['required'] = True        
-        self.fields['tplograd'].widget.attrs['required'] = True        
-        self.fields['dsclograd'].widget.attrs['required'] = True        
-        self.fields['nrlograd'].widget.attrs['required'] = True        
-        self.fields['cep'].widget.attrs['required'] = True        
-        self.fields['codmunic'].widget.attrs['required'] = True        
-        self.fields['uf'].widget.attrs['required'] = True
+        super(form_s2405_brasil, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -82,32 +74,25 @@ class form_s2405_brasil(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2405brasil
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2405_dependente(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2405_dependente, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2405_evtcdbenefalt'].queryset = s2405evtCdBenefAlt.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2405_evtcdbenefalt'].widget.attrs['required'] = True        
-        self.fields['tpdep'].widget.attrs['required'] = True        
-        self.fields['nmdep'].widget.attrs['required'] = True        
-        self.fields['dtnascto'].widget.attrs['required'] = True        
-        self.fields['sexodep'].widget.attrs['required'] = True        
-        self.fields['depirrf'].widget.attrs['required'] = True        
-        self.fields['incfismen'].widget.attrs['required'] = True        
-        self.fields['depfinsprev'].widget.attrs['required'] = True
+        super(form_s2405_dependente, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -127,28 +112,63 @@ class form_s2405_dependente(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2405dependente
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
+
+class form_s2405_endereco(forms.ModelForm):
+
+
+    def __init__(self, *args, **kwargs):
+        
+        super(form_s2405_endereco, self).__init__(*args, **kwargs)
+        
+
+    def save(self, commit=True, *args, **kwargs):
+    
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+        
+        m =  super(form_s2405_endereco, self).save(commit=True, *args, **kwargs)
+
+        if request is not None:
+
+            if m.criado_por_id is None:
+                m.criado_por_id = request.user.id
+                m.criado_em = timezone.now()
+            m.modificado_por_id = request.user.id
+            m.modificado_em = timezone.now()
+            m.excluido = False
+            m.save()
+        
+        return m
+        
+    class Meta:
+    
+        model = s2405endereco
+        exclude = [ 
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2405_exterior(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2405_exterior, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2405_evtcdbenefalt'].widget.attrs['required'] = True        
-        self.fields['paisresid'].widget.attrs['required'] = True        
-        self.fields['dsclograd'].widget.attrs['required'] = True        
-        self.fields['nrlograd'].widget.attrs['required'] = True        
-        self.fields['nmcid'].widget.attrs['required'] = True
+        super(form_s2405_exterior, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -168,10 +188,10 @@ class form_s2405_exterior(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2405exterior
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

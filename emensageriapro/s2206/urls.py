@@ -3,18 +3,55 @@
 from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
-from emensageriapro.s2206.views import s2206_alvarajudicial as s2206_alvarajudicial_views
-from emensageriapro.s2206.views import s2206_aprend as s2206_aprend_views
-from emensageriapro.s2206.views import s2206_filiacaosindical as s2206_filiacaosindical_views
-from emensageriapro.s2206.views import s2206_horcontratual as s2206_horcontratual_views
-from emensageriapro.s2206.views import s2206_horario as s2206_horario_views
-from emensageriapro.s2206.views import s2206_infoceletista as s2206_infoceletista_views
-from emensageriapro.s2206.views import s2206_infoestatutario as s2206_infoestatutario_views
-from emensageriapro.s2206.views import s2206_localtrabdom as s2206_localtrabdom_views
-from emensageriapro.s2206.views import s2206_localtrabgeral as s2206_localtrabgeral_views
-from emensageriapro.s2206.views import s2206_observacoes as s2206_observacoes_views
-from emensageriapro.s2206.views import s2206_servpubl as s2206_servpubl_views
-from emensageriapro.s2206.views import s2206_trabtemp as s2206_trabtemp_views
+from rest_framework.authtoken import views
+from emensageriapro.s2206.views import s2206_infoceletista_apagar as s2206_infoceletista_apagar_views
+from emensageriapro.s2206.views import s2206_infoceletista_listar as s2206_infoceletista_listar_views
+from emensageriapro.s2206.views import s2206_infoceletista_salvar as s2206_infoceletista_salvar_views
+from emensageriapro.s2206.views import s2206_infoceletista_api as s2206_infoceletista_api_views
+from emensageriapro.s2206.views import s2206_trabtemp_apagar as s2206_trabtemp_apagar_views
+from emensageriapro.s2206.views import s2206_trabtemp_listar as s2206_trabtemp_listar_views
+from emensageriapro.s2206.views import s2206_trabtemp_salvar as s2206_trabtemp_salvar_views
+from emensageriapro.s2206.views import s2206_trabtemp_api as s2206_trabtemp_api_views
+from emensageriapro.s2206.views import s2206_aprend_apagar as s2206_aprend_apagar_views
+from emensageriapro.s2206.views import s2206_aprend_listar as s2206_aprend_listar_views
+from emensageriapro.s2206.views import s2206_aprend_salvar as s2206_aprend_salvar_views
+from emensageriapro.s2206.views import s2206_aprend_api as s2206_aprend_api_views
+from emensageriapro.s2206.views import s2206_infoestatutario_apagar as s2206_infoestatutario_apagar_views
+from emensageriapro.s2206.views import s2206_infoestatutario_listar as s2206_infoestatutario_listar_views
+from emensageriapro.s2206.views import s2206_infoestatutario_salvar as s2206_infoestatutario_salvar_views
+from emensageriapro.s2206.views import s2206_infoestatutario_api as s2206_infoestatutario_api_views
+from emensageriapro.s2206.views import s2206_localtrabgeral_apagar as s2206_localtrabgeral_apagar_views
+from emensageriapro.s2206.views import s2206_localtrabgeral_listar as s2206_localtrabgeral_listar_views
+from emensageriapro.s2206.views import s2206_localtrabgeral_salvar as s2206_localtrabgeral_salvar_views
+from emensageriapro.s2206.views import s2206_localtrabgeral_api as s2206_localtrabgeral_api_views
+from emensageriapro.s2206.views import s2206_localtrabdom_apagar as s2206_localtrabdom_apagar_views
+from emensageriapro.s2206.views import s2206_localtrabdom_listar as s2206_localtrabdom_listar_views
+from emensageriapro.s2206.views import s2206_localtrabdom_salvar as s2206_localtrabdom_salvar_views
+from emensageriapro.s2206.views import s2206_localtrabdom_api as s2206_localtrabdom_api_views
+from emensageriapro.s2206.views import s2206_horcontratual_apagar as s2206_horcontratual_apagar_views
+from emensageriapro.s2206.views import s2206_horcontratual_listar as s2206_horcontratual_listar_views
+from emensageriapro.s2206.views import s2206_horcontratual_salvar as s2206_horcontratual_salvar_views
+from emensageriapro.s2206.views import s2206_horcontratual_api as s2206_horcontratual_api_views
+from emensageriapro.s2206.views import s2206_horario_apagar as s2206_horario_apagar_views
+from emensageriapro.s2206.views import s2206_horario_listar as s2206_horario_listar_views
+from emensageriapro.s2206.views import s2206_horario_salvar as s2206_horario_salvar_views
+from emensageriapro.s2206.views import s2206_horario_api as s2206_horario_api_views
+from emensageriapro.s2206.views import s2206_filiacaosindical_apagar as s2206_filiacaosindical_apagar_views
+from emensageriapro.s2206.views import s2206_filiacaosindical_listar as s2206_filiacaosindical_listar_views
+from emensageriapro.s2206.views import s2206_filiacaosindical_salvar as s2206_filiacaosindical_salvar_views
+from emensageriapro.s2206.views import s2206_filiacaosindical_api as s2206_filiacaosindical_api_views
+from emensageriapro.s2206.views import s2206_alvarajudicial_apagar as s2206_alvarajudicial_apagar_views
+from emensageriapro.s2206.views import s2206_alvarajudicial_listar as s2206_alvarajudicial_listar_views
+from emensageriapro.s2206.views import s2206_alvarajudicial_salvar as s2206_alvarajudicial_salvar_views
+from emensageriapro.s2206.views import s2206_alvarajudicial_api as s2206_alvarajudicial_api_views
+from emensageriapro.s2206.views import s2206_observacoes_apagar as s2206_observacoes_apagar_views
+from emensageriapro.s2206.views import s2206_observacoes_listar as s2206_observacoes_listar_views
+from emensageriapro.s2206.views import s2206_observacoes_salvar as s2206_observacoes_salvar_views
+from emensageriapro.s2206.views import s2206_observacoes_api as s2206_observacoes_api_views
+from emensageriapro.s2206.views import s2206_servpubl_apagar as s2206_servpubl_apagar_views
+from emensageriapro.s2206.views import s2206_servpubl_listar as s2206_servpubl_listar_views
+from emensageriapro.s2206.views import s2206_servpubl_salvar as s2206_servpubl_salvar_views
+from emensageriapro.s2206.views import s2206_servpubl_api as s2206_servpubl_api_views
 
 
 
@@ -51,250 +88,225 @@ from emensageriapro.s2206.views import s2206_trabtemp as s2206_trabtemp_views
 
 """
 
+
 urlpatterns = [
 
 
-
-url(r'^s2206-alvarajudicial/apagar/(?P<hash>.*)/$', 
-        s2206_alvarajudicial_views.apagar, 
-        name='s2206_alvarajudicial_apagar'),
-
-url(r'^s2206-alvarajudicial/api/$',
-            s2206_alvarajudicial_views.s2206alvaraJudicialList.as_view() ),
-
-        url(r'^s2206-alvarajudicial/api/(?P<pk>[0-9]+)/$',
-            s2206_alvarajudicial_views.s2206alvaraJudicialDetail.as_view() ),
-
-url(r'^s2206-alvarajudicial/listar/(?P<hash>.*)/$', 
-        s2206_alvarajudicial_views.listar, 
-        name='s2206_alvarajudicial'),
-
-url(r'^s2206-alvarajudicial/salvar/(?P<hash>.*)/$', 
-        s2206_alvarajudicial_views.salvar, 
-        name='s2206_alvarajudicial_salvar'),
-
-
-
-url(r'^s2206-aprend/apagar/(?P<hash>.*)/$', 
-        s2206_aprend_views.apagar, 
-        name='s2206_aprend_apagar'),
-
-url(r'^s2206-aprend/api/$',
-            s2206_aprend_views.s2206aprendList.as_view() ),
-
-        url(r'^s2206-aprend/api/(?P<pk>[0-9]+)/$',
-            s2206_aprend_views.s2206aprendDetail.as_view() ),
-
-url(r'^s2206-aprend/listar/(?P<hash>.*)/$', 
-        s2206_aprend_views.listar, 
-        name='s2206_aprend'),
-
-url(r'^s2206-aprend/salvar/(?P<hash>.*)/$', 
-        s2206_aprend_views.salvar, 
-        name='s2206_aprend_salvar'),
-
-
-
-url(r'^s2206-filiacaosindical/apagar/(?P<hash>.*)/$', 
-        s2206_filiacaosindical_views.apagar, 
-        name='s2206_filiacaosindical_apagar'),
-
-url(r'^s2206-filiacaosindical/api/$',
-            s2206_filiacaosindical_views.s2206filiacaoSindicalList.as_view() ),
-
-        url(r'^s2206-filiacaosindical/api/(?P<pk>[0-9]+)/$',
-            s2206_filiacaosindical_views.s2206filiacaoSindicalDetail.as_view() ),
-
-url(r'^s2206-filiacaosindical/listar/(?P<hash>.*)/$', 
-        s2206_filiacaosindical_views.listar, 
-        name='s2206_filiacaosindical'),
-
-url(r'^s2206-filiacaosindical/salvar/(?P<hash>.*)/$', 
-        s2206_filiacaosindical_views.salvar, 
-        name='s2206_filiacaosindical_salvar'),
-
-
-
-url(r'^s2206-horcontratual/apagar/(?P<hash>.*)/$', 
-        s2206_horcontratual_views.apagar, 
-        name='s2206_horcontratual_apagar'),
-
-url(r'^s2206-horcontratual/api/$',
-            s2206_horcontratual_views.s2206horContratualList.as_view() ),
-
-        url(r'^s2206-horcontratual/api/(?P<pk>[0-9]+)/$',
-            s2206_horcontratual_views.s2206horContratualDetail.as_view() ),
-
-url(r'^s2206-horcontratual/listar/(?P<hash>.*)/$', 
-        s2206_horcontratual_views.listar, 
-        name='s2206_horcontratual'),
-
-url(r'^s2206-horcontratual/salvar/(?P<hash>.*)/$', 
-        s2206_horcontratual_views.salvar, 
-        name='s2206_horcontratual_salvar'),
-
-
-
-url(r'^s2206-horario/apagar/(?P<hash>.*)/$', 
-        s2206_horario_views.apagar, 
-        name='s2206_horario_apagar'),
-
-url(r'^s2206-horario/api/$',
-            s2206_horario_views.s2206horarioList.as_view() ),
-
-        url(r'^s2206-horario/api/(?P<pk>[0-9]+)/$',
-            s2206_horario_views.s2206horarioDetail.as_view() ),
-
-url(r'^s2206-horario/listar/(?P<hash>.*)/$', 
-        s2206_horario_views.listar, 
-        name='s2206_horario'),
-
-url(r'^s2206-horario/salvar/(?P<hash>.*)/$', 
-        s2206_horario_views.salvar, 
-        name='s2206_horario_salvar'),
-
-
-
-url(r'^s2206-infoceletista/apagar/(?P<hash>.*)/$', 
-        s2206_infoceletista_views.apagar, 
+    url(r'^s2206-infoceletista/apagar/(?P<hash>.*)/$', 
+        s2206_infoceletista_apagar_views.apagar, 
         name='s2206_infoceletista_apagar'),
 
-url(r'^s2206-infoceletista/api/$',
-            s2206_infoceletista_views.s2206infoCeletistaList.as_view() ),
+    url(r'^s2206-infoceletista/api/$',
+        s2206_infoceletista_api_views.s2206infoCeletistaList.as_view() ),
 
-        url(r'^s2206-infoceletista/api/(?P<pk>[0-9]+)/$',
-            s2206_infoceletista_views.s2206infoCeletistaDetail.as_view() ),
+    url(r'^s2206-infoceletista/api/(?P<pk>[0-9]+)/$',
+        s2206_infoceletista_api_views.s2206infoCeletistaDetail.as_view() ),
 
-url(r'^s2206-infoceletista/listar/(?P<hash>.*)/$', 
-        s2206_infoceletista_views.listar, 
+    url(r'^s2206-infoceletista/listar/(?P<hash>.*)/$', 
+        s2206_infoceletista_listar_views.listar, 
         name='s2206_infoceletista'),
 
-url(r'^s2206-infoceletista/salvar/(?P<hash>.*)/$', 
-        s2206_infoceletista_views.salvar, 
+    url(r'^s2206-infoceletista/salvar/(?P<hash>.*)/$', 
+        s2206_infoceletista_salvar_views.salvar, 
         name='s2206_infoceletista_salvar'),
 
-
-
-url(r'^s2206-infoestatutario/apagar/(?P<hash>.*)/$', 
-        s2206_infoestatutario_views.apagar, 
-        name='s2206_infoestatutario_apagar'),
-
-url(r'^s2206-infoestatutario/api/$',
-            s2206_infoestatutario_views.s2206infoEstatutarioList.as_view() ),
-
-        url(r'^s2206-infoestatutario/api/(?P<pk>[0-9]+)/$',
-            s2206_infoestatutario_views.s2206infoEstatutarioDetail.as_view() ),
-
-url(r'^s2206-infoestatutario/listar/(?P<hash>.*)/$', 
-        s2206_infoestatutario_views.listar, 
-        name='s2206_infoestatutario'),
-
-url(r'^s2206-infoestatutario/salvar/(?P<hash>.*)/$', 
-        s2206_infoestatutario_views.salvar, 
-        name='s2206_infoestatutario_salvar'),
-
-
-
-url(r'^s2206-localtrabdom/apagar/(?P<hash>.*)/$', 
-        s2206_localtrabdom_views.apagar, 
-        name='s2206_localtrabdom_apagar'),
-
-url(r'^s2206-localtrabdom/api/$',
-            s2206_localtrabdom_views.s2206localTrabDomList.as_view() ),
-
-        url(r'^s2206-localtrabdom/api/(?P<pk>[0-9]+)/$',
-            s2206_localtrabdom_views.s2206localTrabDomDetail.as_view() ),
-
-url(r'^s2206-localtrabdom/listar/(?P<hash>.*)/$', 
-        s2206_localtrabdom_views.listar, 
-        name='s2206_localtrabdom'),
-
-url(r'^s2206-localtrabdom/salvar/(?P<hash>.*)/$', 
-        s2206_localtrabdom_views.salvar, 
-        name='s2206_localtrabdom_salvar'),
-
-
-
-url(r'^s2206-localtrabgeral/apagar/(?P<hash>.*)/$', 
-        s2206_localtrabgeral_views.apagar, 
-        name='s2206_localtrabgeral_apagar'),
-
-url(r'^s2206-localtrabgeral/api/$',
-            s2206_localtrabgeral_views.s2206localTrabGeralList.as_view() ),
-
-        url(r'^s2206-localtrabgeral/api/(?P<pk>[0-9]+)/$',
-            s2206_localtrabgeral_views.s2206localTrabGeralDetail.as_view() ),
-
-url(r'^s2206-localtrabgeral/listar/(?P<hash>.*)/$', 
-        s2206_localtrabgeral_views.listar, 
-        name='s2206_localtrabgeral'),
-
-url(r'^s2206-localtrabgeral/salvar/(?P<hash>.*)/$', 
-        s2206_localtrabgeral_views.salvar, 
-        name='s2206_localtrabgeral_salvar'),
-
-
-
-url(r'^s2206-observacoes/apagar/(?P<hash>.*)/$', 
-        s2206_observacoes_views.apagar, 
-        name='s2206_observacoes_apagar'),
-
-url(r'^s2206-observacoes/api/$',
-            s2206_observacoes_views.s2206observacoesList.as_view() ),
-
-        url(r'^s2206-observacoes/api/(?P<pk>[0-9]+)/$',
-            s2206_observacoes_views.s2206observacoesDetail.as_view() ),
-
-url(r'^s2206-observacoes/listar/(?P<hash>.*)/$', 
-        s2206_observacoes_views.listar, 
-        name='s2206_observacoes'),
-
-url(r'^s2206-observacoes/salvar/(?P<hash>.*)/$', 
-        s2206_observacoes_views.salvar, 
-        name='s2206_observacoes_salvar'),
-
-
-
-url(r'^s2206-servpubl/apagar/(?P<hash>.*)/$', 
-        s2206_servpubl_views.apagar, 
-        name='s2206_servpubl_apagar'),
-
-url(r'^s2206-servpubl/api/$',
-            s2206_servpubl_views.s2206servPublList.as_view() ),
-
-        url(r'^s2206-servpubl/api/(?P<pk>[0-9]+)/$',
-            s2206_servpubl_views.s2206servPublDetail.as_view() ),
-
-url(r'^s2206-servpubl/listar/(?P<hash>.*)/$', 
-        s2206_servpubl_views.listar, 
-        name='s2206_servpubl'),
-
-url(r'^s2206-servpubl/salvar/(?P<hash>.*)/$', 
-        s2206_servpubl_views.salvar, 
-        name='s2206_servpubl_salvar'),
-
-
-
-url(r'^s2206-trabtemp/apagar/(?P<hash>.*)/$', 
-        s2206_trabtemp_views.apagar, 
+    url(r'^s2206-trabtemp/apagar/(?P<hash>.*)/$', 
+        s2206_trabtemp_apagar_views.apagar, 
         name='s2206_trabtemp_apagar'),
 
-url(r'^s2206-trabtemp/api/$',
-            s2206_trabtemp_views.s2206trabTempList.as_view() ),
+    url(r'^s2206-trabtemp/api/$',
+        s2206_trabtemp_api_views.s2206trabTempList.as_view() ),
 
-        url(r'^s2206-trabtemp/api/(?P<pk>[0-9]+)/$',
-            s2206_trabtemp_views.s2206trabTempDetail.as_view() ),
+    url(r'^s2206-trabtemp/api/(?P<pk>[0-9]+)/$',
+        s2206_trabtemp_api_views.s2206trabTempDetail.as_view() ),
 
-url(r'^s2206-trabtemp/listar/(?P<hash>.*)/$', 
-        s2206_trabtemp_views.listar, 
+    url(r'^s2206-trabtemp/listar/(?P<hash>.*)/$', 
+        s2206_trabtemp_listar_views.listar, 
         name='s2206_trabtemp'),
 
-url(r'^s2206-trabtemp/salvar/(?P<hash>.*)/$', 
-        s2206_trabtemp_views.salvar, 
+    url(r'^s2206-trabtemp/salvar/(?P<hash>.*)/$', 
+        s2206_trabtemp_salvar_views.salvar, 
         name='s2206_trabtemp_salvar'),
 
+    url(r'^s2206-aprend/apagar/(?P<hash>.*)/$', 
+        s2206_aprend_apagar_views.apagar, 
+        name='s2206_aprend_apagar'),
 
+    url(r'^s2206-aprend/api/$',
+        s2206_aprend_api_views.s2206aprendList.as_view() ),
 
+    url(r'^s2206-aprend/api/(?P<pk>[0-9]+)/$',
+        s2206_aprend_api_views.s2206aprendDetail.as_view() ),
+
+    url(r'^s2206-aprend/listar/(?P<hash>.*)/$', 
+        s2206_aprend_listar_views.listar, 
+        name='s2206_aprend'),
+
+    url(r'^s2206-aprend/salvar/(?P<hash>.*)/$', 
+        s2206_aprend_salvar_views.salvar, 
+        name='s2206_aprend_salvar'),
+
+    url(r'^s2206-infoestatutario/apagar/(?P<hash>.*)/$', 
+        s2206_infoestatutario_apagar_views.apagar, 
+        name='s2206_infoestatutario_apagar'),
+
+    url(r'^s2206-infoestatutario/api/$',
+        s2206_infoestatutario_api_views.s2206infoEstatutarioList.as_view() ),
+
+    url(r'^s2206-infoestatutario/api/(?P<pk>[0-9]+)/$',
+        s2206_infoestatutario_api_views.s2206infoEstatutarioDetail.as_view() ),
+
+    url(r'^s2206-infoestatutario/listar/(?P<hash>.*)/$', 
+        s2206_infoestatutario_listar_views.listar, 
+        name='s2206_infoestatutario'),
+
+    url(r'^s2206-infoestatutario/salvar/(?P<hash>.*)/$', 
+        s2206_infoestatutario_salvar_views.salvar, 
+        name='s2206_infoestatutario_salvar'),
+
+    url(r'^s2206-localtrabgeral/apagar/(?P<hash>.*)/$', 
+        s2206_localtrabgeral_apagar_views.apagar, 
+        name='s2206_localtrabgeral_apagar'),
+
+    url(r'^s2206-localtrabgeral/api/$',
+        s2206_localtrabgeral_api_views.s2206localTrabGeralList.as_view() ),
+
+    url(r'^s2206-localtrabgeral/api/(?P<pk>[0-9]+)/$',
+        s2206_localtrabgeral_api_views.s2206localTrabGeralDetail.as_view() ),
+
+    url(r'^s2206-localtrabgeral/listar/(?P<hash>.*)/$', 
+        s2206_localtrabgeral_listar_views.listar, 
+        name='s2206_localtrabgeral'),
+
+    url(r'^s2206-localtrabgeral/salvar/(?P<hash>.*)/$', 
+        s2206_localtrabgeral_salvar_views.salvar, 
+        name='s2206_localtrabgeral_salvar'),
+
+    url(r'^s2206-localtrabdom/apagar/(?P<hash>.*)/$', 
+        s2206_localtrabdom_apagar_views.apagar, 
+        name='s2206_localtrabdom_apagar'),
+
+    url(r'^s2206-localtrabdom/api/$',
+        s2206_localtrabdom_api_views.s2206localTrabDomList.as_view() ),
+
+    url(r'^s2206-localtrabdom/api/(?P<pk>[0-9]+)/$',
+        s2206_localtrabdom_api_views.s2206localTrabDomDetail.as_view() ),
+
+    url(r'^s2206-localtrabdom/listar/(?P<hash>.*)/$', 
+        s2206_localtrabdom_listar_views.listar, 
+        name='s2206_localtrabdom'),
+
+    url(r'^s2206-localtrabdom/salvar/(?P<hash>.*)/$', 
+        s2206_localtrabdom_salvar_views.salvar, 
+        name='s2206_localtrabdom_salvar'),
+
+    url(r'^s2206-horcontratual/apagar/(?P<hash>.*)/$', 
+        s2206_horcontratual_apagar_views.apagar, 
+        name='s2206_horcontratual_apagar'),
+
+    url(r'^s2206-horcontratual/api/$',
+        s2206_horcontratual_api_views.s2206horContratualList.as_view() ),
+
+    url(r'^s2206-horcontratual/api/(?P<pk>[0-9]+)/$',
+        s2206_horcontratual_api_views.s2206horContratualDetail.as_view() ),
+
+    url(r'^s2206-horcontratual/listar/(?P<hash>.*)/$', 
+        s2206_horcontratual_listar_views.listar, 
+        name='s2206_horcontratual'),
+
+    url(r'^s2206-horcontratual/salvar/(?P<hash>.*)/$', 
+        s2206_horcontratual_salvar_views.salvar, 
+        name='s2206_horcontratual_salvar'),
+
+    url(r'^s2206-horario/apagar/(?P<hash>.*)/$', 
+        s2206_horario_apagar_views.apagar, 
+        name='s2206_horario_apagar'),
+
+    url(r'^s2206-horario/api/$',
+        s2206_horario_api_views.s2206horarioList.as_view() ),
+
+    url(r'^s2206-horario/api/(?P<pk>[0-9]+)/$',
+        s2206_horario_api_views.s2206horarioDetail.as_view() ),
+
+    url(r'^s2206-horario/listar/(?P<hash>.*)/$', 
+        s2206_horario_listar_views.listar, 
+        name='s2206_horario'),
+
+    url(r'^s2206-horario/salvar/(?P<hash>.*)/$', 
+        s2206_horario_salvar_views.salvar, 
+        name='s2206_horario_salvar'),
+
+    url(r'^s2206-filiacaosindical/apagar/(?P<hash>.*)/$', 
+        s2206_filiacaosindical_apagar_views.apagar, 
+        name='s2206_filiacaosindical_apagar'),
+
+    url(r'^s2206-filiacaosindical/api/$',
+        s2206_filiacaosindical_api_views.s2206filiacaoSindicalList.as_view() ),
+
+    url(r'^s2206-filiacaosindical/api/(?P<pk>[0-9]+)/$',
+        s2206_filiacaosindical_api_views.s2206filiacaoSindicalDetail.as_view() ),
+
+    url(r'^s2206-filiacaosindical/listar/(?P<hash>.*)/$', 
+        s2206_filiacaosindical_listar_views.listar, 
+        name='s2206_filiacaosindical'),
+
+    url(r'^s2206-filiacaosindical/salvar/(?P<hash>.*)/$', 
+        s2206_filiacaosindical_salvar_views.salvar, 
+        name='s2206_filiacaosindical_salvar'),
+
+    url(r'^s2206-alvarajudicial/apagar/(?P<hash>.*)/$', 
+        s2206_alvarajudicial_apagar_views.apagar, 
+        name='s2206_alvarajudicial_apagar'),
+
+    url(r'^s2206-alvarajudicial/api/$',
+        s2206_alvarajudicial_api_views.s2206alvaraJudicialList.as_view() ),
+
+    url(r'^s2206-alvarajudicial/api/(?P<pk>[0-9]+)/$',
+        s2206_alvarajudicial_api_views.s2206alvaraJudicialDetail.as_view() ),
+
+    url(r'^s2206-alvarajudicial/listar/(?P<hash>.*)/$', 
+        s2206_alvarajudicial_listar_views.listar, 
+        name='s2206_alvarajudicial'),
+
+    url(r'^s2206-alvarajudicial/salvar/(?P<hash>.*)/$', 
+        s2206_alvarajudicial_salvar_views.salvar, 
+        name='s2206_alvarajudicial_salvar'),
+
+    url(r'^s2206-observacoes/apagar/(?P<hash>.*)/$', 
+        s2206_observacoes_apagar_views.apagar, 
+        name='s2206_observacoes_apagar'),
+
+    url(r'^s2206-observacoes/api/$',
+        s2206_observacoes_api_views.s2206observacoesList.as_view() ),
+
+    url(r'^s2206-observacoes/api/(?P<pk>[0-9]+)/$',
+        s2206_observacoes_api_views.s2206observacoesDetail.as_view() ),
+
+    url(r'^s2206-observacoes/listar/(?P<hash>.*)/$', 
+        s2206_observacoes_listar_views.listar, 
+        name='s2206_observacoes'),
+
+    url(r'^s2206-observacoes/salvar/(?P<hash>.*)/$', 
+        s2206_observacoes_salvar_views.salvar, 
+        name='s2206_observacoes_salvar'),
+
+    url(r'^s2206-servpubl/apagar/(?P<hash>.*)/$', 
+        s2206_servpubl_apagar_views.apagar, 
+        name='s2206_servpubl_apagar'),
+
+    url(r'^s2206-servpubl/api/$',
+        s2206_servpubl_api_views.s2206servPublList.as_view() ),
+
+    url(r'^s2206-servpubl/api/(?P<pk>[0-9]+)/$',
+        s2206_servpubl_api_views.s2206servPublDetail.as_view() ),
+
+    url(r'^s2206-servpubl/listar/(?P<hash>.*)/$', 
+        s2206_servpubl_listar_views.listar, 
+        name='s2206_servpubl'),
+
+    url(r'^s2206-servpubl/salvar/(?P<hash>.*)/$', 
+        s2206_servpubl_salvar_views.salvar, 
+        name='s2206_servpubl_salvar'),
 
 
 ]

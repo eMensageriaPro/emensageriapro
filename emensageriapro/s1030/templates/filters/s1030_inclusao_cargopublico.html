@@ -1,1 +1,187 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Inclusão de novas informações</label><select name="s1030_inclusao" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s1030_inclusao_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1030_inclusao' %}selected="selected"{% endifequal %}>{{ a.s1030_evttabcargo }} - {{ a.idecargo }} - {{ a.codcargo }} - {{ a.inivalid }} - {{ a.dadoscargo }} - {{ a.nmcargo }} - {{ a.codcbo }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Possibilidade de Acumulação</label><div class="input-group" style="width: 100%;"><select name="acumcargo" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'acumcargo' %}selected="selected"{% endifequal %} >1 - Não acumulável</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'acumcargo' %}selected="selected"{% endifequal %} >2 - Profissional de Saúde</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'acumcargo' %}selected="selected"{% endifequal %} >3 - Professor</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'acumcargo' %}selected="selected"{% endifequal %} >4 - Técnico/Científico</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Contagem de tempo especial</label><div class="input-group" style="width: 100%;"><select name="contagemesp" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'contagemesp' %}selected="selected"{% endifequal %} >1 - Não</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'contagemesp' %}selected="selected"{% endifequal %} >2 - Professor (Infantil, Fundamental e Médio)</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'contagemesp' %}selected="selected"{% endifequal %} >3 - Professor de Ensino Superior, Magistrado, Membro de Ministério Público, Membro do Tribunal de Contas (com ingresso anterior a 16/12/1998 EC nr. 20/98)</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'contagemesp' %}selected="selected"{% endifequal %} >4 - Atividade de risco</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Dedicação Exclusiva</label><div class="input-group" style="width: 100%;"><select name="dedicexcl__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'dedicexcl__icontains' %}selected="selected"{% endifequal %} >N - Não</option><option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'dedicexcl__icontains' %}selected="selected"{% endifequal %} >S - Sim</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Código da Carreira</label><div name="codcarreira__icontains" class="input-group" style="width: 100%;"><input type="text" name="codcarreira__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'codcarreira__icontains' }}"></div></div></div><div class="col-md-12" id="s1030_inclusao_cargopublico__leicargo__div"><h4>Lei que criou/extinguiu/reestruturou o cargo</h4></div><div class="col-md-6"><div class="form-group"><label>Número da lei</label><div name="nrlei__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrlei__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrlei__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Data da lei</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtlei__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtlei__range' %}{{ dict_fields|get_value_from_dict:'dtlei__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Situação gerada pela lei</label><div class="input-group" style="width: 100%;"><select name="sitcargo" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'sitcargo' %}selected="selected"{% endifequal %} >1 - Criação</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'sitcargo' %}selected="selected"{% endifequal %} >2 - Extinção</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'sitcargo' %}selected="selected"{% endifequal %} >3 - Reestruturação</option></select></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s1030_inclusao" value="1" {% if show_fields|get_value_from_dict:'show_s1030_inclusao' %}checked{% endif %}>Inclusão de novas informações</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_acumcargo" value="1" {% if show_fields|get_value_from_dict:'show_acumcargo' %}checked{% endif %}>Possibilidade de Acumulação</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_contagemesp" value="1" {% if show_fields|get_value_from_dict:'show_contagemesp' %}checked{% endif %}>Contagem de tempo especial</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dedicexcl" value="1" {% if show_fields|get_value_from_dict:'show_dedicexcl' %}checked{% endif %}>Dedicação Exclusiva</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codcarreira" value="1" {% if show_fields|get_value_from_dict:'show_codcarreira' %}checked{% endif %}>Código da Carreira</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_leicargo" value="1" {% if show_fields|get_value_from_dict:'show_leicargo' %}checked{% endif %}>Lei que criou/extinguiu/reestruturou o cargo</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrlei" value="1" {% if show_fields|get_value_from_dict:'show_nrlei' %}checked{% endif %}>Número da lei</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtlei" value="1" {% if show_fields|get_value_from_dict:'show_dtlei' %}checked{% endif %}>Data da lei</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_sitcargo" value="1" {% if show_fields|get_value_from_dict:'show_sitcargo' %}checked{% endif %}>Situação gerada pela lei</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1030_inclusao_cargopublico__s1030_inclusao -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Detalhamento de informações exclusivas para Cargos e Empregos Públicos</label>
+    <select name="s1030_inclusao" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s1030_inclusao_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1030_inclusao' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s1030_inclusao_cargopublico__s1030_inclusao -->
+
+<!-- inicio__s1030_inclusao_cargopublico__acumcargo -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Possibilidade de Acumulação</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="acumcargo" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'acumcargo' %}selected="selected"{% endifequal %} >1 - Não acumulável</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'acumcargo' %}selected="selected"{% endifequal %} >2 - Profissional de Saúde</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'acumcargo' %}selected="selected"{% endifequal %} >3 - Professor</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'acumcargo' %}selected="selected"{% endifequal %} >4 - Técnico/Científico.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1030_inclusao_cargopublico__acumcargo -->
+
+<!-- inicio__s1030_inclusao_cargopublico__contagemesp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Contagem de tempo especial</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="contagemesp" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'contagemesp' %}selected="selected"{% endifequal %} >1 - Não</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'contagemesp' %}selected="selected"{% endifequal %} >2 - Professor (Infantil, Fundamental e Médio)</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'contagemesp' %}selected="selected"{% endifequal %} >3 - Professor de Ensino Superior, Magistrado, Membro de Ministério Público, Membro do Tribunal de Contas (com ingresso anterior a 16/12/1998 EC nr. 20/98)</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'contagemesp' %}selected="selected"{% endifequal %} >4 - Atividade de risco.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1030_inclusao_cargopublico__contagemesp -->
+
+<!-- inicio__s1030_inclusao_cargopublico__dedicexcl -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Dedicação Exclusiva</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="dedicexcl" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="N" {% ifequal 'N' dict_fields|get_value_from_dict:'dedicexcl' %}selected="selected"{% endifequal %} >N - Não.</option>
+        <option value="S" {% ifequal 'S' dict_fields|get_value_from_dict:'dedicexcl' %}selected="selected"{% endifequal %} >S - Sim</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1030_inclusao_cargopublico__dedicexcl -->
+
+<!-- inicio__s1030_inclusao_cargopublico__codcarreira -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código da Carreira</label>
+    <div name="codcarreira" class="input-group" style="width: 100%;">
+      <input type="text" name="codcarreira" class="form-control" value="{{ dict_fields|get_value_from_dict:'codcarreira' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1030_inclusao_cargopublico__codcarreira -->
+
+<!-- inicio__s1030_inclusao_cargopublico__leicargo -->
+<div class="col-md-12" id="s1030_inclusao_cargopublico__leicargo__div">
+  <h4>Lei que criou/extinguiu/reestruturou o cargo</h4>
+</div>
+<!-- fim__s1030_inclusao_cargopublico__leicargo -->
+
+<!-- inicio__s1030_inclusao_cargopublico__nrlei -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número da lei</label>
+    <div name="nrlei" class="input-group" style="width: 100%;">
+      <input type="text" name="nrlei" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrlei' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1030_inclusao_cargopublico__nrlei -->
+
+<!-- inicio__s1030_inclusao_cargopublico__dtlei -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data da lei</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtlei" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtlei' %}{{ dict_fields|get_value_from_dict:'dtlei' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1030_inclusao_cargopublico__dtlei -->
+
+<!-- inicio__s1030_inclusao_cargopublico__sitcargo -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Situação gerada pela lei</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="sitcargo" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'sitcargo' %}selected="selected"{% endifequal %} >1 - Criação</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'sitcargo' %}selected="selected"{% endifequal %} >2 - Extinção</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'sitcargo' %}selected="selected"{% endifequal %} >3 - Reestruturação.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1030_inclusao_cargopublico__sitcargo -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s1030_inclusao" value="1" {% if show_fields|get_value_from_dict:'show_s1030_inclusao' %}checked{% endif %} >Detalhamento de informações exclusivas para Cargos e Empregos Públicos
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_acumcargo" value="1" {% if show_fields|get_value_from_dict:'show_acumcargo' %}checked{% endif %} >Possibilidade de Acumulação
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_contagemesp" value="1" {% if show_fields|get_value_from_dict:'show_contagemesp' %}checked{% endif %} >Contagem de tempo especial
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dedicexcl" value="1" {% if show_fields|get_value_from_dict:'show_dedicexcl' %}checked{% endif %} >Dedicação Exclusiva
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codcarreira" value="0" {% if show_fields|get_value_from_dict:'show_codcarreira' %}checked{% endif %} >Código da Carreira
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_leicargo" value="0" {% if show_fields|get_value_from_dict:'show_leicargo' %}checked{% endif %} >Lei que criou/extinguiu/reestruturou o cargo
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrlei" value="1" {% if show_fields|get_value_from_dict:'show_nrlei' %}checked{% endif %} >Número da lei
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtlei" value="1" {% if show_fields|get_value_from_dict:'show_dtlei' %}checked{% endif %} >Data da lei
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_sitcargo" value="1" {% if show_fields|get_value_from_dict:'show_sitcargo' %}checked{% endif %} >Situação gerada pela lei
+    </div>
+</div>
+
+

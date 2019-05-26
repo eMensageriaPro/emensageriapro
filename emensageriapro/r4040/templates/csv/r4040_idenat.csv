@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r4040_evtbenefnid or 1 %}"Identificação da natureza do rendimento";{% endif %}{% if show_fields.show_natrendim or 1 %}"Informar a natureza dos rendimentos pagos a beneficiários não identificados";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r4040_evtbenefnid or 1 %}"{{ c.r4040_evtbenefnid }}";{% endif %}{% if show_fields.show_natrendim or 1 %}"{{ c.natrendim }}";{% endif %}
+{% endfor %}

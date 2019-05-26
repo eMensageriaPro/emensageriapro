@@ -1,0 +1,37 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__certificados__nome -->
+<div class="col-md-8">
+  <div class="form-group">
+    <label>Nome</label>
+    <div name="nome" class="input-group" style="width: 100%;">
+      <input type="text" name="nome" class="form-control" value="{{ dict_fields|get_value_from_dict:'nome' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__certificados__nome -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nome" value="1" {% if show_fields|get_value_from_dict:'show_nome' %}checked{% endif %} >Nome
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_certificado" value="0" {% if show_fields|get_value_from_dict:'show_certificado' %}checked{% endif %} >Arquivo do Certificado
+    </div>
+</div>
+
+

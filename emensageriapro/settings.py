@@ -78,6 +78,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
     'rest_framework',
     'rest_framework.authtoken',
     'django_cron',
@@ -95,9 +96,18 @@ INSTALLED_APPS = (
     'emensageriapro.r2098',
     'emensageriapro.r2099',
     'emensageriapro.r3010',
+    'emensageriapro.r4010',
+    'emensageriapro.r4020',
+    'emensageriapro.r4040',
+    'emensageriapro.r4098',
+    'emensageriapro.r4099',
     'emensageriapro.r5001',
     'emensageriapro.r5011',
     'emensageriapro.r9000',
+    'emensageriapro.r9001',
+    'emensageriapro.r9002',
+    'emensageriapro.r9011',
+    'emensageriapro.r9012',
     'emensageriapro.s1000',
     'emensageriapro.s1005',
     'emensageriapro.s1010',
@@ -107,7 +117,7 @@ INSTALLED_APPS = (
     'emensageriapro.s1040',
     'emensageriapro.s1050',
     'emensageriapro.s1060',
-    # 'emensageriapro.s1065',
+    #'emensageriapro.s1065',
     'emensageriapro.s1070',
     'emensageriapro.s1080',
     'emensageriapro.s1200',
@@ -221,12 +231,12 @@ USE_TZ = False
 
 # Configurações de Versão do Aplicativo
 
-VERSAO_EMENSAGERIA = '1.2'
+VERSAO_EMENSAGERIA = '1.3'
 VERSAO_LAYOUT_ESOCIAL = "v02_05_00"
-VERSAO_LAYOUT_EFDREINF = "v1_04_00"
+VERSAO_LAYOUT_EFDREINF = "v2_00_00"
 
 VERSOES_ESOCIAL = ["v02_04_02", "v02_05_00"]
-VERSOES_EFDREINF = ["v1_03_02", "v1_04_00"]
+VERSOES_EFDREINF = ["v1_03_02", "v1_04_00", "v2_00_00"]
 
 # Configurações Gerais do Sistema
 
@@ -266,10 +276,10 @@ MANAGERS = ADMINS
 
 # Configurações de Certificado
 
-CERT_HOST = env('CERT_HOST')
-CERT_PASS = env('CERT_PASS')
-CERT_PEM_FILE = env('CERT_PEM_FILE')
-KEY_PEM_FILE = env('KEY_PEM_FILE')
+# CERT_HOST = env('CERT_HOST')
+# CERT_PASS = env('CERT_PASS')
+# CERT_PEM_FILE = env('CERT_PEM_FILE')
+# KEY_PEM_FILE = env('KEY_PEM_FILE')
 CA_CERT_PEM_FILE = env('CA_CERT_PEM_FILE')
 
 LINK_WEBSITE = env('LINK_WEBSITE') or ''

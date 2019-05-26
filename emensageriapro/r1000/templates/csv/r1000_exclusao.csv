@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r1000_evtinfocontri or 1 %}"Exclusão das informações";{% endif %}{% if show_fields.show_ideperiodo or 1 %}"Período de validade das informações incluídas";{% endif %}{% if show_fields.show_inivalid or 1 %}"Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM";{% endif %}{% if show_fields.show_fimvalid or 1 %}"Preencher com o mês e ano de término da validade das informações, se houver";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r1000_evtinfocontri or 1 %}"{{ c.r1000_evtinfocontri }}";{% endif %}{% if show_fields.show_ideperiodo or 1 %}"{{ c.ideperiodo }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ c.inivalid }}";{% endif %}{% if show_fields.show_fimvalid or 1 %}"{{ c.fimvalid }}";{% endif %}
+{% endfor %}

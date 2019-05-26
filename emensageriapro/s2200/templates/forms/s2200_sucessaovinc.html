@@ -1,1 +1,115 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s2200_evtadmissao_id or s2200_evtadmissao_id != s2200_sucessaovinc_form.s2200_evtadmissao.value %}<!-- inicio__s2200_sucessaovinc__s2200_evtadmissao --><div class="col-md-12" id="s2200_sucessaovinc__s2200_evtadmissao__div"><div class="form-group"><label id="s2200_sucessaovinc__s2200_evtadmissao__label">Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador*<a data-toggle="tooltip" title="Grupo de informações da sucessão de vínculo trabalhista/estatutário."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2200_sucessaovinc_form.s2200_evtadmissao.value %}<a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_return_page:'s2200_sucessaovinc_salvar'|json_return_hash:hash|json_id:s2200_sucessaovinc_form.s2200_evtadmissao.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s2200_sucessaovinc_form.s2200_evtadmissao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_sucessaovinc_form.s2200_evtadmissao.errors }}</div>{% endif %} {% if s2200_sucessaovinc_form.s2200_evtadmissao.field.widget.attrs.readonly %} {% if s2200_sucessaovinc_form.s2200_evtadmissao.field.widget.attrs.disabled %} {{ s2200_sucessaovinc_form.s2200_evtadmissao|addcss:'form-control' }}<input id="id_s2200_evtadmissao" name="s2200_evtadmissao" type="hidden" value="{{ s2200_sucessaovinc_form.s2200_evtadmissao.value }}">{% else %} {{ s2200_sucessaovinc_form.s2200_evtadmissao|addcss:'form-control' }} {% endif %} {% else %} {{ s2200_sucessaovinc_form.s2200_evtadmissao|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2200_sucessaovinc__s2200_evtadmissao -->{% else %}<input type="hidden" value="{{ s2200_evtadmissao_id|valor }}" id="id_s2200_evtadmissao" name="s2200_evtadmissao">{% endif %}<!-- inicio__s2200_sucessaovinc__tpinscant --><div class="col-md-6" id="s2200_sucessaovinc__tpinscant__div"><div class="form-group"><label id="s2200_sucessaovinc__tpinscant__label">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ), [2] (CPF) ou [5] (CGC). Somente é possível informar [5] se {dtTransf} for igual ou anterior a 01/07/1998. Valores Válidos: 1, 2, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_sucessaovinc_form.tpinscant.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_sucessaovinc_form.tpinscant.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_sucessaovinc_form.tpinscant|addcss:'form-control' }}</div></div></div><!-- fim__s2200_sucessaovinc__tpinscant --><!-- inicio__s2200_sucessaovinc__cnpjempregant --><div class="col-md-6" id="s2200_sucessaovinc__cnpjempregant__div"><div class="form-group"><label id="s2200_sucessaovinc__cnpjempregant__label">CNPJ Empregador Anterior*<a data-toggle="tooltip" title="Informar o número de inscrição do empregador anterior, de acordo com o tipo de inscrição indicado no campo {tpInscAnt}. Validação: Deve ser um número de inscrição válido diferente da inscrição do declarante, considerando as particularidades aplicadas à inf (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_sucessaovinc_form.cnpjempregant.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_sucessaovinc_form.cnpjempregant.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_sucessaovinc_form.cnpjempregant|addcss:'form-control' }}</div></div></div><!-- fim__s2200_sucessaovinc__cnpjempregant --><!-- inicio__s2200_sucessaovinc__matricant --><div class="col-md-6" id="s2200_sucessaovinc__matricant__div"><div class="form-group"><label id="s2200_sucessaovinc__matricant__label">Matricula anterior<a data-toggle="tooltip" title="Matrícula do trabalhador no empregador anterior. Validação: O preenchimento é obrigatório se {cadIni} = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_sucessaovinc_form.matricant.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_sucessaovinc_form.matricant.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_sucessaovinc_form.matricant|addcss:'form-control' }}</div></div></div><!-- fim__s2200_sucessaovinc__matricant --><!-- inicio__s2200_sucessaovinc__dttransf --><div class="col-md-6" id="s2200_sucessaovinc__dttransf__div"><div class="form-group"><label id="s2200_sucessaovinc__dttransf__label">Preencher com a data da transferência do empregado para o empregador declarante*<a data-toggle="tooltip" title="Preencher com a data da transferência do empregado para o empregador declarante. Validação: Devem ser observadas as seguintes regras: a) Deve ser posterior à data de admissão do trabalhador; b) Se {cadIni} = [S], deve ser anterior à data de início da obrig (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_sucessaovinc_form.dttransf.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_sucessaovinc_form.dttransf.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_sucessaovinc_form.dttransf|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2200_sucessaovinc__dttransf --><!-- inicio__s2200_sucessaovinc__observacao --><div class="col-md-6" id="s2200_sucessaovinc__observacao__div"><div class="form-group"><label id="s2200_sucessaovinc__observacao__label">Observações<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2200_sucessaovinc_form.observacao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2200_sucessaovinc_form.observacao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2200_sucessaovinc_form.observacao|addcss:'form-control' }}</div></div></div><!-- fim__s2200_sucessaovinc__observacao -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2200_sucessaovinc__s2200_evtadmissao -->
+<div class="col-md-12" id="s2200_sucessaovinc__s2200_evtadmissao__div">
+  <div class="form-group">
+    <label id="s2200_sucessaovinc__s2200_evtadmissao__label">Grupo de informações da sucessão de vínculo trabalhista/estatutário*</label>
+    {% if not for_print %}{% if s2200_sucessaovinc_form.s2200_evtadmissao.value %}
+        <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_return_page:'s2200_sucessaovinc_salvar'|json_return_hash:hash|json_id:s2200_sucessaovinc_form.s2200_evtadmissao.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s2200_sucessaovinc_form.s2200_evtadmissao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_sucessaovinc_form.s2200_evtadmissao.errors }}
+      </div>
+    {% endif %}
+    {% if s2200_sucessaovinc_form.s2200_evtadmissao.field.widget.attrs.readonly %}
+      {% if s2200_sucessaovinc_form.s2200_evtadmissao.field.widget.attrs.disabled %}
+        {{ s2200_sucessaovinc_form.s2200_evtadmissao|addcss:'form-control' }}
+        <input id="id_s2200_evtadmissao" name="s2200_evtadmissao" type="hidden" value="{{ s2200_sucessaovinc_form.s2200_evtadmissao.value }}">
+      {% else %}
+        {{ s2200_sucessaovinc_form.s2200_evtadmissao|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2200_sucessaovinc_form.s2200_evtadmissao|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2200_sucessaovinc__s2200_evtadmissao -->
+<!-- inicio__s2200_sucessaovinc__tpinscant -->
+<div class="col-md-6" id="s2200_sucessaovinc__tpinscant__div">
+  <div class="form-group">
+    <label id="s2200_sucessaovinc__tpinscant__label">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05*</label>
+    {% if s2200_sucessaovinc_form.tpinscant.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_sucessaovinc_form.tpinscant.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_sucessaovinc_form.tpinscant.field.widget.attrs.readonly %}
+        {% if s2200_sucessaovinc_form.tpinscant.field.widget.attrs.disabled %}
+          {{ s2200_sucessaovinc_form.tpinscant|addcss:'form-control' }}
+          <input id="id_tpinscant" name="tpinscant" type="hidden" value="{% if s2200_sucessaovinc_form.tpinscant.value or s2200_sucessaovinc_form.tpinscant.value == 0 %}{{ s2200_sucessaovinc_form.tpinscant.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_sucessaovinc_form.tpinscant|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_sucessaovinc_form.tpinscant|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_sucessaovinc__tpinscant -->
+<!-- inicio__s2200_sucessaovinc__cnpjempregant -->
+<div class="col-md-6" id="s2200_sucessaovinc__cnpjempregant__div">
+  <div class="form-group">
+    <label id="s2200_sucessaovinc__cnpjempregant__label">CNPJ Empregador Anterior*</label>
+      {% if s2200_sucessaovinc_form.cnpjempregant.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_sucessaovinc_form.cnpjempregant.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_sucessaovinc_form.cnpjempregant|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_sucessaovinc__cnpjempregant -->
+<!-- inicio__s2200_sucessaovinc__matricant -->
+<div class="col-md-6" id="s2200_sucessaovinc__matricant__div">
+  <div class="form-group">
+    <label id="s2200_sucessaovinc__matricant__label">Matricula anterior</label>
+      {% if s2200_sucessaovinc_form.matricant.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_sucessaovinc_form.matricant.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_sucessaovinc_form.matricant|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_sucessaovinc__matricant -->
+<!-- inicio__s2200_sucessaovinc__dttransf -->
+<div class="col-md-6" id="s2200_sucessaovinc__dttransf__div">
+  <div class="form-group">
+    <label id="s2200_sucessaovinc__dttransf__label">Preencher com a data da transferência do empregado para o empregador declarante*</label>
+        {% if s2200_sucessaovinc_form.dttransf.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_sucessaovinc_form.dttransf.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_sucessaovinc_form.dttransf|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_sucessaovinc__dttransf -->
+<!-- inicio__s2200_sucessaovinc__observacao -->
+<div class="col-md-6" id="s2200_sucessaovinc__observacao__div">
+  <div class="form-group">
+    <label id="s2200_sucessaovinc__observacao__label">Observações</label>
+      {% if s2200_sucessaovinc_form.observacao.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_sucessaovinc_form.observacao.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_sucessaovinc_form.observacao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_sucessaovinc__observacao -->

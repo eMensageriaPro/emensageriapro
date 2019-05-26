@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2416_evtcdbenalt or 1 %}"Informações relativas a pensão por morte";{% endif %}{% if show_fields.show_tppenmorte or 1 %}"Tipo de pensão por morte";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2416_evtcdbenalt or 1 %}"{{ c.s2416_evtcdbenalt }}";{% endif %}{% if show_fields.show_tppenmorte or 1 %}"{{ c.tppenmorte }}";{% endif %}
+{% endfor %}

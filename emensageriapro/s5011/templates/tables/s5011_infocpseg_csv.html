@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações de contribuição previdenciária do Segurado"
-{% if show_fields.show_s5011_evtcs or not s5011_evtcs_id and 1 %}"Evento demonstrativo das Contribuições Sociais devidas à Previdência Social e a Outras Entidades e Fundos e das suas bases de cálculo.";{% endif %}{% if show_fields.show_vrdesccp or 1 %}"Valor total descontada dos segurados";{% endif %}{% if show_fields.show_vrcpseg or 1 %}"Valor da contribuição do segurado";{% endif %}
-{% for a in s5011_infocpseg_lista %}{% if show_fields.show_s5011_evtcs or  not s5011_evtcs_id and 1 %}"{{ a.s5011_evtcs }}";{% endif %}{% if show_fields.show_vrdesccp or 1 %}"{{ a.vrdesccp }}";{% endif %}{% if show_fields.show_vrcpseg or 1 %}"{{ a.vrcpseg }}";{% endif %}
-{% endfor %}

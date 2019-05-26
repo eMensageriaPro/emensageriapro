@@ -1,1 +1,46 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s2399_evttsvtermino_id or s2399_evttsvtermino_id != s2399_mudancacpf_form.s2399_evttsvtermino.value %}<!-- inicio__s2399_mudancacpf__s2399_evttsvtermino --><div class="col-md-12" id="s2399_mudancacpf__s2399_evttsvtermino__div"><div class="form-group"><label id="s2399_mudancacpf__s2399_evttsvtermino__label">Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Término*<a data-toggle="tooltip" title="Informação do novo CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2399_mudancacpf_form.s2399_evttsvtermino.value %}<a href="{% url 's2399_evttsvtermino_salvar' hash='{}'|json_return_page:'s2399_mudancacpf_salvar'|json_return_hash:hash|json_id:s2399_mudancacpf_form.s2399_evttsvtermino.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s2399_mudancacpf_form.s2399_evttsvtermino.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2399_mudancacpf_form.s2399_evttsvtermino.errors }}</div>{% endif %} {% if s2399_mudancacpf_form.s2399_evttsvtermino.field.widget.attrs.readonly %} {% if s2399_mudancacpf_form.s2399_evttsvtermino.field.widget.attrs.disabled %} {{ s2399_mudancacpf_form.s2399_evttsvtermino|addcss:'form-control' }}<input id="id_s2399_evttsvtermino" name="s2399_evttsvtermino" type="hidden" value="{{ s2399_mudancacpf_form.s2399_evttsvtermino.value }}">{% else %} {{ s2399_mudancacpf_form.s2399_evttsvtermino|addcss:'form-control' }} {% endif %} {% else %} {{ s2399_mudancacpf_form.s2399_evttsvtermino|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2399_mudancacpf__s2399_evttsvtermino -->{% else %}<input type="hidden" value="{{ s2399_evttsvtermino_id|valor }}" id="id_s2399_evttsvtermino" name="s2399_evttsvtermino">{% endif %}<!-- inicio__s2399_mudancacpf__novocpf --><div class="col-md-6" id="s2399_mudancacpf__novocpf__div"><div class="form-group"><label id="s2399_mudancacpf__novocpf__label">Preencher com o novo CPF do trabalhador. Validação: Deve ser um CPF válido e diferente do CPF do empregador e do antigo CPF do trabalhador.*<a data-toggle="tooltip" title="Preencher com o novo CPF do trabalhador. Validação: Deve ser um CPF válido e diferente do CPF do empregador e do antigo CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2399_mudancacpf_form.novocpf.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2399_mudancacpf_form.novocpf.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2399_mudancacpf_form.novocpf|addcss:'form-control' }}</div></div></div><!-- fim__s2399_mudancacpf__novocpf -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2399_mudancacpf__s2399_evttsvtermino -->
+<div class="col-md-12" id="s2399_mudancacpf__s2399_evttsvtermino__div">
+  <div class="form-group">
+    <label id="s2399_mudancacpf__s2399_evttsvtermino__label">Informações de mudança de CPF do trabalhador.*</label>
+    {% if not for_print %}{% if s2399_mudancacpf_form.s2399_evttsvtermino.value %}
+        <a href="{% url 's2399_evttsvtermino_salvar' hash='{}'|json_return_page:'s2399_mudancacpf_salvar'|json_return_hash:hash|json_id:s2399_mudancacpf_form.s2399_evttsvtermino.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s2399_mudancacpf_form.s2399_evttsvtermino.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2399_mudancacpf_form.s2399_evttsvtermino.errors }}
+      </div>
+    {% endif %}
+    {% if s2399_mudancacpf_form.s2399_evttsvtermino.field.widget.attrs.readonly %}
+      {% if s2399_mudancacpf_form.s2399_evttsvtermino.field.widget.attrs.disabled %}
+        {{ s2399_mudancacpf_form.s2399_evttsvtermino|addcss:'form-control' }}
+        <input id="id_s2399_evttsvtermino" name="s2399_evttsvtermino" type="hidden" value="{{ s2399_mudancacpf_form.s2399_evttsvtermino.value }}">
+      {% else %}
+        {{ s2399_mudancacpf_form.s2399_evttsvtermino|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2399_mudancacpf_form.s2399_evttsvtermino|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2399_mudancacpf__s2399_evttsvtermino -->
+<!-- inicio__s2399_mudancacpf__novocpf -->
+<div class="col-md-6" id="s2399_mudancacpf__novocpf__div">
+  <div class="form-group">
+    <label id="s2399_mudancacpf__novocpf__label">Preencher com o novo CPF do trabalhador. Validação: Deve ser um CPF válido e diferente do CPF do empregador e do antigo CPF do trabalhador.*</label>
+      {% if s2399_mudancacpf_form.novocpf.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2399_mudancacpf_form.novocpf.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2399_mudancacpf_form.novocpf|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2399_mudancacpf__novocpf -->

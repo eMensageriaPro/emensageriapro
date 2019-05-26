@@ -1,1 +1,109 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Informações de identificação da lotação e validade das informações que estão sendo incluídas</label><select name="s5011_idelotacao" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s5011_idelotacao_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s5011_idelotacao' %}selected="selected"{% endifequal %}>{{ a.s5011_ideestab }} - {{ a.codlotacao }} - {{ a.fpas }} - {{ a.codtercs }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>CNPJ do Operador Portuário</label><div name="cnpjopportuario__icontains" class="input-group" style="width: 100%;"><input type="text" name="cnpjopportuario__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'cnpjopportuario__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Alíquota RAT</label><div class="input-group" style="width: 100%;"><select name="aliqrat" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'aliqrat' %}selected="selected"{% endifequal %} >1 - 1</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'aliqrat' %}selected="selected"{% endifequal %} >2 - 2</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'aliqrat' %}selected="selected"{% endifequal %} >3 - 3</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>FAP</label><div class="input-group"><div class="input-group-addon"></div><input type="text" name="fap" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'fap' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Alíquota RAT (Ajustada)</label><div class="input-group"><div class="input-group-addon"></div><input type="text" name="aliqratajust" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'aliqratajust' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s5011_idelotacao" value="1" {% if show_fields|get_value_from_dict:'show_s5011_idelotacao' %}checked{% endif %}>Informações de identificação da lotação e validade das informações que estão sendo incluídas</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_cnpjopportuario" value="1" {% if show_fields|get_value_from_dict:'show_cnpjopportuario' %}checked{% endif %}>CNPJ do Operador Portuário</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_aliqrat" value="1" {% if show_fields|get_value_from_dict:'show_aliqrat' %}checked{% endif %}>Alíquota RAT</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_fap" value="1" {% if show_fields|get_value_from_dict:'show_fap' %}checked{% endif %}>FAP</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_aliqratajust" value="1" {% if show_fields|get_value_from_dict:'show_aliqratajust' %}checked{% endif %}>Alíquota RAT (Ajustada)</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5011_dadosopport__s5011_idelotacao -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</label>
+    <select name="s5011_idelotacao" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s5011_idelotacao_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s5011_idelotacao' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s5011_dadosopport__s5011_idelotacao -->
+
+<!-- inicio__s5011_dadosopport__cnpjopportuario -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>CNPJ do Operador Portuário</label>
+    <div name="cnpjopportuario" class="input-group" style="width: 100%;">
+      <input type="text" name="cnpjopportuario" class="form-control" value="{{ dict_fields|get_value_from_dict:'cnpjopportuario' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_dadosopport__cnpjopportuario -->
+
+<!-- inicio__s5011_dadosopport__aliqrat -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Alíquota RAT</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="aliqrat" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'aliqrat' %}selected="selected"{% endifequal %} >1</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'aliqrat' %}selected="selected"{% endifequal %} >2</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'aliqrat' %}selected="selected"{% endifequal %} >3</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_dadosopport__aliqrat -->
+
+<!-- inicio__s5011_dadosopport__fap -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>FAP</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+      </div>
+      <input type="text" name="fap" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'fap' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_dadosopport__fap -->
+
+<!-- inicio__s5011_dadosopport__aliqratajust -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Alíquota RAT (Ajustada)</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+      </div>
+      <input type="text" name="aliqratajust" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'aliqratajust' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s5011_dadosopport__aliqratajust -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s5011_idelotacao" value="1" {% if show_fields|get_value_from_dict:'show_s5011_idelotacao' %}checked{% endif %} >Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_cnpjopportuario" value="1" {% if show_fields|get_value_from_dict:'show_cnpjopportuario' %}checked{% endif %} >CNPJ do Operador Portuário
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_aliqrat" value="1" {% if show_fields|get_value_from_dict:'show_aliqrat' %}checked{% endif %} >Alíquota RAT
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_fap" value="1" {% if show_fields|get_value_from_dict:'show_fap' %}checked{% endif %} >FAP
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_aliqratajust" value="1" {% if show_fields|get_value_from_dict:'show_aliqratajust' %}checked{% endif %} >Alíquota RAT (Ajustada)
+    </div>
+</div>
+
+

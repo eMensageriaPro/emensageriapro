@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos"
-{% if show_fields.show_r5011_evttotalcontrib or not r5011_evttotalcontrib_id and 1 %}"Evento totalizador por contribuinte";{% endif %}{% if show_fields.show_nrrecarqbase or 0 %}"Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte";{% endif %}{% if show_fields.show_indexistinfo or 1 %}"Indicativo de existência de valores de bases ou de tributos";{% endif %}
-{% for a in r5011_infototalcontrib_lista %}{% if show_fields.show_r5011_evttotalcontrib or  not r5011_evttotalcontrib_id and 1 %}"{{ a.r5011_evttotalcontrib }}";{% endif %}{% if show_fields.show_nrrecarqbase or 0 %}"{{ a.nrrecarqbase }}";{% endif %}{% if show_fields.show_indexistinfo or 1 %}"{{ a.get_indexistinfo_display }}";{% endif %}
-{% endfor %}

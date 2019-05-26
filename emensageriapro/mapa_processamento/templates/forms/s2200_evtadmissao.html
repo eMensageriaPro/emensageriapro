@@ -1,0 +1,1104 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2200_evtadmissao__evtadmissao -->
+<div class="col-md-12" id="s2200_evtadmissao__evtadmissao__div">
+  <h4>Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador</h4>
+</div>
+<!-- fim__s2200_evtadmissao__evtadmissao -->
+<!-- inicio__s2200_evtadmissao__identidade -->
+<div class="col-md-6" id="s2200_evtadmissao__identidade__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__identidade__label">Identidade do Registro</label>
+      {% if s2200_evtadmissao_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__identidade -->
+<!-- inicio__s2200_evtadmissao__ideevento -->
+<div class="col-md-12" id="s2200_evtadmissao__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s2200_evtadmissao__ideevento -->
+<!-- inicio__s2200_evtadmissao__indretif -->
+<div class="col-md-6" id="s2200_evtadmissao__indretif__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__indretif__label">Identificador de retificação*</label>
+    {% if s2200_evtadmissao_form.indretif.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.indretif.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.indretif.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.indretif.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.indretif|addcss:'form-control' }}
+          <input id="id_indretif" name="indretif" type="hidden" value="{% if s2200_evtadmissao_form.indretif.value or s2200_evtadmissao_form.indretif.value == 0 %}{{ s2200_evtadmissao_form.indretif.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.indretif|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.indretif|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__indretif -->
+<!-- inicio__s2200_evtadmissao__nrrecibo -->
+<div class="col-md-6" id="s2200_evtadmissao__nrrecibo__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__nrrecibo__label">Número do recibo</label>
+      {% if s2200_evtadmissao_form.nrrecibo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.nrrecibo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.nrrecibo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__nrrecibo -->
+<!-- inicio__s2200_evtadmissao__tpamb -->
+<div class="col-md-6" id="s2200_evtadmissao__tpamb__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__tpamb__label">Identificação do ambiente*</label>
+    {% if s2200_evtadmissao_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.tpamb.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.tpamb.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if s2200_evtadmissao_form.tpamb.value or s2200_evtadmissao_form.tpamb.value == 0 %}{{ s2200_evtadmissao_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__tpamb -->
+<!-- inicio__s2200_evtadmissao__procemi -->
+<div class="col-md-6" id="s2200_evtadmissao__procemi__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__procemi__label">Processo de emissão do evento*</label>
+    {% if s2200_evtadmissao_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.procemi.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.procemi.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if s2200_evtadmissao_form.procemi.value or s2200_evtadmissao_form.procemi.value == 0 %}{{ s2200_evtadmissao_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__procemi -->
+<!-- inicio__s2200_evtadmissao__verproc -->
+<div class="col-md-6" id="s2200_evtadmissao__verproc__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__verproc__label">Versão do processo*</label>
+      {% if s2200_evtadmissao_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__verproc -->
+<!-- inicio__s2200_evtadmissao__ideempregador -->
+<div class="col-md-12" id="s2200_evtadmissao__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s2200_evtadmissao__ideempregador -->
+<!-- inicio__s2200_evtadmissao__tpinsc -->
+<div class="col-md-6" id="s2200_evtadmissao__tpinsc__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__tpinsc__label">Tipo de inscrição*</label>
+    {% if s2200_evtadmissao_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s2200_evtadmissao_form.tpinsc.value or s2200_evtadmissao_form.tpinsc.value == 0 %}{{ s2200_evtadmissao_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__tpinsc -->
+<!-- inicio__s2200_evtadmissao__nrinsc -->
+<div class="col-md-6" id="s2200_evtadmissao__nrinsc__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s2200_evtadmissao_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__nrinsc -->
+<!-- inicio__s2200_evtadmissao__trabalhador -->
+<div class="col-md-12" id="s2200_evtadmissao__trabalhador__div">
+  <h4>Informações Pessoais do Trabalhador</h4>
+</div>
+<!-- fim__s2200_evtadmissao__trabalhador -->
+<!-- inicio__s2200_evtadmissao__cpftrab -->
+<div class="col-md-6" id="s2200_evtadmissao__cpftrab__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__cpftrab__label">CPF*</label>
+      {% if s2200_evtadmissao_form.cpftrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.cpftrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.cpftrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__cpftrab -->
+<!-- inicio__s2200_evtadmissao__nistrab -->
+<div class="col-md-6" id="s2200_evtadmissao__nistrab__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__nistrab__label">NIS*</label>
+      {% if s2200_evtadmissao_form.nistrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.nistrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.nistrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__nistrab -->
+<!-- inicio__s2200_evtadmissao__nmtrab -->
+<div class="col-md-6" id="s2200_evtadmissao__nmtrab__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__nmtrab__label">Nome*</label>
+      {% if s2200_evtadmissao_form.nmtrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.nmtrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.nmtrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__nmtrab -->
+<!-- inicio__s2200_evtadmissao__sexo -->
+<div class="col-md-6" id="s2200_evtadmissao__sexo__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__sexo__label">Sexo*</label>
+    {% if s2200_evtadmissao_form.sexo.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.sexo.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.sexo.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.sexo.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.sexo|addcss:'form-control' }}
+          <input id="id_sexo" name="sexo" type="hidden" value="{% if s2200_evtadmissao_form.sexo.value or s2200_evtadmissao_form.sexo.value == 0 %}{{ s2200_evtadmissao_form.sexo.value }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.sexo|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.sexo|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__sexo -->
+<!-- inicio__s2200_evtadmissao__racacor -->
+<div class="col-md-6" id="s2200_evtadmissao__racacor__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__racacor__label">Raça/Cor*</label>
+    {% if s2200_evtadmissao_form.racacor.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.racacor.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.racacor.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.racacor.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.racacor|addcss:'form-control' }}
+          <input id="id_racacor" name="racacor" type="hidden" value="{% if s2200_evtadmissao_form.racacor.value or s2200_evtadmissao_form.racacor.value == 0 %}{{ s2200_evtadmissao_form.racacor.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.racacor|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.racacor|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__racacor -->
+<!-- inicio__s2200_evtadmissao__estciv -->
+<div class="col-md-6" id="s2200_evtadmissao__estciv__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__estciv__label">Estado Civil</label>
+    {% if s2200_evtadmissao_form.estciv.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.estciv.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.estciv.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.estciv.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.estciv|addcss:'form-control' }}
+          <input id="id_estciv" name="estciv" type="hidden" value="{% if s2200_evtadmissao_form.estciv.value or s2200_evtadmissao_form.estciv.value == 0 %}{{ s2200_evtadmissao_form.estciv.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.estciv|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.estciv|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__estciv -->
+<!-- inicio__s2200_evtadmissao__grauinstr -->
+<div class="col-md-6" id="s2200_evtadmissao__grauinstr__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__grauinstr__label">Grau de Instrução*</label>
+    {% if s2200_evtadmissao_form.grauinstr.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.grauinstr.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.grauinstr.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.grauinstr.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.grauinstr|addcss:'form-control' }}
+          <input id="id_grauinstr" name="grauinstr" type="hidden" value="{% if s2200_evtadmissao_form.grauinstr.value or s2200_evtadmissao_form.grauinstr.value == 0 %}{{ s2200_evtadmissao_form.grauinstr.value }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.grauinstr|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.grauinstr|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__grauinstr -->
+<!-- inicio__s2200_evtadmissao__indpriempr -->
+<div class="col-md-6" id="s2200_evtadmissao__indpriempr__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__indpriempr__label">Indicador de Primeiro Emprego</label>
+    {% if s2200_evtadmissao_form.indpriempr.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.indpriempr.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.indpriempr.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.indpriempr.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.indpriempr|addcss:'form-control' }}
+          <input id="id_indpriempr" name="indpriempr" type="hidden" value="{% if s2200_evtadmissao_form.indpriempr.value or s2200_evtadmissao_form.indpriempr.value == 0 %}{{ s2200_evtadmissao_form.indpriempr.value }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.indpriempr|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.indpriempr|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__indpriempr -->
+<!-- inicio__s2200_evtadmissao__nmsoc -->
+<div class="col-md-6" id="s2200_evtadmissao__nmsoc__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__nmsoc__label">Nome Social</label>
+      {% if s2200_evtadmissao_form.nmsoc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.nmsoc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.nmsoc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__nmsoc -->
+<!-- inicio__s2200_evtadmissao__nascimento -->
+<div class="col-md-12" id="s2200_evtadmissao__nascimento__div">
+  <h4>Grupo de informações do nascimento do trabalhador</h4>
+</div>
+<!-- fim__s2200_evtadmissao__nascimento -->
+<!-- inicio__s2200_evtadmissao__dtnascto -->
+<div class="col-md-6" id="s2200_evtadmissao__dtnascto__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__dtnascto__label">Data de nascimento*</label>
+        {% if s2200_evtadmissao_form.dtnascto.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_evtadmissao_form.dtnascto.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.dtnascto|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__dtnascto -->
+<!-- inicio__s2200_evtadmissao__codmunic -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2200_evtadmissao__codmunic__div">
+    <div class="form-group">
+      <label id="s2200_evtadmissao__codmunic__label">Código do Município</label>
+        {% if s2200_evtadmissao_form.codmunic.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2200_evtadmissao_form.codmunic.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2200_evtadmissao.codmunic %}{{ s2200_evtadmissao.codmunic }}{% endif %}" 
+        {% if s2200_evtadmissao_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2200_evtadmissao_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}{% if s2200_evtadmissao_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_codmunic" name="codmunic" value="{% if s2200_evtadmissao.codmunic %}{{ s2200_evtadmissao_form.codmunic.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codmunic').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/municipios/json-search/" + request.term + "/", function (data) {
+          response($.map(data.municipios, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codmunic').val(ui.item.value);
+        return false;
+      }});
+    {% if s2200_evtadmissao_form.codmunic.field.widget.attrs.required %}
+    $("#id_form_s2200_evtadmissao").submit(function(e) {
+      $('#txt_codmunic').disabled = true;
+        if ($('#id_codmunic').val() == "") {
+          $('#txt_codmunic').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Código do Município!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2200_evtadmissao__codmunic__div">
+    <div class="form-group">
+      <label id="s2200_evtadmissao__codmunic__label">Código do Município</label>
+        {% if not for_print %}{% if s2200_evtadmissao_form.codmunic.value %}
+            <a id="s2200_evtadmissao__codmunic__div_acessar" href="{% url 'municipios_salvar' hash='{}'|json_id:s2200_evtadmissao_form.codmunic.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2200_evtadmissao.codmunic %}{{ s2200_evtadmissao.codmunic }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2200_evtadmissao__codmunic -->
+<!-- inicio__s2200_evtadmissao__uf -->
+<div class="col-md-6" id="s2200_evtadmissao__uf__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__uf__label">UF</label>
+    {% if s2200_evtadmissao_form.uf.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.uf.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.uf.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.uf.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.uf|addcss:'form-control' }}
+          <input id="id_uf" name="uf" type="hidden" value="{% if s2200_evtadmissao_form.uf.value or s2200_evtadmissao_form.uf.value == 0 %}{{ s2200_evtadmissao_form.uf.value }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.uf|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.uf|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__uf -->
+<!-- inicio__s2200_evtadmissao__paisnascto -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2200_evtadmissao__paisnascto__div">
+    <div class="form-group">
+      <label id="s2200_evtadmissao__paisnascto__label">País de nascimento*</label>
+        {% if s2200_evtadmissao_form.paisnascto.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2200_evtadmissao_form.paisnascto.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_paisnascto" name="txt_paisnascto" class="form-control" value="{% if s2200_evtadmissao.paisnascto %}{{ s2200_evtadmissao.paisnascto }}{% endif %}" 
+        {% if s2200_evtadmissao_form.paisnascto.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2200_evtadmissao_form.paisnascto.field.widget.attrs.required %} required="required"{% endif %}{% if s2200_evtadmissao_form.paisnascto.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_paisnascto" name="paisnascto" value="{% if s2200_evtadmissao.paisnascto %}{{ s2200_evtadmissao_form.paisnascto.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_paisnascto').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-paises/json-search/" + request.term + "/", function (data) {
+          response($.map(data.esocial_paises, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_paisnascto').val(ui.item.value);
+        return false;
+      }});
+    {% if s2200_evtadmissao_form.paisnascto.field.widget.attrs.required %}
+    $("#id_form_s2200_evtadmissao").submit(function(e) {
+      $('#txt_paisnascto').disabled = true;
+        if ($('#id_paisnascto').val() == "") {
+          $('#txt_paisnascto').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo País de nascimento!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2200_evtadmissao__paisnascto__div">
+    <div class="form-group">
+      <label id="s2200_evtadmissao__paisnascto__label">País de nascimento*</label>
+        {% if not for_print %}{% if s2200_evtadmissao_form.paisnascto.value %}
+            <a id="s2200_evtadmissao__paisnascto__div_acessar" href="{% url 'esocial-paises_salvar' hash='{}'|json_id:s2200_evtadmissao_form.paisnascto.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_paisnascto" name="txt_paisnascto" class="form-control" value="{% if s2200_evtadmissao.paisnascto %}{{ s2200_evtadmissao.paisnascto }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2200_evtadmissao__paisnascto -->
+<!-- inicio__s2200_evtadmissao__paisnac -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2200_evtadmissao__paisnac__div">
+    <div class="form-group">
+      <label id="s2200_evtadmissao__paisnac__label">País de nacionalidade*</label>
+        {% if s2200_evtadmissao_form.paisnac.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2200_evtadmissao_form.paisnac.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_paisnac" name="txt_paisnac" class="form-control" value="{% if s2200_evtadmissao.paisnac %}{{ s2200_evtadmissao.paisnac }}{% endif %}" 
+        {% if s2200_evtadmissao_form.paisnac.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2200_evtadmissao_form.paisnac.field.widget.attrs.required %} required="required"{% endif %}{% if s2200_evtadmissao_form.paisnac.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_paisnac" name="paisnac" value="{% if s2200_evtadmissao.paisnac %}{{ s2200_evtadmissao_form.paisnac.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_paisnac').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-paises/json-search/" + request.term + "/", function (data) {
+          response($.map(data.esocial_paises, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_paisnac').val(ui.item.value);
+        return false;
+      }});
+    {% if s2200_evtadmissao_form.paisnac.field.widget.attrs.required %}
+    $("#id_form_s2200_evtadmissao").submit(function(e) {
+      $('#txt_paisnac').disabled = true;
+        if ($('#id_paisnac').val() == "") {
+          $('#txt_paisnac').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo País de nacionalidade!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2200_evtadmissao__paisnac__div">
+    <div class="form-group">
+      <label id="s2200_evtadmissao__paisnac__label">País de nacionalidade*</label>
+        {% if not for_print %}{% if s2200_evtadmissao_form.paisnac.value %}
+            <a id="s2200_evtadmissao__paisnac__div_acessar" href="{% url 'esocial-paises_salvar' hash='{}'|json_id:s2200_evtadmissao_form.paisnac.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_paisnac" name="txt_paisnac" class="form-control" value="{% if s2200_evtadmissao.paisnac %}{{ s2200_evtadmissao.paisnac }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2200_evtadmissao__paisnac -->
+<!-- inicio__s2200_evtadmissao__nmmae -->
+<div class="col-md-6" id="s2200_evtadmissao__nmmae__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__nmmae__label">Nome da Mãe</label>
+      {% if s2200_evtadmissao_form.nmmae.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.nmmae.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.nmmae|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__nmmae -->
+<!-- inicio__s2200_evtadmissao__nmpai -->
+<div class="col-md-6" id="s2200_evtadmissao__nmpai__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__nmpai__label">Nome do Pai</label>
+      {% if s2200_evtadmissao_form.nmpai.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.nmpai.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.nmpai|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__nmpai -->
+<!-- inicio__s2200_evtadmissao__endereco -->
+<div class="col-md-12" id="s2200_evtadmissao__endereco__div">
+  <h4>Grupo de informações do endereço do Trabalhador</h4>
+</div>
+<!-- fim__s2200_evtadmissao__endereco -->
+<!-- inicio__s2200_evtadmissao__vinculo -->
+<div class="col-md-12" id="s2200_evtadmissao__vinculo__div">
+  <h4>Grupo de informações do vínculo</h4>
+</div>
+<!-- fim__s2200_evtadmissao__vinculo -->
+<!-- inicio__s2200_evtadmissao__matricula -->
+<div class="col-md-6" id="s2200_evtadmissao__matricula__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__matricula__label">Matricula*</label>
+      {% if s2200_evtadmissao_form.matricula.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.matricula.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.matricula|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__matricula -->
+<!-- inicio__s2200_evtadmissao__tpregtrab -->
+<div class="col-md-6" id="s2200_evtadmissao__tpregtrab__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__tpregtrab__label">Tipo de regime trabalhista*</label>
+    {% if s2200_evtadmissao_form.tpregtrab.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.tpregtrab.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.tpregtrab.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.tpregtrab.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.tpregtrab|addcss:'form-control' }}
+          <input id="id_tpregtrab" name="tpregtrab" type="hidden" value="{% if s2200_evtadmissao_form.tpregtrab.value or s2200_evtadmissao_form.tpregtrab.value == 0 %}{{ s2200_evtadmissao_form.tpregtrab.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.tpregtrab|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.tpregtrab|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__tpregtrab -->
+<!-- inicio__s2200_evtadmissao__tpregprev -->
+<div class="col-md-6" id="s2200_evtadmissao__tpregprev__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__tpregprev__label">Tipo de regime previdenciário*</label>
+    {% if s2200_evtadmissao_form.tpregprev.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.tpregprev.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.tpregprev.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.tpregprev.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.tpregprev|addcss:'form-control' }}
+          <input id="id_tpregprev" name="tpregprev" type="hidden" value="{% if s2200_evtadmissao_form.tpregprev.value or s2200_evtadmissao_form.tpregprev.value == 0 %}{{ s2200_evtadmissao_form.tpregprev.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.tpregprev|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.tpregprev|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__tpregprev -->
+<!-- inicio__s2200_evtadmissao__nrrecinfprelim -->
+<div class="col-md-6" id="s2200_evtadmissao__nrrecinfprelim__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__nrrecinfprelim__label">Número do recibo (Admissão Preliminar)</label>
+      {% if s2200_evtadmissao_form.nrrecinfprelim.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.nrrecinfprelim.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.nrrecinfprelim|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__nrrecinfprelim -->
+<!-- inicio__s2200_evtadmissao__cadini -->
+<div class="col-md-6" id="s2200_evtadmissao__cadini__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__cadini__label">Indicar se o evento se refere a cadastramento inicial de vínculo*</label>
+    {% if s2200_evtadmissao_form.cadini.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.cadini.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.cadini.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.cadini.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.cadini|addcss:'form-control' }}
+          <input id="id_cadini" name="cadini" type="hidden" value="{% if s2200_evtadmissao_form.cadini.value or s2200_evtadmissao_form.cadini.value == 0 %}{{ s2200_evtadmissao_form.cadini.value }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.cadini|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.cadini|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__cadini -->
+<!-- inicio__s2200_evtadmissao__inforegimetrab -->
+<div class="col-md-12" id="s2200_evtadmissao__inforegimetrab__div">
+  <h4>Informações do regime trabalhista</h4>
+</div>
+<!-- fim__s2200_evtadmissao__inforegimetrab -->
+<!-- inicio__s2200_evtadmissao__infocontrato -->
+<div class="col-md-12" id="s2200_evtadmissao__infocontrato__div">
+  <h4>Informações do Contrato de Trabalho</h4>
+</div>
+<!-- fim__s2200_evtadmissao__infocontrato -->
+<!-- inicio__s2200_evtadmissao__codcargo -->
+<div class="col-md-6" id="s2200_evtadmissao__codcargo__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__codcargo__label">Código do Cargo</label>
+      {% if s2200_evtadmissao_form.codcargo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.codcargo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.codcargo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__codcargo -->
+<!-- inicio__s2200_evtadmissao__dtingrcargo -->
+<div class="col-md-6" id="s2200_evtadmissao__dtingrcargo__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__dtingrcargo__label">Data de ingresso no cargo identificado em {codCargo}</label>
+        {% if s2200_evtadmissao_form.dtingrcargo.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_evtadmissao_form.dtingrcargo.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.dtingrcargo|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__dtingrcargo -->
+<!-- inicio__s2200_evtadmissao__codfuncao -->
+<div class="col-md-6" id="s2200_evtadmissao__codfuncao__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__codfuncao__label">Código da Função</label>
+      {% if s2200_evtadmissao_form.codfuncao.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.codfuncao.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.codfuncao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__codfuncao -->
+<!-- inicio__s2200_evtadmissao__codcateg -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2200_evtadmissao__codcateg__div">
+    <div class="form-group">
+      <label id="s2200_evtadmissao__codcateg__label">Código da Categoria*</label>
+        {% if s2200_evtadmissao_form.codcateg.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2200_evtadmissao_form.codcateg.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2200_evtadmissao.codcateg %}{{ s2200_evtadmissao.codcateg }}{% endif %}" 
+        {% if s2200_evtadmissao_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2200_evtadmissao_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}{% if s2200_evtadmissao_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_codcateg" name="codcateg" value="{% if s2200_evtadmissao.codcateg %}{{ s2200_evtadmissao_form.codcateg.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codcateg').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-trabalhadores-categorias/json-search/" + request.term + "/", function (data) {
+          response($.map(data.esocial_trabalhadores_categorias, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codcateg').val(ui.item.value);
+        return false;
+      }});
+    {% if s2200_evtadmissao_form.codcateg.field.widget.attrs.required %}
+    $("#id_form_s2200_evtadmissao").submit(function(e) {
+      $('#txt_codcateg').disabled = true;
+        if ($('#id_codcateg').val() == "") {
+          $('#txt_codcateg').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Código da Categoria!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2200_evtadmissao__codcateg__div">
+    <div class="form-group">
+      <label id="s2200_evtadmissao__codcateg__label">Código da Categoria*</label>
+        {% if not for_print %}{% if s2200_evtadmissao_form.codcateg.value %}
+            <a id="s2200_evtadmissao__codcateg__div_acessar" href="{% url 'esocial-trabalhadores-categorias_salvar' hash='{}'|json_id:s2200_evtadmissao_form.codcateg.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2200_evtadmissao.codcateg %}{{ s2200_evtadmissao.codcateg }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2200_evtadmissao__codcateg -->
+<!-- inicio__s2200_evtadmissao__codcarreira -->
+<div class="col-md-6" id="s2200_evtadmissao__codcarreira__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__codcarreira__label">Código da Carreira</label>
+      {% if s2200_evtadmissao_form.codcarreira.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.codcarreira.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.codcarreira|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__codcarreira -->
+<!-- inicio__s2200_evtadmissao__dtingrcarr -->
+<div class="col-md-6" id="s2200_evtadmissao__dtingrcarr__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__dtingrcarr__label">Data de ingresso na carreira</label>
+        {% if s2200_evtadmissao_form.dtingrcarr.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_evtadmissao_form.dtingrcarr.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.dtingrcarr|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__dtingrcarr -->
+<!-- inicio__s2200_evtadmissao__remuneracao -->
+<div class="col-md-12" id="s2200_evtadmissao__remuneracao__div">
+  <h4>Informações da remuneração e periodicidade de pagamento</h4>
+</div>
+<!-- fim__s2200_evtadmissao__remuneracao -->
+<!-- inicio__s2200_evtadmissao__vrsalfx -->
+<div class="col-md-6" id="s2200_evtadmissao__vrsalfx__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__vrsalfx__label">Valor do Salário Fixo*</label>
+    {% if s2200_evtadmissao_form.vrsalfx.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2200_evtadmissao_form.vrsalfx.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ s2200_evtadmissao_form.vrsalfx|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__vrsalfx -->
+<!-- inicio__s2200_evtadmissao__undsalfixo -->
+<div class="col-md-6" id="s2200_evtadmissao__undsalfixo__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__undsalfixo__label">Unidade do Salário Fixo*</label>
+    {% if s2200_evtadmissao_form.undsalfixo.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.undsalfixo.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.undsalfixo.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.undsalfixo.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.undsalfixo|addcss:'form-control' }}
+          <input id="id_undsalfixo" name="undsalfixo" type="hidden" value="{% if s2200_evtadmissao_form.undsalfixo.value or s2200_evtadmissao_form.undsalfixo.value == 0 %}{{ s2200_evtadmissao_form.undsalfixo.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.undsalfixo|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.undsalfixo|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__undsalfixo -->
+<!-- inicio__s2200_evtadmissao__dscsalvar -->
+<div class="col-md-6" id="s2200_evtadmissao__dscsalvar__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__dscsalvar__label">Descrição do salário variável</label>
+      {% if s2200_evtadmissao_form.dscsalvar.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.dscsalvar.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.dscsalvar|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__dscsalvar -->
+<!-- inicio__s2200_evtadmissao__duracao -->
+<div class="col-md-12" id="s2200_evtadmissao__duracao__div">
+  <h4>Duração do Contrato de Trabalho</h4>
+</div>
+<!-- fim__s2200_evtadmissao__duracao -->
+<!-- inicio__s2200_evtadmissao__tpcontr -->
+<div class="col-md-6" id="s2200_evtadmissao__tpcontr__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__tpcontr__label">Tipo de contrato de trabalho*</label>
+    {% if s2200_evtadmissao_form.tpcontr.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.tpcontr.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.tpcontr.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.tpcontr.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.tpcontr|addcss:'form-control' }}
+          <input id="id_tpcontr" name="tpcontr" type="hidden" value="{% if s2200_evtadmissao_form.tpcontr.value or s2200_evtadmissao_form.tpcontr.value == 0 %}{{ s2200_evtadmissao_form.tpcontr.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.tpcontr|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.tpcontr|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__tpcontr -->
+<!-- inicio__s2200_evtadmissao__dtterm -->
+<div class="col-md-6" id="s2200_evtadmissao__dtterm__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__dtterm__label">Data de Término do contrato de trabalho</label>
+        {% if s2200_evtadmissao_form.dtterm.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2200_evtadmissao_form.dtterm.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.dtterm|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__dtterm -->
+<!-- inicio__s2200_evtadmissao__clauassec -->
+<div class="col-md-6" id="s2200_evtadmissao__clauassec__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__clauassec__label">Indicar se o contrato por prazo determinado contém cláusula assecuratória do direito recíproco de rescisão antes da data de seu término</label>
+    {% if s2200_evtadmissao_form.clauassec.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.clauassec.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.clauassec.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.clauassec.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.clauassec|addcss:'form-control' }}
+          <input id="id_clauassec" name="clauassec" type="hidden" value="{% if s2200_evtadmissao_form.clauassec.value or s2200_evtadmissao_form.clauassec.value == 0 %}{{ s2200_evtadmissao_form.clauassec.value }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.clauassec|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.clauassec|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__clauassec -->
+<!-- inicio__s2200_evtadmissao__objdet -->
+<div class="col-md-6" id="s2200_evtadmissao__objdet__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__objdet__label">Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.). Validação: O preenchimento é obrigatório e exclusivo se {tpContr} = [3].</label>
+      {% if s2200_evtadmissao_form.objdet.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2200_evtadmissao_form.objdet.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2200_evtadmissao_form.objdet|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__objdet -->
+<!-- inicio__s2200_evtadmissao__localtrabalho -->
+<div class="col-md-12" id="s2200_evtadmissao__localtrabalho__div">
+  <h4>Informações do local de trabalho</h4>
+</div>
+<!-- fim__s2200_evtadmissao__localtrabalho -->
+<!-- inicio__s2200_evtadmissao__versao -->
+<div class="col-md-3" id="s2200_evtadmissao__versao__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__versao__label">Versão</label>
+    {% if s2200_evtadmissao_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.versao.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.versao.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if s2200_evtadmissao_form.versao.value or s2200_evtadmissao_form.versao.value == 0 %}{{ s2200_evtadmissao_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__versao -->
+<!-- inicio__s2200_evtadmissao__transmissor_lote_esocial -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_esocial').change(function(){document.getElementById("s2200_evtadmissao__transmissor_lote_esocial__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="s2200_evtadmissao__transmissor_lote_esocial__div">
+<div class="form-group">
+  <label id="s2200_evtadmissao__transmissor_lote_esocial__label">Transmissor</label>
+  {% if not for_print %}
+    {% if s2200_evtadmissao_form.transmissor_lote_esocial.value %}
+    <a id="s2200_evtadmissao__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:s2200_evtadmissao_form.transmissor_lote_esocial.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if s2200_evtadmissao_form.transmissor_lote_esocial.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2200_evtadmissao_form.transmissor_lote_esocial.errors }}
+    </div>
+  {% endif %}
+  {% if s2200_evtadmissao_form.transmissor_lote_esocial.field.widget.attrs.readonly %}
+    {% if s2200_evtadmissao_form.transmissor_lote_esocial.field.widget.attrs.disabled %}
+      {{ s2200_evtadmissao_form.transmissor_lote_esocial|addcss:'form-control' }}
+      <input id="id_transmissor_lote_esocial" name="transmissor_lote_esocial" type="hidden" value="{% if s2200_evtadmissao_form.transmissor_lote_esocial.value or s2200_evtadmissao_form.transmissor_lote_esocial.value == 0 %}{{ s2200_evtadmissao_form.transmissor_lote_esocial.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ s2200_evtadmissao_form.transmissor_lote_esocial|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ s2200_evtadmissao_form.transmissor_lote_esocial|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__s2200_evtadmissao__transmissor_lote_esocial -->
+<!-- inicio__s2200_evtadmissao__status -->
+<div class="col-md-3" id="s2200_evtadmissao__status__div">
+  <div class="form-group">
+    <label id="s2200_evtadmissao__status__label">Status</label>
+    {% if s2200_evtadmissao_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2200_evtadmissao_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2200_evtadmissao_form.status.field.widget.attrs.readonly %}
+        {% if s2200_evtadmissao_form.status.field.widget.attrs.disabled %}
+          {{ s2200_evtadmissao_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if s2200_evtadmissao_form.status.value or s2200_evtadmissao_form.status.value == 0 %}{{ s2200_evtadmissao_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2200_evtadmissao_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2200_evtadmissao_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_evtadmissao__status -->

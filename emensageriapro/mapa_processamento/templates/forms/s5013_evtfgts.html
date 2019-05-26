@@ -1,0 +1,211 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5013_evtfgts__evtfgts -->
+<div class="col-md-12" id="s5013_evtfgts__evtfgts__div">
+  <h4>Evento consolidado por contribuinte referente ao FGTS devido.</h4>
+</div>
+<!-- fim__s5013_evtfgts__evtfgts -->
+<!-- inicio__s5013_evtfgts__identidade -->
+<div class="col-md-6" id="s5013_evtfgts__identidade__div">
+  <div class="form-group">
+    <label id="s5013_evtfgts__identidade__label">Identidade do Registro</label>
+      {% if s5013_evtfgts_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5013_evtfgts_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s5013_evtfgts_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5013_evtfgts__identidade -->
+<!-- inicio__s5013_evtfgts__ideevento -->
+<div class="col-md-12" id="s5013_evtfgts__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s5013_evtfgts__ideevento -->
+<!-- inicio__s5013_evtfgts__perapur -->
+<div class="col-md-6" id="s5013_evtfgts__perapur__div">
+  <div class="form-group">
+    <label id="s5013_evtfgts__perapur__label">Período de Apuração*</label>
+      {% if s5013_evtfgts_form.perapur.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5013_evtfgts_form.perapur.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s5013_evtfgts_form.perapur|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5013_evtfgts__perapur -->
+<!-- inicio__s5013_evtfgts__ideempregador -->
+<div class="col-md-12" id="s5013_evtfgts__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s5013_evtfgts__ideempregador -->
+<!-- inicio__s5013_evtfgts__tpinsc -->
+<div class="col-md-6" id="s5013_evtfgts__tpinsc__div">
+  <div class="form-group">
+    <label id="s5013_evtfgts__tpinsc__label">Tipo de inscrição*</label>
+    {% if s5013_evtfgts_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5013_evtfgts_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s5013_evtfgts_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s5013_evtfgts_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s5013_evtfgts_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s5013_evtfgts_form.tpinsc.value or s5013_evtfgts_form.tpinsc.value == 0 %}{{ s5013_evtfgts_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s5013_evtfgts_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s5013_evtfgts_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s5013_evtfgts__tpinsc -->
+<!-- inicio__s5013_evtfgts__nrinsc -->
+<div class="col-md-6" id="s5013_evtfgts__nrinsc__div">
+  <div class="form-group">
+    <label id="s5013_evtfgts__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s5013_evtfgts_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5013_evtfgts_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s5013_evtfgts_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5013_evtfgts__nrinsc -->
+<!-- inicio__s5013_evtfgts__infofgts -->
+<div class="col-md-12" id="s5013_evtfgts__infofgts__div">
+  <h4>Informações relativas ao FGTS.</h4>
+</div>
+<!-- fim__s5013_evtfgts__infofgts -->
+<!-- inicio__s5013_evtfgts__nrrecarqbase -->
+<div class="col-md-6" id="s5013_evtfgts__nrrecarqbase__div">
+  <div class="form-group">
+    <label id="s5013_evtfgts__nrrecarqbase__label">Número do recibo do arquivo vase*</label>
+      {% if s5013_evtfgts_form.nrrecarqbase.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5013_evtfgts_form.nrrecarqbase.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s5013_evtfgts_form.nrrecarqbase|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5013_evtfgts__nrrecarqbase -->
+<!-- inicio__s5013_evtfgts__indexistinfo -->
+<div class="col-md-6" id="s5013_evtfgts__indexistinfo__div">
+  <div class="form-group">
+    <label id="s5013_evtfgts__indexistinfo__label">Existência de valores base*</label>
+    {% if s5013_evtfgts_form.indexistinfo.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5013_evtfgts_form.indexistinfo.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s5013_evtfgts_form.indexistinfo.field.widget.attrs.readonly %}
+        {% if s5013_evtfgts_form.indexistinfo.field.widget.attrs.disabled %}
+          {{ s5013_evtfgts_form.indexistinfo|addcss:'form-control' }}
+          <input id="id_indexistinfo" name="indexistinfo" type="hidden" value="{% if s5013_evtfgts_form.indexistinfo.value or s5013_evtfgts_form.indexistinfo.value == 0 %}{{ s5013_evtfgts_form.indexistinfo.value|valor }}{% endif %}">
+        {% else %}
+          {{ s5013_evtfgts_form.indexistinfo|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s5013_evtfgts_form.indexistinfo|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s5013_evtfgts__indexistinfo -->
+<!-- inicio__s5013_evtfgts__versao -->
+<div class="col-md-3" id="s5013_evtfgts__versao__div">
+  <div class="form-group">
+    <label id="s5013_evtfgts__versao__label">Versão</label>
+    {% if s5013_evtfgts_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5013_evtfgts_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s5013_evtfgts_form.versao.field.widget.attrs.readonly %}
+        {% if s5013_evtfgts_form.versao.field.widget.attrs.disabled %}
+          {{ s5013_evtfgts_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if s5013_evtfgts_form.versao.value or s5013_evtfgts_form.versao.value == 0 %}{{ s5013_evtfgts_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ s5013_evtfgts_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s5013_evtfgts_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s5013_evtfgts__versao -->
+<!-- inicio__s5013_evtfgts__transmissor_lote_esocial -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_esocial').change(function(){document.getElementById("s5013_evtfgts__transmissor_lote_esocial__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="s5013_evtfgts__transmissor_lote_esocial__div">
+<div class="form-group">
+  <label id="s5013_evtfgts__transmissor_lote_esocial__label">Transmissor</label>
+  {% if not for_print %}
+    {% if s5013_evtfgts_form.transmissor_lote_esocial.value %}
+    <a id="s5013_evtfgts__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:s5013_evtfgts_form.transmissor_lote_esocial.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if s5013_evtfgts_form.transmissor_lote_esocial.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s5013_evtfgts_form.transmissor_lote_esocial.errors }}
+    </div>
+  {% endif %}
+  {% if s5013_evtfgts_form.transmissor_lote_esocial.field.widget.attrs.readonly %}
+    {% if s5013_evtfgts_form.transmissor_lote_esocial.field.widget.attrs.disabled %}
+      {{ s5013_evtfgts_form.transmissor_lote_esocial|addcss:'form-control' }}
+      <input id="id_transmissor_lote_esocial" name="transmissor_lote_esocial" type="hidden" value="{% if s5013_evtfgts_form.transmissor_lote_esocial.value or s5013_evtfgts_form.transmissor_lote_esocial.value == 0 %}{{ s5013_evtfgts_form.transmissor_lote_esocial.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ s5013_evtfgts_form.transmissor_lote_esocial|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ s5013_evtfgts_form.transmissor_lote_esocial|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__s5013_evtfgts__transmissor_lote_esocial -->
+<!-- inicio__s5013_evtfgts__status -->
+<div class="col-md-3" id="s5013_evtfgts__status__div">
+  <div class="form-group">
+    <label id="s5013_evtfgts__status__label">Status</label>
+    {% if s5013_evtfgts_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5013_evtfgts_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s5013_evtfgts_form.status.field.widget.attrs.readonly %}
+        {% if s5013_evtfgts_form.status.field.widget.attrs.disabled %}
+          {{ s5013_evtfgts_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if s5013_evtfgts_form.status.value or s5013_evtfgts_form.status.value == 0 %}{{ s5013_evtfgts_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ s5013_evtfgts_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s5013_evtfgts_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s5013_evtfgts__status -->

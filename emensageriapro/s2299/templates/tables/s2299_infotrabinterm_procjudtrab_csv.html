@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}."
-{% if show_fields.show_s2299_evtdeslig or not s2299_evtdeslig_id and 1 %}"Evento Desligamento";{% endif %}{% if show_fields.show_tptrib or 1 %}"Abrangência da Decisão";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"Número do Processo Judicial";{% endif %}{% if show_fields.show_codsusp or 0 %}"Código do Indicativo da Suspensão";{% endif %}
-{% for a in s2299_infotrabinterm_procjudtrab_lista %}{% if show_fields.show_s2299_evtdeslig or  not s2299_evtdeslig_id and 1 %}"{{ a.s2299_evtdeslig }}";{% endif %}{% if show_fields.show_tptrib or 1 %}"{{ a.get_tptrib_display }}";{% endif %}{% if show_fields.show_nrprocjud or 1 %}"{{ a.nrprocjud }}";{% endif %}{% if show_fields.show_codsusp or 0 %}"{{ a.codsusp }}";{% endif %}
-{% endfor %}

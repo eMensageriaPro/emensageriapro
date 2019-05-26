@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída."
-{% if show_fields.show_s5011_infopj or not s5011_infopj_id and 1 %}"Informações complementares, exclusivas da Pessoa Jurídica.";{% endif %}{% if show_fields.show_fatormes or 1 %}"Fator mês";{% endif %}{% if show_fields.show_fator13 or 1 %}"Fator decimo terceiro";{% endif %}
-{% for a in s5011_infoatconc_lista %}{% if show_fields.show_s5011_infopj or  not s5011_infopj_id and 1 %}"{{ a.s5011_infopj }}";{% endif %}{% if show_fields.show_fatormes or 1 %}"{{ a.fatormes }}";{% endif %}{% if show_fields.show_fator13 or 1 %}"{{ a.fator13 }}";{% endif %}
-{% endfor %}

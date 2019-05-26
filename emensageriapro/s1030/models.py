@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s1030.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,117 +45,39 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S1030_ALTERACAO_ACUMCARGO = (
-    (1, u'1 - Não acumulável'),
-    (2, u'2 - Profissional de Saúde'),
-    (3, u'3 - Professor'),
-    (4, u'4 - Técnico/Científico'),
-)
 
-CHOICES_S1030_ALTERACAO_CONTAGEMESP = (
-    (1, u'1 - Não'),
-    (2, u'2 - Professor (Infantil, Fundamental e Médio)'),
-    (3, u'3 - Professor de Ensino Superior, Magistrado, Membro de Ministério Público, Membro do Tribunal de Contas (com ingresso anterior a 16/12/1998 EC nr. 20/98)'),
-    (4, u'4 - Atividade de risco'),
-)
-
-CHOICES_S1030_ALTERACAO_DEDICEXCL = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1030_ALTERACAO_SITCARGO = (
-    (1, u'1 - Criação'),
-    (2, u'2 - Extinção'),
-    (3, u'3 - Reestruturação'),
-)
-
-CHOICES_S1030_INCLUSAO_ACUMCARGO = (
-    (1, u'1 - Não acumulável'),
-    (2, u'2 - Profissional de Saúde'),
-    (3, u'3 - Professor'),
-    (4, u'4 - Técnico/Científico'),
-)
-
-CHOICES_S1030_INCLUSAO_CONTAGEMESP = (
-    (1, u'1 - Não'),
-    (2, u'2 - Professor (Infantil, Fundamental e Médio)'),
-    (3, u'3 - Professor de Ensino Superior, Magistrado, Membro de Ministério Público, Membro do Tribunal de Contas (com ingresso anterior a 16/12/1998 EC nr. 20/98)'),
-    (4, u'4 - Atividade de risco'),
-)
-
-CHOICES_S1030_INCLUSAO_DEDICEXCL = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S1030_INCLUSAO_SITCARGO = (
-    (1, u'1 - Criação'),
-    (2, u'2 - Extinção'),
-    (3, u'3 - Reestruturação'),
-)
-
-PERIODOS = (
-    ('2017-01', u'Janeiro/2017'),
-    ('2017-02', u'Fevereiro/2017'),
-    ('2017-03', u'Março/2017'),
-    ('2017-04', u'Abril/2017'),
-    ('2017-05', u'Maio/2017'),
-    ('2017-06', u'Junho/2017'),
-    ('2017-07', u'Julho/2017'),
-    ('2017-08', u'Agosto/2017'),
-    ('2017-09', u'Setembro/2017'),
-    ('2017-10', u'Outubro/2017'),
-    ('2017-11', u'Novembro/2017'),
-    ('2017-12', u'Dezembro/2017'),
-    ('2018-01', u'Janeiro/2018'),
-    ('2018-02', u'Fevereiro/2018'),
-    ('2018-03', u'Março/2018'),
-    ('2018-04', u'Abril/2018'),
-    ('2018-05', u'Maio/2018'),
-    ('2018-06', u'Junho/2018'),
-    ('2018-07', u'Julho/2018'),
-    ('2018-08', u'Agosto/2018'),
-    ('2018-09', u'Setembro/2018'),
-    ('2018-10', u'Outubro/2018'),
-    ('2018-11', u'Novembro/2018'),
-    ('2018-12', u'Dezembro/2018'),
-    ('2019-01', u'Janeiro/2019'),
-    ('2019-02', u'Fevereiro/2019'),
-    ('2019-03', u'Março/2019'),
-    ('2019-04', u'Abril/2019'),
-    ('2019-05', u'Maio/2019'),
-    ('2019-06', u'Junho/2019'),
-    ('2019-07', u'Julho/2019'),
-    ('2019-08', u'Agosto/2019'),
-    ('2019-09', u'Setembro/2019'),
-    ('2019-10', u'Outubro/2019'),
-    ('2019-11', u'Novembro/2019'),
-    ('2019-12', u'Dezembro/2019'),
-)
 
 class s1030alteracao(SoftDeletionModel):
-    s1030_evttabcargo = models.OneToOneField('esocial.s1030evtTabCargo',
-        related_name='%(class)s_s1030_evttabcargo')
-    def evento(self): return self.s1030_evttabcargo.evento()
-    codcargo = models.CharField(max_length=30)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    nmcargo = models.CharField(max_length=100)
-    codcbo = models.CharField(max_length=6)
+
+    s1030_evttabcargo = models.ForeignKey('esocial.s1030evtTabCargo', 
+        related_name='%(class)s_s1030_evttabcargo', )
+    
+    def evento(self): 
+        return self.s1030_evttabcargo.evento()
+    codcargo = models.CharField(max_length=30, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    nmcargo = models.CharField(max_length=100, null=True, )
+    codcbo = models.CharField(max_length=6, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -151,54 +85,75 @@ class s1030alteracao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmcargo) + ' - ' + unicode(self.codcbo)
-    #s1030_alteracao_custom#
-
+        
+        lista = [
+            unicode(self.s1030_evttabcargo),
+            unicode(self.codcargo),
+            unicode(self.inivalid),
+            unicode(self.nmcargo),
+            unicode(self.codcbo),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Alteração das informações'
         db_table = r's1030_alteracao'       
         managed = True # s1030_alteracao #
-        unique_together = (
-            #custom_unique_together_s1030_alteracao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1030_alteracao
-            #index_together_s1030_alteracao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1030_alteracao", "Can view s1030_alteracao"),
-            #custom_permissions_s1030_alteracao
-        )
-        ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'nmcargo', 'codcbo']
+            ("can_view_s1030_alteracao", "Can view s1030_alteracao"), )
+            
+        ordering = [
+            's1030_evttabcargo',
+            'codcargo',
+            'inivalid',
+            'nmcargo',
+            'codcbo',]
 
 
 
 class s1030alteracaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1030alteracao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1030alteracaocargoPublico(SoftDeletionModel):
-    s1030_alteracao = models.OneToOneField('s1030alteracao',
-        related_name='%(class)s_s1030_alteracao')
-    def evento(self): return self.s1030_alteracao.evento()
-    acumcargo = models.IntegerField(choices=CHOICES_S1030_ALTERACAO_ACUMCARGO)
-    contagemesp = models.IntegerField(choices=CHOICES_S1030_ALTERACAO_CONTAGEMESP)
-    dedicexcl = models.CharField(choices=CHOICES_S1030_ALTERACAO_DEDICEXCL, max_length=1)
-    codcarreira = models.CharField(max_length=30, blank=True, null=True)
-    nrlei = models.CharField(max_length=12)
-    dtlei = models.DateField()
-    sitcargo = models.IntegerField(choices=CHOICES_S1030_ALTERACAO_SITCARGO)
+
+    s1030_alteracao = models.ForeignKey('s1030.s1030alteracao', 
+        related_name='%(class)s_s1030_alteracao', )
+    
+    def evento(self): 
+        return self.s1030_alteracao.evento()
+    acumcargo = models.IntegerField(choices=CHOICES_S1030_ACUMCARGO_ALTERACAO, null=True, )
+    contagemesp = models.IntegerField(choices=CHOICES_S1030_CONTAGEMESP_ALTERACAO, null=True, )
+    dedicexcl = models.CharField(choices=CHOICES_S1030_DEDICEXCL_ALTERACAO, max_length=1, null=True, )
+    codcarreira = models.CharField(max_length=30, blank=True, null=True, )
+    nrlei = models.CharField(max_length=12, null=True, )
+    dtlei = models.DateField(null=True, )
+    sitcargo = models.IntegerField(choices=CHOICES_S1030_SITCARGO_ALTERACAO, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -206,49 +161,74 @@ class s1030alteracaocargoPublico(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1030_alteracao) + ' - ' + unicode(self.acumcargo) + ' - ' + unicode(self.contagemesp) + ' - ' + unicode(self.dedicexcl) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.sitcargo)
-    #s1030_alteracao_cargopublico_custom#
-
+        
+        lista = [
+            unicode(self.s1030_alteracao),
+            unicode(self.acumcargo),
+            unicode(self.contagemesp),
+            unicode(self.dedicexcl),
+            unicode(self.nrlei),
+            unicode(self.dtlei),
+            unicode(self.sitcargo),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Detalhamento de informações exclusivas para Cargos e Empregos Públicos'
         db_table = r's1030_alteracao_cargopublico'       
         managed = True # s1030_alteracao_cargopublico #
-        unique_together = (
-            #custom_unique_together_s1030_alteracao_cargopublico#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1030_alteracao_cargopublico
-            #index_together_s1030_alteracao_cargopublico
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1030_alteracao_cargopublico", "Can view s1030_alteracao_cargopublico"),
-            #custom_permissions_s1030_alteracao_cargopublico
-        )
-        ordering = ['s1030_alteracao', 'acumcargo', 'contagemesp', 'dedicexcl', 'nrlei', 'dtlei', 'sitcargo']
+            ("can_view_s1030_alteracao_cargopublico", "Can view s1030_alteracao_cargopublico"), )
+            
+        ordering = [
+            's1030_alteracao',
+            'acumcargo',
+            'contagemesp',
+            'dedicexcl',
+            'nrlei',
+            'dtlei',
+            'sitcargo',]
 
 
 
 class s1030alteracaocargoPublicoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1030alteracaocargoPublico
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1030alteracaonovaValidade(SoftDeletionModel):
-    s1030_alteracao = models.OneToOneField('s1030alteracao',
-        related_name='%(class)s_s1030_alteracao')
-    def evento(self): return self.s1030_alteracao.evento()
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+
+    s1030_alteracao = models.ForeignKey('s1030.s1030alteracao', 
+        related_name='%(class)s_s1030_alteracao', )
+    
+    def evento(self): 
+        return self.s1030_alteracao.evento()
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -256,50 +236,65 @@ class s1030alteracaonovaValidade(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1030_alteracao) + ' - ' + unicode(self.inivalid)
-    #s1030_alteracao_novavalidade_custom#
-
+        
+        lista = [
+            unicode(self.s1030_alteracao),
+            unicode(self.inivalid),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1030_alteracao_novavalidade'       
         managed = True # s1030_alteracao_novavalidade #
-        unique_together = (
-            #custom_unique_together_s1030_alteracao_novavalidade#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1030_alteracao_novavalidade
-            #index_together_s1030_alteracao_novavalidade
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1030_alteracao_novavalidade", "Can view s1030_alteracao_novavalidade"),
-            #custom_permissions_s1030_alteracao_novavalidade
-        )
-        ordering = ['s1030_alteracao', 'inivalid']
+            ("can_view_s1030_alteracao_novavalidade", "Can view s1030_alteracao_novavalidade"), )
+            
+        ordering = [
+            's1030_alteracao',
+            'inivalid',]
 
 
 
 class s1030alteracaonovaValidadeSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1030alteracaonovaValidade
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1030exclusao(SoftDeletionModel):
-    s1030_evttabcargo = models.OneToOneField('esocial.s1030evtTabCargo',
-        related_name='%(class)s_s1030_evttabcargo')
-    def evento(self): return self.s1030_evttabcargo.evento()
-    codcargo = models.CharField(max_length=30)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+
+    s1030_evttabcargo = models.ForeignKey('esocial.s1030evtTabCargo', 
+        related_name='%(class)s_s1030_evttabcargo', )
+    
+    def evento(self): 
+        return self.s1030_evttabcargo.evento()
+    codcargo = models.CharField(max_length=30, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -307,52 +302,69 @@ class s1030exclusao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid)
-    #s1030_exclusao_custom#
-
+        
+        lista = [
+            unicode(self.s1030_evttabcargo),
+            unicode(self.codcargo),
+            unicode(self.inivalid),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Exclusão das informações'
         db_table = r's1030_exclusao'       
         managed = True # s1030_exclusao #
-        unique_together = (
-            #custom_unique_together_s1030_exclusao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1030_exclusao
-            #index_together_s1030_exclusao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1030_exclusao", "Can view s1030_exclusao"),
-            #custom_permissions_s1030_exclusao
-        )
-        ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid']
+            ("can_view_s1030_exclusao", "Can view s1030_exclusao"), )
+            
+        ordering = [
+            's1030_evttabcargo',
+            'codcargo',
+            'inivalid',]
 
 
 
 class s1030exclusaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1030exclusao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1030inclusao(SoftDeletionModel):
-    s1030_evttabcargo = models.OneToOneField('esocial.s1030evtTabCargo',
-        related_name='%(class)s_s1030_evttabcargo')
-    def evento(self): return self.s1030_evttabcargo.evento()
-    codcargo = models.CharField(max_length=30)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    nmcargo = models.CharField(max_length=100)
-    codcbo = models.CharField(max_length=6)
+
+    s1030_evttabcargo = models.ForeignKey('esocial.s1030evtTabCargo', 
+        related_name='%(class)s_s1030_evttabcargo', )
+    
+    def evento(self): 
+        return self.s1030_evttabcargo.evento()
+    codcargo = models.CharField(max_length=30, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    nmcargo = models.CharField(max_length=100, null=True, )
+    codcbo = models.CharField(max_length=6, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -360,54 +372,75 @@ class s1030inclusao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1030_evttabcargo) + ' - ' + unicode(self.codcargo) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.nmcargo) + ' - ' + unicode(self.codcbo)
-    #s1030_inclusao_custom#
-
+        
+        lista = [
+            unicode(self.s1030_evttabcargo),
+            unicode(self.codcargo),
+            unicode(self.inivalid),
+            unicode(self.nmcargo),
+            unicode(self.codcbo),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Inclusão de novas informações'
         db_table = r's1030_inclusao'       
         managed = True # s1030_inclusao #
-        unique_together = (
-            #custom_unique_together_s1030_inclusao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1030_inclusao
-            #index_together_s1030_inclusao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1030_inclusao", "Can view s1030_inclusao"),
-            #custom_permissions_s1030_inclusao
-        )
-        ordering = ['s1030_evttabcargo', 'codcargo', 'inivalid', 'nmcargo', 'codcbo']
+            ("can_view_s1030_inclusao", "Can view s1030_inclusao"), )
+            
+        ordering = [
+            's1030_evttabcargo',
+            'codcargo',
+            'inivalid',
+            'nmcargo',
+            'codcbo',]
 
 
 
 class s1030inclusaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1030inclusao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1030inclusaocargoPublico(SoftDeletionModel):
-    s1030_inclusao = models.OneToOneField('s1030inclusao',
-        related_name='%(class)s_s1030_inclusao')
-    def evento(self): return self.s1030_inclusao.evento()
-    acumcargo = models.IntegerField(choices=CHOICES_S1030_INCLUSAO_ACUMCARGO)
-    contagemesp = models.IntegerField(choices=CHOICES_S1030_INCLUSAO_CONTAGEMESP)
-    dedicexcl = models.CharField(choices=CHOICES_S1030_INCLUSAO_DEDICEXCL, max_length=1)
-    codcarreira = models.CharField(max_length=30, blank=True, null=True)
-    nrlei = models.CharField(max_length=12)
-    dtlei = models.DateField()
-    sitcargo = models.IntegerField(choices=CHOICES_S1030_INCLUSAO_SITCARGO)
+
+    s1030_inclusao = models.ForeignKey('s1030.s1030inclusao', 
+        related_name='%(class)s_s1030_inclusao', )
+    
+    def evento(self): 
+        return self.s1030_inclusao.evento()
+    acumcargo = models.IntegerField(choices=CHOICES_S1030_ACUMCARGO_INCLUSAO, null=True, )
+    contagemesp = models.IntegerField(choices=CHOICES_S1030_CONTAGEMESP_INCLUSAO, null=True, )
+    dedicexcl = models.CharField(choices=CHOICES_S1030_DEDICEXCL_INCLUSAO, max_length=1, null=True, )
+    codcarreira = models.CharField(max_length=30, blank=True, null=True, )
+    nrlei = models.CharField(max_length=12, null=True, )
+    dtlei = models.DateField(null=True, )
+    sitcargo = models.IntegerField(choices=CHOICES_S1030_SITCARGO_INCLUSAO, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -415,41 +448,59 @@ class s1030inclusaocargoPublico(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1030_inclusao) + ' - ' + unicode(self.acumcargo) + ' - ' + unicode(self.contagemesp) + ' - ' + unicode(self.dedicexcl) + ' - ' + unicode(self.nrlei) + ' - ' + unicode(self.dtlei) + ' - ' + unicode(self.sitcargo)
-    #s1030_inclusao_cargopublico_custom#
-
+        
+        lista = [
+            unicode(self.s1030_inclusao),
+            unicode(self.acumcargo),
+            unicode(self.contagemesp),
+            unicode(self.dedicexcl),
+            unicode(self.nrlei),
+            unicode(self.dtlei),
+            unicode(self.sitcargo),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Detalhamento de informações exclusivas para Cargos e Empregos Públicos'
         db_table = r's1030_inclusao_cargopublico'       
         managed = True # s1030_inclusao_cargopublico #
-        unique_together = (
-            #custom_unique_together_s1030_inclusao_cargopublico#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1030_inclusao_cargopublico
-            #index_together_s1030_inclusao_cargopublico
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1030_inclusao_cargopublico", "Can view s1030_inclusao_cargopublico"),
-            #custom_permissions_s1030_inclusao_cargopublico
-        )
-        ordering = ['s1030_inclusao', 'acumcargo', 'contagemesp', 'dedicexcl', 'nrlei', 'dtlei', 'sitcargo']
+            ("can_view_s1030_inclusao_cargopublico", "Can view s1030_inclusao_cargopublico"), )
+            
+        ordering = [
+            's1030_inclusao',
+            'acumcargo',
+            'contagemesp',
+            'dedicexcl',
+            'nrlei',
+            'dtlei',
+            'sitcargo',]
 
 
 
 class s1030inclusaocargoPublicoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1030inclusaocargoPublico
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

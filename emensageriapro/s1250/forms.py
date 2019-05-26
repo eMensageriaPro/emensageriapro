@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s1250.models import * 
-from emensageriapro.esocial.models import s1250evtAqProd 
+from emensageriapro.s1250.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,32 +40,25 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s1250_ideprodutor(forms.ModelForm):
+
     vlrbruto = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrcpdescpr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrratdescpr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrsenardesc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1250_ideprodutor, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1250_tpaquis'].queryset = s1250tpAquis.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1250_tpaquis'].widget.attrs['required'] = True        
-        self.fields['tpinscprod'].widget.attrs['required'] = True        
-        self.fields['nrinscprod'].widget.attrs['required'] = True        
-        self.fields['vlrbruto'].widget.attrs['required'] = True        
-        self.fields['vrcpdescpr'].widget.attrs['required'] = True        
-        self.fields['vrratdescpr'].widget.attrs['required'] = True        
-        self.fields['vrsenardesc'].widget.attrs['required'] = True        
-        self.fields['indopccp'].widget.attrs['required'] = True
+        super(form_s1250_ideprodutor, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -85,33 +78,28 @@ class form_s1250_ideprodutor(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1250ideProdutor
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1250_infoprocj(forms.ModelForm):
+
     vrcpnret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrratnret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrsenarnret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1250_infoprocj, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1250_tpaquis'].queryset = s1250tpAquis.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1250_tpaquis'].widget.attrs['required'] = True        
-        self.fields['nrprocjud'].widget.attrs['required'] = True        
-        self.fields['codsusp'].widget.attrs['required'] = True        
-        self.fields['vrcpnret'].widget.attrs['required'] = True        
-        self.fields['vrratnret'].widget.attrs['required'] = True        
-        self.fields['vrsenarnret'].widget.attrs['required'] = True
+        super(form_s1250_infoprocj, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -131,33 +119,28 @@ class form_s1250_infoprocj(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1250infoProcJ
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1250_infoprocjud(forms.ModelForm):
+
     vrcpnret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrratnret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrsenarnret = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1250_infoprocjud, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1250_ideprodutor'].queryset = s1250ideProdutor.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1250_ideprodutor'].widget.attrs['required'] = True        
-        self.fields['nrprocjud'].widget.attrs['required'] = True        
-        self.fields['codsusp'].widget.attrs['required'] = True        
-        self.fields['vrcpnret'].widget.attrs['required'] = True        
-        self.fields['vrratnret'].widget.attrs['required'] = True        
-        self.fields['vrsenarnret'].widget.attrs['required'] = True
+        super(form_s1250_infoprocjud, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -177,35 +160,29 @@ class form_s1250_infoprocjud(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1250infoProcJud
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1250_nfs(forms.ModelForm):
+
     vlrbruto = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrcpdescpr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrratdescpr = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrsenardesc = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1250_nfs, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1250_ideprodutor'].queryset = s1250ideProdutor.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1250_ideprodutor'].widget.attrs['required'] = True        
-        self.fields['nrdocto'].widget.attrs['required'] = True        
-        self.fields['dtemisnf'].widget.attrs['required'] = True        
-        self.fields['vlrbruto'].widget.attrs['required'] = True        
-        self.fields['vrcpdescpr'].widget.attrs['required'] = True        
-        self.fields['vrratdescpr'].widget.attrs['required'] = True        
-        self.fields['vrsenardesc'].widget.attrs['required'] = True
+        super(form_s1250_nfs, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -225,28 +202,26 @@ class form_s1250_nfs(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1250nfs
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1250_tpaquis(forms.ModelForm):
+
     vlrtotaquis = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1250_tpaquis, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1250_evtaqprod'].queryset = s1250evtAqProd.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1250_evtaqprod'].widget.attrs['required'] = True        
-        self.fields['indaquis'].widget.attrs['required'] = True        
-        self.fields['vlrtotaquis'].widget.attrs['required'] = True
+        super(form_s1250_tpaquis, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -266,10 +241,10 @@ class form_s1250_tpaquis(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1250tpAquis
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

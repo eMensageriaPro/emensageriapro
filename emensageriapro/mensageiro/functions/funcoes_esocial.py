@@ -158,40 +158,54 @@ def ler_arquivo(arquivo):
     return texto.encode('utf-8')
 
 
-def create_pem_files(CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE):
+def create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file):
     import os.path
     from emensageriapro.padrao import salvar_arquivo
     from OpenSSL import crypto
 
-    pkcs12 = crypto.load_pkcs12(open(CERT_HOST, 'rb').read(), CERT_PASS)
+    pkcs12 = crypto.load_pkcs12(open(cert_host, 'rb').read(), cert_pass)
 
-    if not os.path.isfile(CERT_PEM_FILE):
+    if not os.path.isfile(cert_pem_file):
         cert_str = crypto.dump_certificate(crypto.FILETYPE_PEM, pkcs12.get_certificate())
-        salvar_arquivo(CERT_PEM_FILE, cert_str)
+        salvar_arquivo(cert_pem_file, cert_str)
 
-    if not os.path.isfile(KEY_PEM_FILE):
+    if not os.path.isfile(key_pem_file):
         key_str = crypto.dump_privatekey(crypto.FILETYPE_PEM, pkcs12.get_privatekey())
-        salvar_arquivo(KEY_PEM_FILE, key_str)
+        salvar_arquivo(key_pem_file, key_str)
 
 
 
 
-def assinar_esocial(xml):
+def assinar_esocial(request, xml, transmissor_id):
+
     from lxml import etree
-    from signxml import XMLSigner, methods
-    from emensageriapro.settings import CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
     from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, BASE_DIR
+    from signxml import XMLSigner, methods
+    #from emensageriapro.settings import CERT_HOST, CERT_PASS, CERT_PEM_FILE, KEY_PEM_FILE
 
-    cert_host = BASE_DIR + '/' + CERT_HOST
-    cert_pem_file = CERT_PEM_FILE
-    key_pem_file = KEY_PEM_FILE
+    tra = TransmissorLoteEsocial.objects. \
+        get(id=transmissor_id)
+
+    if tra.transmissor.esocial_certificado:
+
+        cert_host = '%s/certificado/%s' % (BASE_DIR, tra.transmissor.esocial_certificado.certificado)
+        cert_pass = tra.transmissor.esocial_certificado.senha
+        cert_pem_file = 'certificado/cert_%s.pem' % tra.transmissor.efdreinf_certificado.id
+        key_pem_file = 'certificado/key_%s.pem' % tra.transmissor.efdreinf_certificado.id
+
+    else:
+
+        messages.error(request,
+                       'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
+
+        return xml
 
     if FORCE_PRODUCAO_RESTRITA:
         xml = xml.replace('<tpAmb>1</tpAmb>','<tpAmb>2</tpAmb>')
 
-    if CERT_HOST:
+    if cert_host:
 
-        create_pem_files(cert_host, CERT_PASS, cert_pem_file, key_pem_file)
+        create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
         cert_str = ler_arquivo(cert_pem_file)
         key_str = ler_arquivo(key_pem_file)
         root = etree.fromstring(xml)
@@ -265,37 +279,52 @@ def create_request(dados, transmissor_dados):
 
 
 def send_xml(request, transmissor_id, service):
-    from emensageriapro.settings import BASE_DIR
-    from datetime import datetime
-    data_atual = str(datetime.now()).replace(':','-').replace(' ','-').replace('.','-')
 
     import os
-    from emensageriapro.settings import FORCE_PRODUCAO_RESTRITA, \
-        TP_AMB, CA_CERT_PEM_FILE, CERT_HOST, CERT_PASS, \
-        CERT_PEM_FILE, KEY_PEM_FILE
+    from datetime import datetime
+    from emensageriapro.settings import BASE_DIR, FORCE_PRODUCAO_RESTRITA, TP_AMB, CA_CERT_PEM_FILE
 
-    CERT_HOST = BASE_DIR + '/' + CERT_HOST
+    data_atual = str(datetime.now()).replace(':', '-').replace(' ', '-').replace('.', '-')
 
-    if TP_AMB == '1': # Produção
+
+    if TP_AMB == '1':  # Produção
+
         if service == 'WsEnviarLoteEventos':
             URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
+
         elif service == 'WsConsultarLoteEventos':
             URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
 
-    elif TP_AMB == '2': # Produção-Restrita
+    elif TP_AMB == '2':  # Produção-Restrita
+
         if service == 'WsEnviarLoteEventos':
             URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/ServicoEnviarLoteEventos/EnviarLoteEventos"
+
         elif service == 'WsConsultarLoteEventos':
             URL_WS = "https://webservices.producaorestrita.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc"
             ACTION = "http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos"
 
     name = get_transmissor_name(transmissor_id)
 
-    tle = TransmissorLoteEsocial.objects.using('default').\
-                get(id=transmissor_id)
+    tle = TransmissorLoteEsocial.objects. \
+        get(id=transmissor_id)
+
+    if tle.transmissor.esocial_certificado:
+
+        cert_host = '%s/certificado/%s' % (BASE_DIR, tle.transmissor.esocial_certificado.certificado)
+        cert_pass = tle.transmissor.esocial_certificado.senha
+        cert_pem_file = 'certificado/cert_%s.pem' % tle.transmissor.efdreinf_certificado.id
+        key_pem_file = 'certificado/key_%s.pem' % tle.transmissor.efdreinf_certificado.id
+
+    else:
+
+        messages.error(request,
+                       'O certificado não está configurado ou não possuem eventos validados para envio neste lote!')
+
+        return None
 
     transmissor_dados = {}
     transmissor_dados['empregador_tpinsc'] = tle.empregador_tpinsc
@@ -306,11 +335,7 @@ def send_xml(request, transmissor_id, service):
     transmissor_dados['esocial_lote_max'] = tle.transmissor.esocial_lote_max
     transmissor_dados['esocial_timeout'] = int(tle.transmissor.esocial_timeout)
 
-    cert_pem_file = BASE_DIR + '/' + CERT_PEM_FILE
-    key_pem_file = BASE_DIR + '/' + KEY_PEM_FILE
-
-    if not os.path.isfile(cert_pem_file) and CERT_HOST:
-        create_pem_files(CERT_HOST, CERT_PASS, cert_pem_file, key_pem_file)
+    create_pem_files(cert_host, cert_pass, cert_pem_file, key_pem_file)
 
     dados = {}
     dados['transmissor_id'] = transmissor_id
@@ -328,11 +353,11 @@ def send_xml(request, transmissor_id, service):
     dados['action'] = ACTION
     dados['timeout'] = transmissor_dados['esocial_timeout']
 
-    quant_eventos =  TransmissorEventosEsocial.objects.using('default'). \
+    quant_eventos = TransmissorEventosEsocial.objects.using('default'). \
                                     filter(transmissor_lote_esocial_id=transmissor_id,
                                            status=STATUS_EVENTO_AGUARD_ENVIO).count()
 
-    if CERT_HOST and (quant_eventos or service == 'WsConsultarLoteEventos'):
+    if tle.transmissor.esocial_certificado and (quant_eventos or service == 'WsConsultarLoteEventos'):
 
         if (quant_eventos >= transmissor_dados['esocial_lote_min'] and \
                 quant_eventos <= transmissor_dados['esocial_lote_max'] and \

@@ -1,0 +1,298 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9012_evtretcons__evtretcons -->
+<div class="col-md-12" id="r9012_evtretcons__evtretcons__div">
+  <h4>Evento totalizador por contribuinte</h4>
+</div>
+<!-- fim__r9012_evtretcons__evtretcons -->
+<!-- inicio__r9012_evtretcons__identidade -->
+<div class="col-md-6" id="r9012_evtretcons__identidade__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__identidade__label">Identificação única do evento</label>
+      {% if r9012_evtretcons_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_evtretcons_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_evtretcons_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__identidade -->
+<!-- inicio__r9012_evtretcons__ideevento -->
+<div class="col-md-12" id="r9012_evtretcons__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__r9012_evtretcons__ideevento -->
+<!-- inicio__r9012_evtretcons__perapur -->
+<div class="col-md-6" id="r9012_evtretcons__perapur__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*</label>
+      {% if r9012_evtretcons_form.perapur.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_evtretcons_form.perapur.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_evtretcons_form.perapur|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__perapur -->
+<!-- inicio__r9012_evtretcons__idecontri -->
+<div class="col-md-12" id="r9012_evtretcons__idecontri__div">
+  <h4>Informações de identificação do contribuinte</h4>
+</div>
+<!-- fim__r9012_evtretcons__idecontri -->
+<!-- inicio__r9012_evtretcons__tpinsc -->
+<div class="col-md-6" id="r9012_evtretcons__tpinsc__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+    {% if r9012_evtretcons_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r9012_evtretcons_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r9012_evtretcons_form.tpinsc.field.widget.attrs.readonly %}
+        {% if r9012_evtretcons_form.tpinsc.field.widget.attrs.disabled %}
+          {{ r9012_evtretcons_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r9012_evtretcons_form.tpinsc.value or r9012_evtretcons_form.tpinsc.value == 0 %}{{ r9012_evtretcons_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ r9012_evtretcons_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r9012_evtretcons_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__tpinsc -->
+<!-- inicio__r9012_evtretcons__nrinsc -->
+<div class="col-md-6" id="r9012_evtretcons__nrinsc__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+      {% if r9012_evtretcons_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_evtretcons_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_evtretcons_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__nrinsc -->
+<!-- inicio__r9012_evtretcons__iderecretorno -->
+<div class="col-md-12" id="r9012_evtretcons__iderecretorno__div">
+  <h4>Informações do Recibo de Retorno</h4>
+</div>
+<!-- fim__r9012_evtretcons__iderecretorno -->
+<!-- inicio__r9012_evtretcons__idestatus -->
+<div class="col-md-12" id="r9012_evtretcons__idestatus__div">
+  <h4>Situação atual do evento</h4>
+</div>
+<!-- fim__r9012_evtretcons__idestatus -->
+<!-- inicio__r9012_evtretcons__cdretorno -->
+<div class="col-md-6" id="r9012_evtretcons__cdretorno__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__cdretorno__label">Código do Retorno*</label>
+    {% if r9012_evtretcons_form.cdretorno.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r9012_evtretcons_form.cdretorno.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r9012_evtretcons_form.cdretorno.field.widget.attrs.readonly %}
+        {% if r9012_evtretcons_form.cdretorno.field.widget.attrs.disabled %}
+          {{ r9012_evtretcons_form.cdretorno|addcss:'form-control' }}
+          <input id="id_cdretorno" name="cdretorno" type="hidden" value="{% if r9012_evtretcons_form.cdretorno.value or r9012_evtretcons_form.cdretorno.value == 0 %}{{ r9012_evtretcons_form.cdretorno.value|valor }}{% endif %}">
+        {% else %}
+          {{ r9012_evtretcons_form.cdretorno|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r9012_evtretcons_form.cdretorno|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__cdretorno -->
+<!-- inicio__r9012_evtretcons__descretorno -->
+<div class="col-md-6" id="r9012_evtretcons__descretorno__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__descretorno__label">Descrição do retorno*</label>
+      {% if r9012_evtretcons_form.descretorno.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_evtretcons_form.descretorno.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_evtretcons_form.descretorno|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__descretorno -->
+<!-- inicio__r9012_evtretcons__inforecev -->
+<div class="col-md-12" id="r9012_evtretcons__inforecev__div">
+  <h4>Informações de processamento dos eventos</h4>
+</div>
+<!-- fim__r9012_evtretcons__inforecev -->
+<!-- inicio__r9012_evtretcons__nrprotentr -->
+<div class="col-md-6" id="r9012_evtretcons__nrprotentr__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__nrprotentr__label">Número do protocolo de entrega do evento*</label>
+      {% if r9012_evtretcons_form.nrprotentr.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_evtretcons_form.nrprotentr.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_evtretcons_form.nrprotentr|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__nrprotentr -->
+<!-- inicio__r9012_evtretcons__dhprocess -->
+<div class="col-md-6" id="r9012_evtretcons__dhprocess__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__dhprocess__label">Data e hora do início do processamento da consulta*</label>
+        {% if r9012_evtretcons_form.dhprocess.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ r9012_evtretcons_form.dhprocess.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_evtretcons_form.dhprocess|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__dhprocess -->
+<!-- inicio__r9012_evtretcons__tpev -->
+<div class="col-md-6" id="r9012_evtretcons__tpev__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__tpev__label">Tipo do Evento*</label>
+      {% if r9012_evtretcons_form.tpev.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_evtretcons_form.tpev.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_evtretcons_form.tpev|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__tpev -->
+<!-- inicio__r9012_evtretcons__idev -->
+<div class="col-md-6" id="r9012_evtretcons__idev__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__idev__label">ID do Evento*</label>
+      {% if r9012_evtretcons_form.idev.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_evtretcons_form.idev.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_evtretcons_form.idev|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__idev -->
+<!-- inicio__r9012_evtretcons__hash -->
+<div class="col-md-6" id="r9012_evtretcons__hash__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__hash__label">Hash do arquivo processado*</label>
+      {% if r9012_evtretcons_form.hash.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_evtretcons_form.hash.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_evtretcons_form.hash|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__hash -->
+<!-- inicio__r9012_evtretcons__versao -->
+<div class="col-md-3" id="r9012_evtretcons__versao__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__versao__label">Versão</label>
+    {% if r9012_evtretcons_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r9012_evtretcons_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r9012_evtretcons_form.versao.field.widget.attrs.readonly %}
+        {% if r9012_evtretcons_form.versao.field.widget.attrs.disabled %}
+          {{ r9012_evtretcons_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if r9012_evtretcons_form.versao.value or r9012_evtretcons_form.versao.value == 0 %}{{ r9012_evtretcons_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ r9012_evtretcons_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r9012_evtretcons_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__versao -->
+<!-- inicio__r9012_evtretcons__transmissor_lote_efdreinf -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_efdreinf').change(function(){document.getElementById("r9012_evtretcons__transmissor_lote_efdreinf__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="r9012_evtretcons__transmissor_lote_efdreinf__div">
+<div class="form-group">
+  <label id="r9012_evtretcons__transmissor_lote_efdreinf__label">Transmissor</label>
+  
+  {% if not for_print %}
+    {% if r9012_evtretcons_form.transmissor_lote_efdreinf.value %}
+    <a id="r9012_evtretcons__transmissor_lote_efdreinf__div_acessar" href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_id:r9012_evtretcons_form.transmissor_lote_efdreinf.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  
+  {% if r9012_evtretcons_form.transmissor_lote_efdreinf.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_evtretcons_form.transmissor_lote_efdreinf.errors }}
+    </div>
+  {% endif %}
+  {% if r9012_evtretcons_form.transmissor_lote_efdreinf.field.widget.attrs.readonly %}
+    {% if r9012_evtretcons_form.transmissor_lote_efdreinf.field.widget.attrs.disabled %}
+      {{ r9012_evtretcons_form.transmissor_lote_efdreinf|addcss:'form-control' }}
+      <input id="id_transmissor_lote_efdreinf" name="transmissor_lote_efdreinf" type="hidden" value="{% if r9012_evtretcons_form.transmissor_lote_efdreinf.value or r9012_evtretcons_form.transmissor_lote_efdreinf.value == 0 %}{{ r9012_evtretcons_form.transmissor_lote_efdreinf.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ r9012_evtretcons_form.transmissor_lote_efdreinf|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ r9012_evtretcons_form.transmissor_lote_efdreinf|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__r9012_evtretcons__transmissor_lote_efdreinf -->
+<!-- inicio__r9012_evtretcons__status -->
+<div class="col-md-3" id="r9012_evtretcons__status__div">
+  <div class="form-group">
+    <label id="r9012_evtretcons__status__label">Status</label>
+    {% if r9012_evtretcons_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r9012_evtretcons_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r9012_evtretcons_form.status.field.widget.attrs.readonly %}
+        {% if r9012_evtretcons_form.status.field.widget.attrs.disabled %}
+          {{ r9012_evtretcons_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if r9012_evtretcons_form.status.value or r9012_evtretcons_form.status.value == 0 %}{{ r9012_evtretcons_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ r9012_evtretcons_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r9012_evtretcons_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_evtretcons__status -->

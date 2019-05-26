@@ -4,7 +4,7 @@
 
 """
 
-    eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
     Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
 
     This program is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 @login_required
 def verificar(request, hash):
     for_print = 0
-    db_slug = 'default'
+    
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
@@ -82,35 +82,51 @@ def verificar(request, hash):
     except:
         return redirect('login')
 
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s5003_evtbasesfgts')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+    usuario = get_object_or_404(Usuarios, id = usuario_id)
+    pagina = ConfigPaginas.objects.get(endereco='s5003_evtbasesfgts')
+    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
     dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
     if permissao.permite_listar:
-        s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS.objects.using( db_slug ), excluido = False, id = s5003_evtbasesfgts_id)
-        s5003_evtbasesfgts_lista = s5003evtBasesFGTS.objects.using( db_slug ).filter(id=s5003_evtbasesfgts_id, excluido = False).all()
+        s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS, id = s5003_evtbasesfgts_id)
+        s5003_evtbasesfgts_lista = s5003evtBasesFGTS.objects.filter(id=s5003_evtbasesfgts_id).all()
 
+        
+        s5003_ideestablot_lista = s5003ideEstabLot.objects.filter(s5003_evtbasesfgts_id__in = listar_ids(s5003_evtbasesfgts_lista) ).all()
+        s5003_infotrabfgts_lista = s5003infoTrabFGTS.objects.filter(s5003_ideestablot_id__in = listar_ids(s5003_ideestablot_lista) ).all()
+        s5003_infobasefgts_lista = s5003infoBaseFGTS.objects.filter(s5003_infotrabfgts_id__in = listar_ids(s5003_infotrabfgts_lista) ).all()
+        s5003_baseperapur_lista = s5003basePerApur.objects.filter(s5003_infobasefgts_id__in = listar_ids(s5003_infobasefgts_lista) ).all()
+        s5003_infobaseperante_lista = s5003infoBasePerAntE.objects.filter(s5003_infobasefgts_id__in = listar_ids(s5003_infobasefgts_lista) ).all()
+        s5003_baseperante_lista = s5003basePerAntE.objects.filter(s5003_infobaseperante_id__in = listar_ids(s5003_infobaseperante_lista) ).all()
+        s5003_infodpsfgts_lista = s5003infoDpsFGTS.objects.filter(s5003_evtbasesfgts_id__in = listar_ids(s5003_evtbasesfgts_lista) ).all()
+        s5003_infotrabdps_lista = s5003infoTrabDps.objects.filter(s5003_infodpsfgts_id__in = listar_ids(s5003_infodpsfgts_lista) ).all()
+        s5003_dpsperapur_lista = s5003dpsPerApur.objects.filter(s5003_infotrabdps_id__in = listar_ids(s5003_infotrabdps_lista) ).all()
+        s5003_infodpsperante_lista = s5003infoDpsPerAntE.objects.filter(s5003_infotrabdps_id__in = listar_ids(s5003_infotrabdps_lista) ).all()
+        s5003_dpsperante_lista = s5003dpsPerAntE.objects.filter(s5003_infodpsperante_id__in = listar_ids(s5003_infodpsperante_lista) ).all()
 
-        s5003_infofgts_lista = s5003infoFGTS.objects.using(db_slug).filter(s5003_evtbasesfgts_id__in = listar_ids(s5003_evtbasesfgts_lista) ).filter(excluido=False).all()
-        s5003_ideestablot_lista = s5003ideEstabLot.objects.using(db_slug).filter(s5003_infofgts_id__in = listar_ids(s5003_infofgts_lista) ).filter(excluido=False).all()
-        s5003_infotrabfgts_lista = s5003infoTrabFGTS.objects.using(db_slug).filter(s5003_ideestablot_id__in = listar_ids(s5003_ideestablot_lista) ).filter(excluido=False).all()
-        s5003_baseperapur_lista = s5003basePerApur.objects.using(db_slug).filter(s5003_infotrabfgts_id__in = listar_ids(s5003_infotrabfgts_lista) ).filter(excluido=False).all()
-        s5003_infobaseperante_lista = s5003infoBasePerAntE.objects.using(db_slug).filter(s5003_infotrabfgts_id__in = listar_ids(s5003_infotrabfgts_lista) ).filter(excluido=False).all()
-        s5003_baseperante_lista = s5003basePerAntE.objects.using(db_slug).filter(s5003_infobaseperante_id__in = listar_ids(s5003_infobaseperante_lista) ).filter(excluido=False).all()
-        s5003_infotrabdps_lista = s5003infoTrabDps.objects.using(db_slug).filter(s5003_infofgts_id__in = listar_ids(s5003_infofgts_lista) ).filter(excluido=False).all()
-        s5003_dpsperapur_lista = s5003dpsPerApur.objects.using(db_slug).filter(s5003_infotrabdps_id__in = listar_ids(s5003_infotrabdps_lista) ).filter(excluido=False).all()
-        s5003_infodpsperante_lista = s5003infoDpsPerAntE.objects.using(db_slug).filter(s5003_infotrabdps_id__in = listar_ids(s5003_infotrabdps_lista) ).filter(excluido=False).all()
-        s5003_dpsperante_lista = s5003dpsPerAntE.objects.using(db_slug).filter(s5003_infodpsperante_id__in = listar_ids(s5003_infodpsperante_lista) ).filter(excluido=False).all()
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5003_evtbasesfgts'
+
         context = {
             's5003_evtbasesfgts_lista': s5003_evtbasesfgts_lista,
             's5003_evtbasesfgts_id': s5003_evtbasesfgts_id,
             's5003_evtbasesfgts': s5003_evtbasesfgts,
-  
+            
+            
+            's5003_ideestablot_lista': s5003_ideestablot_lista,
+            's5003_infotrabfgts_lista': s5003_infotrabfgts_lista,
+            's5003_infobasefgts_lista': s5003_infobasefgts_lista,
+            's5003_baseperapur_lista': s5003_baseperapur_lista,
+            's5003_infobaseperante_lista': s5003_infobaseperante_lista,
+            's5003_baseperante_lista': s5003_baseperante_lista,
+            's5003_infodpsfgts_lista': s5003_infodpsfgts_lista,
+            's5003_infotrabdps_lista': s5003_infotrabdps_lista,
+            's5003_dpsperapur_lista': s5003_dpsperapur_lista,
+            's5003_infodpsperante_lista': s5003_infodpsperante_lista,
+            's5003_dpsperante_lista': s5003_dpsperante_lista,
+            
             'usuario': usuario,
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
@@ -122,19 +138,10 @@ def verificar(request, hash):
             'for_print': for_print,
             'hash': hash,
 
-            's5003_infofgts_lista': s5003_infofgts_lista,
-            's5003_ideestablot_lista': s5003_ideestablot_lista,
-            's5003_infotrabfgts_lista': s5003_infotrabfgts_lista,
-            's5003_baseperapur_lista': s5003_baseperapur_lista,
-            's5003_infobaseperante_lista': s5003_infobaseperante_lista,
-            's5003_baseperante_lista': s5003_baseperante_lista,
-            's5003_infotrabdps_lista': s5003_infotrabdps_lista,
-            's5003_dpsperapur_lista': s5003_dpsperapur_lista,
-            's5003_infodpsperante_lista': s5003_infodpsperante_lista,
-            's5003_dpsperante_lista': s5003_dpsperante_lista,
+            
+
         }
         if for_print == 2:
-
             response = PDFTemplateResponse(request=request,
                                            template='s5003_evtbasesfgts_verificar.html',
                                            filename="s5003_evtbasesfgts.pdf",
@@ -153,7 +160,6 @@ def verificar(request, hash):
             return response
 
         elif for_print == 3:
-
             response =  render_to_response('s5003_evtbasesfgts_verificar.html', context)
             filename = "%s.xls" % s5003_evtbasesfgts.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -161,7 +167,6 @@ def verificar(request, hash):
             return response
 
         elif for_print == 4:
-
             response =  render_to_response('s5003_evtbasesfgts_verificar.html', context)
             filename = "%s.csv" % s5003_evtbasesfgts.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -169,17 +174,14 @@ def verificar(request, hash):
             return response
 
         else:
-
             return render(request, 's5003_evtbasesfgts_verificar.html', context)
 
     else:
 
         context = {
             'usuario': usuario,
-  
             'modulos_permitidos_lista': modulos_permitidos_lista,
             'paginas_permitidas_lista': paginas_permitidas_lista,
-  
             'permissao': permissao,
             'data': datetime.now(),
             'pagina': pagina,
@@ -187,562 +189,3 @@ def verificar(request, hash):
         }
 
         return render(request, 'permissao_negada.html', context)
-
-
-
-def gerar_xml_s5003(s5003_evtbasesfgts_id, db_slug, versao=None):
-
-    from django.template.loader import get_template
-    from emensageriapro.functions import get_xmlns
-
-    if s5003_evtbasesfgts_id:
-
-        s5003_evtbasesfgts = get_object_or_404(
-            s5003evtBasesFGTS.objects.using( db_slug ),
-            excluido = False,
-            id = s5003_evtbasesfgts_id)
-
-        if not versao or versao == '|':
-
-            versao = s5003_evtbasesfgts.versao
-
-        evento = 's5003evtBasesFGTS'[5:]
-        arquivo = 'xsd/esocial/%s/%s.xsd' % (versao, evento)
-        xmlns = get_xmlns(arquivo)
-
-        s5003_evtbasesfgts_lista = s5003evtBasesFGTS.objects.using( db_slug ).filter(id=s5003_evtbasesfgts_id, excluido = False).all()
-
-
-        s5003_infofgts_lista = s5003infoFGTS.objects.using(db_slug).filter(s5003_evtbasesfgts_id__in = listar_ids(s5003_evtbasesfgts_lista) ).filter(excluido=False).all()
-        s5003_ideestablot_lista = s5003ideEstabLot.objects.using(db_slug).filter(s5003_infofgts_id__in = listar_ids(s5003_infofgts_lista) ).filter(excluido=False).all()
-        s5003_infotrabfgts_lista = s5003infoTrabFGTS.objects.using(db_slug).filter(s5003_ideestablot_id__in = listar_ids(s5003_ideestablot_lista) ).filter(excluido=False).all()
-        s5003_baseperapur_lista = s5003basePerApur.objects.using(db_slug).filter(s5003_infotrabfgts_id__in = listar_ids(s5003_infotrabfgts_lista) ).filter(excluido=False).all()
-        s5003_infobaseperante_lista = s5003infoBasePerAntE.objects.using(db_slug).filter(s5003_infotrabfgts_id__in = listar_ids(s5003_infotrabfgts_lista) ).filter(excluido=False).all()
-        s5003_baseperante_lista = s5003basePerAntE.objects.using(db_slug).filter(s5003_infobaseperante_id__in = listar_ids(s5003_infobaseperante_lista) ).filter(excluido=False).all()
-        s5003_infotrabdps_lista = s5003infoTrabDps.objects.using(db_slug).filter(s5003_infofgts_id__in = listar_ids(s5003_infofgts_lista) ).filter(excluido=False).all()
-        s5003_dpsperapur_lista = s5003dpsPerApur.objects.using(db_slug).filter(s5003_infotrabdps_id__in = listar_ids(s5003_infotrabdps_lista) ).filter(excluido=False).all()
-        s5003_infodpsperante_lista = s5003infoDpsPerAntE.objects.using(db_slug).filter(s5003_infotrabdps_id__in = listar_ids(s5003_infotrabdps_lista) ).filter(excluido=False).all()
-        s5003_dpsperante_lista = s5003dpsPerAntE.objects.using(db_slug).filter(s5003_infodpsperante_id__in = listar_ids(s5003_infodpsperante_lista) ).filter(excluido=False).all()
-
-        context = {
-            'xmlns': xmlns,
-            'versao': versao,
-            'base': s5003_evtbasesfgts,
-            's5003_evtbasesfgts_lista': s5003_evtbasesfgts_lista,
-            's5003_evtbasesfgts_id': int(s5003_evtbasesfgts_id),
-            's5003_evtbasesfgts': s5003_evtbasesfgts,
-
-            's5003_infofgts_lista': s5003_infofgts_lista,
-            's5003_ideestablot_lista': s5003_ideestablot_lista,
-            's5003_infotrabfgts_lista': s5003_infotrabfgts_lista,
-            's5003_baseperapur_lista': s5003_baseperapur_lista,
-            's5003_infobaseperante_lista': s5003_infobaseperante_lista,
-            's5003_baseperante_lista': s5003_baseperante_lista,
-            's5003_infotrabdps_lista': s5003_infotrabdps_lista,
-            's5003_dpsperapur_lista': s5003_dpsperapur_lista,
-            's5003_infodpsperante_lista': s5003_infodpsperante_lista,
-            's5003_dpsperante_lista': s5003_dpsperante_lista,
-        }
-
-        t = get_template('s5003_evtbasesfgts.xml')
-        xml = t.render(context)
-        return xml
-
-
-
-@login_required
-def recibo(request, hash, tipo):
-    for_print = 0
-    db_slug = 'default'
-
-    try:
-        usuario_id = request.user.id
-        dict_hash = get_hash_url( hash )
-        s5003_evtbasesfgts_id = int(dict_hash['id'])
-        for_print = int(dict_hash['print'])
-
-    except:
-        return redirect('login')
-
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='s5003_evtbasesfgts')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_listar:
-
-        s5003_evtbasesfgts = get_object_or_404(
-            s5003evtBasesFGTS.objects.using( db_slug ),
-            excluido = False, id = s5003_evtbasesfgts_id)
-
-        from emensageriapro.mensageiro.models import RetornosEventos, RetornosEventosHorarios, \
-            RetornosEventosIntervalos, RetornosEventosOcorrencias
-
-        retorno = get_object_or_404( RetornosEventos.objects.using(db_slug),
-            id=s5003_evtbasesfgts.retornos_eventos_id, excluido=False)
-
-        retorno_horarios = RetornosEventosHorarios.objects.using(db_slug).\
-            filter(retornos_eventos_id=retorno.id,excluido=False).all()
-
-        retorno_intervalos = RetornosEventosIntervalos.objects.using(db_slug).\
-            filter(retornos_eventos_horarios_id__in=listar_ids(retorno_horarios),excluido=False).all()
-
-        retorno_ocorrencias = RetornosEventosOcorrencias.objects.using(db_slug).\
-            filter(retornos_eventos_id=retorno.id,excluido=False).all()
-
-        context = {
-            's5003_evtbasesfgts_id': s5003_evtbasesfgts_id,
-            's5003_evtbasesfgts': s5003_evtbasesfgts,
-            'retorno': retorno,
-            'retorno_horarios': retorno_horarios,
-            'retorno_intervalos': retorno_intervalos,
-            'retorno_ocorrencias': retorno_ocorrencias,
-  
-            'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
-            'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-            'for_print': for_print,
-            'hash': hash,
-        }
-
-        if tipo == 'XLS':
-            response =  render_to_response('s5003_evtbasesfgts_recibo_pdf.html', context)
-            filename = "%s.xls" % s5003_evtbasesfgts.identidade
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-            return response
-
-        elif tipo == 'CSV':
-            response =  render_to_response('s5003_evtbasesfgts_recibo_csv.html', context)
-            filename = "%s.csv" % s5003_evtbasesfgts.identidade
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            response['Content-Type'] = 'text/csv; charset=UTF-8'
-            return response
-
-        else:
-            return render_to_pdf('s5003_evtbasesfgts_recibo_pdf.html', context)
-
-    else:
-
-        context = {
-            'usuario': usuario,
-  
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
-            'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
-        }
-        return render(request, 'permissao_negada.html', context)
-
-
-
-def gerar_xml_assinado(s5003_evtbasesfgts_id, db_slug):
-    from emensageriapro.mensageiro.functions.funcoes_esocial import salvar_arquivo_esocial
-    from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import assinar_esocial
-
-    s5003_evtbasesfgts = get_object_or_404(
-        s5003evtBasesFGTS.objects.using(db_slug),
-        excluido=False,
-        id=s5003_evtbasesfgts_id)
-
-    if s5003_evtbasesfgts.arquivo_original:
-
-        xml = ler_arquivo(s5003_evtbasesfgts.arquivo)
-
-    else:
-
-        xml = gerar_xml_s5003(s5003_evtbasesfgts_id, db_slug)
-
-    if 'Signature' in xml:
-
-        xml_assinado = xml
-
-    else:
-
-        xml_assinado = assinar_esocial(xml)
-
-    if s5003_evtbasesfgts.status in (STATUS_EVENTO_CADASTRADO,
-                           STATUS_EVENTO_IMPORTADO,
-                           STATUS_EVENTO_DUPLICADO,
-                           STATUS_EVENTO_GERADO):
-
-        s5003evtBasesFGTS.objects.using(db_slug).\
-            filter(id=s5003_evtbasesfgts_id,excluido=False).update(status=STATUS_EVENTO_ASSINADO)
-
-    arquivo = 'arquivos/Eventos/s5003_evtbasesfgts/%s.xml' % (s5003_evtbasesfgts.identidade)
-
-    os.system('mkdir -p %s/arquivos/Eventos/s5003_evtbasesfgts/' % BASE_DIR)
-
-    if not os.path.exists(BASE_DIR+arquivo):
-
-        salvar_arquivo_esocial(arquivo, xml_assinado, 1)
-
-    xml_assinado = ler_arquivo(arquivo)
-
-    return xml_assinado
-
-
-
-@login_required
-def gerar_xml(request, hash):
-
-
-    db_slug = 'default'
-    dict_hash = get_hash_url( hash )
-    s5003_evtbasesfgts_id = int(dict_hash['id'])
-
-    if s5003_evtbasesfgts_id:
-
-        xml_assinado = gerar_xml_assinado(s5003_evtbasesfgts_id, db_slug)
-        return HttpResponse(xml_assinado, content_type='text/xml')
-
-    context = {'data': datetime.now(),}
-    return render(request, 'permissao_negada.html', context)
-
-
-
-@login_required
-def duplicar(request, hash):
-
-    from emensageriapro.esocial.views.s5003_evtbasesfgts_importar import read_s5003_evtbasesfgts_string
-    from emensageriapro.functions import identidade_evento
-
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s5003_evtbasesfgts_id = int(dict_hash['id'])
-
-    if s5003_evtbasesfgts_id:
-
-        s5003_evtbasesfgts = get_object_or_404(
-            s5003evtBasesFGTS.objects.using(db_slug),
-            excluido=False,
-            id=s5003_evtbasesfgts_id)
-
-        texto = gerar_xml_s5003(s5003_evtbasesfgts_id, db_slug, versao="|")
-        dados = read_s5003_evtbasesfgts_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s5003_evtbasesfgts)
-
-        s5003evtBasesFGTS.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s5003_evtbasesfgts.identidade),
-            's5003_evtbasesfgts', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('s5003_evtbasesfgts_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao duplicar evento!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-
-
-
-@login_required
-def criar_alteracao(request, hash):
-
-    from emensageriapro.esocial.views.s5003_evtbasesfgts_importar import read_s5003_evtbasesfgts_string
-    from emensageriapro.functions import identidade_evento
-
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s5003_evtbasesfgts_id = int(dict_hash['id'])
-
-    if s5003_evtbasesfgts_id:
-
-        s5003_evtbasesfgts = get_object_or_404(
-            s5003evtBasesFGTS.objects.using(db_slug),
-            excluido=False,
-            id=s5003_evtbasesfgts_id)
-
-        texto = gerar_xml_s5003(s5003_evtbasesfgts_id, db_slug, versao="|")
-        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_s5003_evtbasesfgts_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s5003_evtbasesfgts)
-
-        s5003evtBasesFGTS.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}',
-            u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s5003_evtbasesfgts.identidade),
-            's5003_evtbasesfgts', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('s5003_evtbasesfgts_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao criar evento de alteração!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-
-
-
-@login_required
-def criar_exclusao(request, hash):
-
-    from emensageriapro.esocial.views.s5003_evtbasesfgts_importar import read_s5003_evtbasesfgts_string
-    from emensageriapro.functions import identidade_evento
-
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s5003_evtbasesfgts_id = int(dict_hash['id'])
-
-    if s5003_evtbasesfgts_id:
-
-        s5003_evtbasesfgts = get_object_or_404(
-            s5003evtBasesFGTS.objects.using(db_slug),
-            excluido=False,
-            id=s5003_evtbasesfgts_id)
-
-        texto = gerar_xml_s5003(s5003_evtbasesfgts_id, db_slug, versao="|")
-        texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
-        texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_s5003_evtbasesfgts_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s5003_evtbasesfgts)
-
-        s5003evtBasesFGTS.objects.using(db_slug).filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}',
-            u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s5003_evtbasesfgts.identidade),
-            's5003_evtbasesfgts', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento de exclusão criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('s5003_evtbasesfgts_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao criar evento de exclusão!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-
-
-
-@login_required
-def alterar_identidade(request, hash):
-
-    from emensageriapro.functions import identidade_evento
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s5003_evtbasesfgts_id = int(dict_hash['id'])
-
-    if s5003_evtbasesfgts_id:
-
-        s5003_evtbasesfgts = get_object_or_404(
-            s5003evtBasesFGTS.objects.using(db_slug),
-            excluido=False,
-            id=s5003_evtbasesfgts_id)
-
-        if s5003_evtbasesfgts.status == STATUS_EVENTO_CADASTRADO:
-
-            nova_identidade = identidade_evento(s5003_evtbasesfgts)
-            messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s5003_evtbasesfgts_id )
-
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Identidade do evento foi alterada"}',
-                's5003_evtbasesfgts', s5003_evtbasesfgts_id, request.user.id, 1)
-
-            return redirect('s5003_evtbasesfgts_salvar', hash=url_hash)
-
-        else:
-
-            messages.error(request, u'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-    messages.error(request, u'Erro ao alterar identidade do evento!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-
-
-@login_required
-def abrir_evento_para_edicao(request, hash):
-    from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_esocial import gravar_nome_arquivo
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s5003_evtbasesfgts_id = int(dict_hash['id'])
-
-    if s5003_evtbasesfgts_id:
-        s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS.objects.using(db_slug), excluido=False, id=s5003_evtbasesfgts_id)
-
-        status_list = [
-            STATUS_EVENTO_CADASTRADO,
-            STATUS_EVENTO_IMPORTADO,
-            STATUS_EVENTO_DUPLICADO,
-            STATUS_EVENTO_GERADO,
-            STATUS_EVENTO_GERADO_ERRO,
-            STATUS_EVENTO_ASSINADO,
-            STATUS_EVENTO_ASSINADO_ERRO,
-            STATUS_EVENTO_VALIDADO,
-            STATUS_EVENTO_VALIDADO_ERRO,
-            STATUS_EVENTO_AGUARD_PRECEDENCIA,
-            STATUS_EVENTO_AGUARD_ENVIO,
-            STATUS_EVENTO_ENVIADO_ERRO
-        ]
-
-        if s5003_evtbasesfgts.status in status_list:
-            s5003evtBasesFGTS.objects.using(db_slug).filter(id=s5003_evtbasesfgts_id).update(status=STATUS_EVENTO_CADASTRADO,
-                                                                          arquivo_original=0)
-            arquivo = 'arquivos/Eventos/s5003_evtbasesfgts/%s.xml' % (s5003_evtbasesfgts.identidade)
-
-            if os.path.exists(BASE_DIR + '/' + arquivo):
-
-                data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
-                dad = (BASE_DIR, s5003_evtbasesfgts.identidade, BASE_DIR, s5003_evtbasesfgts.identidade, data_hora_atual)
-                os.system('mv %s/arquivos/Eventos/s5003_evtbasesfgts/%s.xml %s/arquivos/Eventos/s5003_evtbasesfgts/%s_backup_%s.xml' % dad)
-                gravar_nome_arquivo('/arquivos/Eventos/s5003_evtbasesfgts/%s_backup_%s.xml' % (s5003_evtbasesfgts.identidade, data_hora_atual),
-                    1)
-            messages.success(request, 'Evento aberto para edição!')
-            usuario_id = request.user.id
-            gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
-                's5003_evtbasesfgts', s5003_evtbasesfgts_id, usuario_id, 1)
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s5003_evtbasesfgts_id )
-            return redirect('s5003_evtbasesfgts_salvar', hash=url_hash)
-        else:
-            messages.error(request, u'''
-            Não foi possível abrir o evento para edição! Somente é possível
-            abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
-            "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
-             ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
-             "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-    messages.error(request, 'Erro ao abrir evento para edição!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-
-
-def validar_evento_funcao(s5003_evtbasesfgts_id, db_slug):
-    from emensageriapro.padrao import executar_sql
-    from emensageriapro.mensageiro.functions.funcoes_importacao import get_versao_evento
-    from emensageriapro.mensageiro.functions.funcoes_validacoes_precedencia import validar_precedencia
-    from emensageriapro.mensageiro.functions.funcoes_validacoes import get_schema_name, validar_schema
-    from emensageriapro.settings import BASE_DIR, VERIFICAR_PREDECESSAO_ANTES_ENVIO
-    lista_validacoes = []
-    s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS.objects.using(db_slug), excluido=False, id=s5003_evtbasesfgts_id)
-
-    #
-    # Validações internas
-    #
-
-    arquivo = 'arquivos/Eventos/s5003_evtbasesfgts/%s.xml' % (s5003_evtbasesfgts.identidade)
-    os.system('mkdir -p %s/arquivos/Eventos/s5003_evtbasesfgts/' % BASE_DIR)
-    lista = []
-    tipo = 'esocial'
-    if not os.path.exists(BASE_DIR + '/' + arquivo):
-        gerar_xml_assinado(s5003_evtbasesfgts_id, db_slug)
-    if os.path.exists(BASE_DIR + '/' + arquivo):
-        texto_xml = ler_arquivo(arquivo).replace("s:", "")
-        versao = get_versao_evento(texto_xml)
-        from emensageriapro.esocial.views.s5003_evtbasesfgts_validar import validacoes_s5003_evtbasesfgts
-        lista = validacoes_s5003_evtbasesfgts(arquivo)
-    for a in lista:
-        if a:
-            lista_validacoes.append(a)
-    #
-    # validando schema
-    #
-    schema_filename = get_schema_name(arquivo)
-    quant_erros, error_list = validar_schema(schema_filename, arquivo, lang='pt')
-    for a in error_list:
-        if a:
-            lista_validacoes.append(a)
-    #
-    #
-    #
-    if lista_validacoes:
-
-        validacoes = '<br>'.join(lista_validacoes).replace("'","''")
-
-        s5003evtBasesFGTS.objects.using( db_slug ).\
-            filter(id=s5003_evtbasesfgts_id, excluido = False).\
-            update(validacoes=validacoes,
-                   status=STATUS_EVENTO_VALIDADO_ERRO)
-
-    else:
-
-        if VERIFICAR_PREDECESSAO_ANTES_ENVIO:
-
-            quant = validar_precedencia('esocial', 's5003_evtbasesfgts', s5003_evtbasesfgts_id)
-
-            if quant <= 0:
-
-                s5003evtBasesFGTS.objects.using( db_slug ).\
-                    filter(id=s5003_evtbasesfgts_id, excluido = False).\
-                    update(validacoes=None,
-                           status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
-
-            else:
-
-                s5003evtBasesFGTS.objects.using( db_slug ).\
-                    filter(id=s5003_evtbasesfgts_id, excluido = False).\
-                    update(validacoes=None,
-                           status=STATUS_EVENTO_AGUARD_ENVIO)
-
-        else:
-
-            s5003evtBasesFGTS.objects.using(db_slug). \
-                filter(id=s5003_evtbasesfgts_id, excluido=False).\
-                update(validacoes=None,
-                       status=STATUS_EVENTO_AGUARD_ENVIO)
-
-    return lista_validacoes
-
-
-
-@login_required
-def validar_evento(request, hash):
-
-    from emensageriapro.settings import VERSOES_ESOCIAL, VERIFICAR_PREDECESSAO_ANTES_ENVIO
-    # from emensageriapro.mensageiro.functions.funcoes_validacoes import VERSAO_ATUAL
-
-    db_slug = 'default'
-    dict_hash = get_hash_url(hash)
-    s5003_evtbasesfgts_id = int(dict_hash['id'])
-
-    if s5003_evtbasesfgts_id:
-
-        s5003_evtbasesfgts = get_object_or_404(
-            s5003evtBasesFGTS.objects.using(db_slug),
-            excluido=False,
-            id=s5003_evtbasesfgts_id)
-
-        if s5003_evtbasesfgts.versao in VERSOES_ESOCIAL:
-
-            validar_evento_funcao(s5003_evtbasesfgts_id, db_slug)
-
-            if s5003_evtbasesfgts.transmissor_lote_esocial and not VERIFICAR_PREDECESSAO_ANTES_ENVIO:
-                s5003evtBasesFGTS.objects.using(db_slug).\
-                    filter(excluido=False, id=s5003_evtbasesfgts_id).update(status=STATUS_EVENTO_AGUARD_ENVIO)
-
-            elif s5003_evtbasesfgts.transmissor_lote_esocial and VERIFICAR_PREDECESSAO_ANTES_ENVIO:
-                s5003evtBasesFGTS.objects.using(db_slug).\
-                    filter(excluido=False, id=s5003_evtbasesfgts_id).update(status=STATUS_EVENTO_AGUARD_PRECEDENCIA)
-
-            messages.success(request, u'Validações processadas com sucesso!')
-
-        else:
-
-            messages.error(request, u'Não foi possível validar o evento pois a versão do evento não é compatível com a versão do sistema!')
-    else:
-
-        messages.error(request, u'Não foi possível validar o evento pois o mesmo não foi identificado!')
-
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])

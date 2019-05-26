@@ -1,27 +1,100 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}<table class="table table-bordered table-striped automate-data-table"><thead><tr>{% if show_fields.show_retornos_eventos or not retornos_eventos_id and 0 %}<th>Retorno do Evento</th>{% endif %}{% if show_fields.show_ocorrencias or 0 %}<th>Ocorrências</th>{% endif %}{% if show_fields.show_validacao_precedencia or 0 %}<th>Validação de Precedência</th>{% endif %}{% if show_fields.show_validacoes or 0 %}<th>Validações</th>{% endif %}{% if show_fields.show_arquivo_original or 0 %}<th>Arquivo Original</th>{% endif %}{% if show_fields.show_arquivo or 0 %}<th>Arquivo</th>{% endif %}{% if show_fields.show_evtexclusao or 0 %}<th>Evento de Exclusão</th>{% endif %}{% if show_fields.show_identidade or 1 %}<th>Identidade do Registro</th>{% endif %}{% if show_fields.show_ideevento or 0 %}<th>Informações de Identificação do Evento</th>{% endif %}{% if show_fields.show_tpamb or 1 %}<th>Identificação do ambiente</th>{% endif %}{% if show_fields.show_procemi or 1 %}<th>Processo de emissão do evento</th>{% endif %}{% if show_fields.show_verproc or 1 %}<th>Versão do processo</th>{% endif %}{% if show_fields.show_ideempregador or 0 %}<th>Informações de identificação do empregador</th>{% endif %}{% if show_fields.show_tpinsc or 1 %}<th>Tipo de inscrição</th>{% endif %}{% if show_fields.show_nrinsc or 1 %}<th>Número de inscrição (CPF/CNPJ)</th>{% endif %}{% if show_fields.show_infoexclusao or 0 %}<th>Registro que identifica o evento objeto da exclusão.</th>{% endif %}{% if show_fields.show_tpevento or 1 %}<th>Tipo de evento</th>{% endif %}{% if show_fields.show_nrrecevt or 1 %}<th>Número do recibo do evento</th>{% endif %}{% if show_fields.show_versao or 0 %}<th>Versão</th>{% endif %}{% if show_fields.show_transmissor_lote_esocial or not transmissor_lote_esocial_id and 0 %}<th>Transmissor</th>{% endif %}{% if show_fields.show_status or 1 %}<th>Status</th>{% endif %}<!-- cabeçalho de colunas especiais -->{% if not for_print %}<th width="90px">Ações</th>{% endif %}</tr></thead><tbody>{% for a in s3000_evtexclusao_lista %}<tr>{% if show_fields.show_retornos_eventos or not retornos_eventos_id and 0 %}<td>{{ a.retornos_eventos }}</td>{% endif %}{% if show_fields.show_ocorrencias or 0 %}<td>{{ a.ocorrencias }}</td>{% endif %}{% if show_fields.show_validacao_precedencia or 0 %}<td>{{ a.get_validacao_precedencia_display }}</td>{% endif %}{% if show_fields.show_validacoes or 0 %}<td>{{ a.validacoes }}</td>{% endif %}{% if show_fields.show_arquivo_original or 0 %}<td>{{ a.get_arquivo_original_display }}</td>{% endif %}{% if show_fields.show_arquivo or 0 %}<td>{{ a.arquivo }}</td>{% endif %}{% if show_fields.show_evtexclusao or 0 %}<td>{{ a.evtexclusao }}</td>{% endif %}{% if show_fields.show_identidade or 1 %}<td>{{ a.identidade }}</td>{% endif %}{% if show_fields.show_ideevento or 0 %}<td>{{ a.ideevento }}</td>{% endif %}{% if show_fields.show_tpamb or 1 %}<td>{{ a.get_tpamb_display }}</td>{% endif %}{% if show_fields.show_procemi or 1 %}<td>{{ a.get_procemi_display }}</td>{% endif %}{% if show_fields.show_verproc or 1 %}<td>{{ a.verproc }}</td>{% endif %}{% if show_fields.show_ideempregador or 0 %}<td>{{ a.ideempregador }}</td>{% endif %}{% if show_fields.show_tpinsc or 1 %}<td>{{ a.get_tpinsc_display }}</td>{% endif %}{% if show_fields.show_nrinsc or 1 %}<td>{{ a.nrinsc }}</td>{% endif %}{% if show_fields.show_infoexclusao or 0 %}<td>{{ a.infoexclusao }}</td>{% endif %}{% if show_fields.show_tpevento or 1 %}<td>{{ a.get_tpevento_display }}</td>{% endif %}{% if show_fields.show_nrrecevt or 1 %}<td>{{ a.nrrecevt }}</td>{% endif %}{% if show_fields.show_versao or 0 %}<td>{{ a.get_versao_display }}</td>{% endif %}{% if show_fields.show_transmissor_lote_esocial or not transmissor_lote_esocial_id and 0 %}<td>{{ a.transmissor_lote_esocial }}</td>{% endif %}{% if show_fields.show_status or 1 %}<td>{{ a.get_status_display }}</td>{% endif %}<!-- colunas especiais -->{% if not for_print %}<td><div> 
-            <div style="width: 150px;height: 40px;">
-                {% if dict_permissoes|get_permissao:'s3000_evtexclusao_visualizar' %}
-                    <a href="{% url 's3000_evtexclusao_verificar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                        <span class="btn btn-primary" title="Validações">
-                            <i class="fa fa-fw fa-check-square-o"></i>
-                        </span>
-                    </a>
-                {% endif %}
-
-                {% if dict_permissoes|get_permissao:'s3000_evtexclusao_visualizar' %}
-                    <a href="{% url 's3000_evtexclusao_xml' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                        <span class="btn btn-primary" title="Visualizar XML">
-                            <i class="fa fa-fw fa-code"></i>
-                        </span>
-                    </a>
-                {% endif %}
-
-                {% if dict_permissoes|get_permissao:'s3000_evtexclusao_visualizar' %}
-                    <a href="{% url 's3000_evtexclusao_recibo' hash='{}'|json_id:a.id|json_print:0|base64_encode_me  tipo='PDF' %}">
-                        <span class="btn btn-primary" title="Imprimir Recibo">
-                            <i class="fa fa-fw fa-print"></i>
-                        </span>
-                    </a>
-                {% endif %} 
-            </div>
-            {% if dict_permissoes|get_permissao:'s3000_evtexclusao_visualizar' %}<a href="{% url 's3000_evtexclusao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">{% if dict_permissoes|get_permissao:'s3000_evtexclusao_editar' or dict_permissoes|get_permissao:'s3000_evtexclusao_cadastrar' %}<span class="btn btn-primary" title="Editar"><i class="fa fa-fw fa-edit"></i></span>{% else %}<span class="btn btn-primary" title="Visualizar"><i class="fa fa-fw fa-eye"></i></span>{% endif %}</a>{% endif %} {% if dict_permissoes|get_permissao:'s3000_evtexclusao_apagar' %}<a href="{% url 's3000_evtexclusao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span class="btn btn-danger" title="Apagar"><i class="fa fa-fw fa-times"></i></span></a>{% endif %}</div></td>{% endif %}</tr>{% endfor %}</table>
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_identidade or 1 %}
+            <th>Identidade do Registro</th>
+            {% endif %}
+            {% if show_fields.show_tpamb or 1 %}
+            <th>Identificação do ambiente</th>
+            {% endif %}
+            {% if show_fields.show_procemi or 1 %}
+            <th>Processo de emissão do evento</th>
+            {% endif %}
+            {% if show_fields.show_verproc or 1 %}
+            <th>Versão do processo</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc or 1 %}
+            <th>Tipo de inscrição</th>
+            {% endif %}
+            {% if show_fields.show_nrinsc or 1 %}
+            <th>Número de inscrição (CPF/CNPJ)</th>
+            {% endif %}
+            {% if show_fields.show_tpevento or 1 %}
+            <th>Tipo de evento</th>
+            {% endif %}
+            {% if show_fields.show_nrrecevt or 1 %}
+            <th>Número do recibo do evento</th>
+            {% endif %}
+            {% if show_fields.show_status or 1 %}
+            <th>Status</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in s3000_evtexclusao_lista %}
+        <tr>
+            {% if show_fields.show_identidade or 1 %}
+            <td>{{ a.identidade }}</td>
+            {% endif %}
+            {% if show_fields.show_tpamb or 1 %}
+            <td>{{ a.get_tpamb_display }}</td>
+            {% endif %}
+            {% if show_fields.show_procemi or 1 %}
+            <td>{{ a.get_procemi_display }}</td>
+            {% endif %}
+            {% if show_fields.show_verproc or 1 %}
+            <td>{{ a.verproc }}</td>
+            {% endif %}
+            {% if show_fields.show_tpinsc or 1 %}
+            <td>{{ a.get_tpinsc_display }}</td>
+            {% endif %}
+            {% if show_fields.show_nrinsc or 1 %}
+            <td>{{ a.nrinsc }}</td>
+            {% endif %}
+            {% if show_fields.show_tpevento or 1 %}
+            <td>{{ a.get_tpevento_display }}</td>
+            {% endif %}
+            {% if show_fields.show_nrrecevt or 1 %}
+            <td>{{ a.nrrecevt }}</td>
+            {% endif %}
+            {% if show_fields.show_status or 1 %}
+            <td>{{ a.get_status_display }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'s3000_evtexclusao_visualizar' %}
+                        <a href="{% url 's3000_evtexclusao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'s3000_evtexclusao_editar' or dict_permissoes|get_permissao:'s3000_evtexclusao_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'s3000_evtexclusao_apagar' %}
+                        <a href="{% url 's3000_evtexclusao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

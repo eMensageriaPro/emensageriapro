@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"EFD-Reinf 01 – Códigos de Pagamentos"
-{% if show_fields.show_grupo or 1 %}"Grupo";{% endif %}{% if show_fields.show_codigo or 1 %}"Código";{% endif %}{% if show_fields.show_beneficiario_pj or 1 %}"Beneficiário PJ";{% endif %}{% if show_fields.show_beneficiario_pf or 1 %}"Beneficiário PF";{% endif %}{% if show_fields.show_descricao or 1 %}"Descrição";{% endif %}
-{% for a in efdreinf_pagamentos_codigos_lista %}{% if show_fields.show_grupo or 1 %}"{{ a.get_grupo_display }}";{% endif %}{% if show_fields.show_codigo or 1 %}"{{ a.codigo }}";{% endif %}{% if show_fields.show_beneficiario_pj or 1 %}"{{ a.get_beneficiario_pj_display }}";{% endif %}{% if show_fields.show_beneficiario_pf or 1 %}"{{ a.get_beneficiario_pf_display }}";{% endif %}{% if show_fields.show_descricao or 1 %}"{{ a.descricao }}";{% endif %}
-{% endfor %}

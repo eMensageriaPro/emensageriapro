@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_titulo or 1 %}"Título";{% endif %}{% if show_fields.show_grupos or 1 %}"Grupos";{% endif %}{% if show_fields.show_permissoes or 1 %}"Permissões";{% endif %}{% if show_fields.show_modulos_permitidos or 1 %}"Módulos Permitidos";{% endif %}{% if show_fields.show_paginas_permitidas or 1 %}"Páginas Permitidas";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_titulo or 1 %}"{{ c.titulo }}";{% endif %}{% if show_fields.show_grupos or 1 %}"{{ c.grupos }}";{% endif %}{% if show_fields.show_permissoes or 1 %}"{{ c.permissoes }}";{% endif %}{% if show_fields.show_modulos_permitidos or 1 %}"{{ c.modulos_permitidos }}";{% endif %}{% if show_fields.show_paginas_permitidas or 1 %}"{{ c.paginas_permitidas }}";{% endif %}
+{% endfor %}

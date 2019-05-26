@@ -1,0 +1,70 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r4010_idepgto or 1 %}
+            <th>Informações do Pagamento</th>
+            {% endif %}
+            {% if show_fields.show_dtfg or 1 %}
+            <th>Informar a data do fato gerador ou pagamento/crédito</th>
+            {% endif %}
+            {% if show_fields.show_inddecterc or 1 %}
+            <th>Indicativo de décimo terceiro salário</th>
+            {% endif %}
+            {% if show_fields.show_vlrrendbruto or 1 %}
+            <th>Valor do rendimento bruto, inclusive os rendimentos não tributáveis ou isentos</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r4010_infopgto_lista %}
+        <tr>
+            {% if show_fields.show_r4010_idepgto or 1 %}
+            <td>{{ a.r4010_idepgto }}</td>
+            {% endif %}
+            {% if show_fields.show_dtfg or 1 %}
+            <td><span style="display:none">{{ a.dtfg|date:"Y-m-d" }}</span>{{ a.dtfg|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_inddecterc or 1 %}
+            <td>{{ a.get_inddecterc_display }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrrendbruto or 1 %}
+            <td>{{ a.vlrrendbruto }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r4010_infopgto_visualizar' %}
+                        <a href="{% url 'r4010_infopgto_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r4010_infopgto_editar' or dict_permissoes|get_permissao:'r4010_infopgto_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r4010_infopgto_apagar' %}
+                        <a href="{% url 'r4010_infopgto_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

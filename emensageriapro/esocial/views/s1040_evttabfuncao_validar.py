@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,41 +46,161 @@ def validacoes_s1040_evttabfuncao(arquivo):
     validacoes_lista = []
     xmlns = doc.eSocial['xmlns'].split('/')
     evtTabFuncao = doc.eSocial.evtTabFuncao
-
-    if 'tpAmb' in dir(evtTabFuncao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTabFuncao.ideEvento.tpAmb', evtTabFuncao.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtTabFuncao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTabFuncao.ideEvento.procEmi', evtTabFuncao.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
-    if 'verProc' in dir(evtTabFuncao.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTabFuncao.ideEvento.verProc', evtTabFuncao.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtTabFuncao.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabFuncao.ideEmpregador.tpInsc', evtTabFuncao.ideEmpregador.tpInsc.cdata, 1, u'1;2;3;4')
-    if 'nrInsc' in dir(evtTabFuncao.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabFuncao.ideEmpregador.nrInsc', evtTabFuncao.ideEmpregador.nrInsc.cdata, 1, u'')
-    if 'inclusao' in dir(evtTabFuncao.infoFuncao):
-        for inclusao in evtTabFuncao.infoFuncao.inclusao:
-
-            if 'codFuncao' in dir(inclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideFuncao.codFuncao', inclusao.ideFuncao.codFuncao.cdata, 1, u'')
-            if 'iniValid' in dir(inclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideFuncao.iniValid', inclusao.ideFuncao.iniValid.cdata, 1, u'')
-            if 'fimValid' in dir(inclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideFuncao.fimValid', inclusao.ideFuncao.fimValid.cdata, 0, u'')
-            if 'dscFuncao' in dir(inclusao.dadosFuncao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosFuncao.dscFuncao', inclusao.dadosFuncao.dscFuncao.cdata, 1, u'')
-            if 'codCBO' in dir(inclusao.dadosFuncao): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosFuncao.codCBO', inclusao.dadosFuncao.codCBO.cdata, 1, u'')
-
-    if 'alteracao' in dir(evtTabFuncao.infoFuncao):
-        for alteracao in evtTabFuncao.infoFuncao.alteracao:
-
-            if 'codFuncao' in dir(alteracao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideFuncao.codFuncao', alteracao.ideFuncao.codFuncao.cdata, 1, u'')
-            if 'iniValid' in dir(alteracao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideFuncao.iniValid', alteracao.ideFuncao.iniValid.cdata, 1, u'')
-            if 'fimValid' in dir(alteracao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideFuncao.fimValid', alteracao.ideFuncao.fimValid.cdata, 0, u'')
-            if 'dscFuncao' in dir(alteracao.dadosFuncao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosFuncao.dscFuncao', alteracao.dadosFuncao.dscFuncao.cdata, 1, u'')
-            if 'codCBO' in dir(alteracao.dadosFuncao): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosFuncao.codCBO', alteracao.dadosFuncao.codCBO.cdata, 1, u'')
-
-            if 'novaValidade' in dir(alteracao):
-                for novaValidade in alteracao.novaValidade:
-
-                    if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, u'')
-                    if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, u'')
-
-    if 'exclusao' in dir(evtTabFuncao.infoFuncao):
-        for exclusao in evtTabFuncao.infoFuncao.exclusao:
-
-            if 'codFuncao' in dir(exclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideFuncao.codFuncao', exclusao.ideFuncao.codFuncao.cdata, 1, u'')
-            if 'iniValid' in dir(exclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideFuncao.iniValid', exclusao.ideFuncao.iniValid.cdata, 1, u'')
-            if 'fimValid' in dir(exclusao.ideFuncao): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideFuncao.fimValid', exclusao.ideFuncao.fimValid.cdata, 0, u'')
-
+    #variaveis
+    
+    if 'ideEvento' in dir(evtTabFuncao.ideEvento):
+        for ideEvento in evtTabFuncao.ideEvento:
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideEmpregador' in dir(evtTabFuncao.ideEmpregador):
+        for ideEmpregador in evtTabFuncao.ideEmpregador:
+            
+            if 'tpInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.tpInsc', 
+                                                  ideEmpregador.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.nrInsc', 
+                                                  ideEmpregador.nrInsc.cdata, 
+                                                  1, u'None')
+    
+    if 'infoFuncao' in dir(evtTabFuncao.infoFuncao):
+        for infoFuncao in evtTabFuncao.infoFuncao:
+            
+            if 'inclusao' in dir(infoFuncao.inclusao):
+                for inclusao in infoFuncao.inclusao:
+                    
+                    if 'ideFuncao' in dir(inclusao.ideFuncao):
+                        for ideFuncao in inclusao.ideFuncao:
+                            
+                            if 'codFuncao' in dir(ideFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideFuncao.codFuncao', 
+                                                                  ideFuncao.codFuncao.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'iniValid' in dir(ideFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideFuncao.iniValid', 
+                                                                  ideFuncao.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(ideFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideFuncao.fimValid', 
+                                                                  ideFuncao.fimValid.cdata, 
+                                                                  0, u'None')
+                    
+                    if 'dadosFuncao' in dir(inclusao.dadosFuncao):
+                        for dadosFuncao in inclusao.dadosFuncao:
+                            
+                            if 'dscFuncao' in dir(dadosFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosFuncao.dscFuncao', 
+                                                                  dadosFuncao.dscFuncao.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'codCBO' in dir(dadosFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosFuncao.codCBO', 
+                                                                  dadosFuncao.codCBO.cdata, 
+                                                                  1, u'None')
+            
+            if 'alteracao' in dir(infoFuncao.alteracao):
+                for alteracao in infoFuncao.alteracao:
+                    
+                    if 'ideFuncao' in dir(alteracao.ideFuncao):
+                        for ideFuncao in alteracao.ideFuncao:
+                            
+                            if 'codFuncao' in dir(ideFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideFuncao.codFuncao', 
+                                                                  ideFuncao.codFuncao.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'iniValid' in dir(ideFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideFuncao.iniValid', 
+                                                                  ideFuncao.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(ideFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideFuncao.fimValid', 
+                                                                  ideFuncao.fimValid.cdata, 
+                                                                  0, u'None')
+                    
+                    if 'dadosFuncao' in dir(alteracao.dadosFuncao):
+                        for dadosFuncao in alteracao.dadosFuncao:
+                            
+                            if 'dscFuncao' in dir(dadosFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosFuncao.dscFuncao', 
+                                                                  dadosFuncao.dscFuncao.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'codCBO' in dir(dadosFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosFuncao.codCBO', 
+                                                                  dadosFuncao.codCBO.cdata, 
+                                                                  1, u'None')
+                    
+                    if 'novaValidade' in dir(alteracao.novaValidade):
+                        for novaValidade in alteracao.novaValidade:
+                            
+                            if 'iniValid' in dir(novaValidade):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'novaValidade.iniValid', 
+                                                                  novaValidade.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(novaValidade):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'novaValidade.fimValid', 
+                                                                  novaValidade.fimValid.cdata, 
+                                                                  0, u'None')
+            
+            if 'exclusao' in dir(infoFuncao.exclusao):
+                for exclusao in infoFuncao.exclusao:
+                    
+                    if 'ideFuncao' in dir(exclusao.ideFuncao):
+                        for ideFuncao in exclusao.ideFuncao:
+                            
+                            if 'codFuncao' in dir(ideFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideFuncao.codFuncao', 
+                                                                  ideFuncao.codFuncao.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'iniValid' in dir(ideFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideFuncao.iniValid', 
+                                                                  ideFuncao.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(ideFuncao):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideFuncao.fimValid', 
+                                                                  ideFuncao.fimValid.cdata, 
+                                                                  0, u'None')
     return validacoes_lista

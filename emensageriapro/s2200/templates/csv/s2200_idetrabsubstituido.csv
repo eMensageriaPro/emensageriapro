@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2200_trabtemporario or 1 %}"Identificação do(s) trabalhador(es) substituído(s)";{% endif %}{% if show_fields.show_cpftrabsubst or 1 %}"CPF";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2200_trabtemporario or 1 %}"{{ c.s2200_trabtemporario }}";{% endif %}{% if show_fields.show_cpftrabsubst or 1 %}"{{ c.cpftrabsubst }}";{% endif %}
+{% endfor %}

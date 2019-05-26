@@ -1,1 +1,183 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento Alteração Cadastral do Trabalhador</label><select name="s2205_evtaltcadastral" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2205_evtaltcadastral_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2205_evtaltcadastral' %}selected="selected"{% endifequal %}>{{ a.evtaltcadastral }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.idetrabalhador }} - {{ a.cpftrab }} - {{ a.alteracao }} - {{ a.dtalteracao }} - {{ a.dadostrabalhador }} - {{ a.nmtrab }} - {{ a.sexo }} - {{ a.racacor }} - {{ a.grauinstr }} - {{ a.nascimento }} - {{ a.dtnascto }} - {{ a.paisnascto }} - {{ a.paisnac }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Número do CNH</label><div name="nrregcnh__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrregcnh__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrregcnh__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Data de Expedição do RIC</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtexped__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtexped__range' %}{{ dict_fields|get_value_from_dict:'dtexped__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>UF do CNH</label><div class="input-group" style="width: 100%;"><select name="ufcnh__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="AC" {% ifequal 'AC' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Acre</option><option value="AL" {% ifequal 'AL' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Alagoas</option><option value="AM" {% ifequal 'AM' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Amazonas</option><option value="AP" {% ifequal 'AP' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Amapá</option><option value="BA" {% ifequal 'BA' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Bahia</option><option value="CE" {% ifequal 'CE' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Ceará</option><option value="DF" {% ifequal 'DF' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Distrito Federal</option><option value="ES" {% ifequal 'ES' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Espírito Santo</option><option value="GO" {% ifequal 'GO' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Goiás</option><option value="MA" {% ifequal 'MA' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Maranhão</option><option value="MG" {% ifequal 'MG' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Minas Gerais</option><option value="MS" {% ifequal 'MS' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Mato Grosso do Sul</option><option value="MT" {% ifequal 'MT' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Mato Grosso</option><option value="PA" {% ifequal 'PA' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Pará</option><option value="PB" {% ifequal 'PB' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Paraíba</option><option value="PE" {% ifequal 'PE' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Pernambuco</option><option value="PI" {% ifequal 'PI' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Piauí</option><option value="PR" {% ifequal 'PR' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Paraná</option><option value="RJ" {% ifequal 'RJ' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Rio de Janeiro</option><option value="RN" {% ifequal 'RN' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Rio Grande do Norte</option><option value="RO" {% ifequal 'RO' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Rondônia</option><option value="RR" {% ifequal 'RR' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Roraima</option><option value="RS" {% ifequal 'RS' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Rio Grande do Sul</option><option value="SC" {% ifequal 'SC' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Santa Catarina</option><option value="SE" {% ifequal 'SE' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Sergipe</option><option value="SP" {% ifequal 'SP' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >São Paulo</option><option value="TO" {% ifequal 'TO' dict_fields|get_value_from_dict:'ufcnh__icontains' %}selected="selected"{% endifequal %} >Tocantins</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Data de Validade do OC</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtvalid__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtvalid__range' %}{{ dict_fields|get_value_from_dict:'dtvalid__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Data da Primeira Habilitação do CNH</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtprihab__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtprihab__range' %}{{ dict_fields|get_value_from_dict:'dtprihab__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Categoria do CNH</label><div class="input-group" style="width: 100%;"><select name="categoriacnh__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="A" {% ifequal 'A' dict_fields|get_value_from_dict:'categoriacnh__icontains' %}selected="selected"{% endifequal %} >A - A</option><option value="AB" {% ifequal 'AB' dict_fields|get_value_from_dict:'categoriacnh__icontains' %}selected="selected"{% endifequal %} >AB - AB</option><option value="AC" {% ifequal 'AC' dict_fields|get_value_from_dict:'categoriacnh__icontains' %}selected="selected"{% endifequal %} >AC - AC</option><option value="AD" {% ifequal 'AD' dict_fields|get_value_from_dict:'categoriacnh__icontains' %}selected="selected"{% endifequal %} >AD - AD</option><option value="AE" {% ifequal 'AE' dict_fields|get_value_from_dict:'categoriacnh__icontains' %}selected="selected"{% endifequal %} >AE - AE</option><option value="B" {% ifequal 'B' dict_fields|get_value_from_dict:'categoriacnh__icontains' %}selected="selected"{% endifequal %} >B - B</option><option value="C" {% ifequal 'C' dict_fields|get_value_from_dict:'categoriacnh__icontains' %}selected="selected"{% endifequal %} >C - C</option><option value="D" {% ifequal 'D' dict_fields|get_value_from_dict:'categoriacnh__icontains' %}selected="selected"{% endifequal %} >D - D</option><option value="E" {% ifequal 'E' dict_fields|get_value_from_dict:'categoriacnh__icontains' %}selected="selected"{% endifequal %} >E - E</option></select></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2205_evtaltcadastral" value="1" {% if show_fields|get_value_from_dict:'show_s2205_evtaltcadastral' %}checked{% endif %}>Evento Alteração Cadastral do Trabalhador</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrregcnh" value="1" {% if show_fields|get_value_from_dict:'show_nrregcnh' %}checked{% endif %}>Número do CNH</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtexped" value="1" {% if show_fields|get_value_from_dict:'show_dtexped' %}checked{% endif %}>Data de Expedição do RIC</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_ufcnh" value="1" {% if show_fields|get_value_from_dict:'show_ufcnh' %}checked{% endif %}>UF do CNH</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtvalid" value="1" {% if show_fields|get_value_from_dict:'show_dtvalid' %}checked{% endif %}>Data de Validade do OC</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtprihab" value="1" {% if show_fields|get_value_from_dict:'show_dtprihab' %}checked{% endif %}>Data da Primeira Habilitação do CNH</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_categoriacnh" value="1" {% if show_fields|get_value_from_dict:'show_categoriacnh' %}checked{% endif %}>Categoria do CNH</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2205_cnh__s2205_documentos -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações da Carteira Nacional de Habilitação (CNH)</label>
+    <select name="s2205_documentos" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s2205_documentos_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2205_documentos' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2205_cnh__s2205_documentos -->
+
+<!-- inicio__s2205_cnh__nrregcnh -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número do CNH</label>
+    <div name="nrregcnh" class="input-group" style="width: 100%;">
+      <input type="text" name="nrregcnh" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrregcnh' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_cnh__nrregcnh -->
+
+<!-- inicio__s2205_cnh__dtexped -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data de Expedição do RIC</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtexped" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtexped' %}{{ dict_fields|get_value_from_dict:'dtexped' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_cnh__dtexped -->
+
+<!-- inicio__s2205_cnh__ufcnh -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>UF do CNH</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="ufcnh" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="AC" {% ifequal 'AC' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Acre</option>
+        <option value="AL" {% ifequal 'AL' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Alagoas</option>
+        <option value="AP" {% ifequal 'AP' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Amapá</option>
+        <option value="AM" {% ifequal 'AM' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Amazonas</option>
+        <option value="BA" {% ifequal 'BA' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Bahia</option>
+        <option value="CE" {% ifequal 'CE' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Ceará</option>
+        <option value="DF" {% ifequal 'DF' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Distrito Federal</option>
+        <option value="ES" {% ifequal 'ES' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Espírito Santo</option>
+        <option value="GO" {% ifequal 'GO' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Goiás</option>
+        <option value="MA" {% ifequal 'MA' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Maranhão</option>
+        <option value="MT" {% ifequal 'MT' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Mato Grosso</option>
+        <option value="MS" {% ifequal 'MS' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Mato Grosso do Sul</option>
+        <option value="MG" {% ifequal 'MG' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Minas Gerais</option>
+        <option value="PR" {% ifequal 'PR' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Paraná</option>
+        <option value="PB" {% ifequal 'PB' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Paraíba</option>
+        <option value="PA" {% ifequal 'PA' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Pará</option>
+        <option value="PE" {% ifequal 'PE' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Pernambuco</option>
+        <option value="PI" {% ifequal 'PI' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Piauí</option>
+        <option value="RN" {% ifequal 'RN' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Rio Grande do Norte</option>
+        <option value="RS" {% ifequal 'RS' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Rio Grande do Sul</option>
+        <option value="RJ" {% ifequal 'RJ' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Rio de Janeiro</option>
+        <option value="RO" {% ifequal 'RO' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Rondônia</option>
+        <option value="RR" {% ifequal 'RR' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Roraima</option>
+        <option value="SC" {% ifequal 'SC' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Santa Catarina</option>
+        <option value="SE" {% ifequal 'SE' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Sergipe</option>
+        <option value="SP" {% ifequal 'SP' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >São Paulo</option>
+        <option value="TO" {% ifequal 'TO' dict_fields|get_value_from_dict:'ufcnh' %}selected="selected"{% endifequal %} >Tocantins</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_cnh__ufcnh -->
+
+<!-- inicio__s2205_cnh__dtvalid -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data de Validade do OC</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtvalid" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtvalid' %}{{ dict_fields|get_value_from_dict:'dtvalid' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_cnh__dtvalid -->
+
+<!-- inicio__s2205_cnh__dtprihab -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data da Primeira Habilitação do CNH</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtprihab" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtprihab' %}{{ dict_fields|get_value_from_dict:'dtprihab' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_cnh__dtprihab -->
+
+<!-- inicio__s2205_cnh__categoriacnh -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Categoria do CNH</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="categoriacnh" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="A" {% ifequal 'A' dict_fields|get_value_from_dict:'categoriacnh' %}selected="selected"{% endifequal %} >A</option>
+        <option value="AB" {% ifequal 'AB' dict_fields|get_value_from_dict:'categoriacnh' %}selected="selected"{% endifequal %} >AB</option>
+        <option value="AC" {% ifequal 'AC' dict_fields|get_value_from_dict:'categoriacnh' %}selected="selected"{% endifequal %} >AC</option>
+        <option value="AD" {% ifequal 'AD' dict_fields|get_value_from_dict:'categoriacnh' %}selected="selected"{% endifequal %} >AD</option>
+        <option value="AE" {% ifequal 'AE' dict_fields|get_value_from_dict:'categoriacnh' %}selected="selected"{% endifequal %} >AE</option>
+        <option value="B" {% ifequal 'B' dict_fields|get_value_from_dict:'categoriacnh' %}selected="selected"{% endifequal %} >B</option>
+        <option value="C" {% ifequal 'C' dict_fields|get_value_from_dict:'categoriacnh' %}selected="selected"{% endifequal %} >C</option>
+        <option value="D" {% ifequal 'D' dict_fields|get_value_from_dict:'categoriacnh' %}selected="selected"{% endifequal %} >D</option>
+        <option value="E" {% ifequal 'E' dict_fields|get_value_from_dict:'categoriacnh' %}selected="selected"{% endifequal %} >E</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_cnh__categoriacnh -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2205_documentos" value="1" {% if show_fields|get_value_from_dict:'show_s2205_documentos' %}checked{% endif %} >Informações da Carteira Nacional de Habilitação (CNH)
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrregcnh" value="1" {% if show_fields|get_value_from_dict:'show_nrregcnh' %}checked{% endif %} >Número do CNH
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtexped" value="0" {% if show_fields|get_value_from_dict:'show_dtexped' %}checked{% endif %} >Data de Expedição do RIC
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_ufcnh" value="1" {% if show_fields|get_value_from_dict:'show_ufcnh' %}checked{% endif %} >UF do CNH
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtvalid" value="1" {% if show_fields|get_value_from_dict:'show_dtvalid' %}checked{% endif %} >Data de Validade do OC
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtprihab" value="0" {% if show_fields|get_value_from_dict:'show_dtprihab' %}checked{% endif %} >Data da Primeira Habilitação do CNH
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_categoriacnh" value="1" {% if show_fields|get_value_from_dict:'show_categoriacnh' %}checked{% endif %} >Categoria do CNH
+    </div>
+</div>
+
+

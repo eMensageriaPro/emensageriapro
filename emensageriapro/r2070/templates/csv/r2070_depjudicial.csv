@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r2070_pgtopf or 1 %}"Depósito Judicial";{% endif %}{% if show_fields.show_vlrdepjudicial or 1 %}"Preencher com o Valor do Depósito Judicial";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r2070_pgtopf or 1 %}"{{ c.r2070_pgtopf }}";{% endif %}{% if show_fields.show_vlrdepjudicial or 1 %}"{{ c.vlrdepjudicial }}";{% endif %}
+{% endfor %}

@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,23 +46,125 @@ def validacoes_s2221_evttoxic(arquivo):
     validacoes_lista = []
     xmlns = doc.eSocial['xmlns'].split('/')
     evtToxic = doc.eSocial.evtToxic
-
-    if 'indRetif' in dir(evtToxic.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideEvento.indRetif', evtToxic.ideEvento.indRetif.cdata, 1, u'1;2')
-    if 'nrRecibo' in dir(evtToxic.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideEvento.nrRecibo', evtToxic.ideEvento.nrRecibo.cdata, 0, u'')
-    if 'tpAmb' in dir(evtToxic.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideEvento.tpAmb', evtToxic.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtToxic.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideEvento.procEmi', evtToxic.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
-    if 'verProc' in dir(evtToxic.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideEvento.verProc', evtToxic.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtToxic.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideEmpregador.tpInsc', evtToxic.ideEmpregador.tpInsc.cdata, 1, u'1;2')
-    if 'nrInsc' in dir(evtToxic.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideEmpregador.nrInsc', evtToxic.ideEmpregador.nrInsc.cdata, 1, u'')
-    if 'cpfTrab' in dir(evtToxic.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideVinculo.cpfTrab', evtToxic.ideVinculo.cpfTrab.cdata, 1, u'')
-    if 'nisTrab' in dir(evtToxic.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideVinculo.nisTrab', evtToxic.ideVinculo.nisTrab.cdata, 0, u'')
-    if 'matricula' in dir(evtToxic.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideVinculo.matricula', evtToxic.ideVinculo.matricula.cdata, 0, u'')
-    if 'codCateg' in dir(evtToxic.ideVinculo): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.ideVinculo.codCateg', evtToxic.ideVinculo.codCateg.cdata, 0, u'')
-    if 'dtExame' in dir(evtToxic.toxicologico): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.toxicologico.dtExame', evtToxic.toxicologico.dtExame.cdata, 1, u'')
-    if 'cnpjLab' in dir(evtToxic.toxicologico): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.toxicologico.cnpjLab', evtToxic.toxicologico.cnpjLab.cdata, 0, u'')
-    if 'codSeqExame' in dir(evtToxic.toxicologico): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.toxicologico.codSeqExame', evtToxic.toxicologico.codSeqExame.cdata, 0, u'')
-    if 'nmMed' in dir(evtToxic.toxicologico): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.toxicologico.nmMed', evtToxic.toxicologico.nmMed.cdata, 0, u'')
-    if 'nrCRM' in dir(evtToxic.toxicologico): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.toxicologico.nrCRM', evtToxic.toxicologico.nrCRM.cdata, 0, u'')
-    if 'ufCRM' in dir(evtToxic.toxicologico): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.toxicologico.ufCRM', evtToxic.toxicologico.ufCRM.cdata, 0, u'')
-    if 'indRecusa' in dir(evtToxic.toxicologico): validacoes_lista = validar_campo(validacoes_lista,'evtToxic.toxicologico.indRecusa', evtToxic.toxicologico.indRecusa.cdata, 1, u'')
+    #variaveis
+    
+    if 'ideEvento' in dir(evtToxic.ideEvento):
+        for ideEvento in evtToxic.ideEvento:
+            
+            if 'indRetif' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.indRetif', 
+                                                  ideEvento.indRetif.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'nrRecibo' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.nrRecibo', 
+                                                  ideEvento.nrRecibo.cdata, 
+                                                  0, u'None')
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideEmpregador' in dir(evtToxic.ideEmpregador):
+        for ideEmpregador in evtToxic.ideEmpregador:
+            
+            if 'tpInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.tpInsc', 
+                                                  ideEmpregador.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.nrInsc', 
+                                                  ideEmpregador.nrInsc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideVinculo' in dir(evtToxic.ideVinculo):
+        for ideVinculo in evtToxic.ideVinculo:
+            
+            if 'cpfTrab' in dir(ideVinculo):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideVinculo.cpfTrab', 
+                                                  ideVinculo.cpfTrab.cdata, 
+                                                  1, u'None')
+            
+            if 'nisTrab' in dir(ideVinculo):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideVinculo.nisTrab', 
+                                                  ideVinculo.nisTrab.cdata, 
+                                                  0, u'None')
+            
+            if 'matricula' in dir(ideVinculo):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideVinculo.matricula', 
+                                                  ideVinculo.matricula.cdata, 
+                                                  0, u'None')
+            
+            if 'codCateg' in dir(ideVinculo):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideVinculo.codCateg', 
+                                                  ideVinculo.codCateg.cdata, 
+                                                  0, u'None')
+    
+    if 'toxicologico' in dir(evtToxic.toxicologico):
+        for toxicologico in evtToxic.toxicologico:
+            
+            if 'dtExame' in dir(toxicologico):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'toxicologico.dtExame', 
+                                                  toxicologico.dtExame.cdata, 
+                                                  1, u'None')
+            
+            if 'cnpjLab' in dir(toxicologico):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'toxicologico.cnpjLab', 
+                                                  toxicologico.cnpjLab.cdata, 
+                                                  0, u'None')
+            
+            if 'codSeqExame' in dir(toxicologico):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'toxicologico.codSeqExame', 
+                                                  toxicologico.codSeqExame.cdata, 
+                                                  0, u'None')
+            
+            if 'nmMed' in dir(toxicologico):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'toxicologico.nmMed', 
+                                                  toxicologico.nmMed.cdata, 
+                                                  0, u'None')
+            
+            if 'nrCRM' in dir(toxicologico):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'toxicologico.nrCRM', 
+                                                  toxicologico.nrCRM.cdata, 
+                                                  0, u'None')
+            
+            if 'ufCRM' in dir(toxicologico):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'toxicologico.ufCRM', 
+                                                  toxicologico.ufCRM.cdata, 
+                                                  0, u'None')
+            
+            if 'indRecusa' in dir(toxicologico):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'toxicologico.indRecusa', 
+                                                  toxicologico.indRecusa.cdata, 
+                                                  1, u'S, N')
     return validacoes_lista

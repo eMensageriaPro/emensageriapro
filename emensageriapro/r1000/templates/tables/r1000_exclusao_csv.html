@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Exclusão das informações"
-{% if show_fields.show_r1000_evtinfocontri or not r1000_evtinfocontri_id and 1 %}"Evento de informações do Contribuinte";{% endif %}{% if show_fields.show_ideperiodo or 0 %}"Período de validade das informações incluídas";{% endif %}{% if show_fields.show_inivalid or 1 %}"Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM";{% endif %}{% if show_fields.show_fimvalid or 0 %}"Preencher com o mês e ano de término da validade das informações, se houver";{% endif %}
-{% for a in r1000_exclusao_lista %}{% if show_fields.show_r1000_evtinfocontri or  not r1000_evtinfocontri_id and 1 %}"{{ a.r1000_evtinfocontri }}";{% endif %}{% if show_fields.show_ideperiodo or 0 %}"{{ a.ideperiodo }}";{% endif %}{% if show_fields.show_inivalid or 1 %}"{{ a.get_inivalid_display }}";{% endif %}{% if show_fields.show_fimvalid or 0 %}"{{ a.get_fimvalid_display }}";{% endif %}
-{% endfor %}

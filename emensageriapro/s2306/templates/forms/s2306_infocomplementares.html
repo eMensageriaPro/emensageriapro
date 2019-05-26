@@ -1,1 +1,31 @@
-{% load templatetags %}{% load static %}{% if not s2306_evttsvaltcontr_id or s2306_evttsvaltcontr_id != s2306_infocomplementares_form.s2306_evttsvaltcontr.value %}<!-- inicio__s2306_infocomplementares__s2306_evttsvaltcontr --><div class="col-md-12" id="s2306_infocomplementares__s2306_evttsvaltcontr__div"><div class="form-group"><label id="s2306_infocomplementares__s2306_evttsvaltcontr__label">Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual*<a data-toggle="tooltip" title="Registro onde são fornecidas informações complementares, preenchidas conforme a categoria do trabalhador sem vínculo."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2306_infocomplementares_form.s2306_evttsvaltcontr.value %}<a href="{% url 's2306_evttsvaltcontr_salvar' hash='{}'|json_return_page:'s2306_infocomplementares_salvar'|json_return_hash:hash|json_id:s2306_infocomplementares_form.s2306_evttsvaltcontr.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s2306_infocomplementares_form.s2306_evttsvaltcontr.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2306_infocomplementares_form.s2306_evttsvaltcontr.errors }}</div>{% endif %} {% if s2306_infocomplementares_form.s2306_evttsvaltcontr.field.widget.attrs.readonly %} {% if s2306_infocomplementares_form.s2306_evttsvaltcontr.field.widget.attrs.disabled %} {{ s2306_infocomplementares_form.s2306_evttsvaltcontr|addcss:'form-control' }}<input id="id_s2306_evttsvaltcontr" name="s2306_evttsvaltcontr" type="hidden" value="{{ s2306_infocomplementares_form.s2306_evttsvaltcontr.value }}">{% else %} {{ s2306_infocomplementares_form.s2306_evttsvaltcontr|addcss:'form-control' }} {% endif %} {% else %} {{ s2306_infocomplementares_form.s2306_evttsvaltcontr|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2306_infocomplementares__s2306_evttsvaltcontr -->{% else %}<input type="hidden" value="{{ s2306_evttsvaltcontr_id|valor }}" id="id_s2306_evttsvaltcontr" name="s2306_evttsvaltcontr">{% endif %}
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2306_infocomplementares__s2306_evttsvaltcontr -->
+<div class="col-md-12" id="s2306_infocomplementares__s2306_evttsvaltcontr__div">
+  <div class="form-group">
+    <label id="s2306_infocomplementares__s2306_evttsvaltcontr__label">Informações complementares sobre o declarante*</label>
+    {% if not for_print %}{% if s2306_infocomplementares_form.s2306_evttsvaltcontr.value %}
+        <a href="{% url 's2306_evttsvaltcontr_salvar' hash='{}'|json_return_page:'s2306_infocomplementares_salvar'|json_return_hash:hash|json_id:s2306_infocomplementares_form.s2306_evttsvaltcontr.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s2306_infocomplementares_form.s2306_evttsvaltcontr.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2306_infocomplementares_form.s2306_evttsvaltcontr.errors }}
+      </div>
+    {% endif %}
+    {% if s2306_infocomplementares_form.s2306_evttsvaltcontr.field.widget.attrs.readonly %}
+      {% if s2306_infocomplementares_form.s2306_evttsvaltcontr.field.widget.attrs.disabled %}
+        {{ s2306_infocomplementares_form.s2306_evttsvaltcontr|addcss:'form-control' }}
+        <input id="id_s2306_evttsvaltcontr" name="s2306_evttsvaltcontr" type="hidden" value="{{ s2306_infocomplementares_form.s2306_evttsvaltcontr.value }}">
+      {% else %}
+        {{ s2306_infocomplementares_form.s2306_evttsvaltcontr|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2306_infocomplementares_form.s2306_evttsvaltcontr|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2306_infocomplementares__s2306_evttsvaltcontr -->

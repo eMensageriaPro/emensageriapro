@@ -1,0 +1,124 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4010_benefpen__r4010_detded -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_r4010_detded').change(function(){
+       document.getElementById("r4010_benefpen__r4010_detded__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="r4010_benefpen__r4010_detded__div">
+  <div class="form-group">
+    <label id="r4010_benefpen__r4010_detded__label">Informação dos beneficiários da pensão alimentícia*</label>
+    {% if not for_print %}
+      {% if r4010_benefpen_form.r4010_detded.value %}
+        <a id="r4010_benefpen__r4010_detded__div_acessar" href="{% url 'r4010_detded_salvar' hash='{}'|json_id:r4010_benefpen_form.r4010_detded.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if r4010_benefpen_form.r4010_detded.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_benefpen_form.r4010_detded.errors }}
+      </div>
+    {% endif %}
+    {% if r4010_benefpen_form.r4010_detded.field.widget.attrs.readonly %}
+      {% if r4010_benefpen_form.r4010_detded.field.widget.attrs.disabled %}
+        {{ r4010_benefpen_form.r4010_detded|addcss:'form-control' }}
+        <input id="id_r4010_detded" name="r4010_detded" type="hidden" value="{% if r4010_benefpen_form.r4010_detded.value or r4010_benefpen_form.r4010_detded.value == 0 %}{{ r4010_benefpen_form.r4010_detded.value|valor }}{% endif %}">
+      {% else %}
+        {{ r4010_benefpen_form.r4010_detded|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r4010_benefpen_form.r4010_detded|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r4010_benefpen__r4010_detded -->
+<!-- inicio__r4010_benefpen__cpf -->
+<div class="col-md-6" id="r4010_benefpen__cpf__div">
+  <div class="form-group">
+    <label id="r4010_benefpen__cpf__label">Número do CPF do dependente</label>
+      {% if r4010_benefpen_form.cpf.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_benefpen_form.cpf.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_benefpen_form.cpf|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_benefpen__cpf -->
+<!-- inicio__r4010_benefpen__dtnascto -->
+<div class="col-md-6" id="r4010_benefpen__dtnascto__div">
+  <div class="form-group">
+    <label id="r4010_benefpen__dtnascto__label">Informar a data de nascimento do dependente</label>
+        {% if r4010_benefpen_form.dtnascto.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ r4010_benefpen_form.dtnascto.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_benefpen_form.dtnascto|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_benefpen__dtnascto -->
+<!-- inicio__r4010_benefpen__nome -->
+<div class="col-md-6" id="r4010_benefpen__nome__div">
+  <div class="form-group">
+    <label id="r4010_benefpen__nome__label">Nome do dependente*</label>
+      {% if r4010_benefpen_form.nome.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_benefpen_form.nome.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_benefpen_form.nome|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_benefpen__nome -->
+<!-- inicio__r4010_benefpen__reldep -->
+<div class="col-md-6" id="r4010_benefpen__reldep__div">
+  <div class="form-group">
+    <label id="r4010_benefpen__reldep__label">Relação de dependência*</label>
+    {% if r4010_benefpen_form.reldep.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_benefpen_form.reldep.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r4010_benefpen_form.reldep.field.widget.attrs.readonly %}
+        {% if r4010_benefpen_form.reldep.field.widget.attrs.disabled %}
+          {{ r4010_benefpen_form.reldep|addcss:'form-control' }}
+          <input id="id_reldep" name="reldep" type="hidden" value="{% if r4010_benefpen_form.reldep.value or r4010_benefpen_form.reldep.value == 0 %}{{ r4010_benefpen_form.reldep.value|valor }}{% endif %}">
+        {% else %}
+          {{ r4010_benefpen_form.reldep|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r4010_benefpen_form.reldep|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_benefpen__reldep -->
+<!-- inicio__r4010_benefpen__descrdep -->
+<div class="col-md-6" id="r4010_benefpen__descrdep__div">
+  <div class="form-group">
+    <label id="r4010_benefpen__descrdep__label">Informar a descrição da dependência</label>
+      {% if r4010_benefpen_form.descrdep.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_benefpen_form.descrdep.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_benefpen_form.descrdep|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_benefpen__descrdep -->

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2210_evtcat or 1 %}"Registro que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito";{% endif %}{% if show_fields.show_dtcatorig or 1 %}"Data do CAT de origem";{% endif %}{% if show_fields.show_nrreccatorig or 1 %}"Informar o número do recibo da última CAT referente ao mesmo acidente/doença relacionada ao trabalho";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2210_evtcat or 1 %}"{{ c.s2210_evtcat }}";{% endif %}{% if show_fields.show_dtcatorig or 1 %}"{{ c.dtcatorig }}";{% endif %}{% if show_fields.show_nrreccatorig or 1 %}"{{ c.nrreccatorig }}";{% endif %}
+{% endfor %}

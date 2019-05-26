@@ -1,1 +1,112 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}<table class="table table-bordered table-striped automate-data-table"><thead><tr>{% if show_fields.show_s1010_evttabrubrica or not s1010_evttabrubrica_id and 1 %}<th>Evento destinado a incluir, alterar ou excluir informações da tabela de rubricas</th>{% endif %}{% if show_fields.show_iderubrica or 0 %}<th>Informações de identificação da rubrica e validade das informações que estão sendo incluídas</th>{% endif %}{% if show_fields.show_codrubr or 1 %}<th>Código da Rubrica</th>{% endif %}{% if show_fields.show_idetabrubr or 1 %}<th>Identificador tabela de rubricas</th>{% endif %}{% if show_fields.show_inivalid or 1 %}<th>Início da Validade</th>{% endif %}{% if show_fields.show_fimvalid or 0 %}<th>Fim da Validade</th>{% endif %}{% if show_fields.show_dadosrubrica or 0 %}<th>Detalhamento das informações da rubrica que está sendo incluída</th>{% endif %}{% if show_fields.show_dscrubr or 1 %}<th>Descrição</th>{% endif %}{% if show_fields.show_natrubr or not esocial_naturezas_rubricas_id and 1 %}<th>Natureza da Rubrica</th>{% endif %}{% if show_fields.show_tprubr or 1 %}<th>Tipo de rubrica</th>{% endif %}{% if show_fields.show_codinccp or 1 %}<th>Código Incidência CP</th>{% endif %}{% if show_fields.show_codincirrf or 1 %}<th>Código Incidência IRRF</th>{% endif %}{% if show_fields.show_codincfgts or 1 %}<th>Código Incidência FGTS</th>{% endif %}{% if show_fields.show_codincsind or 1 %}<th>Código Incidência SIND</th>{% endif %}{% if show_fields.show_codinccprp or 0 %}<th>Código de incidência da rubrica para as contribuições do RPPS/regime militar</th>{% endif %}{% if show_fields.show_tetoremun or 0 %}<th>Informar se a rubrica compõe o teto remuneratório específico (art. 37, XI, da CF/1988)</th>{% endif %}{% if show_fields.show_observacao or 0 %}<th>Observações</th>{% endif %}<!-- cabeçalho de colunas especiais -->{% if not for_print %}<th width="90px">Ações</th>{% endif %}</tr></thead><tbody>{% for a in s1010_inclusao_lista %}<tr>{% if show_fields.show_s1010_evttabrubrica or not s1010_evttabrubrica_id and 1 %}<td>{{ a.s1010_evttabrubrica }}</td>{% endif %}{% if show_fields.show_iderubrica or 0 %}<td>{{ a.iderubrica }}</td>{% endif %}{% if show_fields.show_codrubr or 1 %}<td>{{ a.codrubr }}</td>{% endif %}{% if show_fields.show_idetabrubr or 1 %}<td>{{ a.idetabrubr }}</td>{% endif %}{% if show_fields.show_inivalid or 1 %}<td>{{ a.get_inivalid_display }}</td>{% endif %}{% if show_fields.show_fimvalid or 0 %}<td>{{ a.get_fimvalid_display }}</td>{% endif %}{% if show_fields.show_dadosrubrica or 0 %}<td>{{ a.dadosrubrica }}</td>{% endif %}{% if show_fields.show_dscrubr or 1 %}<td>{{ a.dscrubr }}</td>{% endif %}{% if show_fields.show_natrubr or not esocial_naturezas_rubricas_id and 1 %}<td>{{ a.natrubr }}</td>{% endif %}{% if show_fields.show_tprubr or 1 %}<td>{{ a.get_tprubr_display }}</td>{% endif %}{% if show_fields.show_codinccp or 1 %}<td>{{ a.get_codinccp_display }}</td>{% endif %}{% if show_fields.show_codincirrf or 1 %}<td>{{ a.get_codincirrf_display }}</td>{% endif %}{% if show_fields.show_codincfgts or 1 %}<td>{{ a.get_codincfgts_display }}</td>{% endif %}{% if show_fields.show_codincsind or 1 %}<td>{{ a.get_codincsind_display }}</td>{% endif %}{% if show_fields.show_codinccprp or 0 %}<td>{{ a.get_codinccprp_display }}</td>{% endif %}{% if show_fields.show_tetoremun or 0 %}<td>{{ a.get_tetoremun_display }}</td>{% endif %}{% if show_fields.show_observacao or 0 %}<td>{{ a.observacao }}</td>{% endif %}<!-- colunas especiais -->{% if not for_print %}<td><div><!-- botões especiais -->{% if dict_permissoes|get_permissao:'s1010_inclusao_visualizar' %}<a href="{% url 's1010_inclusao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">{% if dict_permissoes|get_permissao:'s1010_inclusao_editar' or dict_permissoes|get_permissao:'s1010_inclusao_cadastrar' %}<span class="btn btn-primary" title="Editar"><i class="fa fa-fw fa-edit"></i></span>{% else %}<span class="btn btn-primary" title="Visualizar"><i class="fa fa-fw fa-eye"></i></span>{% endif %}</a>{% endif %} {% if dict_permissoes|get_permissao:'s1010_inclusao_apagar' %}<a href="{% url 's1010_inclusao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span class="btn btn-danger" title="Apagar"><i class="fa fa-fw fa-times"></i></span></a>{% endif %}</div></td>{% endif %}</tr>{% endfor %}</table>
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_s1010_evttabrubrica or 1 %}
+            <th>Inclusão de novas informações</th>
+            {% endif %}
+            {% if show_fields.show_codrubr or 1 %}
+            <th>Código da Rubrica</th>
+            {% endif %}
+            {% if show_fields.show_idetabrubr or 1 %}
+            <th>Identificador tabela de rubricas</th>
+            {% endif %}
+            {% if show_fields.show_inivalid or 1 %}
+            <th>Início da Validade</th>
+            {% endif %}
+            {% if show_fields.show_dscrubr or 1 %}
+            <th>Descrição</th>
+            {% endif %}
+            {% if show_fields.show_natrubr or 1 %}
+            <th>Natureza da Rubrica</th>
+            {% endif %}
+            {% if show_fields.show_tprubr or 1 %}
+            <th>Tipo de rubrica</th>
+            {% endif %}
+            {% if show_fields.show_codinccp or 1 %}
+            <th>Código Incidência CP</th>
+            {% endif %}
+            {% if show_fields.show_codincirrf or 1 %}
+            <th>Código Incidência IRRF</th>
+            {% endif %}
+            {% if show_fields.show_codincfgts or 1 %}
+            <th>Código Incidência FGTS</th>
+            {% endif %}
+            {% if show_fields.show_codincsind or 1 %}
+            <th>Código Incidência SIND</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in s1010_inclusao_lista %}
+        <tr>
+            {% if show_fields.show_s1010_evttabrubrica or 1 %}
+            <td>{{ a.s1010_evttabrubrica }}</td>
+            {% endif %}
+            {% if show_fields.show_codrubr or 1 %}
+            <td>{{ a.codrubr }}</td>
+            {% endif %}
+            {% if show_fields.show_idetabrubr or 1 %}
+            <td>{{ a.idetabrubr }}</td>
+            {% endif %}
+            {% if show_fields.show_inivalid or 1 %}
+            <td>{{ a.get_inivalid_display }}</td>
+            {% endif %}
+            {% if show_fields.show_dscrubr or 1 %}
+            <td>{{ a.dscrubr }}</td>
+            {% endif %}
+            {% if show_fields.show_natrubr or 1 %}
+            <td>{{ a.natrubr }}</td>
+            {% endif %}
+            {% if show_fields.show_tprubr or 1 %}
+            <td>{{ a.get_tprubr_display }}</td>
+            {% endif %}
+            {% if show_fields.show_codinccp or 1 %}
+            <td>{{ a.get_codinccp_display }}</td>
+            {% endif %}
+            {% if show_fields.show_codincirrf or 1 %}
+            <td>{{ a.get_codincirrf_display }}</td>
+            {% endif %}
+            {% if show_fields.show_codincfgts or 1 %}
+            <td>{{ a.get_codincfgts_display }}</td>
+            {% endif %}
+            {% if show_fields.show_codincsind or 1 %}
+            <td>{{ a.get_codincsind_display }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'s1010_inclusao_visualizar' %}
+                        <a href="{% url 's1010_inclusao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'s1010_inclusao_editar' or dict_permissoes|get_permissao:'s1010_inclusao_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'s1010_inclusao_apagar' %}
+                        <a href="{% url 's1010_inclusao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

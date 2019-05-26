@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2306_infocomplementares or 1 %}"Informações relativas ao trabalhador cedido, preenchidas exclusivamente pelo cessionário.";{% endif %}{% if show_fields.show_indremuncargo or 1 %}"Indicar se o servidor optou pela remuneração do cargo efetivo";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2306_infocomplementares or 1 %}"{{ c.s2306_infocomplementares }}";{% endif %}{% if show_fields.show_indremuncargo or 1 %}"{{ c.indremuncargo }}";{% endif %}
+{% endfor %}

@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Condições ambientais do trabalho - Fim"
-{% if show_fields.show_s2240_evtexprisco or not s2240_evtexprisco_id and 1 %}"Evento Condições Ambientais do Trabalho - Fatores de Risco";{% endif %}{% if show_fields.show_dtfimcondicao or 1 %}"Data do termino da condição";{% endif %}
-{% for a in s2240_fimexprisco_lista %}{% if show_fields.show_s2240_evtexprisco or  not s2240_evtexprisco_id and 1 %}"{{ a.s2240_evtexprisco }}";{% endif %}{% if show_fields.show_dtfimcondicao or 1 %}"{{ a.dtfimcondicao|date:"d/m/Y" }}";{% endif %}
-{% endfor %}

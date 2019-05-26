@@ -1,0 +1,131 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4040_infopgto__r4040_idenat -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações do Pagamento</label>
+    <select name="r4040_idenat" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r4040_idenat_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r4040_idenat' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r4040_infopgto__r4040_idenat -->
+
+<!-- inicio__r4040_infopgto__dtfg -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar a data do fato gerador ou pagamento/crédito</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtfg" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtfg' %}{{ dict_fields|get_value_from_dict:'dtfg' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4040_infopgto__dtfg -->
+
+<!-- inicio__r4040_infopgto__vlrliq -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor líquido do pagamento</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrliq" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrliq' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4040_infopgto__vlrliq -->
+
+<!-- inicio__r4040_infopgto__vlrreaj -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor reajustado, considerado como valor bruto da base de cálculo do IRRF</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrreaj" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrreaj' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4040_infopgto__vlrreaj -->
+
+<!-- inicio__r4040_infopgto__vlrir -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrir" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrir' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4040_infopgto__vlrir -->
+
+<!-- inicio__r4040_infopgto__descr -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Descrição do pagamento</label>
+    <div name="descr" class="input-group" style="width: 100%;">
+      <input type="text" name="descr" class="form-control" value="{{ dict_fields|get_value_from_dict:'descr' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4040_infopgto__descr -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r4040_idenat" value="1" {% if show_fields|get_value_from_dict:'show_r4040_idenat' %}checked{% endif %} >Informações do Pagamento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtfg" value="1" {% if show_fields|get_value_from_dict:'show_dtfg' %}checked{% endif %} >Informar a data do fato gerador ou pagamento/crédito
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrliq" value="1" {% if show_fields|get_value_from_dict:'show_vlrliq' %}checked{% endif %} >Valor líquido do pagamento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrreaj" value="1" {% if show_fields|get_value_from_dict:'show_vlrreaj' %}checked{% endif %} >Valor reajustado, considerado como valor bruto da base de cálculo do IRRF
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrir" value="1" {% if show_fields|get_value_from_dict:'show_vlrir' %}checked{% endif %} >Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_descr" value="1" {% if show_fields|get_value_from_dict:'show_descr' %}checked{% endif %} >Descrição do pagamento
+    </div>
+</div>
+
+

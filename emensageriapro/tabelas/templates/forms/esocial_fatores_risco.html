@@ -1,1 +1,58 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}<!-- inicio__esocial_fatores_risco__grupo --><div class="col-md-6" id="esocial_fatores_risco__grupo__div"><div class="form-group"><label id="esocial_fatores_risco__grupo__label">Grupo*</label>{% if esocial_fatores_risco_form.grupo.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ esocial_fatores_risco_form.grupo.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if esocial_fatores_risco_form.grupo.field.widget.attrs.readonly %} {% if esocial_fatores_risco_form.grupo.field.widget.attrs.disabled %} {{ esocial_fatores_risco_form.grupo|addcss:'form-control' }}<input id="id_grupo" name="grupo" type="hidden" value="{% if esocial_fatores_risco_form.grupo.value or esocial_fatores_risco_form.grupo.value == 0 %}{{ esocial_fatores_risco_form.grupo.value|valor }}{% endif %}">{% else %} {{ esocial_fatores_risco_form.grupo|addcss:'form-control' }} {% endif %} {% else %} {{ esocial_fatores_risco_form.grupo|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__esocial_fatores_risco__grupo --><!-- inicio__esocial_fatores_risco__codigo --><div class="col-md-6" id="esocial_fatores_risco__codigo__div"><div class="form-group"><label id="esocial_fatores_risco__codigo__label">Código*</label>{% if esocial_fatores_risco_form.codigo.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ esocial_fatores_risco_form.codigo.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ esocial_fatores_risco_form.codigo|addcss:'form-control' }}</div></div></div><!-- fim__esocial_fatores_risco__codigo --><!-- inicio__esocial_fatores_risco__descricao --><div class="col-md-12" id="esocial_fatores_risco__descricao__div"><div class="form-group"><label id="esocial_fatores_risco__descricao__label">Descrição*</label>{% if esocial_fatores_risco_form.descricao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ esocial_fatores_risco_form.descricao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ esocial_fatores_risco_form.descricao|addcss:'form-control' }}</div></div></div><!-- fim__esocial_fatores_risco__descricao -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__esocial_fatores_risco__grupo -->
+<div class="col-md-6" id="esocial_fatores_risco__grupo__div">
+  <div class="form-group">
+    <label id="esocial_fatores_risco__grupo__label">Grupo*</label>
+    {% if esocial_fatores_risco_form.grupo.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ esocial_fatores_risco_form.grupo.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if esocial_fatores_risco_form.grupo.field.widget.attrs.readonly %}
+        {% if esocial_fatores_risco_form.grupo.field.widget.attrs.disabled %}
+          {{ esocial_fatores_risco_form.grupo|addcss:'form-control' }}
+          <input id="id_grupo" name="grupo" type="hidden" value="{% if esocial_fatores_risco_form.grupo.value or esocial_fatores_risco_form.grupo.value == 0 %}{{ esocial_fatores_risco_form.grupo.value|valor }}{% endif %}">
+        {% else %}
+          {{ esocial_fatores_risco_form.grupo|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ esocial_fatores_risco_form.grupo|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__esocial_fatores_risco__grupo -->
+<!-- inicio__esocial_fatores_risco__codigo -->
+<div class="col-md-6" id="esocial_fatores_risco__codigo__div">
+  <div class="form-group">
+    <label id="esocial_fatores_risco__codigo__label">Código*</label>
+      {% if esocial_fatores_risco_form.codigo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ esocial_fatores_risco_form.codigo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ esocial_fatores_risco_form.codigo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__esocial_fatores_risco__codigo -->
+<!-- inicio__esocial_fatores_risco__descricao -->
+<div class="col-md-12" id="esocial_fatores_risco__descricao__div">
+  <div class="form-group">
+    <label id="esocial_fatores_risco__descricao__label">Descrição*</label>
+        {% if esocial_fatores_risco_form.descricao.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ esocial_fatores_risco_form.descricao.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ esocial_fatores_risco_form.descricao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__esocial_fatores_risco__descricao -->

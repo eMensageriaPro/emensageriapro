@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2300_infocomplementares or 1 %}"Informações da remuneração e periodicidade de pagamento";{% endif %}{% if show_fields.show_vrsalfx or 1 %}"Valor do Salário Fixo";{% endif %}{% if show_fields.show_undsalfixo or 1 %}"Unidade do Salário Fixo";{% endif %}{% if show_fields.show_dscsalvar or 1 %}"Descrição do salário variável";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2300_infocomplementares or 1 %}"{{ c.s2300_infocomplementares }}";{% endif %}{% if show_fields.show_vrsalfx or 1 %}"{{ c.vrsalfx }}";{% endif %}{% if show_fields.show_undsalfixo or 1 %}"{{ c.undsalfixo }}";{% endif %}{% if show_fields.show_dscsalvar or 1 %}"{{ c.dscsalvar }}";{% endif %}
+{% endfor %}

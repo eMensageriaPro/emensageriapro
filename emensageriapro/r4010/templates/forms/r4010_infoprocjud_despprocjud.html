@@ -1,0 +1,67 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4010_infoprocjud_despprocjud__r4010_infoprocjud -->
+<div class="col-md-12" id="r4010_infoprocjud_despprocjud__r4010_infoprocjud__div">
+  <div class="form-group">
+    <label id="r4010_infoprocjud_despprocjud__r4010_infoprocjud__label">Detalhamento das despesas de processo judicial*</label>
+    {% if not for_print %}{% if r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.value %}
+        <a href="{% url 'r4010_infoprocjud_salvar' hash='{}'|json_return_page:'r4010_infoprocjud_despprocjud_salvar'|json_return_hash:hash|json_id:r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.errors }}
+      </div>
+    {% endif %}
+    {% if r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.field.widget.attrs.readonly %}
+      {% if r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.field.widget.attrs.disabled %}
+        {{ r4010_infoprocjud_despprocjud_form.r4010_infoprocjud|addcss:'form-control' }}
+        <input id="id_r4010_infoprocjud" name="r4010_infoprocjud" type="hidden" value="{{ r4010_infoprocjud_despprocjud_form.r4010_infoprocjud.value }}">
+      {% else %}
+        {{ r4010_infoprocjud_despprocjud_form.r4010_infoprocjud|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r4010_infoprocjud_despprocjud_form.r4010_infoprocjud|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r4010_infoprocjud_despprocjud__r4010_infoprocjud -->
+<!-- inicio__r4010_infoprocjud_despprocjud__vlrdespcustas -->
+<div class="col-md-4" id="r4010_infoprocjud_despprocjud__vlrdespcustas__div">
+  <div class="form-group">
+    <label id="r4010_infoprocjud_despprocjud__vlrdespcustas__label">Preencher com o Valor da despesa com custas judiciais*</label>
+    {% if r4010_infoprocjud_despprocjud_form.vlrdespcustas.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_infoprocjud_despprocjud_form.vlrdespcustas.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_infoprocjud_despprocjud_form.vlrdespcustas|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infoprocjud_despprocjud__vlrdespcustas -->
+<!-- inicio__r4010_infoprocjud_despprocjud__vlrdespadvogados -->
+<div class="col-md-4" id="r4010_infoprocjud_despprocjud__vlrdespadvogados__div">
+  <div class="form-group">
+    <label id="r4010_infoprocjud_despprocjud__vlrdespadvogados__label">Preencher com o Valor da despesa com advogado(s)*</label>
+    {% if r4010_infoprocjud_despprocjud_form.vlrdespadvogados.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_infoprocjud_despprocjud_form.vlrdespadvogados.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_infoprocjud_despprocjud_form.vlrdespadvogados|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infoprocjud_despprocjud__vlrdespadvogados -->

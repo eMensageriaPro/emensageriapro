@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações complementares relativas ao atestado médico"
-{% if show_fields.show_s2230_iniafastamento or not s2230_iniafastamento_id and 1 %}"Informações do Afastamento Temporário - Início";{% endif %}{% if show_fields.show_codcid or 0 %}"CID";{% endif %}{% if show_fields.show_qtddiasafast or 1 %}"Quant. de dias afastados";{% endif %}
-{% for a in s2230_infoatestado_lista %}{% if show_fields.show_s2230_iniafastamento or  not s2230_iniafastamento_id and 1 %}"{{ a.s2230_iniafastamento }}";{% endif %}{% if show_fields.show_codcid or 0 %}"{{ a.codcid }}";{% endif %}{% if show_fields.show_qtddiasafast or 1 %}"{{ a.qtddiasafast }}";{% endif %}
-{% endfor %}

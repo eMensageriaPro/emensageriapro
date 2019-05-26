@@ -1,1 +1,106 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento totalizador por contribuinte</label><select name="r5011_evttotalcontrib" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in r5011_evttotalcontrib_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r5011_evttotalcontrib' %}selected="selected"{% endifequal %}>{{ a.evttotalcontrib }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.perapur }} - {{ a.idecontri }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.iderecretorno }} - {{ a.idestatus }} - {{ a.cdretorno }} - {{ a.descretorno }} - {{ a.inforecev }} - {{ a.nrprotentr }} - {{ a.dhprocess }} - {{ a.tpev }} - {{ a.idev }} - {{ a.hash }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Tipo da ocorrência</label><div class="input-group" style="width: 100%;"><select name="tpocorr" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpocorr' %}selected="selected"{% endifequal %} >1 - Aviso</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpocorr' %}selected="selected"{% endifequal %} >2 - Erro</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Campo que originou o erro ou aviso</label><div name="localerroaviso__icontains" class="input-group" style="width: 100%;"><input type="text" name="localerroaviso__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'localerroaviso__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Código do status da resposta do processamento da consulta</label><div name="codresp__icontains" class="input-group" style="width: 100%;"><input type="text" name="codresp__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'codresp__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Descrição literal da resposta do processamento da consulta</label><div name="dscresp__icontains" class="input-group" style="width: 100%;"><input type="text" name="dscresp__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'dscresp__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_r5011_evttotalcontrib" value="1" {% if show_fields|get_value_from_dict:'show_r5011_evttotalcontrib' %}checked{% endif %}>Evento totalizador por contribuinte</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpocorr" value="1" {% if show_fields|get_value_from_dict:'show_tpocorr' %}checked{% endif %}>Tipo da ocorrência</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_localerroaviso" value="1" {% if show_fields|get_value_from_dict:'show_localerroaviso' %}checked{% endif %}>Campo que originou o erro ou aviso</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codresp" value="1" {% if show_fields|get_value_from_dict:'show_codresp' %}checked{% endif %}>Código do status da resposta do processamento da consulta</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dscresp" value="1" {% if show_fields|get_value_from_dict:'show_dscresp' %}checked{% endif %}>Descrição literal da resposta do processamento da consulta</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r5011_regocorrs__r5011_evttotalcontrib -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações de ocorrências registradas</label>
+    <select name="r5011_evttotalcontrib" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r5011_evttotalcontrib_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r5011_evttotalcontrib' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r5011_regocorrs__r5011_evttotalcontrib -->
+
+<!-- inicio__r5011_regocorrs__tpocorr -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo da ocorrência</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpocorr" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpocorr' %}selected="selected"{% endifequal %} >1 - Erro</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpocorr' %}selected="selected"{% endifequal %} >2 - Aviso</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r5011_regocorrs__tpocorr -->
+
+<!-- inicio__r5011_regocorrs__localerroaviso -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Campo que originou o erro ou aviso</label>
+    <div name="localerroaviso" class="input-group" style="width: 100%;">
+      <input type="text" name="localerroaviso" class="form-control" value="{{ dict_fields|get_value_from_dict:'localerroaviso' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r5011_regocorrs__localerroaviso -->
+
+<!-- inicio__r5011_regocorrs__codresp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código do status da resposta do processamento da consulta</label>
+    <div name="codresp" class="input-group" style="width: 100%;">
+      <input type="text" name="codresp" class="form-control" value="{{ dict_fields|get_value_from_dict:'codresp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r5011_regocorrs__codresp -->
+
+<!-- inicio__r5011_regocorrs__dscresp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Descrição literal da resposta do processamento da consulta</label>
+    <div name="dscresp" class="input-group" style="width: 100%;">
+      <input type="text" name="dscresp" class="form-control" value="{{ dict_fields|get_value_from_dict:'dscresp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r5011_regocorrs__dscresp -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r5011_evttotalcontrib" value="1" {% if show_fields|get_value_from_dict:'show_r5011_evttotalcontrib' %}checked{% endif %} >Informações de ocorrências registradas
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpocorr" value="1" {% if show_fields|get_value_from_dict:'show_tpocorr' %}checked{% endif %} >Tipo da ocorrência
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_localerroaviso" value="1" {% if show_fields|get_value_from_dict:'show_localerroaviso' %}checked{% endif %} >Campo que originou o erro ou aviso
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codresp" value="1" {% if show_fields|get_value_from_dict:'show_codresp' %}checked{% endif %} >Código do status da resposta do processamento da consulta
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dscresp" value="1" {% if show_fields|get_value_from_dict:'show_dscresp' %}checked{% endif %} >Descrição literal da resposta do processamento da consulta
+    </div>
+</div>
+
+

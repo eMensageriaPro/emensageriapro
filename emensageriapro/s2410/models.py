@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s2410.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,35 +45,36 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S2410_INTAPOSENTADO = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
 
-CHOICES_S2410_TPPENMORTE = (
-    (1, u'1 - Vitalícia'),
-    (2, u'2 - Temporária'),
-)
 
 class s2410homologTC(SoftDeletionModel):
-    s2410_evtcdbenin = models.OneToOneField('esocial.s2410evtCdBenIn',
-        related_name='%(class)s_s2410_evtcdbenin')
-    def evento(self): return self.s2410_evtcdbenin.evento()
-    dthomol = models.DateField()
-    nratolegal = models.CharField(max_length=20)
+
+    s2410_evtcdbenin = models.ForeignKey('esocial.s2410evtCdBenIn', 
+        related_name='%(class)s_s2410_evtcdbenin', )
+    
+    def evento(self): 
+        return self.s2410_evtcdbenin.evento()
+    dthomol = models.DateField(null=True, )
+    nratolegal = models.CharField(max_length=20, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -69,48 +82,65 @@ class s2410homologTC(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2410_evtcdbenin) + ' - ' + unicode(self.dthomol) + ' - ' + unicode(self.nratolegal)
-    #s2410_homologtc_custom#
-
+        
+        lista = [
+            unicode(self.s2410_evtcdbenin),
+            unicode(self.dthomol),
+            unicode(self.nratolegal),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas'
         db_table = r's2410_homologtc'       
         managed = True # s2410_homologtc #
-        unique_together = (
-            #custom_unique_together_s2410_homologtc#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2410_homologtc
-            #index_together_s2410_homologtc
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2410_homologtc", "Can view s2410_homologtc"),
-            #custom_permissions_s2410_homologtc
-        )
-        ordering = ['s2410_evtcdbenin', 'dthomol', 'nratolegal']
+            ("can_view_s2410_homologtc", "Can view s2410_homologtc"), )
+            
+        ordering = [
+            's2410_evtcdbenin',
+            'dthomol',
+            'nratolegal',]
 
 
 
 class s2410homologTCSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2410homologTC
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2410infoPenMorte(SoftDeletionModel):
-    s2410_evtcdbenin = models.OneToOneField('esocial.s2410evtCdBenIn',
-        related_name='%(class)s_s2410_evtcdbenin')
-    def evento(self): return self.s2410_evtcdbenin.evento()
-    tppenmorte = models.IntegerField(choices=CHOICES_S2410_TPPENMORTE)
+
+    s2410_evtcdbenin = models.ForeignKey('esocial.s2410evtCdBenIn', 
+        related_name='%(class)s_s2410_evtcdbenin', )
+    
+    def evento(self): 
+        return self.s2410_evtcdbenin.evento()
+    tppenmorte = models.IntegerField(choices=CHOICES_S2410_TPPENMORTE, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -118,50 +148,65 @@ class s2410infoPenMorte(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2410_evtcdbenin) + ' - ' + unicode(self.tppenmorte)
-    #s2410_infopenmorte_custom#
-
+        
+        lista = [
+            unicode(self.s2410_evtcdbenin),
+            unicode(self.tppenmorte),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações relativas a pensão por morte'
         db_table = r's2410_infopenmorte'       
         managed = True # s2410_infopenmorte #
-        unique_together = (
-            #custom_unique_together_s2410_infopenmorte#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2410_infopenmorte
-            #index_together_s2410_infopenmorte
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2410_infopenmorte", "Can view s2410_infopenmorte"),
-            #custom_permissions_s2410_infopenmorte
-        )
-        ordering = ['s2410_evtcdbenin', 'tppenmorte']
+            ("can_view_s2410_infopenmorte", "Can view s2410_infopenmorte"), )
+            
+        ordering = [
+            's2410_evtcdbenin',
+            'tppenmorte',]
 
 
 
 class s2410infoPenMorteSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2410infoPenMorte
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2410instPenMorte(SoftDeletionModel):
-    s2410_infopenmorte = models.OneToOneField('s2410infoPenMorte',
-        related_name='%(class)s_s2410_infopenmorte')
-    def evento(self): return self.s2410_infopenmorte.evento()
-    cpfinst = models.CharField(max_length=11)
-    dtinst = models.DateField()
-    intaposentado = models.CharField(choices=CHOICES_S2410_INTAPOSENTADO, max_length=1)
+
+    s2410_infopenmorte = models.ForeignKey('s2410.s2410infoPenMorte', 
+        related_name='%(class)s_s2410_infopenmorte', )
+    
+    def evento(self): 
+        return self.s2410_infopenmorte.evento()
+    cpfinst = models.CharField(max_length=11, null=True, )
+    dtinst = models.DateField(null=True, )
+    intaposentado = models.CharField(choices=CHOICES_S2410_INTAPOSENTADO, max_length=1, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -169,41 +214,53 @@ class s2410instPenMorte(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2410_infopenmorte) + ' - ' + unicode(self.cpfinst) + ' - ' + unicode(self.dtinst) + ' - ' + unicode(self.intaposentado)
-    #s2410_instpenmorte_custom#
-
+        
+        lista = [
+            unicode(self.s2410_infopenmorte),
+            unicode(self.cpfinst),
+            unicode(self.dtinst),
+            unicode(self.intaposentado),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações do instituidor da pensão por morte'
         db_table = r's2410_instpenmorte'       
         managed = True # s2410_instpenmorte #
-        unique_together = (
-            #custom_unique_together_s2410_instpenmorte#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2410_instpenmorte
-            #index_together_s2410_instpenmorte
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2410_instpenmorte", "Can view s2410_instpenmorte"),
-            #custom_permissions_s2410_instpenmorte
-        )
-        ordering = ['s2410_infopenmorte', 'cpfinst', 'dtinst', 'intaposentado']
+            ("can_view_s2410_instpenmorte", "Can view s2410_instpenmorte"), )
+            
+        ordering = [
+            's2410_infopenmorte',
+            'cpfinst',
+            'dtinst',
+            'intaposentado',]
 
 
 
 class s2410instPenMorteSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2410instPenMorte
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

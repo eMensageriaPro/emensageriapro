@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1202_infoperapur_remunperapur or 1 %}"Informações de plano privado coletivo empresarial de assistência à saúde";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1202_infoperapur_remunperapur or 1 %}"{{ c.s1202_infoperapur_remunperapur }}";{% endif %}
+{% endfor %}

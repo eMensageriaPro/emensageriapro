@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s1299.models import * 
-from emensageriapro.esocial.models import s1299evtFechaEvPer 
+from emensageriapro.s1299.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,23 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s1299_iderespinf(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1299_iderespinf, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1299_evtfechaevper'].widget.attrs['required'] = True        
-        self.fields['nmresp'].widget.attrs['required'] = True        
-        self.fields['cpfresp'].widget.attrs['required'] = True        
-        self.fields['telefone'].widget.attrs['required'] = True
+        super(form_s1299_iderespinf, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -76,10 +74,10 @@ class form_s1299_iderespinf(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1299ideRespInf
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s2210.models import * 
-from emensageriapro.esocial.models import s2210evtCAT 
+from emensageriapro.s2210.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,22 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s2210_agentecausador(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2210_agentecausador, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2210_evtcat'].queryset = s2210evtCAT.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2210_evtcat'].widget.attrs['required'] = True        
-        self.fields['codagntcausador'].widget.attrs['required'] = True
+        super(form_s2210_agentecausador, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -75,34 +74,25 @@ class form_s2210_agentecausador(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2210agenteCausador
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2210_atestado(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2210_atestado, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2210_evtcat'].widget.attrs['required'] = True        
-        self.fields['dtatendimento'].widget.attrs['required'] = True        
-        self.fields['hratendimento'].widget.attrs['required'] = True        
-        self.fields['indinternacao'].widget.attrs['required'] = True        
-        self.fields['durtrat'].widget.attrs['required'] = True        
-        self.fields['indafast'].widget.attrs['required'] = True        
-        self.fields['dsclesao'].widget.attrs['required'] = True        
-        self.fields['codcid'].widget.attrs['required'] = True        
-        self.fields['nmemit'].widget.attrs['required'] = True        
-        self.fields['ideoc'].widget.attrs['required'] = True        
-        self.fields['nroc'].widget.attrs['required'] = True
+        super(form_s2210_atestado, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -122,26 +112,25 @@ class form_s2210_atestado(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2210atestado
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2210_catorigem(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2210_catorigem, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2210_evtcat'].widget.attrs['required'] = True        
-        self.fields['dtcatorig'].widget.attrs['required'] = True        
-        self.fields['nrreccatorig'].widget.attrs['required'] = True
+        super(form_s2210_catorigem, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -161,26 +150,25 @@ class form_s2210_catorigem(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2210catOrigem
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2210_idelocalacid(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2210_idelocalacid, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2210_evtcat'].widget.attrs['required'] = True        
-        self.fields['tpinsc'].widget.attrs['required'] = True        
-        self.fields['nrinsc'].widget.attrs['required'] = True
+        super(form_s2210_idelocalacid, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -200,27 +188,25 @@ class form_s2210_idelocalacid(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2210ideLocalAcid
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2210_parteatingida(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2210_parteatingida, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2210_evtcat'].queryset = s2210evtCAT.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s2210_evtcat'].widget.attrs['required'] = True        
-        self.fields['codparteating'].widget.attrs['required'] = True        
-        self.fields['lateralidade'].widget.attrs['required'] = True
+        super(form_s2210_parteatingida, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -240,10 +226,10 @@ class form_s2210_parteatingida(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2210parteAtingida
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

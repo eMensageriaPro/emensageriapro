@@ -1,0 +1,94 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4020_infopgto__r4020_idepgto -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações do Pagamento</label>
+    <select name="r4020_idepgto" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r4020_idepgto_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r4020_idepgto' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r4020_infopgto__r4020_idepgto -->
+
+<!-- inicio__r4020_infopgto__dtfg -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Informar a data do fato gerador ou pagamento/crédito</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtfg" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtfg' %}{{ dict_fields|get_value_from_dict:'dtfg' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgto__dtfg -->
+
+<!-- inicio__r4020_infopgto__vlrtotalpag -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Valor total pago</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrtotalpag" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrtotalpag' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgto__vlrtotalpag -->
+
+<!-- inicio__r4020_infopgto__vlrtotalcred -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Valor total creditado</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrtotalcred" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrtotalcred' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgto__vlrtotalcred -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r4020_idepgto" value="1" {% if show_fields|get_value_from_dict:'show_r4020_idepgto' %}checked{% endif %} >Informações do Pagamento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtfg" value="1" {% if show_fields|get_value_from_dict:'show_dtfg' %}checked{% endif %} >Informar a data do fato gerador ou pagamento/crédito
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrtotalpag" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalpag' %}checked{% endif %} >Valor total pago
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrtotalcred" value="1" {% if show_fields|get_value_from_dict:'show_vlrtotalcred' %}checked{% endif %} >Valor total creditado
+    </div>
+</div>
+
+

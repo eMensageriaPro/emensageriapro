@@ -1,37 +1,44 @@
 #coding:utf-8
+from __future__ import absolute_import, division, print_function, unicode_literals  # isort:skip
+
 from django.contrib import admin
+from django.db import transaction
+from django.utils import timezone
 
-"""
 
-    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+from emensageriapro.mensageiro.models import Certificados
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+class AuditoriaAdmin(admin.ModelAdmin):
+    readonly_fields = (
+        'criado_em', 
+        'criado_por',
+        'modificado_em', 
+        'modificado_por',
+        'excluido',
+    )
+    
+    
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
 
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
+class CertificadosAdmin(AuditoriaAdmin):
 
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+    search_fields = (
+        'nome',
+    )
+    
+    list_filter = (
+        'nome',
+    )
+    
+    list_display = (
+        'nome',
+    )
+    
+    def queryset(self, request, queryset):
+        return queryset.filter(excluido=False)
 
-"""
 
-# Register your models here.
+
+admin.site.register(Certificados, CertificadosAdmin)

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1000_inclusao or 1 %}"Informações Complementares - Pessoa Física";{% endif %}{% if show_fields.show_indsitpf or 1 %}"Situação PF";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1000_inclusao or 1 %}"{{ c.s1000_inclusao }}";{% endif %}{% if show_fields.show_indsitpf or 1 %}"{{ c.indsitpf }}";{% endif %}
+{% endfor %}

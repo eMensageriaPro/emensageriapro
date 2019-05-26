@@ -1,1 +1,94 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}<table class="table table-bordered table-striped automate-data-table"><thead><tr>{% if show_fields.show_r1000_evtinfocontri or not r1000_evtinfocontri_id and 1 %}<th>Evento de informações do Contribuinte</th>{% endif %}{% if show_fields.show_ideperiodo or 0 %}<th>Período de validade das informações incluídas</th>{% endif %}{% if show_fields.show_inivalid or 1 %}<th>Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM</th>{% endif %}{% if show_fields.show_fimvalid or 0 %}<th>Preencher com o mês e ano de término da validade das informações, se houver</th>{% endif %}{% if show_fields.show_infocadastro or 0 %}<th>Informações do Contribuinte</th>{% endif %}{% if show_fields.show_classtrib or 1 %}<th>Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8</th>{% endif %}{% if show_fields.show_indescrituracao or 1 %}<th>Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital</th>{% endif %}{% if show_fields.show_inddesoneracao or 1 %}<th>Indicativo de desoneração da folha pela CPRB</th>{% endif %}{% if show_fields.show_indacordoisenmulta or 1 %}<th>Indicativo da existência de acordo internacional para isenção de multa</th>{% endif %}{% if show_fields.show_indsitpj or 0 %}<th>Indicativo da Situação da Pessoa Jurídica</th>{% endif %}{% if show_fields.show_contato or 0 %}<th>Informações de contato</th>{% endif %}{% if show_fields.show_nmctt or 1 %}<th>Nome do contato no contribuinte</th>{% endif %}{% if show_fields.show_cpfctt or 1 %}<th>Preencher com o número do CPF do contato.</th>{% endif %}{% if show_fields.show_fonefixo or 0 %}<th>Informar o número do telefone, com DDD</th>{% endif %}{% if show_fields.show_fonecel or 0 %}<th>Telefone celular, com DDD</th>{% endif %}{% if show_fields.show_email or 0 %}<th>Endereço eletrônico</th>{% endif %}<!-- cabeçalho de colunas especiais -->{% if not for_print %}<th width="90px">Ações</th>{% endif %}</tr></thead><tbody>{% for a in r1000_inclusao_lista %}<tr>{% if show_fields.show_r1000_evtinfocontri or not r1000_evtinfocontri_id and 1 %}<td>{{ a.r1000_evtinfocontri }}</td>{% endif %}{% if show_fields.show_ideperiodo or 0 %}<td>{{ a.ideperiodo }}</td>{% endif %}{% if show_fields.show_inivalid or 1 %}<td>{{ a.get_inivalid_display }}</td>{% endif %}{% if show_fields.show_fimvalid or 0 %}<td>{{ a.get_fimvalid_display }}</td>{% endif %}{% if show_fields.show_infocadastro or 0 %}<td>{{ a.infocadastro }}</td>{% endif %}{% if show_fields.show_classtrib or 1 %}<td>{{ a.classtrib }}</td>{% endif %}{% if show_fields.show_indescrituracao or 1 %}<td>{{ a.get_indescrituracao_display }}</td>{% endif %}{% if show_fields.show_inddesoneracao or 1 %}<td>{{ a.get_inddesoneracao_display }}</td>{% endif %}{% if show_fields.show_indacordoisenmulta or 1 %}<td>{{ a.get_indacordoisenmulta_display }}</td>{% endif %}{% if show_fields.show_indsitpj or 0 %}<td>{{ a.get_indsitpj_display }}</td>{% endif %}{% if show_fields.show_contato or 0 %}<td>{{ a.contato }}</td>{% endif %}{% if show_fields.show_nmctt or 1 %}<td>{{ a.nmctt }}</td>{% endif %}{% if show_fields.show_cpfctt or 1 %}<td>{{ a.cpfctt }}</td>{% endif %}{% if show_fields.show_fonefixo or 0 %}<td>{{ a.fonefixo }}</td>{% endif %}{% if show_fields.show_fonecel or 0 %}<td>{{ a.fonecel }}</td>{% endif %}{% if show_fields.show_email or 0 %}<td>{{ a.email }}</td>{% endif %}<!-- colunas especiais -->{% if not for_print %}<td><div><!-- botões especiais -->{% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}<a href="{% url 'r1000_inclusao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">{% if dict_permissoes|get_permissao:'r1000_inclusao_editar' or dict_permissoes|get_permissao:'r1000_inclusao_cadastrar' %}<span class="btn btn-primary" title="Editar"><i class="fa fa-fw fa-edit"></i></span>{% else %}<span class="btn btn-primary" title="Visualizar"><i class="fa fa-fw fa-eye"></i></span>{% endif %}</a>{% endif %} {% if dict_permissoes|get_permissao:'r1000_inclusao_apagar' %}<a href="{% url 'r1000_inclusao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span class="btn btn-danger" title="Apagar"><i class="fa fa-fw fa-times"></i></span></a>{% endif %}</div></td>{% endif %}</tr>{% endfor %}</table>
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r1000_evtinfocontri or 1 %}
+            <th>Inclusão de novas informações</th>
+            {% endif %}
+            {% if show_fields.show_inivalid or 1 %}
+            <th>Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM</th>
+            {% endif %}
+            {% if show_fields.show_classtrib or 1 %}
+            <th>Preencher com o código correspondente à classificação tributária do contribuinte, conforme tabela 8</th>
+            {% endif %}
+            {% if show_fields.show_indescrituracao or 1 %}
+            <th>Indicativo da obrigatoriedade do contribuinte em fazer a sua escrituração contábil na ECD Escrituração Contábil Digital</th>
+            {% endif %}
+            {% if show_fields.show_inddesoneracao or 1 %}
+            <th>Indicativo de desoneração da folha pela CPRB</th>
+            {% endif %}
+            {% if show_fields.show_indacordoisenmulta or 1 %}
+            <th>Indicativo da existência de acordo internacional para isenção de multa</th>
+            {% endif %}
+            {% if show_fields.show_nmctt or 1 %}
+            <th>Nome do contato no contribuinte</th>
+            {% endif %}
+            {% if show_fields.show_cpfctt or 1 %}
+            <th>Preencher com o número do CPF do contato.</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r1000_inclusao_lista %}
+        <tr>
+            {% if show_fields.show_r1000_evtinfocontri or 1 %}
+            <td>{{ a.r1000_evtinfocontri }}</td>
+            {% endif %}
+            {% if show_fields.show_inivalid or 1 %}
+            <td>{{ a.get_inivalid_display }}</td>
+            {% endif %}
+            {% if show_fields.show_classtrib or 1 %}
+            <td>{{ a.get_classtrib_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indescrituracao or 1 %}
+            <td>{{ a.get_indescrituracao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_inddesoneracao or 1 %}
+            <td>{{ a.get_inddesoneracao_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indacordoisenmulta or 1 %}
+            <td>{{ a.get_indacordoisenmulta_display }}</td>
+            {% endif %}
+            {% if show_fields.show_nmctt or 1 %}
+            <td>{{ a.nmctt }}</td>
+            {% endif %}
+            {% if show_fields.show_cpfctt or 1 %}
+            <td>{{ a.cpfctt }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r1000_inclusao_visualizar' %}
+                        <a href="{% url 'r1000_inclusao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r1000_inclusao_editar' or dict_permissoes|get_permissao:'r1000_inclusao_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r1000_inclusao_apagar' %}
+                        <a href="{% url 'r1000_inclusao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

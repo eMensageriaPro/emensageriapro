@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s1040.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,67 +45,39 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-PERIODOS = (
-    ('2017-01', u'Janeiro/2017'),
-    ('2017-02', u'Fevereiro/2017'),
-    ('2017-03', u'Março/2017'),
-    ('2017-04', u'Abril/2017'),
-    ('2017-05', u'Maio/2017'),
-    ('2017-06', u'Junho/2017'),
-    ('2017-07', u'Julho/2017'),
-    ('2017-08', u'Agosto/2017'),
-    ('2017-09', u'Setembro/2017'),
-    ('2017-10', u'Outubro/2017'),
-    ('2017-11', u'Novembro/2017'),
-    ('2017-12', u'Dezembro/2017'),
-    ('2018-01', u'Janeiro/2018'),
-    ('2018-02', u'Fevereiro/2018'),
-    ('2018-03', u'Março/2018'),
-    ('2018-04', u'Abril/2018'),
-    ('2018-05', u'Maio/2018'),
-    ('2018-06', u'Junho/2018'),
-    ('2018-07', u'Julho/2018'),
-    ('2018-08', u'Agosto/2018'),
-    ('2018-09', u'Setembro/2018'),
-    ('2018-10', u'Outubro/2018'),
-    ('2018-11', u'Novembro/2018'),
-    ('2018-12', u'Dezembro/2018'),
-    ('2019-01', u'Janeiro/2019'),
-    ('2019-02', u'Fevereiro/2019'),
-    ('2019-03', u'Março/2019'),
-    ('2019-04', u'Abril/2019'),
-    ('2019-05', u'Maio/2019'),
-    ('2019-06', u'Junho/2019'),
-    ('2019-07', u'Julho/2019'),
-    ('2019-08', u'Agosto/2019'),
-    ('2019-09', u'Setembro/2019'),
-    ('2019-10', u'Outubro/2019'),
-    ('2019-11', u'Novembro/2019'),
-    ('2019-12', u'Dezembro/2019'),
-)
+
 
 class s1040alteracao(SoftDeletionModel):
-    s1040_evttabfuncao = models.OneToOneField('esocial.s1040evtTabFuncao',
-        related_name='%(class)s_s1040_evttabfuncao')
-    def evento(self): return self.s1040_evttabfuncao.evento()
-    codfuncao = models.CharField(max_length=30)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    dscfuncao = models.CharField(max_length=100)
-    codcbo = models.CharField(max_length=6)
+
+    s1040_evttabfuncao = models.ForeignKey('esocial.s1040evtTabFuncao', 
+        related_name='%(class)s_s1040_evttabfuncao', )
+    
+    def evento(self): 
+        return self.s1040_evttabfuncao.evento()
+    codfuncao = models.CharField(max_length=30, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    dscfuncao = models.CharField(max_length=100, null=True, )
+    codcbo = models.CharField(max_length=6, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -101,49 +85,70 @@ class s1040alteracao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1040_evttabfuncao) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dscfuncao) + ' - ' + unicode(self.codcbo)
-    #s1040_alteracao_custom#
-
+        
+        lista = [
+            unicode(self.s1040_evttabfuncao),
+            unicode(self.codfuncao),
+            unicode(self.inivalid),
+            unicode(self.dscfuncao),
+            unicode(self.codcbo),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Alteração das informações'
         db_table = r's1040_alteracao'       
         managed = True # s1040_alteracao #
-        unique_together = (
-            #custom_unique_together_s1040_alteracao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1040_alteracao
-            #index_together_s1040_alteracao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1040_alteracao", "Can view s1040_alteracao"),
-            #custom_permissions_s1040_alteracao
-        )
-        ordering = ['s1040_evttabfuncao', 'codfuncao', 'inivalid', 'dscfuncao', 'codcbo']
+            ("can_view_s1040_alteracao", "Can view s1040_alteracao"), )
+            
+        ordering = [
+            's1040_evttabfuncao',
+            'codfuncao',
+            'inivalid',
+            'dscfuncao',
+            'codcbo',]
 
 
 
 class s1040alteracaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1040alteracao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1040alteracaonovaValidade(SoftDeletionModel):
-    s1040_alteracao = models.OneToOneField('s1040alteracao',
-        related_name='%(class)s_s1040_alteracao')
-    def evento(self): return self.s1040_alteracao.evento()
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+
+    s1040_alteracao = models.ForeignKey('s1040.s1040alteracao', 
+        related_name='%(class)s_s1040_alteracao', )
+    
+    def evento(self): 
+        return self.s1040_alteracao.evento()
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -151,50 +156,65 @@ class s1040alteracaonovaValidade(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1040_alteracao) + ' - ' + unicode(self.inivalid)
-    #s1040_alteracao_novavalidade_custom#
-
+        
+        lista = [
+            unicode(self.s1040_alteracao),
+            unicode(self.inivalid),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.'
         db_table = r's1040_alteracao_novavalidade'       
         managed = True # s1040_alteracao_novavalidade #
-        unique_together = (
-            #custom_unique_together_s1040_alteracao_novavalidade#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1040_alteracao_novavalidade
-            #index_together_s1040_alteracao_novavalidade
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1040_alteracao_novavalidade", "Can view s1040_alteracao_novavalidade"),
-            #custom_permissions_s1040_alteracao_novavalidade
-        )
-        ordering = ['s1040_alteracao', 'inivalid']
+            ("can_view_s1040_alteracao_novavalidade", "Can view s1040_alteracao_novavalidade"), )
+            
+        ordering = [
+            's1040_alteracao',
+            'inivalid',]
 
 
 
 class s1040alteracaonovaValidadeSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1040alteracaonovaValidade
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1040exclusao(SoftDeletionModel):
-    s1040_evttabfuncao = models.OneToOneField('esocial.s1040evtTabFuncao',
-        related_name='%(class)s_s1040_evttabfuncao')
-    def evento(self): return self.s1040_evttabfuncao.evento()
-    codfuncao = models.CharField(max_length=30)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
+
+    s1040_evttabfuncao = models.ForeignKey('esocial.s1040evtTabFuncao', 
+        related_name='%(class)s_s1040_evttabfuncao', )
+    
+    def evento(self): 
+        return self.s1040_evttabfuncao.evento()
+    codfuncao = models.CharField(max_length=30, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -202,52 +222,69 @@ class s1040exclusao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1040_evttabfuncao) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.inivalid)
-    #s1040_exclusao_custom#
-
+        
+        lista = [
+            unicode(self.s1040_evttabfuncao),
+            unicode(self.codfuncao),
+            unicode(self.inivalid),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Exclusão das informações'
         db_table = r's1040_exclusao'       
         managed = True # s1040_exclusao #
-        unique_together = (
-            #custom_unique_together_s1040_exclusao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1040_exclusao
-            #index_together_s1040_exclusao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1040_exclusao", "Can view s1040_exclusao"),
-            #custom_permissions_s1040_exclusao
-        )
-        ordering = ['s1040_evttabfuncao', 'codfuncao', 'inivalid']
+            ("can_view_s1040_exclusao", "Can view s1040_exclusao"), )
+            
+        ordering = [
+            's1040_evttabfuncao',
+            'codfuncao',
+            'inivalid',]
 
 
 
 class s1040exclusaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1040exclusao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1040inclusao(SoftDeletionModel):
-    s1040_evttabfuncao = models.OneToOneField('esocial.s1040evtTabFuncao',
-        related_name='%(class)s_s1040_evttabfuncao')
-    def evento(self): return self.s1040_evttabfuncao.evento()
-    codfuncao = models.CharField(max_length=30)
-    inivalid = models.CharField(choices=PERIODOS, max_length=7)
-    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True)
-    dscfuncao = models.CharField(max_length=100)
-    codcbo = models.CharField(max_length=6)
+
+    s1040_evttabfuncao = models.ForeignKey('esocial.s1040evtTabFuncao', 
+        related_name='%(class)s_s1040_evttabfuncao', )
+    
+    def evento(self): 
+        return self.s1040_evttabfuncao.evento()
+    codfuncao = models.CharField(max_length=30, null=True, )
+    inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
+    fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
+    dscfuncao = models.CharField(max_length=100, null=True, )
+    codcbo = models.CharField(max_length=6, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -255,41 +292,55 @@ class s1040inclusao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1040_evttabfuncao) + ' - ' + unicode(self.codfuncao) + ' - ' + unicode(self.inivalid) + ' - ' + unicode(self.dscfuncao) + ' - ' + unicode(self.codcbo)
-    #s1040_inclusao_custom#
-
+        
+        lista = [
+            unicode(self.s1040_evttabfuncao),
+            unicode(self.codfuncao),
+            unicode(self.inivalid),
+            unicode(self.dscfuncao),
+            unicode(self.codcbo),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Inclusão de novas informações'
         db_table = r's1040_inclusao'       
         managed = True # s1040_inclusao #
-        unique_together = (
-            #custom_unique_together_s1040_inclusao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1040_inclusao
-            #index_together_s1040_inclusao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1040_inclusao", "Can view s1040_inclusao"),
-            #custom_permissions_s1040_inclusao
-        )
-        ordering = ['s1040_evttabfuncao', 'codfuncao', 'inivalid', 'dscfuncao', 'codcbo']
+            ("can_view_s1040_inclusao", "Can view s1040_inclusao"), )
+            
+        ordering = [
+            's1040_evttabfuncao',
+            'codfuncao',
+            'inivalid',
+            'dscfuncao',
+            'codcbo',]
 
 
 
 class s1040inclusaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1040inclusao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

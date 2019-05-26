@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações do desligamento do trabalhador. Registro preenchido exclusivamente caso seja necessário enviar cadastramento inicial referente a trabalhador que já tenha sido desligado da empresa antes do início do eSocial (ex: envio para pagamento de diferenç (...)"
-{% if show_fields.show_s2200_evtadmissao or not s2200_evtadmissao_id and 1 %}"Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador";{% endif %}{% if show_fields.show_dtdeslig or 1 %}"Data de desligamento";{% endif %}
-{% for a in s2200_desligamento_lista %}{% if show_fields.show_s2200_evtadmissao or  not s2200_evtadmissao_id and 1 %}"{{ a.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_dtdeslig or 1 %}"{{ a.dtdeslig|date:"d/m/Y" }}";{% endif %}
-{% endfor %}

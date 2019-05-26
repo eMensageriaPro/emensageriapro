@@ -1,1 +1,106 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Início</label><select name="s2300_evttsvinicio" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2300_evttsvinicio_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2300_evttsvinicio' %}selected="selected"{% endifequal %}>{{ a.evttsvinicio }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.trabalhador }} - {{ a.cpftrab }} - {{ a.nmtrab }} - {{ a.sexo }} - {{ a.racacor }} - {{ a.grauinstr }} - {{ a.nascimento }} - {{ a.dtnascto }} - {{ a.paisnascto }} - {{ a.paisnac }} - {{ a.endereco }} - {{ a.infotsvinicio }} - {{ a.cadini }} - {{ a.codcateg }} - {{ a.dtinicio }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Número do OC</label><div name="nroc__icontains" class="input-group" style="width: 100%;"><input type="text" name="nroc__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nroc__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Órgão Emissor do RIC</label><div name="orgaoemissor__icontains" class="input-group" style="width: 100%;"><input type="text" name="orgaoemissor__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'orgaoemissor__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Data de Expedição do RIC</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtexped__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtexped__range' %}{{ dict_fields|get_value_from_dict:'dtexped__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Data de Validade do OC</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtvalid__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtvalid__range' %}{{ dict_fields|get_value_from_dict:'dtvalid__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2300_evttsvinicio" value="1" {% if show_fields|get_value_from_dict:'show_s2300_evttsvinicio' %}checked{% endif %}>Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Início</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nroc" value="1" {% if show_fields|get_value_from_dict:'show_nroc' %}checked{% endif %}>Número do OC</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_orgaoemissor" value="1" {% if show_fields|get_value_from_dict:'show_orgaoemissor' %}checked{% endif %}>Órgão Emissor do RIC</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtexped" value="1" {% if show_fields|get_value_from_dict:'show_dtexped' %}checked{% endif %}>Data de Expedição do RIC</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtvalid" value="1" {% if show_fields|get_value_from_dict:'show_dtvalid' %}checked{% endif %}>Data de Validade do OC</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2300_oc__s2300_documentos -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações do número de registro em Órgão de Classe (OC)</label>
+    <select name="s2300_documentos" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s2300_documentos_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2300_documentos' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2300_oc__s2300_documentos -->
+
+<!-- inicio__s2300_oc__nroc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número do OC</label>
+    <div name="nroc" class="input-group" style="width: 100%;">
+      <input type="text" name="nroc" class="form-control" value="{{ dict_fields|get_value_from_dict:'nroc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_oc__nroc -->
+
+<!-- inicio__s2300_oc__orgaoemissor -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Órgão Emissor do RIC</label>
+    <div name="orgaoemissor" class="input-group" style="width: 100%;">
+      <input type="text" name="orgaoemissor" class="form-control" value="{{ dict_fields|get_value_from_dict:'orgaoemissor' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_oc__orgaoemissor -->
+
+<!-- inicio__s2300_oc__dtexped -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data de Expedição do RIC</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtexped" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtexped' %}{{ dict_fields|get_value_from_dict:'dtexped' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_oc__dtexped -->
+
+<!-- inicio__s2300_oc__dtvalid -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data de Validade do OC</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtvalid" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtvalid' %}{{ dict_fields|get_value_from_dict:'dtvalid' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_oc__dtvalid -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2300_documentos" value="1" {% if show_fields|get_value_from_dict:'show_s2300_documentos' %}checked{% endif %} >Informações do número de registro em Órgão de Classe (OC)
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nroc" value="1" {% if show_fields|get_value_from_dict:'show_nroc' %}checked{% endif %} >Número do OC
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_orgaoemissor" value="1" {% if show_fields|get_value_from_dict:'show_orgaoemissor' %}checked{% endif %} >Órgão Emissor do RIC
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtexped" value="0" {% if show_fields|get_value_from_dict:'show_dtexped' %}checked{% endif %} >Data de Expedição do RIC
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtvalid" value="0" {% if show_fields|get_value_from_dict:'show_dtvalid' %}checked{% endif %} >Data de Validade do OC
+    </div>
+</div>
+
+

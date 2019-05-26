@@ -1,1 +1,229 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s2205_evtaltcadastral_id or s2205_evtaltcadastral_id != s2205_dependente_form.s2205_evtaltcadastral.value %}<!-- inicio__s2205_dependente__s2205_evtaltcadastral --><div class="col-md-12" id="s2205_dependente__s2205_evtaltcadastral__div"><div class="form-group"><label id="s2205_dependente__s2205_evtaltcadastral__label">Evento Alteração Cadastral do Trabalhador*<a data-toggle="tooltip" title="Informações dos dependentes."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2205_dependente_form.s2205_evtaltcadastral.value %}<a id="s2205_dependente__s2205_evtaltcadastral__div_acessar" href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_id:s2205_dependente_form.s2205_evtaltcadastral.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_s2205_evtaltcadastral').change(function(){ document.getElementById("s2205_dependente__s2205_evtaltcadastral__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if s2205_dependente_form.s2205_evtaltcadastral.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2205_dependente_form.s2205_evtaltcadastral.errors }}</div>{% endif %} {% if s2205_dependente_form.s2205_evtaltcadastral.field.widget.attrs.readonly %} {% if s2205_dependente_form.s2205_evtaltcadastral.field.widget.attrs.disabled %} {{ s2205_dependente_form.s2205_evtaltcadastral|addcss:'form-control' }}<input id="id_s2205_evtaltcadastral" name="s2205_evtaltcadastral" type="hidden" value="{% if s2205_dependente_form.s2205_evtaltcadastral.value or s2205_dependente_form.s2205_evtaltcadastral.value == 0 %}{{ s2205_dependente_form.s2205_evtaltcadastral.value|valor }}{% endif %}">{% else %} {{ s2205_dependente_form.s2205_evtaltcadastral|addcss:'form-control' }} {% endif %} {% else %} {{ s2205_dependente_form.s2205_evtaltcadastral|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2205_dependente__s2205_evtaltcadastral -->{% else %}<input type="hidden" value="{{ s2205_evtaltcadastral_id|valor }}" id="id_s2205_evtaltcadastral" name="s2205_evtaltcadastral">{% endif %}<!-- inicio__s2205_dependente__tpdep --><div class="col-md-6" id="s2205_dependente__tpdep__div"><div class="form-group"><label id="s2205_dependente__tpdep__label">Tipo*<a data-toggle="tooltip" title="Tipo de dependente conforme tabela 07. Validação: Deve ser um código existente na tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2205_dependente_form.tpdep.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2205_dependente_form.tpdep.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2205_dependente_form.tpdep.field.widget.attrs.readonly %} {% if s2205_dependente_form.tpdep.field.widget.attrs.disabled %} {{ s2205_dependente_form.tpdep|addcss:'form-control' }}<input id="id_tpdep" name="tpdep" type="hidden" value="{% if s2205_dependente_form.tpdep.value or s2205_dependente_form.tpdep.value == 0 %}{{ s2205_dependente_form.tpdep.value }}{% endif %}">{% else %} {{ s2205_dependente_form.tpdep|addcss:'form-control' }} {% endif %} {% else %} {{ s2205_dependente_form.tpdep|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2205_dependente__tpdep --><!-- inicio__s2205_dependente__nmdep --><div class="col-md-6" id="s2205_dependente__nmdep__div"><div class="form-group"><label id="s2205_dependente__nmdep__label">Nome*<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2205_dependente_form.nmdep.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2205_dependente_form.nmdep.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2205_dependente_form.nmdep|addcss:'form-control' }}</div></div></div><!-- fim__s2205_dependente__nmdep --><!-- inicio__s2205_dependente__dtnascto --><div class="col-md-6" id="s2205_dependente__dtnascto__div"><div class="form-group"><label id="s2205_dependente__dtnascto__label">Data de nascimento*<a data-toggle="tooltip" title="Preencher com a data de nascimento. Validação: Deve ser maior ou igual que 01/01/1890 e menor que a data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2205_dependente_form.dtnascto.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2205_dependente_form.dtnascto.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2205_dependente_form.dtnascto|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2205_dependente__dtnascto --><!-- inicio__s2205_dependente__cpfdep --><div class="col-md-6" id="s2205_dependente__cpfdep__div"><div class="form-group"><label id="s2205_dependente__cpfdep__label">CPF<a data-toggle="tooltip" title="Número de Inscrição no CPF. Validação: Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório se {depIRRF} = [S]; b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em {ideEmpregador}; c) Não (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2205_dependente_form.cpfdep.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2205_dependente_form.cpfdep.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2205_dependente_form.cpfdep|addcss:'form-control' }}</div></div></div><!-- fim__s2205_dependente__cpfdep --><!-- inicio__s2205_dependente__sexodep --><div class="col-md-6" id="s2205_dependente__sexodep__div"><div class="form-group"><label id="s2205_dependente__sexodep__label">Sexo do dependente<a data-toggle="tooltip" title="Sexo do dependente: M - Masculino; F - Feminino. Validação: Preenchimento obrigatório se o trabalhador estiver vinculado ao RPPS. Valores Válidos: M, F."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2205_dependente_form.sexodep.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2205_dependente_form.sexodep.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2205_dependente_form.sexodep.field.widget.attrs.readonly %} {% if s2205_dependente_form.sexodep.field.widget.attrs.disabled %} {{ s2205_dependente_form.sexodep|addcss:'form-control' }}<input id="id_sexodep" name="sexodep" type="hidden" value="{% if s2205_dependente_form.sexodep.value or s2205_dependente_form.sexodep.value == 0 %}{{ s2205_dependente_form.sexodep.value }}{% endif %}">{% else %} {{ s2205_dependente_form.sexodep|addcss:'form-control' }} {% endif %} {% else %} {{ s2205_dependente_form.sexodep|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2205_dependente__sexodep --><!-- inicio__s2205_dependente__depirrf --><div class="col-md-6" id="s2205_dependente__depirrf__div"><div class="form-group"><label id="s2205_dependente__depirrf__label">Dependente de IRRF*<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2205_dependente_form.depirrf.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2205_dependente_form.depirrf.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2205_dependente_form.depirrf.field.widget.attrs.readonly %} {% if s2205_dependente_form.depirrf.field.widget.attrs.disabled %} {{ s2205_dependente_form.depirrf|addcss:'form-control' }}<input id="id_depirrf" name="depirrf" type="hidden" value="{% if s2205_dependente_form.depirrf.value or s2205_dependente_form.depirrf.value == 0 %}{{ s2205_dependente_form.depirrf.value }}{% endif %}">{% else %} {{ s2205_dependente_form.depirrf|addcss:'form-control' }} {% endif %} {% else %} {{ s2205_dependente_form.depirrf|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2205_dependente__depirrf --><!-- inicio__s2205_dependente__depsf --><div class="col-md-6" id="s2205_dependente__depsf__div"><div class="form-group"><label id="s2205_dependente__depsf__label">Dependente de SF*<a data-toggle="tooltip" title="Informar se é dependente para fins de recebimento do benefício de salário- família: S - Sim N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2205_dependente_form.depsf.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2205_dependente_form.depsf.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2205_dependente_form.depsf.field.widget.attrs.readonly %} {% if s2205_dependente_form.depsf.field.widget.attrs.disabled %} {{ s2205_dependente_form.depsf|addcss:'form-control' }}<input id="id_depsf" name="depsf" type="hidden" value="{% if s2205_dependente_form.depsf.value or s2205_dependente_form.depsf.value == 0 %}{{ s2205_dependente_form.depsf.value }}{% endif %}">{% else %} {{ s2205_dependente_form.depsf|addcss:'form-control' }} {% endif %} {% else %} {{ s2205_dependente_form.depsf|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2205_dependente__depsf --><!-- inicio__s2205_dependente__inctrab --><div class="col-md-6" id="s2205_dependente__inctrab__div"><div class="form-group"><label id="s2205_dependente__inctrab__label">Possui incapacidade física ou mental*<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2205_dependente_form.inctrab.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2205_dependente_form.inctrab.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2205_dependente_form.inctrab.field.widget.attrs.readonly %} {% if s2205_dependente_form.inctrab.field.widget.attrs.disabled %} {{ s2205_dependente_form.inctrab|addcss:'form-control' }}<input id="id_inctrab" name="inctrab" type="hidden" value="{% if s2205_dependente_form.inctrab.value or s2205_dependente_form.inctrab.value == 0 %}{{ s2205_dependente_form.inctrab.value }}{% endif %}">{% else %} {{ s2205_dependente_form.inctrab|addcss:'form-control' }} {% endif %} {% else %} {{ s2205_dependente_form.inctrab|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2205_dependente__inctrab --><!-- inicio__s2205_dependente__depfinsprev --><div class="col-md-6" id="s2205_dependente__depfinsprev__div"><div class="form-group"><label id="s2205_dependente__depfinsprev__label">Informar se é dependente para fins previdenciários<a data-toggle="tooltip" title="Informar se é dependente para fins previdenciários: S - Sim; N - Não. Validação: Preenchimento obrigatório se o trabalhador estiver vinculado ao RPPS. Não preencher nos demais casos. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2205_dependente_form.depfinsprev.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2205_dependente_form.depfinsprev.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2205_dependente_form.depfinsprev.field.widget.attrs.readonly %} {% if s2205_dependente_form.depfinsprev.field.widget.attrs.disabled %} {{ s2205_dependente_form.depfinsprev|addcss:'form-control' }}<input id="id_depfinsprev" name="depfinsprev" type="hidden" value="{% if s2205_dependente_form.depfinsprev.value or s2205_dependente_form.depfinsprev.value == 0 %}{{ s2205_dependente_form.depfinsprev.value }}{% endif %}">{% else %} {{ s2205_dependente_form.depfinsprev|addcss:'form-control' }} {% endif %} {% else %} {{ s2205_dependente_form.depfinsprev|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2205_dependente__depfinsprev -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2205_dependente__s2205_evtaltcadastral -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_s2205_evtaltcadastral').change(function(){
+       document.getElementById("s2205_dependente__s2205_evtaltcadastral__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="s2205_dependente__s2205_evtaltcadastral__div">
+  <div class="form-group">
+    <label id="s2205_dependente__s2205_evtaltcadastral__label">Informações dos dependentes*</label>
+    {% if not for_print %}
+      {% if s2205_dependente_form.s2205_evtaltcadastral.value %}
+        <a id="s2205_dependente__s2205_evtaltcadastral__div_acessar" href="{% url 's2205_evtaltcadastral_salvar' hash='{}'|json_id:s2205_dependente_form.s2205_evtaltcadastral.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if s2205_dependente_form.s2205_evtaltcadastral.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2205_dependente_form.s2205_evtaltcadastral.errors }}
+      </div>
+    {% endif %}
+    {% if s2205_dependente_form.s2205_evtaltcadastral.field.widget.attrs.readonly %}
+      {% if s2205_dependente_form.s2205_evtaltcadastral.field.widget.attrs.disabled %}
+        {{ s2205_dependente_form.s2205_evtaltcadastral|addcss:'form-control' }}
+        <input id="id_s2205_evtaltcadastral" name="s2205_evtaltcadastral" type="hidden" value="{% if s2205_dependente_form.s2205_evtaltcadastral.value or s2205_dependente_form.s2205_evtaltcadastral.value == 0 %}{{ s2205_dependente_form.s2205_evtaltcadastral.value|valor }}{% endif %}">
+      {% else %}
+        {{ s2205_dependente_form.s2205_evtaltcadastral|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2205_dependente_form.s2205_evtaltcadastral|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2205_dependente__s2205_evtaltcadastral -->
+<!-- inicio__s2205_dependente__tpdep -->
+<div class="col-md-6" id="s2205_dependente__tpdep__div">
+  <div class="form-group">
+    <label id="s2205_dependente__tpdep__label">Tipo*</label>
+    {% if s2205_dependente_form.tpdep.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2205_dependente_form.tpdep.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2205_dependente_form.tpdep.field.widget.attrs.readonly %}
+        {% if s2205_dependente_form.tpdep.field.widget.attrs.disabled %}
+          {{ s2205_dependente_form.tpdep|addcss:'form-control' }}
+          <input id="id_tpdep" name="tpdep" type="hidden" value="{% if s2205_dependente_form.tpdep.value or s2205_dependente_form.tpdep.value == 0 %}{{ s2205_dependente_form.tpdep.value }}{% endif %}">
+        {% else %}
+          {{ s2205_dependente_form.tpdep|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2205_dependente_form.tpdep|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_dependente__tpdep -->
+<!-- inicio__s2205_dependente__nmdep -->
+<div class="col-md-6" id="s2205_dependente__nmdep__div">
+  <div class="form-group">
+    <label id="s2205_dependente__nmdep__label">Nome*</label>
+      {% if s2205_dependente_form.nmdep.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2205_dependente_form.nmdep.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2205_dependente_form.nmdep|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_dependente__nmdep -->
+<!-- inicio__s2205_dependente__dtnascto -->
+<div class="col-md-6" id="s2205_dependente__dtnascto__div">
+  <div class="form-group">
+    <label id="s2205_dependente__dtnascto__label">Data de nascimento*</label>
+        {% if s2205_dependente_form.dtnascto.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2205_dependente_form.dtnascto.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2205_dependente_form.dtnascto|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_dependente__dtnascto -->
+<!-- inicio__s2205_dependente__cpfdep -->
+<div class="col-md-6" id="s2205_dependente__cpfdep__div">
+  <div class="form-group">
+    <label id="s2205_dependente__cpfdep__label">CPF</label>
+      {% if s2205_dependente_form.cpfdep.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2205_dependente_form.cpfdep.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2205_dependente_form.cpfdep|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_dependente__cpfdep -->
+<!-- inicio__s2205_dependente__sexodep -->
+<div class="col-md-6" id="s2205_dependente__sexodep__div">
+  <div class="form-group">
+    <label id="s2205_dependente__sexodep__label">Sexo do dependente</label>
+    {% if s2205_dependente_form.sexodep.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2205_dependente_form.sexodep.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2205_dependente_form.sexodep.field.widget.attrs.readonly %}
+        {% if s2205_dependente_form.sexodep.field.widget.attrs.disabled %}
+          {{ s2205_dependente_form.sexodep|addcss:'form-control' }}
+          <input id="id_sexodep" name="sexodep" type="hidden" value="{% if s2205_dependente_form.sexodep.value or s2205_dependente_form.sexodep.value == 0 %}{{ s2205_dependente_form.sexodep.value }}{% endif %}">
+        {% else %}
+          {{ s2205_dependente_form.sexodep|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2205_dependente_form.sexodep|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_dependente__sexodep -->
+<!-- inicio__s2205_dependente__depirrf -->
+<div class="col-md-6" id="s2205_dependente__depirrf__div">
+  <div class="form-group">
+    <label id="s2205_dependente__depirrf__label">Dependente de IRRF*</label>
+    {% if s2205_dependente_form.depirrf.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2205_dependente_form.depirrf.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2205_dependente_form.depirrf.field.widget.attrs.readonly %}
+        {% if s2205_dependente_form.depirrf.field.widget.attrs.disabled %}
+          {{ s2205_dependente_form.depirrf|addcss:'form-control' }}
+          <input id="id_depirrf" name="depirrf" type="hidden" value="{% if s2205_dependente_form.depirrf.value or s2205_dependente_form.depirrf.value == 0 %}{{ s2205_dependente_form.depirrf.value }}{% endif %}">
+        {% else %}
+          {{ s2205_dependente_form.depirrf|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2205_dependente_form.depirrf|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_dependente__depirrf -->
+<!-- inicio__s2205_dependente__depsf -->
+<div class="col-md-6" id="s2205_dependente__depsf__div">
+  <div class="form-group">
+    <label id="s2205_dependente__depsf__label">Dependente de SF*</label>
+    {% if s2205_dependente_form.depsf.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2205_dependente_form.depsf.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2205_dependente_form.depsf.field.widget.attrs.readonly %}
+        {% if s2205_dependente_form.depsf.field.widget.attrs.disabled %}
+          {{ s2205_dependente_form.depsf|addcss:'form-control' }}
+          <input id="id_depsf" name="depsf" type="hidden" value="{% if s2205_dependente_form.depsf.value or s2205_dependente_form.depsf.value == 0 %}{{ s2205_dependente_form.depsf.value }}{% endif %}">
+        {% else %}
+          {{ s2205_dependente_form.depsf|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2205_dependente_form.depsf|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_dependente__depsf -->
+<!-- inicio__s2205_dependente__inctrab -->
+<div class="col-md-6" id="s2205_dependente__inctrab__div">
+  <div class="form-group">
+    <label id="s2205_dependente__inctrab__label">Possui incapacidade física ou mental*</label>
+    {% if s2205_dependente_form.inctrab.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2205_dependente_form.inctrab.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2205_dependente_form.inctrab.field.widget.attrs.readonly %}
+        {% if s2205_dependente_form.inctrab.field.widget.attrs.disabled %}
+          {{ s2205_dependente_form.inctrab|addcss:'form-control' }}
+          <input id="id_inctrab" name="inctrab" type="hidden" value="{% if s2205_dependente_form.inctrab.value or s2205_dependente_form.inctrab.value == 0 %}{{ s2205_dependente_form.inctrab.value }}{% endif %}">
+        {% else %}
+          {{ s2205_dependente_form.inctrab|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2205_dependente_form.inctrab|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_dependente__inctrab -->
+<!-- inicio__s2205_dependente__depfinsprev -->
+<div class="col-md-6" id="s2205_dependente__depfinsprev__div">
+  <div class="form-group">
+    <label id="s2205_dependente__depfinsprev__label">Informar se é dependente para fins previdenciários</label>
+    {% if s2205_dependente_form.depfinsprev.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2205_dependente_form.depfinsprev.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2205_dependente_form.depfinsprev.field.widget.attrs.readonly %}
+        {% if s2205_dependente_form.depfinsprev.field.widget.attrs.disabled %}
+          {{ s2205_dependente_form.depfinsprev|addcss:'form-control' }}
+          <input id="id_depfinsprev" name="depfinsprev" type="hidden" value="{% if s2205_dependente_form.depfinsprev.value or s2205_dependente_form.depfinsprev.value == 0 %}{{ s2205_dependente_form.depfinsprev.value }}{% endif %}">
+        {% else %}
+          {{ s2205_dependente_form.depfinsprev|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2205_dependente_form.depfinsprev|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2205_dependente__depfinsprev -->

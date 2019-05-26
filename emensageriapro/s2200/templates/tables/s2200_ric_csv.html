@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC)"
-{% if show_fields.show_s2200_evtadmissao or not s2200_evtadmissao_id and 1 %}"Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador";{% endif %}{% if show_fields.show_nrric or 1 %}"Número do RIC";{% endif %}{% if show_fields.show_orgaoemissor or 1 %}"Órgão Emissor do RIC";{% endif %}{% if show_fields.show_dtexped or 0 %}"Data de Expedição do RIC";{% endif %}
-{% for a in s2200_ric_lista %}{% if show_fields.show_s2200_evtadmissao or  not s2200_evtadmissao_id and 1 %}"{{ a.s2200_evtadmissao }}";{% endif %}{% if show_fields.show_nrric or 1 %}"{{ a.nrric }}";{% endif %}{% if show_fields.show_orgaoemissor or 1 %}"{{ a.orgaoemissor }}";{% endif %}{% if show_fields.show_dtexped or 0 %}"{{ a.dtexped|date:"d/m/Y" }}";{% endif %}
-{% endfor %}

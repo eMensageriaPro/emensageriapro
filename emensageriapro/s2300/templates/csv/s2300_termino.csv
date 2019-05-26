@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2300_evttsvinicio or 1 %}"Informações de término do TSVE";{% endif %}{% if show_fields.show_dtterm or 1 %}"Data de Término do contrato de trabalho";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2300_evttsvinicio or 1 %}"{{ c.s2300_evttsvinicio }}";{% endif %}{% if show_fields.show_dtterm or 1 %}"{{ c.dtterm }}";{% endif %}
+{% endfor %}

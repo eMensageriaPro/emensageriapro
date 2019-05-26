@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1070_inclusao or 1 %}"Informações de suspensão de exigibilidade de tributos e FGTS em virtude de processo administrativo ou judicial.";{% endif %}{% if show_fields.show_codsusp or 1 %}"Código do Indicativo da Suspensão";{% endif %}{% if show_fields.show_indsusp or 1 %}"Suspensão de exigibilidade";{% endif %}{% if show_fields.show_dtdecisao or 1 %}"Data da decisão";{% endif %}{% if show_fields.show_inddeposito or 1 %}"Depósito do montante integral";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1070_inclusao or 1 %}"{{ c.s1070_inclusao }}";{% endif %}{% if show_fields.show_codsusp or 1 %}"{{ c.codsusp }}";{% endif %}{% if show_fields.show_indsusp or 1 %}"{{ c.indsusp }}";{% endif %}{% if show_fields.show_dtdecisao or 1 %}"{{ c.dtdecisao }}";{% endif %}{% if show_fields.show_inddeposito or 1 %}"{{ c.inddeposito }}";{% endif %}
+{% endfor %}

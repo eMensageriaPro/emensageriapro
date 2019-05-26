@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s1270.models import * 
-from emensageriapro.esocial.models import s1270evtContratAvNP 
+from emensageriapro.s1270.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,12 +40,13 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s1270_remunavnp(forms.ModelForm):
+
     vrbccp00 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrbccp15 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrbccp20 = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
@@ -54,24 +55,13 @@ class form_s1270_remunavnp(forms.ModelForm):
     vrbcfgts = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
     vrdesccp = forms.DecimalField(max_digits=15, decimal_places=2, localize=True)
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1270_remunavnp, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1270_evtcontratavnp'].queryset = s1270evtContratAvNP.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1270_evtcontratavnp'].widget.attrs['required'] = True        
-        self.fields['tpinsc'].widget.attrs['required'] = True        
-        self.fields['nrinsc'].widget.attrs['required'] = True        
-        self.fields['codlotacao'].widget.attrs['required'] = True        
-        self.fields['vrbccp00'].widget.attrs['required'] = True        
-        self.fields['vrbccp15'].widget.attrs['required'] = True        
-        self.fields['vrbccp20'].widget.attrs['required'] = True        
-        self.fields['vrbccp25'].widget.attrs['required'] = True        
-        self.fields['vrbccp13'].widget.attrs['required'] = True        
-        self.fields['vrbcfgts'].widget.attrs['required'] = True        
-        self.fields['vrdesccp'].widget.attrs['required'] = True
+        super(form_s1270_remunavnp, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -91,10 +81,10 @@ class form_s1270_remunavnp(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1270remunAvNP
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

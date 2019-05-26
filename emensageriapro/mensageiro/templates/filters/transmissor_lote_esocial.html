@@ -1,1 +1,195 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Transmissor</label><select name="transmissor" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in transmissor_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'transmissor' %}selected="selected"{% endifequal %}>{{ a.transmissor_nrinsc }} - {{ a.nome_empresa }} - {{ a.empregador_nrinsc }} - {{ a.contribuinte_nrinsc }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Tipo de Inscrição do Empregador</label><div class="input-group" style="width: 100%;"><select name="empregador_tpinsc" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'empregador_tpinsc' %}selected="selected"{% endifequal %} >1 - CNPJ</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'empregador_tpinsc' %}selected="selected"{% endifequal %} >2 - CPF</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'empregador_tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'empregador_tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Número de Inscrição do Empregador</label><div name="empregador_nrinsc__icontains" class="input-group" style="width: 100%;"><input type="text" name="empregador_nrinsc__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'empregador_nrinsc__icontains' }}"></div></div></div><div class="col-md-4"><div class="form-group"><label>Grupo</label><div class="input-group" style="width: 100%;"><select name="grupo" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'grupo' %}selected="selected"{% endifequal %} >1 - Eventos de Tabelas</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'grupo' %}selected="selected"{% endifequal %} >2 - Eventos Não Periódicos</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'grupo' %}selected="selected"{% endifequal %} >3 - Eventos Periódicos</option></select></div></div></div><div class="col-md-4"><div class="form-group"><label>Status</label><div class="input-group" style="width: 100%;"><select name="status" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Cadastrado</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Enviado</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro no envio</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Consultado</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na consulta</option></select></div></div></div><div class="col-md-4"><div class="form-group"><label>Código da Resposta</label><div class="input-group" style="width: 100%;"><select name="resposta_codigo" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >Cadastrado</option><option value="101" {% ifequal 101 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >101 - Lote Aguardando Processamento</option><option value="201" {% ifequal 201 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >201 - Lote Processado com Sucesso</option><option value="202" {% ifequal 202 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >202 - Lote Processado com Advertências</option><option value="301" {% ifequal 301 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >301 - Erro Servidor eSocial</option><option value="401" {% ifequal 401 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >401 - Lote Incorreto - Erro preenchimento</option><option value="402" {% ifequal 402 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >402 - Lote Incorreto - schema Inválido</option><option value="403" {% ifequal 403 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >403 - Lote Incorreto - Versão do Schema não permitida</option><option value="404" {% ifequal 404 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >404 - Lote Incorreto - Erro Certificado</option><option value="405" {% ifequal 405 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >405 - Lote Incorreto - Lote nulo ou vazio</option><option value="501" {% ifequal 501 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >501 - Solicitação de Consulta Incorreta - Erro Preenchimento</option><option value="502" {% ifequal 502 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >502 - Solicitação de Consulta Incorreta - Schema Inválido.</option><option value="503" {% ifequal 503 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >503 - Solicitação de Consulta Incorreta - Versão do Schema Não Permitida.</option><option value="504" {% ifequal 504 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >504 - Solicitação de Consulta Incorreta - Erro Certificado.</option><option value="505" {% ifequal 505 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.</option></select></div></div></div><div class="col-md-4"><div class="form-group"><label>Protocolo de Envio</label><div name="protocolo__icontains" class="input-group" style="width: 100%;"><input type="text" name="protocolo__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'protocolo__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_transmissor" value="1" {% if show_fields|get_value_from_dict:'show_transmissor' %}checked{% endif %}>Transmissor</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_empregador_tpinsc" value="1" {% if show_fields|get_value_from_dict:'show_empregador_tpinsc' %}checked{% endif %}>Tipo de Inscrição do Empregador</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_empregador_nrinsc" value="1" {% if show_fields|get_value_from_dict:'show_empregador_nrinsc' %}checked{% endif %}>Número de Inscrição do Empregador</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_grupo" value="1" {% if show_fields|get_value_from_dict:'show_grupo' %}checked{% endif %}>Grupo</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_status" value="1" {% if show_fields|get_value_from_dict:'show_status' %}checked{% endif %}>Status</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_resposta_codigo" value="1" {% if show_fields|get_value_from_dict:'show_resposta_codigo' %}checked{% endif %}>Código da Resposta</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_resposta_descricao" value="1" {% if show_fields|get_value_from_dict:'show_resposta_descricao' %}checked{% endif %}>Descrição da Resposta</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_recepcao_data_hora" value="1" {% if show_fields|get_value_from_dict:'show_recepcao_data_hora' %}checked{% endif %}>Data/Hora de Recepção</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_recepcao_versao_aplicativo" value="1" {% if show_fields|get_value_from_dict:'show_recepcao_versao_aplicativo' %}checked{% endif %}>Versão do Aplicativo de Recepção</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_protocolo" value="1" {% if show_fields|get_value_from_dict:'show_protocolo' %}checked{% endif %}>Protocolo de Envio</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_processamento_versao_aplicativo" value="1" {% if show_fields|get_value_from_dict:'show_processamento_versao_aplicativo' %}checked{% endif %}>Versão do Aplicativo de Processamento</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tempo_estimado_conclusao" value="1" {% if show_fields|get_value_from_dict:'show_tempo_estimado_conclusao' %}checked{% endif %}>Tempo Estimado de Conclusão</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_arquivo_header" value="1" {% if show_fields|get_value_from_dict:'show_arquivo_header' %}checked{% endif %}>Arquivo Header</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_arquivo_request" value="1" {% if show_fields|get_value_from_dict:'show_arquivo_request' %}checked{% endif %}>Arquivo Request</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_arquivo_response" value="1" {% if show_fields|get_value_from_dict:'show_arquivo_response' %}checked{% endif %}>Arquivo Response</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__transmissor_lote_esocial__transmissor -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Transmissor</label>
+    <select name="transmissor" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in transmissor_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'transmissor' %}selected="selected"{% endifequal %}>{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__transmissor_lote_esocial__transmissor -->
+
+<!-- inicio__transmissor_lote_esocial__empregador_tpinsc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo de Inscrição do Empregador</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="empregador_tpinsc" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'empregador_tpinsc' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'empregador_tpinsc' %}selected="selected"{% endifequal %} >2 - CPF</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'empregador_tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'empregador_tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_esocial__empregador_tpinsc -->
+
+<!-- inicio__transmissor_lote_esocial__empregador_nrinsc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número de Inscrição do Empregador</label>
+    <div name="empregador_nrinsc" class="input-group" style="width: 100%;">
+      <input type="text" name="empregador_nrinsc" class="form-control" value="{{ dict_fields|get_value_from_dict:'empregador_nrinsc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_esocial__empregador_nrinsc -->
+
+<!-- inicio__transmissor_lote_esocial__grupo -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Grupo</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="grupo" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'grupo' %}selected="selected"{% endifequal %} >1 - Eventos de Tabelas</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'grupo' %}selected="selected"{% endifequal %} >2 - Eventos Não Periódicos</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'grupo' %}selected="selected"{% endifequal %} >3 - Eventos Periódicos</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_esocial__grupo -->
+
+<!-- inicio__transmissor_lote_esocial__status -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Status</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="status" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Cadastrado</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Consultado</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Enviado</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro na consulta</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'status' %}selected="selected"{% endifequal %} >Erro no envio</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_esocial__status -->
+
+<!-- inicio__transmissor_lote_esocial__resposta_codigo -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Código da Resposta</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="resposta_codigo" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="101" {% ifequal 101 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >101 - Lote Aguardando Processamento</option>
+        <option value="201" {% ifequal 201 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >201 - Lote Processado com Sucesso</option>
+        <option value="202" {% ifequal 202 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >202 - Lote Processado com Advertências</option>
+        <option value="301" {% ifequal 301 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >301 - Erro Servidor eSocial</option>
+        <option value="401" {% ifequal 401 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >401 - Lote Incorreto - Erro preenchimento</option>
+        <option value="402" {% ifequal 402 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >402 - Lote Incorreto - schema Inválido</option>
+        <option value="403" {% ifequal 403 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >403 - Lote Incorreto - Versão do Schema não permitida</option>
+        <option value="404" {% ifequal 404 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >404 - Lote Incorreto - Erro Certificado</option>
+        <option value="405" {% ifequal 405 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >405 - Lote Incorreto - Lote nulo ou vazio</option>
+        <option value="501" {% ifequal 501 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >501 - Solicitação de Consulta Incorreta - Erro Preenchimento</option>
+        <option value="502" {% ifequal 502 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >502 - Solicitação de Consulta Incorreta - Schema Inválido.</option>
+        <option value="503" {% ifequal 503 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >503 - Solicitação de Consulta Incorreta - Versão do Schema Não Permitida.</option>
+        <option value="504" {% ifequal 504 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >504 - Solicitação de Consulta Incorreta - Erro Certificado.</option>
+        <option value="505" {% ifequal 505 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >505 - Solicitação de Consulta Incorreta - Consulta nula ou vazia.</option>
+        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'resposta_codigo' %}selected="selected"{% endifequal %} >Cadastrado</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_esocial__resposta_codigo -->
+
+<!-- inicio__transmissor_lote_esocial__protocolo -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Protocolo de Envio</label>
+    <div name="protocolo" class="input-group" style="width: 100%;">
+      <input type="text" name="protocolo" class="form-control" value="{{ dict_fields|get_value_from_dict:'protocolo' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__transmissor_lote_esocial__protocolo -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_transmissor" value="0" {% if show_fields|get_value_from_dict:'show_transmissor' %}checked{% endif %} >Transmissor
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_empregador_tpinsc" value="1" {% if show_fields|get_value_from_dict:'show_empregador_tpinsc' %}checked{% endif %} >Tipo de Inscrição do Empregador
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_empregador_nrinsc" value="1" {% if show_fields|get_value_from_dict:'show_empregador_nrinsc' %}checked{% endif %} >Número de Inscrição do Empregador
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_grupo" value="1" {% if show_fields|get_value_from_dict:'show_grupo' %}checked{% endif %} >Grupo
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_status" value="1" {% if show_fields|get_value_from_dict:'show_status' %}checked{% endif %} >Status
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_resposta_codigo" value="1" {% if show_fields|get_value_from_dict:'show_resposta_codigo' %}checked{% endif %} >Código da Resposta
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_recepcao_data_hora" value="0" {% if show_fields|get_value_from_dict:'show_recepcao_data_hora' %}checked{% endif %} >Data/Hora de Recepção
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_recepcao_versao_aplicativo" value="0" {% if show_fields|get_value_from_dict:'show_recepcao_versao_aplicativo' %}checked{% endif %} >Versão do Aplicativo de Recepção
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_protocolo" value="0" {% if show_fields|get_value_from_dict:'show_protocolo' %}checked{% endif %} >Protocolo de Envio
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_processamento_versao_aplicativo" value="0" {% if show_fields|get_value_from_dict:'show_processamento_versao_aplicativo' %}checked{% endif %} >Versão do Aplicativo de Processamento
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tempo_estimado_conclusao" value="0" {% if show_fields|get_value_from_dict:'show_tempo_estimado_conclusao' %}checked{% endif %} >Tempo Estimado de Conclusão
+    </div>
+</div>
+
+

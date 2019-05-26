@@ -1,0 +1,115 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4010_inforeemb__r4010_ideopsaude -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_r4010_ideopsaude').change(function(){
+       document.getElementById("r4010_inforeemb__r4010_ideopsaude__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="r4010_inforeemb__r4010_ideopsaude__div">
+  <div class="form-group">
+    <label id="r4010_inforeemb__r4010_ideopsaude__label">Informação de reembolso do titular do plano de saúde coletivo empresarial*</label>
+    {% if not for_print %}
+      {% if r4010_inforeemb_form.r4010_ideopsaude.value %}
+        <a id="r4010_inforeemb__r4010_ideopsaude__div_acessar" href="{% url 'r4010_ideopsaude_salvar' hash='{}'|json_id:r4010_inforeemb_form.r4010_ideopsaude.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if r4010_inforeemb_form.r4010_ideopsaude.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_inforeemb_form.r4010_ideopsaude.errors }}
+      </div>
+    {% endif %}
+    {% if r4010_inforeemb_form.r4010_ideopsaude.field.widget.attrs.readonly %}
+      {% if r4010_inforeemb_form.r4010_ideopsaude.field.widget.attrs.disabled %}
+        {{ r4010_inforeemb_form.r4010_ideopsaude|addcss:'form-control' }}
+        <input id="id_r4010_ideopsaude" name="r4010_ideopsaude" type="hidden" value="{% if r4010_inforeemb_form.r4010_ideopsaude.value or r4010_inforeemb_form.r4010_ideopsaude.value == 0 %}{{ r4010_inforeemb_form.r4010_ideopsaude.value|valor }}{% endif %}">
+      {% else %}
+        {{ r4010_inforeemb_form.r4010_ideopsaude|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r4010_inforeemb_form.r4010_ideopsaude|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r4010_inforeemb__r4010_ideopsaude -->
+<!-- inicio__r4010_inforeemb__tpinsc -->
+<div class="col-md-6" id="r4010_inforeemb__tpinsc__div">
+  <div class="form-group">
+    <label id="r4010_inforeemb__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+    {% if r4010_inforeemb_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_inforeemb_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r4010_inforeemb_form.tpinsc.field.widget.attrs.readonly %}
+        {% if r4010_inforeemb_form.tpinsc.field.widget.attrs.disabled %}
+          {{ r4010_inforeemb_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r4010_inforeemb_form.tpinsc.value or r4010_inforeemb_form.tpinsc.value == 0 %}{{ r4010_inforeemb_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ r4010_inforeemb_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r4010_inforeemb_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforeemb__tpinsc -->
+<!-- inicio__r4010_inforeemb__nrinsc -->
+<div class="col-md-6" id="r4010_inforeemb__nrinsc__div">
+  <div class="form-group">
+    <label id="r4010_inforeemb__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+      {% if r4010_inforeemb_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_inforeemb_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_inforeemb_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforeemb__nrinsc -->
+<!-- inicio__r4010_inforeemb__vlrreemb -->
+<div class="col-md-6" id="r4010_inforeemb__vlrreemb__div">
+  <div class="form-group">
+    <label id="r4010_inforeemb__vlrreemb__label">Valor do reembolso relativo ao período indicado em {perApur}*</label>
+    {% if r4010_inforeemb_form.vlrreemb.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_inforeemb_form.vlrreemb.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_inforeemb_form.vlrreemb|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforeemb__vlrreemb -->
+<!-- inicio__r4010_inforeemb__vlrreembant -->
+<div class="col-md-6" id="r4010_inforeemb__vlrreembant__div">
+  <div class="form-group">
+    <label id="r4010_inforeemb__vlrreembant__label">Valor do reembolso relativo a anos anteriores</label>
+    {% if r4010_inforeemb_form.vlrreembant.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_inforeemb_form.vlrreembant.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_inforeemb_form.vlrreembant|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforeemb__vlrreembant -->

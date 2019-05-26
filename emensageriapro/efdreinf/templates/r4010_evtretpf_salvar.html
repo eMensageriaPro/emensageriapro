@@ -1,0 +1,494 @@
+<!--
+
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->{% extends 'base.html' %}
+{% load templatetags %}
+{% block content %}
+<section class="content-header">
+   <h1>
+      R-4010 - Retenções na Fonte - Pessoa Física
+      <small>Cadastrar/Editar</small>
+   </h1>
+   <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="#">R-4010 - Retenções na Fonte - Pessoa Física</a></li>
+      <li class="active">Cadastrar/Editar</li>
+   </ol>
+</section>
+{% if not for_print %}
+<section class="content">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
+                <li {% if not tab %}class="active"{% endif %} >
+                    <a href="{% url 'r4010_evtretpf_salvar' hash='{}'|json_return_page:'r4010_evtretpf_salvar'|json_return_hash:hash|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me %}">
+                    R-4010 - Retenções na Fonte - Pessoa Física</a>
+                </li>
+                {% endif %}
+                {% if r4010_evtretpf_id %}
+                    
+                        
+                            {% if dict_permissoes|get_permissao:'r4010_idepgto_visualizar' %}
+                                <li {% if tab == 'r4010_idepgto' %} class="active"{% endif %} >
+                                    <a href="{% url 'r4010_evtretpf_salvar' hash='{}'|json_id:r4010_evtretpf_id|json_print:0|json_tab:'r4010_idepgto'|base64_encode_me %}">
+                                    Identificação do rendimento</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'r4010_ideopsaude_visualizar' %}
+                                <li {% if tab == 'r4010_ideopsaude' %} class="active"{% endif %} >
+                                    <a href="{% url 'r4010_evtretpf_salvar' hash='{}'|json_id:r4010_evtretpf_id|json_print:0|json_tab:'r4010_ideopsaude'|base64_encode_me %}">
+                                    Identificação da operadora do plano privado coletivo empresarial de assistência à saúde</a>
+                                </li>
+                            {% endif %}
+                        
+                    
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- TABS -->
+
+{% else %}
+<section class="invoice">
+   {% endif %}
+   {% if not for_print %}
+   {% if messages %}
+   <div class="row">
+      <div class="pad margin no-print">
+         {% for message in messages %}
+         <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+            {{ message }}
+         </div>
+         {% endfor %}
+      </div>
+   </div>
+   {% endif %}
+   
+   {% if r4010_evtretpf_form.errors %}
+   <div class="row">
+      <div class="pad margin no-print">
+         {% for error in r4010_evtretpf_form.non_field_errors %}
+         <div class="alert alert-error" style="margin-bottom: 0!important;">
+            {{ error|escape }}
+         </div>
+         {% endfor %}
+      </div>
+   </div>
+   {% endif %}
+   
+   
+   
+   {% if r4010_evtretpf_id %}
+   {% if r4010_evtretpf.ocorrencias %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-red">
+            <div class="inner">
+               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+               <p>{% autoescape off %}{{ r4010_evtretpf.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% if r4010_evtretpf.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or r4010_evtretpf.status == STATUS_EVENTO_VALIDADO_ERRO %}
+   {% if not r4010_evtretpf.validacao_precedencia %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-yellow">
+            <div class="inner">
+               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% if r4010_evtretpf.validacoes %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-red">
+            <div class="inner">
+               <strong>Erros de validação:</strong><br>
+               <p>{% autoescape off %}{{ r4010_evtretpf.validacoes }}{% endautoescape %}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% endif %}
+   {% endif %} 
+   {% endif %}
+   {% if not tab %}
+   <div class="row">
+      <div class="col-md-12">
+         {% if not for_print %}
+         <div class="box box-primary">
+            <div class="box-header with-border">
+               <h3 class="box-title">R-4010 - Retenções na Fonte - Pessoa Física</h3>
+            </div>
+            {% else %}
+            <div class="row">
+               {% endif %}
+               {% if not for_print %}
+               {% if dict_permissoes|get_permissao:'r4010_evtretpf_editar' or dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}
+               {% if r4010_evtretpf_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_r4010_evtretpf" method="POST" content="text/html; charset=UTF-8">{% endif %}
+                  {% csrf_token %}
+                  {% endif %}
+                  {% endif %}
+                  <div class="box-body">
+                     <div class="row">
+                        {% include 'forms/r4010_evtretpf.html' %}
+                     </div>
+                  </div>
+                  {% if not for_print %}
+                  <div class="row">
+                     <div class="form-group col-md-4">
+                        <div class="box-footer text-left">
+                           <font color="red">* Campos Obrigatórios.
+                           </font>
+                        </div>
+                     </div>
+                     <div class="form-group col-md-8">
+                        <div class="box-footer text-right">
+                           <!-- botões especiais -->
+                           {% if r4010_evtretpf_id %}
+                           {% if dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}<a href="{% url 'r4010_evtretpf_verificar'  hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}
+                           {% if not evento_totalizador %}
+                           <div class="btn-group">
+                              <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
+                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                              <span class="caret"></span>
+                              <span class="sr-only">Exportar Recibo</span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
+                                 <li class="text-left"><a href="{% url 'r4010_evtretpf_recibo'  hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me tipo='PDF' %}" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;PDF</a></li>
+                                 <li class="text-left"><a href="{% url 'r4010_evtretpf_recibo'  hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me tipo='XLS' %}" target="_blank"><i class="fa fa-file-excel-o"></i>&nbsp;XLS</a></li>
+                                 <li class="text-left"><a href="{% url 'r4010_evtretpf_recibo'  hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me tipo='CSV' %}" target="_blank"><i class="fa fa-file-text-o"></i>&nbsp;CSV</a></li>
+                              </ul>
+                           </div>
+                           &nbsp;
+                           {% endif %}
+                           {% endif %}
+                           {% if dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}
+                           {% if not evento_totalizador %}
+                           <div class="btn-group">
+                              <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
+                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                              <span class="caret"></span>
+                              <span class="sr-only">Ações</span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
+                                 <li class="text-left"><a href="{% url 'r4010_evtretpf_duplicar' hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me %}">Duplicar Evento</a></li>
+                                 {% if r4010_evtretpf.operacao == 1 and r4010_inclusao_lista or r4010_evtretpf.operacao == 2 and r4010_alteracao_lista %}
+                                 <li class="text-left"><a href="{% url 'r4010_evtretpf_criar_alteracao' hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me %}">Criar evento de Alteração</a></li>
+                                 <li class="text-left"><a href="{% url 'r4010_evtretpf_criar_exclusao' hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me %}">Criar evento de Exclusão</a></li>
+                                 {% endif %}
+                                 <li class="text-left"><a href="{% url 'r4010_evtretpf_alterar_identidade' hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me %}">Alterar Identidade do Evento</a></li>
+                                 <li class="text-left"><a href="{% url 'r4010_evtretpf_abrir_evento_para_edicao' hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me %}">Abrir evento para edição</a></li>
+                              </ul>
+                           </div>
+                           &nbsp;
+                           {% endif %}
+                           {% endif %}
+                           {% if dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}<a href="{% url 'r4010_evtretpf_xml'  hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if r4010_evtretpf.status == STATUS_EVENTO_CADASTRADO or r4010_evtretpf.status == STATUS_EVENTO_IMPORTADO or r4010_evtretpf.status == STATUS_EVENTO_DUPLICADO or r4010_evtretpf.status == STATUS_EVENTO_GERADO or r4010_evtretpf.status == STATUS_EVENTO_ASSINADO or r4010_evtretpf.status == STATUS_EVENTO_VALIDADO_ERRO %}
+                           {% if dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}
+                           <a href="{% url 'r4010_evtretpf_validar_evento' hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me %}"
+                              ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
+                           &nbsp;{% endif %}
+                           {% endif %}
+                           <br><br>
+                           {% if dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}<a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% endif %}
+                           {% if dict_permissoes|get_permissao:'r4010_evtretpf_listar' or dict_permissoes|get_permissao:'r4010_evtretpf_listar' %}<a href="{% url 'r4010_evtretpf'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' and r4010_evtretpf_id %}<a href="{% url 'r4010_evtretpf_salvar'  hash='{}'|json_id:r4010_evtretpf_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if dict_permissoes|get_permissao:'r4010_evtretpf_editar' or dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}
+                           {% if r4010_evtretpf_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
+                           {% endif %}
+                           {% if dict_permissoes|get_permissao:'r4010_evtretpf_apagar' and r4010_evtretpf_id %}<a href="{% url 'r4010_evtretpf_apagar'  hash='{}'|json_id:r4010_evtretpf_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
+                        </div>
+                     </div>
+                  </div>
+                  {% endif %}
+                  {% if not for_print %}
+                  {% if dict_permissoes|get_permissao:'r4010_evtretpf_editar' or dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}
+               {% if r4010_evtretpf_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
+               {% endif %}
+               {% endif %}
+            </div>
+            {% if r4010_evtretpf_id %}
+            <!-- inicio controle de alterações -->
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="box box-primary collapsed-box">
+                     <div class="box-header with-border">
+                        <h3 class="box-title">Controle de Alterações</h3>
+                        <div class="pull-right box-tools">
+                           <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i
+                              class="fa fa-minus"></i></button>
+                        </div>
+                     </div>
+                     <div class="box-body">
+                        <table class="table table-bordered table-striped automate-data-table">
+                           <thead>
+                              <tr>
+                                 <th>Data</th>
+                                 <th>Situação Anterior</th>
+                                 <th>Situação Posterior</th>
+                                 <th>Modificado por</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {% for c in controle_alteracoes %}
+                              <tr>
+                                 <td>{{ c.criado_em }}</td>
+                                 <td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td>
+                                 <td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td>
+                                 <td>{{ c.modificado_por }}</td>
+                              </tr>
+                              {% endfor %}
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- fim controle de alterações -->
+            {% endif %}
+         </div>
+      </div>
+   </div>
+   </div>
+   {% endif %}
+   <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+   {% if r4010_evtretpf_id %}
+
+<!-- begin_r4010_idepgto -->
+
+{% if tab == 'r4010_idepgto' or for_print %} 
+
+{% if dict_permissoes|get_permissao:'r4010_idepgto_visualizar' %} 
+
+{% if dict_permissoes|get_permissao:'r4010_idepgto_editar' or dict_permissoes|get_permissao:'r4010_idepgto_cadastrar' %}
+<script type="text/javascript">
+function CadastroListagem() {
+      var display = document.getElementById('cadastrar').style.display;
+      if (display == "none") {
+          document.getElementById('cadastrar').style.display = 'block';
+          document.getElementById('listar').style.display = 'none';
+
+          document.getElementById('CadastrarBotao').style.display = 'none';
+          document.getElementById('ListarBotao').style.display = 'block';
+      } else {
+          document.getElementById('cadastrar').style.display = 'none';
+          document.getElementById('listar').style.display = 'block';
+
+          document.getElementById('CadastrarBotao').style.display = 'block';
+          document.getElementById('ListarBotao').style.display = 'none';
+      }
+  }
+</script>
+{% endif %}
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Identificação do rendimento</h3>   
+        <div class="pull-right box-tools">
+          {% if dict_permissoes|get_permissao:'r4010_idepgto_editar' or dict_permissoes|get_permissao:'r4010_idepgto_cadastrar' %}
+            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
+                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
+            </button>
+            {% endif %}
+        </div>   
+      </div>
+      <div class="box-body" >
+        {% if dict_permissoes|get_permissao:'r4010_idepgto_cadastrar' %}            
+
+
+
+        <!-- begin_form_r4010_idepgto --> 
+        <div id="cadastrar" style="display:none">
+
+              <form id="id_form_r4010_idepgto" action="{% url 'r4010_idepgto_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                  <div class="row">
+                    {% include 'forms/r4010_idepgto.html' %}
+                  </div>
+                  
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <div class="box-footer text-left">
+                        <font color="red">* Campos Obrigatórios.
+                        </font>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div class="box-footer text-right">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
+                        
+                      </div>
+                    </div>
+                  </div>
+     
+              </form>
+            </div>
+        <!-- end_form_r4010_idepgto -->
+        {% endif %} 
+        <div id="listar"> 
+        <!-- begin_table_r4010_idepgto --> 
+  
+
+
+        {% include 'tables/r4010_idepgto.html' %}
+        <!-- end_table_r4010_idepgto --> 
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endif %} 
+
+{% endif %}  
+
+<!-- end_r4010_idepgto -->
+
+<!-- begin_r4010_ideopsaude -->
+
+{% if tab == 'r4010_ideopsaude' or for_print %} 
+
+{% if dict_permissoes|get_permissao:'r4010_ideopsaude_visualizar' %} 
+
+{% if dict_permissoes|get_permissao:'r4010_ideopsaude_editar' or dict_permissoes|get_permissao:'r4010_ideopsaude_cadastrar' %}
+<script type="text/javascript">
+function CadastroListagem() {
+      var display = document.getElementById('cadastrar').style.display;
+      if (display == "none") {
+          document.getElementById('cadastrar').style.display = 'block';
+          document.getElementById('listar').style.display = 'none';
+
+          document.getElementById('CadastrarBotao').style.display = 'none';
+          document.getElementById('ListarBotao').style.display = 'block';
+      } else {
+          document.getElementById('cadastrar').style.display = 'none';
+          document.getElementById('listar').style.display = 'block';
+
+          document.getElementById('CadastrarBotao').style.display = 'block';
+          document.getElementById('ListarBotao').style.display = 'none';
+      }
+  }
+</script>
+{% endif %}
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Identificação da operadora do plano privado coletivo empresarial de assistência à saúde</h3>   
+        <div class="pull-right box-tools">
+          {% if dict_permissoes|get_permissao:'r4010_ideopsaude_editar' or dict_permissoes|get_permissao:'r4010_ideopsaude_cadastrar' %}
+            <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
+                <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
+            </button>
+            {% endif %}
+        </div>   
+      </div>
+      <div class="box-body" >
+        {% if dict_permissoes|get_permissao:'r4010_ideopsaude_cadastrar' %}            
+
+
+
+        <!-- begin_form_r4010_ideopsaude --> 
+        <div id="cadastrar" style="display:none">
+
+              <form id="id_form_r4010_ideopsaude" action="{% url 'r4010_ideopsaude_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                  <div class="row">
+                    {% include 'forms/r4010_ideopsaude.html' %}
+                  </div>
+                  
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <div class="box-footer text-left">
+                        <font color="red">* Campos Obrigatórios.
+                        </font>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <div class="box-footer text-right">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
+                        
+                      </div>
+                    </div>
+                  </div>
+     
+              </form>
+            </div>
+        <!-- end_form_r4010_ideopsaude -->
+        {% endif %} 
+        <div id="listar"> 
+        <!-- begin_table_r4010_ideopsaude --> 
+  
+
+
+        {% include 'tables/r4010_ideopsaude.html' %}
+        <!-- end_table_r4010_ideopsaude --> 
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endif %} 
+
+{% endif %}  
+
+<!-- end_r4010_ideopsaude -->
+
+   {% endif %}
+</section>
+<!-- script -->
+<!--- javascript -->
+{% endblock content %}

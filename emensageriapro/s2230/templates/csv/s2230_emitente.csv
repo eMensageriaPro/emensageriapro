@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2230_infoatestado or 1 %}"Médico/Dentista que emitiu o atestado";{% endif %}{% if show_fields.show_nmemit or 1 %}"Nome";{% endif %}{% if show_fields.show_ideoc or 1 %}"Órgão de Classe (OC)";{% endif %}{% if show_fields.show_nroc or 1 %}"Número do OC";{% endif %}{% if show_fields.show_ufoc or 1 %}"UF do OC";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2230_infoatestado or 1 %}"{{ c.s2230_infoatestado }}";{% endif %}{% if show_fields.show_nmemit or 1 %}"{{ c.nmemit }}";{% endif %}{% if show_fields.show_ideoc or 1 %}"{{ c.ideoc }}";{% endif %}{% if show_fields.show_nroc or 1 %}"{{ c.nroc }}";{% endif %}{% if show_fields.show_ufoc or 1 %}"{{ c.ufoc }}";{% endif %}
+{% endfor %}

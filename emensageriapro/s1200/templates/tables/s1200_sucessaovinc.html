@@ -1,1 +1,70 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}<table class="table table-bordered table-striped automate-data-table"><thead><tr>{% if show_fields.show_s1200_infocomplem or not s1200_infocomplem_id and 1 %}<th>Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</th>{% endif %}{% if show_fields.show_tpinscant or 1 %}<th>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05</th>{% endif %}{% if show_fields.show_cnpjempregant or 1 %}<th>CNPJ Empregador Anterior</th>{% endif %}{% if show_fields.show_matricant or 0 %}<th>Matricula anterior</th>{% endif %}{% if show_fields.show_dtadm or 1 %}<th>Data de admissão</th>{% endif %}{% if show_fields.show_observacao or 0 %}<th>Observações</th>{% endif %}<!-- cabeçalho de colunas especiais -->{% if not for_print %}<th width="90px">Ações</th>{% endif %}</tr></thead><tbody>{% for a in s1200_sucessaovinc_lista %}<tr>{% if show_fields.show_s1200_infocomplem or not s1200_infocomplem_id and 1 %}<td>{{ a.s1200_infocomplem }}</td>{% endif %}{% if show_fields.show_tpinscant or 1 %}<td>{{ a.get_tpinscant_display }}</td>{% endif %}{% if show_fields.show_cnpjempregant or 1 %}<td>{{ a.cnpjempregant }}</td>{% endif %}{% if show_fields.show_matricant or 0 %}<td>{{ a.matricant }}</td>{% endif %}{% if show_fields.show_dtadm or 1 %}<td><span style="display:none">{{ a.dtadm|date:"Y-m-d" }}</span>{{ a.dtadm|date:"d/m/Y" }}</td>{% endif %}{% if show_fields.show_observacao or 0 %}<td>{{ a.observacao }}</td>{% endif %}<!-- colunas especiais -->{% if not for_print %}<td><div><!-- botões especiais -->{% if dict_permissoes|get_permissao:'s1200_sucessaovinc_visualizar' %}<a href="{% url 's1200_sucessaovinc_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">{% if dict_permissoes|get_permissao:'s1200_sucessaovinc_editar' or dict_permissoes|get_permissao:'s1200_sucessaovinc_cadastrar' %}<span class="btn btn-primary" title="Editar"><i class="fa fa-fw fa-edit"></i></span>{% else %}<span class="btn btn-primary" title="Visualizar"><i class="fa fa-fw fa-eye"></i></span>{% endif %}</a>{% endif %} {% if dict_permissoes|get_permissao:'s1200_sucessaovinc_apagar' %}<a href="{% url 's1200_sucessaovinc_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span class="btn btn-danger" title="Apagar"><i class="fa fa-fw fa-times"></i></span></a>{% endif %}</div></td>{% endif %}</tr>{% endfor %}</table>
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_s1200_infocomplem or 1 %}
+            <th>Grupo de informações da sucessão de vínculo trabalhista/estatutário</th>
+            {% endif %}
+            {% if show_fields.show_tpinscant or 1 %}
+            <th>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05</th>
+            {% endif %}
+            {% if show_fields.show_cnpjempregant or 1 %}
+            <th>CNPJ Empregador Anterior</th>
+            {% endif %}
+            {% if show_fields.show_dtadm or 1 %}
+            <th>Data de admissão</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in s1200_sucessaovinc_lista %}
+        <tr>
+            {% if show_fields.show_s1200_infocomplem or 1 %}
+            <td>{{ a.s1200_infocomplem }}</td>
+            {% endif %}
+            {% if show_fields.show_tpinscant or 1 %}
+            <td>{{ a.get_tpinscant_display }}</td>
+            {% endif %}
+            {% if show_fields.show_cnpjempregant or 1 %}
+            <td>{{ a.cnpjempregant }}</td>
+            {% endif %}
+            {% if show_fields.show_dtadm or 1 %}
+            <td><span style="display:none">{{ a.dtadm|date:"Y-m-d" }}</span>{{ a.dtadm|date:"d/m/Y" }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'s1200_sucessaovinc_visualizar' %}
+                        <a href="{% url 's1200_sucessaovinc_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'s1200_sucessaovinc_editar' or dict_permissoes|get_permissao:'s1200_sucessaovinc_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'s1200_sucessaovinc_apagar' %}
+                        <a href="{% url 's1200_sucessaovinc_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -3,9 +3,19 @@
 from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
-from emensageriapro.s1280.views import s1280_infoativconcom as s1280_infoativconcom_views
-from emensageriapro.s1280.views import s1280_infosubstpatr as s1280_infosubstpatr_views
-from emensageriapro.s1280.views import s1280_infosubstpatropport as s1280_infosubstpatropport_views
+from rest_framework.authtoken import views
+from emensageriapro.s1280.views import s1280_infosubstpatr_apagar as s1280_infosubstpatr_apagar_views
+from emensageriapro.s1280.views import s1280_infosubstpatr_listar as s1280_infosubstpatr_listar_views
+from emensageriapro.s1280.views import s1280_infosubstpatr_salvar as s1280_infosubstpatr_salvar_views
+from emensageriapro.s1280.views import s1280_infosubstpatr_api as s1280_infosubstpatr_api_views
+from emensageriapro.s1280.views import s1280_infosubstpatropport_apagar as s1280_infosubstpatropport_apagar_views
+from emensageriapro.s1280.views import s1280_infosubstpatropport_listar as s1280_infosubstpatropport_listar_views
+from emensageriapro.s1280.views import s1280_infosubstpatropport_salvar as s1280_infosubstpatropport_salvar_views
+from emensageriapro.s1280.views import s1280_infosubstpatropport_api as s1280_infosubstpatropport_api_views
+from emensageriapro.s1280.views import s1280_infoativconcom_apagar as s1280_infoativconcom_apagar_views
+from emensageriapro.s1280.views import s1280_infoativconcom_listar as s1280_infoativconcom_listar_views
+from emensageriapro.s1280.views import s1280_infoativconcom_salvar as s1280_infoativconcom_salvar_views
+from emensageriapro.s1280.views import s1280_infoativconcom_api as s1280_infoativconcom_api_views
 
 
 
@@ -42,70 +52,63 @@ from emensageriapro.s1280.views import s1280_infosubstpatropport as s1280_infosu
 
 """
 
+
 urlpatterns = [
 
 
-
-url(r'^s1280-infoativconcom/apagar/(?P<hash>.*)/$', 
-        s1280_infoativconcom_views.apagar, 
-        name='s1280_infoativconcom_apagar'),
-
-url(r'^s1280-infoativconcom/api/$',
-            s1280_infoativconcom_views.s1280infoAtivConcomList.as_view() ),
-
-        url(r'^s1280-infoativconcom/api/(?P<pk>[0-9]+)/$',
-            s1280_infoativconcom_views.s1280infoAtivConcomDetail.as_view() ),
-
-url(r'^s1280-infoativconcom/listar/(?P<hash>.*)/$', 
-        s1280_infoativconcom_views.listar, 
-        name='s1280_infoativconcom'),
-
-url(r'^s1280-infoativconcom/salvar/(?P<hash>.*)/$', 
-        s1280_infoativconcom_views.salvar, 
-        name='s1280_infoativconcom_salvar'),
-
-
-
-url(r'^s1280-infosubstpatr/apagar/(?P<hash>.*)/$', 
-        s1280_infosubstpatr_views.apagar, 
+    url(r'^s1280-infosubstpatr/apagar/(?P<hash>.*)/$', 
+        s1280_infosubstpatr_apagar_views.apagar, 
         name='s1280_infosubstpatr_apagar'),
 
-url(r'^s1280-infosubstpatr/api/$',
-            s1280_infosubstpatr_views.s1280infoSubstPatrList.as_view() ),
+    url(r'^s1280-infosubstpatr/api/$',
+        s1280_infosubstpatr_api_views.s1280infoSubstPatrList.as_view() ),
 
-        url(r'^s1280-infosubstpatr/api/(?P<pk>[0-9]+)/$',
-            s1280_infosubstpatr_views.s1280infoSubstPatrDetail.as_view() ),
+    url(r'^s1280-infosubstpatr/api/(?P<pk>[0-9]+)/$',
+        s1280_infosubstpatr_api_views.s1280infoSubstPatrDetail.as_view() ),
 
-url(r'^s1280-infosubstpatr/listar/(?P<hash>.*)/$', 
-        s1280_infosubstpatr_views.listar, 
+    url(r'^s1280-infosubstpatr/listar/(?P<hash>.*)/$', 
+        s1280_infosubstpatr_listar_views.listar, 
         name='s1280_infosubstpatr'),
 
-url(r'^s1280-infosubstpatr/salvar/(?P<hash>.*)/$', 
-        s1280_infosubstpatr_views.salvar, 
+    url(r'^s1280-infosubstpatr/salvar/(?P<hash>.*)/$', 
+        s1280_infosubstpatr_salvar_views.salvar, 
         name='s1280_infosubstpatr_salvar'),
 
-
-
-url(r'^s1280-infosubstpatropport/apagar/(?P<hash>.*)/$', 
-        s1280_infosubstpatropport_views.apagar, 
+    url(r'^s1280-infosubstpatropport/apagar/(?P<hash>.*)/$', 
+        s1280_infosubstpatropport_apagar_views.apagar, 
         name='s1280_infosubstpatropport_apagar'),
 
-url(r'^s1280-infosubstpatropport/api/$',
-            s1280_infosubstpatropport_views.s1280infoSubstPatrOpPortList.as_view() ),
+    url(r'^s1280-infosubstpatropport/api/$',
+        s1280_infosubstpatropport_api_views.s1280infoSubstPatrOpPortList.as_view() ),
 
-        url(r'^s1280-infosubstpatropport/api/(?P<pk>[0-9]+)/$',
-            s1280_infosubstpatropport_views.s1280infoSubstPatrOpPortDetail.as_view() ),
+    url(r'^s1280-infosubstpatropport/api/(?P<pk>[0-9]+)/$',
+        s1280_infosubstpatropport_api_views.s1280infoSubstPatrOpPortDetail.as_view() ),
 
-url(r'^s1280-infosubstpatropport/listar/(?P<hash>.*)/$', 
-        s1280_infosubstpatropport_views.listar, 
+    url(r'^s1280-infosubstpatropport/listar/(?P<hash>.*)/$', 
+        s1280_infosubstpatropport_listar_views.listar, 
         name='s1280_infosubstpatropport'),
 
-url(r'^s1280-infosubstpatropport/salvar/(?P<hash>.*)/$', 
-        s1280_infosubstpatropport_views.salvar, 
+    url(r'^s1280-infosubstpatropport/salvar/(?P<hash>.*)/$', 
+        s1280_infosubstpatropport_salvar_views.salvar, 
         name='s1280_infosubstpatropport_salvar'),
 
+    url(r'^s1280-infoativconcom/apagar/(?P<hash>.*)/$', 
+        s1280_infoativconcom_apagar_views.apagar, 
+        name='s1280_infoativconcom_apagar'),
 
+    url(r'^s1280-infoativconcom/api/$',
+        s1280_infoativconcom_api_views.s1280infoAtivConcomList.as_view() ),
 
+    url(r'^s1280-infoativconcom/api/(?P<pk>[0-9]+)/$',
+        s1280_infoativconcom_api_views.s1280infoAtivConcomDetail.as_view() ),
+
+    url(r'^s1280-infoativconcom/listar/(?P<hash>.*)/$', 
+        s1280_infoativconcom_listar_views.listar, 
+        name='s1280_infoativconcom'),
+
+    url(r'^s1280-infoativconcom/salvar/(?P<hash>.*)/$', 
+        s1280_infoativconcom_salvar_views.salvar, 
+        name='s1280_infoativconcom_salvar'),
 
 
 ]

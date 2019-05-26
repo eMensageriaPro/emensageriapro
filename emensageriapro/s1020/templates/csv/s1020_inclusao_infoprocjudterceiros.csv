@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1020_inclusao or 1 %}"Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1020_inclusao or 1 %}"{{ c.s1020_inclusao }}";{% endif %}
+{% endfor %}

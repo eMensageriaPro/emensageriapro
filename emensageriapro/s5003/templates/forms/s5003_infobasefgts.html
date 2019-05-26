@@ -1,1 +1,31 @@
-{% load templatetags %}{% load static %}{% if not s5003_infotrabfgts_id or s5003_infotrabfgts_id != s5003_infobasefgts_form.s5003_infotrabfgts.value %}<!-- inicio__s5003_infobasefgts__s5003_infotrabfgts --><div class="col-md-12" id="s5003_infobasefgts__s5003_infotrabfgts__div"><div class="form-group"><label id="s5003_infobasefgts__s5003_infotrabfgts__label">Informações relativas à matrícula e categoria do trabalhador.*<a data-toggle="tooltip" title="Informações referentes a bases de cálculo do FGTS."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s5003_infobasefgts_form.s5003_infotrabfgts.value %}<a href="{% url 's5003_infotrabfgts_salvar' hash='{}'|json_return_page:'s5003_infobasefgts_salvar'|json_return_hash:hash|json_id:s5003_infobasefgts_form.s5003_infotrabfgts.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s5003_infobasefgts_form.s5003_infotrabfgts.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5003_infobasefgts_form.s5003_infotrabfgts.errors }}</div>{% endif %} {% if s5003_infobasefgts_form.s5003_infotrabfgts.field.widget.attrs.readonly %} {% if s5003_infobasefgts_form.s5003_infotrabfgts.field.widget.attrs.disabled %} {{ s5003_infobasefgts_form.s5003_infotrabfgts|addcss:'form-control' }}<input id="id_s5003_infotrabfgts" name="s5003_infotrabfgts" type="hidden" value="{{ s5003_infobasefgts_form.s5003_infotrabfgts.value }}">{% else %} {{ s5003_infobasefgts_form.s5003_infotrabfgts|addcss:'form-control' }} {% endif %} {% else %} {{ s5003_infobasefgts_form.s5003_infotrabfgts|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s5003_infobasefgts__s5003_infotrabfgts -->{% else %}<input type="hidden" value="{{ s5003_infotrabfgts_id|valor }}" id="id_s5003_infotrabfgts" name="s5003_infotrabfgts">{% endif %}
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5003_infobasefgts__s5003_infotrabfgts -->
+<div class="col-md-12" id="s5003_infobasefgts__s5003_infotrabfgts__div">
+  <div class="form-group">
+    <label id="s5003_infobasefgts__s5003_infotrabfgts__label">Informações referentes a bases de cálculo do FGTS.*</label>
+    {% if not for_print %}{% if s5003_infobasefgts_form.s5003_infotrabfgts.value %}
+        <a href="{% url 's5003_infotrabfgts_salvar' hash='{}'|json_return_page:'s5003_infobasefgts_salvar'|json_return_hash:hash|json_id:s5003_infobasefgts_form.s5003_infotrabfgts.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s5003_infobasefgts_form.s5003_infotrabfgts.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5003_infobasefgts_form.s5003_infotrabfgts.errors }}
+      </div>
+    {% endif %}
+    {% if s5003_infobasefgts_form.s5003_infotrabfgts.field.widget.attrs.readonly %}
+      {% if s5003_infobasefgts_form.s5003_infotrabfgts.field.widget.attrs.disabled %}
+        {{ s5003_infobasefgts_form.s5003_infotrabfgts|addcss:'form-control' }}
+        <input id="id_s5003_infotrabfgts" name="s5003_infotrabfgts" type="hidden" value="{{ s5003_infobasefgts_form.s5003_infotrabfgts.value }}">
+      {% else %}
+        {{ s5003_infobasefgts_form.s5003_infotrabfgts|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s5003_infobasefgts_form.s5003_infotrabfgts|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s5003_infobasefgts__s5003_infotrabfgts -->

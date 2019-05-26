@@ -1,0 +1,70 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r9002_infototal or 1 %}
+            <th>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal</th>
+            {% endif %}
+            {% if show_fields.show_crmen or 1 %}
+            <th>Código de Receita - CR relativo ao tributo que possui período de apuração mensal</th>
+            {% endif %}
+            {% if show_fields.show_vlrbasecrmen or 1 %}
+            <th>Valor da base do tributo com período de apuração mensal</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrmen or 1 %}
+            <th>Valor do tributo retido com período de apuração mensal, calculado segundo as regras estabelecidas na legislação em vigor</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r9002_totapurmen_lista %}
+        <tr>
+            {% if show_fields.show_r9002_infototal or 1 %}
+            <td>{{ a.r9002_infototal }}</td>
+            {% endif %}
+            {% if show_fields.show_crmen or 1 %}
+            <td>{{ a.crmen }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrbasecrmen or 1 %}
+            <td>{{ a.vlrbasecrmen }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcrmen or 1 %}
+            <td>{{ a.vlrcrmen }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r9002_totapurmen_visualizar' %}
+                        <a href="{% url 'r9002_totapurmen_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r9002_totapurmen_editar' or dict_permissoes|get_permissao:'r9002_totapurmen_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r9002_totapurmen_apagar' %}
+                        <a href="{% url 'r9002_totapurmen_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

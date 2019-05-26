@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2241_altinsalperic or 1 %}"Informações sobre as condições de trabalho insalubre/periculoso.";{% endif %}{% if show_fields.show_codamb or 1 %}"Código do Ambiente";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2241_altinsalperic or 1 %}"{{ c.s2241_altinsalperic }}";{% endif %}{% if show_fields.show_codamb or 1 %}"{{ c.codamb }}";{% endif %}
+{% endfor %}

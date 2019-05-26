@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s1260.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,46 +45,37 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S1260_INDCOMERC = (
-    (2, u'2 - Comercialização da Produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por Produtor Rural Pessoa Física, inclusive por Segurado Especial ou por Pessoa Física não produtor rural'),
-    (3, u'3 - Comercialização da Produção por Prod. Rural PF/Seg. Especia - Vendas a PJ (exceto Entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a Intermediário PF'),
-    (7, u'7 - Comercialização da Produção Isenta de acordo com a Lei no 13.606/2018'),
-    (8, u'8 - Comercialização da Produção da Pessoa Física/Segurado Especial para Entidade inscrita no Programa de Aquisição de Alimentos - PAA'),
-    (9, u'9 - Comercialização da Produção no Mercado Externo'),
-)
 
-CHOICES_S1260_TPINSC = (
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-)
-
-CHOICES_S1260_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-)
 
 class s1260ideAdquir(SoftDeletionModel):
-    s1260_tpcomerc = models.ForeignKey('s1260tpComerc',
-        related_name='%(class)s_s1260_tpcomerc')
-    def evento(self): return self.s1260_tpcomerc.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1260_TPINSC)
-    nrinsc = models.CharField(max_length=15)
-    vrcomerc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    s1260_tpcomerc = models.ForeignKey('s1260.s1260tpComerc', 
+        related_name='%(class)s_s1260_tpcomerc', )
+    
+    def evento(self): 
+        return self.s1260_tpcomerc.evento()
+    tpinsc = models.IntegerField(choices=CHOICES_S1260_TPINSC, null=True, )
+    nrinsc = models.CharField(max_length=15, null=True, )
+    vrcomerc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -80,53 +83,72 @@ class s1260ideAdquir(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1260_tpcomerc) + ' - ' + unicode(self.tpinsc) + ' - ' + unicode(self.nrinsc) + ' - ' + unicode(self.vrcomerc)
-    #s1260_ideadquir_custom#
-
+        
+        lista = [
+            unicode(self.s1260_tpcomerc),
+            unicode(self.tpinsc),
+            unicode(self.nrinsc),
+            unicode(self.vrcomerc),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Identificação dos Adquirentes da Produção.'
         db_table = r's1260_ideadquir'       
         managed = True # s1260_ideadquir #
-        unique_together = (
-            #custom_unique_together_s1260_ideadquir#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1260_ideadquir
-            #index_together_s1260_ideadquir
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1260_ideadquir", "Can view s1260_ideadquir"),
-            #custom_permissions_s1260_ideadquir
-        )
-        ordering = ['s1260_tpcomerc', 'tpinsc', 'nrinsc', 'vrcomerc']
+            ("can_view_s1260_ideadquir", "Can view s1260_ideadquir"), )
+            
+        ordering = [
+            's1260_tpcomerc',
+            'tpinsc',
+            'nrinsc',
+            'vrcomerc',]
 
 
 
 class s1260ideAdquirSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1260ideAdquir
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1260infoProcJud(SoftDeletionModel):
-    s1260_tpcomerc = models.ForeignKey('s1260tpComerc',
-        related_name='%(class)s_s1260_tpcomerc')
-    def evento(self): return self.s1260_tpcomerc.evento()
-    tpproc = models.IntegerField(choices=CHOICES_S1260_TPPROC)
-    nrproc = models.CharField(max_length=21)
-    codsusp = models.IntegerField()
-    vrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    vrratsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
-    vrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, max_length=14, blank=True, null=True)
+
+    s1260_tpcomerc = models.ForeignKey('s1260.s1260tpComerc', 
+        related_name='%(class)s_s1260_tpcomerc', )
+    
+    def evento(self): 
+        return self.s1260_tpcomerc.evento()
+    tpproc = models.IntegerField(choices=CHOICES_S1260_TPPROC, null=True, )
+    nrproc = models.CharField(max_length=21, null=True, )
+    codsusp = models.IntegerField(null=True, )
+    vrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    vrratsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    vrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -134,54 +156,73 @@ class s1260infoProcJud(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1260_tpcomerc) + ' - ' + unicode(self.tpproc) + ' - ' + unicode(self.nrproc) + ' - ' + unicode(self.codsusp)
-    #s1260_infoprocjud_custom#
-
+        
+        lista = [
+            unicode(self.s1260_tpcomerc),
+            unicode(self.tpproc),
+            unicode(self.nrproc),
+            unicode(self.codsusp),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
-        # verbose_name = u'Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições inciden (...)'
+    
+        # verbose_name = u'Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.'
         db_table = r's1260_infoprocjud'       
         managed = True # s1260_infoprocjud #
-        unique_together = (
-            #custom_unique_together_s1260_infoprocjud#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1260_infoprocjud
-            #index_together_s1260_infoprocjud
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1260_infoprocjud", "Can view s1260_infoprocjud"),
-            #custom_permissions_s1260_infoprocjud
-        )
-        ordering = ['s1260_tpcomerc', 'tpproc', 'nrproc', 'codsusp']
+            ("can_view_s1260_infoprocjud", "Can view s1260_infoprocjud"), )
+            
+        ordering = [
+            's1260_tpcomerc',
+            'tpproc',
+            'nrproc',
+            'codsusp',]
 
 
 
 class s1260infoProcJudSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1260infoProcJud
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1260nfs(SoftDeletionModel):
-    s1260_ideadquir = models.ForeignKey('s1260ideAdquir',
-        related_name='%(class)s_s1260_ideadquir')
-    def evento(self): return self.s1260_ideadquir.evento()
-    serie = models.CharField(max_length=5, blank=True, null=True)
-    nrdocto = models.CharField(max_length=20)
-    dtemisnf = models.DateField()
-    vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrcpdescpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrratdescpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    s1260_ideadquir = models.ForeignKey('s1260.s1260ideAdquir', 
+        related_name='%(class)s_s1260_ideadquir', )
+    
+    def evento(self): 
+        return self.s1260_ideadquir.evento()
+    serie = models.CharField(max_length=5, blank=True, null=True, )
+    nrdocto = models.CharField(max_length=20, null=True, )
+    dtemisnf = models.DateField(null=True, )
+    vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrcpdescpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrratdescpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -189,49 +230,74 @@ class s1260nfs(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1260_ideadquir) + ' - ' + unicode(self.nrdocto) + ' - ' + unicode(self.dtemisnf) + ' - ' + unicode(self.vlrbruto) + ' - ' + unicode(self.vrcpdescpr) + ' - ' + unicode(self.vrratdescpr) + ' - ' + unicode(self.vrsenardesc)
-    #s1260_nfs_custom#
-
+        
+        lista = [
+            unicode(self.s1260_ideadquir),
+            unicode(self.nrdocto),
+            unicode(self.dtemisnf),
+            unicode(self.vlrbruto),
+            unicode(self.vrcpdescpr),
+            unicode(self.vrratdescpr),
+            unicode(self.vrsenardesc),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.'
         db_table = r's1260_nfs'       
         managed = True # s1260_nfs #
-        unique_together = (
-            #custom_unique_together_s1260_nfs#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1260_nfs
-            #index_together_s1260_nfs
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1260_nfs", "Can view s1260_nfs"),
-            #custom_permissions_s1260_nfs
-        )
-        ordering = ['s1260_ideadquir', 'nrdocto', 'dtemisnf', 'vlrbruto', 'vrcpdescpr', 'vrratdescpr', 'vrsenardesc']
+            ("can_view_s1260_nfs", "Can view s1260_nfs"), )
+            
+        ordering = [
+            's1260_ideadquir',
+            'nrdocto',
+            'dtemisnf',
+            'vlrbruto',
+            'vrcpdescpr',
+            'vrratdescpr',
+            'vrsenardesc',]
 
 
 
 class s1260nfsSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1260nfs
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1260tpComerc(SoftDeletionModel):
-    s1260_evtcomprod = models.ForeignKey('esocial.s1260evtComProd',
-        related_name='%(class)s_s1260_evtcomprod')
-    def evento(self): return self.s1260_evtcomprod.evento()
-    indcomerc = models.IntegerField(choices=CHOICES_S1260_INDCOMERC)
-    vrtotcom = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    s1260_evtcomprod = models.ForeignKey('esocial.s1260evtComProd', 
+        related_name='%(class)s_s1260_evtcomprod', )
+    
+    def evento(self): 
+        return self.s1260_evtcomprod.evento()
+    indcomerc = models.IntegerField(choices=CHOICES_S1260_INDCOMERC, null=True, )
+    vrtotcom = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -239,41 +305,51 @@ class s1260tpComerc(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1260_evtcomprod) + ' - ' + unicode(self.indcomerc) + ' - ' + unicode(self.vrtotcom)
-    #s1260_tpcomerc_custom#
-
+        
+        lista = [
+            unicode(self.s1260_evtcomprod),
+            unicode(self.indcomerc),
+            unicode(self.vrtotcom),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
-        # verbose_name = u'Registro que apresenta o valor total da comercialização por "tipo" de comercialização'
+    
+        # verbose_name = u'Registro que apresenta o valor total da comercialização por 'tipo' de comercialização'
         db_table = r's1260_tpcomerc'       
         managed = True # s1260_tpcomerc #
-        unique_together = (
-            #custom_unique_together_s1260_tpcomerc#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1260_tpcomerc
-            #index_together_s1260_tpcomerc
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1260_tpcomerc", "Can view s1260_tpcomerc"),
-            #custom_permissions_s1260_tpcomerc
-        )
-        ordering = ['s1260_evtcomprod', 'indcomerc', 'vrtotcom']
+            ("can_view_s1260_tpcomerc", "Can view s1260_tpcomerc"), )
+            
+        ordering = [
+            's1260_evtcomprod',
+            'indcomerc',
+            'vrtotcom',]
 
 
 
 class s1260tpComercSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1260tpComerc
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

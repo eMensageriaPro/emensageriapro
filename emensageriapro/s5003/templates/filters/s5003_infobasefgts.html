@@ -1,1 +1,32 @@
-{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Informações relativas à matrícula e categoria do trabalhador.</label><select name="s5003_infotrabfgts" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s5003_infotrabfgts_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s5003_infotrabfgts' %}selected="selected"{% endifequal %}>{{ a.s5003_ideestablot }} - {{ a.codcateg }}</option>{% endfor %}</select></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s5003_infotrabfgts" value="1" {% if show_fields|get_value_from_dict:'show_s5003_infotrabfgts' %}checked{% endif %}>Informações relativas à matrícula e categoria do trabalhador.</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5003_infobasefgts__s5003_infotrabfgts -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações referentes a bases de cálculo do FGTS.</label>
+    <select name="s5003_infotrabfgts" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s5003_infotrabfgts_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s5003_infotrabfgts' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s5003_infobasefgts__s5003_infotrabfgts -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s5003_infotrabfgts" value="1" {% if show_fields|get_value_from_dict:'show_s5003_infotrabfgts' %}checked{% endif %} >Informações referentes a bases de cálculo do FGTS.
+    </div>
+</div>
+
+

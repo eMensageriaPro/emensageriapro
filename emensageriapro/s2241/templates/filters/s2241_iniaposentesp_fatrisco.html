@@ -1,1 +1,72 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Informações relativas ao ambiente de trabalho</label><select name="s2241_iniaposentesp_infoamb" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2241_iniaposentesp_infoamb_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2241_iniaposentesp_infoamb' %}selected="selected"{% endifequal %}>{{ a.s2241_iniaposentesp }} - {{ a.codamb }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Código do Fator de Risco</label><input type="text" id="txt_codfatris__icontains" name="txt_codfatris__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'codfatris__icontains' }}"><input type="hidden" id="id_codfatris__icontains" name="codfatris__icontains" value="{{ dict_fields|get_value_from_dict:'codfatris__icontains'|valor }}"></div></div><script type="text/javascript">$(document).ready(function(e){ $('#txt_codfatris__icontains').autocomplete({ source: function (request, response) { $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-fatores-risco/json-search/" + request.term + "/", function (data) { response($.map(data.esocial_fatores_risco, function (value, key) { return { label: value.value, value: value.key }; })); }); }, minLength: 3, select: function( e, ui ) { e.preventDefault(e); $(this).val(ui.item.label); $('#id_codfatris__icontains').val(ui.item.value); return false; }});});</script><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2241_iniaposentesp_infoamb" value="1" {% if show_fields|get_value_from_dict:'show_s2241_iniaposentesp_infoamb' %}checked{% endif %}>Informações relativas ao ambiente de trabalho</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codfatris" value="1" {% if show_fields|get_value_from_dict:'show_codfatris' %}checked{% endif %}>Código do Fator de Risco</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2241_iniaposentesp_fatrisco__s2241_iniaposentesp_infoamb -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</label>
+    <select name="s2241_iniaposentesp_infoamb" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in s2241_iniaposentesp_infoamb_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2241_iniaposentesp_infoamb' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2241_iniaposentesp_fatrisco__s2241_iniaposentesp_infoamb -->
+
+<!-- inicio__s2241_iniaposentesp_fatrisco__codfatris -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Código do Fator de Risco</label>
+    <input type="text" id="txt_codfatris" name="txt_codfatris" class="form-control" value="{{ dict_fields|get_value_from_dict:'codfatris' }}">
+    <input type="hidden" id="id_codfatris" name="codfatris" value="{{ dict_fields|get_value_from_dict:'codfatris'|valor }}">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_codfatris').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-fatores-risco/json-search/" + request.term + "/", function (data) {
+      response($.map(data.esocial_fatores_risco, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_codfatris').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
+<!-- fim__s2241_iniaposentesp_fatrisco__codfatris -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2241_iniaposentesp_infoamb" value="1" {% if show_fields|get_value_from_dict:'show_s2241_iniaposentesp_infoamb' %}checked{% endif %} >Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codfatris" value="1" {% if show_fields|get_value_from_dict:'show_codfatris' %}checked{% endif %} >Código do Fator de Risco
+    </div>
+</div>
+
+

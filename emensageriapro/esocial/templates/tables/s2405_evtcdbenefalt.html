@@ -1,27 +1,136 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}<table class="table table-bordered table-striped automate-data-table"><thead><tr>{% if show_fields.show_retornos_eventos or not retornos_eventos_id and 0 %}<th>Retorno do Evento</th>{% endif %}{% if show_fields.show_ocorrencias or 0 %}<th>Ocorrências</th>{% endif %}{% if show_fields.show_validacao_precedencia or 0 %}<th>Validação de Precedência</th>{% endif %}{% if show_fields.show_validacoes or 0 %}<th>Validações</th>{% endif %}{% if show_fields.show_arquivo_original or 0 %}<th>Arquivo Original</th>{% endif %}{% if show_fields.show_arquivo or 0 %}<th>Arquivo</th>{% endif %}{% if show_fields.show_evtcdbenefalt or 0 %}<th>Evento de cadastro de beneficiários - Alteração</th>{% endif %}{% if show_fields.show_identidade or 1 %}<th>Identidade do Registro</th>{% endif %}{% if show_fields.show_ideevento or 0 %}<th>Informações de Identificação do Evento</th>{% endif %}{% if show_fields.show_indretif or 1 %}<th>Identificador de retificação</th>{% endif %}{% if show_fields.show_nrrecibo or 0 %}<th>Número do recibo</th>{% endif %}{% if show_fields.show_tpamb or 1 %}<th>Identificação do ambiente</th>{% endif %}{% if show_fields.show_procemi or 1 %}<th>Processo de emissão do evento</th>{% endif %}{% if show_fields.show_verproc or 1 %}<th>Versão do processo</th>{% endif %}{% if show_fields.show_ideempregador or 0 %}<th>Informações de identificação do empregador</th>{% endif %}{% if show_fields.show_tpinsc or 1 %}<th>Tipo de inscrição</th>{% endif %}{% if show_fields.show_nrinsc or 1 %}<th>Número de inscrição (CPF/CNPJ)</th>{% endif %}{% if show_fields.show_idebenef or 0 %}<th>Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</th>{% endif %}{% if show_fields.show_cpfbenef or 1 %}<th>CPF</th>{% endif %}{% if show_fields.show_alteracao or 0 %}<th>Alteração das informações</th>{% endif %}{% if show_fields.show_dtalteracao or 1 %}<th>Data de alteração</th>{% endif %}{% if show_fields.show_dadosbenef or 0 %}<th>Dados do beneficiário</th>{% endif %}{% if show_fields.show_nisbenef or 0 %}<th>Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT</th>{% endif %}{% if show_fields.show_nmbenefic or 1 %}<th>Nome</th>{% endif %}{% if show_fields.show_sexo or 1 %}<th>Sexo</th>{% endif %}{% if show_fields.show_racacor or 1 %}<th>Raça/Cor</th>{% endif %}{% if show_fields.show_estciv or 0 %}<th>Estado Civil</th>{% endif %}{% if show_fields.show_incfismen or 1 %}<th>Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei</th>{% endif %}{% if show_fields.show_dtincfismen or 0 %}<th>Preencher com a data do reconhecimento da incapacidade</th>{% endif %}{% if show_fields.show_dadosnasc or 0 %}<th>Informações de nascimento do beneficiário</th>{% endif %}{% if show_fields.show_paisnac or not esocial_paises_id and 1 %}<th>País de nacionalidade</th>{% endif %}{% if show_fields.show_nmmae or 0 %}<th>Nome da Mãe</th>{% endif %}{% if show_fields.show_nmpai or 0 %}<th>Nome do Pai</th>{% endif %}{% if show_fields.show_versao or 0 %}<th>Versão</th>{% endif %}{% if show_fields.show_transmissor_lote_esocial or not transmissor_lote_esocial_id and 0 %}<th>Transmissor</th>{% endif %}{% if show_fields.show_status or 1 %}<th>Status</th>{% endif %}<!-- cabeçalho de colunas especiais -->{% if not for_print %}<th width="90px">Ações</th>{% endif %}</tr></thead><tbody>{% for a in s2405_evtcdbenefalt_lista %}<tr>{% if show_fields.show_retornos_eventos or not retornos_eventos_id and 0 %}<td>{{ a.retornos_eventos }}</td>{% endif %}{% if show_fields.show_ocorrencias or 0 %}<td>{{ a.ocorrencias }}</td>{% endif %}{% if show_fields.show_validacao_precedencia or 0 %}<td>{{ a.get_validacao_precedencia_display }}</td>{% endif %}{% if show_fields.show_validacoes or 0 %}<td>{{ a.validacoes }}</td>{% endif %}{% if show_fields.show_arquivo_original or 0 %}<td>{{ a.get_arquivo_original_display }}</td>{% endif %}{% if show_fields.show_arquivo or 0 %}<td>{{ a.arquivo }}</td>{% endif %}{% if show_fields.show_evtcdbenefalt or 0 %}<td>{{ a.evtcdbenefalt }}</td>{% endif %}{% if show_fields.show_identidade or 1 %}<td>{{ a.identidade }}</td>{% endif %}{% if show_fields.show_ideevento or 0 %}<td>{{ a.ideevento }}</td>{% endif %}{% if show_fields.show_indretif or 1 %}<td>{{ a.get_indretif_display }}</td>{% endif %}{% if show_fields.show_nrrecibo or 0 %}<td>{{ a.nrrecibo }}</td>{% endif %}{% if show_fields.show_tpamb or 1 %}<td>{{ a.get_tpamb_display }}</td>{% endif %}{% if show_fields.show_procemi or 1 %}<td>{{ a.get_procemi_display }}</td>{% endif %}{% if show_fields.show_verproc or 1 %}<td>{{ a.verproc }}</td>{% endif %}{% if show_fields.show_ideempregador or 0 %}<td>{{ a.ideempregador }}</td>{% endif %}{% if show_fields.show_tpinsc or 1 %}<td>{{ a.get_tpinsc_display }}</td>{% endif %}{% if show_fields.show_nrinsc or 1 %}<td>{{ a.nrinsc }}</td>{% endif %}{% if show_fields.show_idebenef or 0 %}<td>{{ a.idebenef }}</td>{% endif %}{% if show_fields.show_cpfbenef or 1 %}<td>{{ a.cpfbenef }}</td>{% endif %}{% if show_fields.show_alteracao or 0 %}<td>{{ a.alteracao }}</td>{% endif %}{% if show_fields.show_dtalteracao or 1 %}<td><span style="display:none">{{ a.dtalteracao|date:"Y-m-d" }}</span>{{ a.dtalteracao|date:"d/m/Y" }}</td>{% endif %}{% if show_fields.show_dadosbenef or 0 %}<td>{{ a.dadosbenef }}</td>{% endif %}{% if show_fields.show_nisbenef or 0 %}<td>{{ a.nisbenef }}</td>{% endif %}{% if show_fields.show_nmbenefic or 1 %}<td>{{ a.nmbenefic }}</td>{% endif %}{% if show_fields.show_sexo or 1 %}<td>{{ a.get_sexo_display }}</td>{% endif %}{% if show_fields.show_racacor or 1 %}<td>{{ a.get_racacor_display }}</td>{% endif %}{% if show_fields.show_estciv or 0 %}<td>{{ a.get_estciv_display }}</td>{% endif %}{% if show_fields.show_incfismen or 1 %}<td>{{ a.get_incfismen_display }}</td>{% endif %}{% if show_fields.show_dtincfismen or 0 %}<td><span style="display:none">{{ a.dtincfismen|date:"Y-m-d" }}</span>{{ a.dtincfismen|date:"d/m/Y" }}</td>{% endif %}{% if show_fields.show_dadosnasc or 0 %}<td>{{ a.dadosnasc }}</td>{% endif %}{% if show_fields.show_paisnac or not esocial_paises_id and 1 %}<td>{{ a.paisnac }}</td>{% endif %}{% if show_fields.show_nmmae or 0 %}<td>{{ a.nmmae }}</td>{% endif %}{% if show_fields.show_nmpai or 0 %}<td>{{ a.nmpai }}</td>{% endif %}{% if show_fields.show_versao or 0 %}<td>{{ a.get_versao_display }}</td>{% endif %}{% if show_fields.show_transmissor_lote_esocial or not transmissor_lote_esocial_id and 0 %}<td>{{ a.transmissor_lote_esocial }}</td>{% endif %}{% if show_fields.show_status or 1 %}<td>{{ a.get_status_display }}</td>{% endif %}<!-- colunas especiais -->{% if not for_print %}<td><div> 
-            <div style="width: 150px;height: 40px;">
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                    <a href="{% url 's2405_evtcdbenefalt_verificar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                        <span class="btn btn-primary" title="Validações">
-                            <i class="fa fa-fw fa-check-square-o"></i>
-                        </span>
-                    </a>
-                {% endif %}
-
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                    <a href="{% url 's2405_evtcdbenefalt_xml' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                        <span class="btn btn-primary" title="Visualizar XML">
-                            <i class="fa fa-fw fa-code"></i>
-                        </span>
-                    </a>
-                {% endif %}
-
-                {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
-                    <a href="{% url 's2405_evtcdbenefalt_recibo' hash='{}'|json_id:a.id|json_print:0|base64_encode_me  tipo='PDF' %}">
-                        <span class="btn btn-primary" title="Imprimir Recibo">
-                            <i class="fa fa-fw fa-print"></i>
-                        </span>
-                    </a>
-                {% endif %} 
-            </div>
-            {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}<a href="{% url 's2405_evtcdbenefalt_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">{% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_editar' or dict_permissoes|get_permissao:'s2405_evtcdbenefalt_cadastrar' %}<span class="btn btn-primary" title="Editar"><i class="fa fa-fw fa-edit"></i></span>{% else %}<span class="btn btn-primary" title="Visualizar"><i class="fa fa-fw fa-eye"></i></span>{% endif %}</a>{% endif %} {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_apagar' %}<a href="{% url 's2405_evtcdbenefalt_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span class="btn btn-danger" title="Apagar"><i class="fa fa-fw fa-times"></i></span></a>{% endif %}</div></td>{% endif %}</tr>{% endfor %}</table>
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_identidade or 1 %}
+            <th>Identidade do Registro</th>
+            {% endif %}
+            {% if show_fields.show_indretif or 1 %}
+            <th>Identificador de retificação</th>
+            {% endif %}
+            {% if show_fields.show_tpamb or 1 %}
+            <th>Identificação do ambiente</th>
+            {% endif %}
+            {% if show_fields.show_procemi or 1 %}
+            <th>Processo de emissão do evento</th>
+            {% endif %}
+            {% if show_fields.show_verproc or 1 %}
+            <th>Versão do processo</th>
+            {% endif %}
+            {% if show_fields.show_tpinsc or 1 %}
+            <th>Tipo de inscrição</th>
+            {% endif %}
+            {% if show_fields.show_nrinsc or 1 %}
+            <th>Número de inscrição (CPF/CNPJ)</th>
+            {% endif %}
+            {% if show_fields.show_cpfbenef or 1 %}
+            <th>CPF</th>
+            {% endif %}
+            {% if show_fields.show_dtalteracao or 1 %}
+            <th>Data de alteração</th>
+            {% endif %}
+            {% if show_fields.show_nmbenefic or 1 %}
+            <th>Nome</th>
+            {% endif %}
+            {% if show_fields.show_sexo or 1 %}
+            <th>Sexo</th>
+            {% endif %}
+            {% if show_fields.show_racacor or 1 %}
+            <th>Raça/Cor</th>
+            {% endif %}
+            {% if show_fields.show_incfismen or 1 %}
+            <th>Informar se o beneficiário é pessoa com doença incapacitante, na forma da lei</th>
+            {% endif %}
+            {% if show_fields.show_paisnac or 1 %}
+            <th>País de nacionalidade</th>
+            {% endif %}
+            {% if show_fields.show_status or 1 %}
+            <th>Status</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in s2405_evtcdbenefalt_lista %}
+        <tr>
+            {% if show_fields.show_identidade or 1 %}
+            <td>{{ a.identidade }}</td>
+            {% endif %}
+            {% if show_fields.show_indretif or 1 %}
+            <td>{{ a.get_indretif_display }}</td>
+            {% endif %}
+            {% if show_fields.show_tpamb or 1 %}
+            <td>{{ a.get_tpamb_display }}</td>
+            {% endif %}
+            {% if show_fields.show_procemi or 1 %}
+            <td>{{ a.get_procemi_display }}</td>
+            {% endif %}
+            {% if show_fields.show_verproc or 1 %}
+            <td>{{ a.verproc }}</td>
+            {% endif %}
+            {% if show_fields.show_tpinsc or 1 %}
+            <td>{{ a.get_tpinsc_display }}</td>
+            {% endif %}
+            {% if show_fields.show_nrinsc or 1 %}
+            <td>{{ a.nrinsc }}</td>
+            {% endif %}
+            {% if show_fields.show_cpfbenef or 1 %}
+            <td>{{ a.cpfbenef }}</td>
+            {% endif %}
+            {% if show_fields.show_dtalteracao or 1 %}
+            <td><span style="display:none">{{ a.dtalteracao|date:"Y-m-d" }}</span>{{ a.dtalteracao|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_nmbenefic or 1 %}
+            <td>{{ a.nmbenefic }}</td>
+            {% endif %}
+            {% if show_fields.show_sexo or 1 %}
+            <td>{{ a.get_sexo_display }}</td>
+            {% endif %}
+            {% if show_fields.show_racacor or 1 %}
+            <td>{{ a.get_racacor_display }}</td>
+            {% endif %}
+            {% if show_fields.show_incfismen or 1 %}
+            <td>{{ a.get_incfismen_display }}</td>
+            {% endif %}
+            {% if show_fields.show_paisnac or 1 %}
+            <td>{{ a.paisnac }}</td>
+            {% endif %}
+            {% if show_fields.show_status or 1 %}
+            <td>{{ a.get_status_display }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_visualizar' %}
+                        <a href="{% url 's2405_evtcdbenefalt_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_editar' or dict_permissoes|get_permissao:'s2405_evtcdbenefalt_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'s2405_evtcdbenefalt_apagar' %}
+                        <a href="{% url 's2405_evtcdbenefalt_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,43 +46,173 @@ def validacoes_s1080_evttaboperport(arquivo):
     validacoes_lista = []
     xmlns = doc.eSocial['xmlns'].split('/')
     evtTabOperPort = doc.eSocial.evtTabOperPort
-
-    if 'tpAmb' in dir(evtTabOperPort.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTabOperPort.ideEvento.tpAmb', evtTabOperPort.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtTabOperPort.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTabOperPort.ideEvento.procEmi', evtTabOperPort.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
-    if 'verProc' in dir(evtTabOperPort.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtTabOperPort.ideEvento.verProc', evtTabOperPort.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtTabOperPort.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabOperPort.ideEmpregador.tpInsc', evtTabOperPort.ideEmpregador.tpInsc.cdata, 1, u'1;2;3;4')
-    if 'nrInsc' in dir(evtTabOperPort.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtTabOperPort.ideEmpregador.nrInsc', evtTabOperPort.ideEmpregador.nrInsc.cdata, 1, u'')
-    if 'inclusao' in dir(evtTabOperPort.infoOperPortuario):
-        for inclusao in evtTabOperPort.infoOperPortuario.inclusao:
-
-            if 'cnpjOpPortuario' in dir(inclusao.ideOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideOperPortuario.cnpjOpPortuario', inclusao.ideOperPortuario.cnpjOpPortuario.cdata, 1, u'')
-            if 'iniValid' in dir(inclusao.ideOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideOperPortuario.iniValid', inclusao.ideOperPortuario.iniValid.cdata, 1, u'')
-            if 'fimValid' in dir(inclusao.ideOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'inclusao.ideOperPortuario.fimValid', inclusao.ideOperPortuario.fimValid.cdata, 0, u'')
-            if 'aliqRat' in dir(inclusao.dadosOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosOperPortuario.aliqRat', inclusao.dadosOperPortuario.aliqRat.cdata, 1, u'1;2;3')
-            if 'fap' in dir(inclusao.dadosOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosOperPortuario.fap', inclusao.dadosOperPortuario.fap.cdata, 1, u'')
-            if 'aliqRatAjust' in dir(inclusao.dadosOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'inclusao.dadosOperPortuario.aliqRatAjust', inclusao.dadosOperPortuario.aliqRatAjust.cdata, 1, u'')
-
-    if 'alteracao' in dir(evtTabOperPort.infoOperPortuario):
-        for alteracao in evtTabOperPort.infoOperPortuario.alteracao:
-
-            if 'cnpjOpPortuario' in dir(alteracao.ideOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideOperPortuario.cnpjOpPortuario', alteracao.ideOperPortuario.cnpjOpPortuario.cdata, 1, u'')
-            if 'iniValid' in dir(alteracao.ideOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideOperPortuario.iniValid', alteracao.ideOperPortuario.iniValid.cdata, 1, u'')
-            if 'fimValid' in dir(alteracao.ideOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'alteracao.ideOperPortuario.fimValid', alteracao.ideOperPortuario.fimValid.cdata, 0, u'')
-            if 'aliqRat' in dir(alteracao.dadosOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosOperPortuario.aliqRat', alteracao.dadosOperPortuario.aliqRat.cdata, 1, u'1;2;3')
-            if 'fap' in dir(alteracao.dadosOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosOperPortuario.fap', alteracao.dadosOperPortuario.fap.cdata, 1, u'')
-            if 'aliqRatAjust' in dir(alteracao.dadosOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'alteracao.dadosOperPortuario.aliqRatAjust', alteracao.dadosOperPortuario.aliqRatAjust.cdata, 1, u'')
-
-            if 'novaValidade' in dir(alteracao):
-                for novaValidade in alteracao.novaValidade:
-
-                    if 'iniValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.iniValid', novaValidade.iniValid.cdata, 1, u'')
-                    if 'fimValid' in dir(novaValidade): validacoes_lista = validar_campo(validacoes_lista,'novaValidade.fimValid', novaValidade.fimValid.cdata, 0, u'')
-
-    if 'exclusao' in dir(evtTabOperPort.infoOperPortuario):
-        for exclusao in evtTabOperPort.infoOperPortuario.exclusao:
-
-            if 'cnpjOpPortuario' in dir(exclusao.ideOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideOperPortuario.cnpjOpPortuario', exclusao.ideOperPortuario.cnpjOpPortuario.cdata, 1, u'')
-            if 'iniValid' in dir(exclusao.ideOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideOperPortuario.iniValid', exclusao.ideOperPortuario.iniValid.cdata, 1, u'')
-            if 'fimValid' in dir(exclusao.ideOperPortuario): validacoes_lista = validar_campo(validacoes_lista,'exclusao.ideOperPortuario.fimValid', exclusao.ideOperPortuario.fimValid.cdata, 0, u'')
-
+    #variaveis
+    
+    if 'ideEvento' in dir(evtTabOperPort.ideEvento):
+        for ideEvento in evtTabOperPort.ideEvento:
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideEmpregador' in dir(evtTabOperPort.ideEmpregador):
+        for ideEmpregador in evtTabOperPort.ideEmpregador:
+            
+            if 'tpInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.tpInsc', 
+                                                  ideEmpregador.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.nrInsc', 
+                                                  ideEmpregador.nrInsc.cdata, 
+                                                  1, u'None')
+    
+    if 'infoOperPortuario' in dir(evtTabOperPort.infoOperPortuario):
+        for infoOperPortuario in evtTabOperPort.infoOperPortuario:
+            
+            if 'inclusao' in dir(infoOperPortuario.inclusao):
+                for inclusao in infoOperPortuario.inclusao:
+                    
+                    if 'ideOperPortuario' in dir(inclusao.ideOperPortuario):
+                        for ideOperPortuario in inclusao.ideOperPortuario:
+                            
+                            if 'cnpjOpPortuario' in dir(ideOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideOperPortuario.cnpjOpPortuario', 
+                                                                  ideOperPortuario.cnpjOpPortuario.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'iniValid' in dir(ideOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideOperPortuario.iniValid', 
+                                                                  ideOperPortuario.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(ideOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideOperPortuario.fimValid', 
+                                                                  ideOperPortuario.fimValid.cdata, 
+                                                                  0, u'None')
+                    
+                    if 'dadosOperPortuario' in dir(inclusao.dadosOperPortuario):
+                        for dadosOperPortuario in inclusao.dadosOperPortuario:
+                            
+                            if 'aliqRat' in dir(dadosOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosOperPortuario.aliqRat', 
+                                                                  dadosOperPortuario.aliqRat.cdata, 
+                                                                  1, u'1, 2, 3')
+                            
+                            if 'fap' in dir(dadosOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosOperPortuario.fap', 
+                                                                  dadosOperPortuario.fap.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'aliqRatAjust' in dir(dadosOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosOperPortuario.aliqRatAjust', 
+                                                                  dadosOperPortuario.aliqRatAjust.cdata, 
+                                                                  1, u'None')
+            
+            if 'alteracao' in dir(infoOperPortuario.alteracao):
+                for alteracao in infoOperPortuario.alteracao:
+                    
+                    if 'ideOperPortuario' in dir(alteracao.ideOperPortuario):
+                        for ideOperPortuario in alteracao.ideOperPortuario:
+                            
+                            if 'cnpjOpPortuario' in dir(ideOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideOperPortuario.cnpjOpPortuario', 
+                                                                  ideOperPortuario.cnpjOpPortuario.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'iniValid' in dir(ideOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideOperPortuario.iniValid', 
+                                                                  ideOperPortuario.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(ideOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideOperPortuario.fimValid', 
+                                                                  ideOperPortuario.fimValid.cdata, 
+                                                                  0, u'None')
+                    
+                    if 'dadosOperPortuario' in dir(alteracao.dadosOperPortuario):
+                        for dadosOperPortuario in alteracao.dadosOperPortuario:
+                            
+                            if 'aliqRat' in dir(dadosOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosOperPortuario.aliqRat', 
+                                                                  dadosOperPortuario.aliqRat.cdata, 
+                                                                  1, u'1, 2, 3')
+                            
+                            if 'fap' in dir(dadosOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosOperPortuario.fap', 
+                                                                  dadosOperPortuario.fap.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'aliqRatAjust' in dir(dadosOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'dadosOperPortuario.aliqRatAjust', 
+                                                                  dadosOperPortuario.aliqRatAjust.cdata, 
+                                                                  1, u'None')
+                    
+                    if 'novaValidade' in dir(alteracao.novaValidade):
+                        for novaValidade in alteracao.novaValidade:
+                            
+                            if 'iniValid' in dir(novaValidade):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'novaValidade.iniValid', 
+                                                                  novaValidade.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(novaValidade):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'novaValidade.fimValid', 
+                                                                  novaValidade.fimValid.cdata, 
+                                                                  0, u'None')
+            
+            if 'exclusao' in dir(infoOperPortuario.exclusao):
+                for exclusao in infoOperPortuario.exclusao:
+                    
+                    if 'ideOperPortuario' in dir(exclusao.ideOperPortuario):
+                        for ideOperPortuario in exclusao.ideOperPortuario:
+                            
+                            if 'cnpjOpPortuario' in dir(ideOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideOperPortuario.cnpjOpPortuario', 
+                                                                  ideOperPortuario.cnpjOpPortuario.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'iniValid' in dir(ideOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideOperPortuario.iniValid', 
+                                                                  ideOperPortuario.iniValid.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'fimValid' in dir(ideOperPortuario):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'ideOperPortuario.fimValid', 
+                                                                  ideOperPortuario.fimValid.cdata, 
+                                                                  0, u'None')
     return validacoes_lista

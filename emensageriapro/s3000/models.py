@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s3000.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,30 +45,36 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S3000_INDAPURACAO = (
-    (1, u'1 - Mensal'),
-    (2, u'2 - Anual (13° salário)'),
-)
+
 
 class s3000ideFolhaPagto(SoftDeletionModel):
-    s3000_evtexclusao = models.OneToOneField('esocial.s3000evtExclusao',
-        related_name='%(class)s_s3000_evtexclusao')
-    def evento(self): return self.s3000_evtexclusao.evento()
-    indapuracao = models.IntegerField(choices=CHOICES_S3000_INDAPURACAO)
-    perapur = models.CharField(max_length=7)
+
+    s3000_evtexclusao = models.ForeignKey('esocial.s3000evtExclusao', 
+        related_name='%(class)s_s3000_evtexclusao', )
+    
+    def evento(self): 
+        return self.s3000_evtexclusao.evento()
+    indapuracao = models.IntegerField(choices=CHOICES_S3000_INDAPURACAO, null=True, )
+    perapur = models.CharField(max_length=7, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -64,49 +82,66 @@ class s3000ideFolhaPagto(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s3000_evtexclusao) + ' - ' + unicode(self.indapuracao) + ' - ' + unicode(self.perapur)
-    #s3000_idefolhapagto_custom#
-
+        
+        lista = [
+            unicode(self.s3000_evtexclusao),
+            unicode(self.indapuracao),
+            unicode(self.perapur),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro que identifica a qual folha de pagamento pertence o evento que será excluído'
         db_table = r's3000_idefolhapagto'       
         managed = True # s3000_idefolhapagto #
-        unique_together = (
-            #custom_unique_together_s3000_idefolhapagto#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s3000_idefolhapagto
-            #index_together_s3000_idefolhapagto
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s3000_idefolhapagto", "Can view s3000_idefolhapagto"),
-            #custom_permissions_s3000_idefolhapagto
-        )
-        ordering = ['s3000_evtexclusao', 'indapuracao', 'perapur']
+            ("can_view_s3000_idefolhapagto", "Can view s3000_idefolhapagto"), )
+            
+        ordering = [
+            's3000_evtexclusao',
+            'indapuracao',
+            'perapur',]
 
 
 
 class s3000ideFolhaPagtoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s3000ideFolhaPagto
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s3000ideTrabalhador(SoftDeletionModel):
-    s3000_evtexclusao = models.OneToOneField('esocial.s3000evtExclusao',
-        related_name='%(class)s_s3000_evtexclusao')
-    def evento(self): return self.s3000_evtexclusao.evento()
-    cpftrab = models.CharField(max_length=11)
-    nistrab = models.CharField(max_length=11, blank=True, null=True)
+
+    s3000_evtexclusao = models.ForeignKey('esocial.s3000evtExclusao', 
+        related_name='%(class)s_s3000_evtexclusao', )
+    
+    def evento(self): 
+        return self.s3000_evtexclusao.evento()
+    cpftrab = models.CharField(max_length=11, null=True, )
+    nistrab = models.CharField(max_length=11, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -114,41 +149,49 @@ class s3000ideTrabalhador(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s3000_evtexclusao) + ' - ' + unicode(self.cpftrab)
-    #s3000_idetrabalhador_custom#
-
+        
+        lista = [
+            unicode(self.s3000_evtexclusao),
+            unicode(self.cpftrab),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.'
         db_table = r's3000_idetrabalhador'       
         managed = True # s3000_idetrabalhador #
-        unique_together = (
-            #custom_unique_together_s3000_idetrabalhador#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s3000_idetrabalhador
-            #index_together_s3000_idetrabalhador
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s3000_idetrabalhador", "Can view s3000_idetrabalhador"),
-            #custom_permissions_s3000_idetrabalhador
-        )
-        ordering = ['s3000_evtexclusao', 'cpftrab']
+            ("can_view_s3000_idetrabalhador", "Can view s3000_idetrabalhador"), )
+            
+        ordering = [
+            's3000_evtexclusao',
+            'cpftrab',]
 
 
 
 class s3000ideTrabalhadorSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s3000ideTrabalhador
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

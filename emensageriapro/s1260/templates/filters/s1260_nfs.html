@@ -1,1 +1,168 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Identificação dos Adquirentes da Produção.</label><select name="s1260_ideadquir" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s1260_ideadquir_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1260_ideadquir' %}selected="selected"{% endifequal %}>{{ a.s1260_tpcomerc }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.vrcomerc }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Número de Série da NF/Fatura</label><div name="serie__icontains" class="input-group" style="width: 100%;"><input type="text" name="serie__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'serie__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Número da NF</label><div name="nrdocto__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrdocto__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrdocto__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Data de emissão da NF</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-calendar"></i></div><input type="text" name="dtemisnf__range" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtemisnf__range' %}{{ dict_fields|get_value_from_dict:'dtemisnf__range' }}{% else %}01/01/1990 - 31/12/2050{% endif %}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor bruto</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vlrbruto" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbruto' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor da CP descontada PR</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vrcpdescpr" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrcpdescpr' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor RAT descontado do produtor rural</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vrratdescpr" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrratdescpr' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Valor descontado destinado ao SENAR</label><div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div><input type="text" name="vrsenardesc" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrsenardesc' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s1260_ideadquir" value="1" {% if show_fields|get_value_from_dict:'show_s1260_ideadquir' %}checked{% endif %}>Identificação dos Adquirentes da Produção.</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_serie" value="1" {% if show_fields|get_value_from_dict:'show_serie' %}checked{% endif %}>Número de Série da NF/Fatura</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrdocto" value="1" {% if show_fields|get_value_from_dict:'show_nrdocto' %}checked{% endif %}>Número da NF</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dtemisnf" value="1" {% if show_fields|get_value_from_dict:'show_dtemisnf' %}checked{% endif %}>Data de emissão da NF</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vlrbruto" value="1" {% if show_fields|get_value_from_dict:'show_vlrbruto' %}checked{% endif %}>Valor bruto</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vrcpdescpr" value="1" {% if show_fields|get_value_from_dict:'show_vrcpdescpr' %}checked{% endif %}>Valor da CP descontada PR</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vrratdescpr" value="1" {% if show_fields|get_value_from_dict:'show_vrratdescpr' %}checked{% endif %}>Valor RAT descontado do produtor rural</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_vrsenardesc" value="1" {% if show_fields|get_value_from_dict:'show_vrsenardesc' %}checked{% endif %}>Valor descontado destinado ao SENAR</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1260_nfs__s1260_ideadquir -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.</label>
+    <select name="s1260_ideadquir" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in s1260_ideadquir_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1260_ideadquir' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s1260_nfs__s1260_ideadquir -->
+
+<!-- inicio__s1260_nfs__serie -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número de Série da NF/Fatura</label>
+    <div name="serie" class="input-group" style="width: 100%;">
+      <input type="text" name="serie" class="form-control" value="{{ dict_fields|get_value_from_dict:'serie' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_nfs__serie -->
+
+<!-- inicio__s1260_nfs__nrdocto -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número da NF</label>
+    <div name="nrdocto" class="input-group" style="width: 100%;">
+      <input type="text" name="nrdocto" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrdocto' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_nfs__nrdocto -->
+
+<!-- inicio__s1260_nfs__dtemisnf -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data de emissão da NF</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="dtemisnf" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'dtemisnf' %}{{ dict_fields|get_value_from_dict:'dtemisnf' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_nfs__dtemisnf -->
+
+<!-- inicio__s1260_nfs__vlrbruto -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor bruto</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vlrbruto" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vlrbruto' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_nfs__vlrbruto -->
+
+<!-- inicio__s1260_nfs__vrcpdescpr -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor da CP descontada PR</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrcpdescpr" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrcpdescpr' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_nfs__vrcpdescpr -->
+
+<!-- inicio__s1260_nfs__vrratdescpr -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor RAT descontado do produtor rural</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrratdescpr" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrratdescpr' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_nfs__vrratdescpr -->
+
+<!-- inicio__s1260_nfs__vrsenardesc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Valor descontado destinado ao SENAR</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" name="vrsenardesc" class="form-control automate-money" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'vrsenardesc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_nfs__vrsenardesc -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s1260_ideadquir" value="1" {% if show_fields|get_value_from_dict:'show_s1260_ideadquir' %}checked{% endif %} >Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_serie" value="0" {% if show_fields|get_value_from_dict:'show_serie' %}checked{% endif %} >Número de Série da NF/Fatura
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrdocto" value="1" {% if show_fields|get_value_from_dict:'show_nrdocto' %}checked{% endif %} >Número da NF
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dtemisnf" value="1" {% if show_fields|get_value_from_dict:'show_dtemisnf' %}checked{% endif %} >Data de emissão da NF
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vlrbruto" value="1" {% if show_fields|get_value_from_dict:'show_vlrbruto' %}checked{% endif %} >Valor bruto
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrcpdescpr" value="1" {% if show_fields|get_value_from_dict:'show_vrcpdescpr' %}checked{% endif %} >Valor da CP descontada PR
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrratdescpr" value="1" {% if show_fields|get_value_from_dict:'show_vrratdescpr' %}checked{% endif %} >Valor RAT descontado do produtor rural
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_vrsenardesc" value="1" {% if show_fields|get_value_from_dict:'show_vrsenardesc' %}checked{% endif %} >Valor descontado destinado ao SENAR
+    </div>
+</div>
+
+

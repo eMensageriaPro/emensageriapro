@@ -1,0 +1,289 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4020_infopgtoext__r4020_idepgto -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações complementares relativas a pagamentos a residente fiscal no Exterior</label>
+    <select name="r4020_idepgto" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in r4020_idepgto_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r4020_idepgto' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__r4020_idepgto -->
+
+<!-- inicio__r4020_infopgtoext__endext -->
+<div class="col-md-12" id="r4020_infopgtoext__endext__div">
+  <h4>Endereço do beneficiário residente ou domiciliado no exterior</h4>
+</div>
+<!-- fim__r4020_infopgtoext__endext -->
+
+<!-- inicio__r4020_infopgtoext__dsclograd -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Descrição do logradouro</label>
+    <div name="dsclograd" class="input-group" style="width: 100%;">
+      <input type="text" name="dsclograd" class="form-control" value="{{ dict_fields|get_value_from_dict:'dsclograd' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__dsclograd -->
+
+<!-- inicio__r4020_infopgtoext__nrlograd -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número do logradouro.</label>
+    <div name="nrlograd" class="input-group" style="width: 100%;">
+      <input type="text" name="nrlograd" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrlograd' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__nrlograd -->
+
+<!-- inicio__r4020_infopgtoext__complem -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Complemento do logradouro.</label>
+    <div name="complem" class="input-group" style="width: 100%;">
+      <input type="text" name="complem" class="form-control" value="{{ dict_fields|get_value_from_dict:'complem' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__complem -->
+
+<!-- inicio__r4020_infopgtoext__bairro -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Nome do bairro/distrito</label>
+    <div name="bairro" class="input-group" style="width: 100%;">
+      <input type="text" name="bairro" class="form-control" value="{{ dict_fields|get_value_from_dict:'bairro' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__bairro -->
+
+<!-- inicio__r4020_infopgtoext__cidade -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Nome da cidade</label>
+    <div name="cidade" class="input-group" style="width: 100%;">
+      <input type="text" name="cidade" class="form-control" value="{{ dict_fields|get_value_from_dict:'cidade' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__cidade -->
+
+<!-- inicio__r4020_infopgtoext__estado -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Nome da província/estado</label>
+    <div name="estado" class="input-group" style="width: 100%;">
+      <input type="text" name="estado" class="form-control" value="{{ dict_fields|get_value_from_dict:'estado' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__estado -->
+
+<!-- inicio__r4020_infopgtoext__codpostal -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código de Endereçamento Postal</label>
+    <div name="codpostal" class="input-group" style="width: 100%;">
+      <input type="text" name="codpostal" class="form-control" value="{{ dict_fields|get_value_from_dict:'codpostal' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__codpostal -->
+
+<!-- inicio__r4020_infopgtoext__telef -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número do telefone</label>
+    <div name="telef" class="input-group" style="width: 100%;">
+      <input type="text" name="telef" class="form-control" value="{{ dict_fields|get_value_from_dict:'telef' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__telef -->
+
+<!-- inicio__r4020_infopgtoext__infofiscal -->
+<div class="col-md-12" id="r4020_infopgtoext__infofiscal__div">
+  <h4>Informações fiscais de beneficiário residente ou domiciliado no exterior</h4>
+</div>
+<!-- fim__r4020_infopgtoext__infofiscal -->
+
+<!-- inicio__r4020_infopgtoext__indnif -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Indicativo do Número de Identificação Fiscal</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="indnif" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'indnif' %}selected="selected"{% endifequal %} >1 - Beneficiário com NIF</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'indnif' %}selected="selected"{% endifequal %} >2 - Beneficiário dispensado do NIF</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'indnif' %}selected="selected"{% endifequal %} >3 - País não exige NIF.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__indnif -->
+
+<!-- inicio__r4020_infopgtoext__nifbenef -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número de Identificação Fiscal - NIF</label>
+    <div name="nifbenef" class="input-group" style="width: 100%;">
+      <input type="text" name="nifbenef" class="form-control" value="{{ dict_fields|get_value_from_dict:'nifbenef' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__nifbenef -->
+
+<!-- inicio__r4020_infopgtoext__relfontpg -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Relação da fonte pagadora com o beneficiário, conforme Tabela 03</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="relfontpg" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="500" {% ifequal 500 dict_fields|get_value_from_dict:'relfontpg' %}selected="selected"{% endifequal %} >500 - A fonte pagadora é matriz da beneficiária no exterior.</option>
+        <option value="510" {% ifequal 510 dict_fields|get_value_from_dict:'relfontpg' %}selected="selected"{% endifequal %} >510 - A fonte pagadora é filial, sucursal ou agência de beneficiária no exterior.</option>
+        <option value="520" {% ifequal 520 dict_fields|get_value_from_dict:'relfontpg' %}selected="selected"{% endifequal %} >520 - A fonte pagadora é controlada ou coligada da beneficiária no exterior, na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 15 de dezembro de 1976.</option>
+        <option value="530" {% ifequal 530 dict_fields|get_value_from_dict:'relfontpg' %}selected="selected"{% endifequal %} >530 - A fonte pagadora é controladora ou coligada da beneficiária no exterior, na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 1976.</option>
+        <option value="540" {% ifequal 540 dict_fields|get_value_from_dict:'relfontpg' %}selected="selected"{% endifequal %} >540 - A fonte pagadora e a beneficiária no exterior estão sob controle societário ou administrativo comum ou quando pelo menos 10% do capital de cada uma, pertencer a uma mesma pessoa física ou jurídica.</option>
+        <option value="550" {% ifequal 550 dict_fields|get_value_from_dict:'relfontpg' %}selected="selected"{% endifequal %} >550 - A fonte pagadora e a beneficiária no exterior têm participação societária no capital de uma terceira pessoa jurídica, cuja soma as caracterize como controladoras ou coligadas na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 1976.</option>
+        <option value="560" {% ifequal 560 dict_fields|get_value_from_dict:'relfontpg' %}selected="selected"{% endifequal %} >560 - A fonte pagadora ou a beneficiária no exterior mantenha contrato de exclusividade como agente, como distribuidor ou como concessionário nas operações com bens, serviços e direitos.</option>
+        <option value="570" {% ifequal 570 dict_fields|get_value_from_dict:'relfontpg' %}selected="selected"{% endifequal %} >570 - A fonte pagadora e a beneficiária mantêm acordo de atuação conjunta.</option>
+        <option value="900" {% ifequal 900 dict_fields|get_value_from_dict:'relfontpg' %}selected="selected"{% endifequal %} >900 - Não há relação entre a fonte pagadora e a beneficiária no exterior.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__relfontpg -->
+
+<!-- inicio__r4020_infopgtoext__frmtribut -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 02</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="frmtribut" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="10" {% ifequal '10' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >10 - Retenção do IRRF - alíquota padrão.</option>
+        <option value="11" {% ifequal '11' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >11 - Retenção do IRRF - alíquota da tabela progressiva.</option>
+        <option value="12" {% ifequal '12' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >12 - Retenção do IRRF - alíquota diferenciada (países com tributação favorecida).</option>
+        <option value="13" {% ifequal '13' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >13 - Retenção do IRRF - alíquota limitada conforme cláusula em convênio.</option>
+        <option value="30" {% ifequal '30' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >30 - Retenção do IRRF - outras hipóteses.</option>
+        <option value="40" {% ifequal '40' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >40 - Não retenção do IRRF - isenção estabelecida em convênio.</option>
+        <option value="41" {% ifequal '41' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >41 - Não retenção do IRRF - isenção prevista em lei interna</option>
+        <option value="42" {% ifequal '42' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >42 - Não retenção do IRRF - alíquota Zero prevista em lei interna</option>
+        <option value="43" {% ifequal '43' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >43 - Não retenção do IRRF - pagamento antecipado do imposto</option>
+        <option value="44" {% ifequal '44' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >44 - Não retenção do IRRF - medida Judicial</option>
+        <option value="50" {% ifequal '50' dict_fields|get_value_from_dict:'frmtribut' %}selected="selected"{% endifequal %} >50 - Não retenção do IRRF - outras hipóteses</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infopgtoext__frmtribut -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r4020_idepgto" value="1" {% if show_fields|get_value_from_dict:'show_r4020_idepgto' %}checked{% endif %} >Informações complementares relativas a pagamentos a residente fiscal no Exterior
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_endext" value="0" {% if show_fields|get_value_from_dict:'show_endext' %}checked{% endif %} >Endereço do beneficiário residente ou domiciliado no exterior
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dsclograd" value="1" {% if show_fields|get_value_from_dict:'show_dsclograd' %}checked{% endif %} >Descrição do logradouro
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrlograd" value="0" {% if show_fields|get_value_from_dict:'show_nrlograd' %}checked{% endif %} >Número do logradouro.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_complem" value="0" {% if show_fields|get_value_from_dict:'show_complem' %}checked{% endif %} >Complemento do logradouro.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_bairro" value="0" {% if show_fields|get_value_from_dict:'show_bairro' %}checked{% endif %} >Nome do bairro/distrito
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_cidade" value="0" {% if show_fields|get_value_from_dict:'show_cidade' %}checked{% endif %} >Nome da cidade
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_estado" value="0" {% if show_fields|get_value_from_dict:'show_estado' %}checked{% endif %} >Nome da província/estado
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codpostal" value="0" {% if show_fields|get_value_from_dict:'show_codpostal' %}checked{% endif %} >Código de Endereçamento Postal
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_telef" value="0" {% if show_fields|get_value_from_dict:'show_telef' %}checked{% endif %} >Número do telefone
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_infofiscal" value="0" {% if show_fields|get_value_from_dict:'show_infofiscal' %}checked{% endif %} >Informações fiscais de beneficiário residente ou domiciliado no exterior
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_indnif" value="1" {% if show_fields|get_value_from_dict:'show_indnif' %}checked{% endif %} >Indicativo do Número de Identificação Fiscal
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nifbenef" value="0" {% if show_fields|get_value_from_dict:'show_nifbenef' %}checked{% endif %} >Número de Identificação Fiscal - NIF
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_relfontpg" value="1" {% if show_fields|get_value_from_dict:'show_relfontpg' %}checked{% endif %} >Relação da fonte pagadora com o beneficiário, conforme Tabela 03
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_frmtribut" value="1" {% if show_fields|get_value_from_dict:'show_frmtribut' %}checked{% endif %} >Forma de tributação, conforme tabela de informações sobre os rendimentos constante na Tabela 02
+    </div>
+</div>
+
+

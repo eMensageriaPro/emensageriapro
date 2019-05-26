@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Observações relativas a registros ambientais"
-{% if show_fields.show_s2240_evtexprisco or not s2240_evtexprisco_id and 1 %}"Evento Condições Ambientais do Trabalho - Fatores de Risco";{% endif %}{% if show_fields.show_meterg or 0 %}"Descrição da metodologia utilizada para o levantamento dos riscos ergonômicos.";{% endif %}{% if show_fields.show_obscompl or 0 %}"Observação(ões) complementar(es) referente(s) a registros ambientais. Validação: Preenchimento obrigatório se {metErg} não for informado.";{% endif %}{% if show_fields.show_observacao or 0 %}"Observações";{% endif %}
-{% for a in s2240_iniexprisco_obs_lista %}{% if show_fields.show_s2240_evtexprisco or  not s2240_evtexprisco_id and 1 %}"{{ a.s2240_evtexprisco }}";{% endif %}{% if show_fields.show_meterg or 0 %}"{{ a.meterg }}";{% endif %}{% if show_fields.show_obscompl or 0 %}"{{ a.obscompl }}";{% endif %}{% if show_fields.show_observacao or 0 %}"{{ a.observacao }}";{% endif %}
-{% endfor %}

@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Equipamentos de Proteção Coletiva - EPC"
-{% if show_fields.show_s2240_iniexprisco_fatrisco or not s2240_iniexprisco_fatrisco_id and 1 %}"Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente";{% endif %}{% if show_fields.show_codep or 1 %}"Preencher com o código atribuído pela empresa ao Equipamento de Proteção";{% endif %}{% if show_fields.show_dscepc or 1 %}"Descrição do EPC";{% endif %}{% if show_fields.show_eficepc or 0 %}"EPC é eficaz na neutralização";{% endif %}
-{% for a in s2240_iniexprisco_epc_lista %}{% if show_fields.show_s2240_iniexprisco_fatrisco or  not s2240_iniexprisco_fatrisco_id and 1 %}"{{ a.s2240_iniexprisco_fatrisco }}";{% endif %}{% if show_fields.show_codep or 1 %}"{{ a.codep }}";{% endif %}{% if show_fields.show_dscepc or 1 %}"{{ a.dscepc }}";{% endif %}{% if show_fields.show_eficepc or 0 %}"{{ a.get_eficepc_display }}";{% endif %}
-{% endfor %}

@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s2416.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,34 +45,35 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S2416_MTVSUSPENSAO = (
-    ('01', u'01 - Suspensão por não recadastramento'),
-    ('99', u'99 - Outros motivos de suspensão'),
-)
 
-CHOICES_S2416_TPPENMORTE = (
-    (1, u'1 - Vitalícia'),
-    (2, u'2 - Temporária'),
-)
 
 class s2416homologTC(SoftDeletionModel):
-    s2416_evtcdbenalt = models.OneToOneField('esocial.s2416evtCdBenAlt',
-        related_name='%(class)s_s2416_evtcdbenalt')
-    def evento(self): return self.s2416_evtcdbenalt.evento()
-    nratolegal = models.CharField(max_length=20)
+
+    s2416_evtcdbenalt = models.ForeignKey('esocial.s2416evtCdBenAlt', 
+        related_name='%(class)s_s2416_evtcdbenalt', )
+    
+    def evento(self): 
+        return self.s2416_evtcdbenalt.evento()
+    nratolegal = models.CharField(max_length=20, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -68,48 +81,63 @@ class s2416homologTC(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2416_evtcdbenalt) + ' - ' + unicode(self.nratolegal)
-    #s2416_homologtc_custom#
-
+        
+        lista = [
+            unicode(self.s2416_evtcdbenalt),
+            unicode(self.nratolegal),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas'
         db_table = r's2416_homologtc'       
         managed = True # s2416_homologtc #
-        unique_together = (
-            #custom_unique_together_s2416_homologtc#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2416_homologtc
-            #index_together_s2416_homologtc
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2416_homologtc", "Can view s2416_homologtc"),
-            #custom_permissions_s2416_homologtc
-        )
-        ordering = ['s2416_evtcdbenalt', 'nratolegal']
+            ("can_view_s2416_homologtc", "Can view s2416_homologtc"), )
+            
+        ordering = [
+            's2416_evtcdbenalt',
+            'nratolegal',]
 
 
 
 class s2416homologTCSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2416homologTC
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2416infoPenMorte(SoftDeletionModel):
-    s2416_evtcdbenalt = models.OneToOneField('esocial.s2416evtCdBenAlt',
-        related_name='%(class)s_s2416_evtcdbenalt')
-    def evento(self): return self.s2416_evtcdbenalt.evento()
-    tppenmorte = models.IntegerField(choices=CHOICES_S2416_TPPENMORTE)
+
+    s2416_evtcdbenalt = models.ForeignKey('esocial.s2416evtCdBenAlt', 
+        related_name='%(class)s_s2416_evtcdbenalt', )
+    
+    def evento(self): 
+        return self.s2416_evtcdbenalt.evento()
+    tppenmorte = models.IntegerField(choices=CHOICES_S2416_TPPENMORTE, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -117,49 +145,64 @@ class s2416infoPenMorte(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2416_evtcdbenalt) + ' - ' + unicode(self.tppenmorte)
-    #s2416_infopenmorte_custom#
-
+        
+        lista = [
+            unicode(self.s2416_evtcdbenalt),
+            unicode(self.tppenmorte),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações relativas a pensão por morte'
         db_table = r's2416_infopenmorte'       
         managed = True # s2416_infopenmorte #
-        unique_together = (
-            #custom_unique_together_s2416_infopenmorte#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2416_infopenmorte
-            #index_together_s2416_infopenmorte
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2416_infopenmorte", "Can view s2416_infopenmorte"),
-            #custom_permissions_s2416_infopenmorte
-        )
-        ordering = ['s2416_evtcdbenalt', 'tppenmorte']
+            ("can_view_s2416_infopenmorte", "Can view s2416_infopenmorte"), )
+            
+        ordering = [
+            's2416_evtcdbenalt',
+            'tppenmorte',]
 
 
 
 class s2416infoPenMorteSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2416infoPenMorte
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2416suspensao(SoftDeletionModel):
-    s2416_evtcdbenalt = models.OneToOneField('esocial.s2416evtCdBenAlt',
-        related_name='%(class)s_s2416_evtcdbenalt')
-    def evento(self): return self.s2416_evtcdbenalt.evento()
-    mtvsuspensao = models.CharField(choices=CHOICES_S2416_MTVSUSPENSAO, max_length=2)
-    dscsuspensao = models.CharField(max_length=255, blank=True, null=True)
+
+    s2416_evtcdbenalt = models.ForeignKey('esocial.s2416evtCdBenAlt', 
+        related_name='%(class)s_s2416_evtcdbenalt', )
+    
+    def evento(self): 
+        return self.s2416_evtcdbenalt.evento()
+    mtvsuspensao = models.CharField(choices=CHOICES_S2416_MTVSUSPENSAO, max_length=2, null=True, )
+    dscsuspensao = models.CharField(max_length=255, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -167,41 +210,49 @@ class s2416suspensao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2416_evtcdbenalt) + ' - ' + unicode(self.mtvsuspensao)
-    #s2416_suspensao_custom#
-
+        
+        lista = [
+            unicode(self.s2416_evtcdbenalt),
+            unicode(self.mtvsuspensao),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações referentes à suspensão do benefício'
         db_table = r's2416_suspensao'       
         managed = True # s2416_suspensao #
-        unique_together = (
-            #custom_unique_together_s2416_suspensao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2416_suspensao
-            #index_together_s2416_suspensao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2416_suspensao", "Can view s2416_suspensao"),
-            #custom_permissions_s2416_suspensao
-        )
-        ordering = ['s2416_evtcdbenalt', 'mtvsuspensao']
+            ("can_view_s2416_suspensao", "Can view s2416_suspensao"), )
+            
+        ordering = [
+            's2416_evtcdbenalt',
+            'mtvsuspensao',]
 
 
 
 class s2416suspensaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2416suspensao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

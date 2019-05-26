@@ -1,0 +1,244 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1080_evttaboperport__evttaboperport -->
+<div class="col-md-12" id="s1080_evttaboperport__evttaboperport__div">
+  <h4>Evento Tabela de Operadores Portuários</h4>
+</div>
+<!-- fim__s1080_evttaboperport__evttaboperport -->
+<!-- inicio__s1080_evttaboperport__identidade -->
+<div class="col-md-6" id="s1080_evttaboperport__identidade__div">
+  <div class="form-group">
+    <label id="s1080_evttaboperport__identidade__label">Identidade do Registro</label>
+      {% if s1080_evttaboperport_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1080_evttaboperport_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1080_evttaboperport_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1080_evttaboperport__identidade -->
+<!-- inicio__s1080_evttaboperport__ideevento -->
+<div class="col-md-12" id="s1080_evttaboperport__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s1080_evttaboperport__ideevento -->
+<!-- inicio__s1080_evttaboperport__tpamb -->
+<div class="col-md-6" id="s1080_evttaboperport__tpamb__div">
+  <div class="form-group">
+    <label id="s1080_evttaboperport__tpamb__label">Identificação do ambiente*</label>
+    {% if s1080_evttaboperport_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1080_evttaboperport_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1080_evttaboperport_form.tpamb.field.widget.attrs.readonly %}
+        {% if s1080_evttaboperport_form.tpamb.field.widget.attrs.disabled %}
+          {{ s1080_evttaboperport_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if s1080_evttaboperport_form.tpamb.value or s1080_evttaboperport_form.tpamb.value == 0 %}{{ s1080_evttaboperport_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1080_evttaboperport_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1080_evttaboperport_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1080_evttaboperport__tpamb -->
+<!-- inicio__s1080_evttaboperport__procemi -->
+<div class="col-md-6" id="s1080_evttaboperport__procemi__div">
+  <div class="form-group">
+    <label id="s1080_evttaboperport__procemi__label">Processo de emissão do evento*</label>
+    {% if s1080_evttaboperport_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1080_evttaboperport_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1080_evttaboperport_form.procemi.field.widget.attrs.readonly %}
+        {% if s1080_evttaboperport_form.procemi.field.widget.attrs.disabled %}
+          {{ s1080_evttaboperport_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if s1080_evttaboperport_form.procemi.value or s1080_evttaboperport_form.procemi.value == 0 %}{{ s1080_evttaboperport_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1080_evttaboperport_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1080_evttaboperport_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1080_evttaboperport__procemi -->
+<!-- inicio__s1080_evttaboperport__verproc -->
+<div class="col-md-6" id="s1080_evttaboperport__verproc__div">
+  <div class="form-group">
+    <label id="s1080_evttaboperport__verproc__label">Versão do processo*</label>
+      {% if s1080_evttaboperport_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1080_evttaboperport_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1080_evttaboperport_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1080_evttaboperport__verproc -->
+<!-- inicio__s1080_evttaboperport__ideempregador -->
+<div class="col-md-12" id="s1080_evttaboperport__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s1080_evttaboperport__ideempregador -->
+<!-- inicio__s1080_evttaboperport__tpinsc -->
+<div class="col-md-6" id="s1080_evttaboperport__tpinsc__div">
+  <div class="form-group">
+    <label id="s1080_evttaboperport__tpinsc__label">Tipo de inscrição*</label>
+    {% if s1080_evttaboperport_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1080_evttaboperport_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1080_evttaboperport_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s1080_evttaboperport_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s1080_evttaboperport_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s1080_evttaboperport_form.tpinsc.value or s1080_evttaboperport_form.tpinsc.value == 0 %}{{ s1080_evttaboperport_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1080_evttaboperport_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1080_evttaboperport_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1080_evttaboperport__tpinsc -->
+<!-- inicio__s1080_evttaboperport__nrinsc -->
+<div class="col-md-6" id="s1080_evttaboperport__nrinsc__div">
+  <div class="form-group">
+    <label id="s1080_evttaboperport__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s1080_evttaboperport_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1080_evttaboperport_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1080_evttaboperport_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1080_evttaboperport__nrinsc -->
+<!-- inicio__s1080_evttaboperport__infooperportuario -->
+<div class="col-md-12" id="s1080_evttaboperport__infooperportuario__div">
+  <h4>Informações do Operador Portuário</h4>
+</div>
+<!-- fim__s1080_evttaboperport__infooperportuario -->
+<!-- inicio__s1080_evttaboperport__versao -->
+<div class="col-md-3" id="s1080_evttaboperport__versao__div">
+  <div class="form-group">
+    <label id="s1080_evttaboperport__versao__label">Versão</label>
+    {% if s1080_evttaboperport_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1080_evttaboperport_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1080_evttaboperport_form.versao.field.widget.attrs.readonly %}
+        {% if s1080_evttaboperport_form.versao.field.widget.attrs.disabled %}
+          {{ s1080_evttaboperport_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if s1080_evttaboperport_form.versao.value or s1080_evttaboperport_form.versao.value == 0 %}{{ s1080_evttaboperport_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ s1080_evttaboperport_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1080_evttaboperport_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1080_evttaboperport__versao -->
+<!-- inicio__s1080_evttaboperport__transmissor_lote_esocial -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_esocial').change(function(){document.getElementById("s1080_evttaboperport__transmissor_lote_esocial__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="s1080_evttaboperport__transmissor_lote_esocial__div">
+<div class="form-group">
+  <label id="s1080_evttaboperport__transmissor_lote_esocial__label">Transmissor</label>
+  {% if not for_print %}
+    {% if s1080_evttaboperport_form.transmissor_lote_esocial.value %}
+    <a id="s1080_evttaboperport__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:s1080_evttaboperport_form.transmissor_lote_esocial.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if s1080_evttaboperport_form.transmissor_lote_esocial.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s1080_evttaboperport_form.transmissor_lote_esocial.errors }}
+    </div>
+  {% endif %}
+  {% if s1080_evttaboperport_form.transmissor_lote_esocial.field.widget.attrs.readonly %}
+    {% if s1080_evttaboperport_form.transmissor_lote_esocial.field.widget.attrs.disabled %}
+      {{ s1080_evttaboperport_form.transmissor_lote_esocial|addcss:'form-control' }}
+      <input id="id_transmissor_lote_esocial" name="transmissor_lote_esocial" type="hidden" value="{% if s1080_evttaboperport_form.transmissor_lote_esocial.value or s1080_evttaboperport_form.transmissor_lote_esocial.value == 0 %}{{ s1080_evttaboperport_form.transmissor_lote_esocial.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ s1080_evttaboperport_form.transmissor_lote_esocial|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ s1080_evttaboperport_form.transmissor_lote_esocial|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__s1080_evttaboperport__transmissor_lote_esocial -->
+<!-- inicio__s1080_evttaboperport__status -->
+<div class="col-md-3" id="s1080_evttaboperport__status__div">
+  <div class="form-group">
+    <label id="s1080_evttaboperport__status__label">Status</label>
+    {% if s1080_evttaboperport_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1080_evttaboperport_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1080_evttaboperport_form.status.field.widget.attrs.readonly %}
+        {% if s1080_evttaboperport_form.status.field.widget.attrs.disabled %}
+          {{ s1080_evttaboperport_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if s1080_evttaboperport_form.status.value or s1080_evttaboperport_form.status.value == 0 %}{{ s1080_evttaboperport_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1080_evttaboperport_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1080_evttaboperport_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1080_evttaboperport__status -->
+<!-- inicio__s1080_evttaboperport__operacao -->
+<div class="col-md-3" id="s1080_evttaboperport__operacao__div">
+  <div class="form-group">
+    <label id="s1080_evttaboperport__operacao__label">Operação*</label>
+    {% if s1080_evttaboperport_form.operacao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1080_evttaboperport_form.operacao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1080_evttaboperport_form.operacao.field.widget.attrs.readonly %}
+        {% if s1080_evttaboperport_form.operacao.field.widget.attrs.disabled %}
+          {{ s1080_evttaboperport_form.operacao|addcss:'form-control' }}
+          <input id="id_operacao" name="operacao" type="hidden" value="{% if s1080_evttaboperport_form.operacao.value or s1080_evttaboperport_form.operacao.value == 0 %}{{ s1080_evttaboperport_form.operacao.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1080_evttaboperport_form.operacao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1080_evttaboperport_form.operacao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1080_evttaboperport__operacao -->

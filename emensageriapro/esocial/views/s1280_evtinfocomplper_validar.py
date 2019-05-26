@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,31 +46,104 @@ def validacoes_s1280_evtinfocomplper(arquivo):
     validacoes_lista = []
     xmlns = doc.eSocial['xmlns'].split('/')
     evtInfoComplPer = doc.eSocial.evtInfoComplPer
-
-    if 'indRetif' in dir(evtInfoComplPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtInfoComplPer.ideEvento.indRetif', evtInfoComplPer.ideEvento.indRetif.cdata, 1, u'1;2')
-    if 'nrRecibo' in dir(evtInfoComplPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtInfoComplPer.ideEvento.nrRecibo', evtInfoComplPer.ideEvento.nrRecibo.cdata, 0, u'')
-    if 'indApuracao' in dir(evtInfoComplPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtInfoComplPer.ideEvento.indApuracao', evtInfoComplPer.ideEvento.indApuracao.cdata, 1, u'1;2')
-    if 'perApur' in dir(evtInfoComplPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtInfoComplPer.ideEvento.perApur', evtInfoComplPer.ideEvento.perApur.cdata, 1, u'')
-    if 'tpAmb' in dir(evtInfoComplPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtInfoComplPer.ideEvento.tpAmb', evtInfoComplPer.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtInfoComplPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtInfoComplPer.ideEvento.procEmi', evtInfoComplPer.ideEvento.procEmi.cdata, 1, u'1;2;3;4;5')
-    if 'verProc' in dir(evtInfoComplPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtInfoComplPer.ideEvento.verProc', evtInfoComplPer.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtInfoComplPer.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtInfoComplPer.ideEmpregador.tpInsc', evtInfoComplPer.ideEmpregador.tpInsc.cdata, 1, u'1;2;3;4')
-    if 'nrInsc' in dir(evtInfoComplPer.ideEmpregador): validacoes_lista = validar_campo(validacoes_lista,'evtInfoComplPer.ideEmpregador.nrInsc', evtInfoComplPer.ideEmpregador.nrInsc.cdata, 1, u'')
-    if 'infoSubstPatr' in dir(evtInfoComplPer):
+    #variaveis
+    
+    if 'ideEvento' in dir(evtInfoComplPer.ideEvento):
+        for ideEvento in evtInfoComplPer.ideEvento:
+            
+            if 'indRetif' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.indRetif', 
+                                                  ideEvento.indRetif.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'nrRecibo' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.nrRecibo', 
+                                                  ideEvento.nrRecibo.cdata, 
+                                                  0, u'None')
+            
+            if 'indApuracao' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.indApuracao', 
+                                                  ideEvento.indApuracao.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'perApur' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.perApur', 
+                                                  ideEvento.perApur.cdata, 
+                                                  1, u'None')
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideEmpregador' in dir(evtInfoComplPer.ideEmpregador):
+        for ideEmpregador in evtInfoComplPer.ideEmpregador:
+            
+            if 'tpInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.tpInsc', 
+                                                  ideEmpregador.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideEmpregador):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEmpregador.nrInsc', 
+                                                  ideEmpregador.nrInsc.cdata, 
+                                                  1, u'None')
+    
+    if 'infoSubstPatr' in dir(evtInfoComplPer.infoSubstPatr):
         for infoSubstPatr in evtInfoComplPer.infoSubstPatr:
-
-            if 'indSubstPatr' in dir(infoSubstPatr): validacoes_lista = validar_campo(validacoes_lista,'infoSubstPatr.indSubstPatr', infoSubstPatr.indSubstPatr.cdata, 1, u'1;2')
-            if 'percRedContrib' in dir(infoSubstPatr): validacoes_lista = validar_campo(validacoes_lista,'infoSubstPatr.percRedContrib', infoSubstPatr.percRedContrib.cdata, 1, u'')
-
-    if 'infoSubstPatrOpPort' in dir(evtInfoComplPer):
+            
+            if 'indSubstPatr' in dir(infoSubstPatr):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoSubstPatr.indSubstPatr', 
+                                                  infoSubstPatr.indSubstPatr.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'percRedContrib' in dir(infoSubstPatr):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoSubstPatr.percRedContrib', 
+                                                  infoSubstPatr.percRedContrib.cdata, 
+                                                  1, u'None')
+    
+    if 'infoSubstPatrOpPort' in dir(evtInfoComplPer.infoSubstPatrOpPort):
         for infoSubstPatrOpPort in evtInfoComplPer.infoSubstPatrOpPort:
-
-            if 'cnpjOpPortuario' in dir(infoSubstPatrOpPort): validacoes_lista = validar_campo(validacoes_lista,'infoSubstPatrOpPort.cnpjOpPortuario', infoSubstPatrOpPort.cnpjOpPortuario.cdata, 1, u'')
-
-    if 'infoAtivConcom' in dir(evtInfoComplPer):
+            
+            if 'cnpjOpPortuario' in dir(infoSubstPatrOpPort):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoSubstPatrOpPort.cnpjOpPortuario', 
+                                                  infoSubstPatrOpPort.cnpjOpPortuario.cdata, 
+                                                  1, u'None')
+    
+    if 'infoAtivConcom' in dir(evtInfoComplPer.infoAtivConcom):
         for infoAtivConcom in evtInfoComplPer.infoAtivConcom:
-
-            if 'fatorMes' in dir(infoAtivConcom): validacoes_lista = validar_campo(validacoes_lista,'infoAtivConcom.fatorMes', infoAtivConcom.fatorMes.cdata, 1, u'')
-            if 'fator13' in dir(infoAtivConcom): validacoes_lista = validar_campo(validacoes_lista,'infoAtivConcom.fator13', infoAtivConcom.fator13.cdata, 1, u'')
-
+            
+            if 'fatorMes' in dir(infoAtivConcom):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoAtivConcom.fatorMes', 
+                                                  infoAtivConcom.fatorMes.cdata, 
+                                                  1, u'None')
+            
+            if 'fator13' in dir(infoAtivConcom):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoAtivConcom.fator13', 
+                                                  infoAtivConcom.fator13.cdata, 
+                                                  1, u'None')
     return validacoes_lista

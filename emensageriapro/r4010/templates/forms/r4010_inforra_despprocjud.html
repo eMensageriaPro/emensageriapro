@@ -1,0 +1,67 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4010_inforra_despprocjud__r4010_inforra -->
+<div class="col-md-12" id="r4010_inforra_despprocjud__r4010_inforra__div">
+  <div class="form-group">
+    <label id="r4010_inforra_despprocjud__r4010_inforra__label">Detalhamento das despesas de processo judicial*</label>
+    {% if not for_print %}{% if r4010_inforra_despprocjud_form.r4010_inforra.value %}
+        <a href="{% url 'r4010_inforra_salvar' hash='{}'|json_return_page:'r4010_inforra_despprocjud_salvar'|json_return_hash:hash|json_id:r4010_inforra_despprocjud_form.r4010_inforra.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if r4010_inforra_despprocjud_form.r4010_inforra.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_inforra_despprocjud_form.r4010_inforra.errors }}
+      </div>
+    {% endif %}
+    {% if r4010_inforra_despprocjud_form.r4010_inforra.field.widget.attrs.readonly %}
+      {% if r4010_inforra_despprocjud_form.r4010_inforra.field.widget.attrs.disabled %}
+        {{ r4010_inforra_despprocjud_form.r4010_inforra|addcss:'form-control' }}
+        <input id="id_r4010_inforra" name="r4010_inforra" type="hidden" value="{{ r4010_inforra_despprocjud_form.r4010_inforra.value }}">
+      {% else %}
+        {{ r4010_inforra_despprocjud_form.r4010_inforra|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r4010_inforra_despprocjud_form.r4010_inforra|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r4010_inforra_despprocjud__r4010_inforra -->
+<!-- inicio__r4010_inforra_despprocjud__vlrdespcustas -->
+<div class="col-md-4" id="r4010_inforra_despprocjud__vlrdespcustas__div">
+  <div class="form-group">
+    <label id="r4010_inforra_despprocjud__vlrdespcustas__label">Preencher com o Valor da despesa com custas judiciais*</label>
+    {% if r4010_inforra_despprocjud_form.vlrdespcustas.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_inforra_despprocjud_form.vlrdespcustas.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_inforra_despprocjud_form.vlrdespcustas|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforra_despprocjud__vlrdespcustas -->
+<!-- inicio__r4010_inforra_despprocjud__vlrdespadvogados -->
+<div class="col-md-4" id="r4010_inforra_despprocjud__vlrdespadvogados__div">
+  <div class="form-group">
+    <label id="r4010_inforra_despprocjud__vlrdespadvogados__label">Preencher com o Valor da despesa com advogado(s)*</label>
+    {% if r4010_inforra_despprocjud_form.vlrdespadvogados.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_inforra_despprocjud_form.vlrdespadvogados.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_inforra_despprocjud_form.vlrdespadvogados|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforra_despprocjud__vlrdespadvogados -->

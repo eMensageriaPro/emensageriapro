@@ -1,11 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s2231.models import * 
-from emensageriapro.esocial.models import s2231evtCessao 
+from emensageriapro.s2231.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -40,21 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s2231_fimcessao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2231_fimcessao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2231_evtcessao'].widget.attrs['required'] = True        
-        self.fields['dttermcessao'].widget.attrs['required'] = True
+        super(form_s2231_fimcessao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -74,28 +74,25 @@ class form_s2231_fimcessao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2231fimCessao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s2231_inicessao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s2231_inicessao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s2231_evtcessao'].widget.attrs['required'] = True        
-        self.fields['dtinicessao'].widget.attrs['required'] = True        
-        self.fields['cnpjcess'].widget.attrs['required'] = True        
-        self.fields['infonus'].widget.attrs['required'] = True        
-        self.fields['indcessao'].widget.attrs['required'] = True
+        super(form_s2231_inicessao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -115,10 +112,10 @@ class form_s2231_inicessao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s2231iniCessao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

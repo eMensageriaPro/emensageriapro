@@ -1,0 +1,46 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4020_fci__r4020_infopgto -->
+<div class="col-md-12" id="r4020_fci__r4020_infopgto__div">
+  <div class="form-group">
+    <label id="r4020_fci__r4020_infopgto__label">Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante*</label>
+    {% if not for_print %}{% if r4020_fci_form.r4020_infopgto.value %}
+        <a href="{% url 'r4020_infopgto_salvar' hash='{}'|json_return_page:'r4020_fci_salvar'|json_return_hash:hash|json_id:r4020_fci_form.r4020_infopgto.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if r4020_fci_form.r4020_infopgto.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4020_fci_form.r4020_infopgto.errors }}
+      </div>
+    {% endif %}
+    {% if r4020_fci_form.r4020_infopgto.field.widget.attrs.readonly %}
+      {% if r4020_fci_form.r4020_infopgto.field.widget.attrs.disabled %}
+        {{ r4020_fci_form.r4020_infopgto|addcss:'form-control' }}
+        <input id="id_r4020_infopgto" name="r4020_infopgto" type="hidden" value="{{ r4020_fci_form.r4020_infopgto.value }}">
+      {% else %}
+        {{ r4020_fci_form.r4020_infopgto|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r4020_fci_form.r4020_infopgto|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r4020_fci__r4020_infopgto -->
+<!-- inicio__r4020_fci__nrinscfci -->
+<div class="col-md-6" id="r4020_fci__nrinscfci__div">
+  <div class="form-group">
+    <label id="r4020_fci__nrinscfci__label">Número de inscrição no CNPJ do fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante*</label>
+      {% if r4020_fci_form.nrinscfci.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4020_fci_form.nrinscfci.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4020_fci_form.nrinscfci|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_fci__nrinscfci -->

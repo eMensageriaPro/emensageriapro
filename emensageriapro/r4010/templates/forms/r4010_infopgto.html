@@ -1,0 +1,223 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4010_infopgto__r4010_idepgto -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_r4010_idepgto').change(function(){
+       document.getElementById("r4010_infopgto__r4010_idepgto__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="r4010_infopgto__r4010_idepgto__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__r4010_idepgto__label">Informações do Pagamento*</label>
+    {% if not for_print %}
+      {% if r4010_infopgto_form.r4010_idepgto.value %}
+        <a id="r4010_infopgto__r4010_idepgto__div_acessar" href="{% url 'r4010_idepgto_salvar' hash='{}'|json_id:r4010_infopgto_form.r4010_idepgto.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if r4010_infopgto_form.r4010_idepgto.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_infopgto_form.r4010_idepgto.errors }}
+      </div>
+    {% endif %}
+    {% if r4010_infopgto_form.r4010_idepgto.field.widget.attrs.readonly %}
+      {% if r4010_infopgto_form.r4010_idepgto.field.widget.attrs.disabled %}
+        {{ r4010_infopgto_form.r4010_idepgto|addcss:'form-control' }}
+        <input id="id_r4010_idepgto" name="r4010_idepgto" type="hidden" value="{% if r4010_infopgto_form.r4010_idepgto.value or r4010_infopgto_form.r4010_idepgto.value == 0 %}{{ r4010_infopgto_form.r4010_idepgto.value|valor }}{% endif %}">
+      {% else %}
+        {{ r4010_infopgto_form.r4010_idepgto|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r4010_infopgto_form.r4010_idepgto|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r4010_infopgto__r4010_idepgto -->
+<!-- inicio__r4010_infopgto__dtfg -->
+<div class="col-md-6" id="r4010_infopgto__dtfg__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__dtfg__label">Informar a data do fato gerador ou pagamento/crédito*</label>
+        {% if r4010_infopgto_form.dtfg.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ r4010_infopgto_form.dtfg.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_infopgto_form.dtfg|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infopgto__dtfg -->
+<!-- inicio__r4010_infopgto__inddecterc -->
+<div class="col-md-6" id="r4010_infopgto__inddecterc__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__inddecterc__label">Indicativo de décimo terceiro salário*</label>
+    {% if r4010_infopgto_form.inddecterc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_infopgto_form.inddecterc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r4010_infopgto_form.inddecterc.field.widget.attrs.readonly %}
+        {% if r4010_infopgto_form.inddecterc.field.widget.attrs.disabled %}
+          {{ r4010_infopgto_form.inddecterc|addcss:'form-control' }}
+          <input id="id_inddecterc" name="inddecterc" type="hidden" value="{% if r4010_infopgto_form.inddecterc.value or r4010_infopgto_form.inddecterc.value == 0 %}{{ r4010_infopgto_form.inddecterc.value }}{% endif %}">
+        {% else %}
+          {{ r4010_infopgto_form.inddecterc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r4010_infopgto_form.inddecterc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infopgto__inddecterc -->
+<!-- inicio__r4010_infopgto__vlrrendbruto -->
+<div class="col-md-6" id="r4010_infopgto__vlrrendbruto__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__vlrrendbruto__label">Valor do rendimento bruto, inclusive os rendimentos não tributáveis ou isentos*</label>
+    {% if r4010_infopgto_form.vlrrendbruto.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_infopgto_form.vlrrendbruto.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_infopgto_form.vlrrendbruto|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infopgto__vlrrendbruto -->
+<!-- inicio__r4010_infopgto__vlrrendtrib -->
+<div class="col-md-6" id="r4010_infopgto__vlrrendtrib__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__vlrrendtrib__label">Valor do rendimento tributável, conforme previsto na legislação</label>
+    {% if r4010_infopgto_form.vlrrendtrib.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_infopgto_form.vlrrendtrib.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_infopgto_form.vlrrendtrib|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infopgto__vlrrendtrib -->
+<!-- inicio__r4010_infopgto__vlrir -->
+<div class="col-md-6" id="r4010_infopgto__vlrir__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__vlrir__label">Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação</label>
+    {% if r4010_infopgto_form.vlrir.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_infopgto_form.vlrir.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_infopgto_form.vlrir|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infopgto__vlrir -->
+<!-- inicio__r4010_infopgto__vlrrendsusp -->
+<div class="col-md-6" id="r4010_infopgto__vlrrendsusp__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__vlrrendsusp__label">Valor do rendimento com exigibilidade suspensa</label>
+    {% if r4010_infopgto_form.vlrrendsusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_infopgto_form.vlrrendsusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_infopgto_form.vlrrendsusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infopgto__vlrrendsusp -->
+<!-- inicio__r4010_infopgto__vlrnir -->
+<div class="col-md-6" id="r4010_infopgto__vlrnir__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__vlrnir__label">Valor da retenção que deixou de ser efetuada, relativo ao Imposto de Renda Retido na Fonte</label>
+    {% if r4010_infopgto_form.vlrnir.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_infopgto_form.vlrnir.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_infopgto_form.vlrnir|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infopgto__vlrnir -->
+<!-- inicio__r4010_infopgto__vlrdeposito -->
+<div class="col-md-6" id="r4010_infopgto__vlrdeposito__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__vlrdeposito__label">Valor do depósito judicial</label>
+    {% if r4010_infopgto_form.vlrdeposito.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_infopgto_form.vlrdeposito.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_infopgto_form.vlrdeposito|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infopgto__vlrdeposito -->
+<!-- inicio__r4010_infopgto__vlrcompanocalend -->
+<div class="col-md-6" id="r4010_infopgto__vlrcompanocalend__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__vlrcompanocalend__label">Compensação Judicial relativa ao ano calendário</label>
+    {% if r4010_infopgto_form.vlrcompanocalend.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_infopgto_form.vlrcompanocalend.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_infopgto_form.vlrcompanocalend|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infopgto__vlrcompanocalend -->
+<!-- inicio__r4010_infopgto__vlrcompanoant -->
+<div class="col-md-6" id="r4010_infopgto__vlrcompanoant__div">
+  <div class="form-group">
+    <label id="r4010_infopgto__vlrcompanoant__label">Compensação Judicial relativa a anos anteriores ao ano calendário</label>
+    {% if r4010_infopgto_form.vlrcompanoant.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_infopgto_form.vlrcompanoant.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r4010_infopgto_form.vlrcompanoant|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_infopgto__vlrcompanoant -->

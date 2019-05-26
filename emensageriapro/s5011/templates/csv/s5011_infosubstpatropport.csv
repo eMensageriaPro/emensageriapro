@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5011_idelotacao or 1 %}"Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.";{% endif %}{% if show_fields.show_cnpjopportuario or 1 %}"CNPJ do Operador Portuário";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5011_idelotacao or 1 %}"{{ c.s5011_idelotacao }}";{% endif %}{% if show_fields.show_cnpjopportuario or 1 %}"{{ c.cnpjopportuario }}";{% endif %}
+{% endfor %}

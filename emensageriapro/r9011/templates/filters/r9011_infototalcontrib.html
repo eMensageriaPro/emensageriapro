@@ -1,0 +1,71 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9011_infototalcontrib__r9011_evttotalcontrib -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos</label>
+    <select name="r9011_evttotalcontrib" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in r9011_evttotalcontrib_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r9011_evttotalcontrib' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r9011_infototalcontrib__r9011_evttotalcontrib -->
+
+<!-- inicio__r9011_infototalcontrib__nrrecarqbase -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte</label>
+    <div name="nrrecarqbase" class="input-group" style="width: 100%;">
+      <input type="text" name="nrrecarqbase" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrrecarqbase' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r9011_infototalcontrib__nrrecarqbase -->
+
+<!-- inicio__r9011_infototalcontrib__indexistinfo -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Indicativo de existência de valores de bases ou de tributos</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="indexistinfo" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'indexistinfo' %}selected="selected"{% endifequal %} >1 - Há informações de bases e/ou de tributos</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'indexistinfo' %}selected="selected"{% endifequal %} >2 - Há movimento, porém não há informações de bases ou de tributos</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'indexistinfo' %}selected="selected"{% endifequal %} >3 - Não há movimento na competência.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r9011_infototalcontrib__indexistinfo -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r9011_evttotalcontrib" value="1" {% if show_fields|get_value_from_dict:'show_r9011_evttotalcontrib' %}checked{% endif %} >Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrrecarqbase" value="0" {% if show_fields|get_value_from_dict:'show_nrrecarqbase' %}checked{% endif %} >Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_indexistinfo" value="1" {% if show_fields|get_value_from_dict:'show_indexistinfo' %}checked{% endif %} >Indicativo de existência de valores de bases ou de tributos
+    </div>
+</div>
+
+

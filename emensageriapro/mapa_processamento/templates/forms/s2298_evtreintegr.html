@@ -1,0 +1,417 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2298_evtreintegr__evtreintegr -->
+<div class="col-md-12" id="s2298_evtreintegr__evtreintegr__div">
+  <h4>Evento Reintegração</h4>
+</div>
+<!-- fim__s2298_evtreintegr__evtreintegr -->
+<!-- inicio__s2298_evtreintegr__identidade -->
+<div class="col-md-6" id="s2298_evtreintegr__identidade__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__identidade__label">Identidade do Registro</label>
+      {% if s2298_evtreintegr_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2298_evtreintegr_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__identidade -->
+<!-- inicio__s2298_evtreintegr__ideevento -->
+<div class="col-md-12" id="s2298_evtreintegr__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s2298_evtreintegr__ideevento -->
+<!-- inicio__s2298_evtreintegr__indretif -->
+<div class="col-md-6" id="s2298_evtreintegr__indretif__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__indretif__label">Identificador de retificação*</label>
+    {% if s2298_evtreintegr_form.indretif.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2298_evtreintegr_form.indretif.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2298_evtreintegr_form.indretif.field.widget.attrs.readonly %}
+        {% if s2298_evtreintegr_form.indretif.field.widget.attrs.disabled %}
+          {{ s2298_evtreintegr_form.indretif|addcss:'form-control' }}
+          <input id="id_indretif" name="indretif" type="hidden" value="{% if s2298_evtreintegr_form.indretif.value or s2298_evtreintegr_form.indretif.value == 0 %}{{ s2298_evtreintegr_form.indretif.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2298_evtreintegr_form.indretif|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2298_evtreintegr_form.indretif|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__indretif -->
+<!-- inicio__s2298_evtreintegr__nrrecibo -->
+<div class="col-md-6" id="s2298_evtreintegr__nrrecibo__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__nrrecibo__label">Número do recibo</label>
+      {% if s2298_evtreintegr_form.nrrecibo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2298_evtreintegr_form.nrrecibo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.nrrecibo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__nrrecibo -->
+<!-- inicio__s2298_evtreintegr__tpamb -->
+<div class="col-md-6" id="s2298_evtreintegr__tpamb__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__tpamb__label">Identificação do ambiente*</label>
+    {% if s2298_evtreintegr_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2298_evtreintegr_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2298_evtreintegr_form.tpamb.field.widget.attrs.readonly %}
+        {% if s2298_evtreintegr_form.tpamb.field.widget.attrs.disabled %}
+          {{ s2298_evtreintegr_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if s2298_evtreintegr_form.tpamb.value or s2298_evtreintegr_form.tpamb.value == 0 %}{{ s2298_evtreintegr_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2298_evtreintegr_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2298_evtreintegr_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__tpamb -->
+<!-- inicio__s2298_evtreintegr__procemi -->
+<div class="col-md-6" id="s2298_evtreintegr__procemi__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__procemi__label">Processo de emissão do evento*</label>
+    {% if s2298_evtreintegr_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2298_evtreintegr_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2298_evtreintegr_form.procemi.field.widget.attrs.readonly %}
+        {% if s2298_evtreintegr_form.procemi.field.widget.attrs.disabled %}
+          {{ s2298_evtreintegr_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if s2298_evtreintegr_form.procemi.value or s2298_evtreintegr_form.procemi.value == 0 %}{{ s2298_evtreintegr_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2298_evtreintegr_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2298_evtreintegr_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__procemi -->
+<!-- inicio__s2298_evtreintegr__verproc -->
+<div class="col-md-6" id="s2298_evtreintegr__verproc__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__verproc__label">Versão do processo*</label>
+      {% if s2298_evtreintegr_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2298_evtreintegr_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__verproc -->
+<!-- inicio__s2298_evtreintegr__ideempregador -->
+<div class="col-md-12" id="s2298_evtreintegr__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s2298_evtreintegr__ideempregador -->
+<!-- inicio__s2298_evtreintegr__tpinsc -->
+<div class="col-md-6" id="s2298_evtreintegr__tpinsc__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__tpinsc__label">Tipo de inscrição*</label>
+    {% if s2298_evtreintegr_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2298_evtreintegr_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2298_evtreintegr_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s2298_evtreintegr_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s2298_evtreintegr_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s2298_evtreintegr_form.tpinsc.value or s2298_evtreintegr_form.tpinsc.value == 0 %}{{ s2298_evtreintegr_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2298_evtreintegr_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2298_evtreintegr_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__tpinsc -->
+<!-- inicio__s2298_evtreintegr__nrinsc -->
+<div class="col-md-6" id="s2298_evtreintegr__nrinsc__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s2298_evtreintegr_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2298_evtreintegr_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__nrinsc -->
+<!-- inicio__s2298_evtreintegr__idevinculo -->
+<div class="col-md-12" id="s2298_evtreintegr__idevinculo__div">
+  <h4>Informações de Identificação do Trabalhador e do Vínculo</h4>
+</div>
+<!-- fim__s2298_evtreintegr__idevinculo -->
+<!-- inicio__s2298_evtreintegr__cpftrab -->
+<div class="col-md-6" id="s2298_evtreintegr__cpftrab__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__cpftrab__label">CPF*</label>
+      {% if s2298_evtreintegr_form.cpftrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2298_evtreintegr_form.cpftrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.cpftrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__cpftrab -->
+<!-- inicio__s2298_evtreintegr__nistrab -->
+<div class="col-md-6" id="s2298_evtreintegr__nistrab__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__nistrab__label">NIS*</label>
+      {% if s2298_evtreintegr_form.nistrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2298_evtreintegr_form.nistrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.nistrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__nistrab -->
+<!-- inicio__s2298_evtreintegr__matricula -->
+<div class="col-md-6" id="s2298_evtreintegr__matricula__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__matricula__label">Matricula*</label>
+      {% if s2298_evtreintegr_form.matricula.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2298_evtreintegr_form.matricula.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.matricula|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__matricula -->
+<!-- inicio__s2298_evtreintegr__inforeintegr -->
+<div class="col-md-12" id="s2298_evtreintegr__inforeintegr__div">
+  <h4>Reintegração</h4>
+</div>
+<!-- fim__s2298_evtreintegr__inforeintegr -->
+<!-- inicio__s2298_evtreintegr__tpreint -->
+<div class="col-md-6" id="s2298_evtreintegr__tpreint__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__tpreint__label">Tipo de reintegração*</label>
+    {% if s2298_evtreintegr_form.tpreint.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2298_evtreintegr_form.tpreint.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2298_evtreintegr_form.tpreint.field.widget.attrs.readonly %}
+        {% if s2298_evtreintegr_form.tpreint.field.widget.attrs.disabled %}
+          {{ s2298_evtreintegr_form.tpreint|addcss:'form-control' }}
+          <input id="id_tpreint" name="tpreint" type="hidden" value="{% if s2298_evtreintegr_form.tpreint.value or s2298_evtreintegr_form.tpreint.value == 0 %}{{ s2298_evtreintegr_form.tpreint.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2298_evtreintegr_form.tpreint|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2298_evtreintegr_form.tpreint|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__tpreint -->
+<!-- inicio__s2298_evtreintegr__nrprocjud -->
+<div class="col-md-6" id="s2298_evtreintegr__nrprocjud__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__nrprocjud__label">Número do Processo Judicial</label>
+      {% if s2298_evtreintegr_form.nrprocjud.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2298_evtreintegr_form.nrprocjud.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.nrprocjud|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__nrprocjud -->
+<!-- inicio__s2298_evtreintegr__nrleianistia -->
+<div class="col-md-6" id="s2298_evtreintegr__nrleianistia__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__nrleianistia__label">Número da lei de anistia</label>
+      {% if s2298_evtreintegr_form.nrleianistia.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2298_evtreintegr_form.nrleianistia.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.nrleianistia|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__nrleianistia -->
+<!-- inicio__s2298_evtreintegr__dtefetretorno -->
+<div class="col-md-6" id="s2298_evtreintegr__dtefetretorno__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__dtefetretorno__label">Data de efetivo retorno*</label>
+        {% if s2298_evtreintegr_form.dtefetretorno.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2298_evtreintegr_form.dtefetretorno.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.dtefetretorno|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__dtefetretorno -->
+<!-- inicio__s2298_evtreintegr__dtefeito -->
+<div class="col-md-6" id="s2298_evtreintegr__dtefeito__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__dtefeito__label">Data do efeito da reintegração*</label>
+        {% if s2298_evtreintegr_form.dtefeito.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2298_evtreintegr_form.dtefeito.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2298_evtreintegr_form.dtefeito|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__dtefeito -->
+<!-- inicio__s2298_evtreintegr__indpagtojuizo -->
+<div class="col-md-6" id="s2298_evtreintegr__indpagtojuizo__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__indpagtojuizo__label">Indicador de remunerações pagas em juízo*</label>
+    {% if s2298_evtreintegr_form.indpagtojuizo.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2298_evtreintegr_form.indpagtojuizo.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2298_evtreintegr_form.indpagtojuizo.field.widget.attrs.readonly %}
+        {% if s2298_evtreintegr_form.indpagtojuizo.field.widget.attrs.disabled %}
+          {{ s2298_evtreintegr_form.indpagtojuizo|addcss:'form-control' }}
+          <input id="id_indpagtojuizo" name="indpagtojuizo" type="hidden" value="{% if s2298_evtreintegr_form.indpagtojuizo.value or s2298_evtreintegr_form.indpagtojuizo.value == 0 %}{{ s2298_evtreintegr_form.indpagtojuizo.value }}{% endif %}">
+        {% else %}
+          {{ s2298_evtreintegr_form.indpagtojuizo|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2298_evtreintegr_form.indpagtojuizo|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__indpagtojuizo -->
+<!-- inicio__s2298_evtreintegr__versao -->
+<div class="col-md-3" id="s2298_evtreintegr__versao__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__versao__label">Versão</label>
+    {% if s2298_evtreintegr_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2298_evtreintegr_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2298_evtreintegr_form.versao.field.widget.attrs.readonly %}
+        {% if s2298_evtreintegr_form.versao.field.widget.attrs.disabled %}
+          {{ s2298_evtreintegr_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if s2298_evtreintegr_form.versao.value or s2298_evtreintegr_form.versao.value == 0 %}{{ s2298_evtreintegr_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ s2298_evtreintegr_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2298_evtreintegr_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__versao -->
+<!-- inicio__s2298_evtreintegr__transmissor_lote_esocial -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_esocial').change(function(){document.getElementById("s2298_evtreintegr__transmissor_lote_esocial__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="s2298_evtreintegr__transmissor_lote_esocial__div">
+<div class="form-group">
+  <label id="s2298_evtreintegr__transmissor_lote_esocial__label">Transmissor</label>
+  {% if not for_print %}
+    {% if s2298_evtreintegr_form.transmissor_lote_esocial.value %}
+    <a id="s2298_evtreintegr__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:s2298_evtreintegr_form.transmissor_lote_esocial.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if s2298_evtreintegr_form.transmissor_lote_esocial.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2298_evtreintegr_form.transmissor_lote_esocial.errors }}
+    </div>
+  {% endif %}
+  {% if s2298_evtreintegr_form.transmissor_lote_esocial.field.widget.attrs.readonly %}
+    {% if s2298_evtreintegr_form.transmissor_lote_esocial.field.widget.attrs.disabled %}
+      {{ s2298_evtreintegr_form.transmissor_lote_esocial|addcss:'form-control' }}
+      <input id="id_transmissor_lote_esocial" name="transmissor_lote_esocial" type="hidden" value="{% if s2298_evtreintegr_form.transmissor_lote_esocial.value or s2298_evtreintegr_form.transmissor_lote_esocial.value == 0 %}{{ s2298_evtreintegr_form.transmissor_lote_esocial.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ s2298_evtreintegr_form.transmissor_lote_esocial|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ s2298_evtreintegr_form.transmissor_lote_esocial|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__s2298_evtreintegr__transmissor_lote_esocial -->
+<!-- inicio__s2298_evtreintegr__status -->
+<div class="col-md-3" id="s2298_evtreintegr__status__div">
+  <div class="form-group">
+    <label id="s2298_evtreintegr__status__label">Status</label>
+    {% if s2298_evtreintegr_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2298_evtreintegr_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2298_evtreintegr_form.status.field.widget.attrs.readonly %}
+        {% if s2298_evtreintegr_form.status.field.widget.attrs.disabled %}
+          {{ s2298_evtreintegr_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if s2298_evtreintegr_form.status.value or s2298_evtreintegr_form.status.value == 0 %}{{ s2298_evtreintegr_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2298_evtreintegr_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2298_evtreintegr_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2298_evtreintegr__status -->

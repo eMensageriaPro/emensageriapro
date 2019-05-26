@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,27 +46,125 @@ def validacoes_r2099_evtfechaevper(arquivo):
     validacoes_lista = []
     xmlns = doc.Reinf['xmlns'].split('/')
     evtFechaEvPer = doc.Reinf.evtFechaEvPer
-
-    if 'perApur' in dir(evtFechaEvPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.ideEvento.perApur', evtFechaEvPer.ideEvento.perApur.cdata, 1, u'')
-    if 'tpAmb' in dir(evtFechaEvPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.ideEvento.tpAmb', evtFechaEvPer.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtFechaEvPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.ideEvento.procEmi', evtFechaEvPer.ideEvento.procEmi.cdata, 1, u'1;2')
-    if 'verProc' in dir(evtFechaEvPer.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.ideEvento.verProc', evtFechaEvPer.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtFechaEvPer.ideContri): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.ideContri.tpInsc', evtFechaEvPer.ideContri.tpInsc.cdata, 1, u'1;2')
-    if 'nrInsc' in dir(evtFechaEvPer.ideContri): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.ideContri.nrInsc', evtFechaEvPer.ideContri.nrInsc.cdata, 1, u'')
-    if 'evtServTm' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtServTm', evtFechaEvPer.infoFech.evtServTm.cdata, 1, u'S;N')
-    if 'evtServPr' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtServPr', evtFechaEvPer.infoFech.evtServPr.cdata, 1, u'S;N')
-    if 'evtAssDespRec' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtAssDespRec', evtFechaEvPer.infoFech.evtAssDespRec.cdata, 1, u'S;N')
-    if 'evtAssDespRep' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtAssDespRep', evtFechaEvPer.infoFech.evtAssDespRep.cdata, 1, u'S;N')
-    if 'evtComProd' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtComProd', evtFechaEvPer.infoFech.evtComProd.cdata, 1, u'S;N')
-    if 'evtCPRB' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtCPRB', evtFechaEvPer.infoFech.evtCPRB.cdata, 1, u'S;N')
-    if 'evtPgtos' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.evtPgtos', evtFechaEvPer.infoFech.evtPgtos.cdata, 0, u'S;N')
-    if 'compSemMovto' in dir(evtFechaEvPer.infoFech): validacoes_lista = validar_campo(validacoes_lista,'evtFechaEvPer.infoFech.compSemMovto', evtFechaEvPer.infoFech.compSemMovto.cdata, 0, u'')
-    if 'ideRespInf' in dir(evtFechaEvPer):
+    #variaveis
+    
+    if 'ideEvento' in dir(evtFechaEvPer.ideEvento):
+        for ideEvento in evtFechaEvPer.ideEvento:
+            
+            if 'perApur' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.perApur', 
+                                                  ideEvento.perApur.cdata, 
+                                                  1, u'None')
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideContri' in dir(evtFechaEvPer.ideContri):
+        for ideContri in evtFechaEvPer.ideContri:
+            
+            if 'tpInsc' in dir(ideContri):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideContri.tpInsc', 
+                                                  ideContri.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideContri):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideContri.nrInsc', 
+                                                  ideContri.nrInsc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideRespInf' in dir(evtFechaEvPer.ideRespInf):
         for ideRespInf in evtFechaEvPer.ideRespInf:
-
-            if 'nmResp' in dir(ideRespInf): validacoes_lista = validar_campo(validacoes_lista,'ideRespInf.nmResp', ideRespInf.nmResp.cdata, 1, u'')
-            if 'cpfResp' in dir(ideRespInf): validacoes_lista = validar_campo(validacoes_lista,'ideRespInf.cpfResp', ideRespInf.cpfResp.cdata, 1, u'')
-            if 'telefone' in dir(ideRespInf): validacoes_lista = validar_campo(validacoes_lista,'ideRespInf.telefone', ideRespInf.telefone.cdata, 0, u'')
-            if 'email' in dir(ideRespInf): validacoes_lista = validar_campo(validacoes_lista,'ideRespInf.email', ideRespInf.email.cdata, 0, u'')
-
+            
+            if 'nmResp' in dir(ideRespInf):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideRespInf.nmResp', 
+                                                  ideRespInf.nmResp.cdata, 
+                                                  1, u'None')
+            
+            if 'cpfResp' in dir(ideRespInf):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideRespInf.cpfResp', 
+                                                  ideRespInf.cpfResp.cdata, 
+                                                  1, u'None')
+            
+            if 'telefone' in dir(ideRespInf):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideRespInf.telefone', 
+                                                  ideRespInf.telefone.cdata, 
+                                                  0, u'None')
+            
+            if 'email' in dir(ideRespInf):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideRespInf.email', 
+                                                  ideRespInf.email.cdata, 
+                                                  0, u'None')
+    
+    if 'infoFech' in dir(evtFechaEvPer.infoFech):
+        for infoFech in evtFechaEvPer.infoFech:
+            
+            if 'evtServTm' in dir(infoFech):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoFech.evtServTm', 
+                                                  infoFech.evtServTm.cdata, 
+                                                  1, u'S, N')
+            
+            if 'evtServPr' in dir(infoFech):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoFech.evtServPr', 
+                                                  infoFech.evtServPr.cdata, 
+                                                  1, u'S, N')
+            
+            if 'evtAssDespRec' in dir(infoFech):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoFech.evtAssDespRec', 
+                                                  infoFech.evtAssDespRec.cdata, 
+                                                  1, u'S, N')
+            
+            if 'evtAssDespRep' in dir(infoFech):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoFech.evtAssDespRep', 
+                                                  infoFech.evtAssDespRep.cdata, 
+                                                  1, u'S, N')
+            
+            if 'evtComProd' in dir(infoFech):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoFech.evtComProd', 
+                                                  infoFech.evtComProd.cdata, 
+                                                  1, u'S, N')
+            
+            if 'evtCPRB' in dir(infoFech):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoFech.evtCPRB', 
+                                                  infoFech.evtCPRB.cdata, 
+                                                  1, u'S, N')
+            
+            if 'evtPgtos' in dir(infoFech):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoFech.evtPgtos', 
+                                                  infoFech.evtPgtos.cdata, 
+                                                  0, u'S, N')
+            
+            if 'compSemMovto' in dir(infoFech):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'infoFech.compSemMovto', 
+                                                  infoFech.compSemMovto.cdata, 
+                                                  0, u'None')
     return validacoes_lista

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1207_evtbenprrp or 1 %}"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF";{% endif %}{% if show_fields.show_tpbenef or 1 %}"Tipo de benefício";{% endif %}{% if show_fields.show_nrbenefic or 1 %}"Número do benefício";{% endif %}{% if show_fields.show_idedmdev or 1 %}"Identificador dos demostrativos de pagamento";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1207_evtbenprrp or 1 %}"{{ c.s1207_evtbenprrp }}";{% endif %}{% if show_fields.show_tpbenef or 1 %}"{{ c.tpbenef }}";{% endif %}{% if show_fields.show_nrbenefic or 1 %}"{{ c.nrbenefic }}";{% endif %}{% if show_fields.show_idedmdev or 1 %}"{{ c.idedmdev }}";{% endif %}
+{% endfor %}

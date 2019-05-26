@@ -118,7 +118,7 @@
               
         <tr>
             <td bgcolor="lightgray" colspan="1" width="130px">evtTabOperPort</td>
-            <td bgcolor="lightgray" colspan="3">Evento Tabela de Operadores Portuários. Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TABOPPORTUARIO_VALIDA_OGMO REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</td>
+            <td bgcolor="lightgray" colspan="3">Evento tabela de Operadores Portuários. <regras_validacao> REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TABOPPORTUARIO_VALIDA_OGMO REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</td>
         </tr>
     {% for s1080_evttaboperport in s1080_evttaboperport_lista %}
     {% ifequal 1 1 %}
@@ -129,8 +129,8 @@
 
         <tr {% if s1080_evttaboperport.tpamb|validacoes_esocial_efdreinf:"s1080_evttaboperport.tpamb" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpAmb</td>
-            <td width="500px">Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2.</td>
-            <td width="200px"><b>{% if s1080_evttaboperport.tpamb or s1080_evttaboperport.tpamb == 0 %}{{ s1080_evttaboperport.tpamb|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Identificação do ambiente<opcoes>1 - Produção; 2 - Produção restrita. <valores_validos> 1, 2.</td>
+            <td width="200px"><b>{% if s1080_evttaboperport.tpamb or s1080_evttaboperport.tpamb == 0 %}{{ s1080_evttaboperport.tpamb }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -148,8 +148,8 @@
 
         <tr {% if s1080_evttaboperport.procemi|validacoes_esocial_efdreinf:"s1080_evttaboperport.procemi" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">procEmi</td>
-            <td width="500px">Processo de emissão do evento: 1- Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. Valores Válidos: 1, 2, 3, 4, 5.</td>
-            <td width="200px"><b>{% if s1080_evttaboperport.procemi or s1080_evttaboperport.procemi == 0 %}{{ s1080_evttaboperport.procemi|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Processo de emissão do evento<opcoes> 1 - Aplicativo do empregador; 2 - Aplicativo governamental - Empregador Doméstico; 3 - Aplicativo governamental - Web Geral; 4 - Aplicativo governamental - Microempreendedor Individual (MEI); 5 - Aplicativo governamental - Segurado Especial. <valores_validos> 1, 2, 3, 4, 5.</td>
+            <td width="200px"><b>{% if s1080_evttaboperport.procemi or s1080_evttaboperport.procemi == 0 %}{{ s1080_evttaboperport.procemi }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -191,8 +191,8 @@
 
         <tr {% if s1080_evttaboperport.tpinsc|validacoes_esocial_efdreinf:"s1080_evttaboperport.tpinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">tpInsc</td>
-            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
-            <td width="200px"><b>{% if s1080_evttaboperport.tpinsc or s1080_evttaboperport.tpinsc == 0 %}{{ s1080_evttaboperport.tpinsc|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com o código correspondente ao tipo de inscrição, conforme tabela 5. <validacao> Deve ser igual a [1] (CNPJ) ou [2] (CPF).</td>
+            <td width="200px"><b>{% if s1080_evttaboperport.tpinsc or s1080_evttaboperport.tpinsc == 0 %}{{ s1080_evttaboperport.tpinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -210,7 +210,7 @@
 
         <tr {% if s1080_evttaboperport.nrinsc|validacoes_esocial_efdreinf:"s1080_evttaboperport.nrinsc" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">nrInsc</td>
-            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). Validação: Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
+            <td width="500px">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5], [104-0], [107-4], [116-3], situação em que o campo deve ser preenchido com o CNPJ completo (14 posições). <validacao> Se {tpInsc} for igual a [1], deve ser um número de CNPJ válido. Se {tpInsc} for igual a [2], deve ser um CPF válido.</td>
             <td width="200px"><b>{% if s1080_evttaboperport.nrinsc or s1080_evttaboperport.nrinsc == 0 %}{{ s1080_evttaboperport.nrinsc }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -245,7 +245,7 @@
 
         <tr {% if s1080_inclusao.cnpjopportuario|validacoes_esocial_efdreinf:"s1080_inclusao.cnpjopportuario" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjOpPortuario</td>
-            <td width="500px">Preencher com o CNPJ do operador portuário. Validação: Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
+            <td width="500px">Preencher com o CNPJ do operador portuário. <validacao> Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
             <td width="200px"><b>{% if s1080_inclusao.cnpjopportuario or s1080_inclusao.cnpjopportuario == 0 %}{{ s1080_inclusao.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -264,7 +264,7 @@
 
         <tr {% if s1080_inclusao.inivalid|validacoes_esocial_efdreinf:"s1080_inclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1080_inclusao.inivalid or s1080_inclusao.inivalid == 0 %}{{ s1080_inclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -283,7 +283,7 @@
 
         <tr {% if s1080_inclusao.fimvalid|validacoes_esocial_efdreinf:"s1080_inclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1080_inclusao.fimvalid or s1080_inclusao.fimvalid == 0 %}{{ s1080_inclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -307,8 +307,8 @@
 
         <tr {% if s1080_inclusao.aliqrat|validacoes_esocial_efdreinf:"s1080_inclusao.aliqrat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRat</td>
-            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. Validação: Deve ser igual a 1, 2 ou 3.</td>
-            <td width="200px"><b>{% if s1080_inclusao.aliqrat or s1080_inclusao.aliqrat == 0 %}{{ s1080_inclusao.aliqrat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. <opcoes>1; 2; 3<valores_validos>1, 2, 3<validacao> Deve ser igual a 1, 2 ou 3.</td>
+            <td width="200px"><b>{% if s1080_inclusao.aliqrat or s1080_inclusao.aliqrat == 0 %}{{ s1080_inclusao.aliqrat }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -326,8 +326,8 @@
 
         <tr {% if s1080_inclusao.fap|validacoes_esocial_efdreinf:"s1080_inclusao.fap" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fap</td>
-            <td width="500px">Fator Acidentário de Prevenção - FAP. Validação: Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido pelo Órgão Governamental competente.</td>
-            <td width="200px"><b>{% if s1080_inclusao.fap or s1080_inclusao.fap == 0 %}{{ s1080_inclusao.fap|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Fator Acidentário de Prevenção - FAP. <validacao> Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido pelo Órgão Governamental competente.</td>
+            <td width="200px"><b>{% if s1080_inclusao.fap or s1080_inclusao.fap == 0 %}{{ s1080_inclusao.fap }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -345,8 +345,8 @@
 
         <tr {% if s1080_inclusao.aliqratajust|validacoes_esocial_efdreinf:"s1080_inclusao.aliqratajust" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRatAjust</td>
-            <td width="500px">Alíquota do RAT após ajuste pelo FAP. Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}.</td>
-            <td width="200px"><b>{% if s1080_inclusao.aliqratajust or s1080_inclusao.aliqratajust == 0 %}{{ s1080_inclusao.aliqratajust|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Alíquota do RAT após ajuste pelo FAP. <validacao> Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}.</td>
+            <td width="200px"><b>{% if s1080_inclusao.aliqratajust or s1080_inclusao.aliqratajust == 0 %}{{ s1080_inclusao.aliqratajust }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -375,7 +375,7 @@
 
         <tr {% if s1080_alteracao.cnpjopportuario|validacoes_esocial_efdreinf:"s1080_alteracao.cnpjopportuario" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjOpPortuario</td>
-            <td width="500px">Preencher com o CNPJ do operador portuário. Validação: Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
+            <td width="500px">Preencher com o CNPJ do operador portuário. <validacao> Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
             <td width="200px"><b>{% if s1080_alteracao.cnpjopportuario or s1080_alteracao.cnpjopportuario == 0 %}{{ s1080_alteracao.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -394,7 +394,7 @@
 
         <tr {% if s1080_alteracao.inivalid|validacoes_esocial_efdreinf:"s1080_alteracao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1080_alteracao.inivalid or s1080_alteracao.inivalid == 0 %}{{ s1080_alteracao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -413,7 +413,7 @@
 
         <tr {% if s1080_alteracao.fimvalid|validacoes_esocial_efdreinf:"s1080_alteracao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1080_alteracao.fimvalid or s1080_alteracao.fimvalid == 0 %}{{ s1080_alteracao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -437,8 +437,8 @@
 
         <tr {% if s1080_alteracao.aliqrat|validacoes_esocial_efdreinf:"s1080_alteracao.aliqrat" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRat</td>
-            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. Validação: Deve ser igual a 1, 2 ou 3.</td>
-            <td width="200px"><b>{% if s1080_alteracao.aliqrat or s1080_alteracao.aliqrat == 0 %}{{ s1080_alteracao.aliqrat|inteiro_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante. <opcoes>1; 2; 3<valores_validos>1, 2, 3<validacao> Deve ser igual a 1, 2 ou 3.</td>
+            <td width="200px"><b>{% if s1080_alteracao.aliqrat or s1080_alteracao.aliqrat == 0 %}{{ s1080_alteracao.aliqrat }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -456,8 +456,8 @@
 
         <tr {% if s1080_alteracao.fap|validacoes_esocial_efdreinf:"s1080_alteracao.fap" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fap</td>
-            <td width="500px">Fator Acidentário de Prevenção - FAP. Validação: Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido pelo Órgão Governamental competente.</td>
-            <td width="200px"><b>{% if s1080_alteracao.fap or s1080_alteracao.fap == 0 %}{{ s1080_alteracao.fap|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Fator Acidentário de Prevenção - FAP. <validacao> Deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000, de acordo com o estabelecido pelo Órgão Governamental competente.</td>
+            <td width="200px"><b>{% if s1080_alteracao.fap or s1080_alteracao.fap == 0 %}{{ s1080_alteracao.fap }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -475,8 +475,8 @@
 
         <tr {% if s1080_alteracao.aliqratajust|validacoes_esocial_efdreinf:"s1080_alteracao.aliqratajust" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">aliqRatAjust</td>
-            <td width="500px">Alíquota do RAT após ajuste pelo FAP. Validação: Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}.</td>
-            <td width="200px"><b>{% if s1080_alteracao.aliqratajust or s1080_alteracao.aliqratajust == 0 %}{{ s1080_alteracao.aliqratajust|format_number_4dec_xml }}{% else %}(vazio){% endif %}</b></td>
+            <td width="500px">Alíquota do RAT após ajuste pelo FAP. <validacao> Deve corresponder ao resultado da multiplicação dos campos {aliqRat} e {fap}.</td>
+            <td width="200px"><b>{% if s1080_alteracao.aliqratajust or s1080_alteracao.aliqratajust == 0 %}{{ s1080_alteracao.aliqratajust }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
               <div>
@@ -500,7 +500,7 @@
     {% ifequal s1080_alteracao_novavalidade.s1080_alteracao.id s1080_alteracao.id %}
         <tr {% if s1080_alteracao_novavalidade.inivalid|validacoes_esocial_efdreinf:"s1080_alteracao_novavalidade.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1080_alteracao_novavalidade.inivalid or s1080_alteracao_novavalidade.inivalid == 0 %}{{ s1080_alteracao_novavalidade.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -519,7 +519,7 @@
 
         <tr {% if s1080_alteracao_novavalidade.fimvalid|validacoes_esocial_efdreinf:"s1080_alteracao_novavalidade.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1080_alteracao_novavalidade.fimvalid or s1080_alteracao_novavalidade.fimvalid == 0 %}{{ s1080_alteracao_novavalidade.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -549,7 +549,7 @@
 
         <tr {% if s1080_exclusao.cnpjopportuario|validacoes_esocial_efdreinf:"s1080_exclusao.cnpjopportuario" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">cnpjOpPortuario</td>
-            <td width="500px">Preencher com o CNPJ do operador portuário. Validação: Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
+            <td width="500px">Preencher com o CNPJ do operador portuário. <validacao> Deve ser um CNPJ válido, diferente do CNPJ base indicado em S- 1000 e dos estabelecimentos informados através do evento S-1005.</td>
             <td width="200px"><b>{% if s1080_exclusao.cnpjopportuario or s1080_exclusao.cnpjopportuario == 0 %}{{ s1080_exclusao.cnpjopportuario }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -568,7 +568,7 @@
 
         <tr {% if s1080_exclusao.inivalid|validacoes_esocial_efdreinf:"s1080_exclusao.inivalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">iniValid</td>
-            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
+            <td width="500px">Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. <validacao> Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM.</td>
             <td width="200px"><b>{% if s1080_exclusao.inivalid or s1080_exclusao.inivalid == 0 %}{{ s1080_exclusao.inivalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">
@@ -587,7 +587,7 @@
 
         <tr {% if s1080_exclusao.fimvalid|validacoes_esocial_efdreinf:"s1080_exclusao.fimvalid" %}bgcolor="lightcoral"{% endif %}>
             <td width="130px">fimValid</td>
-            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
+            <td width="500px">Preencher com o mês e ano de término da validade das informações, se houver. <validacao> Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}.</td>
             <td width="200px"><b>{% if s1080_exclusao.fimvalid or s1080_exclusao.fimvalid == 0 %}{{ s1080_exclusao.fimvalid }}{% else %}(vazio){% endif %}</b></td>
             {% if not for_print %}
             <td width="40px">

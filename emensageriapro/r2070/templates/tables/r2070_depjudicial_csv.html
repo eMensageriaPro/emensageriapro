@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Depósito Judicial"
-{% if show_fields.show_r2070_pgtopf or not r2070_pgtopf_id and 1 %}"Beneficiário Pessoa Física - Residente no Brasil";{% endif %}{% if show_fields.show_vlrdepjudicial or 0 %}"Preencher com o Valor do Depósito Judicial";{% endif %}
-{% for a in r2070_depjudicial_lista %}{% if show_fields.show_r2070_pgtopf or  not r2070_pgtopf_id and 1 %}"{{ a.r2070_pgtopf }}";{% endif %}{% if show_fields.show_vlrdepjudicial or 0 %}"{{ a.vlrdepjudicial }}";{% endif %}
-{% endfor %}

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5003_infodpsperante or 1 %}"Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].";{% endif %}{% if show_fields.show_tpdpse or 1 %}"Tipo de depósito";{% endif %}{% if show_fields.show_dpsfgtse or 1 %}"Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDpsE}";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5003_infodpsperante or 1 %}"{{ c.s5003_infodpsperante }}";{% endif %}{% if show_fields.show_tpdpse or 1 %}"{{ c.tpdpse }}";{% endif %}{% if show_fields.show_dpsfgtse or 1 %}"{{ c.dpsfgtse }}";{% endif %}
+{% endfor %}

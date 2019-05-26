@@ -465,19 +465,19 @@ def read_consultaLoteEventos(arquivo, transmissor_lote_esocial_id):
 
             if 'evtBasesTrab' in dir(evento):
                 from emensageriapro.esocial.views.s5001_evtbasestrab_importar import read_s5001_evtbasestrab_obj
-                read_s5001_evtbasestrab_obj(evento.eSocial, 12)
+                read_s5001_evtbasestrab_obj(evento.eSocial, STATUS_EVENTO_ENVIADO_ERRO)
 
             if 'evtIrrfBenef' in dir(evento):
                 from emensageriapro.esocial.views.s5002_evtirrfbenef_importar import read_s5002_evtirrfbenef_obj
-                read_s5002_evtirrfbenef_obj(evento.eSocial, 12)
+                read_s5002_evtirrfbenef_obj(evento.eSocial, STATUS_EVENTO_ENVIADO_ERRO)
 
             if 'evtCS' in dir(evento):
                 from emensageriapro.esocial.views.s5011_evtcs_importar import read_s5011_evtcs_obj
-                read_s5011_evtcs_obj(evento.eSocial, 12)
+                read_s5011_evtcs_obj(evento.eSocial, STATUS_EVENTO_ENVIADO_ERRO)
 
             if 'evtIrrf' in dir(evento):
                 from emensageriapro.esocial.views.s5012_evtirrf_importar import read_s5012_evtirrf_obj
-                read_s5012_evtirrf_obj(evento.eSocial, 12)
+                read_s5012_evtirrf_obj(evento.eSocial, STATUS_EVENTO_ENVIADO_ERRO)
 
 
 

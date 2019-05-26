@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s2230.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,131 +45,38 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
 
 
 
-CHOICES_S2230_CODMOTAFAST = (
-    ('01', u'01 - Acidente/Doença do trabalho'),
-    ('03', u'03 - Acidente/Doença não relacionada ao trabalho'),
-    ('05', u'05 - Afastamento/licença prevista em regime próprio (estatuto), sem remuneração'),
-    ('06', u'06 - Aposentadoria por invalidez'),
-    ('07', u'07 - Acompanhamento - Licença para acompanhamento de membro da família enfermo'),
-    ('08', u'08 - Afastamento do empregado para participar de atividade do Conselho Curador do FGTS - art. 65, §6º, Dec. 99.684/90 (Regulamento do FGTS)'),
-    ('10', u'10 - Afastamento/licença prevista em regime próprio (estatuto), com remuneração'),
-    ('11', u'11 - Cárcere'),
-    ('12', u'12 - Cargo Eletivo - Candidato a cargo eletivo - Lei 7.664/1988. art. 25°, parágrafo único - Celetistas em geral'),
-    ('13', u'13 - Cargo Eletivo - Candidato a cargo eletivo - Lei Complementar 64/1990. art. 1°, inciso II, alínea 1 - Servidor público, estatutário ou não, dos órgãos ou entidades da Administração Direta ou Indireta da União, dos Estados, do Distrito Federal, dos Muni (...)'),
-    ('14', u'14 - Cessão / Requisição'),
-    ('15', u'15 - Gozo de férias ou recesso - Afastamento temporário para o gozo de férias ou recesso'),
-    ('16', u'16 - Licença remunerada - Lei, liberalidade da empresa ou Acordo/Convenção Coletiva de Trabalho'),
-    ('17', u'17 - Licença Maternidade - 120 dias e suas prorrogações/antecipações, inclusive para o cônjuge sobrevivente'),
-    ('18', u'18 - Licença Maternidade - 121 dias a 180 dias, Lei 11.770/2008 (Empresa Cidadã), inclusive para o cônjuge sobrevivente'),
-    ('19', u'19 - Licença Maternidade - Afastamento temporário por motivo de aborto não criminoso'),
-    ('20', u'20 - Licença Maternidade - Afastamento temporário por motivo de licença-maternidade decorrente de adoção ou guarda judicial de criança, inclusive para o cônjuge sobrevivente'),
-    ('21', u'21 - Licença não remunerada ou Sem Vencimento'),
-    ('22', u'22 - Mandato Eleitoral - Afastamento temporário para o exercício de mandato eleitoral, sem remuneração'),
-    ('23', u'23 - Mandato Eleitoral - Afastamento temporário para o exercício de mandato eleitoral, com remuneração'),
-    ('24', u'24 - Mandato Sindical - Afastamento temporário para exercício de mandato sindical'),
-    ('25', u'25 - Mulher vítima de violência - Lei 11.340/2006 - art. 9º §2o, II - Lei Maria da Penha'),
-    ('26', u'26 - Participação de empregado no Conselho Nacional de Previdência Social-CNPS (art. 3º, Lei 8.213/1991)'),
-    ('27', u'27 - Qualificação - Afastamento por suspensão do contrato de acordo com o art 476-A da CLT'),
-    ('28', u'28 - Representante Sindical - Afastamento pelo tempo que se fizer necessário, quando, na qualidade de representante de entidade sindical, estiver participando de reunião oficial de organismo internacional do qual o Brasil seja membro'),
-    ('29', u'29 - Serviço Militar - Afastamento temporário para prestar serviço militar obrigatório;'),
-    ('30', u'30 - Suspensão disciplinar - CLT, art. 474'),
-    ('31', u'31 - Servidor Público em Disponibilidade'),
-    ('33', u'33 - Licença Maternidade - de 180 dias, Lei 13.301/2016.'),
-    ('34', u'34 - Inatividade do trabalhador avulso (portuário ou não portuário) por período superior a 90 dias'),
-)
 
-CHOICES_S2230_IDEOC = (
-    (1, u'1 - Conselho Regional de Medicina (CRM)'),
-    (2, u'2 - Conselho Regional de Odontologia (CRO)'),
-    (3, u'3 - Registro do Ministério da Saúde (RMS)'),
-)
-
-CHOICES_S2230_INFOMESMOMTV = (
-    ('N', u'N - Não'),
-    ('S', u'S - Sim'),
-)
-
-CHOICES_S2230_INFONUS = (
-    (1, u'1 - Ônus do Cedente'),
-    (2, u'2 - Ônus do Cessionário'),
-    (3, u'3 - Ônus do Cedente e Cessionário'),
-)
-
-CHOICES_S2230_INFONUSREMUN = (
-    (1, u'1 - Apenas do Empregador'),
-    (2, u'2 - Apenas do Sindicato'),
-    (3, u'3 - Parte do Empregador, sendo a diferença e/ou complementação salarial paga pelo Sindicato'),
-)
-
-CHOICES_S2230_ORIGRETIF = (
-    (1, u'1 - Por iniciativa do empregador'),
-    (2, u'2 - Revisão Administrativa'),
-    (3, u'3 - Determinação Judicial'),
-)
-
-CHOICES_S2230_TPACIDTRANSITO = (
-    (1, u'1 - Atropelamento'),
-    (2, u'2 - Colisão'),
-    (3, u'3 - Outros'),
-)
-
-CHOICES_S2230_TPPROC = (
-    (1, u'1 - Administrativo'),
-    (2, u'2 - Judicial'),
-    (3, u'3 - Número de Benefício (NB) do INSS'),
-)
-
-ESTADOS = (
-    ('AC', u'Acre'),
-    ('AL', u'Alagoas'),
-    ('AM', u'Amazonas'),
-    ('AP', u'Amapá'),
-    ('BA', u'Bahia'),
-    ('CE', u'Ceará'),
-    ('DF', u'Distrito Federal'),
-    ('ES', u'Espírito Santo'),
-    ('GO', u'Goiás'),
-    ('MA', u'Maranhão'),
-    ('MG', u'Minas Gerais'),
-    ('MS', u'Mato Grosso do Sul'),
-    ('MT', u'Mato Grosso'),
-    ('PA', u'Pará'),
-    ('PB', u'Paraíba'),
-    ('PE', u'Pernambuco'),
-    ('PI', u'Piauí'),
-    ('PR', u'Paraná'),
-    ('RJ', u'Rio de Janeiro'),
-    ('RN', u'Rio Grande do Norte'),
-    ('RO', u'Rondônia'),
-    ('RR', u'Roraima'),
-    ('RS', u'Rio Grande do Sul'),
-    ('SC', u'Santa Catarina'),
-    ('SE', u'Sergipe'),
-    ('SP', u'São Paulo'),
-    ('TO', u'Tocantins'),
-)
 
 class s2230emitente(SoftDeletionModel):
-    s2230_infoatestado = models.OneToOneField('s2230infoAtestado',
-        related_name='%(class)s_s2230_infoatestado')
-    def evento(self): return self.s2230_infoatestado.evento()
-    nmemit = models.CharField(max_length=70)
-    ideoc = models.IntegerField(choices=CHOICES_S2230_IDEOC)
-    nroc = models.CharField(max_length=14)
-    ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True)
+
+    s2230_infoatestado = models.ForeignKey('s2230.s2230infoAtestado', 
+        related_name='%(class)s_s2230_infoatestado', )
+    
+    def evento(self): 
+        return self.s2230_infoatestado.evento()
+    nmemit = models.CharField(max_length=70, null=True, )
+    ideoc = models.IntegerField(choices=CHOICES_S2230_IDEOC, null=True, )
+    nroc = models.CharField(max_length=14, null=True, )
+    ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -165,48 +84,67 @@ class s2230emitente(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2230_infoatestado) + ' - ' + unicode(self.nmemit) + ' - ' + unicode(self.ideoc) + ' - ' + unicode(self.nroc)
-    #s2230_emitente_custom#
-
+        
+        lista = [
+            unicode(self.s2230_infoatestado),
+            unicode(self.nmemit),
+            unicode(self.ideoc),
+            unicode(self.nroc),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Médico/Dentista que emitiu o atestado'
         db_table = r's2230_emitente'       
         managed = True # s2230_emitente #
-        unique_together = (
-            #custom_unique_together_s2230_emitente#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2230_emitente
-            #index_together_s2230_emitente
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2230_emitente", "Can view s2230_emitente"),
-            #custom_permissions_s2230_emitente
-        )
-        ordering = ['s2230_infoatestado', 'nmemit', 'ideoc', 'nroc']
+            ("can_view_s2230_emitente", "Can view s2230_emitente"), )
+            
+        ordering = [
+            's2230_infoatestado',
+            'nmemit',
+            'ideoc',
+            'nroc',]
 
 
 
 class s2230emitenteSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2230emitente
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2230fimAfastamento(SoftDeletionModel):
-    s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
-        related_name='%(class)s_s2230_evtafasttemp')
-    def evento(self): return self.s2230_evtafasttemp.evento()
-    dttermafast = models.DateField()
+
+    s2230_evtafasttemp = models.ForeignKey('esocial.s2230evtAfastTemp', 
+        related_name='%(class)s_s2230_evtafasttemp', )
+    
+    def evento(self): 
+        return self.s2230_evtafasttemp.evento()
+    dttermafast = models.DateField(null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -214,49 +152,64 @@ class s2230fimAfastamento(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.dttermafast)
-    #s2230_fimafastamento_custom#
-
+        
+        lista = [
+            unicode(self.s2230_evtafasttemp),
+            unicode(self.dttermafast),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações do Término do Afastamento'
         db_table = r's2230_fimafastamento'       
         managed = True # s2230_fimafastamento #
-        unique_together = (
-            #custom_unique_together_s2230_fimafastamento#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2230_fimafastamento
-            #index_together_s2230_fimafastamento
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2230_fimafastamento", "Can view s2230_fimafastamento"),
-            #custom_permissions_s2230_fimafastamento
-        )
-        ordering = ['s2230_evtafasttemp', 'dttermafast']
+            ("can_view_s2230_fimafastamento", "Can view s2230_fimafastamento"), )
+            
+        ordering = [
+            's2230_evtafasttemp',
+            'dttermafast',]
 
 
 
 class s2230fimAfastamentoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2230fimAfastamento
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2230infoAtestado(SoftDeletionModel):
-    s2230_iniafastamento = models.ForeignKey('s2230iniAfastamento',
-        related_name='%(class)s_s2230_iniafastamento')
-    def evento(self): return self.s2230_iniafastamento.evento()
-    codcid = models.CharField(max_length=4, blank=True, null=True)
-    qtddiasafast = models.IntegerField()
+
+    s2230_iniafastamento = models.ForeignKey('s2230.s2230iniAfastamento', 
+        related_name='%(class)s_s2230_iniafastamento', )
+    
+    def evento(self): 
+        return self.s2230_iniafastamento.evento()
+    codcid = models.CharField(max_length=4, blank=True, null=True, )
+    qtddiasafast = models.IntegerField(null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -264,49 +217,64 @@ class s2230infoAtestado(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.qtddiasafast)
-    #s2230_infoatestado_custom#
-
+        
+        lista = [
+            unicode(self.s2230_iniafastamento),
+            unicode(self.qtddiasafast),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações complementares relativas ao atestado médico'
         db_table = r's2230_infoatestado'       
         managed = True # s2230_infoatestado #
-        unique_together = (
-            #custom_unique_together_s2230_infoatestado#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2230_infoatestado
-            #index_together_s2230_infoatestado
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2230_infoatestado", "Can view s2230_infoatestado"),
-            #custom_permissions_s2230_infoatestado
-        )
-        ordering = ['s2230_iniafastamento', 'qtddiasafast']
+            ("can_view_s2230_infoatestado", "Can view s2230_infoatestado"), )
+            
+        ordering = [
+            's2230_iniafastamento',
+            'qtddiasafast',]
 
 
 
 class s2230infoAtestadoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2230infoAtestado
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2230infoCessao(SoftDeletionModel):
-    s2230_iniafastamento = models.OneToOneField('s2230iniAfastamento',
-        related_name='%(class)s_s2230_iniafastamento')
-    def evento(self): return self.s2230_iniafastamento.evento()
-    cnpjcess = models.CharField(max_length=14)
-    infonus = models.IntegerField(choices=CHOICES_S2230_INFONUS)
+
+    s2230_iniafastamento = models.ForeignKey('s2230.s2230iniAfastamento', 
+        related_name='%(class)s_s2230_iniafastamento', )
+    
+    def evento(self): 
+        return self.s2230_iniafastamento.evento()
+    cnpjcess = models.CharField(max_length=14, null=True, )
+    infonus = models.IntegerField(choices=CHOICES_S2230_INFONUS, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -314,49 +282,66 @@ class s2230infoCessao(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.cnpjcess) + ' - ' + unicode(self.infonus)
-    #s2230_infocessao_custom#
-
+        
+        lista = [
+            unicode(self.s2230_iniafastamento),
+            unicode(self.cnpjcess),
+            unicode(self.infonus),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro preenchido nos casos de afastamento por cessão ou requisição do trabalhador.'
         db_table = r's2230_infocessao'       
         managed = True # s2230_infocessao #
-        unique_together = (
-            #custom_unique_together_s2230_infocessao#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2230_infocessao
-            #index_together_s2230_infocessao
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2230_infocessao", "Can view s2230_infocessao"),
-            #custom_permissions_s2230_infocessao
-        )
-        ordering = ['s2230_iniafastamento', 'cnpjcess', 'infonus']
+            ("can_view_s2230_infocessao", "Can view s2230_infocessao"), )
+            
+        ordering = [
+            's2230_iniafastamento',
+            'cnpjcess',
+            'infonus',]
 
 
 
 class s2230infoCessaoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2230infoCessao
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2230infoMandSind(SoftDeletionModel):
-    s2230_iniafastamento = models.OneToOneField('s2230iniAfastamento',
-        related_name='%(class)s_s2230_iniafastamento')
-    def evento(self): return self.s2230_iniafastamento.evento()
-    cnpjsind = models.CharField(max_length=14)
-    infonusremun = models.IntegerField(choices=CHOICES_S2230_INFONUSREMUN)
+
+    s2230_iniafastamento = models.ForeignKey('s2230.s2230iniAfastamento', 
+        related_name='%(class)s_s2230_iniafastamento', )
+    
+    def evento(self): 
+        return self.s2230_iniafastamento.evento()
+    cnpjsind = models.CharField(max_length=14, null=True, )
+    infonusremun = models.IntegerField(choices=CHOICES_S2230_INFONUSREMUN, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -364,50 +349,67 @@ class s2230infoMandSind(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2230_iniafastamento) + ' - ' + unicode(self.cnpjsind) + ' - ' + unicode(self.infonusremun)
-    #s2230_infomandsind_custom#
-
+        
+        lista = [
+            unicode(self.s2230_iniafastamento),
+            unicode(self.cnpjsind),
+            unicode(self.infonusremun),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações Complementares - afastamento para exercício de mandato sindical'
         db_table = r's2230_infomandsind'       
         managed = True # s2230_infomandsind #
-        unique_together = (
-            #custom_unique_together_s2230_infomandsind#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2230_infomandsind
-            #index_together_s2230_infomandsind
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2230_infomandsind", "Can view s2230_infomandsind"),
-            #custom_permissions_s2230_infomandsind
-        )
-        ordering = ['s2230_iniafastamento', 'cnpjsind', 'infonusremun']
+            ("can_view_s2230_infomandsind", "Can view s2230_infomandsind"), )
+            
+        ordering = [
+            's2230_iniafastamento',
+            'cnpjsind',
+            'infonusremun',]
 
 
 
 class s2230infoMandSindSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2230infoMandSind
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2230infoRetif(SoftDeletionModel):
-    s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
-        related_name='%(class)s_s2230_evtafasttemp')
-    def evento(self): return self.s2230_evtafasttemp.evento()
-    origretif = models.IntegerField(choices=CHOICES_S2230_ORIGRETIF)
-    tpproc = models.IntegerField(choices=CHOICES_S2230_TPPROC, blank=True, null=True)
-    nrproc = models.CharField(max_length=21, blank=True, null=True)
+
+    s2230_evtafasttemp = models.ForeignKey('esocial.s2230evtAfastTemp', 
+        related_name='%(class)s_s2230_evtafasttemp', )
+    
+    def evento(self): 
+        return self.s2230_evtafasttemp.evento()
+    origretif = models.IntegerField(choices=CHOICES_S2230_ORIGRETIF, null=True, )
+    tpproc = models.IntegerField(choices=CHOICES_S2230_TPPROC, blank=True, null=True, )
+    nrproc = models.CharField(max_length=21, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -415,52 +417,67 @@ class s2230infoRetif(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.origretif)
-    #s2230_inforetif_custom#
-
+        
+        lista = [
+            unicode(self.s2230_evtafasttemp),
+            unicode(self.origretif),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
-        # verbose_name = u'Informações de retificação do Afastamento Temporário. Preenchimento obrigatório caso {codMotAfast} seja retificado de [01] para [03] ou de [03] para [01].'
+    
+        # verbose_name = u'Informações de retificação do Afastamento Temporário'
         db_table = r's2230_inforetif'       
         managed = True # s2230_inforetif #
-        unique_together = (
-            #custom_unique_together_s2230_inforetif#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2230_inforetif
-            #index_together_s2230_inforetif
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2230_inforetif", "Can view s2230_inforetif"),
-            #custom_permissions_s2230_inforetif
-        )
-        ordering = ['s2230_evtafasttemp', 'origretif']
+            ("can_view_s2230_inforetif", "Can view s2230_inforetif"), )
+            
+        ordering = [
+            's2230_evtafasttemp',
+            'origretif',]
 
 
 
 class s2230infoRetifSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2230infoRetif
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s2230iniAfastamento(SoftDeletionModel):
-    s2230_evtafasttemp = models.OneToOneField('esocial.s2230evtAfastTemp',
-        related_name='%(class)s_s2230_evtafasttemp')
-    def evento(self): return self.s2230_evtafasttemp.evento()
-    dtiniafast = models.DateField()
-    codmotafast = models.CharField(choices=CHOICES_S2230_CODMOTAFAST, max_length=2)
-    infomesmomtv = models.CharField(choices=CHOICES_S2230_INFOMESMOMTV, max_length=1, blank=True, null=True)
-    tpacidtransito = models.IntegerField(choices=CHOICES_S2230_TPACIDTRANSITO, blank=True, null=True)
-    observacao = models.CharField(max_length=255, blank=True, null=True)
+
+    s2230_evtafasttemp = models.ForeignKey('esocial.s2230evtAfastTemp', 
+        related_name='%(class)s_s2230_evtafasttemp', )
+    
+    def evento(self): 
+        return self.s2230_evtafasttemp.evento()
+    dtiniafast = models.DateField(null=True, )
+    codmotafast = models.CharField(choices=CHOICES_S2230_CODMOTAFAST, max_length=2, null=True, )
+    infomesmomtv = models.CharField(choices=CHOICES_S2230_INFOMESMOMTV, max_length=1, blank=True, null=True, )
+    tpacidtransito = models.IntegerField(choices=CHOICES_S2230_TPACIDTRANSITO, blank=True, null=True, )
+    observacao = models.CharField(max_length=255, blank=True, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -468,41 +485,51 @@ class s2230iniAfastamento(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s2230_evtafasttemp) + ' - ' + unicode(self.dtiniafast) + ' - ' + unicode(self.codmotafast)
-    #s2230_iniafastamento_custom#
-
+        
+        lista = [
+            unicode(self.s2230_evtafasttemp),
+            unicode(self.dtiniafast),
+            unicode(self.codmotafast),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Informações do Afastamento Temporário - Início'
         db_table = r's2230_iniafastamento'       
         managed = True # s2230_iniafastamento #
-        unique_together = (
-            #custom_unique_together_s2230_iniafastamento#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s2230_iniafastamento
-            #index_together_s2230_iniafastamento
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s2230_iniafastamento", "Can view s2230_iniafastamento"),
-            #custom_permissions_s2230_iniafastamento
-        )
-        ordering = ['s2230_evtafasttemp', 'dtiniafast', 'codmotafast']
+            ("can_view_s2230_iniafastamento", "Can view s2230_iniafastamento"), )
+            
+        ordering = [
+            's2230_evtafasttemp',
+            'dtiniafast',
+            'codmotafast',]
 
 
 
 class s2230iniAfastamentoSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s2230iniAfastamento
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

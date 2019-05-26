@@ -1,0 +1,318 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1260_evtcomprod__evtcomprod -->
+<div class="col-md-12" id="s1260_evtcomprod__evtcomprod__div">
+  <h4>Possui informações de comercialização de produção?</h4>
+</div>
+<!-- fim__s1260_evtcomprod__evtcomprod -->
+<!-- inicio__s1260_evtcomprod__identidade -->
+<div class="col-md-6" id="s1260_evtcomprod__identidade__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__identidade__label">Identidade do Registro</label>
+      {% if s1260_evtcomprod_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1260_evtcomprod_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1260_evtcomprod_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__identidade -->
+<!-- inicio__s1260_evtcomprod__ideevento -->
+<div class="col-md-12" id="s1260_evtcomprod__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s1260_evtcomprod__ideevento -->
+<!-- inicio__s1260_evtcomprod__indretif -->
+<div class="col-md-6" id="s1260_evtcomprod__indretif__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__indretif__label">Identificador de retificação*</label>
+    {% if s1260_evtcomprod_form.indretif.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1260_evtcomprod_form.indretif.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1260_evtcomprod_form.indretif.field.widget.attrs.readonly %}
+        {% if s1260_evtcomprod_form.indretif.field.widget.attrs.disabled %}
+          {{ s1260_evtcomprod_form.indretif|addcss:'form-control' }}
+          <input id="id_indretif" name="indretif" type="hidden" value="{% if s1260_evtcomprod_form.indretif.value or s1260_evtcomprod_form.indretif.value == 0 %}{{ s1260_evtcomprod_form.indretif.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1260_evtcomprod_form.indretif|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1260_evtcomprod_form.indretif|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__indretif -->
+<!-- inicio__s1260_evtcomprod__nrrecibo -->
+<div class="col-md-6" id="s1260_evtcomprod__nrrecibo__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__nrrecibo__label">Número do recibo</label>
+      {% if s1260_evtcomprod_form.nrrecibo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1260_evtcomprod_form.nrrecibo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1260_evtcomprod_form.nrrecibo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__nrrecibo -->
+<!-- inicio__s1260_evtcomprod__indapuracao -->
+<div class="col-md-6" id="s1260_evtcomprod__indapuracao__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__indapuracao__label">Indicativo do periodo de apuração*</label>
+    {% if s1260_evtcomprod_form.indapuracao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1260_evtcomprod_form.indapuracao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1260_evtcomprod_form.indapuracao.field.widget.attrs.readonly %}
+        {% if s1260_evtcomprod_form.indapuracao.field.widget.attrs.disabled %}
+          {{ s1260_evtcomprod_form.indapuracao|addcss:'form-control' }}
+          <input id="id_indapuracao" name="indapuracao" type="hidden" value="{% if s1260_evtcomprod_form.indapuracao.value or s1260_evtcomprod_form.indapuracao.value == 0 %}{{ s1260_evtcomprod_form.indapuracao.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1260_evtcomprod_form.indapuracao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1260_evtcomprod_form.indapuracao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__indapuracao -->
+<!-- inicio__s1260_evtcomprod__perapur -->
+<div class="col-md-6" id="s1260_evtcomprod__perapur__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__perapur__label">Período de Apuração*</label>
+      {% if s1260_evtcomprod_form.perapur.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1260_evtcomprod_form.perapur.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1260_evtcomprod_form.perapur|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__perapur -->
+<!-- inicio__s1260_evtcomprod__tpamb -->
+<div class="col-md-6" id="s1260_evtcomprod__tpamb__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__tpamb__label">Identificação do ambiente*</label>
+    {% if s1260_evtcomprod_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1260_evtcomprod_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1260_evtcomprod_form.tpamb.field.widget.attrs.readonly %}
+        {% if s1260_evtcomprod_form.tpamb.field.widget.attrs.disabled %}
+          {{ s1260_evtcomprod_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if s1260_evtcomprod_form.tpamb.value or s1260_evtcomprod_form.tpamb.value == 0 %}{{ s1260_evtcomprod_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1260_evtcomprod_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1260_evtcomprod_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__tpamb -->
+<!-- inicio__s1260_evtcomprod__procemi -->
+<div class="col-md-6" id="s1260_evtcomprod__procemi__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__procemi__label">Processo de emissão do evento*</label>
+    {% if s1260_evtcomprod_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1260_evtcomprod_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1260_evtcomprod_form.procemi.field.widget.attrs.readonly %}
+        {% if s1260_evtcomprod_form.procemi.field.widget.attrs.disabled %}
+          {{ s1260_evtcomprod_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if s1260_evtcomprod_form.procemi.value or s1260_evtcomprod_form.procemi.value == 0 %}{{ s1260_evtcomprod_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1260_evtcomprod_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1260_evtcomprod_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__procemi -->
+<!-- inicio__s1260_evtcomprod__verproc -->
+<div class="col-md-6" id="s1260_evtcomprod__verproc__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__verproc__label">Versão do processo*</label>
+      {% if s1260_evtcomprod_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1260_evtcomprod_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1260_evtcomprod_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__verproc -->
+<!-- inicio__s1260_evtcomprod__ideempregador -->
+<div class="col-md-12" id="s1260_evtcomprod__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s1260_evtcomprod__ideempregador -->
+<!-- inicio__s1260_evtcomprod__tpinsc -->
+<div class="col-md-6" id="s1260_evtcomprod__tpinsc__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__tpinsc__label">Tipo de inscrição*</label>
+    {% if s1260_evtcomprod_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1260_evtcomprod_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1260_evtcomprod_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s1260_evtcomprod_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s1260_evtcomprod_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s1260_evtcomprod_form.tpinsc.value or s1260_evtcomprod_form.tpinsc.value == 0 %}{{ s1260_evtcomprod_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1260_evtcomprod_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1260_evtcomprod_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__tpinsc -->
+<!-- inicio__s1260_evtcomprod__nrinsc -->
+<div class="col-md-6" id="s1260_evtcomprod__nrinsc__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s1260_evtcomprod_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1260_evtcomprod_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1260_evtcomprod_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__nrinsc -->
+<!-- inicio__s1260_evtcomprod__infocomprod -->
+<div class="col-md-12" id="s1260_evtcomprod__infocomprod__div">
+  <h4>Informação da Comercialização de Produção</h4>
+</div>
+<!-- fim__s1260_evtcomprod__infocomprod -->
+<!-- inicio__s1260_evtcomprod__ideestabel -->
+<div class="col-md-12" id="s1260_evtcomprod__ideestabel__div">
+  <h4>Identificação do estabelecimento que comercializou a produção</h4>
+</div>
+<!-- fim__s1260_evtcomprod__ideestabel -->
+<!-- inicio__s1260_evtcomprod__nrinscestabrural -->
+<div class="col-md-6" id="s1260_evtcomprod__nrinscestabrural__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__nrinscestabrural__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s1260_evtcomprod_form.nrinscestabrural.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1260_evtcomprod_form.nrinscestabrural.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1260_evtcomprod_form.nrinscestabrural|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__nrinscestabrural -->
+<!-- inicio__s1260_evtcomprod__versao -->
+<div class="col-md-3" id="s1260_evtcomprod__versao__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__versao__label">Versão</label>
+    {% if s1260_evtcomprod_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1260_evtcomprod_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1260_evtcomprod_form.versao.field.widget.attrs.readonly %}
+        {% if s1260_evtcomprod_form.versao.field.widget.attrs.disabled %}
+          {{ s1260_evtcomprod_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if s1260_evtcomprod_form.versao.value or s1260_evtcomprod_form.versao.value == 0 %}{{ s1260_evtcomprod_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ s1260_evtcomprod_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1260_evtcomprod_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__versao -->
+<!-- inicio__s1260_evtcomprod__transmissor_lote_esocial -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_esocial').change(function(){document.getElementById("s1260_evtcomprod__transmissor_lote_esocial__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="s1260_evtcomprod__transmissor_lote_esocial__div">
+<div class="form-group">
+  <label id="s1260_evtcomprod__transmissor_lote_esocial__label">Transmissor</label>
+  {% if not for_print %}
+    {% if s1260_evtcomprod_form.transmissor_lote_esocial.value %}
+    <a id="s1260_evtcomprod__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:s1260_evtcomprod_form.transmissor_lote_esocial.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if s1260_evtcomprod_form.transmissor_lote_esocial.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s1260_evtcomprod_form.transmissor_lote_esocial.errors }}
+    </div>
+  {% endif %}
+  {% if s1260_evtcomprod_form.transmissor_lote_esocial.field.widget.attrs.readonly %}
+    {% if s1260_evtcomprod_form.transmissor_lote_esocial.field.widget.attrs.disabled %}
+      {{ s1260_evtcomprod_form.transmissor_lote_esocial|addcss:'form-control' }}
+      <input id="id_transmissor_lote_esocial" name="transmissor_lote_esocial" type="hidden" value="{% if s1260_evtcomprod_form.transmissor_lote_esocial.value or s1260_evtcomprod_form.transmissor_lote_esocial.value == 0 %}{{ s1260_evtcomprod_form.transmissor_lote_esocial.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ s1260_evtcomprod_form.transmissor_lote_esocial|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ s1260_evtcomprod_form.transmissor_lote_esocial|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__s1260_evtcomprod__transmissor_lote_esocial -->
+<!-- inicio__s1260_evtcomprod__status -->
+<div class="col-md-3" id="s1260_evtcomprod__status__div">
+  <div class="form-group">
+    <label id="s1260_evtcomprod__status__label">Status</label>
+    {% if s1260_evtcomprod_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1260_evtcomprod_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1260_evtcomprod_form.status.field.widget.attrs.readonly %}
+        {% if s1260_evtcomprod_form.status.field.widget.attrs.disabled %}
+          {{ s1260_evtcomprod_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if s1260_evtcomprod_form.status.value or s1260_evtcomprod_form.status.value == 0 %}{{ s1260_evtcomprod_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1260_evtcomprod_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1260_evtcomprod_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1260_evtcomprod__status -->

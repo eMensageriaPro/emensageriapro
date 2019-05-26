@@ -1,0 +1,49 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4010_inforra_origemrec__r4010_inforra -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações sobre a origem dos recursos</label>
+    <select name="r4010_inforra" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in r4010_inforra_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r4010_inforra' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r4010_inforra_origemrec__r4010_inforra -->
+
+<!-- inicio__r4010_inforra_origemrec__cnpjorigrecurso -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o CNPJ da empresa que repassou recursos</label>
+    <div name="cnpjorigrecurso" class="input-group" style="width: 100%;">
+      <input type="text" name="cnpjorigrecurso" class="form-control" value="{{ dict_fields|get_value_from_dict:'cnpjorigrecurso' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforra_origemrec__cnpjorigrecurso -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r4010_inforra" value="1" {% if show_fields|get_value_from_dict:'show_r4010_inforra' %}checked{% endif %} >Informações sobre a origem dos recursos
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_cnpjorigrecurso" value="1" {% if show_fields|get_value_from_dict:'show_cnpjorigrecurso' %}checked{% endif %} >Preencher com o CNPJ da empresa que repassou recursos
+    </div>
+</div>
+
+

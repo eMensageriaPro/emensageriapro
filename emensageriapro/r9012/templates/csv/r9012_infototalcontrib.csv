@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r9012_evtretcons or 1 %}"Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos";{% endif %}{% if show_fields.show_nrrecarqbase or 1 %}"Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte";{% endif %}{% if show_fields.show_indexistinfo or 1 %}"Indicativo de existência de valores de bases ou de tributos";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r9012_evtretcons or 1 %}"{{ c.r9012_evtretcons }}";{% endif %}{% if show_fields.show_nrrecarqbase or 1 %}"{{ c.nrrecarqbase }}";{% endif %}{% if show_fields.show_indexistinfo or 1 %}"{{ c.indexistinfo }}";{% endif %}
+{% endfor %}

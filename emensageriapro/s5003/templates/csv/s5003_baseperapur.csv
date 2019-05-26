@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5003_infobasefgts or 1 %}"Informações sobre bases de cálculo do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-1200, S-2299 ou S-2399.";{% endif %}{% if show_fields.show_tpvalor or 1 %}"Tipo de Valor";{% endif %}{% if show_fields.show_remfgts or 1 %}"Remuneração (valor da base de cálculo) do FGTS, conforme definido no campo {tpValor}";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5003_infobasefgts or 1 %}"{{ c.s5003_infobasefgts }}";{% endif %}{% if show_fields.show_tpvalor or 1 %}"{{ c.tpvalor }}";{% endif %}{% if show_fields.show_remfgts or 1 %}"{{ c.remfgts }}";{% endif %}
+{% endfor %}

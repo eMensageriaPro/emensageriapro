@@ -1,1 +1,46 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s2241_evtinsapo_id or s2241_evtinsapo_id != s2241_fimaposentesp_form.s2241_evtinsapo.value %}<!-- inicio__s2241_fimaposentesp__s2241_evtinsapo --><div class="col-md-12" id="s2241_fimaposentesp__s2241_evtinsapo__div"><div class="form-group"><label id="s2241_fimaposentesp__s2241_evtinsapo__label">Insalubridade, periculosidade e aposentadoria especial*<a data-toggle="tooltip" title="Condições do ambiente de trabalho que ensejam aposentadoria especial - TérminoRegra de validação: REGRA_EXISTE_EVENTO_INICIO_INS"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2241_fimaposentesp_form.s2241_evtinsapo.value %}<a href="{% url 's2241_evtinsapo_salvar' hash='{}'|json_return_page:'s2241_fimaposentesp_salvar'|json_return_hash:hash|json_id:s2241_fimaposentesp_form.s2241_evtinsapo.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s2241_fimaposentesp_form.s2241_evtinsapo.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2241_fimaposentesp_form.s2241_evtinsapo.errors }}</div>{% endif %} {% if s2241_fimaposentesp_form.s2241_evtinsapo.field.widget.attrs.readonly %} {% if s2241_fimaposentesp_form.s2241_evtinsapo.field.widget.attrs.disabled %} {{ s2241_fimaposentesp_form.s2241_evtinsapo|addcss:'form-control' }}<input id="id_s2241_evtinsapo" name="s2241_evtinsapo" type="hidden" value="{{ s2241_fimaposentesp_form.s2241_evtinsapo.value }}">{% else %} {{ s2241_fimaposentesp_form.s2241_evtinsapo|addcss:'form-control' }} {% endif %} {% else %} {{ s2241_fimaposentesp_form.s2241_evtinsapo|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2241_fimaposentesp__s2241_evtinsapo -->{% else %}<input type="hidden" value="{{ s2241_evtinsapo_id|valor }}" id="id_s2241_evtinsapo" name="s2241_evtinsapo">{% endif %}<!-- inicio__s2241_fimaposentesp__dtfimcondicao --><div class="col-md-6" id="s2241_fimaposentesp__dtfimcondicao__div"><div class="form-group"><label id="s2241_fimaposentesp__dtfimcondicao__label">Data do termino da condição*<a data-toggle="tooltip" title="Informar a data até a qual o trabalhador esteve sujeito às condições do ambiente de trabalho indicadas nos eventos de início e/ou alteração encaminhados anteriormente.Validação: Deve ser uma data igual ou posterior a data de início da condiçãode trabalho q (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2241_fimaposentesp_form.dtfimcondicao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2241_fimaposentesp_form.dtfimcondicao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2241_fimaposentesp_form.dtfimcondicao|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2241_fimaposentesp__dtfimcondicao -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2241_fimaposentesp__s2241_aposentesp -->
+<div class="col-md-12" id="s2241_fimaposentesp__s2241_aposentesp__div">
+  <div class="form-group">
+    <label id="s2241_fimaposentesp__s2241_aposentesp__label">Condições do ambiente de trabalho que ensejam aposentadoria especial - Término*</label>
+    {% if not for_print %}{% if s2241_fimaposentesp_form.s2241_aposentesp.value %}
+        <a href="{% url 's2241_aposentesp_salvar' hash='{}'|json_return_page:'s2241_fimaposentesp_salvar'|json_return_hash:hash|json_id:s2241_fimaposentesp_form.s2241_aposentesp.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s2241_fimaposentesp_form.s2241_aposentesp.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2241_fimaposentesp_form.s2241_aposentesp.errors }}
+      </div>
+    {% endif %}
+    {% if s2241_fimaposentesp_form.s2241_aposentesp.field.widget.attrs.readonly %}
+      {% if s2241_fimaposentesp_form.s2241_aposentesp.field.widget.attrs.disabled %}
+        {{ s2241_fimaposentesp_form.s2241_aposentesp|addcss:'form-control' }}
+        <input id="id_s2241_aposentesp" name="s2241_aposentesp" type="hidden" value="{{ s2241_fimaposentesp_form.s2241_aposentesp.value }}">
+      {% else %}
+        {{ s2241_fimaposentesp_form.s2241_aposentesp|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2241_fimaposentesp_form.s2241_aposentesp|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2241_fimaposentesp__s2241_aposentesp -->
+<!-- inicio__s2241_fimaposentesp__dtfimcondicao -->
+<div class="col-md-6" id="s2241_fimaposentesp__dtfimcondicao__div">
+  <div class="form-group">
+    <label id="s2241_fimaposentesp__dtfimcondicao__label">Data do termino da condição*</label>
+        {% if s2241_fimaposentesp_form.dtfimcondicao.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2241_fimaposentesp_form.dtfimcondicao.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2241_fimaposentesp_form.dtfimcondicao|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2241_fimaposentesp__dtfimcondicao -->

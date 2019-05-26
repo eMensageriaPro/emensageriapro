@@ -1,1 +1,88 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}<table class="table table-bordered table-striped automate-data-table"><thead><tr>{% if show_fields.show_s2240_evtexprisco or not s2240_evtexprisco_id and 1 %}<th>Evento Condições Ambientais do Trabalho - Fatores de Risco</th>{% endif %}{% if show_fields.show_cpfresp or 1 %}<th>CPF</th>{% endif %}{% if show_fields.show_nisresp or 1 %}<th>NIS</th>{% endif %}{% if show_fields.show_nmresp or 1 %}<th>Nome do Responsável pelas Informações</th>{% endif %}{% if show_fields.show_ideoc or 1 %}<th>Órgão de Classe (OC)</th>{% endif %}{% if show_fields.show_dscoc or 0 %}<th>Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado</th>{% endif %}{% if show_fields.show_nroc or 1 %}<th>Número do OC</th>{% endif %}{% if show_fields.show_ufoc or 1 %}<th>UF do OC</th>{% endif %}<!-- cabeçalho de colunas especiais -->{% if not for_print %}<th width="90px">Ações</th>{% endif %}</tr></thead><tbody>{% for a in s2240_iniexprisco_respreg_lista %}<tr>{% if show_fields.show_s2240_evtexprisco or not s2240_evtexprisco_id and 1 %}<td>{{ a.s2240_evtexprisco }}</td>{% endif %}{% if show_fields.show_cpfresp or 1 %}<td>{{ a.cpfresp }}</td>{% endif %}{% if show_fields.show_nisresp or 1 %}<td>{{ a.nisresp }}</td>{% endif %}{% if show_fields.show_nmresp or 1 %}<td>{{ a.nmresp }}</td>{% endif %}{% if show_fields.show_ideoc or 1 %}<td>{{ a.get_ideoc_display }}</td>{% endif %}{% if show_fields.show_dscoc or 0 %}<td>{{ a.dscoc }}</td>{% endif %}{% if show_fields.show_nroc or 1 %}<td>{{ a.nroc }}</td>{% endif %}{% if show_fields.show_ufoc or 1 %}<td>{{ a.get_ufoc_display }}</td>{% endif %}<!-- colunas especiais -->{% if not for_print %}<td><div><!-- botões especiais -->{% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_visualizar' %}<a href="{% url 's2240_iniexprisco_respreg_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">{% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_editar' or dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_cadastrar' %}<span class="btn btn-primary" title="Editar"><i class="fa fa-fw fa-edit"></i></span>{% else %}<span class="btn btn-primary" title="Visualizar"><i class="fa fa-fw fa-eye"></i></span>{% endif %}</a>{% endif %} {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_apagar' %}<a href="{% url 's2240_iniexprisco_respreg_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span class="btn btn-danger" title="Apagar"><i class="fa fa-fw fa-times"></i></span></a>{% endif %}</div></td>{% endif %}</tr>{% endfor %}</table>
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
+            <th>Informações relativas ao responsável pelos registros ambientais</th>
+            {% endif %}
+            {% if show_fields.show_cpfresp or 1 %}
+            <th>CPF</th>
+            {% endif %}
+            {% if show_fields.show_nisresp or 1 %}
+            <th>NIS</th>
+            {% endif %}
+            {% if show_fields.show_nmresp or 1 %}
+            <th>Nome do Responsável pelas Informações</th>
+            {% endif %}
+            {% if show_fields.show_ideoc or 1 %}
+            <th>Órgão de Classe (OC)</th>
+            {% endif %}
+            {% if show_fields.show_nroc or 1 %}
+            <th>Número de Inscrição no órgão de classe.</th>
+            {% endif %}
+            {% if show_fields.show_ufoc or 1 %}
+            <th>UF do OC</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in s2240_iniexprisco_respreg_lista %}
+        <tr>
+            {% if show_fields.show_s2240_evtexprisco or 1 %}
+            <td>{{ a.s2240_evtexprisco }}</td>
+            {% endif %}
+            {% if show_fields.show_cpfresp or 1 %}
+            <td>{{ a.cpfresp }}</td>
+            {% endif %}
+            {% if show_fields.show_nisresp or 1 %}
+            <td>{{ a.nisresp }}</td>
+            {% endif %}
+            {% if show_fields.show_nmresp or 1 %}
+            <td>{{ a.nmresp }}</td>
+            {% endif %}
+            {% if show_fields.show_ideoc or 1 %}
+            <td>{{ a.get_ideoc_display }}</td>
+            {% endif %}
+            {% if show_fields.show_nroc or 1 %}
+            <td>{{ a.nroc }}</td>
+            {% endif %}
+            {% if show_fields.show_ufoc or 1 %}
+            <td>{{ a.get_ufoc_display }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_visualizar' %}
+                        <a href="{% url 's2240_iniexprisco_respreg_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_editar' or dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'s2240_iniexprisco_respreg_apagar' %}
+                        <a href="{% url 's2240_iniexprisco_respreg_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

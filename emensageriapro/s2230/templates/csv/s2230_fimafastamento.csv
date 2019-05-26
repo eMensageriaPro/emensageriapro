@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2230_evtafasttemp or 1 %}"Informações do Término do Afastamento";{% endif %}{% if show_fields.show_dttermafast or 1 %}"Data de término no afastamento";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2230_evtafasttemp or 1 %}"{{ c.s2230_evtafasttemp }}";{% endif %}{% if show_fields.show_dttermafast or 1 %}"{{ c.dttermafast }}";{% endif %}
+{% endfor %}

@@ -1,1 +1,94 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s5003_infofgts_id or s5003_infofgts_id != s5003_ideestablot_form.s5003_infofgts.value %}<!-- inicio__s5003_ideestablot__s5003_infofgts --><div class="col-md-12" id="s5003_ideestablot__s5003_infofgts__div"><div class="form-group"><label id="s5003_ideestablot__s5003_infofgts__label">Informações relativas ao FGTS.*<a data-toggle="tooltip" title="Identificação do estabelecimento ou obra de construção civil e da respectiva lotação tributária. As informações desse grupo foram prestadas pelo contribuinte no evento S- 1200, S-2299 ou S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s5003_ideestablot_form.s5003_infofgts.value %}<a id="s5003_ideestablot__s5003_infofgts__div_acessar" href="{% url 's5003_infofgts_salvar' hash='{}'|json_id:s5003_ideestablot_form.s5003_infofgts.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_s5003_infofgts').change(function(){ document.getElementById("s5003_ideestablot__s5003_infofgts__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if s5003_ideestablot_form.s5003_infofgts.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5003_ideestablot_form.s5003_infofgts.errors }}</div>{% endif %} {% if s5003_ideestablot_form.s5003_infofgts.field.widget.attrs.readonly %} {% if s5003_ideestablot_form.s5003_infofgts.field.widget.attrs.disabled %} {{ s5003_ideestablot_form.s5003_infofgts|addcss:'form-control' }}<input id="id_s5003_infofgts" name="s5003_infofgts" type="hidden" value="{% if s5003_ideestablot_form.s5003_infofgts.value or s5003_ideestablot_form.s5003_infofgts.value == 0 %}{{ s5003_ideestablot_form.s5003_infofgts.value|valor }}{% endif %}">{% else %} {{ s5003_ideestablot_form.s5003_infofgts|addcss:'form-control' }} {% endif %} {% else %} {{ s5003_ideestablot_form.s5003_infofgts|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s5003_ideestablot__s5003_infofgts -->{% else %}<input type="hidden" value="{{ s5003_infofgts_id|valor }}" id="id_s5003_infofgts" name="s5003_infofgts">{% endif %}<!-- inicio__s5003_ideestablot__tpinsc --><div class="col-md-6" id="s5003_ideestablot__tpinsc__div"><div class="form-group"><label id="s5003_ideestablot__tpinsc__label">Tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05. Evento de origem: S-1200, S-2299 ou S-2399. Validação: Para empregador PJ, preencher com [1,4]. Para empregador PF, preencher com [3,4], exceto empregador doméstico que deve se (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5003_ideestablot_form.tpinsc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5003_ideestablot_form.tpinsc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s5003_ideestablot_form.tpinsc|addcss:'form-control' }}</div></div></div><!-- fim__s5003_ideestablot__tpinsc --><!-- inicio__s5003_ideestablot__nrinsc --><div class="col-md-6" id="s5003_ideestablot__nrinsc__div"><div class="form-group"><label id="s5003_ideestablot__nrinsc__label">Número de inscrição (CPF/CNPJ)*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Para o empregador doméstico, informar o CPF. Evento de origem: S-1200, S-2299 ou S-2399. Validação: Deve estar coerente com o indicado em {tpInsc} (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5003_ideestablot_form.nrinsc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5003_ideestablot_form.nrinsc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s5003_ideestablot_form.nrinsc|addcss:'form-control' }}</div></div></div><!-- fim__s5003_ideestablot__nrinsc --><!-- inicio__s5003_ideestablot__codlotacao --><div class="col-md-6" id="s5003_ideestablot__codlotacao__div"><div class="form-group"><label id="s5003_ideestablot__codlotacao__label">Código da Lotação*<a data-toggle="tooltip" title="Informar o código atribuído pela empresa para a lotação tributária. Evento de origem: S-1200, S-2299, S-2399. Validação: Deve estar coerente com o informado pelo contribuinte nos eventos S-1200/S-2299/S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s5003_ideestablot_form.codlotacao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s5003_ideestablot_form.codlotacao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s5003_ideestablot_form.codlotacao|addcss:'form-control' }}</div></div></div><!-- fim__s5003_ideestablot__codlotacao -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s5003_ideestablot__s5003_evtbasesfgts -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_s5003_evtbasesfgts').change(function(){
+       document.getElementById("s5003_ideestablot__s5003_evtbasesfgts__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="s5003_ideestablot__s5003_evtbasesfgts__div">
+  <div class="form-group">
+    <label id="s5003_ideestablot__s5003_evtbasesfgts__label">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração*</label>
+    {% if not for_print %}
+      {% if s5003_ideestablot_form.s5003_evtbasesfgts.value %}
+        <a id="s5003_ideestablot__s5003_evtbasesfgts__div_acessar" href="{% url 's5003_evtbasesfgts_salvar' hash='{}'|json_id:s5003_ideestablot_form.s5003_evtbasesfgts.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if s5003_ideestablot_form.s5003_evtbasesfgts.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5003_ideestablot_form.s5003_evtbasesfgts.errors }}
+      </div>
+    {% endif %}
+    {% if s5003_ideestablot_form.s5003_evtbasesfgts.field.widget.attrs.readonly %}
+      {% if s5003_ideestablot_form.s5003_evtbasesfgts.field.widget.attrs.disabled %}
+        {{ s5003_ideestablot_form.s5003_evtbasesfgts|addcss:'form-control' }}
+        <input id="id_s5003_evtbasesfgts" name="s5003_evtbasesfgts" type="hidden" value="{% if s5003_ideestablot_form.s5003_evtbasesfgts.value or s5003_ideestablot_form.s5003_evtbasesfgts.value == 0 %}{{ s5003_ideestablot_form.s5003_evtbasesfgts.value|valor }}{% endif %}">
+      {% else %}
+        {{ s5003_ideestablot_form.s5003_evtbasesfgts|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s5003_ideestablot_form.s5003_evtbasesfgts|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s5003_ideestablot__s5003_evtbasesfgts -->
+<!-- inicio__s5003_ideestablot__tpinsc -->
+<div class="col-md-3" id="s5003_ideestablot__tpinsc__div">
+  <div class="form-group">
+    <label id="s5003_ideestablot__tpinsc__label">Tipo de inscrição*</label>
+    {% if s5003_ideestablot_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s5003_ideestablot_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s5003_ideestablot_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s5003_ideestablot_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s5003_ideestablot_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s5003_ideestablot_form.tpinsc.value or s5003_ideestablot_form.tpinsc.value == 0 %}{{ s5003_ideestablot_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s5003_ideestablot_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s5003_ideestablot_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s5003_ideestablot__tpinsc -->
+<!-- inicio__s5003_ideestablot__nrinsc -->
+<div class="col-md-3" id="s5003_ideestablot__nrinsc__div">
+  <div class="form-group">
+    <label id="s5003_ideestablot__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s5003_ideestablot_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5003_ideestablot_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s5003_ideestablot_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5003_ideestablot__nrinsc -->
+<!-- inicio__s5003_ideestablot__codlotacao -->
+<div class="col-md-3" id="s5003_ideestablot__codlotacao__div">
+  <div class="form-group">
+    <label id="s5003_ideestablot__codlotacao__label">Código da Lotação*</label>
+      {% if s5003_ideestablot_form.codlotacao.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s5003_ideestablot_form.codlotacao.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s5003_ideestablot_form.codlotacao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s5003_ideestablot__codlotacao -->

@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações relativas ao ambiente de trabalho"
-{% if show_fields.show_s2241_altinsalperic or not s2241_altinsalperic_id and 1 %}"Condições do ambiente de trabalho insalubre/periculoso - Alteração";{% endif %}{% if show_fields.show_codamb or 1 %}"Código do Ambiente";{% endif %}
-{% for a in s2241_altinsalperic_infoamb_lista %}{% if show_fields.show_s2241_altinsalperic or  not s2241_altinsalperic_id and 1 %}"{{ a.s2241_altinsalperic }}";{% endif %}{% if show_fields.show_codamb or 1 %}"{{ a.codamb }}";{% endif %}
-{% endfor %}

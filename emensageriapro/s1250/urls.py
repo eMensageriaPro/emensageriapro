@@ -3,11 +3,27 @@
 from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
-from emensageriapro.s1250.views import s1250_ideprodutor as s1250_ideprodutor_views
-from emensageriapro.s1250.views import s1250_infoprocj as s1250_infoprocj_views
-from emensageriapro.s1250.views import s1250_infoprocjud as s1250_infoprocjud_views
-from emensageriapro.s1250.views import s1250_nfs as s1250_nfs_views
-from emensageriapro.s1250.views import s1250_tpaquis as s1250_tpaquis_views
+from rest_framework.authtoken import views
+from emensageriapro.s1250.views import s1250_tpaquis_apagar as s1250_tpaquis_apagar_views
+from emensageriapro.s1250.views import s1250_tpaquis_listar as s1250_tpaquis_listar_views
+from emensageriapro.s1250.views import s1250_tpaquis_salvar as s1250_tpaquis_salvar_views
+from emensageriapro.s1250.views import s1250_tpaquis_api as s1250_tpaquis_api_views
+from emensageriapro.s1250.views import s1250_ideprodutor_apagar as s1250_ideprodutor_apagar_views
+from emensageriapro.s1250.views import s1250_ideprodutor_listar as s1250_ideprodutor_listar_views
+from emensageriapro.s1250.views import s1250_ideprodutor_salvar as s1250_ideprodutor_salvar_views
+from emensageriapro.s1250.views import s1250_ideprodutor_api as s1250_ideprodutor_api_views
+from emensageriapro.s1250.views import s1250_nfs_apagar as s1250_nfs_apagar_views
+from emensageriapro.s1250.views import s1250_nfs_listar as s1250_nfs_listar_views
+from emensageriapro.s1250.views import s1250_nfs_salvar as s1250_nfs_salvar_views
+from emensageriapro.s1250.views import s1250_nfs_api as s1250_nfs_api_views
+from emensageriapro.s1250.views import s1250_infoprocjud_apagar as s1250_infoprocjud_apagar_views
+from emensageriapro.s1250.views import s1250_infoprocjud_listar as s1250_infoprocjud_listar_views
+from emensageriapro.s1250.views import s1250_infoprocjud_salvar as s1250_infoprocjud_salvar_views
+from emensageriapro.s1250.views import s1250_infoprocjud_api as s1250_infoprocjud_api_views
+from emensageriapro.s1250.views import s1250_infoprocj_apagar as s1250_infoprocj_apagar_views
+from emensageriapro.s1250.views import s1250_infoprocj_listar as s1250_infoprocj_listar_views
+from emensageriapro.s1250.views import s1250_infoprocj_salvar as s1250_infoprocj_salvar_views
+from emensageriapro.s1250.views import s1250_infoprocj_api as s1250_infoprocj_api_views
 
 
 
@@ -44,110 +60,99 @@ from emensageriapro.s1250.views import s1250_tpaquis as s1250_tpaquis_views
 
 """
 
+
 urlpatterns = [
 
 
-
-url(r'^s1250-ideprodutor/apagar/(?P<hash>.*)/$', 
-        s1250_ideprodutor_views.apagar, 
-        name='s1250_ideprodutor_apagar'),
-
-url(r'^s1250-ideprodutor/api/$',
-            s1250_ideprodutor_views.s1250ideProdutorList.as_view() ),
-
-        url(r'^s1250-ideprodutor/api/(?P<pk>[0-9]+)/$',
-            s1250_ideprodutor_views.s1250ideProdutorDetail.as_view() ),
-
-url(r'^s1250-ideprodutor/listar/(?P<hash>.*)/$', 
-        s1250_ideprodutor_views.listar, 
-        name='s1250_ideprodutor'),
-
-url(r'^s1250-ideprodutor/salvar/(?P<hash>.*)/$', 
-        s1250_ideprodutor_views.salvar, 
-        name='s1250_ideprodutor_salvar'),
-
-
-
-url(r'^s1250-infoprocj/apagar/(?P<hash>.*)/$', 
-        s1250_infoprocj_views.apagar, 
-        name='s1250_infoprocj_apagar'),
-
-url(r'^s1250-infoprocj/api/$',
-            s1250_infoprocj_views.s1250infoProcJList.as_view() ),
-
-        url(r'^s1250-infoprocj/api/(?P<pk>[0-9]+)/$',
-            s1250_infoprocj_views.s1250infoProcJDetail.as_view() ),
-
-url(r'^s1250-infoprocj/listar/(?P<hash>.*)/$', 
-        s1250_infoprocj_views.listar, 
-        name='s1250_infoprocj'),
-
-url(r'^s1250-infoprocj/salvar/(?P<hash>.*)/$', 
-        s1250_infoprocj_views.salvar, 
-        name='s1250_infoprocj_salvar'),
-
-
-
-url(r'^s1250-infoprocjud/apagar/(?P<hash>.*)/$', 
-        s1250_infoprocjud_views.apagar, 
-        name='s1250_infoprocjud_apagar'),
-
-url(r'^s1250-infoprocjud/api/$',
-            s1250_infoprocjud_views.s1250infoProcJudList.as_view() ),
-
-        url(r'^s1250-infoprocjud/api/(?P<pk>[0-9]+)/$',
-            s1250_infoprocjud_views.s1250infoProcJudDetail.as_view() ),
-
-url(r'^s1250-infoprocjud/listar/(?P<hash>.*)/$', 
-        s1250_infoprocjud_views.listar, 
-        name='s1250_infoprocjud'),
-
-url(r'^s1250-infoprocjud/salvar/(?P<hash>.*)/$', 
-        s1250_infoprocjud_views.salvar, 
-        name='s1250_infoprocjud_salvar'),
-
-
-
-url(r'^s1250-nfs/apagar/(?P<hash>.*)/$', 
-        s1250_nfs_views.apagar, 
-        name='s1250_nfs_apagar'),
-
-url(r'^s1250-nfs/api/$',
-            s1250_nfs_views.s1250nfsList.as_view() ),
-
-        url(r'^s1250-nfs/api/(?P<pk>[0-9]+)/$',
-            s1250_nfs_views.s1250nfsDetail.as_view() ),
-
-url(r'^s1250-nfs/listar/(?P<hash>.*)/$', 
-        s1250_nfs_views.listar, 
-        name='s1250_nfs'),
-
-url(r'^s1250-nfs/salvar/(?P<hash>.*)/$', 
-        s1250_nfs_views.salvar, 
-        name='s1250_nfs_salvar'),
-
-
-
-url(r'^s1250-tpaquis/apagar/(?P<hash>.*)/$', 
-        s1250_tpaquis_views.apagar, 
+    url(r'^s1250-tpaquis/apagar/(?P<hash>.*)/$', 
+        s1250_tpaquis_apagar_views.apagar, 
         name='s1250_tpaquis_apagar'),
 
-url(r'^s1250-tpaquis/api/$',
-            s1250_tpaquis_views.s1250tpAquisList.as_view() ),
+    url(r'^s1250-tpaquis/api/$',
+        s1250_tpaquis_api_views.s1250tpAquisList.as_view() ),
 
-        url(r'^s1250-tpaquis/api/(?P<pk>[0-9]+)/$',
-            s1250_tpaquis_views.s1250tpAquisDetail.as_view() ),
+    url(r'^s1250-tpaquis/api/(?P<pk>[0-9]+)/$',
+        s1250_tpaquis_api_views.s1250tpAquisDetail.as_view() ),
 
-url(r'^s1250-tpaquis/listar/(?P<hash>.*)/$', 
-        s1250_tpaquis_views.listar, 
+    url(r'^s1250-tpaquis/listar/(?P<hash>.*)/$', 
+        s1250_tpaquis_listar_views.listar, 
         name='s1250_tpaquis'),
 
-url(r'^s1250-tpaquis/salvar/(?P<hash>.*)/$', 
-        s1250_tpaquis_views.salvar, 
+    url(r'^s1250-tpaquis/salvar/(?P<hash>.*)/$', 
+        s1250_tpaquis_salvar_views.salvar, 
         name='s1250_tpaquis_salvar'),
 
+    url(r'^s1250-ideprodutor/apagar/(?P<hash>.*)/$', 
+        s1250_ideprodutor_apagar_views.apagar, 
+        name='s1250_ideprodutor_apagar'),
 
+    url(r'^s1250-ideprodutor/api/$',
+        s1250_ideprodutor_api_views.s1250ideProdutorList.as_view() ),
 
+    url(r'^s1250-ideprodutor/api/(?P<pk>[0-9]+)/$',
+        s1250_ideprodutor_api_views.s1250ideProdutorDetail.as_view() ),
+
+    url(r'^s1250-ideprodutor/listar/(?P<hash>.*)/$', 
+        s1250_ideprodutor_listar_views.listar, 
+        name='s1250_ideprodutor'),
+
+    url(r'^s1250-ideprodutor/salvar/(?P<hash>.*)/$', 
+        s1250_ideprodutor_salvar_views.salvar, 
+        name='s1250_ideprodutor_salvar'),
+
+    url(r'^s1250-nfs/apagar/(?P<hash>.*)/$', 
+        s1250_nfs_apagar_views.apagar, 
+        name='s1250_nfs_apagar'),
+
+    url(r'^s1250-nfs/api/$',
+        s1250_nfs_api_views.s1250nfsList.as_view() ),
+
+    url(r'^s1250-nfs/api/(?P<pk>[0-9]+)/$',
+        s1250_nfs_api_views.s1250nfsDetail.as_view() ),
+
+    url(r'^s1250-nfs/listar/(?P<hash>.*)/$', 
+        s1250_nfs_listar_views.listar, 
+        name='s1250_nfs'),
+
+    url(r'^s1250-nfs/salvar/(?P<hash>.*)/$', 
+        s1250_nfs_salvar_views.salvar, 
+        name='s1250_nfs_salvar'),
+
+    url(r'^s1250-infoprocjud/apagar/(?P<hash>.*)/$', 
+        s1250_infoprocjud_apagar_views.apagar, 
+        name='s1250_infoprocjud_apagar'),
+
+    url(r'^s1250-infoprocjud/api/$',
+        s1250_infoprocjud_api_views.s1250infoProcJudList.as_view() ),
+
+    url(r'^s1250-infoprocjud/api/(?P<pk>[0-9]+)/$',
+        s1250_infoprocjud_api_views.s1250infoProcJudDetail.as_view() ),
+
+    url(r'^s1250-infoprocjud/listar/(?P<hash>.*)/$', 
+        s1250_infoprocjud_listar_views.listar, 
+        name='s1250_infoprocjud'),
+
+    url(r'^s1250-infoprocjud/salvar/(?P<hash>.*)/$', 
+        s1250_infoprocjud_salvar_views.salvar, 
+        name='s1250_infoprocjud_salvar'),
+
+    url(r'^s1250-infoprocj/apagar/(?P<hash>.*)/$', 
+        s1250_infoprocj_apagar_views.apagar, 
+        name='s1250_infoprocj_apagar'),
+
+    url(r'^s1250-infoprocj/api/$',
+        s1250_infoprocj_api_views.s1250infoProcJList.as_view() ),
+
+    url(r'^s1250-infoprocj/api/(?P<pk>[0-9]+)/$',
+        s1250_infoprocj_api_views.s1250infoProcJDetail.as_view() ),
+
+    url(r'^s1250-infoprocj/listar/(?P<hash>.*)/$', 
+        s1250_infoprocj_listar_views.listar, 
+        name='s1250_infoprocj'),
+
+    url(r'^s1250-infoprocj/salvar/(?P<hash>.*)/$', 
+        s1250_infoprocj_salvar_views.salvar, 
+        name='s1250_infoprocj_salvar'),
 
 
 ]

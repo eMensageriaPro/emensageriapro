@@ -1,1 +1,297 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento de tabela de Ambientes de Trabalho do Empregador</label><select name="s1060_evttabambiente" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s1060_evttabambiente_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1060_evttabambiente' %}selected="selected"{% endifequal %}>{{ a.evttabambiente }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }}</option>{% endfor %}</select></div></div><div class="col-md-12" id="s1060_inclusao__ideambiente__div"><h4>Informações de identificação do ambiente de trabalho do empregador e de validade das informações.</h4></div><div class="col-md-6"><div class="form-group"><label>Código do Ambiente</label><div name="codamb__icontains" class="input-group" style="width: 100%;"><input type="text" name="codamb__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'codamb__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Início da Validade</label><div class="input-group" style="width: 100%;"><select name="inivalid__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="2017-01" {% ifequal '2017-01' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Janeiro/2017</option><option value="2017-02" {% ifequal '2017-02' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Fevereiro/2017</option><option value="2017-03" {% ifequal '2017-03' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Março/2017</option><option value="2017-04" {% ifequal '2017-04' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Abril/2017</option><option value="2017-05" {% ifequal '2017-05' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Maio/2017</option><option value="2017-06" {% ifequal '2017-06' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Junho/2017</option><option value="2017-07" {% ifequal '2017-07' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Julho/2017</option><option value="2017-08" {% ifequal '2017-08' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Agosto/2017</option><option value="2017-09" {% ifequal '2017-09' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Setembro/2017</option><option value="2017-10" {% ifequal '2017-10' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Outubro/2017</option><option value="2017-11" {% ifequal '2017-11' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Novembro/2017</option><option value="2017-12" {% ifequal '2017-12' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Dezembro/2017</option><option value="2018-01" {% ifequal '2018-01' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Janeiro/2018</option><option value="2018-02" {% ifequal '2018-02' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Fevereiro/2018</option><option value="2018-03" {% ifequal '2018-03' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Março/2018</option><option value="2018-04" {% ifequal '2018-04' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Abril/2018</option><option value="2018-05" {% ifequal '2018-05' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Maio/2018</option><option value="2018-06" {% ifequal '2018-06' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Junho/2018</option><option value="2018-07" {% ifequal '2018-07' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Julho/2018</option><option value="2018-08" {% ifequal '2018-08' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Agosto/2018</option><option value="2018-09" {% ifequal '2018-09' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Setembro/2018</option><option value="2018-10" {% ifequal '2018-10' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Outubro/2018</option><option value="2018-11" {% ifequal '2018-11' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Novembro/2018</option><option value="2018-12" {% ifequal '2018-12' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Dezembro/2018</option><option value="2019-01" {% ifequal '2019-01' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Janeiro/2019</option><option value="2019-02" {% ifequal '2019-02' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Fevereiro/2019</option><option value="2019-03" {% ifequal '2019-03' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Março/2019</option><option value="2019-04" {% ifequal '2019-04' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Abril/2019</option><option value="2019-05" {% ifequal '2019-05' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Maio/2019</option><option value="2019-06" {% ifequal '2019-06' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Junho/2019</option><option value="2019-07" {% ifequal '2019-07' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Julho/2019</option><option value="2019-08" {% ifequal '2019-08' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Agosto/2019</option><option value="2019-09" {% ifequal '2019-09' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Setembro/2019</option><option value="2019-10" {% ifequal '2019-10' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Outubro/2019</option><option value="2019-11" {% ifequal '2019-11' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Novembro/2019</option><option value="2019-12" {% ifequal '2019-12' dict_fields|get_value_from_dict:'inivalid__icontains' %}selected="selected"{% endifequal %} >Dezembro/2019</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Fim da Validade</label><div class="input-group" style="width: 100%;"><select name="fimvalid__icontains" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="2017-01" {% ifequal '2017-01' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Janeiro/2017</option><option value="2017-02" {% ifequal '2017-02' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Fevereiro/2017</option><option value="2017-03" {% ifequal '2017-03' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Março/2017</option><option value="2017-04" {% ifequal '2017-04' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Abril/2017</option><option value="2017-05" {% ifequal '2017-05' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Maio/2017</option><option value="2017-06" {% ifequal '2017-06' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Junho/2017</option><option value="2017-07" {% ifequal '2017-07' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Julho/2017</option><option value="2017-08" {% ifequal '2017-08' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Agosto/2017</option><option value="2017-09" {% ifequal '2017-09' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Setembro/2017</option><option value="2017-10" {% ifequal '2017-10' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Outubro/2017</option><option value="2017-11" {% ifequal '2017-11' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Novembro/2017</option><option value="2017-12" {% ifequal '2017-12' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Dezembro/2017</option><option value="2018-01" {% ifequal '2018-01' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Janeiro/2018</option><option value="2018-02" {% ifequal '2018-02' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Fevereiro/2018</option><option value="2018-03" {% ifequal '2018-03' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Março/2018</option><option value="2018-04" {% ifequal '2018-04' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Abril/2018</option><option value="2018-05" {% ifequal '2018-05' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Maio/2018</option><option value="2018-06" {% ifequal '2018-06' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Junho/2018</option><option value="2018-07" {% ifequal '2018-07' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Julho/2018</option><option value="2018-08" {% ifequal '2018-08' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Agosto/2018</option><option value="2018-09" {% ifequal '2018-09' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Setembro/2018</option><option value="2018-10" {% ifequal '2018-10' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Outubro/2018</option><option value="2018-11" {% ifequal '2018-11' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Novembro/2018</option><option value="2018-12" {% ifequal '2018-12' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Dezembro/2018</option><option value="2019-01" {% ifequal '2019-01' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Janeiro/2019</option><option value="2019-02" {% ifequal '2019-02' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Fevereiro/2019</option><option value="2019-03" {% ifequal '2019-03' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Março/2019</option><option value="2019-04" {% ifequal '2019-04' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Abril/2019</option><option value="2019-05" {% ifequal '2019-05' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Maio/2019</option><option value="2019-06" {% ifequal '2019-06' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Junho/2019</option><option value="2019-07" {% ifequal '2019-07' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Julho/2019</option><option value="2019-08" {% ifequal '2019-08' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Agosto/2019</option><option value="2019-09" {% ifequal '2019-09' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Setembro/2019</option><option value="2019-10" {% ifequal '2019-10' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Outubro/2019</option><option value="2019-11" {% ifequal '2019-11' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Novembro/2019</option><option value="2019-12" {% ifequal '2019-12' dict_fields|get_value_from_dict:'fimvalid__icontains' %}selected="selected"{% endifequal %} >Dezembro/2019</option></select></div></div></div><div class="col-md-12" id="s1060_inclusao__dadosambiente__div"><h4>Informações do ambiente de trabalho</h4></div><div class="col-md-6"><div class="form-group"><label>Informar o nome do ambiente de trabalho.</label><div name="nmamb__icontains" class="input-group" style="width: 100%;"><input type="text" name="nmamb__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nmamb__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Descrição</label><div name="dscamb__icontains" class="input-group" style="width: 100%;"><input type="text" name="dscamb__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'dscamb__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Local</label><div class="input-group" style="width: 100%;"><select name="localamb" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'localamb' %}selected="selected"{% endifequal %} >1 - Estabelecimento do próprio empregador</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'localamb' %}selected="selected"{% endifequal %} >2 - Estabelecimento de terceiros</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'localamb' %}selected="selected"{% endifequal %} >3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da Tabela 10</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Tipo de inscrição</label><div class="input-group" style="width: 100%;"><select name="tpinsc" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >1 - CNPJ</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option><option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Número de inscrição (CPF/CNPJ)</label><div name="nrinsc__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrinsc__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrinsc__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Código da Lotação</label><div name="codlotacao__icontains" class="input-group" style="width: 100%;"><input type="text" name="codlotacao__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'codlotacao__icontains' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s1060_evttabambiente" value="1" {% if show_fields|get_value_from_dict:'show_s1060_evttabambiente' %}checked{% endif %}>Evento de tabela de Ambientes de Trabalho do Empregador</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_ideambiente" value="1" {% if show_fields|get_value_from_dict:'show_ideambiente' %}checked{% endif %}>Informações de identificação do ambiente de trabalho do empregador e de validade das informações.</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codamb" value="1" {% if show_fields|get_value_from_dict:'show_codamb' %}checked{% endif %}>Código do Ambiente</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_inivalid" value="1" {% if show_fields|get_value_from_dict:'show_inivalid' %}checked{% endif %}>Início da Validade</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_fimvalid" value="1" {% if show_fields|get_value_from_dict:'show_fimvalid' %}checked{% endif %}>Fim da Validade</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dadosambiente" value="1" {% if show_fields|get_value_from_dict:'show_dadosambiente' %}checked{% endif %}>Informações do ambiente de trabalho</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nmamb" value="1" {% if show_fields|get_value_from_dict:'show_nmamb' %}checked{% endif %}>Informar o nome do ambiente de trabalho.</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dscamb" value="1" {% if show_fields|get_value_from_dict:'show_dscamb' %}checked{% endif %}>Descrição</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_localamb" value="1" {% if show_fields|get_value_from_dict:'show_localamb' %}checked{% endif %}>Local</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpinsc" value="1" {% if show_fields|get_value_from_dict:'show_tpinsc' %}checked{% endif %}>Tipo de inscrição</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrinsc" value="1" {% if show_fields|get_value_from_dict:'show_nrinsc' %}checked{% endif %}>Número de inscrição (CPF/CNPJ)</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codlotacao" value="1" {% if show_fields|get_value_from_dict:'show_codlotacao' %}checked{% endif %}>Código da Lotação</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1060_inclusao__s1060_evttabambiente -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Inclusão de novas informações</label>
+    <select name="s1060_evttabambiente" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s1060_evttabambiente_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s1060_evttabambiente' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s1060_inclusao__s1060_evttabambiente -->
+
+<!-- inicio__s1060_inclusao__ideambiente -->
+<div class="col-md-12" id="s1060_inclusao__ideambiente__div">
+  <h4>Informações de identificação do ambiente de trabalho do empregador e de validade das informações.</h4>
+</div>
+<!-- fim__s1060_inclusao__ideambiente -->
+
+<!-- inicio__s1060_inclusao__codamb -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código do Ambiente</label>
+    <div name="codamb" class="input-group" style="width: 100%;">
+      <input type="text" name="codamb" class="form-control" value="{{ dict_fields|get_value_from_dict:'codamb' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1060_inclusao__codamb -->
+
+<!-- inicio__s1060_inclusao__inivalid -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Início da Validade</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="inivalid" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="2017-04" {% ifequal '2017-04' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Abril/2017</option>
+        <option value="2018-04" {% ifequal '2018-04' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Abril/2018</option>
+        <option value="2019-04" {% ifequal '2019-04' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Abril/2019</option>
+        <option value="2017-08" {% ifequal '2017-08' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Agosto/2017</option>
+        <option value="2018-08" {% ifequal '2018-08' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Agosto/2018</option>
+        <option value="2019-08" {% ifequal '2019-08' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Agosto/2019</option>
+        <option value="2017-12" {% ifequal '2017-12' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Dezembro/2017</option>
+        <option value="2018-12" {% ifequal '2018-12' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Dezembro/2018</option>
+        <option value="2019-12" {% ifequal '2019-12' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Dezembro/2019</option>
+        <option value="2017-02" {% ifequal '2017-02' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Fevereiro/2017</option>
+        <option value="2018-02" {% ifequal '2018-02' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Fevereiro/2018</option>
+        <option value="2019-02" {% ifequal '2019-02' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Fevereiro/2019</option>
+        <option value="2017-01" {% ifequal '2017-01' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Janeiro/2017</option>
+        <option value="2018-01" {% ifequal '2018-01' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Janeiro/2018</option>
+        <option value="2019-01" {% ifequal '2019-01' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Janeiro/2019</option>
+        <option value="2017-07" {% ifequal '2017-07' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Julho/2017</option>
+        <option value="2018-07" {% ifequal '2018-07' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Julho/2018</option>
+        <option value="2019-07" {% ifequal '2019-07' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Julho/2019</option>
+        <option value="2017-06" {% ifequal '2017-06' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Junho/2017</option>
+        <option value="2018-06" {% ifequal '2018-06' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Junho/2018</option>
+        <option value="2019-06" {% ifequal '2019-06' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Junho/2019</option>
+        <option value="2017-05" {% ifequal '2017-05' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Maio/2017</option>
+        <option value="2018-05" {% ifequal '2018-05' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Maio/2018</option>
+        <option value="2019-05" {% ifequal '2019-05' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Maio/2019</option>
+        <option value="2017-03" {% ifequal '2017-03' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Março/2017</option>
+        <option value="2018-03" {% ifequal '2018-03' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Março/2018</option>
+        <option value="2019-03" {% ifequal '2019-03' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Março/2019</option>
+        <option value="2017-11" {% ifequal '2017-11' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Novembro/2017</option>
+        <option value="2018-11" {% ifequal '2018-11' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Novembro/2018</option>
+        <option value="2019-11" {% ifequal '2019-11' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Novembro/2019</option>
+        <option value="2017-10" {% ifequal '2017-10' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Outubro/2017</option>
+        <option value="2018-10" {% ifequal '2018-10' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Outubro/2018</option>
+        <option value="2019-10" {% ifequal '2019-10' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Outubro/2019</option>
+        <option value="2017-09" {% ifequal '2017-09' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Setembro/2017</option>
+        <option value="2018-09" {% ifequal '2018-09' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Setembro/2018</option>
+        <option value="2019-09" {% ifequal '2019-09' dict_fields|get_value_from_dict:'inivalid' %}selected="selected"{% endifequal %} >Setembro/2019</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1060_inclusao__inivalid -->
+
+<!-- inicio__s1060_inclusao__fimvalid -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Fim da Validade</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="fimvalid" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="2017-04" {% ifequal '2017-04' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Abril/2017</option>
+        <option value="2018-04" {% ifequal '2018-04' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Abril/2018</option>
+        <option value="2019-04" {% ifequal '2019-04' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Abril/2019</option>
+        <option value="2017-08" {% ifequal '2017-08' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Agosto/2017</option>
+        <option value="2018-08" {% ifequal '2018-08' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Agosto/2018</option>
+        <option value="2019-08" {% ifequal '2019-08' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Agosto/2019</option>
+        <option value="2017-12" {% ifequal '2017-12' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Dezembro/2017</option>
+        <option value="2018-12" {% ifequal '2018-12' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Dezembro/2018</option>
+        <option value="2019-12" {% ifequal '2019-12' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Dezembro/2019</option>
+        <option value="2017-02" {% ifequal '2017-02' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Fevereiro/2017</option>
+        <option value="2018-02" {% ifequal '2018-02' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Fevereiro/2018</option>
+        <option value="2019-02" {% ifequal '2019-02' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Fevereiro/2019</option>
+        <option value="2017-01" {% ifequal '2017-01' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Janeiro/2017</option>
+        <option value="2018-01" {% ifequal '2018-01' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Janeiro/2018</option>
+        <option value="2019-01" {% ifequal '2019-01' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Janeiro/2019</option>
+        <option value="2017-07" {% ifequal '2017-07' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Julho/2017</option>
+        <option value="2018-07" {% ifequal '2018-07' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Julho/2018</option>
+        <option value="2019-07" {% ifequal '2019-07' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Julho/2019</option>
+        <option value="2017-06" {% ifequal '2017-06' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Junho/2017</option>
+        <option value="2018-06" {% ifequal '2018-06' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Junho/2018</option>
+        <option value="2019-06" {% ifequal '2019-06' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Junho/2019</option>
+        <option value="2017-05" {% ifequal '2017-05' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Maio/2017</option>
+        <option value="2018-05" {% ifequal '2018-05' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Maio/2018</option>
+        <option value="2019-05" {% ifequal '2019-05' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Maio/2019</option>
+        <option value="2017-03" {% ifequal '2017-03' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Março/2017</option>
+        <option value="2018-03" {% ifequal '2018-03' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Março/2018</option>
+        <option value="2019-03" {% ifequal '2019-03' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Março/2019</option>
+        <option value="2017-11" {% ifequal '2017-11' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Novembro/2017</option>
+        <option value="2018-11" {% ifequal '2018-11' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Novembro/2018</option>
+        <option value="2019-11" {% ifequal '2019-11' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Novembro/2019</option>
+        <option value="2017-10" {% ifequal '2017-10' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Outubro/2017</option>
+        <option value="2018-10" {% ifequal '2018-10' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Outubro/2018</option>
+        <option value="2019-10" {% ifequal '2019-10' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Outubro/2019</option>
+        <option value="2017-09" {% ifequal '2017-09' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Setembro/2017</option>
+        <option value="2018-09" {% ifequal '2018-09' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Setembro/2018</option>
+        <option value="2019-09" {% ifequal '2019-09' dict_fields|get_value_from_dict:'fimvalid' %}selected="selected"{% endifequal %} >Setembro/2019</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1060_inclusao__fimvalid -->
+
+<!-- inicio__s1060_inclusao__dadosambiente -->
+<div class="col-md-12" id="s1060_inclusao__dadosambiente__div">
+  <h4>Informações do ambiente de trabalho</h4>
+</div>
+<!-- fim__s1060_inclusao__dadosambiente -->
+
+<!-- inicio__s1060_inclusao__nmamb -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o nome do ambiente de trabalho.</label>
+    <div name="nmamb" class="input-group" style="width: 100%;">
+      <input type="text" name="nmamb" class="form-control" value="{{ dict_fields|get_value_from_dict:'nmamb' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1060_inclusao__nmamb -->
+
+<!-- inicio__s1060_inclusao__dscamb -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Descrição</label>
+    <div name="dscamb" class="input-group" style="width: 100%;">
+      <input type="text" name="dscamb" class="form-control" value="{{ dict_fields|get_value_from_dict:'dscamb' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1060_inclusao__dscamb -->
+
+<!-- inicio__s1060_inclusao__localamb -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Local</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="localamb" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'localamb' %}selected="selected"{% endifequal %} >1 - Estabelecimento do próprio empregador</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'localamb' %}selected="selected"{% endifequal %} >2 - Estabelecimento de terceiros</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'localamb' %}selected="selected"{% endifequal %} >3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da tabela 10.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1060_inclusao__localamb -->
+
+<!-- inicio__s1060_inclusao__tpinsc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo de inscrição</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpinsc" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >2 - CPF</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option>
+        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >5 - CGC</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s1060_inclusao__tpinsc -->
+
+<!-- inicio__s1060_inclusao__nrinsc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número de inscrição (CPF/CNPJ)</label>
+    <div name="nrinsc" class="input-group" style="width: 100%;">
+      <input type="text" name="nrinsc" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrinsc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1060_inclusao__nrinsc -->
+
+<!-- inicio__s1060_inclusao__codlotacao -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código da Lotação</label>
+    <div name="codlotacao" class="input-group" style="width: 100%;">
+      <input type="text" name="codlotacao" class="form-control" value="{{ dict_fields|get_value_from_dict:'codlotacao' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s1060_inclusao__codlotacao -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s1060_evttabambiente" value="1" {% if show_fields|get_value_from_dict:'show_s1060_evttabambiente' %}checked{% endif %} >Inclusão de novas informações
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_ideambiente" value="0" {% if show_fields|get_value_from_dict:'show_ideambiente' %}checked{% endif %} >Informações de identificação do ambiente de trabalho do empregador e de validade das informações.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codamb" value="1" {% if show_fields|get_value_from_dict:'show_codamb' %}checked{% endif %} >Código do Ambiente
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_inivalid" value="1" {% if show_fields|get_value_from_dict:'show_inivalid' %}checked{% endif %} >Início da Validade
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_fimvalid" value="0" {% if show_fields|get_value_from_dict:'show_fimvalid' %}checked{% endif %} >Fim da Validade
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dadosambiente" value="0" {% if show_fields|get_value_from_dict:'show_dadosambiente' %}checked{% endif %} >Informações do ambiente de trabalho
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nmamb" value="1" {% if show_fields|get_value_from_dict:'show_nmamb' %}checked{% endif %} >Informar o nome do ambiente de trabalho.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dscamb" value="1" {% if show_fields|get_value_from_dict:'show_dscamb' %}checked{% endif %} >Descrição
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_localamb" value="1" {% if show_fields|get_value_from_dict:'show_localamb' %}checked{% endif %} >Local
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpinsc" value="0" {% if show_fields|get_value_from_dict:'show_tpinsc' %}checked{% endif %} >Tipo de inscrição
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrinsc" value="0" {% if show_fields|get_value_from_dict:'show_nrinsc' %}checked{% endif %} >Número de inscrição (CPF/CNPJ)
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codlotacao" value="0" {% if show_fields|get_value_from_dict:'show_codlotacao' %}checked{% endif %} >Código da Lotação
+    </div>
+</div>
+
+

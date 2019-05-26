@@ -1,1 +1,232 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}<!-- inicio__r2098_evtreabreevper__evtreabreevper --><div class="col-md-12" id="r2098_evtreabreevper__evtreabreevper__div"><h4>Evento de reabertura de eventos periódicos</h4></div><!-- fim__r2098_evtreabreevper__evtreabreevper --><!-- inicio__r2098_evtreabreevper__identidade --><div class="col-md-6" id="r2098_evtreabreevper__identidade__div"><div class="form-group"><label id="r2098_evtreabreevper__identidade__label">Identificação única do evento<a data-toggle="tooltip" title="Identificação única do evento. Regra de validação: REGRA_VALIDA_ID_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2098_evtreabreevper_form.identidade.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2098_evtreabreevper_form.identidade.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ r2098_evtreabreevper_form.identidade|addcss:'form-control' }}</div></div></div><!-- fim__r2098_evtreabreevper__identidade --><!-- inicio__r2098_evtreabreevper__ideevento --><div class="col-md-12" id="r2098_evtreabreevper__ideevento__div"><h4>Informações de Identificação do Evento</h4></div><!-- fim__r2098_evtreabreevper__ideevento --><!-- inicio__r2098_evtreabreevper__perapur --><div class="col-md-6" id="r2098_evtreabreevper__perapur__div"><div class="form-group"><label id="r2098_evtreabreevper__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*<a data-toggle="tooltip" title="Informar o ano/mês de referência das informações no formato AAAA-MM. Validação: Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2098_evtreabreevper_form.perapur.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2098_evtreabreevper_form.perapur.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ r2098_evtreabreevper_form.perapur|addcss:'form-control' }}</div></div></div><!-- fim__r2098_evtreabreevper__perapur --><!-- inicio__r2098_evtreabreevper__tpamb --><div class="col-md-6" id="r2098_evtreabreevper__tpamb__div"><div class="form-group"><label id="r2098_evtreabreevper__tpamb__label">Identificação do ambiente*<a data-toggle="tooltip" title="Identificação do ambiente: 1 - Produção; 2 - Produção restrita. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2098_evtreabreevper_form.tpamb.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2098_evtreabreevper_form.tpamb.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if r2098_evtreabreevper_form.tpamb.field.widget.attrs.readonly %} {% if r2098_evtreabreevper_form.tpamb.field.widget.attrs.disabled %} {{ r2098_evtreabreevper_form.tpamb|addcss:'form-control' }}<input id="id_tpamb" name="tpamb" type="hidden" value="{% if r2098_evtreabreevper_form.tpamb.value or r2098_evtreabreevper_form.tpamb.value == 0 %}{{ r2098_evtreabreevper_form.tpamb.value|valor }}{% endif %}">{% else %} {{ r2098_evtreabreevper_form.tpamb|addcss:'form-control' }} {% endif %} {% else %} {{ r2098_evtreabreevper_form.tpamb|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__r2098_evtreabreevper__tpamb --><!-- inicio__r2098_evtreabreevper__procemi --><div class="col-md-6" id="r2098_evtreabreevper__procemi__div"><div class="form-group"><label id="r2098_evtreabreevper__procemi__label">Processo de emissão do evento*<a data-toggle="tooltip" title="Processo de emissão do evento: 1 - Aplicativo do contribuinte; 2 - Aplicativo governamental. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2098_evtreabreevper_form.procemi.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2098_evtreabreevper_form.procemi.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if r2098_evtreabreevper_form.procemi.field.widget.attrs.readonly %} {% if r2098_evtreabreevper_form.procemi.field.widget.attrs.disabled %} {{ r2098_evtreabreevper_form.procemi|addcss:'form-control' }}<input id="id_procemi" name="procemi" type="hidden" value="{% if r2098_evtreabreevper_form.procemi.value or r2098_evtreabreevper_form.procemi.value == 0 %}{{ r2098_evtreabreevper_form.procemi.value|valor }}{% endif %}">{% else %} {{ r2098_evtreabreevper_form.procemi|addcss:'form-control' }} {% endif %} {% else %} {{ r2098_evtreabreevper_form.procemi|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__r2098_evtreabreevper__procemi --><!-- inicio__r2098_evtreabreevper__verproc --><div class="col-md-6" id="r2098_evtreabreevper__verproc__div"><div class="form-group"><label id="r2098_evtreabreevper__verproc__label">Versão do processo de emissão do evento*<a data-toggle="tooltip" title="Versão do processo de emissão do evento. Informar a versão do aplicativo emissor do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2098_evtreabreevper_form.verproc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2098_evtreabreevper_form.verproc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ r2098_evtreabreevper_form.verproc|addcss:'form-control' }}</div></div></div><!-- fim__r2098_evtreabreevper__verproc --><!-- inicio__r2098_evtreabreevper__idecontri --><div class="col-md-12" id="r2098_evtreabreevper__idecontri__div"><h4>Informações de identificação do contribuinte</h4></div><!-- fim__r2098_evtreabreevper__idecontri --><!-- inicio__r2098_evtreabreevper__tpinsc --><div class="col-md-6" id="r2098_evtreabreevper__tpinsc__div"><div class="form-group"><label id="r2098_evtreabreevper__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição Validação: Deve ser igual a [1] (CNPJ) ou [2] (CPF) Valores Válidos: 1, 2"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2098_evtreabreevper_form.tpinsc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2098_evtreabreevper_form.tpinsc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if r2098_evtreabreevper_form.tpinsc.field.widget.attrs.readonly %} {% if r2098_evtreabreevper_form.tpinsc.field.widget.attrs.disabled %} {{ r2098_evtreabreevper_form.tpinsc|addcss:'form-control' }}<input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r2098_evtreabreevper_form.tpinsc.value or r2098_evtreabreevper_form.tpinsc.value == 0 %}{{ r2098_evtreabreevper_form.tpinsc.value|valor }}{% endif %}">{% else %} {{ r2098_evtreabreevper_form.tpinsc|addcss:'form-control' }} {% endif %} {% else %} {{ r2098_evtreabreevper_form.tpinsc|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__r2098_evtreabreevper__tpinsc --><!-- inicio__r2098_evtreabreevper__nrinsc --><div class="col-md-6" id="r2098_evtreabreevper__nrinsc__div"><div class="form-group"><label id="r2098_evtreabreevper__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}. Se for um CNPJ deve ser informada apenas a Raiz/Base de oito posições, exceto se natureza jurídica de administração pública direta federal ([101-5] (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r2098_evtreabreevper_form.nrinsc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2098_evtreabreevper_form.nrinsc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ r2098_evtreabreevper_form.nrinsc|addcss:'form-control' }}</div></div></div><!-- fim__r2098_evtreabreevper__nrinsc --><!-- inicio__r2098_evtreabreevper__versao --><div class="col-md-4" id="r2098_evtreabreevper__versao__div"><div class="form-group"><label id="r2098_evtreabreevper__versao__label">Versão*</label>{% if r2098_evtreabreevper_form.versao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2098_evtreabreevper_form.versao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if r2098_evtreabreevper_form.versao.field.widget.attrs.readonly %} {% if r2098_evtreabreevper_form.versao.field.widget.attrs.disabled %} {{ r2098_evtreabreevper_form.versao|addcss:'form-control' }}<input id="id_versao" name="versao" type="hidden" value="{% if r2098_evtreabreevper_form.versao.value or r2098_evtreabreevper_form.versao.value == 0 %}{{ r2098_evtreabreevper_form.versao.value }}{% endif %}">{% else %} {{ r2098_evtreabreevper_form.versao|addcss:'form-control' }} {% endif %} {% else %} {{ r2098_evtreabreevper_form.versao|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__r2098_evtreabreevper__versao -->{% if not transmissor_lote_efdreinf_id or transmissor_lote_efdreinf_id != r2098_evtreabreevper_form.transmissor_lote_efdreinf.value %}<!-- inicio__r2098_evtreabreevper__transmissor_lote_efdreinf --><div class="col-md-4" id="r2098_evtreabreevper__transmissor_lote_efdreinf__div"><div class="form-group"><label id="r2098_evtreabreevper__transmissor_lote_efdreinf__label">Transmissor</label>{% if not for_print %}{% if r2098_evtreabreevper_form.transmissor_lote_efdreinf.value %}<a id="r2098_evtreabreevper__transmissor_lote_efdreinf__div_acessar" href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_id:r2098_evtreabreevper_form.transmissor_lote_efdreinf.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_transmissor_lote_efdreinf').change(function(){ document.getElementById("r2098_evtreabreevper__transmissor_lote_efdreinf__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if r2098_evtreabreevper_form.transmissor_lote_efdreinf.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2098_evtreabreevper_form.transmissor_lote_efdreinf.errors }}</div>{% endif %} {% if r2098_evtreabreevper_form.transmissor_lote_efdreinf.field.widget.attrs.readonly %} {% if r2098_evtreabreevper_form.transmissor_lote_efdreinf.field.widget.attrs.disabled %} {{ r2098_evtreabreevper_form.transmissor_lote_efdreinf|addcss:'form-control' }}<input id="id_transmissor_lote_efdreinf" name="transmissor_lote_efdreinf" type="hidden" value="{% if r2098_evtreabreevper_form.transmissor_lote_efdreinf.value or r2098_evtreabreevper_form.transmissor_lote_efdreinf.value == 0 %}{{ r2098_evtreabreevper_form.transmissor_lote_efdreinf.value|valor }}{% endif %}">{% else %} {{ r2098_evtreabreevper_form.transmissor_lote_efdreinf|addcss:'form-control' }} {% endif %} {% else %} {{ r2098_evtreabreevper_form.transmissor_lote_efdreinf|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__r2098_evtreabreevper__transmissor_lote_efdreinf -->{% else %}<input type="hidden" value="{{ transmissor_lote_efdreinf_id|valor }}" id="id_transmissor_lote_efdreinf" name="transmissor_lote_efdreinf">{% endif %}<!-- inicio__r2098_evtreabreevper__status --><div class="col-md-4" id="r2098_evtreabreevper__status__div"><div class="form-group"><label id="r2098_evtreabreevper__status__label">Status*</label>{% if r2098_evtreabreevper_form.status.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r2098_evtreabreevper_form.status.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if r2098_evtreabreevper_form.status.field.widget.attrs.readonly %} {% if r2098_evtreabreevper_form.status.field.widget.attrs.disabled %} {{ r2098_evtreabreevper_form.status|addcss:'form-control' }}<input id="id_status" name="status" type="hidden" value="{% if r2098_evtreabreevper_form.status.value or r2098_evtreabreevper_form.status.value == 0 %}{{ r2098_evtreabreevper_form.status.value|valor }}{% endif %}">{% else %} {{ r2098_evtreabreevper_form.status|addcss:'form-control' }} {% endif %} {% else %} {{ r2098_evtreabreevper_form.status|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__r2098_evtreabreevper__status -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r2098_evtreabreevper__evtreabreevper -->
+<div class="col-md-12" id="r2098_evtreabreevper__evtreabreevper__div">
+  <h4>Evento de reabertura de eventos periódicos</h4>
+</div>
+<!-- fim__r2098_evtreabreevper__evtreabreevper -->
+<!-- inicio__r2098_evtreabreevper__identidade -->
+<div class="col-md-6" id="r2098_evtreabreevper__identidade__div">
+  <div class="form-group">
+    <label id="r2098_evtreabreevper__identidade__label">Identificação única do evento</label>
+      {% if r2098_evtreabreevper_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2098_evtreabreevper_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2098_evtreabreevper_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2098_evtreabreevper__identidade -->
+<!-- inicio__r2098_evtreabreevper__ideevento -->
+<div class="col-md-12" id="r2098_evtreabreevper__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__r2098_evtreabreevper__ideevento -->
+<!-- inicio__r2098_evtreabreevper__perapur -->
+<div class="col-md-6" id="r2098_evtreabreevper__perapur__div">
+  <div class="form-group">
+    <label id="r2098_evtreabreevper__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*</label>
+      {% if r2098_evtreabreevper_form.perapur.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2098_evtreabreevper_form.perapur.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2098_evtreabreevper_form.perapur|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2098_evtreabreevper__perapur -->
+<!-- inicio__r2098_evtreabreevper__tpamb -->
+<div class="col-md-6" id="r2098_evtreabreevper__tpamb__div">
+  <div class="form-group">
+    <label id="r2098_evtreabreevper__tpamb__label">Identificação do ambiente*</label>
+    {% if r2098_evtreabreevper_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2098_evtreabreevper_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2098_evtreabreevper_form.tpamb.field.widget.attrs.readonly %}
+        {% if r2098_evtreabreevper_form.tpamb.field.widget.attrs.disabled %}
+          {{ r2098_evtreabreevper_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if r2098_evtreabreevper_form.tpamb.value or r2098_evtreabreevper_form.tpamb.value == 0 %}{{ r2098_evtreabreevper_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2098_evtreabreevper_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2098_evtreabreevper_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2098_evtreabreevper__tpamb -->
+<!-- inicio__r2098_evtreabreevper__procemi -->
+<div class="col-md-6" id="r2098_evtreabreevper__procemi__div">
+  <div class="form-group">
+    <label id="r2098_evtreabreevper__procemi__label">Processo de emissão do evento*</label>
+    {% if r2098_evtreabreevper_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2098_evtreabreevper_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2098_evtreabreevper_form.procemi.field.widget.attrs.readonly %}
+        {% if r2098_evtreabreevper_form.procemi.field.widget.attrs.disabled %}
+          {{ r2098_evtreabreevper_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if r2098_evtreabreevper_form.procemi.value or r2098_evtreabreevper_form.procemi.value == 0 %}{{ r2098_evtreabreevper_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2098_evtreabreevper_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2098_evtreabreevper_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2098_evtreabreevper__procemi -->
+<!-- inicio__r2098_evtreabreevper__verproc -->
+<div class="col-md-6" id="r2098_evtreabreevper__verproc__div">
+  <div class="form-group">
+    <label id="r2098_evtreabreevper__verproc__label">Versão do processo de emissão do evento*</label>
+      {% if r2098_evtreabreevper_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2098_evtreabreevper_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2098_evtreabreevper_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2098_evtreabreevper__verproc -->
+<!-- inicio__r2098_evtreabreevper__idecontri -->
+<div class="col-md-12" id="r2098_evtreabreevper__idecontri__div">
+  <h4>Informações de identificação do contribuinte</h4>
+</div>
+<!-- fim__r2098_evtreabreevper__idecontri -->
+<!-- inicio__r2098_evtreabreevper__tpinsc -->
+<div class="col-md-6" id="r2098_evtreabreevper__tpinsc__div">
+  <div class="form-group">
+    <label id="r2098_evtreabreevper__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+    {% if r2098_evtreabreevper_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2098_evtreabreevper_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2098_evtreabreevper_form.tpinsc.field.widget.attrs.readonly %}
+        {% if r2098_evtreabreevper_form.tpinsc.field.widget.attrs.disabled %}
+          {{ r2098_evtreabreevper_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r2098_evtreabreevper_form.tpinsc.value or r2098_evtreabreevper_form.tpinsc.value == 0 %}{{ r2098_evtreabreevper_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2098_evtreabreevper_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2098_evtreabreevper_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2098_evtreabreevper__tpinsc -->
+<!-- inicio__r2098_evtreabreevper__nrinsc -->
+<div class="col-md-6" id="r2098_evtreabreevper__nrinsc__div">
+  <div class="form-group">
+    <label id="r2098_evtreabreevper__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+      {% if r2098_evtreabreevper_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2098_evtreabreevper_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2098_evtreabreevper_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r2098_evtreabreevper__nrinsc -->
+<!-- inicio__r2098_evtreabreevper__versao -->
+<div class="col-md-3" id="r2098_evtreabreevper__versao__div">
+  <div class="form-group">
+    <label id="r2098_evtreabreevper__versao__label">Versão</label>
+    {% if r2098_evtreabreevper_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2098_evtreabreevper_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2098_evtreabreevper_form.versao.field.widget.attrs.readonly %}
+        {% if r2098_evtreabreevper_form.versao.field.widget.attrs.disabled %}
+          {{ r2098_evtreabreevper_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if r2098_evtreabreevper_form.versao.value or r2098_evtreabreevper_form.versao.value == 0 %}{{ r2098_evtreabreevper_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ r2098_evtreabreevper_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2098_evtreabreevper_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2098_evtreabreevper__versao -->
+<!-- inicio__r2098_evtreabreevper__transmissor_lote_efdreinf -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_efdreinf').change(function(){document.getElementById("r2098_evtreabreevper__transmissor_lote_efdreinf__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="r2098_evtreabreevper__transmissor_lote_efdreinf__div">
+<div class="form-group">
+  <label id="r2098_evtreabreevper__transmissor_lote_efdreinf__label">Transmissor</label>
+  
+  {% if not for_print %}
+    {% if r2098_evtreabreevper_form.transmissor_lote_efdreinf.value %}
+    <a id="r2098_evtreabreevper__transmissor_lote_efdreinf__div_acessar" href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_id:r2098_evtreabreevper_form.transmissor_lote_efdreinf.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  
+  {% if r2098_evtreabreevper_form.transmissor_lote_efdreinf.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r2098_evtreabreevper_form.transmissor_lote_efdreinf.errors }}
+    </div>
+  {% endif %}
+  {% if r2098_evtreabreevper_form.transmissor_lote_efdreinf.field.widget.attrs.readonly %}
+    {% if r2098_evtreabreevper_form.transmissor_lote_efdreinf.field.widget.attrs.disabled %}
+      {{ r2098_evtreabreevper_form.transmissor_lote_efdreinf|addcss:'form-control' }}
+      <input id="id_transmissor_lote_efdreinf" name="transmissor_lote_efdreinf" type="hidden" value="{% if r2098_evtreabreevper_form.transmissor_lote_efdreinf.value or r2098_evtreabreevper_form.transmissor_lote_efdreinf.value == 0 %}{{ r2098_evtreabreevper_form.transmissor_lote_efdreinf.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ r2098_evtreabreevper_form.transmissor_lote_efdreinf|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ r2098_evtreabreevper_form.transmissor_lote_efdreinf|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__r2098_evtreabreevper__transmissor_lote_efdreinf -->
+<!-- inicio__r2098_evtreabreevper__status -->
+<div class="col-md-3" id="r2098_evtreabreevper__status__div">
+  <div class="form-group">
+    <label id="r2098_evtreabreevper__status__label">Status</label>
+    {% if r2098_evtreabreevper_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r2098_evtreabreevper_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r2098_evtreabreevper_form.status.field.widget.attrs.readonly %}
+        {% if r2098_evtreabreevper_form.status.field.widget.attrs.disabled %}
+          {{ r2098_evtreabreevper_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if r2098_evtreabreevper_form.status.value or r2098_evtreabreevper_form.status.value == 0 %}{{ r2098_evtreabreevper_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ r2098_evtreabreevper_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r2098_evtreabreevper_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r2098_evtreabreevper__status -->

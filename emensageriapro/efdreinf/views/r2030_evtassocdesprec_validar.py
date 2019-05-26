@@ -21,7 +21,7 @@
         mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
         COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
         Licença Pública Geral GNU Affero para mais detalhes.
-
+    
         Este programa é software livre: você pode redistribuí-lo e / ou modificar
         sob os termos da licença GNU Affero General Public License como
         publicado pela Free Software Foundation, seja versão 3 do
@@ -46,39 +46,155 @@ def validacoes_r2030_evtassocdesprec(arquivo):
     validacoes_lista = []
     xmlns = doc.Reinf['xmlns'].split('/')
     evtAssocDespRec = doc.Reinf.evtAssocDespRec
-
-    if 'indRetif' in dir(evtAssocDespRec.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAssocDespRec.ideEvento.indRetif', evtAssocDespRec.ideEvento.indRetif.cdata, 1, u'1;2')
-    if 'nrRecibo' in dir(evtAssocDespRec.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAssocDespRec.ideEvento.nrRecibo', evtAssocDespRec.ideEvento.nrRecibo.cdata, 0, u'')
-    if 'perApur' in dir(evtAssocDespRec.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAssocDespRec.ideEvento.perApur', evtAssocDespRec.ideEvento.perApur.cdata, 1, u'')
-    if 'tpAmb' in dir(evtAssocDespRec.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAssocDespRec.ideEvento.tpAmb', evtAssocDespRec.ideEvento.tpAmb.cdata, 1, u'1;2')
-    if 'procEmi' in dir(evtAssocDespRec.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAssocDespRec.ideEvento.procEmi', evtAssocDespRec.ideEvento.procEmi.cdata, 1, u'1;2')
-    if 'verProc' in dir(evtAssocDespRec.ideEvento): validacoes_lista = validar_campo(validacoes_lista,'evtAssocDespRec.ideEvento.verProc', evtAssocDespRec.ideEvento.verProc.cdata, 1, u'')
-    if 'tpInsc' in dir(evtAssocDespRec.ideContri): validacoes_lista = validar_campo(validacoes_lista,'evtAssocDespRec.ideContri.tpInsc', evtAssocDespRec.ideContri.tpInsc.cdata, 1, u'1;2')
-    if 'nrInsc' in dir(evtAssocDespRec.ideContri): validacoes_lista = validar_campo(validacoes_lista,'evtAssocDespRec.ideContri.nrInsc', evtAssocDespRec.ideContri.nrInsc.cdata, 1, u'')
-    if 'tpInscEstab' in dir(evtAssocDespRec.ideContri.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'evtAssocDespRec.ideContri.ideEstab.tpInscEstab', evtAssocDespRec.ideContri.ideEstab.tpInscEstab.cdata, 1, u'1')
-    if 'nrInscEstab' in dir(evtAssocDespRec.ideContri.ideEstab): validacoes_lista = validar_campo(validacoes_lista,'evtAssocDespRec.ideContri.ideEstab.nrInscEstab', evtAssocDespRec.ideContri.ideEstab.nrInscEstab.cdata, 1, u'')
-    if 'recursosRec' in dir(evtAssocDespRec.ideContri.ideEstab):
-        for recursosRec in evtAssocDespRec.ideContri.ideEstab.recursosRec:
-
-            if 'cnpjOrigRecurso' in dir(recursosRec): validacoes_lista = validar_campo(validacoes_lista,'recursosRec.cnpjOrigRecurso', recursosRec.cnpjOrigRecurso.cdata, 1, u'')
-            if 'vlrTotalRec' in dir(recursosRec): validacoes_lista = validar_campo(validacoes_lista,'recursosRec.vlrTotalRec', recursosRec.vlrTotalRec.cdata, 1, u'')
-            if 'vlrTotalRet' in dir(recursosRec): validacoes_lista = validar_campo(validacoes_lista,'recursosRec.vlrTotalRet', recursosRec.vlrTotalRet.cdata, 1, u'')
-            if 'vlrTotalNRet' in dir(recursosRec): validacoes_lista = validar_campo(validacoes_lista,'recursosRec.vlrTotalNRet', recursosRec.vlrTotalNRet.cdata, 0, u'')
-
-            if 'infoRecurso' in dir(recursosRec):
-                for infoRecurso in recursosRec.infoRecurso:
-
-                    if 'tpRepasse' in dir(infoRecurso): validacoes_lista = validar_campo(validacoes_lista,'infoRecurso.tpRepasse', infoRecurso.tpRepasse.cdata, 1, u'1;2;3;4;5')
-                    if 'descRecurso' in dir(infoRecurso): validacoes_lista = validar_campo(validacoes_lista,'infoRecurso.descRecurso', infoRecurso.descRecurso.cdata, 1, u'')
-                    if 'vlrBruto' in dir(infoRecurso): validacoes_lista = validar_campo(validacoes_lista,'infoRecurso.vlrBruto', infoRecurso.vlrBruto.cdata, 1, u'')
-                    if 'vlrRetApur' in dir(infoRecurso): validacoes_lista = validar_campo(validacoes_lista,'infoRecurso.vlrRetApur', infoRecurso.vlrRetApur.cdata, 1, u'')
-
-            if 'infoProc' in dir(recursosRec):
-                for infoProc in recursosRec.infoProc:
-
-                    if 'tpProc' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.tpProc', infoProc.tpProc.cdata, 1, u'1;2')
-                    if 'nrProc' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.nrProc', infoProc.nrProc.cdata, 1, u'')
-                    if 'codSusp' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.codSusp', infoProc.codSusp.cdata, 0, u'')
-                    if 'vlrNRet' in dir(infoProc): validacoes_lista = validar_campo(validacoes_lista,'infoProc.vlrNRet', infoProc.vlrNRet.cdata, 1, u'')
-
+    #variaveis
+    
+    if 'ideEvento' in dir(evtAssocDespRec.ideEvento):
+        for ideEvento in evtAssocDespRec.ideEvento:
+            
+            if 'indRetif' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.indRetif', 
+                                                  ideEvento.indRetif.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'nrRecibo' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.nrRecibo', 
+                                                  ideEvento.nrRecibo.cdata, 
+                                                  0, u'None')
+            
+            if 'perApur' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.perApur', 
+                                                  ideEvento.perApur.cdata, 
+                                                  1, u'None')
+            
+            if 'tpAmb' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.tpAmb', 
+                                                  ideEvento.tpAmb.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'procEmi' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.procEmi', 
+                                                  ideEvento.procEmi.cdata, 
+                                                  1, u'1, 2')
+            
+            if 'verProc' in dir(ideEvento):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideEvento.verProc', 
+                                                  ideEvento.verProc.cdata, 
+                                                  1, u'None')
+    
+    if 'ideContri' in dir(evtAssocDespRec.ideContri):
+        for ideContri in evtAssocDespRec.ideContri:
+            
+            if 'tpInsc' in dir(ideContri):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideContri.tpInsc', 
+                                                  ideContri.tpInsc.cdata, 
+                                                  1, u'1, 2, 3, 4, 5')
+            
+            if 'nrInsc' in dir(ideContri):
+                validacoes_lista = validar_campo( validacoes_lista,
+                                                  'ideContri.nrInsc', 
+                                                  ideContri.nrInsc.cdata, 
+                                                  1, u'None')
+            
+            if 'ideEstab' in dir(ideContri.ideEstab):
+                for ideEstab in ideContri.ideEstab:
+                    
+                    if 'tpInscEstab' in dir(ideEstab):
+                        validacoes_lista = validar_campo( validacoes_lista,
+                                                          'ideEstab.tpInscEstab', 
+                                                          ideEstab.tpInscEstab.cdata, 
+                                                          1, u'None')
+                    
+                    if 'nrInscEstab' in dir(ideEstab):
+                        validacoes_lista = validar_campo( validacoes_lista,
+                                                          'ideEstab.nrInscEstab', 
+                                                          ideEstab.nrInscEstab.cdata, 
+                                                          1, u'None')
+                    
+                    if 'recursosRec' in dir(ideEstab.recursosRec):
+                        for recursosRec in ideEstab.recursosRec:
+                            
+                            if 'cnpjOrigRecurso' in dir(recursosRec):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'recursosRec.cnpjOrigRecurso', 
+                                                                  recursosRec.cnpjOrigRecurso.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'vlrTotalRec' in dir(recursosRec):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'recursosRec.vlrTotalRec', 
+                                                                  recursosRec.vlrTotalRec.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'vlrTotalRet' in dir(recursosRec):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'recursosRec.vlrTotalRet', 
+                                                                  recursosRec.vlrTotalRet.cdata, 
+                                                                  1, u'None')
+                            
+                            if 'vlrTotalNRet' in dir(recursosRec):
+                                validacoes_lista = validar_campo( validacoes_lista,
+                                                                  'recursosRec.vlrTotalNRet', 
+                                                                  recursosRec.vlrTotalNRet.cdata, 
+                                                                  0, u'None')
+                            
+                            if 'infoRecurso' in dir(recursosRec.infoRecurso):
+                                for infoRecurso in recursosRec.infoRecurso:
+                                    
+                                    if 'tpRepasse' in dir(infoRecurso):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'infoRecurso.tpRepasse', 
+                                                                          infoRecurso.tpRepasse.cdata, 
+                                                                          1, u'1, 2, 3, 4, 5')
+                                    
+                                    if 'descRecurso' in dir(infoRecurso):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'infoRecurso.descRecurso', 
+                                                                          infoRecurso.descRecurso.cdata, 
+                                                                          1, u'None')
+                                    
+                                    if 'vlrBruto' in dir(infoRecurso):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'infoRecurso.vlrBruto', 
+                                                                          infoRecurso.vlrBruto.cdata, 
+                                                                          1, u'None')
+                                    
+                                    if 'vlrRetApur' in dir(infoRecurso):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'infoRecurso.vlrRetApur', 
+                                                                          infoRecurso.vlrRetApur.cdata, 
+                                                                          1, u'None')
+                            
+                            if 'infoProc' in dir(recursosRec.infoProc):
+                                for infoProc in recursosRec.infoProc:
+                                    
+                                    if 'tpProc' in dir(infoProc):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'infoProc.tpProc', 
+                                                                          infoProc.tpProc.cdata, 
+                                                                          1, u'1, 2')
+                                    
+                                    if 'nrProc' in dir(infoProc):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'infoProc.nrProc', 
+                                                                          infoProc.nrProc.cdata, 
+                                                                          1, u'None')
+                                    
+                                    if 'codSusp' in dir(infoProc):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'infoProc.codSusp', 
+                                                                          infoProc.codSusp.cdata, 
+                                                                          0, u'None')
+                                    
+                                    if 'vlrNRet' in dir(infoProc):
+                                        validacoes_lista = validar_campo( validacoes_lista,
+                                                                          'infoProc.vlrNRet', 
+                                                                          infoProc.vlrNRet.cdata, 
+                                                                          1, u'None')
     return validacoes_lista

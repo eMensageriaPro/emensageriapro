@@ -1,0 +1,70 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r9001_infototal or 1 %}
+            <th>Totalizador da contribuição previdenciária incidente sobre Receitas de Espetáculos Desportivos, apuradas no evento R-3010.</th>
+            {% endif %}
+            {% if show_fields.show_crrecespetdesp or 1 %}
+            <th>Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre Receita de Espetáculos Desportivos, calculada segundo as regras estabelecidas na legislação em vigor</th>
+            {% endif %}
+            {% if show_fields.show_vlrreceitatotal or 1 %}
+            <th>Valor da receita bruta total</th>
+            {% endif %}
+            {% if show_fields.show_vlrcrrecespetdesp or 1 %}
+            <th>Valor da contribuição previdenciária correspondente ao Código de Receita - CR informado em {CRRecEspetDesp}. Origem:R-3010</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r9001_rrecespetdesp_lista %}
+        <tr>
+            {% if show_fields.show_r9001_infototal or 1 %}
+            <td>{{ a.r9001_infototal }}</td>
+            {% endif %}
+            {% if show_fields.show_crrecespetdesp or 1 %}
+            <td>{{ a.crrecespetdesp }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrreceitatotal or 1 %}
+            <td>{{ a.vlrreceitatotal }}</td>
+            {% endif %}
+            {% if show_fields.show_vlrcrrecespetdesp or 1 %}
+            <td>{{ a.vlrcrrecespetdesp }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r9001_rrecespetdesp_visualizar' %}
+                        <a href="{% url 'r9001_rrecespetdesp_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r9001_rrecespetdesp_editar' or dict_permissoes|get_permissao:'r9001_rrecespetdesp_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r9001_rrecespetdesp_apagar' %}
+                        <a href="{% url 'r9001_rrecespetdesp_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

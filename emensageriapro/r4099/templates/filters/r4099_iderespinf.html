@@ -1,0 +1,100 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4099_iderespinf__r4099_evtfech -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Responsável pelas informações</label>
+    <select name="r4099_evtfech" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in r4099_evtfech_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r4099_evtfech' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r4099_iderespinf__r4099_evtfech -->
+
+<!-- inicio__r4099_iderespinf__nmresp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Nome do responsável pelas informações.</label>
+    <div name="nmresp" class="input-group" style="width: 100%;">
+      <input type="text" name="nmresp" class="form-control" value="{{ dict_fields|get_value_from_dict:'nmresp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4099_iderespinf__nmresp -->
+
+<!-- inicio__r4099_iderespinf__cpfresp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o CPF do responsável</label>
+    <div name="cpfresp" class="input-group" style="width: 100%;">
+      <input type="text" name="cpfresp" class="form-control" value="{{ dict_fields|get_value_from_dict:'cpfresp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4099_iderespinf__cpfresp -->
+
+<!-- inicio__r4099_iderespinf__telefone -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o número do telefone, com DDD</label>
+    <div name="telefone" class="input-group" style="width: 100%;">
+      <input type="text" name="telefone" class="form-control" value="{{ dict_fields|get_value_from_dict:'telefone' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4099_iderespinf__telefone -->
+
+<!-- inicio__r4099_iderespinf__email -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Endereço eletrônico</label>
+    <div name="email" class="input-group" style="width: 100%;">
+      <input type="text" name="email" class="form-control" value="{{ dict_fields|get_value_from_dict:'email' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4099_iderespinf__email -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r4099_evtfech" value="1" {% if show_fields|get_value_from_dict:'show_r4099_evtfech' %}checked{% endif %} >Responsável pelas informações
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nmresp" value="1" {% if show_fields|get_value_from_dict:'show_nmresp' %}checked{% endif %} >Nome do responsável pelas informações.
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_cpfresp" value="1" {% if show_fields|get_value_from_dict:'show_cpfresp' %}checked{% endif %} >Preencher com o CPF do responsável
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_telefone" value="0" {% if show_fields|get_value_from_dict:'show_telefone' %}checked{% endif %} >Informar o número do telefone, com DDD
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_email" value="0" {% if show_fields|get_value_from_dict:'show_email' %}checked{% endif %} >Endereço eletrônico
+    </div>
+</div>
+
+

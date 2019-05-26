@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r2070_pgtopf or 1 %}"Detalhamento das Competências";{% endif %}{% if show_fields.show_indperreferencia or 1 %}"Indicativo de período de referência";{% endif %}{% if show_fields.show_perrefpagto or 1 %}"Informar o período ao qual se refere o pagamento do rendimento, no formato AAAA-MM, no caso de pagamento de folha mensal, ou AAAA, no caso específico do 13º salário";{% endif %}{% if show_fields.show_vlrrendtributavel or 1 %}"Valor do rendimento tributável";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r2070_pgtopf or 1 %}"{{ c.r2070_pgtopf }}";{% endif %}{% if show_fields.show_indperreferencia or 1 %}"{{ c.indperreferencia }}";{% endif %}{% if show_fields.show_perrefpagto or 1 %}"{{ c.perrefpagto }}";{% endif %}{% if show_fields.show_vlrrendtributavel or 1 %}"{{ c.vlrrendtributavel }}";{% endif %}
+{% endfor %}

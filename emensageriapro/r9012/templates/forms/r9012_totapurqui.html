@@ -1,0 +1,151 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r9012_totapurqui__r9012_infototalcontrib -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_r9012_infototalcontrib').change(function(){
+       document.getElementById("r9012_totapurqui__r9012_infototalcontrib__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="r9012_totapurqui__r9012_infototalcontrib__div">
+  <div class="form-group">
+    <label id="r9012_totapurqui__r9012_infototalcontrib__label">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal*</label>
+    {% if not for_print %}
+      {% if r9012_totapurqui_form.r9012_infototalcontrib.value %}
+        <a id="r9012_totapurqui__r9012_infototalcontrib__div_acessar" href="{% url 'r9012_infototalcontrib_salvar' hash='{}'|json_id:r9012_totapurqui_form.r9012_infototalcontrib.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if r9012_totapurqui_form.r9012_infototalcontrib.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r9012_totapurqui_form.r9012_infototalcontrib.errors }}
+      </div>
+    {% endif %}
+    {% if r9012_totapurqui_form.r9012_infototalcontrib.field.widget.attrs.readonly %}
+      {% if r9012_totapurqui_form.r9012_infototalcontrib.field.widget.attrs.disabled %}
+        {{ r9012_totapurqui_form.r9012_infototalcontrib|addcss:'form-control' }}
+        <input id="id_r9012_infototalcontrib" name="r9012_infototalcontrib" type="hidden" value="{% if r9012_totapurqui_form.r9012_infototalcontrib.value or r9012_totapurqui_form.r9012_infototalcontrib.value == 0 %}{{ r9012_totapurqui_form.r9012_infototalcontrib.value|valor }}{% endif %}">
+      {% else %}
+        {{ r9012_totapurqui_form.r9012_infototalcontrib|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r9012_totapurqui_form.r9012_infototalcontrib|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r9012_totapurqui__r9012_infototalcontrib -->
+<!-- inicio__r9012_totapurqui__perapurqui -->
+<div class="col-md-6" id="r9012_totapurqui__perapurqui__div">
+  <div class="form-group">
+    <label id="r9012_totapurqui__perapurqui__label">Período de apuração quinzenal do Código de Receita - CR*</label>
+    {% if r9012_totapurqui_form.perapurqui.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r9012_totapurqui_form.perapurqui.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r9012_totapurqui_form.perapurqui.field.widget.attrs.readonly %}
+        {% if r9012_totapurqui_form.perapurqui.field.widget.attrs.disabled %}
+          {{ r9012_totapurqui_form.perapurqui|addcss:'form-control' }}
+          <input id="id_perapurqui" name="perapurqui" type="hidden" value="{% if r9012_totapurqui_form.perapurqui.value or r9012_totapurqui_form.perapurqui.value == 0 %}{{ r9012_totapurqui_form.perapurqui.value|valor }}{% endif %}">
+        {% else %}
+          {{ r9012_totapurqui_form.perapurqui|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r9012_totapurqui_form.perapurqui|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurqui__perapurqui -->
+<!-- inicio__r9012_totapurqui__crqui -->
+<div class="col-md-6" id="r9012_totapurqui__crqui__div">
+  <div class="form-group">
+    <label id="r9012_totapurqui__crqui__label">Código de Receita - CR relativo a tributo que possui período de apuração quinzenal*</label>
+      {% if r9012_totapurqui_form.crqui.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9012_totapurqui_form.crqui.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9012_totapurqui_form.crqui|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurqui__crqui -->
+<!-- inicio__r9012_totapurqui__vlrbasecrqui -->
+<div class="col-md-6" id="r9012_totapurqui__vlrbasecrqui__div">
+  <div class="form-group">
+    <label id="r9012_totapurqui__vlrbasecrqui__label">Valor da base do tributo com período de apuração quinzenal*</label>
+    {% if r9012_totapurqui_form.vlrbasecrqui.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapurqui_form.vlrbasecrqui.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapurqui_form.vlrbasecrqui|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurqui__vlrbasecrqui -->
+<!-- inicio__r9012_totapurqui__vlrcrqui -->
+<div class="col-md-6" id="r9012_totapurqui__vlrcrqui__div">
+  <div class="form-group">
+    <label id="r9012_totapurqui__vlrcrqui__label">Valor do tributo retido com período de apuração quinzenal, calculado segundo as regras estabelecidas na legislação em vigor*</label>
+    {% if r9012_totapurqui_form.vlrcrqui.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapurqui_form.vlrcrqui.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapurqui_form.vlrcrqui|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurqui__vlrcrqui -->
+<!-- inicio__r9012_totapurqui__vlrbasecrquisusp -->
+<div class="col-md-6" id="r9012_totapurqui__vlrbasecrquisusp__div">
+  <div class="form-group">
+    <label id="r9012_totapurqui__vlrbasecrquisusp__label">Valor da base do tributo com período de apuração quinzenal, com exigibilidade suspensa</label>
+    {% if r9012_totapurqui_form.vlrbasecrquisusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapurqui_form.vlrbasecrquisusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapurqui_form.vlrbasecrquisusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurqui__vlrbasecrquisusp -->
+<!-- inicio__r9012_totapurqui__vlrcrquisusp -->
+<div class="col-md-6" id="r9012_totapurqui__vlrcrquisusp__div">
+  <div class="form-group">
+    <label id="r9012_totapurqui__vlrcrquisusp__label">Valor do tributo com período de apuração quinzenal, que deixou de ser retido</label>
+    {% if r9012_totapurqui_form.vlrcrquisusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r9012_totapurqui_form.vlrcrquisusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r9012_totapurqui_form.vlrcrquisusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r9012_totapurqui__vlrcrquisusp -->

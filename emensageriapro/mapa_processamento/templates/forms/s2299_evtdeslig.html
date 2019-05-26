@@ -1,0 +1,515 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2299_evtdeslig__evtdeslig -->
+<div class="col-md-12" id="s2299_evtdeslig__evtdeslig__div">
+  <h4>Evento Desligamento</h4>
+</div>
+<!-- fim__s2299_evtdeslig__evtdeslig -->
+<!-- inicio__s2299_evtdeslig__identidade -->
+<div class="col-md-6" id="s2299_evtdeslig__identidade__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__identidade__label">Identidade do Registro</label>
+      {% if s2299_evtdeslig_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_evtdeslig_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__identidade -->
+<!-- inicio__s2299_evtdeslig__ideevento -->
+<div class="col-md-12" id="s2299_evtdeslig__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__s2299_evtdeslig__ideevento -->
+<!-- inicio__s2299_evtdeslig__indretif -->
+<div class="col-md-6" id="s2299_evtdeslig__indretif__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__indretif__label">Identificador de retificação*</label>
+    {% if s2299_evtdeslig_form.indretif.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2299_evtdeslig_form.indretif.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2299_evtdeslig_form.indretif.field.widget.attrs.readonly %}
+        {% if s2299_evtdeslig_form.indretif.field.widget.attrs.disabled %}
+          {{ s2299_evtdeslig_form.indretif|addcss:'form-control' }}
+          <input id="id_indretif" name="indretif" type="hidden" value="{% if s2299_evtdeslig_form.indretif.value or s2299_evtdeslig_form.indretif.value == 0 %}{{ s2299_evtdeslig_form.indretif.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2299_evtdeslig_form.indretif|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2299_evtdeslig_form.indretif|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__indretif -->
+<!-- inicio__s2299_evtdeslig__nrrecibo -->
+<div class="col-md-6" id="s2299_evtdeslig__nrrecibo__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__nrrecibo__label">Número do recibo</label>
+      {% if s2299_evtdeslig_form.nrrecibo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_evtdeslig_form.nrrecibo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.nrrecibo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__nrrecibo -->
+<!-- inicio__s2299_evtdeslig__tpamb -->
+<div class="col-md-6" id="s2299_evtdeslig__tpamb__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__tpamb__label">Identificação do ambiente*</label>
+    {% if s2299_evtdeslig_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2299_evtdeslig_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2299_evtdeslig_form.tpamb.field.widget.attrs.readonly %}
+        {% if s2299_evtdeslig_form.tpamb.field.widget.attrs.disabled %}
+          {{ s2299_evtdeslig_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if s2299_evtdeslig_form.tpamb.value or s2299_evtdeslig_form.tpamb.value == 0 %}{{ s2299_evtdeslig_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2299_evtdeslig_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2299_evtdeslig_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__tpamb -->
+<!-- inicio__s2299_evtdeslig__procemi -->
+<div class="col-md-6" id="s2299_evtdeslig__procemi__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__procemi__label">Processo de emissão do evento*</label>
+    {% if s2299_evtdeslig_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2299_evtdeslig_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2299_evtdeslig_form.procemi.field.widget.attrs.readonly %}
+        {% if s2299_evtdeslig_form.procemi.field.widget.attrs.disabled %}
+          {{ s2299_evtdeslig_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if s2299_evtdeslig_form.procemi.value or s2299_evtdeslig_form.procemi.value == 0 %}{{ s2299_evtdeslig_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2299_evtdeslig_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2299_evtdeslig_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__procemi -->
+<!-- inicio__s2299_evtdeslig__verproc -->
+<div class="col-md-6" id="s2299_evtdeslig__verproc__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__verproc__label">Versão do processo*</label>
+      {% if s2299_evtdeslig_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_evtdeslig_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__verproc -->
+<!-- inicio__s2299_evtdeslig__ideempregador -->
+<div class="col-md-12" id="s2299_evtdeslig__ideempregador__div">
+  <h4>Informações de identificação do empregador</h4>
+</div>
+<!-- fim__s2299_evtdeslig__ideempregador -->
+<!-- inicio__s2299_evtdeslig__tpinsc -->
+<div class="col-md-6" id="s2299_evtdeslig__tpinsc__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__tpinsc__label">Tipo de inscrição*</label>
+    {% if s2299_evtdeslig_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2299_evtdeslig_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2299_evtdeslig_form.tpinsc.field.widget.attrs.readonly %}
+        {% if s2299_evtdeslig_form.tpinsc.field.widget.attrs.disabled %}
+          {{ s2299_evtdeslig_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if s2299_evtdeslig_form.tpinsc.value or s2299_evtdeslig_form.tpinsc.value == 0 %}{{ s2299_evtdeslig_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2299_evtdeslig_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2299_evtdeslig_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__tpinsc -->
+<!-- inicio__s2299_evtdeslig__nrinsc -->
+<div class="col-md-6" id="s2299_evtdeslig__nrinsc__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__nrinsc__label">Número de inscrição (CPF/CNPJ)*</label>
+      {% if s2299_evtdeslig_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_evtdeslig_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__nrinsc -->
+<!-- inicio__s2299_evtdeslig__idevinculo -->
+<div class="col-md-12" id="s2299_evtdeslig__idevinculo__div">
+  <h4>Informações de Identificação do Trabalhador e do Vínculo</h4>
+</div>
+<!-- fim__s2299_evtdeslig__idevinculo -->
+<!-- inicio__s2299_evtdeslig__cpftrab -->
+<div class="col-md-6" id="s2299_evtdeslig__cpftrab__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__cpftrab__label">CPF*</label>
+      {% if s2299_evtdeslig_form.cpftrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_evtdeslig_form.cpftrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.cpftrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__cpftrab -->
+<!-- inicio__s2299_evtdeslig__nistrab -->
+<div class="col-md-6" id="s2299_evtdeslig__nistrab__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__nistrab__label">NIS*</label>
+      {% if s2299_evtdeslig_form.nistrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_evtdeslig_form.nistrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.nistrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__nistrab -->
+<!-- inicio__s2299_evtdeslig__matricula -->
+<div class="col-md-6" id="s2299_evtdeslig__matricula__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__matricula__label">Matricula*</label>
+      {% if s2299_evtdeslig_form.matricula.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_evtdeslig_form.matricula.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.matricula|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__matricula -->
+<!-- inicio__s2299_evtdeslig__infodeslig -->
+<div class="col-md-12" id="s2299_evtdeslig__infodeslig__div">
+  <h4>Apresenta as informações relativas ao desligamento do vínculo identificado no registro superior.</h4>
+</div>
+<!-- fim__s2299_evtdeslig__infodeslig -->
+<!-- inicio__s2299_evtdeslig__mtvdeslig -->
+<div class="col-md-6" id="s2299_evtdeslig__mtvdeslig__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__mtvdeslig__label">Motivo do desligamento*</label>
+    {% if s2299_evtdeslig_form.mtvdeslig.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2299_evtdeslig_form.mtvdeslig.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2299_evtdeslig_form.mtvdeslig.field.widget.attrs.readonly %}
+        {% if s2299_evtdeslig_form.mtvdeslig.field.widget.attrs.disabled %}
+          {{ s2299_evtdeslig_form.mtvdeslig|addcss:'form-control' }}
+          <input id="id_mtvdeslig" name="mtvdeslig" type="hidden" value="{% if s2299_evtdeslig_form.mtvdeslig.value or s2299_evtdeslig_form.mtvdeslig.value == 0 %}{{ s2299_evtdeslig_form.mtvdeslig.value }}{% endif %}">
+        {% else %}
+          {{ s2299_evtdeslig_form.mtvdeslig|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2299_evtdeslig_form.mtvdeslig|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__mtvdeslig -->
+<!-- inicio__s2299_evtdeslig__dtdeslig -->
+<div class="col-md-6" id="s2299_evtdeslig__dtdeslig__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__dtdeslig__label">Data de desligamento*</label>
+        {% if s2299_evtdeslig_form.dtdeslig.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2299_evtdeslig_form.dtdeslig.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.dtdeslig|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__dtdeslig -->
+<!-- inicio__s2299_evtdeslig__indpagtoapi -->
+<div class="col-md-6" id="s2299_evtdeslig__indpagtoapi__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__indpagtoapi__label">Indicador de pagamento de aviso prévio indenizado*</label>
+    {% if s2299_evtdeslig_form.indpagtoapi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2299_evtdeslig_form.indpagtoapi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2299_evtdeslig_form.indpagtoapi.field.widget.attrs.readonly %}
+        {% if s2299_evtdeslig_form.indpagtoapi.field.widget.attrs.disabled %}
+          {{ s2299_evtdeslig_form.indpagtoapi|addcss:'form-control' }}
+          <input id="id_indpagtoapi" name="indpagtoapi" type="hidden" value="{% if s2299_evtdeslig_form.indpagtoapi.value or s2299_evtdeslig_form.indpagtoapi.value == 0 %}{{ s2299_evtdeslig_form.indpagtoapi.value }}{% endif %}">
+        {% else %}
+          {{ s2299_evtdeslig_form.indpagtoapi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2299_evtdeslig_form.indpagtoapi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__indpagtoapi -->
+<!-- inicio__s2299_evtdeslig__dtprojfimapi -->
+<div class="col-md-6" id="s2299_evtdeslig__dtprojfimapi__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__dtprojfimapi__label">Data projetada para o término do aviso prévio</label>
+        {% if s2299_evtdeslig_form.dtprojfimapi.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2299_evtdeslig_form.dtprojfimapi.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.dtprojfimapi|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__dtprojfimapi -->
+<!-- inicio__s2299_evtdeslig__pensalim -->
+<div class="col-md-6" id="s2299_evtdeslig__pensalim__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__pensalim__label">Pensão Alimentícia*</label>
+    {% if s2299_evtdeslig_form.pensalim.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2299_evtdeslig_form.pensalim.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2299_evtdeslig_form.pensalim.field.widget.attrs.readonly %}
+        {% if s2299_evtdeslig_form.pensalim.field.widget.attrs.disabled %}
+          {{ s2299_evtdeslig_form.pensalim|addcss:'form-control' }}
+          <input id="id_pensalim" name="pensalim" type="hidden" value="{% if s2299_evtdeslig_form.pensalim.value or s2299_evtdeslig_form.pensalim.value == 0 %}{{ s2299_evtdeslig_form.pensalim.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2299_evtdeslig_form.pensalim|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2299_evtdeslig_form.pensalim|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__pensalim -->
+<!-- inicio__s2299_evtdeslig__percaliment -->
+<div class="col-md-6" id="s2299_evtdeslig__percaliment__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__percaliment__label">Percentual da Pensão Alimentícia</label>
+    {% if s2299_evtdeslig_form.percaliment.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2299_evtdeslig_form.percaliment.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+      </div>
+      {{ s2299_evtdeslig_form.percaliment|addcss:'form-control automate-decimal' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__percaliment -->
+<!-- inicio__s2299_evtdeslig__vralim -->
+<div class="col-md-6" id="s2299_evtdeslig__vralim__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__vralim__label">Valor da Pensão alimentícia</label>
+    {% if s2299_evtdeslig_form.vralim.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2299_evtdeslig_form.vralim.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ s2299_evtdeslig_form.vralim|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__vralim -->
+<!-- inicio__s2299_evtdeslig__nrcertobito -->
+<div class="col-md-6" id="s2299_evtdeslig__nrcertobito__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__nrcertobito__label">Número da certidão de óbito</label>
+      {% if s2299_evtdeslig_form.nrcertobito.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_evtdeslig_form.nrcertobito.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.nrcertobito|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__nrcertobito -->
+<!-- inicio__s2299_evtdeslig__nrproctrab -->
+<div class="col-md-6" id="s2299_evtdeslig__nrproctrab__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__nrproctrab__label">Número do Processo Trabalhista</label>
+      {% if s2299_evtdeslig_form.nrproctrab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_evtdeslig_form.nrproctrab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.nrproctrab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__nrproctrab -->
+<!-- inicio__s2299_evtdeslig__indcumprparc -->
+<div class="col-md-6" id="s2299_evtdeslig__indcumprparc__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__indcumprparc__label">Cumprimento parcial do aviso prévio*</label>
+    {% if s2299_evtdeslig_form.indcumprparc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2299_evtdeslig_form.indcumprparc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2299_evtdeslig_form.indcumprparc.field.widget.attrs.readonly %}
+        {% if s2299_evtdeslig_form.indcumprparc.field.widget.attrs.disabled %}
+          {{ s2299_evtdeslig_form.indcumprparc|addcss:'form-control' }}
+          <input id="id_indcumprparc" name="indcumprparc" type="hidden" value="{% if s2299_evtdeslig_form.indcumprparc.value or s2299_evtdeslig_form.indcumprparc.value == 0 %}{{ s2299_evtdeslig_form.indcumprparc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2299_evtdeslig_form.indcumprparc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2299_evtdeslig_form.indcumprparc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__indcumprparc -->
+<!-- inicio__s2299_evtdeslig__qtddiasinterm -->
+<div class="col-md-6" id="s2299_evtdeslig__qtddiasinterm__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__qtddiasinterm__label">Quantidade de dias trabalhados no mês pelo empregado com contrato de trabalho intermitente</label>
+      {% if s2299_evtdeslig_form.qtddiasinterm.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2299_evtdeslig_form.qtddiasinterm.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2299_evtdeslig_form.qtddiasinterm|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__qtddiasinterm -->
+<!-- inicio__s2299_evtdeslig__versao -->
+<div class="col-md-3" id="s2299_evtdeslig__versao__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__versao__label">Versão</label>
+    {% if s2299_evtdeslig_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2299_evtdeslig_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2299_evtdeslig_form.versao.field.widget.attrs.readonly %}
+        {% if s2299_evtdeslig_form.versao.field.widget.attrs.disabled %}
+          {{ s2299_evtdeslig_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if s2299_evtdeslig_form.versao.value or s2299_evtdeslig_form.versao.value == 0 %}{{ s2299_evtdeslig_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ s2299_evtdeslig_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2299_evtdeslig_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__versao -->
+<!-- inicio__s2299_evtdeslig__transmissor_lote_esocial -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_esocial').change(function(){document.getElementById("s2299_evtdeslig__transmissor_lote_esocial__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="s2299_evtdeslig__transmissor_lote_esocial__div">
+<div class="form-group">
+  <label id="s2299_evtdeslig__transmissor_lote_esocial__label">Transmissor</label>
+  {% if not for_print %}
+    {% if s2299_evtdeslig_form.transmissor_lote_esocial.value %}
+    <a id="s2299_evtdeslig__transmissor_lote_esocial__div_acessar" href="{% url 'transmissor_lote_esocial_salvar' hash='{}'|json_id:s2299_evtdeslig_form.transmissor_lote_esocial.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  {% if s2299_evtdeslig_form.transmissor_lote_esocial.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2299_evtdeslig_form.transmissor_lote_esocial.errors }}
+    </div>
+  {% endif %}
+  {% if s2299_evtdeslig_form.transmissor_lote_esocial.field.widget.attrs.readonly %}
+    {% if s2299_evtdeslig_form.transmissor_lote_esocial.field.widget.attrs.disabled %}
+      {{ s2299_evtdeslig_form.transmissor_lote_esocial|addcss:'form-control' }}
+      <input id="id_transmissor_lote_esocial" name="transmissor_lote_esocial" type="hidden" value="{% if s2299_evtdeslig_form.transmissor_lote_esocial.value or s2299_evtdeslig_form.transmissor_lote_esocial.value == 0 %}{{ s2299_evtdeslig_form.transmissor_lote_esocial.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ s2299_evtdeslig_form.transmissor_lote_esocial|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ s2299_evtdeslig_form.transmissor_lote_esocial|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__s2299_evtdeslig__transmissor_lote_esocial -->
+<!-- inicio__s2299_evtdeslig__status -->
+<div class="col-md-3" id="s2299_evtdeslig__status__div">
+  <div class="form-group">
+    <label id="s2299_evtdeslig__status__label">Status</label>
+    {% if s2299_evtdeslig_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2299_evtdeslig_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2299_evtdeslig_form.status.field.widget.attrs.readonly %}
+        {% if s2299_evtdeslig_form.status.field.widget.attrs.disabled %}
+          {{ s2299_evtdeslig_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if s2299_evtdeslig_form.status.value or s2299_evtdeslig_form.status.value == 0 %}{{ s2299_evtdeslig_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2299_evtdeslig_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2299_evtdeslig_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2299_evtdeslig__status -->

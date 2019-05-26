@@ -1,0 +1,127 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4010_inforra__r4010_infopgto -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações Complementares - Rendimentos Recebidos Acumuladamente</label>
+    <select name="r4010_infopgto" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in r4010_infopgto_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r4010_infopgto' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r4010_inforra__r4010_infopgto -->
+
+<!-- inicio__r4010_inforra__tpprocrra -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o código correspondente ao tipo de processo</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpprocrra" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpprocrra' %}selected="selected"{% endifequal %} >1 - Administrativo</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpprocrra' %}selected="selected"{% endifequal %} >2 - Judicial.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforra__tpprocrra -->
+
+<!-- inicio__r4010_inforra__nrprocrra -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o número do processo/requerimento administrativo/judicial</label>
+    <div name="nrprocrra" class="input-group" style="width: 100%;">
+      <input type="text" name="nrprocrra" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrprocrra' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforra__nrprocrra -->
+
+<!-- inicio__r4010_inforra__indorigrec -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Indicativo da origem dos recursos</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="indorigrec" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'indorigrec' %}selected="selected"{% endifequal %} >1 - Recursos do próprio declarante</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'indorigrec' %}selected="selected"{% endifequal %} >2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforra__indorigrec -->
+
+<!-- inicio__r4010_inforra__descrra -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Descrição dos Rendimentos Recebidos Acumuladamente - RRA</label>
+    <div name="descrra" class="input-group" style="width: 100%;">
+      <input type="text" name="descrra" class="form-control" value="{{ dict_fields|get_value_from_dict:'descrra' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforra__descrra -->
+
+<!-- inicio__r4010_inforra__qtdmesesrra -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Quantidade de meses</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+      </div>
+      <input type="text" name="qtdmesesrra" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'qtdmesesrra' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_inforra__qtdmesesrra -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r4010_infopgto" value="1" {% if show_fields|get_value_from_dict:'show_r4010_infopgto' %}checked{% endif %} >Informações Complementares - Rendimentos Recebidos Acumuladamente
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpprocrra" value="1" {% if show_fields|get_value_from_dict:'show_tpprocrra' %}checked{% endif %} >Preencher com o código correspondente ao tipo de processo
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrprocrra" value="0" {% if show_fields|get_value_from_dict:'show_nrprocrra' %}checked{% endif %} >Informar o número do processo/requerimento administrativo/judicial
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_indorigrec" value="1" {% if show_fields|get_value_from_dict:'show_indorigrec' %}checked{% endif %} >Indicativo da origem dos recursos
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_descrra" value="1" {% if show_fields|get_value_from_dict:'show_descrra' %}checked{% endif %} >Descrição dos Rendimentos Recebidos Acumuladamente - RRA
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_qtdmesesrra" value="1" {% if show_fields|get_value_from_dict:'show_qtdmesesrra' %}checked{% endif %} >Quantidade de meses
+    </div>
+</div>
+
+

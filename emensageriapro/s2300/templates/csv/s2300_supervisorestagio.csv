@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2300_infoestagiario or 1 %}"Supervisor do Estágio";{% endif %}{% if show_fields.show_cpfsupervisor or 1 %}"CPF";{% endif %}{% if show_fields.show_nmsuperv or 1 %}"Nome do Supervisor do Estágio";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2300_infoestagiario or 1 %}"{{ c.s2300_infoestagiario }}";{% endif %}{% if show_fields.show_cpfsupervisor or 1 %}"{{ c.cpfsupervisor }}";{% endif %}{% if show_fields.show_nmsuperv or 1 %}"{{ c.nmsuperv }}";{% endif %}
+{% endfor %}

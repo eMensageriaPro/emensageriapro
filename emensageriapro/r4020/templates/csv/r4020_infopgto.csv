@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r4020_idepgto or 1 %}"Informações do Pagamento";{% endif %}{% if show_fields.show_dtfg or 1 %}"Informar a data do fato gerador ou pagamento/crédito";{% endif %}{% if show_fields.show_vlrtotalpag or 1 %}"Valor total pago";{% endif %}{% if show_fields.show_vlrtotalcred or 1 %}"Valor total creditado";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r4020_idepgto or 1 %}"{{ c.r4020_idepgto }}";{% endif %}{% if show_fields.show_dtfg or 1 %}"{{ c.dtfg }}";{% endif %}{% if show_fields.show_vlrtotalpag or 1 %}"{{ c.vlrtotalpag }}";{% endif %}{% if show_fields.show_vlrtotalcred or 1 %}"{{ c.vlrtotalcred }}";{% endif %}
+{% endfor %}

@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s1250_evtaqprod or 1 %}"Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física";{% endif %}{% if show_fields.show_indaquis or 1 %}"Indicativo de aquisição";{% endif %}{% if show_fields.show_vlrtotaquis or 1 %}"Valor total da aquisição";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s1250_evtaqprod or 1 %}"{{ c.s1250_evtaqprod }}";{% endif %}{% if show_fields.show_indaquis or 1 %}"{{ c.indaquis }}";{% endif %}{% if show_fields.show_vlrtotaquis or 1 %}"{{ c.vlrtotaquis }}";{% endif %}
+{% endfor %}

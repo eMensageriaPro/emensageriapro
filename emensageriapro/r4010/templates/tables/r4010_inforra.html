@@ -1,0 +1,76 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_r4010_infopgto or 1 %}
+            <th>Informações Complementares - Rendimentos Recebidos Acumuladamente</th>
+            {% endif %}
+            {% if show_fields.show_tpprocrra or 1 %}
+            <th>Preencher com o código correspondente ao tipo de processo</th>
+            {% endif %}
+            {% if show_fields.show_indorigrec or 1 %}
+            <th>Indicativo da origem dos recursos</th>
+            {% endif %}
+            {% if show_fields.show_descrra or 1 %}
+            <th>Descrição dos Rendimentos Recebidos Acumuladamente - RRA</th>
+            {% endif %}
+            {% if show_fields.show_qtdmesesrra or 1 %}
+            <th>Quantidade de meses</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in r4010_inforra_lista %}
+        <tr>
+            {% if show_fields.show_r4010_infopgto or 1 %}
+            <td>{{ a.r4010_infopgto }}</td>
+            {% endif %}
+            {% if show_fields.show_tpprocrra or 1 %}
+            <td>{{ a.get_tpprocrra_display }}</td>
+            {% endif %}
+            {% if show_fields.show_indorigrec or 1 %}
+            <td>{{ a.get_indorigrec_display }}</td>
+            {% endif %}
+            {% if show_fields.show_descrra or 1 %}
+            <td>{{ a.descrra }}</td>
+            {% endif %}
+            {% if show_fields.show_qtdmesesrra or 1 %}
+            <td>{{ a.qtdmesesrra }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if dict_permissoes|get_permissao:'r4010_inforra_visualizar' %}
+                        <a href="{% url 'r4010_inforra_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if dict_permissoes|get_permissao:'r4010_inforra_editar' or dict_permissoes|get_permissao:'r4010_inforra_cadastrar' %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if dict_permissoes|get_permissao:'r4010_inforra_apagar' %}
+                        <a href="{% url 'r4010_inforra_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

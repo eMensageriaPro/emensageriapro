@@ -1,1 +1,123 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Beneficiário Pessoa Física - Residente no Brasil</label><select name="r2070_pgtopf" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in r2070_pgtopf_lista %}<option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2070_pgtopf' %}selected="selected"{% endifequal %}>{{ a.r2070_ideestab }} - {{ a.dtpgto }} - {{ a.indsuspexig }} - {{ a.inddecterceiro }} - {{ a.vlrrendtributavel }} - {{ a.vlrirrf }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Preencher com o código correspondente ao tipo de processo</label><div class="input-group" style="width: 100%;"><select name="tpprocrra" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpprocrra' %}selected="selected"{% endifequal %} >1 - Administrativo</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpprocrra' %}selected="selected"{% endifequal %} >2 - Judicial</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Informar o número do processo/requerimento administrativo/judicial</label><div name="nrprocrra__icontains" class="input-group" style="width: 100%;"><input type="text" name="nrprocrra__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrprocrra__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Código do Indicativo da Suspensão, atribuído pelo contribuinte</label><div name="codsusp" class="input-group" style="width: 100%;"><input type="text" name="codsusp" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'codsusp' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Informar a natureza do Rendimento Recebido Acumuladamente</label><div name="natrra__icontains" class="input-group" style="width: 100%;"><input type="text" name="natrra__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'natrra__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Quantidade de meses</label><div name="qtdmesesrra" class="input-group" style="width: 100%;"><input type="text" name="qtdmesesrra" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'qtdmesesrra' }}"></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_r2070_pgtopf" value="1" {% if show_fields|get_value_from_dict:'show_r2070_pgtopf' %}checked{% endif %}>Beneficiário Pessoa Física - Residente no Brasil</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpprocrra" value="1" {% if show_fields|get_value_from_dict:'show_tpprocrra' %}checked{% endif %}>Preencher com o código correspondente ao tipo de processo</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_nrprocrra" value="1" {% if show_fields|get_value_from_dict:'show_nrprocrra' %}checked{% endif %}>Informar o número do processo/requerimento administrativo/judicial</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_codsusp" value="1" {% if show_fields|get_value_from_dict:'show_codsusp' %}checked{% endif %}>Código do Indicativo da Suspensão, atribuído pelo contribuinte</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_natrra" value="1" {% if show_fields|get_value_from_dict:'show_natrra' %}checked{% endif %}>Informar a natureza do Rendimento Recebido Acumuladamente</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_qtdmesesrra" value="1" {% if show_fields|get_value_from_dict:'show_qtdmesesrra' %}checked{% endif %}>Quantidade de meses</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r2070_inforra__r2070_pgtopf -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações Complementares - Rendimentos Recebidos Acumuladamente</label>
+    <select name="r2070_pgtopf" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>
+      {% for a in r2070_pgtopf_lista %}
+      <option value="{{ a.id|valor }}" {% ifequal a.id dict_fields|get_value_from_dict:'r2070_pgtopf' %}selected="selected"{% endifequal %} >{{ a }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r2070_inforra__r2070_pgtopf -->
+
+<!-- inicio__r2070_inforra__tpprocrra -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Preencher com o código correspondente ao tipo de processo</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpprocrra" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpprocrra' %}selected="selected"{% endifequal %} >1 - Administrativo</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpprocrra' %}selected="selected"{% endifequal %} >2 - Judicial.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r2070_inforra__tpprocrra -->
+
+<!-- inicio__r2070_inforra__nrprocrra -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar o número do processo/requerimento administrativo/judicial</label>
+    <div name="nrprocrra" class="input-group" style="width: 100%;">
+      <input type="text" name="nrprocrra" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrprocrra' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2070_inforra__nrprocrra -->
+
+<!-- inicio__r2070_inforra__codsusp -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Código do Indicativo da Suspensão, atribuído pelo contribuinte</label>
+    <div name="codsusp" class="input-group" style="width: 100%;">
+      <input type="text" name="codsusp" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'codsusp' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2070_inforra__codsusp -->
+
+<!-- inicio__r2070_inforra__natrra -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Informar a natureza do Rendimento Recebido Acumuladamente</label>
+    <div name="natrra" class="input-group" style="width: 100%;">
+      <input type="text" name="natrra" class="form-control" value="{{ dict_fields|get_value_from_dict:'natrra' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2070_inforra__natrra -->
+
+<!-- inicio__r2070_inforra__qtdmesesrra -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Quantidade de meses</label>
+    <div name="qtdmesesrra" class="input-group" style="width: 100%;">
+      <input type="text" name="qtdmesesrra" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'qtdmesesrra' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r2070_inforra__qtdmesesrra -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r2070_pgtopf" value="1" {% if show_fields|get_value_from_dict:'show_r2070_pgtopf' %}checked{% endif %} >Informações Complementares - Rendimentos Recebidos Acumuladamente
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpprocrra" value="0" {% if show_fields|get_value_from_dict:'show_tpprocrra' %}checked{% endif %} >Preencher com o código correspondente ao tipo de processo
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrprocrra" value="0" {% if show_fields|get_value_from_dict:'show_nrprocrra' %}checked{% endif %} >Informar o número do processo/requerimento administrativo/judicial
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codsusp" value="0" {% if show_fields|get_value_from_dict:'show_codsusp' %}checked{% endif %} >Código do Indicativo da Suspensão, atribuído pelo contribuinte
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_natrra" value="0" {% if show_fields|get_value_from_dict:'show_natrra' %}checked{% endif %} >Informar a natureza do Rendimento Recebido Acumuladamente
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_qtdmesesrra" value="0" {% if show_fields|get_value_from_dict:'show_qtdmesesrra' %}checked{% endif %} >Quantidade de meses
+    </div>
+</div>
+
+

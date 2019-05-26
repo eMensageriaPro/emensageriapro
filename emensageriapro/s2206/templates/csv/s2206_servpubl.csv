@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2206_evtaltcontratual or 1 %}"Alterações inerentes ao servidor público";{% endif %}{% if show_fields.show_mtvalter or 1 %}"Motivo da alteração do cargo/função";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2206_evtaltcontratual or 1 %}"{{ c.s2206_evtaltcontratual }}";{% endif %}{% if show_fields.show_mtvalter or 1 %}"{{ c.mtvalter }}";{% endif %}
+{% endfor %}

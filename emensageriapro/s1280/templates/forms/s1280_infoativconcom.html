@@ -1,1 +1,65 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s1280_evtinfocomplper_id or s1280_evtinfocomplper_id != s1280_infoativconcom_form.s1280_evtinfocomplper.value %}<!-- inicio__s1280_infoativconcom__s1280_evtinfocomplper --><div class="col-md-12" id="s1280_infoativconcom__s1280_evtinfocomplper__div"><div class="form-group"><label id="s1280_infoativconcom__s1280_evtinfocomplper__label">Possui informações de desoneração de folha de pagamento ou, sendo empresa enquadrada no Simples, possui informações sobre a receita obtida em atividades cuja contribuição previdenciária incidente sobre a folha de pagamento é concomitantemente substituída e (...)*<a data-toggle="tooltip" title="Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s1280_infoativconcom_form.s1280_evtinfocomplper.value %}<a href="{% url 's1280_evtinfocomplper_salvar' hash='{}'|json_return_page:'s1280_infoativconcom_salvar'|json_return_hash:hash|json_id:s1280_infoativconcom_form.s1280_evtinfocomplper.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s1280_infoativconcom_form.s1280_evtinfocomplper.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1280_infoativconcom_form.s1280_evtinfocomplper.errors }}</div>{% endif %} {% if s1280_infoativconcom_form.s1280_evtinfocomplper.field.widget.attrs.readonly %} {% if s1280_infoativconcom_form.s1280_evtinfocomplper.field.widget.attrs.disabled %} {{ s1280_infoativconcom_form.s1280_evtinfocomplper|addcss:'form-control' }}<input id="id_s1280_evtinfocomplper" name="s1280_evtinfocomplper" type="hidden" value="{{ s1280_infoativconcom_form.s1280_evtinfocomplper.value }}">{% else %} {{ s1280_infoativconcom_form.s1280_evtinfocomplper|addcss:'form-control' }} {% endif %} {% else %} {{ s1280_infoativconcom_form.s1280_evtinfocomplper|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s1280_infoativconcom__s1280_evtinfocomplper -->{% else %}<input type="hidden" value="{{ s1280_evtinfocomplper_id|valor }}" id="id_s1280_evtinfocomplper" name="s1280_evtinfocomplper">{% endif %}<!-- inicio__s1280_infoativconcom__fatormes --><div class="col-md-6" id="s1280_infoativconcom__fatormes__div"><div class="form-group"><label id="s1280_infoativconcom__fatormes__label">Fator mês*<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar nº 123/2006."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1280_infoativconcom_form.fatormes.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1280_infoativconcom_form.fatormes.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"></div>{{ s1280_infoativconcom_form.fatormes|addcss:'form-control automate-decimal' }}</div></div></div><!-- fim__s1280_infoativconcom__fatormes --><!-- inicio__s1280_infoativconcom__fator13 --><div class="col-md-6" id="s1280_infoativconcom__fator13__div"><div class="form-group"><label id="s1280_infoativconcom__fator13__label">Fator decimo terceiro*<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar nº 123/2006."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1280_infoativconcom_form.fator13.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1280_infoativconcom_form.fator13.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"></div>{{ s1280_infoativconcom_form.fator13|addcss:'form-control automate-decimal' }}</div></div></div><!-- fim__s1280_infoativconcom__fator13 -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1280_infoativconcom__s1280_evtinfocomplper -->
+<div class="col-md-12" id="s1280_infoativconcom__s1280_evtinfocomplper__div">
+  <div class="form-group">
+    <label id="s1280_infoativconcom__s1280_evtinfocomplper__label">Registro preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.*</label>
+    {% if not for_print %}{% if s1280_infoativconcom_form.s1280_evtinfocomplper.value %}
+        <a href="{% url 's1280_evtinfocomplper_salvar' hash='{}'|json_return_page:'s1280_infoativconcom_salvar'|json_return_hash:hash|json_id:s1280_infoativconcom_form.s1280_evtinfocomplper.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s1280_infoativconcom_form.s1280_evtinfocomplper.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1280_infoativconcom_form.s1280_evtinfocomplper.errors }}
+      </div>
+    {% endif %}
+    {% if s1280_infoativconcom_form.s1280_evtinfocomplper.field.widget.attrs.readonly %}
+      {% if s1280_infoativconcom_form.s1280_evtinfocomplper.field.widget.attrs.disabled %}
+        {{ s1280_infoativconcom_form.s1280_evtinfocomplper|addcss:'form-control' }}
+        <input id="id_s1280_evtinfocomplper" name="s1280_evtinfocomplper" type="hidden" value="{{ s1280_infoativconcom_form.s1280_evtinfocomplper.value }}">
+      {% else %}
+        {{ s1280_infoativconcom_form.s1280_evtinfocomplper|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s1280_infoativconcom_form.s1280_evtinfocomplper|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s1280_infoativconcom__s1280_evtinfocomplper -->
+<!-- inicio__s1280_infoativconcom__fatormes -->
+<div class="col-md-4" id="s1280_infoativconcom__fatormes__div">
+  <div class="form-group">
+    <label id="s1280_infoativconcom__fatormes__label">Fator mês*</label>
+    {% if s1280_infoativconcom_form.fatormes.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s1280_infoativconcom_form.fatormes.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+      </div>
+      {{ s1280_infoativconcom_form.fatormes|addcss:'form-control automate-decimal' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1280_infoativconcom__fatormes -->
+<!-- inicio__s1280_infoativconcom__fator13 -->
+<div class="col-md-4" id="s1280_infoativconcom__fator13__div">
+  <div class="form-group">
+    <label id="s1280_infoativconcom__fator13__label">Fator decimo terceiro*</label>
+    {% if s1280_infoativconcom_form.fator13.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s1280_infoativconcom_form.fator13.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+      </div>
+      {{ s1280_infoativconcom_form.fator13|addcss:'form-control automate-decimal' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1280_infoativconcom__fator13 -->

@@ -1,0 +1,87 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4020_infoprocjud__r4020_infopgto -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial</label>
+    <select name="r4020_infopgto" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in r4020_infopgto_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r4020_infopgto' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r4020_infoprocjud__r4020_infopgto -->
+
+<!-- inicio__r4020_infoprocjud__nrproc -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Informar o número do processo administrativo/judicial</label>
+    <div name="nrproc" class="input-group" style="width: 100%;">
+      <input type="text" name="nrproc" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrproc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infoprocjud__nrproc -->
+
+<!-- inicio__r4020_infoprocjud__indorigemrecursos -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Indicativo da origem dos recursos</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="indorigemrecursos" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'indorigemrecursos' %}selected="selected"{% endifequal %} >1 - Recursos do próprio declarante</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'indorigemrecursos' %}selected="selected"{% endifequal %} >2 - Recursos de terceiros - Declarante é a Instituição Financeira responsável apenas pelo repasse dos valores.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infoprocjud__indorigemrecursos -->
+
+<!-- inicio__r4020_infoprocjud__desc -->
+<div class="col-md-3">
+  <div class="form-group">
+    <label>Descrição</label>
+    <div name="desc" class="input-group" style="width: 100%;">
+      <input type="text" name="desc" class="form-control" value="{{ dict_fields|get_value_from_dict:'desc' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_infoprocjud__desc -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r4020_infopgto" value="1" {% if show_fields|get_value_from_dict:'show_r4020_infopgto' %}checked{% endif %} >Informações Complementares - Demais rendimentos decorrentes de Decisão Judicial
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrproc" value="1" {% if show_fields|get_value_from_dict:'show_nrproc' %}checked{% endif %} >Informar o número do processo administrativo/judicial
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_indorigemrecursos" value="1" {% if show_fields|get_value_from_dict:'show_indorigemrecursos' %}checked{% endif %} >Indicativo da origem dos recursos
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_desc" value="0" {% if show_fields|get_value_from_dict:'show_desc' %}checked{% endif %} >Descrição
+    </div>
+</div>
+
+

@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Identificação do local onde ocorreu o acidente"
-{% if show_fields.show_s2210_evtcat or not s2210_evtcat_id and 1 %}"Evento Comunicação de Acidente de Trabalho";{% endif %}{% if show_fields.show_tpinsc or 1 %}"Tipo de inscrição";{% endif %}{% if show_fields.show_nrinsc or 1 %}"Número de inscrição (CPF/CNPJ)";{% endif %}
-{% for a in s2210_idelocalacid_lista %}{% if show_fields.show_s2210_evtcat or  not s2210_evtcat_id and 1 %}"{{ a.s2210_evtcat }}";{% endif %}{% if show_fields.show_tpinsc or 1 %}"{{ a.get_tpinsc_display }}";{% endif %}{% if show_fields.show_nrinsc or 1 %}"{{ a.nrinsc }}";{% endif %}
-{% endfor %}

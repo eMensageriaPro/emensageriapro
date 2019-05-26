@@ -1,1 +1,945 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% extends 'base.html' %}{% load templatetags %}{% block content %}<section class="content-header"><h1>Alteração das informações<small>Cadastrar/Editar</small></h1><ol class="breadcrumb"><li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li><li><a href="#">Alteração das informações</a></li><li class="active">Cadastrar/Editar</li></ol></section>{% if not for_print %}<section class="content"><div class="row"><div class="col-xs-12"><div class="nav-tabs-custom"><ul class="nav nav-tabs">{% if dict_permissoes|get_permissao:'s1010_alteracao_visualizar' %}<li {% if not tab %}class="active"{% endif %}><a href="{% url 's1010_alteracao_salvar' hash='{}'|json_return_page:'s1010_alteracao_salvar'|json_return_hash:hash|json_id:s1010_alteracao_id|json_print:0|base64_encode_me %}">Alteração das informações</a></li>{% endif %}{% if s1010_alteracao_id %}<!-- ANTES-TABS-s1010_alteracao_ideprocessocp -->{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_visualizar' %}<li {% if tab == 's1010_alteracao_ideprocessocp' %}class="active"{% endif %}><a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessocp'|base64_encode_me %}">Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detal (...)</a></li>{% endif %}<!-- DEPOIS-TABS-s1010_alteracao_ideprocessocp --><!-- ANTES-TABS-s1010_alteracao_ideprocessoirrf -->{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_visualizar' %}<li {% if tab == 's1010_alteracao_ideprocessoirrf' %}class="active"{% endif %}><a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessoirrf'|base64_encode_me %}">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá se (...)</a></li>{% endif %}<!-- DEPOIS-TABS-s1010_alteracao_ideprocessoirrf --><!-- ANTES-TABS-s1010_alteracao_ideprocessofgts -->{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_visualizar' %}<li {% if tab == 's1010_alteracao_ideprocessofgts' %}class="active"{% endif %}><a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessofgts'|base64_encode_me %}">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado a (...)</a></li>{% endif %}<!-- DEPOIS-TABS-s1010_alteracao_ideprocessofgts --><!-- ANTES-TABS-s1010_alteracao_ideprocessosind -->{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_visualizar' %}<li {% if tab == 's1010_alteracao_ideprocessosind' %}class="active"{% endif %}><a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessosind'|base64_encode_me %}">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deve (...)</a></li>{% endif %}<!-- DEPOIS-TABS-s1010_alteracao_ideprocessosind --><!-- ANTES-TABS-s1010_alteracao_ideprocessocprp -->{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_visualizar' %}<li {% if tab == 's1010_alteracao_ideprocessocprp' %}class="active"{% endif %}><a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessocprp'|base64_encode_me %}">Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste reg (...)</a></li>{% endif %}<!-- DEPOIS-TABS-s1010_alteracao_ideprocessocprp --><!-- ANTES-TABS-s1010_alteracao_novavalidade -->{% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_visualizar' %}<li {% if tab == 's1010_alteracao_novavalidade' %}class="active"{% endif %}><a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_novavalidade'|base64_encode_me %}">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a></li>{% endif %}<!-- DEPOIS-TABS-s1010_alteracao_novavalidade -->{% endif %}</ul></div></div></div>{% else %}<section class="invoice">{% endif %} {% if not for_print %} {% if messages %}<div class="row"><div class="pad margin no-print">{% for message in messages %}<div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">{{ message }}</div>{% endfor %}</div></div>{% endif %} {% if s1010_alteracao_form.errors %}<div class="row"><div class="pad margin no-print">{% for error in s1010_alteracao_form.non_field_errors %}<div class="alert alert-error" style="margin-bottom: 0!important;">{{ error|escape }}</div>{% endfor %}</div></div>{% endif %} {% if s1010_alteracao_id %} {% if ocorrencias %}<div class="row"><div class="col-xs-12"><div class="small-box bg-red"><div class="inner"><strong>OCORRÊNCIAS REPORTADAS:</strong><br><p>{% autoescape off %}{{ ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p></div></div></div></div>{% endif %} {% if status == STATUS_EVENTO_VALIDADO %} {% if not validacao_precedencia %}<div class="row"><div class="col-xs-12"><div class="small-box bg-yellow"><div class="inner"><p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p></div></div></div></div>{% endif %} {% if validacoes %}<div class="row"><div class="col-xs-12"><div class="small-box bg-red"><div class="inner"><strong>Erros de validação:</strong><br><p>{% autoescape off %}{{ validacoes }}{% endautoescape %}</p></div></div></div></div>{% endif %} {% endif %} {% endif %} {% endif %} {% if not tab %}<div class="row"><div class="col-md-12">{% if not for_print %}<div class="box box-primary"><div class="box-header with-border"><h3 class="box-title">Cadastrar/Editar Alteração das informações</h3></div>{% else %}<div class="row">{% endif %} {% if not for_print %} {% if dict_permissoes|get_permissao:'s1010_alteracao_editar' or dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %} {% if status == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s1010_alteracao" method="POST" content="text/html; charset=UTF-8">{% endif %} {% if status == STATUS_EVENTO_CADASTRADO %}{% csrf_token %}{% endif %} {% endif %} {% endif %}<div class="box-body"><div class="row">{% include 'forms/s1010_alteracao.html' %}</div></div>{% if not for_print %}<div class="row"><div class="form-group col-md-4"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-8"><div class="box-footer text-right"><!-- botões especiais -->{% if s1010_alteracao_id %}{% if status == STATUS_EVENTO_CADASTRADO %} {% if dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}<a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %} {% endif %} {% endif %} {% if dict_permissoes|get_permissao:'s1010_alteracao_listar' or dict_permissoes|get_permissao:'s1010_alteracao_listar' %}<a href="{% url 's1010_alteracao' hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}<!-- {% if dict_permissoes|get_permissao:'s1010_alteracao_visualizar' and s1010_alteracao_id %}<a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}-->{% if status == STATUS_EVENTO_CADASTRADO %} {% if dict_permissoes|get_permissao:'s1010_alteracao_editar' or dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}{% endif %}{% if status == STATUS_EVENTO_CADASTRADO %} {% if dict_permissoes|get_permissao:'s1010_alteracao_apagar' and s1010_alteracao_id %}<a href="{% url 's1010_alteracao_apagar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}{% endif %}<a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a></div></div></div>{% endif %} {% if not for_print %}{% if status == STATUS_EVENTO_CADASTRADO %} {% if dict_permissoes|get_permissao:'s1010_alteracao_editar' or dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}</form>{% endif %} {% endif %} {% endif %}</div>{% if controle_alteracoes %}<!-- inicio controle de alterações --><div class="row"><div class="col-md-12"><div class="box box-primary collapsed-box"><div class="box-header with-border"><h3 class="box-title">Controle de Alterações</h3><div class="pull-right box-tools"><button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button></div></div><div class="box-body"><table class="table table-bordered table-striped automate-data-table"><thead><tr><th>Data</th><th>Situação Anterior</th><th>Situação Posterior</th><th>Modificado por</th></tr></thead><tbody>{% for c in controle_alteracoes %}<tr><td>{{ c.criado_em }}</td><td>{% autoescape off %}{{ c.situacao_anterior|auditoria_json }}{% endautoescape %}</td><td>{% autoescape off %}{{ c.situacao_posterior|auditoria_json }}{% endautoescape %}</td><td>{{ c.modificado_por }}</td></tr>{% endfor %}</tbody></table></div></div></div></div><!-- fim controle de alterações -->{% endif %}</div></div></div></div>{% endif %}<!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->{% if s1010_alteracao_id %}<!-- begin_Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detal (...) -->{% if tab == 's1010_alteracao_ideprocessocp' or for_print %} {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_visualizar' %} {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detal (...)</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_cadastrar' %}<!-- begin_form_s1010_alteracao_ideprocessocp --><div id="cadastrar" style="display:none"><form id="id_form_s1010_alteracao_ideprocessocp" action="{% url 's1010_alteracao_ideprocessocp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s1010_alteracao_ideprocessocp.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s1010_alteracao_ideprocessocp -->{% endif %}<div id="listar"><!-- begin_table_s1010_alteracao_ideprocessocp -->{% include 'tables/s1010_alteracao_ideprocessocp.html' %}<!-- end_table_s1010_alteracao_ideprocessocp --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detal (...) --><!-- begin_Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá se (...) -->{% if tab == 's1010_alteracao_ideprocessoirrf' or for_print %} {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_visualizar' %} {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá se (...)</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_cadastrar' %}<!-- begin_form_s1010_alteracao_ideprocessoirrf --><div id="cadastrar" style="display:none"><form id="id_form_s1010_alteracao_ideprocessoirrf" action="{% url 's1010_alteracao_ideprocessoirrf_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s1010_alteracao_ideprocessoirrf.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s1010_alteracao_ideprocessoirrf -->{% endif %}<div id="listar"><!-- begin_table_s1010_alteracao_ideprocessoirrf -->{% include 'tables/s1010_alteracao_ideprocessoirrf.html' %}<!-- end_table_s1010_alteracao_ideprocessoirrf --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá se (...) --><!-- begin_Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado a (...) -->{% if tab == 's1010_alteracao_ideprocessofgts' or for_print %} {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_visualizar' %} {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado a (...)</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_cadastrar' %}<!-- begin_form_s1010_alteracao_ideprocessofgts --><div id="cadastrar" style="display:none"><form id="id_form_s1010_alteracao_ideprocessofgts" action="{% url 's1010_alteracao_ideprocessofgts_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s1010_alteracao_ideprocessofgts.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s1010_alteracao_ideprocessofgts -->{% endif %}<div id="listar"><!-- begin_table_s1010_alteracao_ideprocessofgts -->{% include 'tables/s1010_alteracao_ideprocessofgts.html' %}<!-- end_table_s1010_alteracao_ideprocessofgts --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado a (...) --><!-- begin_Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deve (...) -->{% if tab == 's1010_alteracao_ideprocessosind' or for_print %} {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_visualizar' %} {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deve (...)</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_cadastrar' %}<!-- begin_form_s1010_alteracao_ideprocessosind --><div id="cadastrar" style="display:none"><form id="id_form_s1010_alteracao_ideprocessosind" action="{% url 's1010_alteracao_ideprocessosind_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s1010_alteracao_ideprocessosind.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s1010_alteracao_ideprocessosind -->{% endif %}<div id="listar"><!-- begin_table_s1010_alteracao_ideprocessosind -->{% include 'tables/s1010_alteracao_ideprocessosind.html' %}<!-- end_table_s1010_alteracao_ideprocessosind --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deve (...) --><!-- begin_Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste reg (...) -->{% if tab == 's1010_alteracao_ideprocessocprp' or for_print %} {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_visualizar' %} {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste reg (...)</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_cadastrar' %}<!-- begin_form_s1010_alteracao_ideprocessocprp --><div id="cadastrar" style="display:none"><form id="id_form_s1010_alteracao_ideprocessocprp" action="{% url 's1010_alteracao_ideprocessocprp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s1010_alteracao_ideprocessocprp.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s1010_alteracao_ideprocessocprp -->{% endif %}<div id="listar"><!-- begin_table_s1010_alteracao_ideprocessocprp -->{% include 'tables/s1010_alteracao_ideprocessocprp.html' %}<!-- end_table_s1010_alteracao_ideprocessocprp --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste reg (...) --><!-- begin_Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade. -->{% if tab == 's1010_alteracao_novavalidade' or for_print %} {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_visualizar' %} {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}<script type="text/javascript">function CadastroListagem() { var display = document.getElementById('cadastrar').style.display; if (display == "none") { document.getElementById('cadastrar').style.display = 'block'; document.getElementById('listar').style.display = 'none'; document.getElementById('CadastrarBotao').style.display = 'none'; document.getElementById('ListarBotao').style.display = 'block'; } else { document.getElementById('cadastrar').style.display = 'none'; document.getElementById('listar').style.display = 'block'; document.getElementById('CadastrarBotao').style.display = 'block'; document.getElementById('ListarBotao').style.display = 'none'; } }</script>{% endif %}<div class="row"><div class="col-xs-12"><div class="box"><div class="box-header with-border"><h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3><div class="pull-right box-tools">{% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}<button class="btn btn-info pull-right" onclick="CadastroListagem()"><div id="CadastrarBotao"><i class="fa fa-plus-circle"></i>Cadastrar</div><div id="ListarBotao" style="display:none"><i class="fa fa-table"></i>Listar</div></button>{% endif %}</div></div><div class="box-body" >{% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}<!-- begin_form_s1010_alteracao_novavalidade --><div id="cadastrar" style="display:none"><form id="id_form_s1010_alteracao_novavalidade" action="{% url 's1010_alteracao_novavalidade_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">{% csrf_token %}<div class="row">{% include 'forms/s1010_alteracao_novavalidade.html' %}</div><div class="row"><div class="form-group col-md-6"><div class="box-footer text-left"><font color="red">* Campos Obrigatórios.</font></div></div><div class="form-group col-md-6"><div class="box-footer text-right"><button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Salvar</button></div></div></div></form></div><!-- end_form_s1010_alteracao_novavalidade -->{% endif %}<div id="listar"><!-- begin_table_s1010_alteracao_novavalidade -->{% include 'tables/s1010_alteracao_novavalidade.html' %}<!-- end_table_s1010_alteracao_novavalidade --></div></div></div></div></div>{% endif %} {% endif %}<!-- end_Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade. -->{% endif %}</section><!-- script --><!--- javascript -->{% endblock content %}
+<!--
+
+    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+        Este programa é distribuído na esperança de que seja útil,
+        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
+        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
+        Licença Pública Geral GNU Affero para mais detalhes.
+
+        Este programa é software livre: você pode redistribuí-lo e / ou modificar
+        sob os termos da licença GNU Affero General Public License como
+        publicado pela Free Software Foundation, seja versão 3 do
+        Licença, ou (a seu critério) qualquer versão posterior.
+
+        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
+        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+
+-->{% extends 'base.html' %}
+{% load templatetags %}
+{% block content %}
+
+<section class="content-header">
+    <h1>
+        s1010alteracao
+        <small>Cadastrar/Editar</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">s1010alteracao</a></li>
+        <li class="active">Cadastrar/Editar</li>
+    </ol>
+</section>
+
+{% if not for_print %}
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    {% if dict_permissoes|get_permissao:'s1010_alteracao_visualizar' %}
+                    <li {% if not tab %}class="active"{% endif %} >
+                            <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_return_page:'s1010_alteracao_salvar'|json_return_hash:hash|json_id:s1010_alteracao_id|json_print:0|base64_encode_me %}">
+                            Alteração das informações
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if s1010_alteracao_id %}
+                        
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_visualizar' %}
+                                <li {% if tab == 's1010_alteracao_ideprocessocp' %} class="active"{% endif %} >
+                                    <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessocp'|base64_encode_me %}">
+                                    Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_visualizar' %}
+                                <li {% if tab == 's1010_alteracao_ideprocessoirrf' %} class="active"{% endif %} >
+                                    <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessoirrf'|base64_encode_me %}">
+                                    Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_visualizar' %}
+                                <li {% if tab == 's1010_alteracao_ideprocessofgts' %} class="active"{% endif %} >
+                                    <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessofgts'|base64_encode_me %}">
+                                    Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_visualizar' %}
+                                <li {% if tab == 's1010_alteracao_ideprocessosind' %} class="active"{% endif %} >
+                                    <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessosind'|base64_encode_me %}">
+                                    Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_visualizar' %}
+                                <li {% if tab == 's1010_alteracao_ideprocessocprp' %} class="active"{% endif %} >
+                                    <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessocprp'|base64_encode_me %}">
+                                    Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
+                                </li>
+                            {% endif %}
+                        
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_visualizar' %}
+                                <li {% if tab == 's1010_alteracao_novavalidade' %} class="active"{% endif %} >
+                                    <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_novavalidade'|base64_encode_me %}">
+                                    Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
+                                </li>
+                            {% endif %}
+                        
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+
+<section class="invoice">
+
+{% endif %}
+  
+                  
+{% if not for_print %}
+
+    {% if messages %}
+
+    <div class="row">
+        <div class="pad margin no-print">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="margin-bottom: 0!important;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endif %}
+
+      
+    {% if s1010_alteracao_form.errors %}
+
+    <div class="row">
+        <div class="pad margin no-print">
+            {% for error in s1010_alteracao_form.non_field_errors %}
+                <div class="alert alert-error" style="margin-bottom: 0!important;">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endif %}
+   
+{% endif %}
+
+
+
+
+
+   {% if s1010_alteracao_id %}
+   {% if s1010_alteracao.evento.ocorrencias %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-red">
+            <div class="inner">
+               <strong>OCORRÊNCIAS REPORTADAS:</strong><br>
+               <p>{% autoescape off %}{{ s1010_alteracao.evento.ocorrencias|lista_json_table_esocial }}{% endautoescape %}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% if s1010_alteracao.evento.status == STATUS_EVENTO_AGUARD_PRECEDENCIA or s1010_alteracao.evento.status == STATUS_EVENTO_VALIDADO_ERRO %}
+   {% if not s1010_alteracao.evento.validacao_precedencia %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-yellow">
+            <div class="inner">
+               <p>O evento não pode ser enviado pois está aguardando confirmação de recebimento de sua precedência!</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% if s1010_alteracao.evento.validacoes %}
+   <div class="row">
+      <div class="col-xs-12">
+         <div class="small-box bg-red">
+            <div class="inner">
+               <strong>Erros de validação:</strong><br>
+               <p>{% autoescape off %}{{ s1010_alteracao.evento.validacoes }}{% endautoescape %}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+   {% endif %}
+   {% endif %} 
+
+
+{% if not tab %}
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+        {% if not for_print %}
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Alteração das informações</h3>
+                </div>
+
+        {% else %}
+
+            <div class="row">
+
+        {% endif %}
+
+
+        {% if not for_print %}
+            {% if dict_permissoes|get_permissao:'s1010_alteracao_editar' or dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}
+                <form action="#" id="id_form_s1010_alteracao" method="POST" content="text/html; charset=UTF-8">
+                {% csrf_token %}
+            {% endif %}
+        {% endif %}
+
+                <div class="box-body">
+                    <div class="row">
+                        {% include 'forms/s1010_alteracao.html' %}
+                    </div>
+                </div>
+
+
+                {% if not for_print %}
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <div class="box-footer text-left">
+                            <font color="red">* Campos Obrigatórios.
+                            </font>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <div class="box-footer text-right">
+                            <!-- botões especiais -->
+                            {% if s1010_alteracao_id %}
+
+                                {% if dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}
+                                    <a href="{% url 's1010_alteracao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                                        <span class="btn btn-info">
+                                            <i class="fa fa-plus-circle"></i>
+                                            &nbsp;Cadastrar
+                                        </span>
+                                    </a>
+
+                                {% endif %}
+
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_listar' or dict_permissoes|get_permissao:'s1010_alteracao_listar' %}
+                                <a href="{% url 's1010_alteracao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
+                                    <span class="btn btn-primary">
+                                        <i class="fa fa-list"></i>
+                                        &nbsp;Listagem
+                                    </span>
+                                </a>&nbsp;
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_visualizar' and s1010_alteracao_id %}
+                                <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:1|base64_encode_me %}" target="_blank">
+                                    <span class="btn btn-primary">
+                                        <i class="fa fa-print"></i>
+                                        &nbsp;Imprimir
+                                    </span>
+                                </a>&nbsp;
+                            {% endif %}
+                            
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_visualizar' and s1010_alteracao_id %}
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fa fa-download"></i>
+                                        &nbsp;Exportar
+                                    </button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Exportar</span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="text-left">
+                                            <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:2|base64_encode_me %}"
+                                            target="_blank">
+                                                <span id="ExportarPDF" type="submit" class="btn btn-default">
+                                                    <i class="fa fa-file-pdf-o"></i>
+                                                    &nbsp;PDF
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>&nbsp;
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_editar' or dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}
+                            
+                            <button type="submit" class="btn btn-primary" >
+                                <i class="fa fa-save"></i>
+                                &nbsp;Salvar
+                            </button>&nbsp;
+
+                            {% endif %}
+
+                            {% if dict_permissoes|get_permissao:'s1010_alteracao_apagar' and s1010_alteracao_id %}
+
+                            <a href="{% url 's1010_alteracao_apagar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|base64_encode_me %}">
+                                <span class="btn btn-danger">
+                                    <i class="fa fa-remove"></i> &nbsp;Apagar
+                                </span>
+                            </a>&nbsp;
+
+                            {% endif %}
+
+                            <a class="btn btn-default" href="#" onclick="history.go(-1)">
+                                <i class="fa fa-rotate-left"></i>
+                                &nbsp;Voltar
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if not for_print %}
+
+                    {% if dict_permissoes|get_permissao:'s1010_alteracao_editar' or dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}
+                        </form>
+                    {% endif %}
+
+                {% endif %}
+
+
+            </div>    
+
+        <!-- TEXTO_ABAIXO_FORMULARIO -->
+
+        </div>
+    </div>
+
+    {% endif %}
+
+    <!-- ANTES-FORMULARIO_TABELA_SECUNDARIA -->
+
+    {% if s1010_alteracao_id %}
+
+        
+            
+            <!-- begin_s1010_alteracao_ideprocessocp -->
+
+            {% if tab == 's1010_alteracao_ideprocessocp' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_cadastrar' %}            
+                                    <!-- begin_form_s1010_alteracao_ideprocessocp --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s1010_alteracao_ideprocessocp" action="{% url 's1010_alteracao_ideprocessocp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1010_alteracao_ideprocessocp.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s1010_alteracao_ideprocessocp -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1010_alteracao_ideprocessocp --> 
+
+                                    {% include 'tables/s1010_alteracao_ideprocessocp.html' %}
+                                        
+                                    <!-- end_table_s1010_alteracao_ideprocessocp --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s1010_alteracao_ideprocessocp -->
+
+        
+            
+            <!-- begin_s1010_alteracao_ideprocessoirrf -->
+
+            {% if tab == 's1010_alteracao_ideprocessoirrf' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_cadastrar' %}            
+                                    <!-- begin_form_s1010_alteracao_ideprocessoirrf --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s1010_alteracao_ideprocessoirrf" action="{% url 's1010_alteracao_ideprocessoirrf_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1010_alteracao_ideprocessoirrf.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s1010_alteracao_ideprocessoirrf -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1010_alteracao_ideprocessoirrf --> 
+
+                                    {% include 'tables/s1010_alteracao_ideprocessoirrf.html' %}
+                                        
+                                    <!-- end_table_s1010_alteracao_ideprocessoirrf --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s1010_alteracao_ideprocessoirrf -->
+
+        
+            
+            <!-- begin_s1010_alteracao_ideprocessofgts -->
+
+            {% if tab == 's1010_alteracao_ideprocessofgts' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_cadastrar' %}            
+                                    <!-- begin_form_s1010_alteracao_ideprocessofgts --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s1010_alteracao_ideprocessofgts" action="{% url 's1010_alteracao_ideprocessofgts_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1010_alteracao_ideprocessofgts.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s1010_alteracao_ideprocessofgts -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1010_alteracao_ideprocessofgts --> 
+
+                                    {% include 'tables/s1010_alteracao_ideprocessofgts.html' %}
+                                        
+                                    <!-- end_table_s1010_alteracao_ideprocessofgts --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s1010_alteracao_ideprocessofgts -->
+
+        
+            
+            <!-- begin_s1010_alteracao_ideprocessosind -->
+
+            {% if tab == 's1010_alteracao_ideprocessosind' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_cadastrar' %}            
+                                    <!-- begin_form_s1010_alteracao_ideprocessosind --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s1010_alteracao_ideprocessosind" action="{% url 's1010_alteracao_ideprocessosind_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1010_alteracao_ideprocessosind.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s1010_alteracao_ideprocessosind -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1010_alteracao_ideprocessosind --> 
+
+                                    {% include 'tables/s1010_alteracao_ideprocessosind.html' %}
+                                        
+                                    <!-- end_table_s1010_alteracao_ideprocessosind --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s1010_alteracao_ideprocessosind -->
+
+        
+            
+            <!-- begin_s1010_alteracao_ideprocessocprp -->
+
+            {% if tab == 's1010_alteracao_ideprocessocprp' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_cadastrar' %}            
+                                    <!-- begin_form_s1010_alteracao_ideprocessocprp --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s1010_alteracao_ideprocessocprp" action="{% url 's1010_alteracao_ideprocessocprp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1010_alteracao_ideprocessocprp.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s1010_alteracao_ideprocessocprp -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1010_alteracao_ideprocessocprp --> 
+
+                                    {% include 'tables/s1010_alteracao_ideprocessocprp.html' %}
+                                        
+                                    <!-- end_table_s1010_alteracao_ideprocessocprp --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s1010_alteracao_ideprocessocprp -->
+
+        
+            
+            <!-- begin_s1010_alteracao_novavalidade -->
+
+            {% if tab == 's1010_alteracao_novavalidade' or for_print %} 
+
+                {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_visualizar' %} 
+
+                    {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}
+                        <script type="text/javascript">
+                        function CadastroListagem() {
+                            var display = document.getElementById('cadastrar').style.display;
+                            if (display == "none") {
+                                document.getElementById('cadastrar').style.display = 'block';
+                                document.getElementById('listar').style.display = 'none';
+
+                                document.getElementById('CadastrarBotao').style.display = 'none';
+                                document.getElementById('ListarBotao').style.display = 'block';
+                            } else {
+                                document.getElementById('cadastrar').style.display = 'none';
+                                document.getElementById('listar').style.display = 'block';
+
+                                document.getElementById('CadastrarBotao').style.display = 'block';
+                                document.getElementById('ListarBotao').style.display = 'none';
+                            }
+                        }
+                        </script>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3>   
+                                    <div class="pull-right box-tools">
+                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}
+                                        <button class="btn btn-info pull-right" onclick="CadastroListagem()">
+                                            <div id="CadastrarBotao">
+                                                <i class="fa fa-plus-circle"></i> 
+                                                Cadastrar
+                                            </div>
+                                            <div id="ListarBotao" style="display:none">
+                                                <i class="fa fa-table"></i> 
+                                                Listar
+                                            </div>
+                                        </button>
+                                        {% endif %}
+                                    </div>   
+                                </div>
+                                <div class="box-body" >
+                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}            
+                                    <!-- begin_form_s1010_alteracao_novavalidade --> 
+                                    <div id="cadastrar" style="display:none">
+                                        <form id="id_form_s1010_alteracao_novavalidade" action="{% url 's1010_alteracao_novavalidade_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                {% include 'forms/s1010_alteracao_novavalidade.html' %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <div class="box-footer text-left">
+                                                        <font color="red">
+                                                            * Campos Obrigatórios.
+                                                        </font>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div class="box-footer text-right">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i> Salvar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- end_form_s1010_alteracao_novavalidade -->
+                                    {% endif %} 
+                                    <div id="listar"> 
+                                    <!-- begin_table_s1010_alteracao_novavalidade --> 
+
+                                    {% include 'tables/s1010_alteracao_novavalidade.html' %}
+                                        
+                                    <!-- end_table_s1010_alteracao_novavalidade --> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %} 
+
+            {% endif %}  
+
+            <!-- end_s1010_alteracao_novavalidade -->
+
+        
+
+    {% endif %}
+
+</section>
+
+<!-- script -->
+<!--- javascript -->
+
+{% endblock content %}

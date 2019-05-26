@@ -1,1 +1,85 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s1005_inclusao_id or s1005_inclusao_id != s1005_inclusao_procadmjudrat_form.s1005_inclusao.value %}<!-- inicio__s1005_inclusao_procadmjudrat__s1005_inclusao --><div class="col-md-12" id="s1005_inclusao_procadmjudrat__s1005_inclusao__div"><div class="form-group"><label id="s1005_inclusao_procadmjudrat__s1005_inclusao__label">Inclusão de novas informações*<a data-toggle="tooltip" title="Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s1005_inclusao_procadmjudrat_form.s1005_inclusao.value %}<a href="{% url 's1005_inclusao_salvar' hash='{}'|json_return_page:'s1005_inclusao_procadmjudrat_salvar'|json_return_hash:hash|json_id:s1005_inclusao_procadmjudrat_form.s1005_inclusao.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s1005_inclusao_procadmjudrat_form.s1005_inclusao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1005_inclusao_procadmjudrat_form.s1005_inclusao.errors }}</div>{% endif %} {% if s1005_inclusao_procadmjudrat_form.s1005_inclusao.field.widget.attrs.readonly %} {% if s1005_inclusao_procadmjudrat_form.s1005_inclusao.field.widget.attrs.disabled %} {{ s1005_inclusao_procadmjudrat_form.s1005_inclusao|addcss:'form-control' }}<input id="id_s1005_inclusao" name="s1005_inclusao" type="hidden" value="{{ s1005_inclusao_procadmjudrat_form.s1005_inclusao.value }}">{% else %} {{ s1005_inclusao_procadmjudrat_form.s1005_inclusao|addcss:'form-control' }} {% endif %} {% else %} {{ s1005_inclusao_procadmjudrat_form.s1005_inclusao|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s1005_inclusao_procadmjudrat__s1005_inclusao -->{% else %}<input type="hidden" value="{{ s1005_inclusao_id|valor }}" id="id_s1005_inclusao" name="s1005_inclusao">{% endif %}<!-- inicio__s1005_inclusao_procadmjudrat__tpproc --><div class="col-md-6" id="s1005_inclusao_procadmjudrat__tpproc__div"><div class="form-group"><label id="s1005_inclusao_procadmjudrat__tpproc__label">Processo RAT*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1005_inclusao_procadmjudrat_form.tpproc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1005_inclusao_procadmjudrat_form.tpproc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1005_inclusao_procadmjudrat_form.tpproc.field.widget.attrs.readonly %} {% if s1005_inclusao_procadmjudrat_form.tpproc.field.widget.attrs.disabled %} {{ s1005_inclusao_procadmjudrat_form.tpproc|addcss:'form-control' }}<input id="id_tpproc" name="tpproc" type="hidden" value="{% if s1005_inclusao_procadmjudrat_form.tpproc.value or s1005_inclusao_procadmjudrat_form.tpproc.value == 0 %}{{ s1005_inclusao_procadmjudrat_form.tpproc.value|valor }}{% endif %}">{% else %} {{ s1005_inclusao_procadmjudrat_form.tpproc|addcss:'form-control' }} {% endif %} {% else %} {{ s1005_inclusao_procadmjudrat_form.tpproc|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1005_inclusao_procadmjudrat__tpproc --><!-- inicio__s1005_inclusao_procadmjudrat__nrproc --><div class="col-md-6" id="s1005_inclusao_procadmjudrat__nrproc__div"><div class="form-group"><label id="s1005_inclusao_procadmjudrat__nrproc__label">Número do Processo*<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070)."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1005_inclusao_procadmjudrat_form.nrproc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1005_inclusao_procadmjudrat_form.nrproc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1005_inclusao_procadmjudrat_form.nrproc|addcss:'form-control' }}</div></div></div><!-- fim__s1005_inclusao_procadmjudrat__nrproc --><!-- inicio__s1005_inclusao_procadmjudrat__codsusp --><div class="col-md-6" id="s1005_inclusao_procadmjudrat__codsusp__div"><div class="form-group"><label id="s1005_inclusao_procadmjudrat__codsusp__label">Código do Indicativo da Suspensão*<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1005_inclusao_procadmjudrat_form.codsusp.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1005_inclusao_procadmjudrat_form.codsusp.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1005_inclusao_procadmjudrat_form.codsusp|addcss:'form-control' }}</div></div></div><!-- fim__s1005_inclusao_procadmjudrat__codsusp -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1005_inclusao_procadmjudrat__s1005_inclusao -->
+<div class="col-md-12" id="s1005_inclusao_procadmjudrat__s1005_inclusao__div">
+  <div class="form-group">
+    <label id="s1005_inclusao_procadmjudrat__s1005_inclusao__label">Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.*</label>
+    {% if not for_print %}{% if s1005_inclusao_procadmjudrat_form.s1005_inclusao.value %}
+        <a href="{% url 's1005_inclusao_salvar' hash='{}'|json_return_page:'s1005_inclusao_procadmjudrat_salvar'|json_return_hash:hash|json_id:s1005_inclusao_procadmjudrat_form.s1005_inclusao.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s1005_inclusao_procadmjudrat_form.s1005_inclusao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1005_inclusao_procadmjudrat_form.s1005_inclusao.errors }}
+      </div>
+    {% endif %}
+    {% if s1005_inclusao_procadmjudrat_form.s1005_inclusao.field.widget.attrs.readonly %}
+      {% if s1005_inclusao_procadmjudrat_form.s1005_inclusao.field.widget.attrs.disabled %}
+        {{ s1005_inclusao_procadmjudrat_form.s1005_inclusao|addcss:'form-control' }}
+        <input id="id_s1005_inclusao" name="s1005_inclusao" type="hidden" value="{{ s1005_inclusao_procadmjudrat_form.s1005_inclusao.value }}">
+      {% else %}
+        {{ s1005_inclusao_procadmjudrat_form.s1005_inclusao|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s1005_inclusao_procadmjudrat_form.s1005_inclusao|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s1005_inclusao_procadmjudrat__s1005_inclusao -->
+<!-- inicio__s1005_inclusao_procadmjudrat__tpproc -->
+<div class="col-md-3" id="s1005_inclusao_procadmjudrat__tpproc__div">
+  <div class="form-group">
+    <label id="s1005_inclusao_procadmjudrat__tpproc__label">Processo RAT*</label>
+    {% if s1005_inclusao_procadmjudrat_form.tpproc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1005_inclusao_procadmjudrat_form.tpproc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1005_inclusao_procadmjudrat_form.tpproc.field.widget.attrs.readonly %}
+        {% if s1005_inclusao_procadmjudrat_form.tpproc.field.widget.attrs.disabled %}
+          {{ s1005_inclusao_procadmjudrat_form.tpproc|addcss:'form-control' }}
+          <input id="id_tpproc" name="tpproc" type="hidden" value="{% if s1005_inclusao_procadmjudrat_form.tpproc.value or s1005_inclusao_procadmjudrat_form.tpproc.value == 0 %}{{ s1005_inclusao_procadmjudrat_form.tpproc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1005_inclusao_procadmjudrat_form.tpproc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1005_inclusao_procadmjudrat_form.tpproc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1005_inclusao_procadmjudrat__tpproc -->
+<!-- inicio__s1005_inclusao_procadmjudrat__nrproc -->
+<div class="col-md-3" id="s1005_inclusao_procadmjudrat__nrproc__div">
+  <div class="form-group">
+    <label id="s1005_inclusao_procadmjudrat__nrproc__label">Número do Processo*</label>
+      {% if s1005_inclusao_procadmjudrat_form.nrproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1005_inclusao_procadmjudrat_form.nrproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1005_inclusao_procadmjudrat_form.nrproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1005_inclusao_procadmjudrat__nrproc -->
+<!-- inicio__s1005_inclusao_procadmjudrat__codsusp -->
+<div class="col-md-3" id="s1005_inclusao_procadmjudrat__codsusp__div">
+  <div class="form-group">
+    <label id="s1005_inclusao_procadmjudrat__codsusp__label">Código do Indicativo da Suspensão*</label>
+      {% if s1005_inclusao_procadmjudrat_form.codsusp.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1005_inclusao_procadmjudrat_form.codsusp.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1005_inclusao_procadmjudrat_form.codsusp|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1005_inclusao_procadmjudrat__codsusp -->

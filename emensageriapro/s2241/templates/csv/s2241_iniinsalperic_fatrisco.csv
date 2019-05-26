@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2241_iniinsalperic_infoamb or 1 %}"Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente";{% endif %}{% if show_fields.show_codfatris or 1 %}"Código do Fator de Risco";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2241_iniinsalperic_infoamb or 1 %}"{{ c.s2241_iniinsalperic_infoamb }}";{% endif %}{% if show_fields.show_codfatris or 1 %}"{{ c.codfatris }}";{% endif %}
+{% endfor %}

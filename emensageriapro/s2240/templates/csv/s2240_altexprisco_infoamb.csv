@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s2240_altexprisco or 1 %}"Informações relativas ao ambiente de trabalho";{% endif %}{% if show_fields.show_codamb or 1 %}"Código do Ambiente";{% endif %}{% if show_fields.show_infoativ or 1 %}"Descrição das Atividades Desempenhadas";{% endif %}{% if show_fields.show_dscativdes or 1 %}"Descrição das atividades desempenhadas";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s2240_altexprisco or 1 %}"{{ c.s2240_altexprisco }}";{% endif %}{% if show_fields.show_codamb or 1 %}"{{ c.codamb }}";{% endif %}{% if show_fields.show_infoativ or 1 %}"{{ c.infoativ }}";{% endif %}{% if show_fields.show_dscativdes or 1 %}"{{ c.dscativdes }}";{% endif %}
+{% endfor %}

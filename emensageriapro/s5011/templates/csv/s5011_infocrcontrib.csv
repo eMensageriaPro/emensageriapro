@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_s5011_evtcs or 1 %}"Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.";{% endif %}{% if show_fields.show_tpcr or 1 %}"Código da Receita (CR)";{% endif %}{% if show_fields.show_vrcr or 1 %}"Valor do CR apurado";{% endif %}{% if show_fields.show_vrcrsusp or 1 %}"Valor do tributo com exigibilidade suspensa";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_s5011_evtcs or 1 %}"{{ c.s5011_evtcs }}";{% endif %}{% if show_fields.show_tpcr or 1 %}"{{ c.tpcr }}";{% endif %}{% if show_fields.show_vrcr or 1 %}"{{ c.vrcr }}";{% endif %}{% if show_fields.show_vrcrsusp or 1 %}"{{ c.vrcrsusp }}";{% endif %}
+{% endfor %}

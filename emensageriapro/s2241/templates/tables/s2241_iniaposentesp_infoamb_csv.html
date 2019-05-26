@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações relativas ao ambiente de trabalho"
-{% if show_fields.show_s2241_iniaposentesp or not s2241_iniaposentesp_id and 1 %}"Condições do ambiente de trabalho que ensejam aposentadoria especial - Início";{% endif %}{% if show_fields.show_codamb or 1 %}"Código do Ambiente";{% endif %}
-{% for a in s2241_iniaposentesp_infoamb_lista %}{% if show_fields.show_s2241_iniaposentesp or  not s2241_iniaposentesp_id and 1 %}"{{ a.s2241_iniaposentesp }}";{% endif %}{% if show_fields.show_codamb or 1 %}"{{ a.codamb }}";{% endif %}
-{% endfor %}

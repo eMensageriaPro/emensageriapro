@@ -1,1 +1,322 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s2300_evttsvinicio_id or s2300_evttsvinicio_id != s2300_infoestagiario_form.s2300_evttsvinicio.value %}<!-- inicio__s2300_infoestagiario__s2300_evttsvinicio --><div class="col-md-12" id="s2300_infoestagiario__s2300_evttsvinicio__div"><div class="form-group"><label id="s2300_infoestagiario__s2300_evttsvinicio__label">Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Início*<a data-toggle="tooltip" title="Informações relativas ao estagiário."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2300_infoestagiario_form.s2300_evttsvinicio.value %}<a href="{% url 's2300_evttsvinicio_salvar' hash='{}'|json_return_page:'s2300_infoestagiario_salvar'|json_return_hash:hash|json_id:s2300_infoestagiario_form.s2300_evttsvinicio.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s2300_infoestagiario_form.s2300_evttsvinicio.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.s2300_evttsvinicio.errors }}</div>{% endif %} {% if s2300_infoestagiario_form.s2300_evttsvinicio.field.widget.attrs.readonly %} {% if s2300_infoestagiario_form.s2300_evttsvinicio.field.widget.attrs.disabled %} {{ s2300_infoestagiario_form.s2300_evttsvinicio|addcss:'form-control' }}<input id="id_s2300_evttsvinicio" name="s2300_evttsvinicio" type="hidden" value="{{ s2300_infoestagiario_form.s2300_evttsvinicio.value }}">{% else %} {{ s2300_infoestagiario_form.s2300_evttsvinicio|addcss:'form-control' }} {% endif %} {% else %} {{ s2300_infoestagiario_form.s2300_evttsvinicio|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s2300_infoestagiario__s2300_evttsvinicio -->{% else %}<input type="hidden" value="{{ s2300_evttsvinicio_id|valor }}" id="id_s2300_evttsvinicio" name="s2300_evttsvinicio">{% endif %}<!-- inicio__s2300_infoestagiario__natestagio --><div class="col-md-6" id="s2300_infoestagiario__natestagio__div"><div class="form-group"><label id="s2300_infoestagiario__natestagio__label">Natureza do estágio*<a data-toggle="tooltip" title="Natureza do Estágio: O - Obrigatório; N - Não Obrigatório. Valores Válidos: O, N."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.natestagio.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.natestagio.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2300_infoestagiario_form.natestagio.field.widget.attrs.readonly %} {% if s2300_infoestagiario_form.natestagio.field.widget.attrs.disabled %} {{ s2300_infoestagiario_form.natestagio|addcss:'form-control' }}<input id="id_natestagio" name="natestagio" type="hidden" value="{% if s2300_infoestagiario_form.natestagio.value or s2300_infoestagiario_form.natestagio.value == 0 %}{{ s2300_infoestagiario_form.natestagio.value }}{% endif %}">{% else %} {{ s2300_infoestagiario_form.natestagio|addcss:'form-control' }} {% endif %} {% else %} {{ s2300_infoestagiario_form.natestagio|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2300_infoestagiario__natestagio --><!-- inicio__s2300_infoestagiario__nivestagio --><div class="col-md-6" id="s2300_infoestagiario__nivestagio__div"><div class="form-group"><label id="s2300_infoestagiario__nivestagio__label">Nível*<a data-toggle="tooltip" title="Informar o nível do estágio: 1 - Fundamental; 2 - Médio; 3 - Formação Profissional; 4 - Superior; 8 - Especial; 9 - Mãe social. (Lei 7644, de 1987). Valores Válidos: 1, 2, 3, 4, 8, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.nivestagio.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.nivestagio.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2300_infoestagiario_form.nivestagio.field.widget.attrs.readonly %} {% if s2300_infoestagiario_form.nivestagio.field.widget.attrs.disabled %} {{ s2300_infoestagiario_form.nivestagio|addcss:'form-control' }}<input id="id_nivestagio" name="nivestagio" type="hidden" value="{% if s2300_infoestagiario_form.nivestagio.value or s2300_infoestagiario_form.nivestagio.value == 0 %}{{ s2300_infoestagiario_form.nivestagio.value|valor }}{% endif %}">{% else %} {{ s2300_infoestagiario_form.nivestagio|addcss:'form-control' }} {% endif %} {% else %} {{ s2300_infoestagiario_form.nivestagio|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2300_infoestagiario__nivestagio --><!-- inicio__s2300_infoestagiario__areaatuacao --><div class="col-md-6" id="s2300_infoestagiario__areaatuacao__div"><div class="form-group"><label id="s2300_infoestagiario__areaatuacao__label">Área de Atuação<a data-toggle="tooltip" title="Área de atuação do estagiário."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.areaatuacao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.areaatuacao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_infoestagiario_form.areaatuacao|addcss:'form-control' }}</div></div></div><!-- fim__s2300_infoestagiario__areaatuacao --><!-- inicio__s2300_infoestagiario__nrapol --><div class="col-md-6" id="s2300_infoestagiario__nrapol__div"><div class="form-group"><label id="s2300_infoestagiario__nrapol__label">Número da Apolice de seguro<a data-toggle="tooltip" title="Nr. Apólice de Seguro."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.nrapol.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.nrapol.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_infoestagiario_form.nrapol|addcss:'form-control' }}</div></div></div><!-- fim__s2300_infoestagiario__nrapol --><!-- inicio__s2300_infoestagiario__vlrbolsa --><div class="col-md-6" id="s2300_infoestagiario__vlrbolsa__div"><div class="form-group"><label id="s2300_infoestagiario__vlrbolsa__label">Valor da Bolsa<a data-toggle="tooltip" title="Preencher com o valor da bolsa, se o estágio for remunerado."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.vlrbolsa.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.vlrbolsa.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ s2300_infoestagiario_form.vlrbolsa|addcss:'form-control automate-money' }}</div></div></div><!-- fim__s2300_infoestagiario__vlrbolsa --><!-- inicio__s2300_infoestagiario__dtprevterm --><div class="col-md-6" id="s2300_infoestagiario__dtprevterm__div"><div class="form-group"><label id="s2300_infoestagiario__dtprevterm__label">Data prevista para o término*<a data-toggle="tooltip" title="Data prevista para o término do estágio. Validação: Deve ser uma data posterior à data de início do estágio."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.dtprevterm.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.dtprevterm.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_infoestagiario_form.dtprevterm|addcss:'form-control automate-date' }}</div></div></div><!-- fim__s2300_infoestagiario__dtprevterm --><!-- inicio__s2300_infoestagiario__instensino --><div class="col-md-12" id="s2300_infoestagiario__instensino__div"><h4>Instituição de Ensino</h4></div><!-- fim__s2300_infoestagiario__instensino --><!-- inicio__s2300_infoestagiario__cnpjinstensino --><div class="col-md-6" id="s2300_infoestagiario__cnpjinstensino__div"><div class="form-group"><label id="s2300_infoestagiario__cnpjinstensino__label">CNPJ da instituição de ensino<a data-toggle="tooltip" title="Preencher com o cnpj da instituição de ensino. Deve ser preenchido apenas se a instituição de ensino for brasileira."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.cnpjinstensino.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.cnpjinstensino.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_infoestagiario_form.cnpjinstensino|addcss:'form-control' }}</div></div></div><!-- fim__s2300_infoestagiario__cnpjinstensino --><!-- inicio__s2300_infoestagiario__nmrazao --><div class="col-md-6" id="s2300_infoestagiario__nmrazao__div"><div class="form-group"><label id="s2300_infoestagiario__nmrazao__label">Razão Social*<a data-toggle="tooltip" title="Informar a razão social."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.nmrazao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.nmrazao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_infoestagiario_form.nmrazao|addcss:'form-control' }}</div></div></div><!-- fim__s2300_infoestagiario__nmrazao --><!-- inicio__s2300_infoestagiario__dsclograd --><div class="col-md-6" id="s2300_infoestagiario__dsclograd__div"><div class="form-group"><label id="s2300_infoestagiario__dsclograd__label">Logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.dsclograd.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.dsclograd.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_infoestagiario_form.dsclograd|addcss:'form-control' }}</div></div></div><!-- fim__s2300_infoestagiario__dsclograd --><!-- inicio__s2300_infoestagiario__nrlograd --><div class="col-md-6" id="s2300_infoestagiario__nrlograd__div"><div class="form-group"><label id="s2300_infoestagiario__nrlograd__label">Número<a data-toggle="tooltip" title="Número do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.nrlograd.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.nrlograd.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_infoestagiario_form.nrlograd|addcss:'form-control' }}</div></div></div><!-- fim__s2300_infoestagiario__nrlograd --><!-- inicio__s2300_infoestagiario__bairro --><div class="col-md-6" id="s2300_infoestagiario__bairro__div"><div class="form-group"><label id="s2300_infoestagiario__bairro__label">Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.bairro.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.bairro.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_infoestagiario_form.bairro|addcss:'form-control' }}</div></div></div><!-- fim__s2300_infoestagiario__bairro --><!-- inicio__s2300_infoestagiario__cep --><div class="col-md-6" id="s2300_infoestagiario__cep__div"><div class="form-group"><label id="s2300_infoestagiario__cep__label">CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP. Validação: Deve ser preenchido apenas com números. Deve ser um CEP válido."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.cep.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.cep.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s2300_infoestagiario_form.cep|addcss:'form-control' }}</div></div></div><!-- fim__s2300_infoestagiario__cep -->{% if not municipios_id or municipios_id != s2300_infoestagiario_form.codmunic.value %}<!-- inicio__s2300_infoestagiario__codmunic -->{% if permissao.permite_editar or permissao.permite_cadastrar %}<div class="col-md-6" id="s2300_infoestagiario__codmunic__div"><div class="form-group"><label id="s2300_infoestagiario__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.codmunic.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.codmunic.errors }}</div>{% endif %}<input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2300_infoestagiario.codmunic %}{{ s2300_infoestagiario.codmunic }}{% endif %}" {% if s2300_infoestagiario_form.codmunic.field.widget.attrs.required %} {% endif %}{% if s2300_infoestagiario_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %}><input type="hidden" id="id_codmunic" name="codmunic" value="{% if s2300_infoestagiario.codmunic %}{{ s2300_infoestagiario_form.codmunic.value|valor }}{% endif %}"></div></div><script type="text/javascript">$(document).ready(function(e){ $('#txt_codmunic').autocomplete({ source: function (request, response) { $.getJSON("{{ LINK_WEBSITE }}tabelas/municipios/json-search/" + request.term + "/", function (data) { response($.map(data.municipios, function (value, key) { return { label: value.value, value: value.key }; })); }); }, minLength: 3, select: function( e, ui ) { e.preventDefault(e); $(this).val(ui.item.label); $('#id_codmunic').val(ui.item.value); return false; }}); {% if '<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a>' %} $("#id_form_s2300_infoestagiario").submit(function(e) { $('#txt_codmunic').disabled = true; if ($('#id_codmunic').val() == "") { $('#txt_codmunic').val(""); alert('Formulário não pode ser salvo sem selecionar o(a) campo Código do Município!'); e.preventDefault(e); }; }); {% endif %}});</script>{% else %}<div class="col-md-6" id="s2300_infoestagiario__codmunic__div"><div class="form-group"><label id="s2300_infoestagiario__codmunic__label">Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s2300_infoestagiario_form.codmunic.value %}<a id="s2300_infoestagiario__codmunic__div_acessar" href="{% url 'municipios_salvar' hash='{}'|json_id:s2300_infoestagiario_form.codmunic.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %} {% endif %}<input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2300_infoestagiario.codmunic %}{{ s2300_infoestagiario.codmunic }}{% endif %}" disabled="disabled"></div></div>{% endif %}<!-- fim__s2300_infoestagiario__codmunic -->{% else %}<input type="hidden" value="{{ municipios_id|valor }}" id="id_codmunic" name="codmunic">{% endif %}<!-- inicio__s2300_infoestagiario__uf --><div class="col-md-6" id="s2300_infoestagiario__uf__div"><div class="form-group"><label id="s2300_infoestagiario__uf__label">UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s2300_infoestagiario_form.uf.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s2300_infoestagiario_form.uf.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s2300_infoestagiario_form.uf.field.widget.attrs.readonly %} {% if s2300_infoestagiario_form.uf.field.widget.attrs.disabled %} {{ s2300_infoestagiario_form.uf|addcss:'form-control' }}<input id="id_uf" name="uf" type="hidden" value="{% if s2300_infoestagiario_form.uf.value or s2300_infoestagiario_form.uf.value == 0 %}{{ s2300_infoestagiario_form.uf.value }}{% endif %}">{% else %} {{ s2300_infoestagiario_form.uf|addcss:'form-control' }} {% endif %} {% else %} {{ s2300_infoestagiario_form.uf|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s2300_infoestagiario__uf -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2300_infoestagiario__s2300_infocomplementares -->
+<div class="col-md-12" id="s2300_infoestagiario__s2300_infocomplementares__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__s2300_infocomplementares__label">Informações relativas ao estagiário*</label>
+    {% if not for_print %}{% if s2300_infoestagiario_form.s2300_infocomplementares.value %}
+        <a href="{% url 's2300_infocomplementares_salvar' hash='{}'|json_return_page:'s2300_infoestagiario_salvar'|json_return_hash:hash|json_id:s2300_infoestagiario_form.s2300_infocomplementares.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s2300_infoestagiario_form.s2300_infocomplementares.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_infoestagiario_form.s2300_infocomplementares.errors }}
+      </div>
+    {% endif %}
+    {% if s2300_infoestagiario_form.s2300_infocomplementares.field.widget.attrs.readonly %}
+      {% if s2300_infoestagiario_form.s2300_infocomplementares.field.widget.attrs.disabled %}
+        {{ s2300_infoestagiario_form.s2300_infocomplementares|addcss:'form-control' }}
+        <input id="id_s2300_infocomplementares" name="s2300_infocomplementares" type="hidden" value="{{ s2300_infoestagiario_form.s2300_infocomplementares.value }}">
+      {% else %}
+        {{ s2300_infoestagiario_form.s2300_infocomplementares|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s2300_infoestagiario_form.s2300_infocomplementares|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__s2300_infocomplementares -->
+<!-- inicio__s2300_infoestagiario__natestagio -->
+<div class="col-md-6" id="s2300_infoestagiario__natestagio__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__natestagio__label">Natureza do estágio*</label>
+    {% if s2300_infoestagiario_form.natestagio.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2300_infoestagiario_form.natestagio.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2300_infoestagiario_form.natestagio.field.widget.attrs.readonly %}
+        {% if s2300_infoestagiario_form.natestagio.field.widget.attrs.disabled %}
+          {{ s2300_infoestagiario_form.natestagio|addcss:'form-control' }}
+          <input id="id_natestagio" name="natestagio" type="hidden" value="{% if s2300_infoestagiario_form.natestagio.value or s2300_infoestagiario_form.natestagio.value == 0 %}{{ s2300_infoestagiario_form.natestagio.value }}{% endif %}">
+        {% else %}
+          {{ s2300_infoestagiario_form.natestagio|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2300_infoestagiario_form.natestagio|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__natestagio -->
+<!-- inicio__s2300_infoestagiario__nivestagio -->
+<div class="col-md-6" id="s2300_infoestagiario__nivestagio__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__nivestagio__label">Nível*</label>
+    {% if s2300_infoestagiario_form.nivestagio.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2300_infoestagiario_form.nivestagio.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2300_infoestagiario_form.nivestagio.field.widget.attrs.readonly %}
+        {% if s2300_infoestagiario_form.nivestagio.field.widget.attrs.disabled %}
+          {{ s2300_infoestagiario_form.nivestagio|addcss:'form-control' }}
+          <input id="id_nivestagio" name="nivestagio" type="hidden" value="{% if s2300_infoestagiario_form.nivestagio.value or s2300_infoestagiario_form.nivestagio.value == 0 %}{{ s2300_infoestagiario_form.nivestagio.value|valor }}{% endif %}">
+        {% else %}
+          {{ s2300_infoestagiario_form.nivestagio|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2300_infoestagiario_form.nivestagio|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__nivestagio -->
+<!-- inicio__s2300_infoestagiario__areaatuacao -->
+<div class="col-md-6" id="s2300_infoestagiario__areaatuacao__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__areaatuacao__label">Área de Atuação</label>
+      {% if s2300_infoestagiario_form.areaatuacao.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_infoestagiario_form.areaatuacao.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_infoestagiario_form.areaatuacao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__areaatuacao -->
+<!-- inicio__s2300_infoestagiario__nrapol -->
+<div class="col-md-6" id="s2300_infoestagiario__nrapol__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__nrapol__label">Número da Apolice de seguro</label>
+      {% if s2300_infoestagiario_form.nrapol.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_infoestagiario_form.nrapol.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_infoestagiario_form.nrapol|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__nrapol -->
+<!-- inicio__s2300_infoestagiario__vlrbolsa -->
+<div class="col-md-6" id="s2300_infoestagiario__vlrbolsa__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__vlrbolsa__label">Valor da Bolsa</label>
+    {% if s2300_infoestagiario_form.vlrbolsa.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ s2300_infoestagiario_form.vlrbolsa.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ s2300_infoestagiario_form.vlrbolsa|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__vlrbolsa -->
+<!-- inicio__s2300_infoestagiario__dtprevterm -->
+<div class="col-md-6" id="s2300_infoestagiario__dtprevterm__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__dtprevterm__label">Data prevista para o término*</label>
+        {% if s2300_infoestagiario_form.dtprevterm.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+              {{ s2300_infoestagiario_form.dtprevterm.errors }}
+          </div>
+        {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_infoestagiario_form.dtprevterm|addcss:'form-control automate-date' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__dtprevterm -->
+<!-- inicio__s2300_infoestagiario__instensino -->
+<div class="col-md-12" id="s2300_infoestagiario__instensino__div">
+  <h4>Instituição de Ensino</h4>
+</div>
+<!-- fim__s2300_infoestagiario__instensino -->
+<!-- inicio__s2300_infoestagiario__cnpjinstensino -->
+<div class="col-md-6" id="s2300_infoestagiario__cnpjinstensino__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__cnpjinstensino__label">CNPJ da instituição de ensino</label>
+      {% if s2300_infoestagiario_form.cnpjinstensino.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_infoestagiario_form.cnpjinstensino.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_infoestagiario_form.cnpjinstensino|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__cnpjinstensino -->
+<!-- inicio__s2300_infoestagiario__nmrazao -->
+<div class="col-md-6" id="s2300_infoestagiario__nmrazao__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__nmrazao__label">Razão Social*</label>
+      {% if s2300_infoestagiario_form.nmrazao.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_infoestagiario_form.nmrazao.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_infoestagiario_form.nmrazao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__nmrazao -->
+<!-- inicio__s2300_infoestagiario__dsclograd -->
+<div class="col-md-6" id="s2300_infoestagiario__dsclograd__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__dsclograd__label">Logradouro</label>
+      {% if s2300_infoestagiario_form.dsclograd.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_infoestagiario_form.dsclograd.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_infoestagiario_form.dsclograd|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__dsclograd -->
+<!-- inicio__s2300_infoestagiario__nrlograd -->
+<div class="col-md-6" id="s2300_infoestagiario__nrlograd__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__nrlograd__label">Número</label>
+      {% if s2300_infoestagiario_form.nrlograd.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_infoestagiario_form.nrlograd.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_infoestagiario_form.nrlograd|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__nrlograd -->
+<!-- inicio__s2300_infoestagiario__bairro -->
+<div class="col-md-6" id="s2300_infoestagiario__bairro__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__bairro__label">Bairro</label>
+      {% if s2300_infoestagiario_form.bairro.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_infoestagiario_form.bairro.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_infoestagiario_form.bairro|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__bairro -->
+<!-- inicio__s2300_infoestagiario__cep -->
+<div class="col-md-6" id="s2300_infoestagiario__cep__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__cep__label">CEP</label>
+      {% if s2300_infoestagiario_form.cep.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s2300_infoestagiario_form.cep.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s2300_infoestagiario_form.cep|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__cep -->
+<!-- inicio__s2300_infoestagiario__codmunic -->
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-12" id="s2300_infoestagiario__codmunic__div">
+    <div class="form-group">
+      <label id="s2300_infoestagiario__codmunic__label">Código do Município</label>
+        {% if s2300_infoestagiario_form.codmunic.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2300_infoestagiario_form.codmunic.errors }}
+          </div>
+        {% endif %}
+        <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2300_infoestagiario.codmunic %}{{ s2300_infoestagiario.codmunic }}{% endif %}" 
+        {% if s2300_infoestagiario_form.codmunic.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2300_infoestagiario_form.codmunic.field.widget.attrs.required %} required="required"{% endif %}{% if s2300_infoestagiario_form.codmunic.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" id="id_codmunic" name="codmunic" value="{% if s2300_infoestagiario.codmunic %}{{ s2300_infoestagiario_form.codmunic.value|valor }}{% endif %}">
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codmunic').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/municipios/json-search/" + request.term + "/", function (data) {
+          response($.map(data.municipios, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codmunic').val(ui.item.value);
+        return false;
+      }});
+    {% if s2300_infoestagiario_form.codmunic.field.widget.attrs.required %}
+    $("#id_form_s2300_infoestagiario").submit(function(e) {
+      $('#txt_codmunic').disabled = true;
+        if ($('#id_codmunic').val() == "") {
+          $('#txt_codmunic').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Código do Município!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-12" id="s2300_infoestagiario__codmunic__div">
+    <div class="form-group">
+      <label id="s2300_infoestagiario__codmunic__label">Código do Município</label>
+        {% if not for_print %}{% if s2300_infoestagiario_form.codmunic.value %}
+            <a id="s2300_infoestagiario__codmunic__div_acessar" href="{% url 'municipios_salvar' hash='{}'|json_id:s2300_infoestagiario_form.codmunic.value|json_print:0|base64_encode_me %}">
+                [Acessar]
+            </a>
+        {% endif %} {% endif %}
+        <input type="text" id="txt_codmunic" name="txt_codmunic" class="form-control" value="{% if s2300_infoestagiario.codmunic %}{{ s2300_infoestagiario.codmunic }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
+<!-- fim__s2300_infoestagiario__codmunic -->
+<!-- inicio__s2300_infoestagiario__uf -->
+<div class="col-md-6" id="s2300_infoestagiario__uf__div">
+  <div class="form-group">
+    <label id="s2300_infoestagiario__uf__label">UF</label>
+    {% if s2300_infoestagiario_form.uf.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s2300_infoestagiario_form.uf.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s2300_infoestagiario_form.uf.field.widget.attrs.readonly %}
+        {% if s2300_infoestagiario_form.uf.field.widget.attrs.disabled %}
+          {{ s2300_infoestagiario_form.uf|addcss:'form-control' }}
+          <input id="id_uf" name="uf" type="hidden" value="{% if s2300_infoestagiario_form.uf.value or s2300_infoestagiario_form.uf.value == 0 %}{{ s2300_infoestagiario_form.uf.value }}{% endif %}">
+        {% else %}
+          {{ s2300_infoestagiario_form.uf|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s2300_infoestagiario_form.uf|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s2300_infoestagiario__uf -->

@@ -1,37 +1,184 @@
 #coding:utf-8
+from __future__ import absolute_import, division, print_function, unicode_literals  # isort:skip
+
 from django.contrib import admin
+from django.db import transaction
+from django.utils import timezone
 
-"""
 
-    eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
-    Copyright (C) 2018  Marcelo Medeiros de Vasconcellos
+from emensageriapro.controle_de_acesso.models import ConfigModulos
+from emensageriapro.controle_de_acesso.models import ConfigPaginas
+from emensageriapro.controle_de_acesso.models import ConfigPerfis
+from emensageriapro.controle_de_acesso.models import ConfigPermissoes
+from emensageriapro.controle_de_acesso.models import Auditoria
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+class AuditoriaAdmin(admin.ModelAdmin):
+    readonly_fields = (
+        'criado_em', 
+        'criado_por',
+        'modificado_em', 
+        'modificado_por',
+        'excluido',
+    )
+    
+    
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-        Este programa é distribuído na esperança de que seja útil,
-        mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de
-        COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o
-        Licença Pública Geral GNU Affero para mais detalhes.
 
-        Este programa é software livre: você pode redistribuí-lo e / ou modificar
-        sob os termos da licença GNU Affero General Public License como
-        publicado pela Free Software Foundation, seja versão 3 do
-        Licença, ou (a seu critério) qualquer versão posterior.
+class ConfigModulosAdmin(AuditoriaAdmin):
 
-        Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero
-        junto com este programa. Se não, veja <https://www.gnu.org/licenses/>.
+    search_fields = (
+        'titulo',
+        'slug',
+    )
+    
+    list_filter = (
+        'titulo',
+        'slug',
+    )
+    
+    list_display = (
+        'titulo',
+        'slug',
+    )
+    
+    def queryset(self, request, queryset):
+        return queryset.filter(excluido=False)
 
-"""
 
-# Register your models here.
+class ConfigPaginasAdmin(AuditoriaAdmin):
+
+    search_fields = (
+        'config_modulos',
+        'titulo',
+        'endereco',
+        'exibe_menu',
+        'tipo',
+    )
+    
+    list_filter = (
+        'config_modulos',
+        'titulo',
+        'endereco',
+        'exibe_menu',
+        'tipo',
+    )
+    
+    list_display = (
+        'config_modulos',
+        'titulo',
+        'endereco',
+        'exibe_menu',
+    )
+    
+    def queryset(self, request, queryset):
+        return queryset.filter(excluido=False)
+
+
+class ConfigPerfisAdmin(AuditoriaAdmin):
+
+    search_fields = (
+        'titulo',
+    )
+    
+    list_filter = (
+        'titulo',
+    )
+    
+    list_display = (
+        'titulo',
+    )
+    
+    def queryset(self, request, queryset):
+        return queryset.filter(excluido=False)
+
+
+class ConfigPermissoesAdmin(AuditoriaAdmin):
+
+    search_fields = (
+        'config_perfis',
+        'config_paginas',
+    )
+    
+    list_filter = (
+        'config_perfis',
+        'config_paginas',
+    )
+    
+    list_display = (
+        'config_perfis',
+        'config_paginas',
+    )
+    
+    def queryset(self, request, queryset):
+        return queryset.filter(excluido=False)
+
+
+class AuditoriaAdmin(AuditoriaAdmin):
+
+    search_fields = (
+        'tabela',
+        'identidade',
+    )
+    
+    list_filter = (
+        'tabela',
+        'identidade',
+    )
+    
+    list_display = (
+        'tabela',
+        'identidade',
+        'situacao_anterior',
+        'situacao_posterior',
+        'operador',
+        'data_hora',
+        'tipo',
+    )
+    
+    def queryset(self, request, queryset):
+        return queryset.filter(excluido=False)
+
+
+
+admin.site.register(ConfigModulos, ConfigModulosAdmin)
+admin.site.register(ConfigPaginas, ConfigPaginasAdmin)
+admin.site.register(ConfigPerfis, ConfigPerfisAdmin)
+admin.site.register(ConfigPermissoes, ConfigPermissoesAdmin)
+admin.site.register(Auditoria, AuditoriaAdmin)
+
+
+from emensageriapro.controle_de_acesso.models import Usuarios
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
+
+
+class UsuariosInline(admin.StackedInline):
+
+    model = Usuarios
+    fk_name = "user"
+    readonly_fields = (
+        'criado_em',
+        'criado_por',
+        'modificado_em',
+        'modificado_por',
+        'excluido',
+    )
+
+
+class CustomUserAdmin(UserAdmin):
+
+    inlines = [UsuariosInline]
+    search_fields = (
+        'username',
+        'first_name',
+        'last_name',
+        'email',
+    )
+    list_display = UserAdmin.list_display
+    list_filter = UserAdmin.list_filter
+
+
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)

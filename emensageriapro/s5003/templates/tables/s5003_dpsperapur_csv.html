@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]."
-{% if show_fields.show_s5003_infotrabdps or not s5003_infotrabdps_id and 1 %}"Informações relativas à matrícula e categoria do trabalhador.";{% endif %}{% if show_fields.show_tpdps or 1 %}"Tipo de depósito";{% endif %}{% if show_fields.show_dpsfgts or 1 %}"Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDps}";{% endif %}
-{% for a in s5003_dpsperapur_lista %}{% if show_fields.show_s5003_infotrabdps or  not s5003_infotrabdps_id and 1 %}"{{ a.s5003_infotrabdps }}";{% endif %}{% if show_fields.show_tpdps or 1 %}"{{ a.get_tpdps_display }}";{% endif %}{% if show_fields.show_dpsfgts or 1 %}"{{ a.dpsfgts }}";{% endif %}
-{% endfor %}

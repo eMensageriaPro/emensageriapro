@@ -1,0 +1,49 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4020_fci__r4020_infopgto -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</label>
+    <select name="r4020_infopgto" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in r4020_infopgto_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'r4020_infopgto' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__r4020_fci__r4020_infopgto -->
+
+<!-- inicio__r4020_fci__nrinscfci -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Número de inscrição no CNPJ do fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante</label>
+    <div name="nrinscfci" class="input-group" style="width: 100%;">
+      <input type="text" name="nrinscfci" class="form-control" value="{{ dict_fields|get_value_from_dict:'nrinscfci' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__r4020_fci__nrinscfci -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_r4020_infopgto" value="1" {% if show_fields|get_value_from_dict:'show_r4020_infopgto' %}checked{% endif %} >Fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_nrinscfci" value="1" {% if show_fields|get_value_from_dict:'show_nrinscfci' %}checked{% endif %} >Número de inscrição no CNPJ do fundo ou clube de investimento do qual o beneficiário faça parte e seja administrado pelo declarante
+    </div>
+</div>
+
+

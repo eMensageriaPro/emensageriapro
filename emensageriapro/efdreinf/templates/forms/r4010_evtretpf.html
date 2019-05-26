@@ -1,0 +1,350 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r4010_evtretpf__evtretpf -->
+<div class="col-md-12" id="r4010_evtretpf__evtretpf__div">
+  <h4>Evento Pagamentos ou Créditos efetuados a Pessoa Física</h4>
+</div>
+<!-- fim__r4010_evtretpf__evtretpf -->
+<!-- inicio__r4010_evtretpf__identidade -->
+<div class="col-md-6" id="r4010_evtretpf__identidade__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__identidade__label">Identificação única do evento</label>
+      {% if r4010_evtretpf_form.identidade.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_evtretpf_form.identidade.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_evtretpf_form.identidade|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__identidade -->
+<!-- inicio__r4010_evtretpf__ideevento -->
+<div class="col-md-12" id="r4010_evtretpf__ideevento__div">
+  <h4>Informações de Identificação do Evento</h4>
+</div>
+<!-- fim__r4010_evtretpf__ideevento -->
+<!-- inicio__r4010_evtretpf__indretif -->
+<div class="col-md-6" id="r4010_evtretpf__indretif__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__indretif__label">Informe [1] para arquivo original ou [2] para arquivo de retificação*</label>
+    {% if r4010_evtretpf_form.indretif.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_evtretpf_form.indretif.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r4010_evtretpf_form.indretif.field.widget.attrs.readonly %}
+        {% if r4010_evtretpf_form.indretif.field.widget.attrs.disabled %}
+          {{ r4010_evtretpf_form.indretif|addcss:'form-control' }}
+          <input id="id_indretif" name="indretif" type="hidden" value="{% if r4010_evtretpf_form.indretif.value or r4010_evtretpf_form.indretif.value == 0 %}{{ r4010_evtretpf_form.indretif.value|valor }}{% endif %}">
+        {% else %}
+          {{ r4010_evtretpf_form.indretif|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r4010_evtretpf_form.indretif|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__indretif -->
+<!-- inicio__r4010_evtretpf__nrrecibo -->
+<div class="col-md-6" id="r4010_evtretpf__nrrecibo__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__nrrecibo__label">Preencher com o número do recibo do arquivo a ser retificado</label>
+      {% if r4010_evtretpf_form.nrrecibo.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_evtretpf_form.nrrecibo.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_evtretpf_form.nrrecibo|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__nrrecibo -->
+<!-- inicio__r4010_evtretpf__perapur -->
+<div class="col-md-6" id="r4010_evtretpf__perapur__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__perapur__label">Informar o ano/mês de referência das informações no formato AAAA-MM*</label>
+      {% if r4010_evtretpf_form.perapur.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_evtretpf_form.perapur.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_evtretpf_form.perapur|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__perapur -->
+<!-- inicio__r4010_evtretpf__tpamb -->
+<div class="col-md-6" id="r4010_evtretpf__tpamb__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__tpamb__label">Identificação do ambiente*</label>
+    {% if r4010_evtretpf_form.tpamb.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_evtretpf_form.tpamb.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r4010_evtretpf_form.tpamb.field.widget.attrs.readonly %}
+        {% if r4010_evtretpf_form.tpamb.field.widget.attrs.disabled %}
+          {{ r4010_evtretpf_form.tpamb|addcss:'form-control' }}
+          <input id="id_tpamb" name="tpamb" type="hidden" value="{% if r4010_evtretpf_form.tpamb.value or r4010_evtretpf_form.tpamb.value == 0 %}{{ r4010_evtretpf_form.tpamb.value|valor }}{% endif %}">
+        {% else %}
+          {{ r4010_evtretpf_form.tpamb|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r4010_evtretpf_form.tpamb|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__tpamb -->
+<!-- inicio__r4010_evtretpf__procemi -->
+<div class="col-md-6" id="r4010_evtretpf__procemi__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__procemi__label">Processo de emissão do evento*</label>
+    {% if r4010_evtretpf_form.procemi.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_evtretpf_form.procemi.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r4010_evtretpf_form.procemi.field.widget.attrs.readonly %}
+        {% if r4010_evtretpf_form.procemi.field.widget.attrs.disabled %}
+          {{ r4010_evtretpf_form.procemi|addcss:'form-control' }}
+          <input id="id_procemi" name="procemi" type="hidden" value="{% if r4010_evtretpf_form.procemi.value or r4010_evtretpf_form.procemi.value == 0 %}{{ r4010_evtretpf_form.procemi.value|valor }}{% endif %}">
+        {% else %}
+          {{ r4010_evtretpf_form.procemi|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r4010_evtretpf_form.procemi|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__procemi -->
+<!-- inicio__r4010_evtretpf__verproc -->
+<div class="col-md-6" id="r4010_evtretpf__verproc__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__verproc__label">Versão do processo de emissão do evento*</label>
+      {% if r4010_evtretpf_form.verproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_evtretpf_form.verproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_evtretpf_form.verproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__verproc -->
+<!-- inicio__r4010_evtretpf__idecontri -->
+<div class="col-md-12" id="r4010_evtretpf__idecontri__div">
+  <h4>Informações de identificação do contribuinte</h4>
+</div>
+<!-- fim__r4010_evtretpf__idecontri -->
+<!-- inicio__r4010_evtretpf__tpinsc -->
+<div class="col-md-6" id="r4010_evtretpf__tpinsc__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+    {% if r4010_evtretpf_form.tpinsc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_evtretpf_form.tpinsc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r4010_evtretpf_form.tpinsc.field.widget.attrs.readonly %}
+        {% if r4010_evtretpf_form.tpinsc.field.widget.attrs.disabled %}
+          {{ r4010_evtretpf_form.tpinsc|addcss:'form-control' }}
+          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r4010_evtretpf_form.tpinsc.value or r4010_evtretpf_form.tpinsc.value == 0 %}{{ r4010_evtretpf_form.tpinsc.value|valor }}{% endif %}">
+        {% else %}
+          {{ r4010_evtretpf_form.tpinsc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r4010_evtretpf_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__tpinsc -->
+<!-- inicio__r4010_evtretpf__nrinsc -->
+<div class="col-md-6" id="r4010_evtretpf__nrinsc__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__nrinsc__label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}*</label>
+      {% if r4010_evtretpf_form.nrinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_evtretpf_form.nrinsc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_evtretpf_form.nrinsc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__nrinsc -->
+<!-- inicio__r4010_evtretpf__ideestab -->
+<div class="col-md-12" id="r4010_evtretpf__ideestab__div">
+  <h4>Identificação dos estabelecimentos da associação desportiva que receberam os recursos</h4>
+</div>
+<!-- fim__r4010_evtretpf__ideestab -->
+<!-- inicio__r4010_evtretpf__tpinscestab -->
+<div class="col-md-6" id="r4010_evtretpf__tpinscestab__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__tpinscestab__label">Preencher com o código correspondente ao tipo de inscrição*</label>
+    {% if r4010_evtretpf_form.tpinscestab.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_evtretpf_form.tpinscestab.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r4010_evtretpf_form.tpinscestab.field.widget.attrs.readonly %}
+        {% if r4010_evtretpf_form.tpinscestab.field.widget.attrs.disabled %}
+          {{ r4010_evtretpf_form.tpinscestab|addcss:'form-control' }}
+          <input id="id_tpinscestab" name="tpinscestab" type="hidden" value="{% if r4010_evtretpf_form.tpinscestab.value or r4010_evtretpf_form.tpinscestab.value == 0 %}{{ r4010_evtretpf_form.tpinscestab.value|valor }}{% endif %}">
+        {% else %}
+          {{ r4010_evtretpf_form.tpinscestab|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r4010_evtretpf_form.tpinscestab|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__tpinscestab -->
+<!-- inicio__r4010_evtretpf__nrinscestab -->
+<div class="col-md-6" id="r4010_evtretpf__nrinscestab__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__nrinscestab__label">Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}.*</label>
+      {% if r4010_evtretpf_form.nrinscestab.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_evtretpf_form.nrinscestab.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_evtretpf_form.nrinscestab|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__nrinscestab -->
+<!-- inicio__r4010_evtretpf__idebenef -->
+<div class="col-md-12" id="r4010_evtretpf__idebenef__div">
+  <h4>Identificação do Beneficiário e do Rendimento</h4>
+</div>
+<!-- fim__r4010_evtretpf__idebenef -->
+<!-- inicio__r4010_evtretpf__cpfbenef -->
+<div class="col-md-6" id="r4010_evtretpf__cpfbenef__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__cpfbenef__label">Informar o número de inscrição no Cadastro da Pessoa Física - CPF do beneficiário do pagamento</label>
+      {% if r4010_evtretpf_form.cpfbenef.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_evtretpf_form.cpfbenef.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_evtretpf_form.cpfbenef|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__cpfbenef -->
+<!-- inicio__r4010_evtretpf__nmbenef -->
+<div class="col-md-6" id="r4010_evtretpf__nmbenef__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__nmbenef__label">Nome do beneficiário</label>
+      {% if r4010_evtretpf_form.nmbenef.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r4010_evtretpf_form.nmbenef.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r4010_evtretpf_form.nmbenef|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__nmbenef -->
+<!-- inicio__r4010_evtretpf__versao -->
+<div class="col-md-3" id="r4010_evtretpf__versao__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__versao__label">Versão</label>
+    {% if r4010_evtretpf_form.versao.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_evtretpf_form.versao.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r4010_evtretpf_form.versao.field.widget.attrs.readonly %}
+        {% if r4010_evtretpf_form.versao.field.widget.attrs.disabled %}
+          {{ r4010_evtretpf_form.versao|addcss:'form-control' }}
+          <input id="id_versao" name="versao" type="hidden" value="{% if r4010_evtretpf_form.versao.value or r4010_evtretpf_form.versao.value == 0 %}{{ r4010_evtretpf_form.versao.value }}{% endif %}">
+        {% else %}
+          {{ r4010_evtretpf_form.versao|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r4010_evtretpf_form.versao|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__versao -->
+<!-- inicio__r4010_evtretpf__transmissor_lote_efdreinf -->
+<script type="text/javascript">$(document).ready(function(){$('#id_transmissor_lote_efdreinf').change(function(){document.getElementById("r4010_evtretpf__transmissor_lote_efdreinf__div_acessar").style.display = 'none';});});</script>
+<div class="col-md-3" id="r4010_evtretpf__transmissor_lote_efdreinf__div">
+<div class="form-group">
+  <label id="r4010_evtretpf__transmissor_lote_efdreinf__label">Transmissor</label>
+  
+  {% if not for_print %}
+    {% if r4010_evtretpf_form.transmissor_lote_efdreinf.value %}
+    <a id="r4010_evtretpf__transmissor_lote_efdreinf__div_acessar" href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_id:r4010_evtretpf_form.transmissor_lote_efdreinf.value|json_print:0|base64_encode_me %}">
+     [Acessar]
+    </a>
+    {% endif %} 
+  {% endif %}
+  
+  {% if r4010_evtretpf_form.transmissor_lote_efdreinf.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r4010_evtretpf_form.transmissor_lote_efdreinf.errors }}
+    </div>
+  {% endif %}
+  {% if r4010_evtretpf_form.transmissor_lote_efdreinf.field.widget.attrs.readonly %}
+    {% if r4010_evtretpf_form.transmissor_lote_efdreinf.field.widget.attrs.disabled %}
+      {{ r4010_evtretpf_form.transmissor_lote_efdreinf|addcss:'form-control' }}
+      <input id="id_transmissor_lote_efdreinf" name="transmissor_lote_efdreinf" type="hidden" value="{% if r4010_evtretpf_form.transmissor_lote_efdreinf.value or r4010_evtretpf_form.transmissor_lote_efdreinf.value == 0 %}{{ r4010_evtretpf_form.transmissor_lote_efdreinf.value|valor }}
+    {% endif %}">
+   {% else %}
+     {{ r4010_evtretpf_form.transmissor_lote_efdreinf|addcss:'form-control' }}
+   {% endif %}
+  {% else %}
+  {{ r4010_evtretpf_form.transmissor_lote_efdreinf|addcss_select2:'form-control automate-select' }}
+  {% endif %}
+</div>
+</div>
+<!-- fim__r4010_evtretpf__transmissor_lote_efdreinf -->
+<!-- inicio__r4010_evtretpf__status -->
+<div class="col-md-3" id="r4010_evtretpf__status__div">
+  <div class="form-group">
+    <label id="r4010_evtretpf__status__label">Status</label>
+    {% if r4010_evtretpf_form.status.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r4010_evtretpf_form.status.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if r4010_evtretpf_form.status.field.widget.attrs.readonly %}
+        {% if r4010_evtretpf_form.status.field.widget.attrs.disabled %}
+          {{ r4010_evtretpf_form.status|addcss:'form-control' }}
+          <input id="id_status" name="status" type="hidden" value="{% if r4010_evtretpf_form.status.value or r4010_evtretpf_form.status.value == 0 %}{{ r4010_evtretpf_form.status.value|valor }}{% endif %}">
+        {% else %}
+          {{ r4010_evtretpf_form.status|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ r4010_evtretpf_form.status|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__r4010_evtretpf__status -->

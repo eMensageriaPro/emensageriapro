@@ -1,1 +1,191 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not s1070_evttabprocesso_id or s1070_evttabprocesso_id != s1070_inclusao_form.s1070_evttabprocesso.value %}<!-- inicio__s1070_inclusao__s1070_evttabprocesso --><div class="col-md-12" id="s1070_inclusao__s1070_evttabprocesso__div"><div class="form-group"><label id="s1070_inclusao__s1070_evttabprocesso__label">Evento Tabela de Processos*<a data-toggle="tooltip" title="Inclusão de novas informações."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s1070_inclusao_form.s1070_evttabprocesso.value %}<a href="{% url 's1070_evttabprocesso_salvar' hash='{}'|json_return_page:'s1070_inclusao_salvar'|json_return_hash:hash|json_id:s1070_inclusao_form.s1070_evttabprocesso.value|json_print:0|base64_encode_me %}">[Acessar]</a>{% endif %}{% endif %} {% if s1070_inclusao_form.s1070_evttabprocesso.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1070_inclusao_form.s1070_evttabprocesso.errors }}</div>{% endif %} {% if s1070_inclusao_form.s1070_evttabprocesso.field.widget.attrs.readonly %} {% if s1070_inclusao_form.s1070_evttabprocesso.field.widget.attrs.disabled %} {{ s1070_inclusao_form.s1070_evttabprocesso|addcss:'form-control' }}<input id="id_s1070_evttabprocesso" name="s1070_evttabprocesso" type="hidden" value="{{ s1070_inclusao_form.s1070_evttabprocesso.value }}">{% else %} {{ s1070_inclusao_form.s1070_evttabprocesso|addcss:'form-control' }} {% endif %} {% else %} {{ s1070_inclusao_form.s1070_evttabprocesso|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s1070_inclusao__s1070_evttabprocesso -->{% else %}<input type="hidden" value="{{ s1070_evttabprocesso_id|valor }}" id="id_s1070_evttabprocesso" name="s1070_evttabprocesso">{% endif %}<!-- inicio__s1070_inclusao__ideprocesso --><div class="col-md-12" id="s1070_inclusao__ideprocesso__div"><h4>Informações de identificação do Processo e validade das informações que estão sendo incluídas</h4></div><!-- fim__s1070_inclusao__ideprocesso --><!-- inicio__s1070_inclusao__tpproc --><div class="col-md-6" id="s1070_inclusao__tpproc__div"><div class="form-group"><label id="s1070_inclusao__tpproc__label">Processo RAT*<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial; 3 - Número de Benefício (NB) do INSS; 4 - Processo FAP. Valores Válidos: 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1070_inclusao_form.tpproc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1070_inclusao_form.tpproc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1070_inclusao_form.tpproc.field.widget.attrs.readonly %} {% if s1070_inclusao_form.tpproc.field.widget.attrs.disabled %} {{ s1070_inclusao_form.tpproc|addcss:'form-control' }}<input id="id_tpproc" name="tpproc" type="hidden" value="{% if s1070_inclusao_form.tpproc.value or s1070_inclusao_form.tpproc.value == 0 %}{{ s1070_inclusao_form.tpproc.value|valor }}{% endif %}">{% else %} {{ s1070_inclusao_form.tpproc|addcss:'form-control' }} {% endif %} {% else %} {{ s1070_inclusao_form.tpproc|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1070_inclusao__tpproc --><!-- inicio__s1070_inclusao__nrproc --><div class="col-md-6" id="s1070_inclusao__nrproc__div"><div class="form-group"><label id="s1070_inclusao__nrproc__label">Número do Processo*<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial ou do benefício de acordo com o tipo informado em {tpProc}. Validação: Deve ser um número de processo/benefício válido e: a) Se {tpProc} = [1], deve possuir 17 (dezessete) ou 21 (vinte e um) algarismos; (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1070_inclusao_form.nrproc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1070_inclusao_form.nrproc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1070_inclusao_form.nrproc|addcss:'form-control' }}</div></div></div><!-- fim__s1070_inclusao__nrproc --><!-- inicio__s1070_inclusao__inivalid --><div class="col-md-6" id="s1070_inclusao__inivalid__div"><div class="form-group"><label id="s1070_inclusao__inivalid__label">Início da Validade*<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA- (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1070_inclusao_form.inivalid.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1070_inclusao_form.inivalid.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1070_inclusao_form.inivalid.field.widget.attrs.readonly %} {% if s1070_inclusao_form.inivalid.field.widget.attrs.disabled %} {{ s1070_inclusao_form.inivalid|addcss:'form-control' }}<input id="id_inivalid" name="inivalid" type="hidden" value="{% if s1070_inclusao_form.inivalid.value or s1070_inclusao_form.inivalid.value == 0 %}{{ s1070_inclusao_form.inivalid.value }}{% endif %}">{% else %} {{ s1070_inclusao_form.inivalid|addcss:'form-control' }} {% endif %} {% else %} {{ s1070_inclusao_form.inivalid|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1070_inclusao__inivalid --><!-- inicio__s1070_inclusao__fimvalid --><div class="col-md-6" id="s1070_inclusao__fimvalid__div"><div class="form-group"><label id="s1070_inclusao__fimvalid__label">Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1070_inclusao_form.fimvalid.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1070_inclusao_form.fimvalid.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1070_inclusao_form.fimvalid.field.widget.attrs.readonly %} {% if s1070_inclusao_form.fimvalid.field.widget.attrs.disabled %} {{ s1070_inclusao_form.fimvalid|addcss:'form-control' }}<input id="id_fimvalid" name="fimvalid" type="hidden" value="{% if s1070_inclusao_form.fimvalid.value or s1070_inclusao_form.fimvalid.value == 0 %}{{ s1070_inclusao_form.fimvalid.value }}{% endif %}">{% else %} {{ s1070_inclusao_form.fimvalid|addcss:'form-control' }} {% endif %} {% else %} {{ s1070_inclusao_form.fimvalid|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1070_inclusao__fimvalid --><!-- inicio__s1070_inclusao__dadosproc --><div class="col-md-12" id="s1070_inclusao__dadosproc__div"><h4>Dados do processo</h4></div><!-- fim__s1070_inclusao__dadosproc --><!-- inicio__s1070_inclusao__indautoria --><div class="col-md-6" id="s1070_inclusao__indautoria__div"><div class="form-group"><label id="s1070_inclusao__indautoria__label">Autoria<a data-toggle="tooltip" title="Indicativo da autoria da ação judicial: 1 - Próprio contribuinte; 2 - Outra entidade, empresa ou empregado. Validação: Preenchimento obrigatório se {tpProc} = [2]. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1070_inclusao_form.indautoria.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1070_inclusao_form.indautoria.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1070_inclusao_form.indautoria.field.widget.attrs.readonly %} {% if s1070_inclusao_form.indautoria.field.widget.attrs.disabled %} {{ s1070_inclusao_form.indautoria|addcss:'form-control' }}<input id="id_indautoria" name="indautoria" type="hidden" value="{% if s1070_inclusao_form.indautoria.value or s1070_inclusao_form.indautoria.value == 0 %}{{ s1070_inclusao_form.indautoria.value|valor }}{% endif %}">{% else %} {{ s1070_inclusao_form.indautoria|addcss:'form-control' }} {% endif %} {% else %} {{ s1070_inclusao_form.indautoria|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1070_inclusao__indautoria --><!-- inicio__s1070_inclusao__indmatproc --><div class="col-md-6" id="s1070_inclusao__indmatproc__div"><div class="form-group"><label id="s1070_inclusao__indmatproc__label">Matéria*<a data-toggle="tooltip" title="Indicativo da matéria do processo ou alvará judicial: 1 - Exclusivamente tributária ou tributária e FGTS; 2 - Autorização de trabalho de menor; 3 - Dispensa, ainda que parcial, de contratação de pessoa com deficiência (PCD); 4 - Dispensa, ainda que parcial (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1070_inclusao_form.indmatproc.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1070_inclusao_form.indmatproc.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{% if s1070_inclusao_form.indmatproc.field.widget.attrs.readonly %} {% if s1070_inclusao_form.indmatproc.field.widget.attrs.disabled %} {{ s1070_inclusao_form.indmatproc|addcss:'form-control' }}<input id="id_indmatproc" name="indmatproc" type="hidden" value="{% if s1070_inclusao_form.indmatproc.value or s1070_inclusao_form.indmatproc.value == 0 %}{{ s1070_inclusao_form.indmatproc.value|valor }}{% endif %}">{% else %} {{ s1070_inclusao_form.indmatproc|addcss:'form-control' }} {% endif %} {% else %} {{ s1070_inclusao_form.indmatproc|addcss_select2:'form-control automate-select' }} {% endif %}</div></div></div><!-- fim__s1070_inclusao__indmatproc --><!-- inicio__s1070_inclusao__observacao --><div class="col-md-6" id="s1070_inclusao__observacao__div"><div class="form-group"><label id="s1070_inclusao__observacao__label">Observações<a data-toggle="tooltip" title="Observações relacionadas ao processo."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if s1070_inclusao_form.observacao.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1070_inclusao_form.observacao.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ s1070_inclusao_form.observacao|addcss:'form-control' }}</div></div></div><!-- fim__s1070_inclusao__observacao -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1070_inclusao__s1070_evttabprocesso -->
+<div class="col-md-12" id="s1070_inclusao__s1070_evttabprocesso__div">
+  <div class="form-group">
+    <label id="s1070_inclusao__s1070_evttabprocesso__label">Inclusão de novas informações*</label>
+    {% if not for_print %}{% if s1070_inclusao_form.s1070_evttabprocesso.value %}
+        <a href="{% url 's1070_evttabprocesso_salvar' hash='{}'|json_return_page:'s1070_inclusao_salvar'|json_return_hash:hash|json_id:s1070_inclusao_form.s1070_evttabprocesso.value|json_print:0|base64_encode_me %}">
+            [Acessar]
+        </a>
+    {% endif %}{% endif %} 
+    {% if s1070_inclusao_form.s1070_evttabprocesso.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1070_inclusao_form.s1070_evttabprocesso.errors }}
+      </div>
+    {% endif %}
+    {% if s1070_inclusao_form.s1070_evttabprocesso.field.widget.attrs.readonly %}
+      {% if s1070_inclusao_form.s1070_evttabprocesso.field.widget.attrs.disabled %}
+        {{ s1070_inclusao_form.s1070_evttabprocesso|addcss:'form-control' }}
+        <input id="id_s1070_evttabprocesso" name="s1070_evttabprocesso" type="hidden" value="{{ s1070_inclusao_form.s1070_evttabprocesso.value }}">
+      {% else %}
+        {{ s1070_inclusao_form.s1070_evttabprocesso|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s1070_inclusao_form.s1070_evttabprocesso|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s1070_inclusao__s1070_evttabprocesso -->
+<!-- inicio__s1070_inclusao__ideprocesso -->
+<div class="col-md-12" id="s1070_inclusao__ideprocesso__div">
+  <h4>Informações de identificação do Processo e validade das informações que estão sendo incluídas</h4>
+</div>
+<!-- fim__s1070_inclusao__ideprocesso -->
+<!-- inicio__s1070_inclusao__tpproc -->
+<div class="col-md-6" id="s1070_inclusao__tpproc__div">
+  <div class="form-group">
+    <label id="s1070_inclusao__tpproc__label">Processo RAT*</label>
+    {% if s1070_inclusao_form.tpproc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1070_inclusao_form.tpproc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1070_inclusao_form.tpproc.field.widget.attrs.readonly %}
+        {% if s1070_inclusao_form.tpproc.field.widget.attrs.disabled %}
+          {{ s1070_inclusao_form.tpproc|addcss:'form-control' }}
+          <input id="id_tpproc" name="tpproc" type="hidden" value="{% if s1070_inclusao_form.tpproc.value or s1070_inclusao_form.tpproc.value == 0 %}{{ s1070_inclusao_form.tpproc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1070_inclusao_form.tpproc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1070_inclusao_form.tpproc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1070_inclusao__tpproc -->
+<!-- inicio__s1070_inclusao__nrproc -->
+<div class="col-md-6" id="s1070_inclusao__nrproc__div">
+  <div class="form-group">
+    <label id="s1070_inclusao__nrproc__label">Número do Processo*</label>
+      {% if s1070_inclusao_form.nrproc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1070_inclusao_form.nrproc.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1070_inclusao_form.nrproc|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1070_inclusao__nrproc -->
+<!-- inicio__s1070_inclusao__inivalid -->
+<div class="col-md-6" id="s1070_inclusao__inivalid__div">
+  <div class="form-group">
+    <label id="s1070_inclusao__inivalid__label">Início da Validade*</label>
+    {% if s1070_inclusao_form.inivalid.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1070_inclusao_form.inivalid.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1070_inclusao_form.inivalid.field.widget.attrs.readonly %}
+        {% if s1070_inclusao_form.inivalid.field.widget.attrs.disabled %}
+          {{ s1070_inclusao_form.inivalid|addcss:'form-control' }}
+          <input id="id_inivalid" name="inivalid" type="hidden" value="{% if s1070_inclusao_form.inivalid.value or s1070_inclusao_form.inivalid.value == 0 %}{{ s1070_inclusao_form.inivalid.value }}{% endif %}">
+        {% else %}
+          {{ s1070_inclusao_form.inivalid|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1070_inclusao_form.inivalid|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1070_inclusao__inivalid -->
+<!-- inicio__s1070_inclusao__fimvalid -->
+<div class="col-md-6" id="s1070_inclusao__fimvalid__div">
+  <div class="form-group">
+    <label id="s1070_inclusao__fimvalid__label">Fim da Validade</label>
+    {% if s1070_inclusao_form.fimvalid.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1070_inclusao_form.fimvalid.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1070_inclusao_form.fimvalid.field.widget.attrs.readonly %}
+        {% if s1070_inclusao_form.fimvalid.field.widget.attrs.disabled %}
+          {{ s1070_inclusao_form.fimvalid|addcss:'form-control' }}
+          <input id="id_fimvalid" name="fimvalid" type="hidden" value="{% if s1070_inclusao_form.fimvalid.value or s1070_inclusao_form.fimvalid.value == 0 %}{{ s1070_inclusao_form.fimvalid.value }}{% endif %}">
+        {% else %}
+          {{ s1070_inclusao_form.fimvalid|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1070_inclusao_form.fimvalid|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1070_inclusao__fimvalid -->
+<!-- inicio__s1070_inclusao__dadosproc -->
+<div class="col-md-12" id="s1070_inclusao__dadosproc__div">
+  <h4>Dados do processo</h4>
+</div>
+<!-- fim__s1070_inclusao__dadosproc -->
+<!-- inicio__s1070_inclusao__indautoria -->
+<div class="col-md-6" id="s1070_inclusao__indautoria__div">
+  <div class="form-group">
+    <label id="s1070_inclusao__indautoria__label">Autoria</label>
+    {% if s1070_inclusao_form.indautoria.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1070_inclusao_form.indautoria.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1070_inclusao_form.indautoria.field.widget.attrs.readonly %}
+        {% if s1070_inclusao_form.indautoria.field.widget.attrs.disabled %}
+          {{ s1070_inclusao_form.indautoria|addcss:'form-control' }}
+          <input id="id_indautoria" name="indautoria" type="hidden" value="{% if s1070_inclusao_form.indautoria.value or s1070_inclusao_form.indautoria.value == 0 %}{{ s1070_inclusao_form.indautoria.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1070_inclusao_form.indautoria|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1070_inclusao_form.indautoria|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1070_inclusao__indautoria -->
+<!-- inicio__s1070_inclusao__indmatproc -->
+<div class="col-md-6" id="s1070_inclusao__indmatproc__div">
+  <div class="form-group">
+    <label id="s1070_inclusao__indmatproc__label">Matéria*</label>
+    {% if s1070_inclusao_form.indmatproc.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1070_inclusao_form.indmatproc.errors }}
+      </div>
+    {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {% if s1070_inclusao_form.indmatproc.field.widget.attrs.readonly %}
+        {% if s1070_inclusao_form.indmatproc.field.widget.attrs.disabled %}
+          {{ s1070_inclusao_form.indmatproc|addcss:'form-control' }}
+          <input id="id_indmatproc" name="indmatproc" type="hidden" value="{% if s1070_inclusao_form.indmatproc.value or s1070_inclusao_form.indmatproc.value == 0 %}{{ s1070_inclusao_form.indmatproc.value|valor }}{% endif %}">
+        {% else %}
+          {{ s1070_inclusao_form.indmatproc|addcss:'form-control' }}
+        {% endif %}
+      {% else %}
+        {{ s1070_inclusao_form.indmatproc|addcss_select2:'form-control automate-select' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- fim__s1070_inclusao__indmatproc -->
+<!-- inicio__s1070_inclusao__observacao -->
+<div class="col-md-6" id="s1070_inclusao__observacao__div">
+  <div class="form-group">
+    <label id="s1070_inclusao__observacao__label">Observações</label>
+      {% if s1070_inclusao_form.observacao.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ s1070_inclusao_form.observacao.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ s1070_inclusao_form.observacao|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__s1070_inclusao__observacao -->

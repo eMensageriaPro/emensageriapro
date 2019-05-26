@@ -1,1 +1,114 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}<div class="col-md-12"><div class="form-group"><label>Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador</label><select name="s2200_evtadmissao" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option>{% for a in s2200_evtadmissao_lista %}<option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2200_evtadmissao' %}selected="selected"{% endifequal %}>{{ a.evtadmissao }} - {{ a.identidade }} - {{ a.ideevento }} - {{ a.indretif }} - {{ a.tpamb }} - {{ a.procemi }} - {{ a.verproc }} - {{ a.ideempregador }} - {{ a.tpinsc }} - {{ a.nrinsc }} - {{ a.trabalhador }} - {{ a.cpftrab }} - {{ a.nistrab }} - {{ a.nmtrab }} - {{ a.sexo }} - {{ a.racacor }} - {{ a.grauinstr }} - {{ a.nascimento }} - {{ a.dtnascto }} - {{ a.paisnascto }} - {{ a.paisnac }} - {{ a.endereco }} - {{ a.vinculo }} - {{ a.matricula }} - {{ a.tpregtrab }} - {{ a.tpregprev }} - {{ a.cadini }} - {{ a.inforegimetrab }} - {{ a.infocontrato }} - {{ a.codcateg }} - {{ a.remuneracao }} - {{ a.vrsalfx }} - {{ a.undsalfixo }} - {{ a.duracao }} - {{ a.tpcontr }}</option>{% endfor %}</select></div></div><div class="col-md-6"><div class="form-group"><label>Quant. de horas semanais</label><div class="input-group"><div class="input-group-addon"></div><input type="text" name="qtdhrssem" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'qtdhrssem' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Tipo de jornada</label><div class="input-group" style="width: 100%;"><select name="tpjornada" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpjornada' %}selected="selected"{% endifequal %} >1 - Jornada com horário diário e folga fixos</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpjornada' %}selected="selected"{% endifequal %} >2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpjornada' %}selected="selected"{% endifequal %} >3 - Jornada com horário diário fixo e folga variável</option><option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'tpjornada' %}selected="selected"{% endifequal %} >9 - Demais tipos de jornada</option></select></div></div></div><div class="col-md-6"><div class="form-group"><label>Descrição do tipo de jornada</label><div name="dsctpjorn__icontains" class="input-group" style="width: 100%;"><input type="text" name="dsctpjorn__icontains" class="form-control" value="{{ dict_fields|get_value_from_dict:'dsctpjorn__icontains' }}"></div></div></div><div class="col-md-6"><div class="form-group"><label>Contrato em tempo parcial</label><div class="input-group" style="width: 100%;"><select name="tmpparc" class="form-control automate-select" style="width: 100%;"><option value="">-- selecione --</option><option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'tmpparc' %}selected="selected"{% endifequal %} >0 - Não é contrato em tempo parcial</option><option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tmpparc' %}selected="selected"{% endifequal %} >1 - Limitado a 25 horas semanais</option><option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tmpparc' %}selected="selected"{% endifequal %} >2 - Limitado a 30 horas semanais</option><option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tmpparc' %}selected="selected"{% endifequal %} >3 - Limitado a 26 horas semanais</option></select></div></div></div><div class="form-group col-md-12"><div class="text-left"><h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4></div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_s2200_evtadmissao" value="1" {% if show_fields|get_value_from_dict:'show_s2200_evtadmissao' %}checked{% endif %}>Evento Cadastramento Inicial do Vínculo e Admissão / Ingresso de Trabalhador</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_qtdhrssem" value="1" {% if show_fields|get_value_from_dict:'show_qtdhrssem' %}checked{% endif %}>Quant. de horas semanais</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tpjornada" value="1" {% if show_fields|get_value_from_dict:'show_tpjornada' %}checked{% endif %}>Tipo de jornada</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_dsctpjorn" value="1" {% if show_fields|get_value_from_dict:'show_dsctpjorn' %}checked{% endif %}>Descrição do tipo de jornada</div></div><div class="col-md-3"><div class="form-group"><input type="checkbox" name="show_tmpparc" value="1" {% if show_fields|get_value_from_dict:'show_tmpparc' %}checked{% endif %}>Contrato em tempo parcial</div></div>
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s2200_horcontratual__s2200_evtadmissao -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</label>
+    <select name="s2200_evtadmissao" class="form-control automate-select" style="width: 100%;">
+      <option value="">-- selecione --</option>{% for a in s2200_evtadmissao_lista %}
+      <option value="{{ a.id }}" {% ifequal a.id dict_fields|get_value_from_dict:'s2200_evtadmissao' %}selected="selected"{% endifequal %} >{{ a }}</option>{% endfor %}
+    </select>
+  </div>
+</div>
+<!-- fim__s2200_horcontratual__s2200_evtadmissao -->
+
+<!-- inicio__s2200_horcontratual__qtdhrssem -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Quant. de horas semanais</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+      </div>
+      <input type="text" name="qtdhrssem" class="form-control automate-decimal" data-thousands="." data-decimal="," value="{{ dict_fields|get_value_from_dict:'qtdhrssem' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_horcontratual__qtdhrssem -->
+
+<!-- inicio__s2200_horcontratual__tpjornada -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Tipo de jornada</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tpjornada" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpjornada' %}selected="selected"{% endifequal %} >1 - Jornada com horário diário e folga fixos</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpjornada' %}selected="selected"{% endifequal %} >2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpjornada' %}selected="selected"{% endifequal %} >3 - Jornada com horário diário fixo e folga variável</option>
+        <option value="9" {% ifequal 9 dict_fields|get_value_from_dict:'tpjornada' %}selected="selected"{% endifequal %} >9 - Demais tipos de jornada.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_horcontratual__tpjornada -->
+
+<!-- inicio__s2200_horcontratual__dsctpjorn -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Descrição do tipo de jornada</label>
+    <div name="dsctpjorn" class="input-group" style="width: 100%;">
+      <input type="text" name="dsctpjorn" class="form-control" value="{{ dict_fields|get_value_from_dict:'dsctpjorn' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_horcontratual__dsctpjorn -->
+
+<!-- inicio__s2200_horcontratual__tmpparc -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Contrato em tempo parcial</label>
+    <div class="input-group" style="width: 100%;">
+      <select name="tmpparc" class="form-control automate-select" style="width: 100%;">
+        <option value="">-- selecione --</option>
+        <option value="0" {% ifequal 0 dict_fields|get_value_from_dict:'tmpparc' %}selected="selected"{% endifequal %} >0 - Não é contrato em tempo parcial</option>
+        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tmpparc' %}selected="selected"{% endifequal %} >1 - Limitado a 25 horas semanais</option>
+        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tmpparc' %}selected="selected"{% endifequal %} >2 - Limitado a 30 horas semanais</option>
+        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tmpparc' %}selected="selected"{% endifequal %} >3 - Limitado a 26 horas semanais.</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- fim__s2200_horcontratual__tmpparc -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_s2200_evtadmissao" value="1" {% if show_fields|get_value_from_dict:'show_s2200_evtadmissao' %}checked{% endif %} >Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_qtdhrssem" value="0" {% if show_fields|get_value_from_dict:'show_qtdhrssem' %}checked{% endif %} >Quant. de horas semanais
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tpjornada" value="1" {% if show_fields|get_value_from_dict:'show_tpjornada' %}checked{% endif %} >Tipo de jornada
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_dsctpjorn" value="0" {% if show_fields|get_value_from_dict:'show_dsctpjorn' %}checked{% endif %} >Descrição do tipo de jornada
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_tmpparc" value="1" {% if show_fields|get_value_from_dict:'show_tmpparc' %}checked{% endif %} >Contrato em tempo parcial
+    </div>
+</div>
+
+

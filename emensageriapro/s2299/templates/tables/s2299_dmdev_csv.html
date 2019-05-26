@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF"
-{% if show_fields.show_s2299_evtdeslig or not s2299_evtdeslig_id and 1 %}"Evento Desligamento";{% endif %}{% if show_fields.show_idedmdev or 1 %}"Identificador dos demostrativos de pagamento";{% endif %}
-{% for a in s2299_dmdev_lista %}{% if show_fields.show_s2299_evtdeslig or  not s2299_evtdeslig_id and 1 %}"{{ a.s2299_evtdeslig }}";{% endif %}{% if show_fields.show_idedmdev or 1 %}"{{ a.idedmdev }}";{% endif %}
-{% endfor %}

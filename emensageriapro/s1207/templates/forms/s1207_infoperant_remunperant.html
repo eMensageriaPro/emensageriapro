@@ -1,1 +1,40 @@
-{% load templatetags %}{% load static %}{% if not s1207_infoperant_ideestab_id or s1207_infoperant_ideestab_id != s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.value %}<!-- inicio__s1207_infoperant_remunperant__s1207_infoperant_ideestab --><div class="col-md-12" id="s1207_infoperant_remunperant__s1207_infoperant_ideestab__div"><div class="form-group"><label id="s1207_infoperant_remunperant__s1207_infoperant_ideestab__label">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas*<a data-toggle="tooltip" title="Informações relativas a provento ou pensão do beneficiário, na unidade do órgão público e período identificados nos registros superiores"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.value %}<a id="s1207_infoperant_remunperant__s1207_infoperant_ideestab__div_acessar" href="{% url 's1207_infoperant_ideestab_salvar' hash='{}'|json_id:s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_s1207_infoperant_ideestab').change(function(){ document.getElementById("s1207_infoperant_remunperant__s1207_infoperant_ideestab__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.errors }}</div>{% endif %} {% if s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.field.widget.attrs.readonly %} {% if s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.field.widget.attrs.disabled %} {{ s1207_infoperant_remunperant_form.s1207_infoperant_ideestab|addcss:'form-control' }}<input id="id_s1207_infoperant_ideestab" name="s1207_infoperant_ideestab" type="hidden" value="{{ s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.value }}">{% else %} {{ s1207_infoperant_remunperant_form.s1207_infoperant_ideestab|addcss:'form-control' }} {% endif %} {% else %} {{ s1207_infoperant_remunperant_form.s1207_infoperant_ideestab|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__s1207_infoperant_remunperant__s1207_infoperant_ideestab -->{% else %}<input type="hidden" value="{{ s1207_infoperant_ideestab_id|valor }}" id="id_s1207_infoperant_ideestab" name="s1207_infoperant_ideestab">{% endif %}
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__s1207_infoperant_remunperant__s1207_infoperant_ideestab -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_s1207_infoperant_ideestab').change(function(){
+       document.getElementById("s1207_infoperant_remunperant__s1207_infoperant_ideestab__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="s1207_infoperant_remunperant__s1207_infoperant_ideestab__div">
+  <div class="form-group">
+    <label id="s1207_infoperant_remunperant__s1207_infoperant_ideestab__label">Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração*</label>
+    {% if not for_print %}
+      {% if s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.value %}
+        <a id="s1207_infoperant_remunperant__s1207_infoperant_ideestab__div_acessar" href="{% url 's1207_infoperant_ideestab_salvar' hash='{}'|json_id:s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.errors }}
+      </div>
+    {% endif %}
+    {% if s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.field.widget.attrs.readonly %}
+      {% if s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.field.widget.attrs.disabled %}
+        {{ s1207_infoperant_remunperant_form.s1207_infoperant_ideestab|addcss:'form-control' }}
+        <input id="id_s1207_infoperant_ideestab" name="s1207_infoperant_ideestab" type="hidden" value="{% if s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.value or s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.value == 0 %}{{ s1207_infoperant_remunperant_form.s1207_infoperant_ideestab.value|valor }}{% endif %}">
+      {% else %}
+        {{ s1207_infoperant_remunperant_form.s1207_infoperant_ideestab|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ s1207_infoperant_remunperant_form.s1207_infoperant_ideestab|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__s1207_infoperant_remunperant__s1207_infoperant_ideestab -->

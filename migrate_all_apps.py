@@ -4,7 +4,8 @@ from datetime import datetime
 from emensageriapro.padrao import ler_arquivo
 from emensageriapro.settings import INSTALLED_APPS
 
-
+# Função para MAC OS X  não estrar em repouso
+# pmset noidle
 
 
 def executar_sql(select, array):

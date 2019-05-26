@@ -1,0 +1,4 @@
+{% load templatetags %}{% load static %}
+{% if show_fields.show_r2070_ideestab or 1 %}"Pagamento a Pessoa Física ou Jurídica residente ou domiciliada no Brasil";{% endif %}
+{% for c in campos_lista %}{% if show_fields.show_r2070_ideestab or 1 %}"{{ c.r2070_ideestab }}";{% endif %}
+{% endfor %}

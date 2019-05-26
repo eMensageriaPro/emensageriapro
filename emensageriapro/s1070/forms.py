@@ -1,12 +1,11 @@
 # coding: utf-8
 from django import forms
 from django.utils import timezone
-from emensageriapro.s1070.models import * 
-from emensageriapro.tabelas.models import Municipios 
-from emensageriapro.esocial.models import s1070evtTabProcesso 
+from emensageriapro.s1070.models import *
 
 
 __author__ = 'marcelovasconcellos'
+
 
 """
 
@@ -41,24 +40,21 @@ __author__ = 'marcelovasconcellos'
 
 """
 
-#custom_forms#
+
 
 
 
 
 class form_s1070_alteracao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1070_alteracao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1070_evttabprocesso'].widget.attrs['required'] = True        
-        self.fields['tpproc'].widget.attrs['required'] = True        
-        self.fields['nrproc'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True        
-        self.fields['indmatproc'].widget.attrs['required'] = True
+        super(form_s1070_alteracao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -78,27 +74,25 @@ class form_s1070_alteracao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1070alteracao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1070_alteracao_dadosprocjud(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1070_alteracao_dadosprocjud, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1070_alteracao'].widget.attrs['required'] = True        
-        self.fields['ufvara'].widget.attrs['required'] = True        
-        self.fields['codmunic'].widget.attrs['required'] = True        
-        self.fields['idvara'].widget.attrs['required'] = True
+        super(form_s1070_alteracao_dadosprocjud, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -118,29 +112,25 @@ class form_s1070_alteracao_dadosprocjud(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1070alteracaodadosProcJud
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1070_alteracao_infosusp(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1070_alteracao_infosusp, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1070_alteracao'].queryset = s1070alteracao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1070_alteracao'].widget.attrs['required'] = True        
-        self.fields['codsusp'].widget.attrs['required'] = True        
-        self.fields['indsusp'].widget.attrs['required'] = True        
-        self.fields['dtdecisao'].widget.attrs['required'] = True        
-        self.fields['inddeposito'].widget.attrs['required'] = True
+        super(form_s1070_alteracao_infosusp, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -160,25 +150,25 @@ class form_s1070_alteracao_infosusp(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1070alteracaoinfoSusp
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1070_alteracao_novavalidade(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1070_alteracao_novavalidade, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1070_alteracao'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        super(form_s1070_alteracao_novavalidade, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -198,27 +188,25 @@ class form_s1070_alteracao_novavalidade(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1070alteracaonovaValidade
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1070_exclusao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1070_exclusao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1070_evttabprocesso'].widget.attrs['required'] = True        
-        self.fields['tpproc'].widget.attrs['required'] = True        
-        self.fields['nrproc'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True
+        super(form_s1070_exclusao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -238,28 +226,25 @@ class form_s1070_exclusao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1070exclusao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1070_inclusao(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1070_inclusao, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1070_evttabprocesso'].widget.attrs['required'] = True        
-        self.fields['tpproc'].widget.attrs['required'] = True        
-        self.fields['nrproc'].widget.attrs['required'] = True        
-        self.fields['inivalid'].widget.attrs['required'] = True        
-        self.fields['indmatproc'].widget.attrs['required'] = True
+        super(form_s1070_inclusao, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -279,27 +264,25 @@ class form_s1070_inclusao(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1070inclusao
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1070_inclusao_dadosprocjud(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1070_inclusao_dadosprocjud, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1070_inclusao'].widget.attrs['required'] = True        
-        self.fields['ufvara'].widget.attrs['required'] = True        
-        self.fields['codmunic'].widget.attrs['required'] = True        
-        self.fields['idvara'].widget.attrs['required'] = True
+        super(form_s1070_inclusao_dadosprocjud, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -319,29 +302,25 @@ class form_s1070_inclusao_dadosprocjud(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1070inclusaodadosProcJud
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]
 
 
 class form_s1070_inclusao_infosusp(forms.ModelForm):
 
-    def __init__(self,*args,**kwargs):
-        slug = kwargs.pop('slug')
-        super(form_s1070_inclusao_infosusp, self).__init__(*args,**kwargs)
+
+    def __init__(self, *args, **kwargs):
         
-        self.fields['s1070_inclusao'].queryset = s1070inclusao.objects.using( slug ).filter(excluido=False).all()
-        self.fields['s1070_inclusao'].widget.attrs['required'] = True        
-        self.fields['codsusp'].widget.attrs['required'] = True        
-        self.fields['indsusp'].widget.attrs['required'] = True        
-        self.fields['dtdecisao'].widget.attrs['required'] = True        
-        self.fields['inddeposito'].widget.attrs['required'] = True
+        super(form_s1070_inclusao_infosusp, self).__init__(*args, **kwargs)
+        
 
     def save(self, commit=True, *args, **kwargs):
+    
         request = None
         if kwargs.has_key('request'):
             request = kwargs.pop('request')
@@ -361,10 +340,10 @@ class form_s1070_inclusao_infosusp(forms.ModelForm):
         return m
         
     class Meta:
+    
         model = s1070inclusaoinfoSusp
         exclude = [ 
-            'criado_em', 'criado_por',
-            'modificado_em', 'modificado_por',
- 
-        ]
-
+            'criado_em', 
+            'criado_por',
+            'modificado_em', 
+            'modificado_por',]

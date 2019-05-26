@@ -1,4 +1,16 @@
-#coding: utf-8
+#coding:utf-8
+from django.db import models
+from django.db.models import Sum
+from django.db.models import Count
+from django.utils import timezone
+from django.apps import apps
+from django.contrib.auth.models import User
+from rest_framework.serializers import ModelSerializer
+from rest_framework.fields import CurrentUserDefault
+from emensageriapro.soft_delete import SoftDeletionModel
+from emensageriapro.s1250.choices import *
+get_model = apps.get_model
+
 
 """
 
@@ -33,30 +45,41 @@
 
 """
 
-from django.db import models
-from django.db.models import Sum
-from django.db.models import Count
-from django.utils import timezone
-from django.apps import apps
-from django.contrib.auth.models import User
-from rest_framework.serializers import ModelSerializer
-from rest_framework.fields import CurrentUserDefault
-from emensageriapro.soft_delete import SoftDeletionModel
-get_model = apps.get_model
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_IMPORTADO = 1
+STATUS_EVENTO_DUPLICADO = 2
+STATUS_EVENTO_GERADO = 3
+STATUS_EVENTO_GERADO_ERRO = 4
+STATUS_EVENTO_ASSINADO = 5
+STATUS_EVENTO_ASSINADO_ERRO = 6
+STATUS_EVENTO_VALIDADO = 7
+STATUS_EVENTO_VALIDADO_ERRO = 8
+STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
+STATUS_EVENTO_AGUARD_ENVIO = 10
+STATUS_EVENTO_ENVIADO = 11
+STATUS_EVENTO_ENVIADO_ERRO = 12
+STATUS_EVENTO_PROCESSADO = 13
+
+
 
 
 
 class s1250ideProdutor(SoftDeletionModel):
-    s1250_tpaquis = models.ForeignKey('s1250tpAquis',
-        related_name='%(class)s_s1250_tpaquis')
-    def evento(self): return self.s1250_tpaquis.evento()
-    tpinscprod = models.IntegerField()
-    nrinscprod = models.CharField(max_length=14)
-    vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrcpdescpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrratdescpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    indopccp = models.IntegerField()
+
+    s1250_tpaquis = models.ForeignKey('s1250.s1250tpAquis', 
+        related_name='%(class)s_s1250_tpaquis', )
+    
+    def evento(self): 
+        return self.s1250_tpaquis.evento()
+    tpinscprod = models.IntegerField(null=True, )
+    nrinscprod = models.CharField(max_length=14, null=True, )
+    vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrcpdescpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrratdescpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    indopccp = models.IntegerField(choices=CHOICES_S1250_INDOPCCP, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -64,52 +87,79 @@ class s1250ideProdutor(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1250_tpaquis) + ' - ' + unicode(self.tpinscprod) + ' - ' + unicode(self.nrinscprod) + ' - ' + unicode(self.vlrbruto) + ' - ' + unicode(self.vrcpdescpr) + ' - ' + unicode(self.vrratdescpr) + ' - ' + unicode(self.vrsenardesc) + ' - ' + unicode(self.indopccp)
-    #s1250_ideprodutor_custom#
-
+        
+        lista = [
+            unicode(self.s1250_tpaquis),
+            unicode(self.tpinscprod),
+            unicode(self.nrinscprod),
+            unicode(self.vlrbruto),
+            unicode(self.vrcpdescpr),
+            unicode(self.vrratdescpr),
+            unicode(self.vrsenardesc),
+            unicode(self.indopccp),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.'
         db_table = r's1250_ideprodutor'       
         managed = True # s1250_ideprodutor #
-        unique_together = (
-            #custom_unique_together_s1250_ideprodutor#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1250_ideprodutor
-            #index_together_s1250_ideprodutor
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1250_ideprodutor", "Can view s1250_ideprodutor"),
-            #custom_permissions_s1250_ideprodutor
-        )
-        ordering = ['s1250_tpaquis', 'tpinscprod', 'nrinscprod', 'vlrbruto', 'vrcpdescpr', 'vrratdescpr', 'vrsenardesc', 'indopccp']
+            ("can_view_s1250_ideprodutor", "Can view s1250_ideprodutor"), )
+            
+        ordering = [
+            's1250_tpaquis',
+            'tpinscprod',
+            'nrinscprod',
+            'vlrbruto',
+            'vrcpdescpr',
+            'vrratdescpr',
+            'vrsenardesc',
+            'indopccp',]
 
 
 
 class s1250ideProdutorSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1250ideProdutor
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1250infoProcJ(SoftDeletionModel):
-    s1250_tpaquis = models.ForeignKey('s1250tpAquis',
-        related_name='%(class)s_s1250_tpaquis')
-    def evento(self): return self.s1250_tpaquis.evento()
-    nrprocjud = models.CharField(max_length=20)
-    codsusp = models.IntegerField()
-    vrcpnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrratnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrsenarnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    s1250_tpaquis = models.ForeignKey('s1250.s1250tpAquis', 
+        related_name='%(class)s_s1250_tpaquis', )
+    
+    def evento(self): 
+        return self.s1250_tpaquis.evento()
+    nrprocjud = models.CharField(max_length=20, null=True, )
+    codsusp = models.IntegerField(null=True, )
+    vrcpnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrratnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrsenarnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -117,52 +167,75 @@ class s1250infoProcJ(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1250_tpaquis) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.vrcpnret) + ' - ' + unicode(self.vrratnret) + ' - ' + unicode(self.vrsenarnret)
-    #s1250_infoprocj_custom#
-
+        
+        lista = [
+            unicode(self.s1250_tpaquis),
+            unicode(self.nrprocjud),
+            unicode(self.codsusp),
+            unicode(self.vrcpnret),
+            unicode(self.vrratnret),
+            unicode(self.vrsenarnret),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
-        # verbose_name = u'Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre (...)'
+    
+        # verbose_name = u'Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre a aquisição de produção.'
         db_table = r's1250_infoprocj'       
         managed = True # s1250_infoprocj #
-        unique_together = (
-            #custom_unique_together_s1250_infoprocj#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1250_infoprocj
-            #index_together_s1250_infoprocj
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1250_infoprocj", "Can view s1250_infoprocj"),
-            #custom_permissions_s1250_infoprocj
-        )
-        ordering = ['s1250_tpaquis', 'nrprocjud', 'codsusp', 'vrcpnret', 'vrratnret', 'vrsenarnret']
+            ("can_view_s1250_infoprocj", "Can view s1250_infoprocj"), )
+            
+        ordering = [
+            's1250_tpaquis',
+            'nrprocjud',
+            'codsusp',
+            'vrcpnret',
+            'vrratnret',
+            'vrsenarnret',]
 
 
 
 class s1250infoProcJSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1250infoProcJ
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1250infoProcJud(SoftDeletionModel):
-    s1250_ideprodutor = models.ForeignKey('s1250ideProdutor',
-        related_name='%(class)s_s1250_ideprodutor')
-    def evento(self): return self.s1250_ideprodutor.evento()
-    nrprocjud = models.CharField(max_length=20)
-    codsusp = models.IntegerField()
-    vrcpnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrratnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrsenarnret = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    s1250_ideprodutor = models.ForeignKey('s1250.s1250ideProdutor', 
+        related_name='%(class)s_s1250_ideprodutor', )
+    
+    def evento(self): 
+        return self.s1250_ideprodutor.evento()
+    nrprocjud = models.CharField(max_length=20, null=True, )
+    codsusp = models.IntegerField(null=True, )
+    vrcpnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrratnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrsenarnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -170,54 +243,77 @@ class s1250infoProcJud(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1250_ideprodutor) + ' - ' + unicode(self.nrprocjud) + ' - ' + unicode(self.codsusp) + ' - ' + unicode(self.vrcpnret) + ' - ' + unicode(self.vrratnret) + ' - ' + unicode(self.vrsenarnret)
-    #s1250_infoprocjud_custom#
-
+        
+        lista = [
+            unicode(self.s1250_ideprodutor),
+            unicode(self.nrprocjud),
+            unicode(self.codsusp),
+            unicode(self.vrcpnret),
+            unicode(self.vrratnret),
+            unicode(self.vrsenarnret),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
-        # verbose_name = u'Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições inciden (...)'
+    
+        # verbose_name = u'Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.'
         db_table = r's1250_infoprocjud'       
         managed = True # s1250_infoprocjud #
-        unique_together = (
-            #custom_unique_together_s1250_infoprocjud#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1250_infoprocjud
-            #index_together_s1250_infoprocjud
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1250_infoprocjud", "Can view s1250_infoprocjud"),
-            #custom_permissions_s1250_infoprocjud
-        )
-        ordering = ['s1250_ideprodutor', 'nrprocjud', 'codsusp', 'vrcpnret', 'vrratnret', 'vrsenarnret']
+            ("can_view_s1250_infoprocjud", "Can view s1250_infoprocjud"), )
+            
+        ordering = [
+            's1250_ideprodutor',
+            'nrprocjud',
+            'codsusp',
+            'vrcpnret',
+            'vrratnret',
+            'vrsenarnret',]
 
 
 
 class s1250infoProcJudSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1250infoProcJud
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1250nfs(SoftDeletionModel):
-    s1250_ideprodutor = models.ForeignKey('s1250ideProdutor',
-        related_name='%(class)s_s1250_ideprodutor')
-    def evento(self): return self.s1250_ideprodutor.evento()
-    serie = models.CharField(max_length=5, blank=True, null=True)
-    nrdocto = models.CharField(max_length=20)
-    dtemisnf = models.DateField()
-    vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrcpdescpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrratdescpr = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
-    vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    s1250_ideprodutor = models.ForeignKey('s1250.s1250ideProdutor', 
+        related_name='%(class)s_s1250_ideprodutor', )
+    
+    def evento(self): 
+        return self.s1250_ideprodutor.evento()
+    serie = models.CharField(max_length=5, blank=True, null=True, )
+    nrdocto = models.CharField(max_length=20, null=True, )
+    dtemisnf = models.DateField(null=True, )
+    vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrcpdescpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrratdescpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -225,49 +321,74 @@ class s1250nfs(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1250_ideprodutor) + ' - ' + unicode(self.nrdocto) + ' - ' + unicode(self.dtemisnf) + ' - ' + unicode(self.vlrbruto) + ' - ' + unicode(self.vrcpdescpr) + ' - ' + unicode(self.vrratdescpr) + ' - ' + unicode(self.vrsenardesc)
-    #s1250_nfs_custom#
-
+        
+        lista = [
+            unicode(self.s1250_ideprodutor),
+            unicode(self.nrdocto),
+            unicode(self.dtemisnf),
+            unicode(self.vlrbruto),
+            unicode(self.vrcpdescpr),
+            unicode(self.vrratdescpr),
+            unicode(self.vrsenardesc),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
+    
         # verbose_name = u'Detalhamento das notas fiscais relativas a aquisição de produção do produtor rural identificado no registro superior, não sendo obrigatório nas aquisições de produção de pessoa física/segurado especial.'
         db_table = r's1250_nfs'       
         managed = True # s1250_nfs #
-        unique_together = (
-            #custom_unique_together_s1250_nfs#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1250_nfs
-            #index_together_s1250_nfs
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1250_nfs", "Can view s1250_nfs"),
-            #custom_permissions_s1250_nfs
-        )
-        ordering = ['s1250_ideprodutor', 'nrdocto', 'dtemisnf', 'vlrbruto', 'vrcpdescpr', 'vrratdescpr', 'vrsenardesc']
+            ("can_view_s1250_nfs", "Can view s1250_nfs"), )
+            
+        ordering = [
+            's1250_ideprodutor',
+            'nrdocto',
+            'dtemisnf',
+            'vlrbruto',
+            'vrcpdescpr',
+            'vrratdescpr',
+            'vrsenardesc',]
 
 
 
 class s1250nfsSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1250nfs
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
+
 
 class s1250tpAquis(SoftDeletionModel):
-    s1250_evtaqprod = models.ForeignKey('esocial.s1250evtAqProd',
-        related_name='%(class)s_s1250_evtaqprod')
-    def evento(self): return self.s1250_evtaqprod.evento()
-    indaquis = models.IntegerField()
-    vlrtotaquis = models.DecimalField(max_digits=15, decimal_places=2, max_length=14)
+
+    s1250_evtaqprod = models.ForeignKey('esocial.s1250evtAqProd', 
+        related_name='%(class)s_s1250_evtaqprod', )
+    
+    def evento(self): 
+        return self.s1250_evtaqprod.evento()
+    indaquis = models.IntegerField(choices=CHOICES_S1250_INDAQUIS, null=True, )
+    vlrtotaquis = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
+    
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
         related_name='%(class)s_criado_por', blank=True, null=True)
@@ -275,41 +396,51 @@ class s1250tpAquis(SoftDeletionModel):
     modificado_por = models.ForeignKey(User,
         related_name='%(class)s_modificado_por', blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
     def __unicode__(self):
-        return unicode(self.s1250_evtaqprod) + ' - ' + unicode(self.indaquis) + ' - ' + unicode(self.vlrtotaquis)
-    #s1250_tpaquis_custom#
-
+        
+        lista = [
+            unicode(self.s1250_evtaqprod),
+            unicode(self.indaquis),
+            unicode(self.vlrtotaquis),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+        
     class Meta:
-        # verbose_name = u'Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física. O registro também deve ser preenchido nas seguintes situações: - Por PF, quando a mesma adqu (...)'
+    
+        # verbose_name = u'Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física'
         db_table = r's1250_tpaquis'       
         managed = True # s1250_tpaquis #
-        unique_together = (
-            #custom_unique_together_s1250_tpaquis#
+        
+        unique_together = ()
             
-        )
-        index_together = (
-            #custom_index_together_s1250_tpaquis
-            #index_together_s1250_tpaquis
-        )
+        index_together = ()
+        
         permissions = (
-            ("can_view_s1250_tpaquis", "Can view s1250_tpaquis"),
-            #custom_permissions_s1250_tpaquis
-        )
-        ordering = ['s1250_evtaqprod', 'indaquis', 'vlrtotaquis']
+            ("can_view_s1250_tpaquis", "Can view s1250_tpaquis"), )
+            
+        ordering = [
+            's1250_evtaqprod',
+            'indaquis',
+            'vlrtotaquis',]
 
 
 
 class s1250tpAquisSerializer(ModelSerializer):
+
     class Meta:
+    
         model = s1250tpAquis
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()
         self.modificado_por = CurrentUserDefault()
         self.modificado_em = timezone.now()
-            
-
-#VIEWS_MODELS

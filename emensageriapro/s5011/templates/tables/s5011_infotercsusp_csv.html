@@ -1,5 +1,0 @@
-{% load templatetags %}"{{ conta.nome_empresa }}"
-"Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros)."
-{% if show_fields.show_s5011_idelotacao or not s5011_idelotacao_id and 1 %}"Informações de identificação da lotação e validade das informações que estão sendo incluídas";{% endif %}{% if show_fields.show_codterc or 1 %}"Código de Terceiros";{% endif %}
-{% for a in s5011_infotercsusp_lista %}{% if show_fields.show_s5011_idelotacao or  not s5011_idelotacao_id and 1 %}"{{ a.s5011_idelotacao }}";{% endif %}{% if show_fields.show_codterc or 1 %}"{{ a.codterc }}";{% endif %}
-{% endfor %}

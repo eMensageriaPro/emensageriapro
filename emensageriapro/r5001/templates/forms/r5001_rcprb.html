@@ -1,1 +1,91 @@
-<!-- eMensageria - Sistema Open-Source de Gerenciamento de Eventos do eSocial e EFD-Reinf<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->{% load templatetags %}{% load static %}{% if not r5001_infototal_id or r5001_infototal_id != r5001_rcprb_form.r5001_infototal.value %}<!-- inicio__r5001_rcprb__r5001_infototal --><div class="col-md-12" id="r5001_rcprb__r5001_infototal__div"><div class="form-group"><label id="r5001_rcprb__r5001_infototal__label">Informações relativas a totalizadores de bases e tributos*<a data-toggle="tooltip" title="Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if not for_print %}{% if r5001_rcprb_form.r5001_infototal.value %}<a id="r5001_rcprb__r5001_infototal__div_acessar" href="{% url 'r5001_infototal_salvar' hash='{}'|json_id:r5001_rcprb_form.r5001_infototal.value|json_print:0|base64_encode_me %}">[Acessar]</a><script type="text/javascript">$(document).ready(function(){ $('#id_r5001_infototal').change(function(){ document.getElementById("r5001_rcprb__r5001_infototal__div_acessar").style.display = 'none'; }); });</script>{% endif %} {% endif %} {% if r5001_rcprb_form.r5001_infototal.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r5001_rcprb_form.r5001_infototal.errors }}</div>{% endif %} {% if r5001_rcprb_form.r5001_infototal.field.widget.attrs.readonly %} {% if r5001_rcprb_form.r5001_infototal.field.widget.attrs.disabled %} {{ r5001_rcprb_form.r5001_infototal|addcss:'form-control' }}<input id="id_r5001_infototal" name="r5001_infototal" type="hidden" value="{% if r5001_rcprb_form.r5001_infototal.value or r5001_rcprb_form.r5001_infototal.value == 0 %}{{ r5001_rcprb_form.r5001_infototal.value|valor }}{% endif %}">{% else %} {{ r5001_rcprb_form.r5001_infototal|addcss:'form-control' }} {% endif %} {% else %} {{ r5001_rcprb_form.r5001_infototal|addcss_select2:'form-control automate-select' }} {% endif %}</div></div><!-- fim__r5001_rcprb__r5001_infototal -->{% else %}<input type="hidden" value="{{ r5001_infototal_id|valor }}" id="id_r5001_infototal" name="r5001_infototal">{% endif %}<!-- inicio__r5001_rcprb__crcprb --><div class="col-md-6" id="r5001_rcprb__crcprb__div"><div class="form-group"><label id="r5001_rcprb__crcprb__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB*<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB. Validação: Deve ser um código válido, compatível com as informações prestadas nos demais eventos. Valores Válidos: 2991-01, 2985-01, 2985-04, 29 (...)"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r5001_rcprb_form.crcprb.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r5001_rcprb_form.crcprb.errors }}</div>{% endif %}<div class="input-group" style="width: 100%;">{{ r5001_rcprb_form.crcprb|addcss:'form-control' }}</div></div></div><!-- fim__r5001_rcprb__crcprb --><!-- inicio__r5001_rcprb__vlrcrcprb --><div class="col-md-6" id="r5001_rcprb__vlrcrcprb__div"><div class="form-group"><label id="r5001_rcprb__vlrcrcprb__label">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.*<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor."><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r5001_rcprb_form.vlrcrcprb.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r5001_rcprb_form.vlrcrcprb.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ r5001_rcprb_form.vlrcrcprb|addcss:'form-control automate-money' }}</div></div></div><!-- fim__r5001_rcprb__vlrcrcprb --><!-- inicio__r5001_rcprb__vlrcrcprbsusp --><div class="col-md-6" id="r5001_rcprb__vlrcrcprbsusp__div"><div class="form-group"><label id="r5001_rcprb__vlrcrcprbsusp__label">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060"><i class="fa fa-fw fa-question-circle"></i></a></label>{% if r5001_rcprb_form.vlrcrcprbsusp.errors %}<div class="alert alert-error" style="margin-bottom: 0!important;width:100%">{{ r5001_rcprb_form.vlrcrcprbsusp.errors }}</div>{% endif %}<div class="input-group"><div class="input-group-addon"><i class="fa fa-money"></i></div>{{ r5001_rcprb_form.vlrcrcprbsusp|addcss:'form-control automate-money' }}</div></div></div><!-- fim__r5001_rcprb__vlrcrcprbsusp -->
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__r5001_rcprb__r5001_infototal -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#id_r5001_infototal').change(function(){
+       document.getElementById("r5001_rcprb__r5001_infototal__div_acessar").style.display = 'none';
+   });
+  });
+</script>
+<div class="col-md-12" id="r5001_rcprb__r5001_infototal__div">
+  <div class="form-group">
+    <label id="r5001_rcprb__r5001_infototal__label">Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060*</label>
+    {% if not for_print %}
+      {% if r5001_rcprb_form.r5001_infototal.value %}
+        <a id="r5001_rcprb__r5001_infototal__div_acessar" href="{% url 'r5001_infototal_salvar' hash='{}'|json_id:r5001_rcprb_form.r5001_infototal.value|json_print:0|base64_encode_me %}">
+          [Acessar]
+        </a>
+      {% endif %} 
+    {% endif %}
+    {% if r5001_rcprb_form.r5001_infototal.errors %}
+      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+        {{ r5001_rcprb_form.r5001_infototal.errors }}
+      </div>
+    {% endif %}
+    {% if r5001_rcprb_form.r5001_infototal.field.widget.attrs.readonly %}
+      {% if r5001_rcprb_form.r5001_infototal.field.widget.attrs.disabled %}
+        {{ r5001_rcprb_form.r5001_infototal|addcss:'form-control' }}
+        <input id="id_r5001_infototal" name="r5001_infototal" type="hidden" value="{% if r5001_rcprb_form.r5001_infototal.value or r5001_rcprb_form.r5001_infototal.value == 0 %}{{ r5001_rcprb_form.r5001_infototal.value|valor }}{% endif %}">
+      {% else %}
+        {{ r5001_rcprb_form.r5001_infototal|addcss:'form-control' }}
+      {% endif %}
+    {% else %}
+      {{ r5001_rcprb_form.r5001_infototal|addcss_select2:'form-control automate-select' }}
+    {% endif %}
+  </div>
+</div>
+<!-- fim__r5001_rcprb__r5001_infototal -->
+<!-- inicio__r5001_rcprb__crcprb -->
+<div class="col-md-3" id="r5001_rcprb__crcprb__div">
+  <div class="form-group">
+    <label id="r5001_rcprb__crcprb__label">Código de Receita - CR relativo a contribuição social devida à Previdência Social sobre a Receita Bruta - CPRB*</label>
+      {% if r5001_rcprb_form.crcprb.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r5001_rcprb_form.crcprb.errors }}
+        </div>
+      {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r5001_rcprb_form.crcprb|addcss:'form-control' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r5001_rcprb__crcprb -->
+<!-- inicio__r5001_rcprb__vlrcrcprb -->
+<div class="col-md-3" id="r5001_rcprb__vlrcrcprb__div">
+  <div class="form-group">
+    <label id="r5001_rcprb__vlrcrcprb__label">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB, calculada segundo as regras estabelecidas na legislação em vigor.*</label>
+    {% if r5001_rcprb_form.vlrcrcprb.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r5001_rcprb_form.vlrcrcprb.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r5001_rcprb_form.vlrcrcprb|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r5001_rcprb__vlrcrcprb -->
+<!-- inicio__r5001_rcprb__vlrcrcprbsusp -->
+<div class="col-md-3" id="r5001_rcprb__vlrcrcprbsusp__div">
+  <div class="form-group">
+    <label id="r5001_rcprb__vlrcrcprbsusp__label">Valor da Contribuição Previdenciária sobre Receita Bruta - CPRB com exigibilidade suspensa. Origem: R-2060</label>
+    {% if r5001_rcprb_form.vlrcrcprbsusp.errors %}
+    <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+      {{ r5001_rcprb_form.vlrcrcprbsusp.errors }}
+    </div>
+    {% endif %}
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      {{ r5001_rcprb_form.vlrcrcprbsusp|addcss:'form-control automate-money' }}
+    </div>
+  </div>
+</div>
+<!-- fim__r5001_rcprb__vlrcrcprbsusp -->

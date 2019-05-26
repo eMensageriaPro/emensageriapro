@@ -3,8 +3,15 @@
 from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
-from emensageriapro.s3000.views import s3000_idefolhapagto as s3000_idefolhapagto_views
-from emensageriapro.s3000.views import s3000_idetrabalhador as s3000_idetrabalhador_views
+from rest_framework.authtoken import views
+from emensageriapro.s3000.views import s3000_idetrabalhador_apagar as s3000_idetrabalhador_apagar_views
+from emensageriapro.s3000.views import s3000_idetrabalhador_listar as s3000_idetrabalhador_listar_views
+from emensageriapro.s3000.views import s3000_idetrabalhador_salvar as s3000_idetrabalhador_salvar_views
+from emensageriapro.s3000.views import s3000_idetrabalhador_api as s3000_idetrabalhador_api_views
+from emensageriapro.s3000.views import s3000_idefolhapagto_apagar as s3000_idefolhapagto_apagar_views
+from emensageriapro.s3000.views import s3000_idefolhapagto_listar as s3000_idefolhapagto_listar_views
+from emensageriapro.s3000.views import s3000_idefolhapagto_salvar as s3000_idefolhapagto_salvar_views
+from emensageriapro.s3000.views import s3000_idefolhapagto_api as s3000_idefolhapagto_api_views
 
 
 
@@ -41,50 +48,45 @@ from emensageriapro.s3000.views import s3000_idetrabalhador as s3000_idetrabalha
 
 """
 
+
 urlpatterns = [
 
 
-
-url(r'^s3000-idefolhapagto/apagar/(?P<hash>.*)/$', 
-        s3000_idefolhapagto_views.apagar, 
-        name='s3000_idefolhapagto_apagar'),
-
-url(r'^s3000-idefolhapagto/api/$',
-            s3000_idefolhapagto_views.s3000ideFolhaPagtoList.as_view() ),
-
-        url(r'^s3000-idefolhapagto/api/(?P<pk>[0-9]+)/$',
-            s3000_idefolhapagto_views.s3000ideFolhaPagtoDetail.as_view() ),
-
-url(r'^s3000-idefolhapagto/listar/(?P<hash>.*)/$', 
-        s3000_idefolhapagto_views.listar, 
-        name='s3000_idefolhapagto'),
-
-url(r'^s3000-idefolhapagto/salvar/(?P<hash>.*)/$', 
-        s3000_idefolhapagto_views.salvar, 
-        name='s3000_idefolhapagto_salvar'),
-
-
-
-url(r'^s3000-idetrabalhador/apagar/(?P<hash>.*)/$', 
-        s3000_idetrabalhador_views.apagar, 
+    url(r'^s3000-idetrabalhador/apagar/(?P<hash>.*)/$', 
+        s3000_idetrabalhador_apagar_views.apagar, 
         name='s3000_idetrabalhador_apagar'),
 
-url(r'^s3000-idetrabalhador/api/$',
-            s3000_idetrabalhador_views.s3000ideTrabalhadorList.as_view() ),
+    url(r'^s3000-idetrabalhador/api/$',
+        s3000_idetrabalhador_api_views.s3000ideTrabalhadorList.as_view() ),
 
-        url(r'^s3000-idetrabalhador/api/(?P<pk>[0-9]+)/$',
-            s3000_idetrabalhador_views.s3000ideTrabalhadorDetail.as_view() ),
+    url(r'^s3000-idetrabalhador/api/(?P<pk>[0-9]+)/$',
+        s3000_idetrabalhador_api_views.s3000ideTrabalhadorDetail.as_view() ),
 
-url(r'^s3000-idetrabalhador/listar/(?P<hash>.*)/$', 
-        s3000_idetrabalhador_views.listar, 
+    url(r'^s3000-idetrabalhador/listar/(?P<hash>.*)/$', 
+        s3000_idetrabalhador_listar_views.listar, 
         name='s3000_idetrabalhador'),
 
-url(r'^s3000-idetrabalhador/salvar/(?P<hash>.*)/$', 
-        s3000_idetrabalhador_views.salvar, 
+    url(r'^s3000-idetrabalhador/salvar/(?P<hash>.*)/$', 
+        s3000_idetrabalhador_salvar_views.salvar, 
         name='s3000_idetrabalhador_salvar'),
 
+    url(r'^s3000-idefolhapagto/apagar/(?P<hash>.*)/$', 
+        s3000_idefolhapagto_apagar_views.apagar, 
+        name='s3000_idefolhapagto_apagar'),
 
+    url(r'^s3000-idefolhapagto/api/$',
+        s3000_idefolhapagto_api_views.s3000ideFolhaPagtoList.as_view() ),
 
+    url(r'^s3000-idefolhapagto/api/(?P<pk>[0-9]+)/$',
+        s3000_idefolhapagto_api_views.s3000ideFolhaPagtoDetail.as_view() ),
+
+    url(r'^s3000-idefolhapagto/listar/(?P<hash>.*)/$', 
+        s3000_idefolhapagto_listar_views.listar, 
+        name='s3000_idefolhapagto'),
+
+    url(r'^s3000-idefolhapagto/salvar/(?P<hash>.*)/$', 
+        s3000_idefolhapagto_salvar_views.salvar, 
+        name='s3000_idefolhapagto_salvar'),
 
 
 ]
