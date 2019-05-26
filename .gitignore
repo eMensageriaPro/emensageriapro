@@ -3,6 +3,8 @@
 .env
 .env_localhost
 .env_web
+certificado/*.pfx
+certificado/*.pem
 certificados/*.pfx
 certificados/*.pem
 arquivos/
@@ -17,8 +19,10 @@ UMLs/
 backup.py
 atualizar_web.py
 clear_database.py
+download.py
 .idea/
 emensageriapro.wsgi
 xsd/rename_xsds.py
 make_and_migrate_all_apps.py
 teste_cron.txt
+delete_unused_migrations.py
