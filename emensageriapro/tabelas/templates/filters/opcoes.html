@@ -1,0 +1,139 @@
+{% load templatetags %}{% load static %}
+
+
+
+<!-- inicio__opcoes__opcoes_slug -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Slug da Opção</label>
+    <div name="opcoes_slug" class="input-group" style="width: 100%;">
+      <input type="text" name="opcoes_slug" class="form-control" value="{{ dict_fields|get_value_from_dict:'opcoes_slug' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__opcoes__opcoes_slug -->
+
+<!-- inicio__opcoes__opcoes_id -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Identificador da Opção</label>
+    <div name="opcoes_id" class="input-group" style="width: 100%;">
+      <input type="text" name="opcoes_id" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'opcoes_id' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__opcoes__opcoes_id -->
+
+<!-- inicio__opcoes__codigo -->
+<div class="col-md-4">
+  <div class="form-group">
+    <label>Código</label>
+    <div name="codigo" class="input-group" style="width: 100%;">
+      <input type="text" name="codigo" class="form-control" value="{{ dict_fields|get_value_from_dict:'codigo' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__opcoes__codigo -->
+
+<!-- inicio__opcoes__titulo -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Título</label>
+    <div name="titulo" class="input-group" style="width: 100%;">
+      <input type="text" name="titulo" class="form-control" value="{{ dict_fields|get_value_from_dict:'titulo' }}">
+    </div>
+  </div>
+</div>
+<!-- fim__opcoes__titulo -->
+
+<!-- inicio__opcoes__descricao -->
+<div class="col-md-12">
+  <div class="form-group">
+    <label>Descrição</label>
+    <div name="descricao" class="input-group" style="width: 100%;">
+      <textarea name="descricao" class="form-control">{{ dict_fields|get_value_from_dict:'descricao' }}</textarea>
+    </div>
+  </div>
+</div>
+<!-- fim__opcoes__descricao -->
+
+<!-- inicio__opcoes__data_inicio -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data de Início da Validade</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="data_inicio" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'data_inicio' %}{{ dict_fields|get_value_from_dict:'data_inicio' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__opcoes__data_inicio -->
+
+<!-- inicio__opcoes__data_termino -->
+<div class="col-md-6">
+  <div class="form-group">
+    <label>Data de Término da Validade</label>
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" name="data_termino" class="form-control pull-right automate-date-range" value="{% if dict_fields|get_value_from_dict:'data_termino' %}{{ dict_fields|get_value_from_dict:'data_termino' }}{% else %}01/01/1990 - 31/12/2050{% endif %}">
+    </div>
+  </div>
+</div>
+<!-- fim__opcoes__data_termino -->
+
+
+
+<div class="form-group col-md-12">
+    <div class="text-left">
+        <h4>Escolha quais os campos que deseja que sejam visualizados no relatório</h4>
+    </div>
+</div>
+
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_opcoes_slug" value="1" {% if show_fields|get_value_from_dict:'show_opcoes_slug' %}checked{% endif %} >Slug da Opção
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_opcoes_id" value="1" {% if show_fields|get_value_from_dict:'show_opcoes_id' %}checked{% endif %} >Identificador da Opção
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_codigo" value="1" {% if show_fields|get_value_from_dict:'show_codigo' %}checked{% endif %} >Código
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_titulo" value="1" {% if show_fields|get_value_from_dict:'show_titulo' %}checked{% endif %} >Título
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_descricao" value="1" {% if show_fields|get_value_from_dict:'show_descricao' %}checked{% endif %} >Descrição
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_data_inicio" value="1" {% if show_fields|get_value_from_dict:'show_data_inicio' %}checked{% endif %} >Data de Início da Validade
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="form-group">
+        <input type="checkbox" name="show_data_termino" value="1" {% if show_fields|get_value_from_dict:'show_data_termino' %}checked{% endif %} >Data de Término da Validade
+    </div>
+</div>
+
+

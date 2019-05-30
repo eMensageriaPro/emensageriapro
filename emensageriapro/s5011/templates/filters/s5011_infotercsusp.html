@@ -20,39 +20,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Código de Terceiros</label>
-    <div class="input-group" style="width: 100%;">
-      <select name="codterc" class="form-control automate-select" style="width: 100%;">
-        <option value="">-- selecione --</option>
-        <option value="507" {% ifequal '507' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >507 - 507</option>
-        <option value="515" {% ifequal '515' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >515 - 515</option>
-        <option value="523" {% ifequal '523' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >523 - 523</option>
-        <option value="531" {% ifequal '531' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >531 - 531</option>
-        <option value="540" {% ifequal '540' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >540 - 540</option>
-        <option value="558" {% ifequal '558' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >558 - 558</option>
-        <option value="566" {% ifequal '566' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >566 - 566</option>
-        <option value="574" {% ifequal '574' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >574 - 574</option>
-        <option value="582" {% ifequal '582' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >582 - 582</option>
-        <option value="590" {% ifequal '590' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >590 - 590</option>
-        <option value="604" {% ifequal '604' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >604 - 604</option>
-        <option value="612" {% ifequal '612' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >612 - 612</option>
-        <option value="620" {% ifequal '620' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >620 - 620</option>
-        <option value="639" {% ifequal '639' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >639 - 639</option>
-        <option value="647" {% ifequal '647' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >647 - 647</option>
-        <option value="655" {% ifequal '655' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >655 - 655</option>
-        <option value="680" {% ifequal '680' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >680 - 680</option>
-        <option value="736" {% ifequal '736' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >736 - 736</option>
-        <option value="744" {% ifequal '744' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >744 - 744</option>
-        <option value="779" {% ifequal '779' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >779 - 779</option>
-        <option value="787" {% ifequal '787' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >787 - 787</option>
-        <option value="795" {% ifequal '795' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >795 - 795</option>
-        <option value="825" {% ifequal '825' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >825 - 825</option>
-        <option value="833" {% ifequal '833' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >833 - 833</option>
-        <option value="868" {% ifequal '868' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >868 - 868</option>
-        <option value="876" {% ifequal '876' dict_fields|get_value_from_dict:'codterc' %}selected="selected"{% endifequal %} >876 - 876</option>
-      </select>
-    </div>
+    <input type="text" id="txt_codterc" name="txt_codterc" class="form-control" value="{{ dict_fields|get_value_from_dict:'codterc' }}">
+    <input type="hidden" id="id_codterc" name="codterc" value="{{ dict_fields|get_value_from_dict:'codterc'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_codterc').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/121/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_codterc').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__s5011_infotercsusp__codterc -->
 
 

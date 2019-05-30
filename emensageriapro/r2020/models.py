@@ -214,7 +214,7 @@ class r2020infoTpServ(SoftDeletionModel):
     
     def evento(self): 
         return self.r2020_nfs.evento()
-    tpservico = models.IntegerField(choices=CHOICES_R2020_TPSERVICO, null=True, )
+    tpservico = models.IntegerField(null=True, )
     vlrbaseret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrretencao = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrretsub = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )

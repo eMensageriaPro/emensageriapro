@@ -139,7 +139,7 @@ class s5003basePerApur(SoftDeletionModel):
     
     def evento(self): 
         return self.s5003_infobasefgts.evento()
-    tpvalor = models.IntegerField(choices=CHOICES_S5003_TPVALOR, null=True, )
+    tpvalor = models.IntegerField(null=True, )
     remfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -340,7 +340,7 @@ class s5003ideEstabLot(SoftDeletionModel):
     
     def evento(self): 
         return self.s5003_evtbasesfgts.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S5003_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     codlotacao = models.CharField(max_length=30, null=True, )
     
@@ -661,7 +661,7 @@ class s5003infoTrabDps(SoftDeletionModel):
     def evento(self): 
         return self.s5003_infodpsfgts.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -726,11 +726,11 @@ class s5003infoTrabFGTS(SoftDeletionModel):
     def evento(self): 
         return self.s5003_ideestablot.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     dtadm = models.DateField(blank=True, null=True, )
     dtdeslig = models.DateField(blank=True, null=True, )
     dtinicio = models.DateField(blank=True, null=True, )
-    mtvdeslig = models.CharField(choices=CHOICES_S5003_MTVDESLIG, max_length=2, blank=True, null=True, )
+    mtvdeslig = models.TextField(blank=True, null=True, )
     dtterm = models.DateField(blank=True, null=True, )
     mtvdesligtsv = models.CharField(choices=CHOICES_S5003_MTVDESLIGTSV, max_length=2, blank=True, null=True, )
     

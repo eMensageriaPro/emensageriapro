@@ -28,8 +28,8 @@
 $(document).ready(function(e){
   $('#txt_codcateg').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-trabalhadores-categorias/json-search/" + request.term + "/", function (data) {
-      response($.map(data.esocial_trabalhadores_categorias, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/172/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key

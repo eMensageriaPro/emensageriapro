@@ -55,7 +55,7 @@
 <!-- fim__s5003_infotrabfgts__matricula -->
 <!-- inicio__s5003_infotrabfgts__codcateg -->
 {% if permissao.permite_editar or permissao.permite_cadastrar %}
-  <div class="col-md-12" id="s5003_infotrabfgts__codcateg__div">
+  <div class="col-md-6" id="s5003_infotrabfgts__codcateg__div">
     <div class="form-group">
       <label id="s5003_infotrabfgts__codcateg__label">Código da Categoria*</label>
         {% if s5003_infotrabfgts_form.codcateg.errors %}
@@ -63,17 +63,25 @@
             {{ s5003_infotrabfgts_form.codcateg.errors }}
           </div>
         {% endif %}
-        <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s5003_infotrabfgts.codcateg %}{{ s5003_infotrabfgts.codcateg }}{% endif %}" 
-        {% if s5003_infotrabfgts_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s5003_infotrabfgts_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}{% if s5003_infotrabfgts_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" id="id_codcateg" name="codcateg" value="{% if s5003_infotrabfgts.codcateg %}{{ s5003_infotrabfgts_form.codcateg.value|valor }}{% endif %}">
+        <input type="text" 
+               id="txt_codcateg" 
+               name="txt_codcateg" class="form-control" 
+               value="{% if s5003_infotrabfgts.codcateg %}{{ s5003_infotrabfgts.codcateg|get_opcoes_titulo:172 }}{% endif %}" 
+               {% if s5003_infotrabfgts_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s5003_infotrabfgts_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s5003_infotrabfgts_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codcateg" 
+               name="codcateg" 
+               value="{% if s5003_infotrabfgts.codcateg %}{{ s5003_infotrabfgts_form.codcateg.value|valor }}{% endif %}" >
     </div>
   </div>
   <script type="text/javascript">
   $(document).ready(function(e){
     $('#txt_codcateg').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-trabalhadores-categorias/json-search/" + request.term + "/", function (data) {
-          response($.map(data.esocial_trabalhadores_categorias, function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/172/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -101,14 +109,9 @@
   });
   </script>
   {% else %}
-  <div class="col-md-12" id="s5003_infotrabfgts__codcateg__div">
+  <div class="col-md-6" id="s5003_infotrabfgts__codcateg__div">
     <div class="form-group">
       <label id="s5003_infotrabfgts__codcateg__label">Código da Categoria*</label>
-        {% if not for_print %}{% if s5003_infotrabfgts_form.codcateg.value %}
-            <a id="s5003_infotrabfgts__codcateg__div_acessar" href="{% url 'esocial-trabalhadores-categorias_salvar' hash='{}'|json_id:s5003_infotrabfgts_form.codcateg.value|json_print:0|base64_encode_me %}">
-                [Acessar]
-            </a>
-        {% endif %} {% endif %}
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s5003_infotrabfgts.codcateg %}{{ s5003_infotrabfgts.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -160,28 +163,68 @@
 </div>
 <!-- fim__s5003_infotrabfgts__dtinicio -->
 <!-- inicio__s5003_infotrabfgts__mtvdeslig -->
-<div class="col-md-6" id="s5003_infotrabfgts__mtvdeslig__div">
-  <div class="form-group">
-    <label id="s5003_infotrabfgts__mtvdeslig__label">Motivo do desligamento</label>
-    {% if s5003_infotrabfgts_form.mtvdeslig.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ s5003_infotrabfgts_form.mtvdeslig.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if s5003_infotrabfgts_form.mtvdeslig.field.widget.attrs.readonly %}
-        {% if s5003_infotrabfgts_form.mtvdeslig.field.widget.attrs.disabled %}
-          {{ s5003_infotrabfgts_form.mtvdeslig|addcss:'form-control' }}
-          <input id="id_mtvdeslig" name="mtvdeslig" type="hidden" value="{% if s5003_infotrabfgts_form.mtvdeslig.value or s5003_infotrabfgts_form.mtvdeslig.value == 0 %}{{ s5003_infotrabfgts_form.mtvdeslig.value }}{% endif %}">
-        {% else %}
-          {{ s5003_infotrabfgts_form.mtvdeslig|addcss:'form-control' }}
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-6" id="s5003_infotrabfgts__mtvdeslig__div">
+    <div class="form-group">
+      <label id="s5003_infotrabfgts__mtvdeslig__label">Motivo do desligamento</label>
+        {% if s5003_infotrabfgts_form.mtvdeslig.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s5003_infotrabfgts_form.mtvdeslig.errors }}
+          </div>
         {% endif %}
-      {% else %}
-        {{ s5003_infotrabfgts_form.mtvdeslig|addcss_select2:'form-control automate-select' }}
-      {% endif %}
+        <input type="text" 
+               id="txt_mtvdeslig" 
+               name="txt_mtvdeslig" class="form-control" 
+               value="{% if s5003_infotrabfgts.mtvdeslig %}{{ s5003_infotrabfgts.mtvdeslig|get_opcoes_titulo:442 }}{% endif %}" 
+               {% if s5003_infotrabfgts_form.mtvdeslig.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s5003_infotrabfgts_form.mtvdeslig.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s5003_infotrabfgts_form.mtvdeslig.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_mtvdeslig" 
+               name="mtvdeslig" 
+               value="{% if s5003_infotrabfgts.mtvdeslig %}{{ s5003_infotrabfgts_form.mtvdeslig.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_mtvdeslig').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/442/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_mtvdeslig').val(ui.item.value);
+        return false;
+      }});
+    {% if s5003_infotrabfgts_form.mtvdeslig.field.widget.attrs.required %}
+    $("#id_form_s5003_infotrabfgts").submit(function(e) {
+      $('#txt_mtvdeslig').disabled = true;
+        if ($('#id_mtvdeslig').val() == "") {
+          $('#txt_mtvdeslig').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Motivo do desligamento!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="s5003_infotrabfgts__mtvdeslig__div">
+    <div class="form-group">
+      <label id="s5003_infotrabfgts__mtvdeslig__label">Motivo do desligamento</label>
+        <input type="text" id="txt_mtvdeslig" name="txt_mtvdeslig" class="form-control" value="{% if s5003_infotrabfgts.mtvdeslig %}{{ s5003_infotrabfgts.mtvdeslig }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__s5003_infotrabfgts__mtvdeslig -->
 <!-- inicio__s5003_infotrabfgts__dtterm -->
 <div class="col-md-6" id="s5003_infotrabfgts__dtterm__div">

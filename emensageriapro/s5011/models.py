@@ -319,7 +319,7 @@ class s5011basesRemun(SoftDeletionModel):
     def evento(self): 
         return self.s5011_idelotacao.evento()
     indincid = models.IntegerField(choices=CHOICES_S5011_INDINCID, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     vrbccp00 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrbccp15 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrbccp20 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
@@ -500,7 +500,7 @@ class s5011ideEstab(SoftDeletionModel):
     
     def evento(self): 
         return self.s5011_evtcs.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S5011_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -568,9 +568,9 @@ class s5011ideLotacao(SoftDeletionModel):
     def evento(self): 
         return self.s5011_ideestab.evento()
     codlotacao = models.CharField(max_length=30, null=True, )
-    fpas = models.IntegerField(choices=CHOICES_S5011_FPAS, null=True, )
-    codtercs = models.CharField(choices=CHOICES_S5011_CODTERCS, max_length=4, null=True, )
-    codtercssusp = models.CharField(choices=CHOICES_S5011_CODTERCSSUSP, max_length=4, blank=True, null=True, )
+    fpas = models.IntegerField(null=True, )
+    codtercs = models.TextField(null=True, )
+    codtercssusp = models.TextField(blank=True, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -1252,7 +1252,7 @@ class s5011infoTercSusp(SoftDeletionModel):
     
     def evento(self): 
         return self.s5011_idelotacao.evento()
-    codterc = models.CharField(choices=CHOICES_S5011_CODTERC, max_length=4, null=True, )
+    codterc = models.TextField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,

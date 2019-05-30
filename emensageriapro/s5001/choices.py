@@ -36,6 +36,19 @@
 
 
 
+CHOICES_ESOCIALINSCRICOESTIPOS = [
+
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (5, u'5 - CGC'),
+    
+]
+
+
+
+
 CHOICES_S5001_IND13 = [
 
     (0, u'0 - Mensal'),
@@ -69,48 +82,6 @@ CHOICES_S5001_TPCR = [
     ('1082-24', u'1082-24 - CP descontada do segurado especial curto prazo 13° salário, alíquota de 8%, lei 11718/2008 (codIncCP = [12, 16])'),
     ('1099-01', u'1099-01 - CP descontada do contribuinte individual, alíquota de 11%'),
     ('1099-02', u'1099-02 - CP descontada do contribuinte individual, alíquota de 20%.'),
-    
-]
-
-
-
-
-CHOICES_S5001_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
-CHOICES_S5001_TPVALOR = [
-
-    (11, u'11 - Base de cálculo da Contribuição Previdenciária normal'),
-    (12, u'12 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição'),
-    (13, u'13 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição'),
-    (14, u'14 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição'),
-    (15, u'15 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador'),
-    (16, u'16 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador'),
-    (17, u'17 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador'),
-    (18, u'18 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador'),
-    (19, u'19 - Base de cálculo da contribuição previdenciária exclusiva do empregado'),
-    (21, u'21 - Valor total descontado do trabalhador para recolhimento à Previdência Social'),
-    (22, u'22 - Valor descontado do trabalhador para recolhimento ao Sest'),
-    (23, u'23 - Valor descontado do trabalhador para recolhimento ao Senat'),
-    (31, u'31 - Valor pago ao trabalhador a título de salário-família'),
-    (32, u'32 - Valor pago ao trabalhador a título de salário-maternidade'),
-    (91, u'91 - Incidência suspensa em decorrência de decisão judicial - Base de cálculo (BC) da Contribuição Previdenciária (CP) Normal'),
-    (92, u'92 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho'),
-    (93, u'93 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho'),
-    (94, u'94 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho'),
-    (95, u'95 - Incid. suspensa em decorrência de decisão judicial - BC CP normal - Exclusiva do empregador. 96 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho - Exclusiva do empregador'),
-    (97, u'97 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho - Exclusiva do empregador'),
-    (98, u'98 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho - Exclusiva do empregador.'),
     
 ]
 

@@ -73,7 +73,7 @@ class s1200dmDev(SoftDeletionModel):
     def evento(self): 
         return self.s1200_evtremun.evento()
     idedmdev = models.CharField(max_length=30, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -468,7 +468,7 @@ class s1200infoPerAntideEstabLot(SoftDeletionModel):
     
     def evento(self): 
         return self.s1200_infoperant_ideperiodo.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1200_TPINSC_INFOPERANT, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     codlotacao = models.CharField(max_length=30, null=True, )
     
@@ -1063,7 +1063,7 @@ class s1200infoPerApurdetPlano(SoftDeletionModel):
     
     def evento(self): 
         return self.s1200_infoperapur_detoper.evento()
-    tpdep = models.CharField(choices=CHOICES_S1200_TPDEP_INFOPERAPUR, max_length=2, null=True, )
+    tpdep = models.CharField(choices=CHOICES_ESOCIALDEPENDENTESTIPOS, max_length=2, null=True, )
     cpfdep = models.CharField(max_length=11, blank=True, null=True, )
     nmdep = models.CharField(max_length=70, null=True, )
     dtnascto = models.DateField(null=True, )
@@ -1137,7 +1137,7 @@ class s1200infoPerApurideEstabLot(SoftDeletionModel):
     
     def evento(self): 
         return self.s1200_infoperapur.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1200_TPINSC_INFOPERAPUR, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     codlotacao = models.CharField(max_length=30, null=True, )
     qtddiasav = models.IntegerField(blank=True, null=True, )
@@ -1601,9 +1601,9 @@ class s1200remunOutrEmpr(SoftDeletionModel):
     
     def evento(self): 
         return self.s1200_infomv.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1200_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     vlrremunoe = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -1674,7 +1674,7 @@ class s1200sucessaoVinc(SoftDeletionModel):
     
     def evento(self): 
         return self.s1200_infocomplem.evento()
-    tpinscant = models.IntegerField(choices=CHOICES_S1200_TPINSCANT, null=True, )
+    tpinscant = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     cnpjempregant = models.CharField(max_length=14, null=True, )
     matricant = models.CharField(max_length=30, blank=True, null=True, )
     dtadm = models.DateField(null=True, )

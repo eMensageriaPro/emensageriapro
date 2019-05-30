@@ -35,19 +35,68 @@
 </div>
 <!-- fim__s5002_idepgtoext__idepais -->
 <!-- inicio__s5002_idepgtoext__codpais -->
-<div class="col-md-6" id="s5002_idepgtoext__codpais__div">
-  <div class="form-group">
-    <label id="s5002_idepgtoext__codpais__label">Código do País*</label>
-      {% if s5002_idepgtoext_form.codpais.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ s5002_idepgtoext_form.codpais.errors }}
-        </div>
-      {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {{ s5002_idepgtoext_form.codpais|addcss:'form-control' }}
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-6" id="s5002_idepgtoext__codpais__div">
+    <div class="form-group">
+      <label id="s5002_idepgtoext__codpais__label">Código do País*</label>
+        {% if s5002_idepgtoext_form.codpais.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s5002_idepgtoext_form.codpais.errors }}
+          </div>
+        {% endif %}
+        <input type="text" 
+               id="txt_codpais" 
+               name="txt_codpais" class="form-control" 
+               value="{% if s5002_idepgtoext.codpais %}{{ s5002_idepgtoext.codpais|get_opcoes_titulo:204 }}{% endif %}" 
+               {% if s5002_idepgtoext_form.codpais.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s5002_idepgtoext_form.codpais.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s5002_idepgtoext_form.codpais.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codpais" 
+               name="codpais" 
+               value="{% if s5002_idepgtoext.codpais %}{{ s5002_idepgtoext_form.codpais.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codpais').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codpais').val(ui.item.value);
+        return false;
+      }});
+    {% if s5002_idepgtoext_form.codpais.field.widget.attrs.required %}
+    $("#id_form_s5002_idepgtoext").submit(function(e) {
+      $('#txt_codpais').disabled = true;
+        if ($('#id_codpais').val() == "") {
+          $('#txt_codpais').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Código do País!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="s5002_idepgtoext__codpais__div">
+    <div class="form-group">
+      <label id="s5002_idepgtoext__codpais__label">Código do País*</label>
+        <input type="text" id="txt_codpais" name="txt_codpais" class="form-control" value="{% if s5002_idepgtoext.codpais %}{{ s5002_idepgtoext.codpais }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__s5002_idepgtoext__codpais -->
 <!-- inicio__s5002_idepgtoext__indnif -->
 <div class="col-md-6" id="s5002_idepgtoext__indnif__div">

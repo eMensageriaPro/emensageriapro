@@ -334,7 +334,7 @@ class r2070ideEstab(SoftDeletionModel):
     
     def evento(self): 
         return self.r2070_evtpgtosdivs.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_R2070_TPINSC, null=True, )
+    tpinsc = models.IntegerField(null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -946,7 +946,7 @@ class r2070infoResidExt(SoftDeletionModel):
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
     indnif = models.IntegerField(choices=CHOICES_R2070_INDNIF, null=True, )
     nifbenef = models.CharField(max_length=20, blank=True, null=True, )
-    relfontepagad = models.CharField(choices=CHOICES_R2070_RELFONTEPAGAD, max_length=3, blank=True, null=True, )
+    relfontepagad = models.CharField(choices=CHOICES_EFDREINFINFORMACOESBENEFICIARIOSEXTERIOR, max_length=3, blank=True, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -1492,7 +1492,7 @@ class r2070pgtoResidExt(SoftDeletionModel):
         return self.r2070_ideestab.evento()
     dtpagto = models.DateField(null=True, )
     tprendimento = models.IntegerField(null=True, )
-    formatributacao = models.CharField(choices=CHOICES_R2070_FORMATRIBUTACAO, max_length=2, null=True, )
+    formatributacao = models.CharField(choices=CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO, max_length=2, null=True, )
     vlrpgto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     

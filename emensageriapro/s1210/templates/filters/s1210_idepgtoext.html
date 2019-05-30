@@ -24,11 +24,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Código do País</label>
-    <div name="codpais" class="input-group" style="width: 100%;">
-      <input type="text" name="codpais" class="form-control" value="{{ dict_fields|get_value_from_dict:'codpais' }}">
-    </div>
+    <input type="text" id="txt_codpais" name="txt_codpais" class="form-control" value="{{ dict_fields|get_value_from_dict:'codpais' }}">
+    <input type="hidden" id="id_codpais" name="codpais" value="{{ dict_fields|get_value_from_dict:'codpais'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_codpais').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_codpais').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__s1210_idepgtoext__codpais -->
 
 <!-- inicio__s1210_idepgtoext__indnif -->

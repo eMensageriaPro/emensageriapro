@@ -36,7 +36,7 @@
 
 
 
-CHOICES_S1270_TPINSC = [
+CHOICES_ESOCIALINSCRICOESTIPOS = [
 
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF'),

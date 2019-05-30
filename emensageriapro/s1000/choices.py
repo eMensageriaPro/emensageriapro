@@ -36,11 +36,11 @@
 
 
 
-CHOICES_S1000_CLASSTRIB_ALTERACAO = [
+CHOICES_ESOCIALCLASSIFICACOESTRIBUTARIAS = [
 
-    ('01', u'01 - Empresa  enquadrada  no  regime  de  tributação  Simples  Nacional  com  tributação  previdenciária substituída'),
+    ('01', u'01 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída'),
     ('02', u'02 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária não substituída'),
-    ('03', u'03 - Empresa  enquadrada  no  regime  de  tributação  Simples  Nacional  com  tributação  previdenciária substituída e não substituída'),
+    ('03', u'03 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída'),
     ('04', u'04 - MEI - Micro Empreendedor Individual'),
     ('06', u'06 - Agroindústria'),
     ('07', u'07 - Produtor Rural Pessoa Jurídica'),
@@ -51,38 +51,11 @@ CHOICES_S1000_CLASSTRIB_ALTERACAO = [
     ('13', u'13 - Banco, caixa econômica, sociedade de crédito, financiamento e investimento e demais empresas relacionadas no parágrafo 1º do art. 22 da Lei 8.212./91'),
     ('14', u'14 - Sindicatos em geral, exceto aquele classificado no código [10]'),
     ('21', u'21 - Pessoa Física, exceto Segurado Especial'),
-    ('22', u'22 - Segurado Especial'),
+    ('22', u'22 - Segurado Especial, inclusive quando for empregador doméstico'),
     ('60', u'60 - Missão Diplomática ou Repartição Consular de carreira estrangeira'),
     ('70', u'70 - Empresa de que trata o Decreto 5.436/2005'),
     ('80', u'80 - Entidade Beneficente de Assistência Social isenta de contribuições sociais'),
-    ('85', u'85 - Ente Federativo, Órgãos da União, Autarquias e Fundações Públicas'),
-    ('99', u'99 - Pessoas Jurídicas em Geral'),
-    
-]
-
-
-
-
-CHOICES_S1000_CLASSTRIB_INCLUSAO = [
-
-    ('01', u'01 - Empresa  enquadrada  no  regime  de  tributação  Simples  Nacional  com  tributação  previdenciária substituída'),
-    ('02', u'02 - Empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária não substituída'),
-    ('03', u'03 - Empresa  enquadrada  no  regime  de  tributação  Simples  Nacional  com  tributação  previdenciária substituída e não substituída'),
-    ('04', u'04 - MEI - Micro Empreendedor Individual'),
-    ('06', u'06 - Agroindústria'),
-    ('07', u'07 - Produtor Rural Pessoa Jurídica'),
-    ('08', u'08 - Consórcio Simplificado de Produtores Rurais'),
-    ('09', u'09 - Órgão Gestor de Mão de Obra'),
-    ('10', u'10 - Entidade Sindical a que se refere a Lei 12.023/2009'),
-    ('11', u'11 - Associação Desportiva que mantém Clube de Futebol Profissional'),
-    ('13', u'13 - Banco, caixa econômica, sociedade de crédito, financiamento e investimento e demais empresas relacionadas no parágrafo 1º do art. 22 da Lei 8.212./91'),
-    ('14', u'14 - Sindicatos em geral, exceto aquele classificado no código [10]'),
-    ('21', u'21 - Pessoa Física, exceto Segurado Especial'),
-    ('22', u'22 - Segurado Especial'),
-    ('60', u'60 - Missão Diplomática ou Repartição Consular de carreira estrangeira'),
-    ('70', u'70 - Empresa de que trata o Decreto 5.436/2005'),
-    ('80', u'80 - Entidade Beneficente de Assistência Social isenta de contribuições sociais'),
-    ('85', u'85 - Ente Federativo, Órgãos da União, Autarquias e Fundações Públicas'),
+    ('85', u'85 - Administração Direta da União, Estados, Distrito Federal e Municípíos, Autarquias e Fundações Públicas'),
     ('99', u'99 - Pessoas Jurídicas em Geral'),
     
 ]

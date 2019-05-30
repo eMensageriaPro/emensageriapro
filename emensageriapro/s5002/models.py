@@ -72,7 +72,7 @@ class s5002basesIrrf(SoftDeletionModel):
     
     def evento(self): 
         return self.s5002_infoirrf.evento()
-    tpvalor = models.IntegerField(choices=CHOICES_S5002_TPVALOR, null=True, )
+    tpvalor = models.IntegerField(null=True, )
     valor = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -139,7 +139,7 @@ class s5002idePgtoExt(SoftDeletionModel):
     
     def evento(self): 
         return self.s5002_infoirrf.evento()
-    codpais = models.CharField(max_length=3, null=True, )
+    codpais = models.TextField(null=True, )
     indnif = models.IntegerField(choices=CHOICES_S5002_INDNIF, null=True, )
     nifbenef = models.CharField(max_length=20, blank=True, null=True, )
     dsclograd = models.CharField(max_length=100, null=True, )
@@ -281,7 +281,7 @@ class s5002infoIrrf(SoftDeletionModel):
     
     def evento(self): 
         return self.s5002_evtirrfbenef.evento()
-    codcateg = models.TextField(blank=True, null=True, )
+    codcateg = models.IntegerField(blank=True, null=True, )
     indresbr = models.CharField(choices=CHOICES_S5002_INDRESBR, max_length=1, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)

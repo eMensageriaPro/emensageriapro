@@ -20,11 +20,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09</label>
-    <div name="codativecon" class="input-group" style="width: 100%;">
-      <input type="text" name="codativecon" class="form-control" value="{{ dict_fields|get_value_from_dict:'codativecon' }}">
-    </div>
+    <input type="text" id="txt_codativecon" name="txt_codativecon" class="form-control" value="{{ dict_fields|get_value_from_dict:'codativecon' }}">
+    <input type="hidden" id="id_codativecon" name="codativecon" value="{{ dict_fields|get_value_from_dict:'codativecon'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_codativecon').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/636/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_codativecon').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__r2060_tipocod__codativecon -->
 
 <!-- inicio__r2060_tipocod__vlrrecbrutaativ -->

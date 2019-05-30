@@ -15,7 +15,7 @@
 <!-- fim__s2205_exterior__s2205_evtaltcadastral -->
 
 <!-- inicio__s2205_exterior__paisresid -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>País</label>
     <input type="text" id="txt_paisresid" name="txt_paisresid" class="form-control" value="{{ dict_fields|get_value_from_dict:'paisresid' }}">
@@ -26,8 +26,8 @@
 $(document).ready(function(e){
   $('#txt_paisresid').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-paises/json-search/" + request.term + "/", function (data) {
-      response($.map(data.esocial_paises, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key

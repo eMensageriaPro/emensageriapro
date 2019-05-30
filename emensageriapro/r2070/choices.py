@@ -36,7 +36,32 @@
 
 
 
-CHOICES_R2070_FORMATRIBUTACAO = [
+CHOICES_EFDREINFINFORMACOESBENEFICIARIOSEXTERIOR = [
+
+    (500, u'500 - A fonte pagadora é matriz da beneficiária no exterior.'),
+    (510, u'510 - A fonte pagadora é filial, sucursal ou agência de beneficiária no exterior.'),
+    (520, u'520 - A fonte pagadora é controlada ou coligada da beneficiária no exterior, na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 15 de dezembro de 1976.'),
+    (530, u'530 - A fonte pagadora é controladora ou coligada da beneficiária no exterior, na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 1976.'),
+    (540, u'540 - A fonte pagadora e a beneficiária no exterior estão sob controle societário ou administrativo comum ou quando pelo menos 10% do capital de cada uma, pertencer a uma mesma pessoa física ou jurídica.'),
+    (550, u'550 - A fonte pagadora e a beneficiária no exterior têm participação societária no capital de uma terceira pessoa jurídica, cuja soma as caracterize como controladoras ou coligadas na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 1976.'),
+    (560, u'560 - A fonte pagadora ou a beneficiária no exterior mantenha contrato de exclusividade como agente, como distribuidor ou como concessionário nas operações com bens, serviços e direitos.'),
+    (570, u'570 - A fonte pagadora e a beneficiária mantêm acordo de atuação conjunta.'),
+    (900, u'900 - Não há relação entre a fonte pagadora e a beneficiária no exterior.'),
+    
+]
+
+
+
+
+CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIOR = [
+
+    
+]
+
+
+
+
+CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO = [
 
     ('10', u'10 - Retenção do IRRF - alíquota padrão.'),
     ('11', u'11 - Retenção do IRRF - alíquota da tabela progressiva.'),
@@ -124,36 +149,6 @@ CHOICES_R2070_INDTPDEDUCAO = [
     (4, u'4 - Funpresp'),
     (5, u'5 - Pensão Alimentícia'),
     (6, u'6 - Dependentes.'),
-    
-]
-
-
-
-
-CHOICES_R2070_RELFONTEPAGAD = [
-
-    ('500', u'500 - A fonte pagadora é matriz da beneficiária no exterior.'),
-    ('510', u'510 - A fonte pagadora é filial, sucursal ou agência de beneficiária no exterior.'),
-    ('520', u'520 - A fonte pagadora é controlada ou coligada da beneficiária no exterior, na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 15 de dezembro de 1976.'),
-    ('530', u'530 - A fonte pagadora é controladora ou coligada da beneficiária no exterior, na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 1976.'),
-    ('540', u'540 - A fonte pagadora e a beneficiária no exterior estão sob controle societário ou administrativo comum ou quando pelo menos 10% do capital de cada uma, pertencer a uma mesma pessoa física ou jurídica.'),
-    ('550', u'550 - A fonte pagadora e a beneficiária no exterior têm participação societária no capital de uma terceira pessoa jurídica, cuja soma as caracterize como controladoras ou coligadas na forma dos §§ 1º e 2º do art. 243 da Lei nº 6.404, de 1976.'),
-    ('560', u'560 - A fonte pagadora ou a beneficiária no exterior mantenha contrato de exclusividade como agente, como distribuidor ou como concessionário nas operações com bens, serviços e direitos.'),
-    ('570', u'570 - A fonte pagadora e a beneficiária mantêm acordo de atuação conjunta.'),
-    ('900', u'900 - Não há relação entre a fonte pagadora e a beneficiária no exterior.'),
-    
-]
-
-
-
-
-CHOICES_R2070_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 

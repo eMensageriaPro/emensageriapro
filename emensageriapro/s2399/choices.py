@@ -36,6 +36,38 @@
 
 
 
+CHOICES_ESOCIALDEPENDENTESTIPOS = [
+
+    ('01', u'01 - Cônjuge'),
+    ('02', u'02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável'),
+    ('03', u'03 - Filho(a) ou enteado(a)'),
+    ('04', u'04 - Filho(a) ou enteado(a), universitário(a) ou cursando escola técnica de 2º grau'),
+    ('06', u'06 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do(a) qual detenha a guarda judicial'),
+    ('07', u'07 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, universitário(a) ou cursando escola técnica de 2° grau, do(a) qual detenha a guarda judicial'),
+    ('09', u'09 - Pais, avós e bisavós'),
+    ('10', u'10 - Menor pobre do qual detenha a guarda judicial'),
+    ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
+    ('12', u'12 - Ex-cônjuge'),
+    ('99', u'99 - Agregado/Outros'),
+    
+]
+
+
+
+
+CHOICES_ESOCIALINSCRICOESTIPOS = [
+
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (5, u'5 - CGC'),
+    
+]
+
+
+
+
 CHOICES_S2399_GRAUEXP = [
 
     (1, u'1 - Não ensejador de aposentadoria especial'),
@@ -64,38 +96,6 @@ CHOICES_S2399_INDSIMPLES = [
     (1, u'1 - Contribuição Substituída Integralmente'),
     (2, u'2 - Contribuição não substituída'),
     (3, u'3 - Contribuição não substituída concomitante com contribuição substituída.'),
-    
-]
-
-
-
-
-CHOICES_S2399_TPDEP = [
-
-    ('01', u'01 - Cônjuge'),
-    ('02', u'02 - Companheiro(a) com o(a) qual tenha filho ou viva há mais de 5 (cinco) anos ou possua Declaração de União Estável'),
-    ('03', u'03 - Filho(a) ou enteado(a)'),
-    ('04', u'04 - Filho(a) ou enteado(a), universitário(a) ou cursando escola técnica de 2º grau'),
-    ('06', u'06 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do(a) qual detenha a guarda judicial'),
-    ('07', u'07 - Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, universitário(a) ou cursando escola técnica de 2° grau, do(a) qual detenha a guarda judicial'),
-    ('09', u'09 - Pais, avós e bisavós'),
-    ('10', u'10 - Menor pobre do qual detenha a guarda judicial'),
-    ('11', u'11 - A pessoa absolutamente incapaz, da qual seja tutor ou curador'),
-    ('12', u'12 - Ex-cônjuge'),
-    ('99', u'99 - Agregado/Outros'),
-    
-]
-
-
-
-
-CHOICES_S2399_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 

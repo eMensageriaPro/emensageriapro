@@ -36,7 +36,7 @@
 <!-- fim__r2070_inforesidext__infoender -->
 <!-- inicio__r2070_inforesidext__paisresid -->
 {% if permissao.permite_editar or permissao.permite_cadastrar %}
-  <div class="col-md-12" id="r2070_inforesidext__paisresid__div">
+  <div class="col-md-6" id="r2070_inforesidext__paisresid__div">
     <div class="form-group">
       <label id="r2070_inforesidext__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*</label>
         {% if r2070_inforesidext_form.paisresid.errors %}
@@ -44,17 +44,25 @@
             {{ r2070_inforesidext_form.paisresid.errors }}
           </div>
         {% endif %}
-        <input type="text" id="txt_paisresid" name="txt_paisresid" class="form-control" value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext.paisresid }}{% endif %}" 
-        {% if r2070_inforesidext_form.paisresid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if r2070_inforesidext_form.paisresid.field.widget.attrs.required %} required="required"{% endif %}{% if r2070_inforesidext_form.paisresid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" id="id_paisresid" name="paisresid" value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext_form.paisresid.value|valor }}{% endif %}">
+        <input type="text" 
+               id="txt_paisresid" 
+               name="txt_paisresid" class="form-control" 
+               value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext.paisresid|get_opcoes_titulo:645 }}{% endif %}" 
+               {% if r2070_inforesidext_form.paisresid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if r2070_inforesidext_form.paisresid.field.widget.attrs.required %} required="required"{% endif %}
+               {% if r2070_inforesidext_form.paisresid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_paisresid" 
+               name="paisresid" 
+               value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext_form.paisresid.value|valor }}{% endif %}" >
     </div>
   </div>
   <script type="text/javascript">
   $(document).ready(function(e){
     $('#txt_paisresid').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/efdreinf-paises/json-search/" + request.term + "/", function (data) {
-          response($.map(data.efdreinf_paises, function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/645/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -82,14 +90,9 @@
   });
   </script>
   {% else %}
-  <div class="col-md-12" id="r2070_inforesidext__paisresid__div">
+  <div class="col-md-6" id="r2070_inforesidext__paisresid__div">
     <div class="form-group">
       <label id="r2070_inforesidext__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*</label>
-        {% if not for_print %}{% if r2070_inforesidext_form.paisresid.value %}
-            <a id="r2070_inforesidext__paisresid__div_acessar" href="{% url 'efdreinf-paises_salvar' hash='{}'|json_id:r2070_inforesidext_form.paisresid.value|json_print:0|base64_encode_me %}">
-                [Acessar]
-            </a>
-        {% endif %} {% endif %}
         <input type="text" id="txt_paisresid" name="txt_paisresid" class="form-control" value="{% if r2070_inforesidext.paisresid %}{{ r2070_inforesidext.paisresid }}{% endif %}" disabled="disabled">
     </div>
   </div>

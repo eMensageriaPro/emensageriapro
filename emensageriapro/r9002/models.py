@@ -73,7 +73,7 @@ class r9002infoTotal(SoftDeletionModel):
     def evento(self): 
         return self.r9002_evtret.evento()
     nrrecarqbase = models.CharField(max_length=52, blank=True, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_R9002_TPINSC, null=True, )
+    tpinsc = models.IntegerField(null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)

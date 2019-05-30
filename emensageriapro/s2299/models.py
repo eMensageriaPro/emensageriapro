@@ -344,7 +344,7 @@ class s2299infoPerAntideEstabLot(SoftDeletionModel):
     
     def evento(self): 
         return self.s2299_infoperant_ideperiodo.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2299_TPINSC_INFOPERANT, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     codlotacao = models.CharField(max_length=30, null=True, )
     
@@ -737,7 +737,7 @@ class s2299infoPerApurdetPlano(SoftDeletionModel):
     
     def evento(self): 
         return self.s2299_infoperapur_detoper.evento()
-    tpdep = models.CharField(choices=CHOICES_S2299_TPDEP_INFOPERAPUR, max_length=2, null=True, )
+    tpdep = models.CharField(choices=CHOICES_ESOCIALDEPENDENTESTIPOS, max_length=2, null=True, )
     cpfdep = models.CharField(max_length=11, blank=True, null=True, )
     nmdep = models.CharField(max_length=70, null=True, )
     dtnascto = models.DateField(null=True, )
@@ -884,7 +884,7 @@ class s2299infoPerApurideEstabLot(SoftDeletionModel):
     
     def evento(self): 
         return self.s2299_infoperapur.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2299_TPINSC_INFOPERAPUR, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     codlotacao = models.CharField(max_length=30, null=True, )
     
@@ -1534,9 +1534,9 @@ class s2299infoTrabIntermremunOutrEmpr(SoftDeletionModel):
     
     def evento(self): 
         return self.s2299_infotrabinterm_infomv.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2299_TPINSC_INFOTRABINTERM, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     vlrremunoe = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -1735,7 +1735,7 @@ class s2299sucessaoVinc(SoftDeletionModel):
     
     def evento(self): 
         return self.s2299_evtdeslig.evento()
-    tpinscsuc = models.IntegerField(choices=CHOICES_S2299_TPINSCSUC, null=True, )
+    tpinscsuc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     cnpjsucessora = models.CharField(max_length=14, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)

@@ -73,7 +73,7 @@ class s1202dmDev(SoftDeletionModel):
     def evento(self): 
         return self.s1202_evtrmnrpps.evento()
     idedmdev = models.CharField(max_length=30, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -277,7 +277,7 @@ class s1202infoPerAntideEstab(SoftDeletionModel):
     
     def evento(self): 
         return self.s1202_infoperant_ideperiodo.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1202_TPINSC_INFOPERANT, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -482,7 +482,7 @@ class s1202infoPerAntremunPerAnt(SoftDeletionModel):
     def evento(self): 
         return self.s1202_infoperant_ideestab.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -677,7 +677,7 @@ class s1202infoPerApurdetPlano(SoftDeletionModel):
     
     def evento(self): 
         return self.s1202_infoperapur_detoper.evento()
-    tpdep = models.CharField(choices=CHOICES_S1202_TPDEP_INFOPERAPUR, max_length=2, null=True, )
+    tpdep = models.CharField(choices=CHOICES_ESOCIALDEPENDENTESTIPOS, max_length=2, null=True, )
     cpfdep = models.CharField(max_length=11, blank=True, null=True, )
     nmdep = models.CharField(max_length=70, null=True, )
     dtnascto = models.DateField(null=True, )
@@ -751,7 +751,7 @@ class s1202infoPerApurideEstab(SoftDeletionModel):
     
     def evento(self): 
         return self.s1202_infoperapur.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1202_TPINSC_INFOPERAPUR, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -953,7 +953,7 @@ class s1202infoPerApurremunPerApur(SoftDeletionModel):
     def evento(self): 
         return self.s1202_infoperapur_ideestab.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,

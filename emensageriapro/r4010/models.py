@@ -410,7 +410,7 @@ class r4010idePgto(SoftDeletionModel):
     
     def evento(self): 
         return self.r4010_evtretpf.evento()
-    natrend = models.CharField(choices=CHOICES_R4010_NATREND, max_length=9, null=True, )
+    natrend = models.TextField(null=True, )
     paisresid = models.TextField(null=True, )
     observ = models.CharField(max_length=200, blank=True, null=True, )
     
@@ -637,7 +637,7 @@ class r4010infoPgtoExt(SoftDeletionModel):
     telef = models.CharField(max_length=15, blank=True, null=True, )
     indnif = models.IntegerField(choices=CHOICES_R4010_INDNIF, null=True, )
     nifbenef = models.CharField(max_length=20, blank=True, null=True, )
-    frmtribut = models.CharField(choices=CHOICES_R4010_FRMTRIBUT, max_length=2, null=True, )
+    frmtribut = models.CharField(choices=CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO, max_length=2, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,

@@ -72,7 +72,7 @@ class s2210agenteCausador(SoftDeletionModel):
     
     def evento(self): 
         return self.s2210_evtcat.evento()
-    codagntcausador = models.IntegerField(choices=CHOICES_S2210_CODAGNTCAUSADOR, null=True, )
+    codagntcausador = models.IntegerField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -142,7 +142,7 @@ class s2210atestado(SoftDeletionModel):
     indinternacao = models.CharField(choices=CHOICES_S2210_INDINTERNACAO, max_length=1, null=True, )
     durtrat = models.IntegerField(null=True, )
     indafast = models.CharField(choices=CHOICES_S2210_INDAFAST, max_length=1, null=True, )
-    dsclesao = models.IntegerField(choices=CHOICES_S2210_DSCLESAO, null=True, )
+    dsclesao = models.IntegerField(null=True, )
     dsccomplesao = models.CharField(max_length=200, blank=True, null=True, )
     diagprovavel = models.CharField(max_length=100, blank=True, null=True, )
     codcid = models.CharField(max_length=4, null=True, )
@@ -299,7 +299,7 @@ class s2210ideLocalAcid(SoftDeletionModel):
     
     def evento(self): 
         return self.s2210_evtcat.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2210_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -366,7 +366,7 @@ class s2210parteAtingida(SoftDeletionModel):
     
     def evento(self): 
         return self.s2210_evtcat.evento()
-    codparteating = models.IntegerField(choices=CHOICES_S2210_CODPARTEATING, null=True, )
+    codparteating = models.IntegerField(null=True, )
     lateralidade = models.IntegerField(choices=CHOICES_S2210_LATERALIDADE, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)

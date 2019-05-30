@@ -45,28 +45,68 @@
 </div>
 <!-- fim__s2230_iniafastamento__dtiniafast -->
 <!-- inicio__s2230_iniafastamento__codmotafast -->
-<div class="col-md-6" id="s2230_iniafastamento__codmotafast__div">
-  <div class="form-group">
-    <label id="s2230_iniafastamento__codmotafast__label">Afastamento*</label>
-    {% if s2230_iniafastamento_form.codmotafast.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ s2230_iniafastamento_form.codmotafast.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if s2230_iniafastamento_form.codmotafast.field.widget.attrs.readonly %}
-        {% if s2230_iniafastamento_form.codmotafast.field.widget.attrs.disabled %}
-          {{ s2230_iniafastamento_form.codmotafast|addcss:'form-control' }}
-          <input id="id_codmotafast" name="codmotafast" type="hidden" value="{% if s2230_iniafastamento_form.codmotafast.value or s2230_iniafastamento_form.codmotafast.value == 0 %}{{ s2230_iniafastamento_form.codmotafast.value }}{% endif %}">
-        {% else %}
-          {{ s2230_iniafastamento_form.codmotafast|addcss:'form-control' }}
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-6" id="s2230_iniafastamento__codmotafast__div">
+    <div class="form-group">
+      <label id="s2230_iniafastamento__codmotafast__label">Afastamento*</label>
+        {% if s2230_iniafastamento_form.codmotafast.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2230_iniafastamento_form.codmotafast.errors }}
+          </div>
         {% endif %}
-      {% else %}
-        {{ s2230_iniafastamento_form.codmotafast|addcss_select2:'form-control automate-select' }}
-      {% endif %}
+        <input type="text" 
+               id="txt_codmotafast" 
+               name="txt_codmotafast" class="form-control" 
+               value="{% if s2230_iniafastamento.codmotafast %}{{ s2230_iniafastamento.codmotafast|get_opcoes_titulo:297 }}{% endif %}" 
+               {% if s2230_iniafastamento_form.codmotafast.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s2230_iniafastamento_form.codmotafast.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s2230_iniafastamento_form.codmotafast.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codmotafast" 
+               name="codmotafast" 
+               value="{% if s2230_iniafastamento.codmotafast %}{{ s2230_iniafastamento_form.codmotafast.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codmotafast').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/297/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codmotafast').val(ui.item.value);
+        return false;
+      }});
+    {% if s2230_iniafastamento_form.codmotafast.field.widget.attrs.required %}
+    $("#id_form_s2230_iniafastamento").submit(function(e) {
+      $('#txt_codmotafast').disabled = true;
+        if ($('#id_codmotafast').val() == "") {
+          $('#txt_codmotafast').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Afastamento!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="s2230_iniafastamento__codmotafast__div">
+    <div class="form-group">
+      <label id="s2230_iniafastamento__codmotafast__label">Afastamento*</label>
+        <input type="text" id="txt_codmotafast" name="txt_codmotafast" class="form-control" value="{% if s2230_iniafastamento.codmotafast %}{{ s2230_iniafastamento.codmotafast }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__s2230_iniafastamento__codmotafast -->
 <!-- inicio__s2230_iniafastamento__infomesmomtv -->
 <div class="col-md-6" id="s2230_iniafastamento__infomesmomtv__div">

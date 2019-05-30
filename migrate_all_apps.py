@@ -173,20 +173,16 @@ def criar_diretorio_arquivos():
 
 def update_tables():
 
-    arquivos = os.listdir('sql_tabelas')
+    arquivos = os.listdir('database/sql')
 
     for a in arquivos:
-
         if '.sql' in a:
-
             try:
-
-                TXT = ler_arquivo('sql_tabelas/%s' % a)
+                TXT = ler_arquivo('database/sql/%s' % a)
                 executar_sql(TXT, False)
                 print ('Arquivo %s executado com sucesso!' % a)
 
             except:
-
                 print ('Erro ao executar o arquivo %s!' % a)
 
 

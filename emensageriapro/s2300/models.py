@@ -491,7 +491,7 @@ class s2300afastamento(SoftDeletionModel):
     def evento(self): 
         return self.s2300_evttsvinicio.evento()
     dtiniafast = models.DateField(null=True, )
-    codmotafast = models.CharField(choices=CHOICES_S2300_CODMOTAFAST, max_length=2, null=True, )
+    codmotafast = models.TextField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -849,7 +849,7 @@ class s2300dependente(SoftDeletionModel):
     
     def evento(self): 
         return self.s2300_evttsvinicio.evento()
-    tpdep = models.CharField(choices=CHOICES_S2300_TPDEP, max_length=2, null=True, )
+    tpdep = models.CharField(choices=CHOICES_ESOCIALDEPENDENTESTIPOS, max_length=2, null=True, )
     nmdep = models.CharField(max_length=70, null=True, )
     dtnascto = models.DateField(null=True, )
     cpfdep = models.CharField(max_length=11, blank=True, null=True, )

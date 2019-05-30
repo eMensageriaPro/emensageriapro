@@ -99,22 +99,13 @@
 <div class="col-md-6" id="r9000_evtexclusao__tpinsc__div">
   <div class="form-group">
     <label id="r9000_evtexclusao__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
-    {% if r9000_evtexclusao_form.tpinsc.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ r9000_evtexclusao_form.tpinsc.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if r9000_evtexclusao_form.tpinsc.field.widget.attrs.readonly %}
-        {% if r9000_evtexclusao_form.tpinsc.field.widget.attrs.disabled %}
-          {{ r9000_evtexclusao_form.tpinsc|addcss:'form-control' }}
-          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r9000_evtexclusao_form.tpinsc.value or r9000_evtexclusao_form.tpinsc.value == 0 %}{{ r9000_evtexclusao_form.tpinsc.value|valor }}{% endif %}">
-        {% else %}
-          {{ r9000_evtexclusao_form.tpinsc|addcss:'form-control' }}
-        {% endif %}
-      {% else %}
-        {{ r9000_evtexclusao_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% if r9000_evtexclusao_form.tpinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9000_evtexclusao_form.tpinsc.errors }}
+        </div>
       {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9000_evtexclusao_form.tpinsc|addcss:'form-control' }}
     </div>
   </div>
 </div>
@@ -140,28 +131,68 @@
 </div>
 <!-- fim__r9000_evtexclusao__infoexclusao -->
 <!-- inicio__r9000_evtexclusao__tpevento -->
-<div class="col-md-6" id="r9000_evtexclusao__tpevento__div">
-  <div class="form-group">
-    <label id="r9000_evtexclusao__tpevento__label">Preencher com o tipo de evento, conforme tabela 10*</label>
-    {% if r9000_evtexclusao_form.tpevento.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ r9000_evtexclusao_form.tpevento.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.readonly %}
-        {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.disabled %}
-          {{ r9000_evtexclusao_form.tpevento|addcss:'form-control' }}
-          <input id="id_tpevento" name="tpevento" type="hidden" value="{% if r9000_evtexclusao_form.tpevento.value or r9000_evtexclusao_form.tpevento.value == 0 %}{{ r9000_evtexclusao_form.tpevento.value }}{% endif %}">
-        {% else %}
-          {{ r9000_evtexclusao_form.tpevento|addcss:'form-control' }}
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-6" id="r9000_evtexclusao__tpevento__div">
+    <div class="form-group">
+      <label id="r9000_evtexclusao__tpevento__label">Preencher com o tipo de evento, conforme tabela 10*</label>
+        {% if r9000_evtexclusao_form.tpevento.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ r9000_evtexclusao_form.tpevento.errors }}
+          </div>
         {% endif %}
-      {% else %}
-        {{ r9000_evtexclusao_form.tpevento|addcss_select2:'form-control automate-select' }}
-      {% endif %}
+        <input type="text" 
+               id="txt_tpevento" 
+               name="txt_tpevento" class="form-control" 
+               value="{% if r9000_evtexclusao.tpevento %}{{ r9000_evtexclusao.tpevento|get_opcoes_titulo:720 }}{% endif %}" 
+               {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.required %} required="required"{% endif %}
+               {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_tpevento" 
+               name="tpevento" 
+               value="{% if r9000_evtexclusao.tpevento %}{{ r9000_evtexclusao_form.tpevento.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_tpevento').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/720/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_tpevento').val(ui.item.value);
+        return false;
+      }});
+    {% if r9000_evtexclusao_form.tpevento.field.widget.attrs.required %}
+    $("#id_form_r9000_evtexclusao").submit(function(e) {
+      $('#txt_tpevento').disabled = true;
+        if ($('#id_tpevento').val() == "") {
+          $('#txt_tpevento').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Preencher com o tipo de evento, conforme tabela 10!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="r9000_evtexclusao__tpevento__div">
+    <div class="form-group">
+      <label id="r9000_evtexclusao__tpevento__label">Preencher com o tipo de evento, conforme tabela 10*</label>
+        <input type="text" id="txt_tpevento" name="txt_tpevento" class="form-control" value="{% if r9000_evtexclusao.tpevento %}{{ r9000_evtexclusao.tpevento }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__r9000_evtexclusao__tpevento -->
 <!-- inicio__r9000_evtexclusao__nrrecevt -->
 <div class="col-md-6" id="r9000_evtexclusao__nrrecevt__div">

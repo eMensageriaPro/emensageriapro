@@ -15,7 +15,7 @@
 <!-- fim__s2205_brasil__s2205_evtaltcadastral -->
 
 <!-- inicio__s2205_brasil__tplograd -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>Tipo de logradouro</label>
     <input type="text" id="txt_tplograd" name="txt_tplograd" class="form-control" value="{{ dict_fields|get_value_from_dict:'tplograd' }}">
@@ -26,8 +26,8 @@
 $(document).ready(function(e){
   $('#txt_tplograd').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-logradouros-tipos/json-search/" + request.term + "/", function (data) {
-      response($.map(data.esocial_logradouros_tipos, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/258/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key
@@ -113,8 +113,8 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_codmunic').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/municipios/json-search/" + request.term + "/", function (data) {
-      response($.map(data.municipios, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
+      response($.map(data., function (value, key) {
         return {
           label: value.value,
           value: value.key

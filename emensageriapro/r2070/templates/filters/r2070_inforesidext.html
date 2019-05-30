@@ -21,7 +21,7 @@
 <!-- fim__r2070_inforesidext__infoender -->
 
 <!-- inicio__r2070_inforesidext__paisresid -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>Preencher com o código do país de residência fiscal, conforme tabela 7</label>
     <input type="text" id="txt_paisresid" name="txt_paisresid" class="form-control" value="{{ dict_fields|get_value_from_dict:'paisresid' }}">
@@ -32,8 +32,8 @@
 $(document).ready(function(e){
   $('#txt_paisresid').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/efdreinf-paises/json-search/" + request.term + "/", function (data) {
-      response($.map(data.efdreinf_paises, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/645/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key

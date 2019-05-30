@@ -53,22 +53,13 @@
 <div class="col-md-6" id="r9001_infototal__tpinsc__div">
   <div class="form-group">
     <label id="r9001_infototal__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
-    {% if r9001_infototal_form.tpinsc.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ r9001_infototal_form.tpinsc.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if r9001_infototal_form.tpinsc.field.widget.attrs.readonly %}
-        {% if r9001_infototal_form.tpinsc.field.widget.attrs.disabled %}
-          {{ r9001_infototal_form.tpinsc|addcss:'form-control' }}
-          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r9001_infototal_form.tpinsc.value or r9001_infototal_form.tpinsc.value == 0 %}{{ r9001_infototal_form.tpinsc.value|valor }}{% endif %}">
-        {% else %}
-          {{ r9001_infototal_form.tpinsc|addcss:'form-control' }}
-        {% endif %}
-      {% else %}
-        {{ r9001_infototal_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% if r9001_infototal_form.tpinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r9001_infototal_form.tpinsc.errors }}
+        </div>
       {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r9001_infototal_form.tpinsc|addcss:'form-control' }}
     </div>
   </div>
 </div>

@@ -473,7 +473,7 @@ class s2230iniAfastamento(SoftDeletionModel):
     def evento(self): 
         return self.s2230_evtafasttemp.evento()
     dtiniafast = models.DateField(null=True, )
-    codmotafast = models.CharField(choices=CHOICES_S2230_CODMOTAFAST, max_length=2, null=True, )
+    codmotafast = models.TextField(null=True, )
     infomesmomtv = models.CharField(choices=CHOICES_S2230_INFOMESMOMTV, max_length=1, blank=True, null=True, )
     tpacidtransito = models.IntegerField(choices=CHOICES_S2230_TPACIDTRANSITO, blank=True, null=True, )
     observacao = models.CharField(max_length=255, blank=True, null=True, )

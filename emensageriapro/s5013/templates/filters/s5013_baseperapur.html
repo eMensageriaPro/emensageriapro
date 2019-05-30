@@ -20,34 +20,32 @@
 <div class="col-md-4">
   <div class="form-group">
     <label>Tipo de Valor</label>
-    <div class="input-group" style="width: 100%;">
-      <select name="tpvalor" class="form-control automate-select" style="width: 100%;">
-        <option value="">-- selecione --</option>
-        <option value="11" {% ifequal 11 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >11 - Base de Cálculo do FGTS</option>
-        <option value="12" {% ifequal 12 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >12 - Base de Cálculo do FGTS 13° Salário</option>
-        <option value="13" {% ifequal 13 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >13 - Base de Cálculo do FGTS Dissídio</option>
-        <option value="14" {% ifequal 14 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >14 - Base de Cálculo do FGTS Dissídio 13º Salário</option>
-        <option value="15" {% ifequal 15 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >15 - Base de Cálculo do FGTS - Aprendiz</option>
-        <option value="16" {% ifequal 16 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >16 - Base de Cálculo do FGTS 13° Salário - Aprendiz</option>
-        <option value="17" {% ifequal 17 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >17 - Base de Cálculo do FGTS Dissídio - Aprendiz</option>
-        <option value="18" {% ifequal 18 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz</option>
-        <option value="21" {% ifequal 21 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >21 - Base de Cálculo do FGTS Rescisório</option>
-        <option value="22" {% ifequal 22 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >22 - Base de Cálculo do FGTS Rescisório - 13° Salário</option>
-        <option value="23" {% ifequal 23 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >23 - Base de Cálculo do FGTS Rescisório - Aviso Prévio</option>
-        <option value="24" {% ifequal 24 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >24 - Base de Cálculo do FGTS Rescisório - Dissídio</option>
-        <option value="25" {% ifequal 25 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário</option>
-        <option value="26" {% ifequal 26 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio</option>
-        <option value="27" {% ifequal 27 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >27 - Base de Cálculo do FGTS Rescisório - Aprendiz</option>
-        <option value="28" {% ifequal 28 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >28 - Base de Cálculo do FGTS Rescisório - 13° Salário Aprendiz</option>
-        <option value="29" {% ifequal 29 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >29 - Base de Cálculo do FGTS Rescisório - Aviso Prévio Aprendiz</option>
-        <option value="30" {% ifequal 30 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz</option>
-        <option value="31" {% ifequal 31 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz</option>
-        <option value="32" {% ifequal 32 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz</option>
-        <option value="91" {% ifequal 91 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >91 - Incidência suspensa em decorrência de decisão judicial.</option>
-      </select>
-    </div>
+    <input type="text" id="txt_tpvalor" name="txt_tpvalor" class="form-control" value="{{ dict_fields|get_value_from_dict:'tpvalor' }}">
+    <input type="hidden" id="id_tpvalor" name="tpvalor" value="{{ dict_fields|get_value_from_dict:'tpvalor'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_tpvalor').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/576/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_tpvalor').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__s5013_baseperapur__tpvalor -->
 
 <!-- inicio__s5013_baseperapur__basefgts -->

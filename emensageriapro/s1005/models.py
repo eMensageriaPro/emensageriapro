@@ -72,7 +72,7 @@ class s1005alteracao(SoftDeletionModel):
     
     def evento(self): 
         return self.s1005_evttabestab.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1005_TPINSC_ALTERACAO, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
@@ -621,7 +621,7 @@ class s1005exclusao(SoftDeletionModel):
     
     def evento(self): 
         return self.s1005_evttabestab.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1005_TPINSC_EXCLUSAO, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
@@ -692,7 +692,7 @@ class s1005inclusao(SoftDeletionModel):
     
     def evento(self): 
         return self.s1005_evttabestab.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1005_TPINSC_INCLUSAO, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )

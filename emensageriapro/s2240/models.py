@@ -620,7 +620,7 @@ class s2240iniExpRiscoativPericInsal(SoftDeletionModel):
     
     def evento(self): 
         return self.s2240_evtexprisco.evento()
-    codativ = models.CharField(choices=CHOICES_S2240_CODATIV_INIEXPRISCO, max_length=6, null=True, )
+    codativ = models.TextField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -840,7 +840,7 @@ class s2240iniExpRiscofatRisco(SoftDeletionModel):
     tpaval = models.IntegerField(choices=CHOICES_S2240_TPAVAL_INIEXPRISCO, null=True, )
     intconc = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     limtol = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
-    unmed = models.IntegerField(choices=CHOICES_S2240_UNMED_INIEXPRISCO, blank=True, null=True, )
+    unmed = models.IntegerField(blank=True, null=True, )
     tecmedicao = models.CharField(max_length=40, blank=True, null=True, )
     insalubridade = models.CharField(choices=CHOICES_S2240_INSALUBRIDADE_INIEXPRISCO, max_length=1, blank=True, null=True, )
     periculosidade = models.CharField(choices=CHOICES_S2240_PERICULOSIDADE_INIEXPRISCO, max_length=1, blank=True, null=True, )

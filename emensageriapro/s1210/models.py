@@ -136,7 +136,7 @@ class s1210detPgtoAnt(SoftDeletionModel):
     
     def evento(self): 
         return self.s1210_infopgto.evento()
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -200,7 +200,7 @@ class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
     
     def evento(self): 
         return self.s1210_detpgtoant.evento()
-    tpbcirrf = models.CharField(choices=CHOICES_S1210_TPBCIRRF_DETPGTOANT, max_length=2, null=True, )
+    tpbcirrf = models.TextField(null=True, )
     vrbcirrf = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -486,7 +486,7 @@ class s1210detPgtoFer(SoftDeletionModel):
     
     def evento(self): 
         return self.s1210_infopgto.evento()
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     matricula = models.CharField(max_length=30, blank=True, null=True, )
     dtinigoz = models.DateField(null=True, )
     qtdias = models.IntegerField(null=True, )
@@ -994,7 +994,7 @@ class s1210idePgtoExt(SoftDeletionModel):
     
     def evento(self): 
         return self.s1210_infopgto.evento()
-    codpais = models.CharField(max_length=3, null=True, )
+    codpais = models.TextField(null=True, )
     indnif = models.IntegerField(choices=CHOICES_S1210_INDNIF_IDEPGTOEXT, null=True, )
     nifbenef = models.CharField(max_length=20, blank=True, null=True, )
     dsclograd = models.CharField(max_length=100, null=True, )

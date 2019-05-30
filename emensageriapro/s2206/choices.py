@@ -36,6 +36,19 @@
 
 
 
+CHOICES_ESOCIALINSCRICOESTIPOS = [
+
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (5, u'5 - CGC'),
+    
+]
+
+
+
+
 CHOICES_S2206_DIA = [
 
     (1, u'1 - Segunda-Feira'),
@@ -111,19 +124,6 @@ CHOICES_S2206_TMPPARC = [
     (1, u'1 - Limitado a 25 horas semanais'),
     (2, u'2 - Limitado a 30 horas semanais'),
     (3, u'3 - Limitado a 26 horas semanais.'),
-    
-]
-
-
-
-
-CHOICES_S2206_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 

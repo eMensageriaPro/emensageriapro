@@ -75,12 +75,12 @@ class s1020alteracao(SoftDeletionModel):
     codlotacao = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    tplotacao = models.CharField(choices=CHOICES_S1020_TPLOTACAO_ALTERACAO, max_length=2, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_S1020_TPINSC_ALTERACAO, blank=True, null=True, )
+    tplotacao = models.CharField(choices=CHOICES_ESOCIALLOTACOESTRIBUTARIASTIPOS, max_length=2, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, blank=True, null=True, )
     nrinsc = models.CharField(max_length=15, blank=True, null=True, )
-    fpas = models.IntegerField(choices=CHOICES_S1020_FPAS_ALTERACAO, null=True, )
-    codtercs = models.CharField(choices=CHOICES_S1020_CODTERCS_ALTERACAO, max_length=4, null=True, )
-    codtercssusp = models.CharField(choices=CHOICES_S1020_CODTERCSSUSP_ALTERACAO, max_length=4, blank=True, null=True, )
+    fpas = models.IntegerField(null=True, )
+    codtercs = models.TextField(null=True, )
+    codtercssusp = models.TextField(blank=True, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -351,7 +351,7 @@ class s1020alteracaoprocJudTerceiro(SoftDeletionModel):
     
     def evento(self): 
         return self.s1020_alteracao_infoprocjudterceiros.evento()
-    codterc = models.CharField(choices=CHOICES_S1020_CODTERC_ALTERACAO, max_length=4, null=True, )
+    codterc = models.TextField(null=True, )
     nrprocjud = models.CharField(max_length=20, null=True, )
     codsusp = models.IntegerField(null=True, )
     
@@ -492,12 +492,12 @@ class s1020inclusao(SoftDeletionModel):
     codlotacao = models.CharField(max_length=30, null=True, )
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
-    tplotacao = models.CharField(choices=CHOICES_S1020_TPLOTACAO_INCLUSAO, max_length=2, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_S1020_TPINSC_INCLUSAO, blank=True, null=True, )
+    tplotacao = models.CharField(choices=CHOICES_ESOCIALLOTACOESTRIBUTARIASTIPOS, max_length=2, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, blank=True, null=True, )
     nrinsc = models.CharField(max_length=15, blank=True, null=True, )
-    fpas = models.IntegerField(choices=CHOICES_S1020_FPAS_INCLUSAO, null=True, )
-    codtercs = models.CharField(choices=CHOICES_S1020_CODTERCS_INCLUSAO, max_length=4, null=True, )
-    codtercssusp = models.CharField(choices=CHOICES_S1020_CODTERCSSUSP_INCLUSAO, max_length=4, blank=True, null=True, )
+    fpas = models.IntegerField(null=True, )
+    codtercs = models.TextField(null=True, )
+    codtercssusp = models.TextField(blank=True, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -703,7 +703,7 @@ class s1020inclusaoprocJudTerceiro(SoftDeletionModel):
     
     def evento(self): 
         return self.s1020_inclusao_infoprocjudterceiros.evento()
-    codterc = models.CharField(choices=CHOICES_S1020_CODTERC_INCLUSAO, max_length=4, null=True, )
+    codterc = models.TextField(null=True, )
     nrprocjud = models.CharField(max_length=20, null=True, )
     codsusp = models.IntegerField(null=True, )
     

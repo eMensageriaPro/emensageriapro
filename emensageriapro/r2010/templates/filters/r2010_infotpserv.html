@@ -20,44 +20,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Informar o tipo de serviço, conforme tabela 6</label>
-    <div class="input-group" style="width: 100%;">
-      <select name="tpservico" class="form-control automate-select" style="width: 100%;">
-        <option value="">-- selecione --</option>
-        <option value="100000001" {% ifequal 100000001 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000001 - Limpeza, conservação ou zeladoria</option>
-        <option value="100000002" {% ifequal 100000002 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000002 - Vigilância ou segurança</option>
-        <option value="100000003" {% ifequal 100000003 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000003 - Construção civil</option>
-        <option value="100000004" {% ifequal 100000004 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000004 - Serviços de natureza rural</option>
-        <option value="100000005" {% ifequal 100000005 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000005 - Digitação</option>
-        <option value="100000006" {% ifequal 100000006 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000006 - Preparação de dados para processamento</option>
-        <option value="100000007" {% ifequal 100000007 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000007 - Acabamento</option>
-        <option value="100000008" {% ifequal 100000008 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000008 - Embalagem</option>
-        <option value="100000009" {% ifequal 100000009 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000009 - Acondicionamento</option>
-        <option value="100000010" {% ifequal 100000010 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000010 - Cobrança</option>
-        <option value="100000011" {% ifequal 100000011 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000011 - Coleta ou reciclagem de lixo ou de resíduos</option>
-        <option value="100000012" {% ifequal 100000012 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000012 - Copa</option>
-        <option value="100000013" {% ifequal 100000013 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000013 - Hotelaria</option>
-        <option value="100000014" {% ifequal 100000014 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000014 - Corte ou ligação de serviços públicos</option>
-        <option value="100000015" {% ifequal 100000015 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000015 - Distribuição</option>
-        <option value="100000016" {% ifequal 100000016 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000016 - Treinamento e ensino</option>
-        <option value="100000017" {% ifequal 100000017 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000017 - Entrega de contas e de documentos</option>
-        <option value="100000018" {% ifequal 100000018 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000018 - Ligação de medidores</option>
-        <option value="100000019" {% ifequal 100000019 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000019 - Leitura de medidores</option>
-        <option value="100000020" {% ifequal 100000020 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000020 - Manutenção de instalações, de máquinas ou de equipamentos</option>
-        <option value="100000021" {% ifequal 100000021 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000021 - Montagem</option>
-        <option value="100000022" {% ifequal 100000022 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000022 - Operação de máquinas, de equipamentos e de veículos</option>
-        <option value="100000023" {% ifequal 100000023 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000023 - Operação de pedágio ou de terminal de transporte</option>
-        <option value="100000024" {% ifequal 100000024 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000024 - Operação de transporte de passageiros</option>
-        <option value="100000025" {% ifequal 100000025 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000025 - Portaria, recepção ou ascensorista</option>
-        <option value="100000026" {% ifequal 100000026 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000026 - Recepção, triagem ou movimentação de materiais</option>
-        <option value="100000027" {% ifequal 100000027 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000027 - Promoção de vendas ou de eventos</option>
-        <option value="100000028" {% ifequal 100000028 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000028 - Secretaria e expediente</option>
-        <option value="100000029" {% ifequal 100000029 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000029 - Saúde</option>
-        <option value="100000030" {% ifequal 100000030 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000030 - Telefonia ou telemarketing</option>
-        <option value="100000031" {% ifequal 100000031 dict_fields|get_value_from_dict:'tpservico' %}selected="selected"{% endifequal %} >100000031 - Trabalho temporário na forma da Lei nº 6.019, de janeiro de 1974</option>
-      </select>
-    </div>
+    <input type="text" id="txt_tpservico" name="txt_tpservico" class="form-control" value="{{ dict_fields|get_value_from_dict:'tpservico' }}">
+    <input type="hidden" id="id_tpservico" name="tpservico" value="{{ dict_fields|get_value_from_dict:'tpservico'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_tpservico').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/609/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_tpservico').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__r2010_infotpserv__tpservico -->
 
 <!-- inicio__r2010_infotpserv__vlrbaseret -->

@@ -35,34 +35,32 @@
 <div class="col-md-3">
   <div class="form-group">
     <label>Tipo de Valor</label>
-    <div class="input-group" style="width: 100%;">
-      <select name="tpvalor" class="form-control automate-select" style="width: 100%;">
-        <option value="">-- selecione --</option>
-        <option value="11" {% ifequal 11 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >11 - Base de cálculo da Contribuição Previdenciária normal</option>
-        <option value="12" {% ifequal 12 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >12 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição</option>
-        <option value="13" {% ifequal 13 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >13 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição</option>
-        <option value="14" {% ifequal 14 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >14 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição</option>
-        <option value="15" {% ifequal 15 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >15 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador</option>
-        <option value="16" {% ifequal 16 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >16 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador</option>
-        <option value="17" {% ifequal 17 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >17 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador</option>
-        <option value="18" {% ifequal 18 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >18 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador</option>
-        <option value="19" {% ifequal 19 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >19 - Base de cálculo da contribuição previdenciária exclusiva do empregado</option>
-        <option value="21" {% ifequal 21 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >21 - Valor total descontado do trabalhador para recolhimento à Previdência Social</option>
-        <option value="22" {% ifequal 22 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >22 - Valor descontado do trabalhador para recolhimento ao Sest</option>
-        <option value="23" {% ifequal 23 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >23 - Valor descontado do trabalhador para recolhimento ao Senat</option>
-        <option value="31" {% ifequal 31 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >31 - Valor pago ao trabalhador a título de salário-família</option>
-        <option value="32" {% ifequal 32 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >32 - Valor pago ao trabalhador a título de salário-maternidade</option>
-        <option value="91" {% ifequal 91 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >91 - Incidência suspensa em decorrência de decisão judicial - Base de cálculo (BC) da Contribuição Previdenciária (CP) Normal</option>
-        <option value="92" {% ifequal 92 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >92 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho</option>
-        <option value="93" {% ifequal 93 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >93 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho</option>
-        <option value="94" {% ifequal 94 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >94 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho</option>
-        <option value="95" {% ifequal 95 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >95 - Incid. suspensa em decorrência de decisão judicial - BC CP normal - Exclusiva do empregador. 96 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho - Exclusiva do empregador</option>
-        <option value="97" {% ifequal 97 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >97 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho - Exclusiva do empregador</option>
-        <option value="98" {% ifequal 98 dict_fields|get_value_from_dict:'tpvalor' %}selected="selected"{% endifequal %} >98 - Incid. suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho - Exclusiva do empregador.</option>
-      </select>
-    </div>
+    <input type="text" id="txt_tpvalor" name="txt_tpvalor" class="form-control" value="{{ dict_fields|get_value_from_dict:'tpvalor' }}">
+    <input type="hidden" id="id_tpvalor" name="tpvalor" value="{{ dict_fields|get_value_from_dict:'tpvalor'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_tpvalor').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/552/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_tpvalor').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__s5001_infobasecs__tpvalor -->
 
 <!-- inicio__s5001_infobasecs__valor -->

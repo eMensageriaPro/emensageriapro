@@ -170,7 +170,7 @@
 <!-- fim__s2245_evttreicap__matricula -->
 
 <!-- inicio__s2245_evttreicap__codcateg -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>Código da Categoria</label>
     <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{{ dict_fields|get_value_from_dict:'codcateg' }}">
@@ -181,8 +181,8 @@
 $(document).ready(function(e){
   $('#txt_codcateg').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-trabalhadores-categorias/json-search/" + request.term + "/", function (data) {
-      response($.map(data.esocial_trabalhadores_categorias, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/172/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key
@@ -211,172 +211,32 @@ $(document).ready(function(e){
 <div class="col-md-6">
   <div class="form-group">
     <label>Informar o código do treinamento/capacitação</label>
-    <div class="input-group" style="width: 100%;">
-      <select name="codtreicap" class="form-control automate-select" style="width: 100%;">
-        <option value="">-- selecione --</option>
-        <option value="0097" {% ifequal '0097' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0097 - Treinamento do Programa de Conservação Auditiva</option>
-        <option value="0098" {% ifequal '0098' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0098 - Treinamento do Programa de Proteção Respiratória</option>
-        <option value="0099" {% ifequal '0099' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0099 - Outros treinamentos, capacitações ou exercícios simulados, não previstos nas NRs</option>
-        <option value="0101" {% ifequal '0101' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0101 - Informação aos trabalhadores</option>
-        <option value="0501" {% ifequal '0501' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0501 - Treinamento membros da CIPA</option>
-        <option value="0502" {% ifequal '0502' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0502 - Treinamento designado da CIPA</option>
-        <option value="0601" {% ifequal '0601' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0601 - Treinamento sobre uso adequado do EPI, guarda e conservação</option>
-        <option value="0701" {% ifequal '0701' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0701 - Treinamento Primeiros Socorros</option>
-        <option value="0901" {% ifequal '0901' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0901 - Treinamento  sobre  os  procedimentos  que  assegurem  a  eficiência  da  proteção  coletiva  e respectivas limitações</option>
-        <option value="0902" {% ifequal '0902' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0902 - Treinamento sobre correta utilização e limitações do EPI</option>
-        <option value="0903" {% ifequal '0903' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0903 - Treinamento para membros da CIPA ou designado que opere(m) em PRC com combustíveis líquidos contendo benzeno</option>
-        <option value="0904" {% ifequal '0904' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >0904 - Capacitação nas atividades com risco de exposição ocupacional ao benzeno</option>
-        <option value="1001" {% ifequal '1001' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1001 - Treinamento de instalações elétricas energizadas</option>
-        <option value="1002" {% ifequal '1002' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1002 - Treinamento  em  segurança  para  trabalhadores  que  intervenham  em  instalações  elétricas energizadas com alta tensão no Sistema Elétrico de Potência</option>
-        <option value="1003" {% ifequal '1003' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1003 - Treinamento sobre os riscos decorrentes do emprego da energia elétrica e principais medidas de prevenção de acidentes</option>
-        <option value="1004" {% ifequal '1004' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1004 - Treinamento de reciclagem bienal em instalações elétricas</option>
-        <option value="1005" {% ifequal '1005' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1005 - Treinamento para trabalho em áreas classificadas</option>
-        <option value="1006" {% ifequal '1006' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1006 - Autorização para trabalhar em instalações elétricas</option>
-        <option value="1101" {% ifequal '1101' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1101 - Treinamento para operadores de equipamentos com força motriz própria</option>
-        <option value="1102" {% ifequal '1102' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1102 - Capacitação   para   Movimentação,   Armazenagem   e   Manuseio   de   Chapas   de   Rochas Ornamentais – Admissional</option>
-        <option value="1103" {% ifequal '1103' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1103 - Capacitação   para   Movimentação,   Armazenagem   e   Manuseio   de   Chapas   de   Rochas Ornamentais – Capacitação de Reciclagem trienal</option>
-        <option value="1104" {% ifequal '1104' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1104 - Capacitação   para   Movimentação,   Armazenagem   e   Manuseio   de   Chapas   de   Rochas Ornamentais – Capacitação eventual</option>
-        <option value="1201" {% ifequal '1201' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1201 - Treinamento para operação, manutenção, inspeção e demais intervenções de  máquinas e equipamentos</option>
-        <option value="1202" {% ifequal '1202' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1202 - Capacitação de reciclagem em operação, manutenção, inspeção e demais intervenções de máquinas e equipamentos</option>
-        <option value="1203" {% ifequal '1203' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1203 - Capacitação para operadores de máquinas injetoras</option>
-        <option value="1204" {% ifequal '1204' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1204 - Capacitação para operadores de máquinas automotrizes ou autopropelidas</option>
-        <option value="1205" {% ifequal '1205' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1205 - Treinamento para operadores de Motosserra e similares</option>
-        <option value="1206" {% ifequal '1206' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1206 - Curso Básico de Segurança de Plataforma</option>
-        <option value="1207" {% ifequal '1207' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1207 - Operação e realização de intervenções em máquinas</option>
-        <option value="1301" {% ifequal '1301' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1301 - Treinamento para operador de caldeira</option>
-        <option value="1302" {% ifequal '1302' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1302 - Estágio prático na operação de caldeira</option>
-        <option value="1303" {% ifequal '1303' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1303 - Capacitação de reciclagem para operação de caldeiras</option>
-        <option value="1304" {% ifequal '1304' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1304 - Treinamento de Segurança na Operação de Unidades de Processos</option>
-        <option value="1305" {% ifequal '1305' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1305 - Estágio Prático na Operação de Vasos de Pressão</option>
-        <option value="1501" {% ifequal '1501' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1501 - Treinamento de Resgate e Retorno ao Sino de Mergulho</option>
-        <option value="1502" {% ifequal '1502' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1502 - Treinamento para empregados expostos a asbesto sobre procedimentos a serem adotados em situações de emergência</option>
-        <option value="1503" {% ifequal '1503' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1503 - Treinamento para empregados expostos a manganês sobre o suo de máscaras autônomas para casos especiais</option>
-        <option value="1701" {% ifequal '1701' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1701 - Treinamento ou instruções satisfatórias para trabalhador designado para o transporte manual regular de cargas, que não as leves</option>
-        <option value="1702" {% ifequal '1702' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1702 - Treinamento admissional para operadores de checkout</option>
-        <option value="1703" {% ifequal '1703' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1703 - Treinamento de reciclagem para operadores de checkout</option>
-        <option value="1704" {% ifequal '1704' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1704 - Capacitação devido à introdução de novos métodos ou dispositivos tecnológicos</option>
-        <option value="1705" {% ifequal '1705' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1705 - Treinamento em teleatendimento</option>
-        <option value="1706" {% ifequal '1706' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1706 - Capacitação adicional – quando forem introduzidos novos fatores de risco decorrentes de métodos, equipamentos, tipos específicos de atendimento, mudanças gerenciais ou de procedimentos</option>
-        <option value="1801" {% ifequal '1801' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1801 - Treinamento para empregados envolvidos nas atividades de tubulões a céu aberto</option>
-        <option value="1802" {% ifequal '1802' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1802 - Treinamento para operadores de equipamentos de movimentação e transporte de materiais e pessoas</option>
-        <option value="1803" {% ifequal '1803' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1803 - Treinamento para empregados envolvidos na montagem e desmontagem de andaimes</option>
-        <option value="1804" {% ifequal '1804' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1804 - Treinamento para empregados usuários e responsável pela verificação de andaimes suspensos</option>
-        <option value="1805" {% ifequal '1805' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1805 - Treinamento  para  operadores  de  Plataforma  de  trabalho  com  sistema  de  movimentação vertical em pinhão e cremalheira e plataformas hidráulicas</option>
-        <option value="1806" {% ifequal '1806' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1806 - Treinamento para trabalhadores envolvidos nas atividades de Alvenaria, Revestimentos e Acabamentos</option>
-        <option value="1807" {% ifequal '1807' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1807 - Treinamento para trabalhadores que exercem atividades em espaços confinados</option>
-        <option value="1808" {% ifequal '1808' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1808 - Treinamento para operadores de máquinas e equipamentos devido à introdução de novas tecnologias</option>
-        <option value="1809" {% ifequal '1809' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1809 - Treinamento admissional para trabalho em Construção Civil</option>
-        <option value="1810" {% ifequal '1810' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1810 - Treinamento periódico para trabalho em Construção Civil</option>
-        <option value="1811" {% ifequal '1811' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1811 - Treinamento devido à introdução de soluções alternativas</option>
-        <option value="1812" {% ifequal '1812' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1812 - Treinamento em operação de grua</option>
-        <option value="1813" {% ifequal '1813' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1813 - Treinamento em manutenção, montagem e desmontagem de grua</option>
-        <option value="1814" {% ifequal '1814' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1814 - Treinamento do Sinaleiro/Amarrador de cargas de gruas</option>
-        <option value="1901" {% ifequal '1901' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1901 - Exercício simulado - Plano de Emergência e Combate a Incêndio e Explosão</option>
-        <option value="1902" {% ifequal '1902' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1902 - Treinamento teórico e prático sobre Plano de Emergência e Combate a Incêndio e Explosão</option>
-        <option value="1903" {% ifequal '1903' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1903 - Treinamento para membros da CIPA ou designado incluindo os aspectos relativos aos riscos de acidentes com explosivos e sua prevenção</option>
-        <option value="1904" {% ifequal '1904' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1904 - Treinamento especial sobre levantamento e transporte manual de peso para trabalhadores responsáveis pelo transporte interno de produtos arrematados ou outros materiais</option>
-        <option value="1905" {% ifequal '1905' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1905 - Treinamento para trabalhadores envolvidos nas atividades de coleta e destruição de resíduos</option>
-        <option value="1906" {% ifequal '1906' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1906 - Treinamento admissional para empregados de indústria e comércio de fogos de artifício e outros artefatos pirotécnicos</option>
-        <option value="1907" {% ifequal '1907' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1907 - Treinamento eventual para empregados de indústria e comércio de fogos de artifício e outros artefatos pirotécnicos</option>
-        <option value="1908" {% ifequal '1908' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >1908 - Treinamento periódico para empregados de indústria e comércio de fogos de artifício e outros artefatos pirotécnicos</option>
-        <option value="2001" {% ifequal '2001' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2001 - Informações sobre os perigos, riscos e sobre procedimentos para situações de emergência</option>
-        <option value="2002" {% ifequal '2002' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2002 - Curso de Integração para trabalho com inflamáveis e combustíveis</option>
-        <option value="2003" {% ifequal '2003' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2003 - Curso Básico  para trabalho com inflamáveis e combustíveis</option>
-        <option value="2004" {% ifequal '2004' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2004 - Curso Intermediário  para trabalho com inflamáveis e combustíveis</option>
-        <option value="2005" {% ifequal '2005' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2005 - Curso Avançado I para trabalho com inflamáveis e combustíveis</option>
-        <option value="2006" {% ifequal '2006' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2006 - Curso Avançado II para trabalho com inflamáveis e combustíveis</option>
-        <option value="2007" {% ifequal '2007' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2007 - Curso Específico para trabalho com inflamáveis e combustíveis</option>
-        <option value="2008" {% ifequal '2008' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2008 - Curso de Atualização para trabalho com inflamáveis e combustíveis</option>
-        <option value="2009" {% ifequal '2009' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2009 - Exercícios simulados para trabalho com inflamáveis e combustíveis</option>
-        <option value="2201" {% ifequal '2201' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2201 - Treinamento continuado em manuseio e operação de equipamentos de combate a incêndios e explosões, e para prestação de primeiros socorros a acidentados</option>
-        <option value="2202" {% ifequal '2202' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2202 - Treinamento em transporte de explosivos em mineração</option>
-        <option value="2203" {% ifequal '2203' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2203 - Treinamento em ventilação e supervisão de mina</option>
-        <option value="2204" {% ifequal '2204' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2204 - Treinamento periódico das brigadas de emergência</option>
-        <option value="2205" {% ifequal '2205' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2205 - Treinamento semestral específico para brigada de emergência</option>
-        <option value="2206" {% ifequal '2206' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2206 - Treinamento admissional para trabalhadores em mineração</option>
-        <option value="2207" {% ifequal '2207' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2207 - Treinamento específico na função para trabalhadores em mineração</option>
-        <option value="2208" {% ifequal '2208' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2208 - Treinamento de reciclagem periódica para trabalhadores em mineração</option>
-        <option value="2209" {% ifequal '2209' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2209 - Treinamento de operação de máquinas, equipamentos em mineração</option>
-        <option value="2210" {% ifequal '2210' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2210 - Treinamento determinado pela autoridade regional competente</option>
-        <option value="2211" {% ifequal '2211' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2211 - Treinamento para membros da CIPAMIN</option>
-        <option value="2301" {% ifequal '2301' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2301 - Informações sobre equipamentos de combate ao incêndio</option>
-        <option value="2302" {% ifequal '2302' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2302 - Informações sobre procedimentos para evacuação dos locais de trabalho</option>
-        <option value="2303" {% ifequal '2303' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2303 - Informações sobre dispositivos de alarme existentes</option>
-        <option value="2501" {% ifequal '2501' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2501 - Capacitação nas atividades com resíduos industriais</option>
-        <option value="2601" {% ifequal '2601' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2601 - Treinamento em rotulagem de produto químico</option>
-        <option value="2901" {% ifequal '2901' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2901 - Treinamento de sinaleiro de operação portuária</option>
-        <option value="2902" {% ifequal '2902' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2902 - Treinamento em operações portuárias com produtos perigosos</option>
-        <option value="2903" {% ifequal '2903' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >2903 - Treinamento simulado de emergência de operações portuárias</option>
-        <option value="3001" {% ifequal '3001' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3001 - Treinamento de emergências – Pescadores profissionais</option>
-        <option value="3002" {% ifequal '3002' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3002 - Exercício anual de salvamento</option>
-        <option value="3003" {% ifequal '3003' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3003 - Treinamento em radiocomunicação</option>
-        <option value="3004" {% ifequal '3004' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3004 - Treinamento de utilização de extintores de incêndio</option>
-        <option value="3005" {% ifequal '3005' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3005 - Treinamento Curso Básico NR10 para trabalho em plataformas e instalações de apoio</option>
-        <option value="3101" {% ifequal '3101' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3101 - Treinamento para os membros da CIPATR</option>
-        <option value="3102" {% ifequal '3102' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3102 - Treinamento sobre prevenção de acidentes com agrotóxicos</option>
-        <option value="3103" {% ifequal '3103' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3103 - Treinamento complementar</option>
-        <option value="3104" {% ifequal '3104' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3104 - Treinamento para empregados que manuseiam agrotóxicos</option>
-        <option value="3105" {% ifequal '3105' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3105 - Treinamento em operação de máquinas e implementos agrícolas no meio rural</option>
-        <option value="3106" {% ifequal '3106' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3106 - Treinamento para operadores de motosserra, motopoda e similares</option>
-        <option value="3107" {% ifequal '3107' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3107 - Treinamento de reciclagem do trabalhador rural</option>
-        <option value="3108" {% ifequal '3108' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3108 - Treinamento primeiros socorros – estabelecimento rural</option>
-        <option value="3109" {% ifequal '3109' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3109 - Treinamento  para  conservação,  manutenção,  limpeza  e  utilização  de  equipamentos  de aplicação de agrotóxicos</option>
-        <option value="3201" {% ifequal '3201' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3201 - Treinamento em riscos biológicos em serviços de saúde – admissional</option>
-        <option value="3202" {% ifequal '3202' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3202 - Treinamento em riscos biológicos em serviços de saúde – continuado</option>
-        <option value="3203" {% ifequal '3203' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3203 - Treinamento em utilização/descarte de perfurocortantes</option>
-        <option value="3204" {% ifequal '3204' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3204 - Treinamento em utilização de produtos químicos – admissional</option>
-        <option value="3205" {% ifequal '3205' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3205 - Treinamento em utilização de produtos químicos – continuado</option>
-        <option value="3206" {% ifequal '3206' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3206 - Treinamento em proteção radiológica – admissional</option>
-        <option value="3207" {% ifequal '3207' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3207 - Treinamento em proteção radiológica – continuado</option>
-        <option value="3208" {% ifequal '3208' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3208 - Treinamento em manipulação de fontes seladas em braquiterapia</option>
-        <option value="3209" {% ifequal '3209' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3209 - Treinamento dos empregados envolvidos com resíduos dos serviços de saúde – admissional</option>
-        <option value="3210" {% ifequal '3210' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3210 - Treinamento dos empregados envolvidos com resíduos dos serviços de saúde – continuado</option>
-        <option value="3211" {% ifequal '3211' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3211 - Treinamento em limpeza dos serviços de saúde – admissional</option>
-        <option value="3212" {% ifequal '3212' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3212 - Treinamento em limpeza dos serviços de saúde – continuado</option>
-        <option value="3213" {% ifequal '3213' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3213 - Treinamento em manutenção de máquinas e equipamentos em serviços de saúde – admissional</option>
-        <option value="3214" {% ifequal '3214' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3214 - Treinamento em manutenção de máquinas e equipamentos em serviços de saúde – continuado</option>
-        <option value="3215" {% ifequal '3215' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3215 - Treinamento na operação de equipamentos nos serviços de saúde</option>
-        <option value="3299" {% ifequal '3299' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3299 - Outros treinamentos de trabalhadores em estabelecimentos de saúde</option>
-        <option value="3301" {% ifequal '3301' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3301 - Treinamento sobre os riscos, as medidas de controle, de emergência e salvamento em espaços confinados – continuado</option>
-        <option value="3302" {% ifequal '3302' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3302 - Fornecimento de informações às contratadas</option>
-        <option value="3303" {% ifequal '3303' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3303 - Capacitação para os trabalhadores envolvidos direta ou indiretamente com espaços confinados</option>
-        <option value="3304" {% ifequal '3304' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3304 - Treinamento inicial em espaços confinados – Trabalhadores Autorizados</option>
-        <option value="3305" {% ifequal '3305' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3305 - Treinamento inicial em espaços confinados – Vigias</option>
-        <option value="3306" {% ifequal '3306' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3306 - Treinamento inicial em espaços confinados – Supervisores de entrada</option>
-        <option value="3307" {% ifequal '3307' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3307 - Treinamento eventual em espaços confinados</option>
-        <option value="3308" {% ifequal '3308' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3308 - Treinamento anual de trabalhadores autorizados, Vigias e Supervisores de Entrada de espaços confinados</option>
-        <option value="3309" {% ifequal '3309' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3309 - Capacitação – Equipe de salvamento em espaços confinados</option>
-        <option value="3310" {% ifequal '3310' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3310 - Exercício simulado anual de salvamento em espaços confinados</option>
-        <option value="3401" {% ifequal '3401' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3401 - Treinamento admissional de trabalhadores da indústria naval</option>
-        <option value="3402" {% ifequal '3402' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3402 - Treinamento periódico de trabalhadores da indústria naval</option>
-        <option value="3403" {% ifequal '3403' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3403 - Treinamento eventual de trabalhadores da indústria naval</option>
-        <option value="3404" {% ifequal '3404' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3404 - Treinamento do observador (vigilância especial contra incêndios) na indústria naval</option>
-        <option value="3405" {% ifequal '3405' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3405 - Treinamento sinaleiro e operador – Movimentação de cargas na indústria naval</option>
-        <option value="3406" {% ifequal '3406' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3406 - Treinamento complementar para o operador – Movimentação de cargas) na indústria naval</option>
-        <option value="3407" {% ifequal '3407' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3407 - Treinamento inicial para realização de testes de estanqueidade na indústria naval</option>
-        <option value="3408" {% ifequal '3408' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3408 - Treinamento periódico para realização de testes de estanqueidade na indústria naval</option>
-        <option value="3409" {% ifequal '3409' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3409 - Capacitação do operador de plataforma elevatória na indústria naval</option>
-        <option value="3410" {% ifequal '3410' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3410 - Capacitação da equipe de trabalho para resgate em altura na indústria naval</option>
-        <option value="3411" {% ifequal '3411' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3411 - Capacitação em jateamento e hidrojateamento na indústria naval</option>
-        <option value="3412" {% ifequal '3412' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3412 - Capacitação nas atividades de pintura na indústria naval</option>
-        <option value="3413" {% ifequal '3413' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3413 - Capacitação para movimentação eletromecânica de cargas na indústria naval</option>
-        <option value="3414" {% ifequal '3414' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3414 - Capacitação para montagem, desmontagem e manutenção de andaimes na indústria naval</option>
-        <option value="3415" {% ifequal '3415' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3415 - Capacitação nas atividades com equipamento portátil rotativo na indústria naval</option>
-        <option value="3416" {% ifequal '3416' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3416 - Capacitação nas atividades de Fixação e Estabilização Temporária de Elementos Estruturais na indústria naval</option>
-        <option value="3417" {% ifequal '3417' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3417 - Informações à contratante sobre as medidas estabelecidas no plano de emergência do Plano de Proteção Radiológica da executante na indústria naval</option>
-        <option value="3501" {% ifequal '3501' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3501 - Treinamento de trabalho em altura</option>
-        <option value="3502" {% ifequal '3502' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3502 - Treinamento periódico bienal de trabalho em altura</option>
-        <option value="3503" {% ifequal '3503' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3503 - Treinamento eventual de trabalho em altura</option>
-        <option value="3504" {% ifequal '3504' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3504 - Capacitação da equipe de salvamento – trabalho em altura</option>
-        <option value="3601" {% ifequal '3601' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3601 - Treinamento admissional na indústria de abate e processamento de carnes e derivados</option>
-        <option value="3602" {% ifequal '3602' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3602 - Treinamento periódico na indústria de abate e processamento de carnes e derivados</option>
-        <option value="3603" {% ifequal '3603' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3603 - Treinamento no caso de exposição a agente biológico prejudicial à saúde do trabalhador na indústria de abate e processamento de carnes e derivados</option>
-        <option value="3604" {% ifequal '3604' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3604 - Treinamento do Programa de Conservação Auditiva – trabalhadores expostos a níveis de pressão sonora acima dos níveis de ação na indústria de abate e processamento de carnes e derivados</option>
-        <option value="3605" {% ifequal '3605' dict_fields|get_value_from_dict:'codtreicap' %}selected="selected"{% endifequal %} >3605 - Treinamento eventual na indústria de abate e processamento de carnes e derivados</option>
-      </select>
-    </div>
+    <input type="text" id="txt_codtreicap" name="txt_codtreicap" class="form-control" value="{{ dict_fields|get_value_from_dict:'codtreicap' }}">
+    <input type="hidden" id="id_codtreicap" name="codtreicap" value="{{ dict_fields|get_value_from_dict:'codtreicap'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_codtreicap').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/419/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_codtreicap').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__s2245_evttreicap__codtreicap -->
 
 <!-- inicio__s2245_evttreicap__obstreicap -->

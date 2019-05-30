@@ -139,7 +139,7 @@ class s5013basePerApur(SoftDeletionModel):
     
     def evento(self): 
         return self.s5013_infobasefgts.evento()
-    tpvalor = models.IntegerField(choices=CHOICES_S5013_TPVALOR, null=True, )
+    tpvalor = models.IntegerField(null=True, )
     basefgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)

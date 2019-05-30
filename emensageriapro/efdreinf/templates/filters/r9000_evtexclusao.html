@@ -76,15 +76,8 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Preencher com o código correspondente ao tipo de inscrição</label>
-    <div class="input-group" style="width: 100%;">
-      <select name="tpinsc" class="form-control automate-select" style="width: 100%;">
-        <option value="">-- selecione --</option>
-        <option value="1" {% ifequal 1 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >1 - CNPJ</option>
-        <option value="2" {% ifequal 2 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >2 - CPF</option>
-        <option value="3" {% ifequal 3 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-        <option value="4" {% ifequal 4 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >4 - CNO (Cadastro Nacional de Obra)</option>
-        <option value="5" {% ifequal 5 dict_fields|get_value_from_dict:'tpinsc' %}selected="selected"{% endifequal %} >5 - CGC</option>
-      </select>
+    <div name="tpinsc" class="input-group" style="width: 100%;">
+      <input type="text" name="tpinsc" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'tpinsc' }}">
     </div>
   </div>
 </div>
@@ -111,34 +104,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Preencher com o tipo de evento, conforme tabela 10</label>
-    <div class="input-group" style="width: 100%;">
-      <select name="tpevento" class="form-control automate-select" style="width: 100%;">
-        <option value="">-- selecione --</option>
-        <option value="R1000" {% ifequal 'R1000' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R1000 - Informações do Contribuinte</option>
-        <option value="R1070" {% ifequal 'R1070' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R1070 - Tabela de Processos Administrativos/Judiciais</option>
-        <option value="R2010" {% ifequal 'R2010' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R2010 - Retenção Contribuição Previdenciária - Serviços Tomados</option>
-        <option value="R2020" {% ifequal 'R2020' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R2020 - Retenção Contribuição Previdenciária - Serviços Prestados</option>
-        <option value="R2030" {% ifequal 'R2030' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R2030 - Recursos Recebidos por Associação Desportiva</option>
-        <option value="R2040" {% ifequal 'R2040' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R2040 - Recursos Repassados para Associação Desportiva</option>
-        <option value="R2050" {% ifequal 'R2050' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria</option>
-        <option value="R2060" {% ifequal 'R2060' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB</option>
-        <option value="R2098" {% ifequal 'R2098' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R2098 - Reabertura dos Eventos Periódicos Série 2000</option>
-        <option value="R2099" {% ifequal 'R2099' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R2099 - Fechamento dos Eventos Periódicos Série 2000</option>
-        <option value="R3010" {% ifequal 'R3010' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R3010 - Receita de Espetáculo Desportivo</option>
-        <option value="R4010" {% ifequal 'R4010' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R4010 - Retenções na Fonte - Pessoa Física</option>
-        <option value="R4020" {% ifequal 'R4020' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R4020 - Retenções na Fonte - Pessoa Jurídica</option>
-        <option value="R4040" {% ifequal 'R4040' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R4040 - Retenções na Fonte – Beneficiários não identificados</option>
-        <option value="R4098" {% ifequal 'R4098' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R4098 - Reabertura dos Eventos Periódicos Série 4000</option>
-        <option value="R4099" {% ifequal 'R4099' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R4099 - Fechamento dos Eventos Periódicos Série 4000</option>
-        <option value="R9000" {% ifequal 'R9000' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R9000 - Exclusão de Eventos</option>
-        <option value="R9001" {% ifequal 'R9001' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R9001 - Informações de bases e tributos por evento - Contrib. Previdenc.</option>
-        <option value="R9002" {% ifequal 'R9002' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R9002 - Informações de bases e tributos por evento - Retenções na fonte</option>
-        <option value="R9011" {% ifequal 'R9011' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária</option>
-        <option value="R9012" {% ifequal 'R9012' dict_fields|get_value_from_dict:'tpevento' %}selected="selected"{% endifequal %} >R9012 - Informações consolidadas de bases e tributos - Retenções na fonte</option>
-      </select>
-    </div>
+    <input type="text" id="txt_tpevento" name="txt_tpevento" class="form-control" value="{{ dict_fields|get_value_from_dict:'tpevento' }}">
+    <input type="hidden" id="id_tpevento" name="tpevento" value="{{ dict_fields|get_value_from_dict:'tpevento'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_tpevento').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/720/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_tpevento').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__r9000_evtexclusao__tpevento -->
 
 <!-- inicio__r9000_evtexclusao__nrrecevt -->

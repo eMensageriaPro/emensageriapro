@@ -138,8 +138,8 @@
   $(document).ready(function(e){
     $('#txt_codmunic').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/municipios/json-search/" + request.term + "/", function (data) {
-          response($.map(data.municipios, function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
+          response($.map(data., function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -171,7 +171,7 @@
     <div class="form-group">
       <label id="s2300_ageintegracao__codmunic__label">Código do Município</label>
         {% if not for_print %}{% if s2300_ageintegracao_form.codmunic.value %}
-            <a id="s2300_ageintegracao__codmunic__div_acessar" href="{% url 'municipios_salvar' hash='{}'|json_id:s2300_ageintegracao_form.codmunic.value|json_print:0|base64_encode_me %}">
+            <a id="s2300_ageintegracao__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s2300_ageintegracao_form.codmunic.value|json_print:0|base64_encode_me %}">
                 [Acessar]
             </a>
         {% endif %} {% endif %}

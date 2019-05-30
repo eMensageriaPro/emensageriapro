@@ -1,5 +1,0 @@
-DELETE FROM public.esocial_financiamentos_aposentadorias_especiais;
-INSERT INTO public.esocial_financiamentos_aposentadorias_especiais (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('1', 'Não ensejador de aposentadoria especial', now(), 1, False);
-INSERT INTO public.esocial_financiamentos_aposentadorias_especiais (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('2', 'Ensejador de Aposentadoria Especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)', now(), 1, False);
-INSERT INTO public.esocial_financiamentos_aposentadorias_especiais (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('3', 'Ensejador de Aposentadoria Especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)', now(), 1, False);
-INSERT INTO public.esocial_financiamentos_aposentadorias_especiais (codigo, descricao, criado_em, criado_por_id, excluido) VALUES ('4', 'Ensejador de Aposentadoria Especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)', now(), 1, False);

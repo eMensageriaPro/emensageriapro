@@ -153,22 +153,13 @@
 <div class="col-md-6" id="r3010_evtespdesportivo__tpinsc__div">
   <div class="form-group">
     <label id="r3010_evtespdesportivo__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
-    {% if r3010_evtespdesportivo_form.tpinsc.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ r3010_evtespdesportivo_form.tpinsc.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if r3010_evtespdesportivo_form.tpinsc.field.widget.attrs.readonly %}
-        {% if r3010_evtespdesportivo_form.tpinsc.field.widget.attrs.disabled %}
-          {{ r3010_evtespdesportivo_form.tpinsc|addcss:'form-control' }}
-          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r3010_evtespdesportivo_form.tpinsc.value or r3010_evtespdesportivo_form.tpinsc.value == 0 %}{{ r3010_evtespdesportivo_form.tpinsc.value|valor }}{% endif %}">
-        {% else %}
-          {{ r3010_evtespdesportivo_form.tpinsc|addcss:'form-control' }}
-        {% endif %}
-      {% else %}
-        {{ r3010_evtespdesportivo_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% if r3010_evtespdesportivo_form.tpinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r3010_evtespdesportivo_form.tpinsc.errors }}
+        </div>
       {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r3010_evtespdesportivo_form.tpinsc|addcss:'form-control' }}
     </div>
   </div>
 </div>

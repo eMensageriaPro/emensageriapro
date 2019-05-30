@@ -39,28 +39,68 @@
 </div>
 <!-- fim__r4020_idepgto__r4020_evtretpj -->
 <!-- inicio__r4020_idepgto__natrend -->
-<div class="col-md-3" id="r4020_idepgto__natrend__div">
-  <div class="form-group">
-    <label id="r4020_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*</label>
-    {% if r4020_idepgto_form.natrend.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ r4020_idepgto_form.natrend.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if r4020_idepgto_form.natrend.field.widget.attrs.readonly %}
-        {% if r4020_idepgto_form.natrend.field.widget.attrs.disabled %}
-          {{ r4020_idepgto_form.natrend|addcss:'form-control' }}
-          <input id="id_natrend" name="natrend" type="hidden" value="{% if r4020_idepgto_form.natrend.value or r4020_idepgto_form.natrend.value == 0 %}{{ r4020_idepgto_form.natrend.value }}{% endif %}">
-        {% else %}
-          {{ r4020_idepgto_form.natrend|addcss:'form-control' }}
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-3" id="r4020_idepgto__natrend__div">
+    <div class="form-group">
+      <label id="r4020_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*</label>
+        {% if r4020_idepgto_form.natrend.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ r4020_idepgto_form.natrend.errors }}
+          </div>
         {% endif %}
-      {% else %}
-        {{ r4020_idepgto_form.natrend|addcss_select2:'form-control automate-select' }}
-      {% endif %}
+        <input type="text" 
+               id="txt_natrend" 
+               name="txt_natrend" class="form-control" 
+               value="{% if r4020_idepgto.natrend %}{{ r4020_idepgto.natrend|get_opcoes_titulo:682 }}{% endif %}" 
+               {% if r4020_idepgto_form.natrend.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if r4020_idepgto_form.natrend.field.widget.attrs.required %} required="required"{% endif %}
+               {% if r4020_idepgto_form.natrend.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_natrend" 
+               name="natrend" 
+               value="{% if r4020_idepgto.natrend %}{{ r4020_idepgto_form.natrend.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_natrend').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/682/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_natrend').val(ui.item.value);
+        return false;
+      }});
+    {% if r4020_idepgto_form.natrend.field.widget.attrs.required %}
+    $("#id_form_r4020_idepgto").submit(function(e) {
+      $('#txt_natrend').disabled = true;
+        if ($('#id_natrend').val() == "") {
+          $('#txt_natrend').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Código da natureza do rendimento, conforme Tabela 01!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-3" id="r4020_idepgto__natrend__div">
+    <div class="form-group">
+      <label id="r4020_idepgto__natrend__label">Código da natureza do rendimento, conforme Tabela 01*</label>
+        <input type="text" id="txt_natrend" name="txt_natrend" class="form-control" value="{% if r4020_idepgto.natrend %}{{ r4020_idepgto.natrend }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__r4020_idepgto__natrend -->
 <!-- inicio__r4020_idepgto__paisresid -->
 {% if permissao.permite_editar or permissao.permite_cadastrar %}
@@ -72,17 +112,25 @@
             {{ r4020_idepgto_form.paisresid.errors }}
           </div>
         {% endif %}
-        <input type="text" id="txt_paisresid" name="txt_paisresid" class="form-control" value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto.paisresid }}{% endif %}" 
-        {% if r4020_idepgto_form.paisresid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if r4020_idepgto_form.paisresid.field.widget.attrs.required %} required="required"{% endif %}{% if r4020_idepgto_form.paisresid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" id="id_paisresid" name="paisresid" value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto_form.paisresid.value|valor }}{% endif %}">
+        <input type="text" 
+               id="txt_paisresid" 
+               name="txt_paisresid" class="form-control" 
+               value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto.paisresid|get_opcoes_titulo:645 }}{% endif %}" 
+               {% if r4020_idepgto_form.paisresid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if r4020_idepgto_form.paisresid.field.widget.attrs.required %} required="required"{% endif %}
+               {% if r4020_idepgto_form.paisresid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_paisresid" 
+               name="paisresid" 
+               value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto_form.paisresid.value|valor }}{% endif %}" >
     </div>
   </div>
   <script type="text/javascript">
   $(document).ready(function(e){
     $('#txt_paisresid').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/efdreinf-paises/json-search/" + request.term + "/", function (data) {
-          response($.map(data.efdreinf_paises, function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/645/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -113,11 +161,6 @@
   <div class="col-md-3" id="r4020_idepgto__paisresid__div">
     <div class="form-group">
       <label id="r4020_idepgto__paisresid__label">Preencher com o código do país de residência fiscal, conforme tabela 7*</label>
-        {% if not for_print %}{% if r4020_idepgto_form.paisresid.value %}
-            <a id="r4020_idepgto__paisresid__div_acessar" href="{% url 'efdreinf-paises_salvar' hash='{}'|json_id:r4020_idepgto_form.paisresid.value|json_print:0|base64_encode_me %}">
-                [Acessar]
-            </a>
-        {% endif %} {% endif %}
         <input type="text" id="txt_paisresid" name="txt_paisresid" class="form-control" value="{% if r4020_idepgto.paisresid %}{{ r4020_idepgto.paisresid }}{% endif %}" disabled="disabled">
     </div>
   </div>

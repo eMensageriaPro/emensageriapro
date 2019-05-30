@@ -1,4 +1,0 @@
-{% load templatetags %}{% load static %}
-{% if show_fields.show_codigo or 1 %}"Código";{% endif %}{% if show_fields.show_nome or 1 %}"Nome";{% endif %}{% if show_fields.show_data_criacao or 1 %}"Data de Criação";{% endif %}{% if show_fields.show_data_extincao or 1 %}"Data de Extinção";{% endif %}
-{% for c in campos_lista %}{% if show_fields.show_codigo or 1 %}"{{ c.codigo }}";{% endif %}{% if show_fields.show_nome or 1 %}"{{ c.nome }}";{% endif %}{% if show_fields.show_data_criacao or 1 %}"{{ c.data_criacao }}";{% endif %}{% if show_fields.show_data_extincao or 1 %}"{{ c.data_extincao }}";{% endif %}
-{% endfor %}

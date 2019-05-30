@@ -491,7 +491,7 @@ class s2200afastamento(SoftDeletionModel):
     def evento(self): 
         return self.s2200_evtadmissao.evento()
     dtiniafast = models.DateField(null=True, )
-    codmotafast = models.CharField(choices=CHOICES_S2200_CODMOTAFAST, max_length=2, null=True, )
+    codmotafast = models.TextField(null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
     criado_por = models.ForeignKey(User,
@@ -685,7 +685,7 @@ class s2200aprend(SoftDeletionModel):
     
     def evento(self): 
         return self.s2200_infoceletista.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -962,7 +962,7 @@ class s2200dependente(SoftDeletionModel):
     
     def evento(self): 
         return self.s2200_evtadmissao.evento()
-    tpdep = models.CharField(choices=CHOICES_S2200_TPDEP, max_length=2, null=True, )
+    tpdep = models.CharField(choices=CHOICES_ESOCIALDEPENDENTESTIPOS, max_length=2, null=True, )
     nmdep = models.CharField(max_length=70, null=True, )
     dtnascto = models.DateField(null=True, )
     cpfdep = models.CharField(max_length=11, blank=True, null=True, )
@@ -1445,7 +1445,7 @@ class s2200ideEstabVinc(SoftDeletionModel):
     
     def evento(self): 
         return self.s2200_trabtemporario.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -1973,7 +1973,7 @@ class s2200localTrabGeral(SoftDeletionModel):
     
     def evento(self): 
         return self.s2200_evtadmissao.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     desccomp = models.CharField(max_length=80, blank=True, null=True, )
     
@@ -2176,7 +2176,7 @@ class s2200sucessaoVinc(SoftDeletionModel):
     
     def evento(self): 
         return self.s2200_evtadmissao.evento()
-    tpinscant = models.IntegerField(choices=CHOICES_S2200_TPINSCANT, null=True, )
+    tpinscant = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     cnpjempregant = models.CharField(max_length=14, null=True, )
     matricant = models.CharField(max_length=30, blank=True, null=True, )
     dttransf = models.DateField(null=True, )
@@ -2322,7 +2322,7 @@ class s2200trabTemporario(SoftDeletionModel):
     hipleg = models.IntegerField(choices=CHOICES_S2200_HIPLEG, null=True, )
     justcontr = models.CharField(max_length=999, null=True, )
     tpinclcontr = models.IntegerField(choices=CHOICES_S2200_TPINCLCONTR, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_S2200_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)

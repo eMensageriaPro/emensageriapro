@@ -72,7 +72,7 @@ class s1207dmDev(SoftDeletionModel):
     
     def evento(self): 
         return self.s1207_evtbenprrp.evento()
-    tpbenef = models.IntegerField(choices=CHOICES_S1207_TPBENEF, null=True, )
+    tpbenef = models.IntegerField(null=True, )
     nrbenefic = models.CharField(max_length=20, null=True, )
     idedmdev = models.CharField(max_length=30, null=True, )
     
@@ -273,7 +273,7 @@ class s1207infoPerAntideEstab(SoftDeletionModel):
     
     def evento(self): 
         return self.s1207_infoperant_ideperiodo.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1207_TPINSC_INFOPERANT, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -599,7 +599,7 @@ class s1207infoPerApurideEstab(SoftDeletionModel):
     
     def evento(self): 
         return self.s1207_infoperapur.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1207_TPINSC_INFOPERAPUR, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)

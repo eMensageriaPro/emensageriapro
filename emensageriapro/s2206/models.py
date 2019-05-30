@@ -136,7 +136,7 @@ class s2206aprend(SoftDeletionModel):
     
     def evento(self): 
         return self.s2206_infoceletista.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2206_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -622,7 +622,7 @@ class s2206localTrabGeral(SoftDeletionModel):
     
     def evento(self): 
         return self.s2206_evtaltcontratual.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2206_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     desccomp = models.CharField(max_length=80, blank=True, null=True, )
     

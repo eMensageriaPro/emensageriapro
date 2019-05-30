@@ -36,6 +36,19 @@
 
 
 
+CHOICES_ESOCIALINSCRICOESTIPOS = [
+
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (5, u'5 - CGC'),
+    
+]
+
+
+
+
 CHOICES_S1260_INDCOMERC = [
 
     (2, u'2 - Comercialização da Produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por Produtor Rural Pessoa Física, inclusive por Segurado Especial ou por Pessoa Física não produtor rural'),
@@ -43,19 +56,6 @@ CHOICES_S1260_INDCOMERC = [
     (7, u'7 - Comercialização da Produção Isenta de acordo com a Lei n° 13.606/2018'),
     (8, u'8 - Comercialização da Produção da Pessoa Física/Segurado Especial para Entidade inscrita no Programa de Aquisição de Alimentos - PAA'),
     (9, u'9 - Comercialização da Produção no Mercado Externo.'),
-    
-]
-
-
-
-
-CHOICES_S1260_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 

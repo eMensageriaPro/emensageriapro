@@ -34,11 +34,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Procedimento Médico</label>
-    <div name="procrealizado" class="input-group" style="width: 100%;">
-      <input type="text" name="procrealizado" class="form-control automate-integer" value="{{ dict_fields|get_value_from_dict:'procrealizado' }}">
-    </div>
+    <input type="text" id="txt_procrealizado" name="txt_procrealizado" class="form-control" value="{{ dict_fields|get_value_from_dict:'procrealizado' }}">
+    <input type="hidden" id="id_procrealizado" name="procrealizado" value="{{ dict_fields|get_value_from_dict:'procrealizado'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_procrealizado').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/360/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_procrealizado').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__s2220_exame__procrealizado -->
 
 <!-- inicio__s2220_exame__obsproc -->

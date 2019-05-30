@@ -36,6 +36,14 @@
 
 
 
+CHOICES_EFDREINFPAGAMENTOSCODIGOS = [
+
+    
+]
+
+
+
+
 CHOICES_R1000_PROCEMI = [
 
     (1, u'1 - Aplicativo do contribuinte'),
@@ -56,19 +64,6 @@ CHOICES_R1000_TPAMB = [
 
 
 
-CHOICES_R1000_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R1070_PROCEMI = [
 
     (1, u'1 - Aplicativo do contribuinte'),
@@ -83,19 +78,6 @@ CHOICES_R1070_TPAMB = [
 
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-    
-]
-
-
-
-
-CHOICES_R1070_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 
@@ -153,19 +135,6 @@ CHOICES_R2010_TPAMB = [
 
 
 
-CHOICES_R2010_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R2020_INDOBRA = [
 
     (0, u'0 - Não é obra de construção civil ou não está sujeita a matrícula de obra'),
@@ -207,19 +176,6 @@ CHOICES_R2020_TPAMB = [
 
 
 
-CHOICES_R2020_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R2030_INDRETIF = [
 
     (1, u'1 - Arquivo original'),
@@ -244,19 +200,6 @@ CHOICES_R2030_TPAMB = [
 
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-    
-]
-
-
-
-
-CHOICES_R2030_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 
@@ -293,19 +236,6 @@ CHOICES_R2040_TPAMB = [
 
 
 
-CHOICES_R2040_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R2050_INDRETIF = [
 
     (1, u'1 - Arquivo original'),
@@ -330,19 +260,6 @@ CHOICES_R2050_TPAMB = [
 
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-    
-]
-
-
-
-
-CHOICES_R2050_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 
@@ -379,19 +296,6 @@ CHOICES_R2060_TPAMB = [
 
 
 
-CHOICES_R2060_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R2070_INDRETIF = [
 
     (1, u'1 - Arquivo original'),
@@ -422,19 +326,6 @@ CHOICES_R2070_TPAMB = [
 
 
 
-CHOICES_R2070_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R2070_TPINSCBENEF = [
 
     (1, u'1 - Pessoa Jurídica'),
@@ -459,19 +350,6 @@ CHOICES_R2098_TPAMB = [
 
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-    
-]
-
-
-
-
-CHOICES_R2098_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 
@@ -568,19 +446,6 @@ CHOICES_R2099_TPAMB = [
 
 
 
-CHOICES_R2099_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R3010_INDRETIF = [
 
     (1, u'1 - Arquivo original'),
@@ -605,19 +470,6 @@ CHOICES_R3010_TPAMB = [
 
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-    
-]
-
-
-
-
-CHOICES_R3010_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 
@@ -657,19 +509,6 @@ CHOICES_R4010_TPAMB = [
 
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-    
-]
-
-
-
-
-CHOICES_R4010_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 
@@ -728,19 +567,6 @@ CHOICES_R4020_TPAMB = [
 
 
 
-CHOICES_R4020_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R4040_INDRETIF = [
 
     (1, u'1 - Arquivo original'),
@@ -771,19 +597,6 @@ CHOICES_R4040_TPAMB = [
 
 
 
-CHOICES_R4040_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R4098_PROCEMI = [
 
     (1, u'1 - Aplicativo do contribuinte'),
@@ -798,19 +611,6 @@ CHOICES_R4098_TPAMB = [
 
     (1, u'1 - Produção'),
     (2, u'2 - Produção restrita.'),
-    
-]
-
-
-
-
-CHOICES_R4098_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 
@@ -867,48 +667,9 @@ CHOICES_R4099_TPAMB = [
 
 
 
-CHOICES_R4099_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R5001_CDRETORNO = [
 
     ('0', u'0 - Sucesso 1 - Erro 2 - Em processamento'),
-    
-]
-
-
-
-
-CHOICES_R5001_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
-CHOICES_R5011_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 
@@ -935,66 +696,11 @@ CHOICES_R9000_TPAMB = [
 
 
 
-CHOICES_R9000_TPEVENTO = [
-
-    ('R1000', u'R1000 - Informações do Contribuinte'),
-    ('R1070', u'R1070 - Tabela de Processos Administrativos/Judiciais'),
-    ('R2010', u'R2010 - Retenção Contribuição Previdenciária - Serviços Tomados'),
-    ('R2020', u'R2020 - Retenção Contribuição Previdenciária - Serviços Prestados'),
-    ('R2030', u'R2030 - Recursos Recebidos por Associação Desportiva'),
-    ('R2040', u'R2040 - Recursos Repassados para Associação Desportiva'),
-    ('R2050', u'R2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria'),
-    ('R2060', u'R2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB'),
-    ('R2098', u'R2098 - Reabertura dos Eventos Periódicos Série 2000'),
-    ('R2099', u'R2099 - Fechamento dos Eventos Periódicos Série 2000'),
-    ('R3010', u'R3010 - Receita de Espetáculo Desportivo'),
-    ('R4010', u'R4010 - Retenções na Fonte - Pessoa Física'),
-    ('R4020', u'R4020 - Retenções na Fonte - Pessoa Jurídica'),
-    ('R4040', u'R4040 - Retenções na Fonte – Beneficiários não identificados'),
-    ('R4098', u'R4098 - Reabertura dos Eventos Periódicos Série 4000'),
-    ('R4099', u'R4099 - Fechamento dos Eventos Periódicos Série 4000'),
-    ('R9000', u'R9000 - Exclusão de Eventos'),
-    ('R9001', u'R9001 - Informações de bases e tributos por evento - Contrib. Previdenc.'),
-    ('R9002', u'R9002 - Informações de bases e tributos por evento - Retenções na fonte'),
-    ('R9011', u'R9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária'),
-    ('R9012', u'R9012 - Informações consolidadas de bases e tributos - Retenções na fonte'),
-    
-]
-
-
-
-
-CHOICES_R9000_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R9001_CDRETORNO = [
 
     (0, u'0 - Sucesso'),
     (1, u'1 - Erro'),
     (2, u'2 - Em processamento.'),
-    
-]
-
-
-
-
-CHOICES_R9001_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 
@@ -1012,19 +718,6 @@ CHOICES_R9002_CDRETORNO = [
 
 
 
-CHOICES_R9002_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R9011_CDRETORNO = [
 
     (0, u'0 - Sucesso'),
@@ -1036,37 +729,11 @@ CHOICES_R9011_CDRETORNO = [
 
 
 
-CHOICES_R9011_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
 CHOICES_R9012_CDRETORNO = [
 
     (0, u'0 - Sucesso'),
     (1, u'1 - Erro'),
     (2, u'2 - Em processamento.'),
-    
-]
-
-
-
-
-CHOICES_R9012_TPINSC = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 

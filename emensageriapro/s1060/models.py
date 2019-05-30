@@ -78,7 +78,7 @@ class s1060alteracao(SoftDeletionModel):
     nmamb = models.CharField(max_length=100, null=True, )
     dscamb = models.CharField(max_length=8000, null=True, )
     localamb = models.IntegerField(choices=CHOICES_S1060_LOCALAMB_ALTERACAO, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_S1060_TPINSC_ALTERACAO, blank=True, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, blank=True, null=True, )
     nrinsc = models.CharField(max_length=15, blank=True, null=True, )
     codlotacao = models.CharField(max_length=30, blank=True, null=True, )
     
@@ -291,7 +291,7 @@ class s1060inclusao(SoftDeletionModel):
     nmamb = models.CharField(max_length=100, null=True, )
     dscamb = models.CharField(max_length=8000, null=True, )
     localamb = models.IntegerField(choices=CHOICES_S1060_LOCALAMB_INCLUSAO, null=True, )
-    tpinsc = models.IntegerField(choices=CHOICES_S1060_TPINSC_INCLUSAO, blank=True, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, blank=True, null=True, )
     nrinsc = models.CharField(max_length=15, blank=True, null=True, )
     codlotacao = models.CharField(max_length=30, blank=True, null=True, )
     

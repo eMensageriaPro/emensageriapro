@@ -1,4 +1,0 @@
-{% load templatetags %}{% load static %}
-{% if show_fields.show_codigo or 1 %}"Código IBGE";{% endif %}{% if show_fields.show_titulo or 1 %}"Titulo";{% endif %}
-{% for c in campos_lista %}{% if show_fields.show_codigo or 1 %}"{{ c.codigo }}";{% endif %}{% if show_fields.show_titulo or 1 %}"{{ c.titulo }}";{% endif %}
-{% endfor %}

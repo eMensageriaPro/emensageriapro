@@ -153,7 +153,7 @@ class s2400dependente(SoftDeletionModel):
     
     def evento(self): 
         return self.s2400_evtcdbenefin.evento()
-    tpdep = models.CharField(choices=CHOICES_S2400_TPDEP, max_length=2, null=True, )
+    tpdep = models.CharField(choices=CHOICES_ESOCIALDEPENDENTESTIPOS, max_length=2, null=True, )
     nmdep = models.CharField(max_length=70, null=True, )
     dtnascto = models.DateField(null=True, )
     cpfdep = models.CharField(max_length=11, blank=True, null=True, )

@@ -179,49 +179,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Motivo do desligamento</label>
-    <div class="input-group" style="width: 100%;">
-      <select name="mtvdeslig" class="form-control automate-select" style="width: 100%;">
-        <option value="">-- selecione --</option>
-        <option value="01" {% ifequal '01' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >01 - Rescisão com justa causa, por iniciativa do empregador</option>
-        <option value="02" {% ifequal '02' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >02 - Rescisão sem justa causa, por iniciativa do empregador</option>
-        <option value="03" {% ifequal '03' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >03 - Rescisão antecipada do contrato a termo por iniciativa do empregador</option>
-        <option value="04" {% ifequal '04' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >04 - Rescisão antecipada do contrato a termo por iniciativa do empregado</option>
-        <option value="05" {% ifequal '05' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >05 - Rescisão por culpa recíproca</option>
-        <option value="06" {% ifequal '06' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >06 - Rescisão por término do contrato a termo</option>
-        <option value="07" {% ifequal '07' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >07 - Rescisão do contrato de trabalho por iniciativa do empregado</option>
-        <option value="08" {% ifequal '08' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >08 - Rescisão do contrato de trabalho por interesse do(a) empregado(a), nas hipóteses previstas nos arts. 394 e 483, § 1º da CLT</option>
-        <option value="09" {% ifequal '09' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >09 - Rescisão por opção do empregado em virtude de falecimento do empregador individual ou empregador doméstico</option>
-        <option value="10" {% ifequal '10' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >10 - Rescisão por falecimento do empregado</option>
-        <option value="11" {% ifequal '11' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >11 - Transferência de empregado para empresa do mesmo grupo empresarial que tenha assumido os encargos trabalhistas, sem que tenha havido rescisão do contrato de trabalho</option>
-        <option value="12" {% ifequal '12' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >12 - Transferência de empregado da empresa consorciada para o consórcio que tenha assumido os encargos trabalhistas, e vice-versa, sem que tenha havido rescisão do contrato de trabalho</option>
-        <option value="13" {% ifequal '13' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >13 - Transferência de empregado de empresa ou consórcio, para outra empresa ou consórcio que tenha assumido os encargos trabalhistas por motivo de sucessão (fusão, cisão ou incorporação), sem que tenha havido rescisão do contrato de trabalho</option>
-        <option value="14" {% ifequal '14' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >14 - Rescisão do contrato de trabalho por encerramento da empresa, de seus estabelecimentos ou supressão de parte de suas atividades ou falecimento do empregador individual ou empregador doméstico sem continuação da atividade</option>
-        <option value="15" {% ifequal '15' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >15 - Rescisão do contrato de aprendizagem por desempenho insuficiente, inadaptação ou ausência injustificada do aprendiz à escola que implique perda do ano letivo</option>
-        <option value="16" {% ifequal '16' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >16 - Declaração de nulidade do contrato de trabalho por infringência ao inciso II do art. 37 da Constituição Federal, quando mantido o direito ao salário</option>
-        <option value="17" {% ifequal '17' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >17 - Rescisão Indireta do Contrato de Trabalho</option>
-        <option value="18" {% ifequal '18' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >18 - Aposentadoria Compulsória (somente para categorias de trabalhadores 301 a 309)</option>
-        <option value="19" {% ifequal '19' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >19 - Aposentadoria por idade (somente para categorias de trabalhadores 301 a 309)</option>
-        <option value="20" {% ifequal '20' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >20 - Aposentadoria por idade e tempo de contribuição (somente categorias 301 a 309)</option>
-        <option value="21" {% ifequal '21' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >21 - Reforma Militar (somente para categorias de trabalhadores 301 a 309)</option>
-        <option value="22" {% ifequal '22' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >22 - Reserva Militar (somente para categorias de trabalhadores 301 a 309)</option>
-        <option value="23" {% ifequal '23' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >23 - Exoneração (somente para categorias de trabalhadores 301 a 309)</option>
-        <option value="24" {% ifequal '24' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >24 - Demissão (somente para categorias de trabalhadores 301 a 309)</option>
-        <option value="25" {% ifequal '25' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >25 - Vacância para assumir outro cargo efetivo (somente para categorias de trabalhadores 301 a 309)</option>
-        <option value="26" {% ifequal '26' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >26 - Rescisão do contrato de trabalho por paralisação temporária ou definitiva da empresa, estabelecimento ou parte das atividades motivada por atos de autoridade municipal, estadual ou federal</option>
-        <option value="27" {% ifequal '27' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >27 - Rescisão por motivo de força maior</option>
-        <option value="28" {% ifequal '28' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >28 - Término da Cessão/Requisição</option>
-        <option value="29" {% ifequal '29' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >29 - Redistribuição</option>
-        <option value="30" {% ifequal '30' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >30 - Mudança de Regime Trabalhista</option>
-        <option value="31" {% ifequal '31' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >31 - Reversão de Reintegração</option>
-        <option value="32" {% ifequal '32' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >32 - Extravio de Militar</option>
-        <option value="33" {% ifequal '33' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >33 - Rescisão por acordo entre as partes (art. 484-A da CLT)</option>
-        <option value="34" {% ifequal '34' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >34 - Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar</option>
-        <option value="35" {% ifequal '35' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >35 - Extinção do contrato de trabalho intermitente</option>
-        <option value="36" {% ifequal '36' dict_fields|get_value_from_dict:'mtvdeslig' %}selected="selected"{% endifequal %} >36 - Mudança de CPF</option>
-      </select>
-    </div>
+    <input type="text" id="txt_mtvdeslig" name="txt_mtvdeslig" class="form-control" value="{{ dict_fields|get_value_from_dict:'mtvdeslig' }}">
+    <input type="hidden" id="id_mtvdeslig" name="mtvdeslig" value="{{ dict_fields|get_value_from_dict:'mtvdeslig'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_mtvdeslig').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/442/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_mtvdeslig').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__s2299_evtdeslig__mtvdeslig -->
 
 <!-- inicio__s2299_evtdeslig__dtdeslig -->

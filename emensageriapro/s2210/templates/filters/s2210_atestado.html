@@ -95,42 +95,32 @@
 <div class="col-md-6">
   <div class="form-group">
     <label>Descrição da Lesão</label>
-    <div class="input-group" style="width: 100%;">
-      <select name="dsclesao" class="form-control automate-select" style="width: 100%;">
-        <option value="">-- selecione --</option>
-        <option value="702000000" {% ifequal 702000000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702000000 - Lesão imediata</option>
-        <option value="702005000" {% ifequal 702005000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702005000 - Escoriação, abrasão (ferimento superficial)</option>
-        <option value="702010000" {% ifequal 702010000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702010000 - Corte, laceração, ferida contusa, punctura (ferida aberta)</option>
-        <option value="702015000" {% ifequal 702015000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702015000 - Contusão, esmagamento (superfície cutânea intacta)</option>
-        <option value="702020000" {% ifequal 702020000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702020000 - Distensão, torção</option>
-        <option value="702025000" {% ifequal 702025000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702025000 - Inflamação de articulação, tendão ou músculo - inclui sinovite, tenossionovite, etc. Não inclui distensão, torção ou suas consequências</option>
-        <option value="702030000" {% ifequal 702030000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702030000 - Luxação</option>
-        <option value="702035000" {% ifequal 702035000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702035000 - Fratura</option>
-        <option value="702040000" {% ifequal 702040000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702040000 - Queimadura ou escaldadura - efeito de temperatura elevada. Efeito do contato com substância quente. Inclui queimadura por eletricidade, mas não inclui choque elétrico. Não inclui queimadura por substância química, efeito de radiação, queimadura de sol, incapacidade sistêmica como intermação, queimadura por atrito, etc.</option>
-        <option value="702042000" {% ifequal 702042000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702042000 - Queimadura química (lesão de tecido provocada pela ação corrosiva de produto químico, suas emanações, etc.)</option>
-        <option value="702045000" {% ifequal 702045000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702045000 - Efeito de radiação (imediato) - queimadura de sol e toda forma de lesão de tecido, osso ou fluido orgânico, por exposição à radiação</option>
-        <option value="702048000" {% ifequal 702048000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702048000 - Congelamento, geladura e outros efeitos da exposição à baixa temperatura</option>
-        <option value="702050000" {% ifequal 702050000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702050000 - Asfixia, estrangulamento, afogamento</option>
-        <option value="702055000" {% ifequal 702055000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702055000 - Intermação, insolação, cãibra, exaustão e outros efeitos da temperatura ambiente elevada - não inclui queimadura de sol ou outros efeitos de radiação</option>
-        <option value="702060000" {% ifequal 702060000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702060000 - Choque elétrico e eletroplessão (eletrocussão)</option>
-        <option value="702065000" {% ifequal 702065000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702065000 - Hérnia de qualquer natureza, ruptura</option>
-        <option value="702070000" {% ifequal 702070000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702070000 - Amputação ou enucleação</option>
-        <option value="702075000" {% ifequal 702075000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702075000 - Perda ou diminuição de sentido (audição, visão, olfato, paladar e tato, desde que não seja sequela de outra lesão)</option>
-        <option value="702080000" {% ifequal 702080000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702080000 - Concussão cerebral</option>
-        <option value="702090000" {% ifequal 702090000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >702090000 - Lesão imediata, NIC</option>
-        <option value="704020000" {% ifequal 704020000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >704020000 - Doença contagiosa ou infecciosa (tuberculose, brucelose, etc.)</option>
-        <option value="704030000" {% ifequal 704030000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >704030000 - Pneumoconiose (silicose, asbestose, etc.)</option>
-        <option value="704040000" {% ifequal 704040000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >704040000 - Dermatose (erupção, inflamação da pele, inclusive furúnculo, etc.). Geralmente provocada pelo contato direto com substâncias ou agentes sensibilizantes ou irritantes, tais como medicamentos, óleos, agentes biológicos, plantas, madeiras ou metais. Não inclui lesão provocada pela ação corrosiva de produtos químicos, queimadura por contato com substâncias quentes, efeito de exposição à radiação, efeito de exposição a baixas temperaturas ou inflamação ou irritação causada por fricção ou impacto</option>
-        <option value="704050000" {% ifequal 704050000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >704050000 - Envenenamento sistêmico - condição mórbida sistêmica provocada por inalação, ingestão ou absorção cutânea de substância tóxica, que afete o metabolismo, o funcionamento do sistema nervoso, do aparelho circulatório, do aparelho digestivo, do aparelho respiratório, dos órgãos de excreção, do sistema músculo-esquelético, etc., inclui ação de produto químico, medicamento, metal ou peçonha. Não inclui efeito de radiação, pneumoconiose, efeito corrosivo de produto químico, irritação cutânea, septicemia ou caso de ferida infectada</option>
-        <option value="704060000" {% ifequal 704060000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >704060000 - Perda ou diminuição mediatas de sentido (audição, visão, olfato, paladar e tato, desde que não seja sequela de outra lesão)</option>
-        <option value="704070000" {% ifequal 704070000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >704070000 - Efeito de radiação (mediato) - queimadura do sol e toda forma de lesão de tecido, osso, ou fluido orgânico por exposição à radiação.</option>
-        <option value="704090000" {% ifequal 704090000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >704090000 - Doença, NIC</option>
-        <option value="706050000" {% ifequal 706050000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >706050000 - Lesões múltiplas</option>
-        <option value="706090000" {% ifequal 706090000 dict_fields|get_value_from_dict:'dsclesao' %}selected="selected"{% endifequal %} >706090000 - Outras lesões, NIC</option>
-      </select>
-    </div>
+    <input type="text" id="txt_dsclesao" name="txt_dsclesao" class="form-control" value="{{ dict_fields|get_value_from_dict:'dsclesao' }}">
+    <input type="hidden" id="id_dsclesao" name="dsclesao" value="{{ dict_fields|get_value_from_dict:'dsclesao'|valor }}">
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e){
+  $('#txt_dsclesao').autocomplete({
+    source: function (request, response) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/352/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
+        return {
+          label: value.value,
+          value: value.key
+        };
+      }));
+    });
+  },
+  minLength: 3,
+  select: function( e, ui ) {
+    e.preventDefault(e);
+    $(this).val(ui.item.label);
+    $('#id_dsclesao').val(ui.item.value);
+    return false;
+  }});
+});
+</script>
 <!-- fim__s2210_atestado__dsclesao -->
 
 <!-- inicio__s2210_atestado__dsccomplesao -->

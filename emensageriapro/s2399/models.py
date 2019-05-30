@@ -142,7 +142,7 @@ class s2399detPlano(SoftDeletionModel):
     
     def evento(self): 
         return self.s2399_detoper.evento()
-    tpdep = models.CharField(choices=CHOICES_S2399_TPDEP, max_length=2, null=True, )
+    tpdep = models.CharField(choices=CHOICES_ESOCIALDEPENDENTESTIPOS, max_length=2, null=True, )
     cpfdep = models.CharField(max_length=11, blank=True, null=True, )
     nmdep = models.CharField(max_length=70, null=True, )
     dtnascto = models.DateField(null=True, )
@@ -353,7 +353,7 @@ class s2399ideEstabLot(SoftDeletionModel):
     
     def evento(self): 
         return self.s2399_dmdev.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2399_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     codlotacao = models.CharField(max_length=30, null=True, )
     
@@ -872,9 +872,9 @@ class s2399remunOutrEmpr(SoftDeletionModel):
     
     def evento(self): 
         return self.s2399_infomv.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S2399_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     vlrremunoe = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)

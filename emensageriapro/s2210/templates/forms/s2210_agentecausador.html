@@ -39,26 +39,66 @@
 </div>
 <!-- fim__s2210_agentecausador__s2210_evtcat -->
 <!-- inicio__s2210_agentecausador__codagntcausador -->
-<div class="col-md-6" id="s2210_agentecausador__codagntcausador__div">
-  <div class="form-group">
-    <label id="s2210_agentecausador__codagntcausador__label">Agente Causador*</label>
-    {% if s2210_agentecausador_form.codagntcausador.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ s2210_agentecausador_form.codagntcausador.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if s2210_agentecausador_form.codagntcausador.field.widget.attrs.readonly %}
-        {% if s2210_agentecausador_form.codagntcausador.field.widget.attrs.disabled %}
-          {{ s2210_agentecausador_form.codagntcausador|addcss:'form-control' }}
-          <input id="id_codagntcausador" name="codagntcausador" type="hidden" value="{% if s2210_agentecausador_form.codagntcausador.value or s2210_agentecausador_form.codagntcausador.value == 0 %}{{ s2210_agentecausador_form.codagntcausador.value|valor }}{% endif %}">
-        {% else %}
-          {{ s2210_agentecausador_form.codagntcausador|addcss:'form-control' }}
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-6" id="s2210_agentecausador__codagntcausador__div">
+    <div class="form-group">
+      <label id="s2210_agentecausador__codagntcausador__label">Agente Causador*</label>
+        {% if s2210_agentecausador_form.codagntcausador.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2210_agentecausador_form.codagntcausador.errors }}
+          </div>
         {% endif %}
-      {% else %}
-        {{ s2210_agentecausador_form.codagntcausador|addcss_select2:'form-control automate-select' }}
-      {% endif %}
+        <input type="text" 
+               id="txt_codagntcausador" 
+               name="txt_codagntcausador" class="form-control" 
+               value="{% if s2210_agentecausador.codagntcausador %}{{ s2210_agentecausador.codagntcausador|get_opcoes_titulo:345 }}{% endif %}" 
+               {% if s2210_agentecausador_form.codagntcausador.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s2210_agentecausador_form.codagntcausador.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s2210_agentecausador_form.codagntcausador.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codagntcausador" 
+               name="codagntcausador" 
+               value="{% if s2210_agentecausador.codagntcausador %}{{ s2210_agentecausador_form.codagntcausador.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codagntcausador').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/345/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codagntcausador').val(ui.item.value);
+        return false;
+      }});
+    {% if s2210_agentecausador_form.codagntcausador.field.widget.attrs.required %}
+    $("#id_form_s2210_agentecausador").submit(function(e) {
+      $('#txt_codagntcausador').disabled = true;
+        if ($('#id_codagntcausador').val() == "") {
+          $('#txt_codagntcausador').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Agente Causador!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="s2210_agentecausador__codagntcausador__div">
+    <div class="form-group">
+      <label id="s2210_agentecausador__codagntcausador__label">Agente Causador*</label>
+        <input type="text" id="txt_codagntcausador" name="txt_codagntcausador" class="form-control" value="{% if s2210_agentecausador.codagntcausador %}{{ s2210_agentecausador.codagntcausador }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__s2210_agentecausador__codagntcausador -->

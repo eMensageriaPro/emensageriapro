@@ -82,37 +82,46 @@
 </div>
 <!-- fim__usuarios__email -->
 <!-- inicio__usuarios__is_superuser -->
+{% if user.is_superuser %}
 <div class="col-md-4" id="usuarios__is_superuser__div">
     <div class="form-group">
       <label>
-        <input type="checkbox" name="is_superuser" class="minimal" value="True" {% if users_form.is_superuser.value %}checked{% endif %}>
+        <input type="checkbox" name="is_superuser" class="minimal" value="True" 
+        {% if users_form.is_superuser.value %}checked{% endif %} >
         {% comment %}{{ users_form.is_superuser }}{% endcomment %}
         É Super usuário?* {{ users_form.is_superuser.errors }}
       </label>
     </div>
 </div>
+{% endif %}
 <!-- fim__usuarios__is_superuser -->
 <!-- inicio__usuarios__is_staff -->
+{% if user.is_superuser %}
 <div class="col-md-4" id="usuarios__is_staff__div">
     <div class="form-group">
       <label>
-        <input type="checkbox" name="is_staff" class="minimal" value="True" {% if users_form.is_staff.value %}checked{% endif %}>
+        <input type="checkbox" name="is_staff" class="minimal" value="True" 
+        {% if users_form.is_staff.value %}checked{% endif %} >
         {% comment %}{{ users_form.is_staff }}{% endcomment %}
         É Administrador?* {{ users_form.is_staff.errors }}
       </label>
     </div>
 </div>
+{% endif %}
 <!-- fim__usuarios__is_staff -->
 <!-- inicio__usuarios__is_active -->
+{% if user.is_superuser %}
 <div class="col-md-4" id="usuarios__is_active__div">
     <div class="form-group">
       <label>
-        <input type="checkbox" name="is_active" class="minimal" value="True" {% if users_form.is_active.value %}checked{% endif %}>
+        <input type="checkbox" name="is_active" class="minimal" value="True" 
+        {% if users_form.is_active.value %}checked{% endif %} >
         {% comment %}{{ users_form.is_active }}{% endcomment %}
         Ativo?* {{ users_form.is_active.errors }}
       </label>
     </div>
 </div>
+{% endif %}
 <!-- fim__usuarios__is_active -->
 <!-- inicio__usuarios__config_perfis -->
 <script type="text/javascript">$(document).ready(function(){$('#id_config_perfis').change(function(){document.getElementById("usuarios__config_perfis__div_acessar").style.display = 'none';});});</script>

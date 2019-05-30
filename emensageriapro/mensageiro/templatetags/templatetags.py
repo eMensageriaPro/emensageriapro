@@ -1,5 +1,4 @@
 #coding: utf-8
-#templatetags.py
 
 """
 
@@ -34,24 +33,42 @@
 
 """
 
-from django.db import models
-from django import template
-from emensageriapro.mensageiro.models import *
-from emensageriapro.padrao import *
 import decimal
 import locale
-try: locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
-except: locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
+import re
+from django.db import models
+from django import template
+from django.core.validators import EMPTY_VALUES
+from emensageriapro.padrao import *
+
+try: 
+
+    locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+    
+except: 
+
+    locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
 
 register = template.Library()
+
 
 @register.filter(name='multiply')
 def multiply(value, arg):
     return value*arg
 
+
+@register.filter(name='get_opcoes_titulo')
+def get_opcoes_titulo(codigo, opcoes_id):
+    from emensageriapro.tabelas.models import Opcoes
+    opcao = Opcoes.objects.get(opcoes_id=opcoes_id, codigo=codigo)
+    return '%(codigo)s - %(titulo)s' % opcao.__dict__
+
+
 @register.filter(name='lista_json_table_esocial')
 def lista_json_table_esocial(texto):
-    texto = texto.replace('codresp','codigo').replace('dscresp','descricao').replace('localerroaviso','localizacao')
+    texto = texto.replace('codresp', 'codigo')
+    texto = texto.replace('dscresp', 'descricao')
+    texto = texto.replace('localerroaviso', 'localizacao')
     html_txt = ''
     lista = texto.split('|')
     for txt in lista:
@@ -64,27 +81,31 @@ def lista_json_table_esocial(texto):
 def underline_to_hyphen(value):
     return value.replace("_", "-")
 
+
 @register.filter(name='format_number_2dec_xml_reinf')
 def format_number_2dec_xml_reinf(value):
     return str(value).replace('.',',')
+
 
 @register.filter(name='format_number_4dec_xml_reinf')
 def format_number_4dec_xml_reinf(value):
     return str(value).replace('.',',')
 
 
-
 @register.filter(name='format_number_2dec_xml')
 def format_number_2dec_xml(value):
     return "{:0.2f}".format(value)
+
 
 @register.filter(name='format_number_4dec_xml')
 def format_number_4dec_xml(value):
     return "{:0.4f}".format(value)
 
+
 @register.filter(name='inteiro_xml')
 def inteiro_xml(value):
     return str(int(value))
+
 
 @register.filter(name='validacoes_esocial_efdreinf')
 def validacoes_esocial_efdreinf(var, tab_campo):
@@ -123,7 +144,6 @@ def validacoes_esocial_efdreinf(var, tab_campo):
             return '#FF0000'
             
 
-
 @register.assignment_tag
 def query(qs, **kwargs):
     """ template tag which allows queryset filtering. Usage:
@@ -133,6 +153,7 @@ def query(qs, **kwargs):
           {% endfor %}
     """
     return qs.filter(**kwargs)
+
 
 @register.filter(name='to_xml')
 def to_xml(texto):
@@ -146,6 +167,7 @@ def to_xml(texto):
     except:
         pass
     return texto
+
 
 @register.filter(name='auditoria_json')
 def auditoria_json(texto):
@@ -163,10 +185,12 @@ def auditoria_json(texto):
 def dec_to_int(var):
     return int(var)
 
+
 @register.filter(name='valor')  
 def valor(var):
     a = str(var).replace('.','')
     return a
+
 
 @register.filter('json_tab')
 def json_return_page(json_str, variavel):
@@ -176,6 +200,7 @@ def json_return_page(json_str, variavel):
         json_str = json_str.replace('}', ', "tab": "%s"}' % variavel)
     return json_str
 
+
 @register.filter('json_return_page')
 def json_return_page(json_str, variavel):
     if json_str == '{}':
@@ -183,6 +208,7 @@ def json_return_page(json_str, variavel):
     else:
         json_str = json_str.replace('}', ', "return_page": "%s"}' % variavel)
     return json_str
+
 
 @register.filter('json_return_hash')
 def json_return_hash(json_str, variavel):
@@ -192,6 +218,7 @@ def json_return_hash(json_str, variavel):
         json_str = json_str.replace('}', ', "return_hash": "%s"}' % variavel)
     return json_str
 
+
 @register.filter('json_id')
 def json_id(json_str, variavel):
     if json_str == '{}':
@@ -199,6 +226,7 @@ def json_id(json_str, variavel):
     else:
         json_str = json_str.replace('}', ', "id": "%s"}' % variavel)
     return json_str
+
 
 @register.filter('json_print')
 def json_print(json_str, variavel):
@@ -209,14 +237,11 @@ def json_print(json_str, variavel):
     return json_str        
 
 
-import re
-from django.core.validators import EMPTY_VALUES
-
-
 def DV_maker(v):
     if v >= 2:
         return 11 - v
     return 0
+
 
 @register.filter(name='validate_CPF')
 def validate_CPF(value):
@@ -248,10 +273,12 @@ def validate_CPF(value):
         return False
     return True
 
+
 @register.filter('addstr')
 def addstr(arg1, arg2):
     # concatenate arg1 & arg2
     return str(arg1) + str(arg2)
+
 
 @register.filter('add')
 def add(arg1, arg2):
@@ -270,6 +297,7 @@ def get_permissao(dict, key):
     except:
         return False
 
+
 @register.filter('divide')
 def divide(value, arg):
     if not arg:
@@ -287,17 +315,6 @@ def divide(value, arg):
     #print divide
     return int(divide)
 
-#@register.filter('base64_encode_me')
-#def base64_encode_me(text, obj_id):
-#    url = str(text).replace('_', '-')
-#    #print url
-#    #print str(obj_id)
-#    text = url+'|'+str(obj_id)
-#    #print text
-#    import base64
-#    encode_to_url = base64.urlsafe_b64encode( text )
-#    #print encode_to_url
-#    return encode_to_url
 
 @register.filter('base64_encode_me')
 def base64_encode_me(text):
@@ -321,15 +338,6 @@ def get_value_from_dict(dict_data, key):
         if not a: a = ''
         return a
 
-# @register.simple_tag
-# def quant_eleitores_cidade(obj, conta_id):
-#     quantidade = Eleitores.objects.using('default').filter(cidade=obj.id, conta=conta_id, excluido=False).all()
-#     return len(quantidade)
-#
-# @register.simple_tag
-# def quant_eleitores_partido(obj, conta_id):
-#     quantidade = Eleitores.objects.using('default').filter(partido=obj.id, conta=conta_id, excluido=False).all()
-#     return len(quantidade)
 
 @register.filter(name='addcss')
 def addcss(value, arg):
@@ -340,7 +348,6 @@ def addcss(value, arg):
 def addcss_select2(value, arg):
     return value.as_widget(attrs={'class': arg, 'style': 'width: 100%'})
 #register = Library()
-
 
 
 @register.filter(name='notNone')
@@ -369,6 +376,7 @@ def mes_ano(var):
     if mes == '12': mes = 'Dez/'
     return mes+ano
 
+
 @register.filter(name='ano_mes_extenso')
 def ano_mes_extenso(value):
     a = value.split('-')
@@ -388,6 +396,7 @@ def ano_mes_extenso(value):
     elif mes == '12': mes_extenso=u'Dezembro'
     return mes_extenso + '/' + ano
 
+
 # @register.filter(name='total')
 # def total(list, arg):
 #     soma = sum(d[arg] for d in list)
@@ -395,6 +404,7 @@ def ano_mes_extenso(value):
 #     soma = soma*1.00
 #     valor = real(soma)
 #     return valor
+
 
 @register.filter(name='inteiro')
 def inteiro(var):
@@ -418,10 +428,11 @@ def total_quant(list, arg):
     soma = sum( d[arg] for d in list)
     return soma
 
+
 @register.filter(name='percentage')  
 def percentage(fraction, population):  
     #{{ yes.count|percentage:votes.count }} votes.count - total ||| yes.count - parcial
     try:  
         return "%.2f%%" % ((float(fraction) / float(population)) * 100)  
     except ValueError:  
-        return '' 
+        return ''

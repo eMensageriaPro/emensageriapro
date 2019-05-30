@@ -99,10 +99,7 @@ CHOICES_TPCONTR = [
 CHOICES_TPINSC = [
 
     (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
+    (2, u'2 - CPF.'),
     
 ]
 

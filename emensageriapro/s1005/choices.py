@@ -36,6 +36,19 @@
 
 
 
+CHOICES_ESOCIALINSCRICOESTIPOS = [
+
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (5, u'5 - CGC'),
+    
+]
+
+
+
+
 CHOICES_S1005_ALIQRAT_ALTERACAO = [
 
     (1, u'1'),
@@ -190,45 +203,6 @@ CHOICES_S1005_TPCAEPF_INCLUSAO = [
     (1, u'1 - Contribuinte Individual'),
     (2, u'2 - Produtor Rural'),
     (3, u'3 - Segurado Especial.'),
-    
-]
-
-
-
-
-CHOICES_S1005_TPINSC_ALTERACAO = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
-CHOICES_S1005_TPINSC_EXCLUSAO = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
-CHOICES_S1005_TPINSC_INCLUSAO = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
     
 ]
 

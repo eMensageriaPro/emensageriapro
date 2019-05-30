@@ -17,7 +17,7 @@
 <!-- fim__s2241_iniinsalperic_fatrisco__s2241_iniinsalperic_infoamb -->
 
 <!-- inicio__s2241_iniinsalperic_fatrisco__codfatris -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>Código do Fator de Risco</label>
     <input type="text" id="txt_codfatris" name="txt_codfatris" class="form-control" value="{{ dict_fields|get_value_from_dict:'codfatris' }}">
@@ -28,8 +28,8 @@
 $(document).ready(function(e){
   $('#txt_codfatris').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-fatores-risco/json-search/" + request.term + "/", function (data) {
-      response($.map(data.esocial_fatores_risco, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/387/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key

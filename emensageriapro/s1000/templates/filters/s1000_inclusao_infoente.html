@@ -77,8 +77,8 @@
 $(document).ready(function(e){
   $('#txt_codmunic').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/municipios/json-search/" + request.term + "/", function (data) {
-      response($.map(data.municipios, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
+      response($.map(data., function (value, key) {
         return {
           label: value.value,
           value: value.key

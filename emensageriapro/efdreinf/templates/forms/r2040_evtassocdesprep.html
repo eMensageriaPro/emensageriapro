@@ -153,22 +153,13 @@
 <div class="col-md-6" id="r2040_evtassocdesprep__tpinsc__div">
   <div class="form-group">
     <label id="r2040_evtassocdesprep__tpinsc__label">Preencher com o código correspondente ao tipo de inscrição*</label>
-    {% if r2040_evtassocdesprep_form.tpinsc.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ r2040_evtassocdesprep_form.tpinsc.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if r2040_evtassocdesprep_form.tpinsc.field.widget.attrs.readonly %}
-        {% if r2040_evtassocdesprep_form.tpinsc.field.widget.attrs.disabled %}
-          {{ r2040_evtassocdesprep_form.tpinsc|addcss:'form-control' }}
-          <input id="id_tpinsc" name="tpinsc" type="hidden" value="{% if r2040_evtassocdesprep_form.tpinsc.value or r2040_evtassocdesprep_form.tpinsc.value == 0 %}{{ r2040_evtassocdesprep_form.tpinsc.value|valor }}{% endif %}">
-        {% else %}
-          {{ r2040_evtassocdesprep_form.tpinsc|addcss:'form-control' }}
-        {% endif %}
-      {% else %}
-        {{ r2040_evtassocdesprep_form.tpinsc|addcss_select2:'form-control automate-select' }}
+      {% if r2040_evtassocdesprep_form.tpinsc.errors %}
+        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+          {{ r2040_evtassocdesprep_form.tpinsc.errors }}
+        </div>
       {% endif %}
+    <div class="input-group" style="width: 100%;">
+      {{ r2040_evtassocdesprep_form.tpinsc|addcss:'form-control' }}
     </div>
   </div>
 </div>

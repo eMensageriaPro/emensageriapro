@@ -142,7 +142,7 @@ class s5001ideEstabLot(SoftDeletionModel):
     
     def evento(self): 
         return self.s5001_infocp.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S5001_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     codlotacao = models.CharField(max_length=30, null=True, )
     
@@ -213,7 +213,7 @@ class s5001infoBaseCS(SoftDeletionModel):
     def evento(self): 
         return self.s5001_infocategincid.evento()
     ind13 = models.IntegerField(choices=CHOICES_S5001_IND13, null=True, )
-    tpvalor = models.IntegerField(choices=CHOICES_S5001_TPVALOR, null=True, )
+    tpvalor = models.IntegerField(null=True, )
     valor = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)
@@ -283,7 +283,7 @@ class s5001infoCategIncid(SoftDeletionModel):
     def evento(self): 
         return self.s5001_ideestablot.evento()
     matricula = models.CharField(max_length=30, blank=True, null=True, )
-    codcateg = models.TextField(null=True, )
+    codcateg = models.IntegerField(null=True, )
     indsimples = models.IntegerField(choices=CHOICES_S5001_INDSIMPLES, blank=True, null=True, )
     
     criado_em = models.DateTimeField(blank=True, null=True)

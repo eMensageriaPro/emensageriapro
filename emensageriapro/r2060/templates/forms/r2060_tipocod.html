@@ -39,19 +39,68 @@
 </div>
 <!-- fim__r2060_tipocod__r2060_evtcprb -->
 <!-- inicio__r2060_tipocod__codativecon -->
-<div class="col-md-6" id="r2060_tipocod__codativecon__div">
-  <div class="form-group">
-    <label id="r2060_tipocod__codativecon__label">Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09*</label>
-      {% if r2060_tipocod_form.codativecon.errors %}
-        <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-          {{ r2060_tipocod_form.codativecon.errors }}
-        </div>
-      {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {{ r2060_tipocod_form.codativecon|addcss:'form-control' }}
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-6" id="r2060_tipocod__codativecon__div">
+    <div class="form-group">
+      <label id="r2060_tipocod__codativecon__label">Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09*</label>
+        {% if r2060_tipocod_form.codativecon.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ r2060_tipocod_form.codativecon.errors }}
+          </div>
+        {% endif %}
+        <input type="text" 
+               id="txt_codativecon" 
+               name="txt_codativecon" class="form-control" 
+               value="{% if r2060_tipocod.codativecon %}{{ r2060_tipocod.codativecon|get_opcoes_titulo:636 }}{% endif %}" 
+               {% if r2060_tipocod_form.codativecon.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if r2060_tipocod_form.codativecon.field.widget.attrs.required %} required="required"{% endif %}
+               {% if r2060_tipocod_form.codativecon.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codativecon" 
+               name="codativecon" 
+               value="{% if r2060_tipocod.codativecon %}{{ r2060_tipocod_form.codativecon.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codativecon').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/636/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codativecon').val(ui.item.value);
+        return false;
+      }});
+    {% if r2060_tipocod_form.codativecon.field.widget.attrs.required %}
+    $("#id_form_r2060_tipocod").submit(function(e) {
+      $('#txt_codativecon').disabled = true;
+        if ($('#id_codativecon').val() == "") {
+          $('#txt_codativecon').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="r2060_tipocod__codativecon__div">
+    <div class="form-group">
+      <label id="r2060_tipocod__codativecon__label">Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09*</label>
+        <input type="text" id="txt_codativecon" name="txt_codativecon" class="form-control" value="{% if r2060_tipocod.codativecon %}{{ r2060_tipocod.codativecon }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__r2060_tipocod__codativecon -->
 <!-- inicio__r2060_tipocod__vlrrecbrutaativ -->
 <div class="col-md-6" id="r2060_tipocod__vlrrecbrutaativ__div">

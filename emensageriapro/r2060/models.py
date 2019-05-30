@@ -219,7 +219,7 @@ class r2060tipoCod(SoftDeletionModel):
     
     def evento(self): 
         return self.r2060_evtcprb.evento()
-    codativecon = models.CharField(max_length=8, null=True, )
+    codativecon = models.TextField(null=True, )
     vlrrecbrutaativ = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrexcrecbruta = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlradicrecbruta = models.DecimalField(max_digits=15, decimal_places=2, null=True, )

@@ -72,7 +72,7 @@ class s1260ideAdquir(SoftDeletionModel):
     
     def evento(self): 
         return self.s1260_tpcomerc.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1260_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     vrcomerc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     

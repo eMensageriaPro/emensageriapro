@@ -289,8 +289,8 @@
 $(document).ready(function(e){
   $('#txt_codmunic').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/municipios/json-search/" + request.term + "/", function (data) {
-      response($.map(data.municipios, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
+      response($.map(data., function (value, key) {
         return {
           label: value.value,
           value: value.key
@@ -350,7 +350,7 @@ $(document).ready(function(e){
 <!-- fim__s2300_evttsvinicio__uf -->
 
 <!-- inicio__s2300_evttsvinicio__paisnascto -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>País de nascimento</label>
     <input type="text" id="txt_paisnascto" name="txt_paisnascto" class="form-control" value="{{ dict_fields|get_value_from_dict:'paisnascto' }}">
@@ -361,8 +361,8 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_paisnascto').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-paises/json-search/" + request.term + "/", function (data) {
-      response($.map(data.esocial_paises, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key
@@ -382,7 +382,7 @@ $(document).ready(function(e){
 <!-- fim__s2300_evttsvinicio__paisnascto -->
 
 <!-- inicio__s2300_evttsvinicio__paisnac -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>País de nacionalidade</label>
     <input type="text" id="txt_paisnac" name="txt_paisnac" class="form-control" value="{{ dict_fields|get_value_from_dict:'paisnac' }}">
@@ -393,8 +393,8 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_paisnac').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-paises/json-search/" + request.term + "/", function (data) {
-      response($.map(data.esocial_paises, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key
@@ -463,7 +463,7 @@ $(document).ready(function(e){
 <!-- fim__s2300_evttsvinicio__cadini -->
 
 <!-- inicio__s2300_evttsvinicio__codcateg -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>Código da Categoria</label>
     <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{{ dict_fields|get_value_from_dict:'codcateg' }}">
@@ -474,8 +474,8 @@ $(document).ready(function(e){
 $(document).ready(function(e){
   $('#txt_codcateg').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-trabalhadores-categorias/json-search/" + request.term + "/", function (data) {
-      response($.map(data.esocial_trabalhadores_categorias, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/172/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key

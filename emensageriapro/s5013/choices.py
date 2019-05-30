@@ -82,35 +82,6 @@ CHOICES_S5013_TPDPSE = [
 
 
 
-CHOICES_S5013_TPVALOR = [
-
-    (11, u'11 - Base de Cálculo do FGTS'),
-    (12, u'12 - Base de Cálculo do FGTS 13° Salário'),
-    (13, u'13 - Base de Cálculo do FGTS Dissídio'),
-    (14, u'14 - Base de Cálculo do FGTS Dissídio 13º Salário'),
-    (15, u'15 - Base de Cálculo do FGTS - Aprendiz'),
-    (16, u'16 - Base de Cálculo do FGTS 13° Salário - Aprendiz'),
-    (17, u'17 - Base de Cálculo do FGTS Dissídio - Aprendiz'),
-    (18, u'18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz'),
-    (21, u'21 - Base de Cálculo do FGTS Rescisório'),
-    (22, u'22 - Base de Cálculo do FGTS Rescisório - 13° Salário'),
-    (23, u'23 - Base de Cálculo do FGTS Rescisório - Aviso Prévio'),
-    (24, u'24 - Base de Cálculo do FGTS Rescisório - Dissídio'),
-    (25, u'25 - Base de Cálculo do FGTS Rescisório - Dissídio 13º Salário'),
-    (26, u'26 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio'),
-    (27, u'27 - Base de Cálculo do FGTS Rescisório - Aprendiz'),
-    (28, u'28 - Base de Cálculo do FGTS Rescisório - 13° Salário Aprendiz'),
-    (29, u'29 - Base de Cálculo do FGTS Rescisório - Aviso Prévio Aprendiz'),
-    (30, u'30 - Base de Cálculo do FGTS Rescisório - Dissídio Aprendiz'),
-    (31, u'31 - Base de Cálculo do FGTS Rescisório - Dissídio 13° Salário Aprendiz'),
-    (32, u'32 - Base de Cálculo do FGTS Rescisório - Dissídio Aviso Prévio Aprendiz'),
-    (91, u'91 - Incidência suspensa em decorrência de decisão judicial.'),
-    
-]
-
-
-
-
 CHOICES_S5013_TPVALORE = [
 
     (13, u'13 - Base de Cálculo do FGTS Dissídio'),

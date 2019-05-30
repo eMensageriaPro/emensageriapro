@@ -72,7 +72,7 @@ class s1270remunAvNP(SoftDeletionModel):
     
     def evento(self): 
         return self.s1270_evtcontratavnp.evento()
-    tpinsc = models.IntegerField(choices=CHOICES_S1270_TPINSC, null=True, )
+    tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     codlotacao = models.CharField(max_length=30, null=True, )
     vrbccp00 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )

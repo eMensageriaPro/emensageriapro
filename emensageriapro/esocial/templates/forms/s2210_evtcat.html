@@ -225,7 +225,7 @@
 <!-- fim__s2210_evtcat__matricula -->
 <!-- inicio__s2210_evtcat__codcateg -->
 {% if permissao.permite_editar or permissao.permite_cadastrar %}
-  <div class="col-md-12" id="s2210_evtcat__codcateg__div">
+  <div class="col-md-6" id="s2210_evtcat__codcateg__div">
     <div class="form-group">
       <label id="s2210_evtcat__codcateg__label">Código da Categoria</label>
         {% if s2210_evtcat_form.codcateg.errors %}
@@ -233,17 +233,25 @@
             {{ s2210_evtcat_form.codcateg.errors }}
           </div>
         {% endif %}
-        <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat.codcateg }}{% endif %}" 
-        {% if s2210_evtcat_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2210_evtcat_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}{% if s2210_evtcat_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" id="id_codcateg" name="codcateg" value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat_form.codcateg.value|valor }}{% endif %}">
+        <input type="text" 
+               id="txt_codcateg" 
+               name="txt_codcateg" class="form-control" 
+               value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat.codcateg|get_opcoes_titulo:172 }}{% endif %}" 
+               {% if s2210_evtcat_form.codcateg.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s2210_evtcat_form.codcateg.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s2210_evtcat_form.codcateg.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codcateg" 
+               name="codcateg" 
+               value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat_form.codcateg.value|valor }}{% endif %}" >
     </div>
   </div>
   <script type="text/javascript">
   $(document).ready(function(e){
     $('#txt_codcateg').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-trabalhadores-categorias/json-search/" + request.term + "/", function (data) {
-          response($.map(data.esocial_trabalhadores_categorias, function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/172/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -271,14 +279,9 @@
   });
   </script>
   {% else %}
-  <div class="col-md-12" id="s2210_evtcat__codcateg__div">
+  <div class="col-md-6" id="s2210_evtcat__codcateg__div">
     <div class="form-group">
       <label id="s2210_evtcat__codcateg__label">Código da Categoria</label>
-        {% if not for_print %}{% if s2210_evtcat_form.codcateg.value %}
-            <a id="s2210_evtcat__codcateg__div_acessar" href="{% url 'esocial-trabalhadores-categorias_salvar' hash='{}'|json_id:s2210_evtcat_form.codcateg.value|json_print:0|base64_encode_me %}">
-                [Acessar]
-            </a>
-        {% endif %} {% endif %}
         <input type="text" id="txt_codcateg" name="txt_codcateg" class="form-control" value="{% if s2210_evtcat.codcateg %}{{ s2210_evtcat.codcateg }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -305,28 +308,68 @@
 </div>
 <!-- fim__s2210_evtcat__dtacid -->
 <!-- inicio__s2210_evtcat__tpacid -->
-<div class="col-md-6" id="s2210_evtcat__tpacid__div">
-  <div class="form-group">
-    <label id="s2210_evtcat__tpacid__label">Tipo de acidente*</label>
-    {% if s2210_evtcat_form.tpacid.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ s2210_evtcat_form.tpacid.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if s2210_evtcat_form.tpacid.field.widget.attrs.readonly %}
-        {% if s2210_evtcat_form.tpacid.field.widget.attrs.disabled %}
-          {{ s2210_evtcat_form.tpacid|addcss:'form-control' }}
-          <input id="id_tpacid" name="tpacid" type="hidden" value="{% if s2210_evtcat_form.tpacid.value or s2210_evtcat_form.tpacid.value == 0 %}{{ s2210_evtcat_form.tpacid.value }}{% endif %}">
-        {% else %}
-          {{ s2210_evtcat_form.tpacid|addcss:'form-control' }}
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-6" id="s2210_evtcat__tpacid__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__tpacid__label">Tipo de acidente*</label>
+        {% if s2210_evtcat_form.tpacid.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2210_evtcat_form.tpacid.errors }}
+          </div>
         {% endif %}
-      {% else %}
-        {{ s2210_evtcat_form.tpacid|addcss_select2:'form-control automate-select' }}
-      {% endif %}
+        <input type="text" 
+               id="txt_tpacid" 
+               name="txt_tpacid" class="form-control" 
+               value="{% if s2210_evtcat.tpacid %}{{ s2210_evtcat.tpacid|get_opcoes_titulo:341 }}{% endif %}" 
+               {% if s2210_evtcat_form.tpacid.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s2210_evtcat_form.tpacid.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s2210_evtcat_form.tpacid.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_tpacid" 
+               name="tpacid" 
+               value="{% if s2210_evtcat.tpacid %}{{ s2210_evtcat_form.tpacid.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_tpacid').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/341/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_tpacid').val(ui.item.value);
+        return false;
+      }});
+    {% if s2210_evtcat_form.tpacid.field.widget.attrs.required %}
+    $("#id_form_s2210_evtcat").submit(function(e) {
+      $('#txt_tpacid').disabled = true;
+        if ($('#id_tpacid').val() == "") {
+          $('#txt_tpacid').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Tipo de acidente!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="s2210_evtcat__tpacid__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__tpacid__label">Tipo de acidente*</label>
+        <input type="text" id="txt_tpacid" name="txt_tpacid" class="form-control" value="{% if s2210_evtcat.tpacid %}{{ s2210_evtcat.tpacid }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__s2210_evtcat__tpacid -->
 <!-- inicio__s2210_evtcat__hracid -->
 <div class="col-md-6" id="s2210_evtcat__hracid__div">
@@ -446,28 +489,68 @@
 </div>
 <!-- fim__s2210_evtcat__indcomunpolicia -->
 <!-- inicio__s2210_evtcat__codsitgeradora -->
-<div class="col-md-6" id="s2210_evtcat__codsitgeradora__div">
-  <div class="form-group">
-    <label id="s2210_evtcat__codsitgeradora__label">Situação Geradora*</label>
-    {% if s2210_evtcat_form.codsitgeradora.errors %}
-      <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
-        {{ s2210_evtcat_form.codsitgeradora.errors }}
-      </div>
-    {% endif %}
-    <div class="input-group" style="width: 100%;">
-      {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.readonly %}
-        {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.disabled %}
-          {{ s2210_evtcat_form.codsitgeradora|addcss:'form-control' }}
-          <input id="id_codsitgeradora" name="codsitgeradora" type="hidden" value="{% if s2210_evtcat_form.codsitgeradora.value or s2210_evtcat_form.codsitgeradora.value == 0 %}{{ s2210_evtcat_form.codsitgeradora.value|valor }}{% endif %}">
-        {% else %}
-          {{ s2210_evtcat_form.codsitgeradora|addcss:'form-control' }}
+{% if permissao.permite_editar or permissao.permite_cadastrar %}
+  <div class="col-md-6" id="s2210_evtcat__codsitgeradora__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__codsitgeradora__label">Situação Geradora*</label>
+        {% if s2210_evtcat_form.codsitgeradora.errors %}
+          <div class="alert alert-error" style="margin-bottom: 0!important;width:100%">
+            {{ s2210_evtcat_form.codsitgeradora.errors }}
+          </div>
         {% endif %}
-      {% else %}
-        {{ s2210_evtcat_form.codsitgeradora|addcss_select2:'form-control automate-select' }}
-      {% endif %}
+        <input type="text" 
+               id="txt_codsitgeradora" 
+               name="txt_codsitgeradora" class="form-control" 
+               value="{% if s2210_evtcat.codsitgeradora %}{{ s2210_evtcat.codsitgeradora|get_opcoes_titulo:345 }}{% endif %}" 
+               {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_codsitgeradora" 
+               name="codsitgeradora" 
+               value="{% if s2210_evtcat.codsitgeradora %}{{ s2210_evtcat_form.codsitgeradora.value|valor }}{% endif %}" >
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  $(document).ready(function(e){
+    $('#txt_codsitgeradora').autocomplete({
+      source: function (request, response) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/345/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
+            return {
+              label: value.value,
+              value: value.key
+            };
+          }));
+        });
+      },
+      minLength: 3,
+      select: function( e, ui ) {
+        e.preventDefault(e);
+        $(this).val(ui.item.label);
+        $('#id_codsitgeradora').val(ui.item.value);
+        return false;
+      }});
+    {% if s2210_evtcat_form.codsitgeradora.field.widget.attrs.required %}
+    $("#id_form_s2210_evtcat").submit(function(e) {
+      $('#txt_codsitgeradora').disabled = true;
+        if ($('#id_codsitgeradora').val() == "") {
+          $('#txt_codsitgeradora').val("");
+          alert('Formulário não pode ser salvo sem selecionar o(a) campo Situação Geradora!');
+          e.preventDefault(e);
+      };
+    });
+    {% endif %}
+  });
+  </script>
+  {% else %}
+  <div class="col-md-6" id="s2210_evtcat__codsitgeradora__div">
+    <div class="form-group">
+      <label id="s2210_evtcat__codsitgeradora__label">Situação Geradora*</label>
+        <input type="text" id="txt_codsitgeradora" name="txt_codsitgeradora" class="form-control" value="{% if s2210_evtcat.codsitgeradora %}{{ s2210_evtcat.codsitgeradora }}{% endif %}" disabled="disabled">
+    </div>
+  </div>
+{% endif %}
 <!-- fim__s2210_evtcat__codsitgeradora -->
 <!-- inicio__s2210_evtcat__iniciatcat -->
 <div class="col-md-6" id="s2210_evtcat__iniciatcat__div">
@@ -584,7 +667,7 @@
 <!-- fim__s2210_evtcat__codamb -->
 <!-- inicio__s2210_evtcat__tplograd -->
 {% if permissao.permite_editar or permissao.permite_cadastrar %}
-  <div class="col-md-12" id="s2210_evtcat__tplograd__div">
+  <div class="col-md-6" id="s2210_evtcat__tplograd__div">
     <div class="form-group">
       <label id="s2210_evtcat__tplograd__label">Tipo de logradouro*</label>
         {% if s2210_evtcat_form.tplograd.errors %}
@@ -592,17 +675,25 @@
             {{ s2210_evtcat_form.tplograd.errors }}
           </div>
         {% endif %}
-        <input type="text" id="txt_tplograd" name="txt_tplograd" class="form-control" value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat.tplograd }}{% endif %}" 
-        {% if s2210_evtcat_form.tplograd.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2210_evtcat_form.tplograd.field.widget.attrs.required %} required="required"{% endif %}{% if s2210_evtcat_form.tplograd.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" id="id_tplograd" name="tplograd" value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat_form.tplograd.value|valor }}{% endif %}">
+        <input type="text" 
+               id="txt_tplograd" 
+               name="txt_tplograd" class="form-control" 
+               value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat.tplograd|get_opcoes_titulo:258 }}{% endif %}" 
+               {% if s2210_evtcat_form.tplograd.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s2210_evtcat_form.tplograd.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s2210_evtcat_form.tplograd.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_tplograd" 
+               name="tplograd" 
+               value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat_form.tplograd.value|valor }}{% endif %}" >
     </div>
   </div>
   <script type="text/javascript">
   $(document).ready(function(e){
     $('#txt_tplograd').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-logradouros-tipos/json-search/" + request.term + "/", function (data) {
-          response($.map(data.esocial_logradouros_tipos, function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/258/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -630,14 +721,9 @@
   });
   </script>
   {% else %}
-  <div class="col-md-12" id="s2210_evtcat__tplograd__div">
+  <div class="col-md-6" id="s2210_evtcat__tplograd__div">
     <div class="form-group">
       <label id="s2210_evtcat__tplograd__label">Tipo de logradouro*</label>
-        {% if not for_print %}{% if s2210_evtcat_form.tplograd.value %}
-            <a id="s2210_evtcat__tplograd__div_acessar" href="{% url 'esocial-logradouros-tipos_salvar' hash='{}'|json_id:s2210_evtcat_form.tplograd.value|json_print:0|base64_encode_me %}">
-                [Acessar]
-            </a>
-        {% endif %} {% endif %}
         <input type="text" id="txt_tplograd" name="txt_tplograd" class="form-control" value="{% if s2210_evtcat.tplograd %}{{ s2210_evtcat.tplograd }}{% endif %}" disabled="disabled">
     </div>
   </div>
@@ -737,8 +823,8 @@
   $(document).ready(function(e){
     $('#txt_codmunic').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/municipios/json-search/" + request.term + "/", function (data) {
-          response($.map(data.municipios, function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas//json-search/" + request.term + "/", function (data) {
+          response($.map(data., function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -770,7 +856,7 @@
     <div class="form-group">
       <label id="s2210_evtcat__codmunic__label">Código do Município</label>
         {% if not for_print %}{% if s2210_evtcat_form.codmunic.value %}
-            <a id="s2210_evtcat__codmunic__div_acessar" href="{% url 'municipios_salvar' hash='{}'|json_id:s2210_evtcat_form.codmunic.value|json_print:0|base64_encode_me %}">
+            <a id="s2210_evtcat__codmunic__div_acessar" href="{% url '_salvar' hash='{}'|json_id:s2210_evtcat_form.codmunic.value|json_print:0|base64_encode_me %}">
                 [Acessar]
             </a>
         {% endif %} {% endif %}
@@ -805,7 +891,7 @@
 <!-- fim__s2210_evtcat__uf -->
 <!-- inicio__s2210_evtcat__pais -->
 {% if permissao.permite_editar or permissao.permite_cadastrar %}
-  <div class="col-md-12" id="s2210_evtcat__pais__div">
+  <div class="col-md-6" id="s2210_evtcat__pais__div">
     <div class="form-group">
       <label id="s2210_evtcat__pais__label">Pais</label>
         {% if s2210_evtcat_form.pais.errors %}
@@ -813,17 +899,25 @@
             {{ s2210_evtcat_form.pais.errors }}
           </div>
         {% endif %}
-        <input type="text" id="txt_pais" name="txt_pais" class="form-control" value="{% if s2210_evtcat.pais %}{{ s2210_evtcat.pais }}{% endif %}" 
-        {% if s2210_evtcat_form.pais.field.widget.attrs.readonly %} readonly="readonly"{% endif %}{% if s2210_evtcat_form.pais.field.widget.attrs.required %} required="required"{% endif %}{% if s2210_evtcat_form.pais.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
-        <input type="hidden" id="id_pais" name="pais" value="{% if s2210_evtcat.pais %}{{ s2210_evtcat_form.pais.value|valor }}{% endif %}">
+        <input type="text" 
+               id="txt_pais" 
+               name="txt_pais" class="form-control" 
+               value="{% if s2210_evtcat.pais %}{{ s2210_evtcat.pais|get_opcoes_titulo:204 }}{% endif %}" 
+               {% if s2210_evtcat_form.pais.field.widget.attrs.readonly %} readonly="readonly"{% endif %}
+               {% if s2210_evtcat_form.pais.field.widget.attrs.required %} required="required"{% endif %}
+               {% if s2210_evtcat_form.pais.field.widget.attrs.disabled %} disabled="disabled"{% endif %} >
+        <input type="hidden" 
+               id="id_pais" 
+               name="pais" 
+               value="{% if s2210_evtcat.pais %}{{ s2210_evtcat_form.pais.value|valor }}{% endif %}" >
     </div>
   </div>
   <script type="text/javascript">
   $(document).ready(function(e){
     $('#txt_pais').autocomplete({
       source: function (request, response) {
-        $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-paises/json-search/" + request.term + "/", function (data) {
-          response($.map(data.esocial_paises, function (value, key) {
+        $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+          response($.map(data.opcoes, function (value, key) {
             return {
               label: value.value,
               value: value.key
@@ -851,14 +945,9 @@
   });
   </script>
   {% else %}
-  <div class="col-md-12" id="s2210_evtcat__pais__div">
+  <div class="col-md-6" id="s2210_evtcat__pais__div">
     <div class="form-group">
       <label id="s2210_evtcat__pais__label">Pais</label>
-        {% if not for_print %}{% if s2210_evtcat_form.pais.value %}
-            <a id="s2210_evtcat__pais__div_acessar" href="{% url 'esocial-paises_salvar' hash='{}'|json_id:s2210_evtcat_form.pais.value|json_print:0|base64_encode_me %}">
-                [Acessar]
-            </a>
-        {% endif %} {% endif %}
         <input type="text" id="txt_pais" name="txt_pais" class="form-control" value="{% if s2210_evtcat.pais %}{{ s2210_evtcat.pais }}{% endif %}" disabled="disabled">
     </div>
   </div>

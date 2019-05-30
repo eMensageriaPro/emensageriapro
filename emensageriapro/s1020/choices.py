@@ -36,272 +36,35 @@
 
 
 
-CHOICES_S1020_CODTERCSSUSP_ALTERACAO = [
+CHOICES_ESOCIALINSCRICOESTIPOS = [
 
-    ('507', u'507 - 507'),
-    ('515', u'515 - 515'),
-    ('523', u'523 - 523'),
-    ('531', u'531 - 531'),
-    ('540', u'540 - 540'),
-    ('558', u'558 - 558'),
-    ('566', u'566 - 566'),
-    ('574', u'574 - 574'),
-    ('582', u'582 - 582'),
-    ('590', u'590 - 590'),
-    ('604', u'604 - 604'),
-    ('612', u'612 - 612'),
-    ('620', u'620 - 620'),
-    ('639', u'639 - 639'),
-    ('647', u'647 - 647'),
-    ('655', u'655 - 655'),
-    ('680', u'680 - 680'),
-    ('736', u'736 - 736'),
-    ('744', u'744 - 744'),
-    ('779', u'779 - 779'),
-    ('787', u'787 - 787'),
-    ('795', u'795 - 795'),
-    ('825', u'825 - 825'),
-    ('833', u'833 - 833'),
-    ('868', u'868 - 868'),
-    ('876', u'876 - 876'),
+    (1, u'1 - CNPJ'),
+    (2, u'2 - CPF'),
+    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
+    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
+    (5, u'5 - CGC'),
     
 ]
 
 
 
 
-CHOICES_S1020_CODTERCSSUSP_INCLUSAO = [
+CHOICES_ESOCIALLOTACOESTRIBUTARIASTIPOS = [
 
-    ('507', u'507 - 507'),
-    ('515', u'515 - 515'),
-    ('523', u'523 - 523'),
-    ('531', u'531 - 531'),
-    ('540', u'540 - 540'),
-    ('558', u'558 - 558'),
-    ('566', u'566 - 566'),
-    ('574', u'574 - 574'),
-    ('582', u'582 - 582'),
-    ('590', u'590 - 590'),
-    ('604', u'604 - 604'),
-    ('612', u'612 - 612'),
-    ('620', u'620 - 620'),
-    ('639', u'639 - 639'),
-    ('647', u'647 - 647'),
-    ('655', u'655 - 655'),
-    ('680', u'680 - 680'),
-    ('736', u'736 - 736'),
-    ('744', u'744 - 744'),
-    ('779', u'779 - 779'),
-    ('787', u'787 - 787'),
-    ('795', u'795 - 795'),
-    ('825', u'825 - 825'),
-    ('833', u'833 - 833'),
-    ('868', u'868 - 868'),
-    ('876', u'876 - 876'),
-    
-]
-
-
-
-
-CHOICES_S1020_CODTERCS_ALTERACAO = [
-
-    ('507', u'507 - 507'),
-    ('515', u'515 - 515'),
-    ('523', u'523 - 523'),
-    ('531', u'531 - 531'),
-    ('540', u'540 - 540'),
-    ('558', u'558 - 558'),
-    ('566', u'566 - 566'),
-    ('574', u'574 - 574'),
-    ('582', u'582 - 582'),
-    ('590', u'590 - 590'),
-    ('604', u'604 - 604'),
-    ('612', u'612 - 612'),
-    ('620', u'620 - 620'),
-    ('639', u'639 - 639'),
-    ('647', u'647 - 647'),
-    ('655', u'655 - 655'),
-    ('680', u'680 - 680'),
-    ('736', u'736 - 736'),
-    ('744', u'744 - 744'),
-    ('779', u'779 - 779'),
-    ('787', u'787 - 787'),
-    ('795', u'795 - 795'),
-    ('825', u'825 - 825'),
-    ('833', u'833 - 833'),
-    ('868', u'868 - 868'),
-    ('876', u'876 - 876'),
-    
-]
-
-
-
-
-CHOICES_S1020_CODTERCS_INCLUSAO = [
-
-    ('507', u'507 - 507'),
-    ('515', u'515 - 515'),
-    ('523', u'523 - 523'),
-    ('531', u'531 - 531'),
-    ('540', u'540 - 540'),
-    ('558', u'558 - 558'),
-    ('566', u'566 - 566'),
-    ('574', u'574 - 574'),
-    ('582', u'582 - 582'),
-    ('590', u'590 - 590'),
-    ('604', u'604 - 604'),
-    ('612', u'612 - 612'),
-    ('620', u'620 - 620'),
-    ('639', u'639 - 639'),
-    ('647', u'647 - 647'),
-    ('655', u'655 - 655'),
-    ('680', u'680 - 680'),
-    ('736', u'736 - 736'),
-    ('744', u'744 - 744'),
-    ('779', u'779 - 779'),
-    ('787', u'787 - 787'),
-    ('795', u'795 - 795'),
-    ('825', u'825 - 825'),
-    ('833', u'833 - 833'),
-    ('868', u'868 - 868'),
-    ('876', u'876 - 876'),
-    
-]
-
-
-
-
-CHOICES_S1020_CODTERC_ALTERACAO = [
-
-    ('507', u'507 - 507'),
-    ('515', u'515 - 515'),
-    ('523', u'523 - 523'),
-    ('531', u'531 - 531'),
-    ('540', u'540 - 540'),
-    ('558', u'558 - 558'),
-    ('566', u'566 - 566'),
-    ('574', u'574 - 574'),
-    ('582', u'582 - 582'),
-    ('590', u'590 - 590'),
-    ('604', u'604 - 604'),
-    ('612', u'612 - 612'),
-    ('620', u'620 - 620'),
-    ('639', u'639 - 639'),
-    ('647', u'647 - 647'),
-    ('655', u'655 - 655'),
-    ('680', u'680 - 680'),
-    ('736', u'736 - 736'),
-    ('744', u'744 - 744'),
-    ('779', u'779 - 779'),
-    ('787', u'787 - 787'),
-    ('795', u'795 - 795'),
-    ('825', u'825 - 825'),
-    ('833', u'833 - 833'),
-    ('868', u'868 - 868'),
-    ('876', u'876 - 876'),
-    
-]
-
-
-
-
-CHOICES_S1020_CODTERC_INCLUSAO = [
-
-    ('507', u'507 - 507'),
-    ('515', u'515 - 515'),
-    ('523', u'523 - 523'),
-    ('531', u'531 - 531'),
-    ('540', u'540 - 540'),
-    ('558', u'558 - 558'),
-    ('566', u'566 - 566'),
-    ('574', u'574 - 574'),
-    ('582', u'582 - 582'),
-    ('590', u'590 - 590'),
-    ('604', u'604 - 604'),
-    ('612', u'612 - 612'),
-    ('620', u'620 - 620'),
-    ('639', u'639 - 639'),
-    ('647', u'647 - 647'),
-    ('655', u'655 - 655'),
-    ('680', u'680 - 680'),
-    ('736', u'736 - 736'),
-    ('744', u'744 - 744'),
-    ('779', u'779 - 779'),
-    ('787', u'787 - 787'),
-    ('795', u'795 - 795'),
-    ('825', u'825 - 825'),
-    ('833', u'833 - 833'),
-    ('868', u'868 - 868'),
-    ('876', u'876 - 876'),
-    
-]
-
-
-
-
-CHOICES_S1020_FPAS_ALTERACAO = [
-
-    (507, u'507 - 507'),
-    (515, u'515 - 515'),
-    (523, u'523 - 523'),
-    (531, u'531 - 531'),
-    (540, u'540 - 540'),
-    (558, u'558 - 558'),
-    (566, u'566 - 566'),
-    (574, u'574 - 574'),
-    (582, u'582 - 582'),
-    (590, u'590 - 590'),
-    (604, u'604 - 604'),
-    (612, u'612 - 612'),
-    (620, u'620 - 620'),
-    (639, u'639 - 639'),
-    (647, u'647 - 647'),
-    (655, u'655 - 655'),
-    (680, u'680 - 680'),
-    (736, u'736 - 736'),
-    (744, u'744 - 744'),
-    (779, u'779 - 779'),
-    (787, u'787 - 787'),
-    (795, u'795 - 795'),
-    (825, u'825 - 825'),
-    (833, u'833 - 833'),
-    (868, u'868 - 868'),
-    (876, u'876 - 876'),
-    
-]
-
-
-
-
-CHOICES_S1020_FPAS_INCLUSAO = [
-
-    (507, u'507 - 507'),
-    (515, u'515 - 515'),
-    (523, u'523 - 523'),
-    (531, u'531 - 531'),
-    (540, u'540 - 540'),
-    (558, u'558 - 558'),
-    (566, u'566 - 566'),
-    (574, u'574 - 574'),
-    (582, u'582 - 582'),
-    (590, u'590 - 590'),
-    (604, u'604 - 604'),
-    (612, u'612 - 612'),
-    (620, u'620 - 620'),
-    (639, u'639 - 639'),
-    (647, u'647 - 647'),
-    (655, u'655 - 655'),
-    (680, u'680 - 680'),
-    (736, u'736 - 736'),
-    (744, u'744 - 744'),
-    (779, u'779 - 779'),
-    (787, u'787 - 787'),
-    (795, u'795 - 795'),
-    (825, u'825 - 825'),
-    (833, u'833 - 833'),
-    (868, u'868 - 868'),
-    (876, u'876 - 876'),
+    ('01', u'01 - Classificação da atividade econômica exercida pela Pessoa Jurídica para fins de atribuição de código FPAS, inclusive obras de construção civil própria, exceto: a) empreitada parcial ou sub-empreitada de obra de construção civil (utilizar opção 02), b) prestação de serviços em instalações de terceiros (utilizar opções 03 a 09), c) Embarcação inscrita no Registro Especial Brasileiro - REB (utilizar opção 10).'),
+    ('02', u'02 - Obra de Construção Civil - Empreitada Parcial ou Sub- empreitada'),
+    ('03', u'03 - Pessoa Física Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa'),
+    ('04', u'04 - Pessoa Jurídica Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa, nos termos da lei 8.212/1991'),
+    ('05', u'05 - Pessoa Jurídica Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho, exceto aqueles prestados a entidade beneficente/isenta'),
+    ('06', u'06 - Entidade beneficente/isenta Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho'),
+    ('07', u'07 - Pessoa Física tomadora de Serviços prestados por Cooperados por intermédio de Cooperativa de Trabalho'),
+    ('08', u'08 - Operador Portuário tomador de serviços de trabalhadores avulsos'),
+    ('09', u'09 - Contratante de trabalhadores avulsos não portuários por intermédio de Sindicato'),
+    ('10', u'10 - Embarcação inscrita no Registro Especial Brasileiro - REB'),
+    ('21', u'21 - Classificação da atividade econômica ou obra própria de construção civil da Pessoa Física'),
+    ('24', u'24 - Empregador Doméstico'),
+    ('90', u'90 - Atividades desenvolvidas no exterior por trabalhador vinculado ao Regime Geral de Previdência Social (expatriados)'),
+    ('91', u'91 - Atividades desenvolvidas por trabalhador estrangeiro vinculado a Regime de Previdência Social Estrangeiro'),
     
 ]
 
@@ -322,76 +85,6 @@ CHOICES_S1020_TPINSCCONTRAT_INCLUSAO = [
 
     (1, u'1 - CNPJ'),
     (2, u'2 - CPF.'),
-    
-]
-
-
-
-
-CHOICES_S1020_TPINSC_ALTERACAO = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
-CHOICES_S1020_TPINSC_INCLUSAO = [
-
-    (1, u'1 - CNPJ'),
-    (2, u'2 - CPF'),
-    (3, u'3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, u'4 - CNO (Cadastro Nacional de Obra)'),
-    (5, u'5 - CGC'),
-    
-]
-
-
-
-
-CHOICES_S1020_TPLOTACAO_ALTERACAO = [
-
-    ('01', u'01 - Classificação da atividade econômica exercida pela Pessoa Jurídica para fins de atribuição de código FPAS, inclusive obras de construção civil própria, exceto: a) empreitada parcial ou sub-empreitada de obra de construção civil (utilizar opção 02), b) prestação de serviços em instalações de terceiros (utilizar opções 03 a 09), c) Embarcação inscrita no Registro Especial Brasileiro - REB (utilizar opção 10).'),
-    ('02', u'02 - Obra de Construção Civil - Empreitada Parcial ou Sub- empreitada'),
-    ('03', u'03 - Pessoa Física Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa'),
-    ('04', u'04 - Pessoa Jurídica Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa, nos termos da lei 8.212/1991'),
-    ('05', u'05 - Pessoa Jurídica Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho, exceto aqueles prestados a entidade beneficente/isenta'),
-    ('06', u'06 - Entidade beneficente/isenta Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho'),
-    ('07', u'07 - Pessoa Física tomadora de Serviços prestados por Cooperados por intermédio de Cooperativa de Trabalho'),
-    ('08', u'08 - Operador Portuário tomador de serviços de trabalhadores avulsos'),
-    ('09', u'09 - Contratante de trabalhadores avulsos não portuários por intermédio de Sindicato'),
-    ('10', u'10 - Embarcação inscrita no Registro Especial Brasileiro - REB'),
-    ('21', u'21 - Classificação da atividade econômica ou obra própria de construção civil da Pessoa Física'),
-    ('24', u'24 - Empregador Doméstico'),
-    ('90', u'90 - Atividades desenvolvidas no exterior por trabalhador vinculado ao Regime Geral de Previdência Social (expatriados)'),
-    ('91', u'91 - Atividades desenvolvidas por trabalhador estrangeiro vinculado a Regime de Previdência Social Estrangeiro'),
-    
-]
-
-
-
-
-CHOICES_S1020_TPLOTACAO_INCLUSAO = [
-
-    ('01', u'01 - Classificação da atividade econômica exercida pela Pessoa Jurídica para fins de atribuição de código FPAS, inclusive obras de construção civil própria, exceto: a) empreitada parcial ou sub-empreitada de obra de construção civil (utilizar opção 02), b) prestação de serviços em instalações de terceiros (utilizar opções 03 a 09), c) Embarcação inscrita no Registro Especial Brasileiro - REB (utilizar opção 10).'),
-    ('02', u'02 - Obra de Construção Civil - Empreitada Parcial ou Sub- empreitada'),
-    ('03', u'03 - Pessoa Física Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa'),
-    ('04', u'04 - Pessoa Jurídica Tomadora de Serviços prestados mediante cessão de mão de obra, exceto contratante de cooperativa, nos termos da lei 8.212/1991'),
-    ('05', u'05 - Pessoa Jurídica Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho, exceto aqueles prestados a entidade beneficente/isenta'),
-    ('06', u'06 - Entidade beneficente/isenta Tomadora de Serviços prestados por cooperados por intermédio de cooperativa de trabalho'),
-    ('07', u'07 - Pessoa Física tomadora de Serviços prestados por Cooperados por intermédio de Cooperativa de Trabalho'),
-    ('08', u'08 - Operador Portuário tomador de serviços de trabalhadores avulsos'),
-    ('09', u'09 - Contratante de trabalhadores avulsos não portuários por intermédio de Sindicato'),
-    ('10', u'10 - Embarcação inscrita no Registro Especial Brasileiro - REB'),
-    ('21', u'21 - Classificação da atividade econômica ou obra própria de construção civil da Pessoa Física'),
-    ('24', u'24 - Empregador Doméstico'),
-    ('90', u'90 - Atividades desenvolvidas no exterior por trabalhador vinculado ao Regime Geral de Previdência Social (expatriados)'),
-    ('91', u'91 - Atividades desenvolvidas por trabalhador estrangeiro vinculado a Regime de Previdência Social Estrangeiro'),
     
 ]
 

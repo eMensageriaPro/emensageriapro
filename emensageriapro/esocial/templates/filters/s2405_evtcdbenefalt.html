@@ -283,7 +283,7 @@
 <!-- fim__s2405_evtcdbenefalt__dadosnasc -->
 
 <!-- inicio__s2405_evtcdbenefalt__paisnac -->
-<div class="col-md-12">
+<div class="col-md-6">
   <div class="form-group">
     <label>País de nacionalidade</label>
     <input type="text" id="txt_paisnac" name="txt_paisnac" class="form-control" value="{{ dict_fields|get_value_from_dict:'paisnac' }}">
@@ -294,8 +294,8 @@
 $(document).ready(function(e){
   $('#txt_paisnac').autocomplete({
     source: function (request, response) {
-    $.getJSON("{{ LINK_WEBSITE }}tabelas/esocial-paises/json-search/" + request.term + "/", function (data) {
-      response($.map(data.esocial_paises, function (value, key) {
+    $.getJSON("{{ LINK_WEBSITE }}tabelas/opcoes/json-search/204/" + request.term + "/", function (data) {
+      response($.map(data.opcoes, function (value, key) {
         return {
           label: value.value,
           value: value.key
