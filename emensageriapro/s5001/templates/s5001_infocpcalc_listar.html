@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s5001_infocpcalc_cadastrar' %}
+                  {% if perms.s5001.add_s5001infoCpCalc %}
                   <a href="{% url 's5001_infocpcalc_salvar' hash='{}'|json_return_page:'s5001_infocpcalc_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

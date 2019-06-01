@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %}
+                    {% if perms.r3010.can_view_r3010receitaIngressos %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 'r3010_receitaingressos_salvar' hash='{}'|json_return_page:'r3010_receitaingressos_salvar'|json_return_hash:hash|json_id:r3010_receitaingressos_id|json_print:0|base64_encode_me %}">
                             Receita da Venda de Ingressos
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'r3010_receitaingressos_editar' or dict_permissoes|get_permissao:'r3010_receitaingressos_cadastrar' %}
+            {% if perms.r3010.change_r3010_receitaingressos or perms.r3010.add_r3010_receitaingressos %}
                 <form action="#" id="id_form_r3010_receitaingressos" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if r3010_receitaingressos_id %}
 
-                                {% if dict_permissoes|get_permissao:'r3010_receitaingressos_cadastrar' %}
+                                {% if perms.r3010.add_r3010receitaIngressos %}
                                     <a href="{% url 'r3010_receitaingressos_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r3010_receitaingressos_listar' or dict_permissoes|get_permissao:'r3010_receitaingressos_listar' %}
+                            {% if perms.r3010.can_view_r3010_receitaingressos or perms.r3010.can_view_r3010_receitaingressos %}
                                 <a href="{% url 'r3010_receitaingressos'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' and r3010_receitaingressos_id %}
+                            {% if perms.r3010.can_view_r3010_receitaingressos and r3010_receitaingressos_id %}
                                 <a href="{% url 'r3010_receitaingressos_salvar' hash='{}'|json_id:r3010_receitaingressos_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' and r3010_receitaingressos_id %}
+                            {% if perms.r3010.can_view_r3010_receitaingressos and r3010_receitaingressos_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r3010_receitaingressos_editar' or dict_permissoes|get_permissao:'r3010_receitaingressos_cadastrar' %}
+                            {% if perms.r3010.change_r3010_receitaingressos or perms.r3010.add_r3010_receitaingressos %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r3010_receitaingressos_apagar' and r3010_receitaingressos_id %}
+                            {% if perms.r3010.delete_r3010_receitaingressos and r3010_receitaingressos_id %}
 
                             <a href="{% url 'r3010_receitaingressos_apagar' hash='{}'|json_id:r3010_receitaingressos_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'r3010_receitaingressos_editar' or dict_permissoes|get_permissao:'r3010_receitaingressos_cadastrar' %}
+                    {% if perms.r3010.change_r3010_receitaingressos or perms.r3010.add_r3010_receitaingressos %}
                         </form>
                     {% endif %}
 

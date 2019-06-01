@@ -74,12 +74,6 @@ urlpatterns = [
 
     
 
-    
-
-    
-
-    
-
     url(r'^usuarios/apagar/(?P<hash>.*)/$', 
         usuarios_apagar_views.apagar, 
         name='usuarios_apagar'),

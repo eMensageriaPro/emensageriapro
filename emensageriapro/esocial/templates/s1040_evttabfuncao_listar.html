@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-1040 - Tabela de Funções/Cargos em Comissão</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1040_evttabfuncao_cadastrar' %}
+                  {% if perms.esocial.add_s1040evtTabFuncao %}
                   <a href="{% url 's1040_evttabfuncao_salvar' hash='{}'|json_return_page:'s1040_evttabfuncao_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

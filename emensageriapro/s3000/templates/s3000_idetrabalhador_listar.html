@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s3000_idetrabalhador_cadastrar' %}
+                  {% if perms.s3000.add_s3000ideTrabalhador %}
                   <a href="{% url 's3000_idetrabalhador_salvar' hash='{}'|json_return_page:'s3000_idetrabalhador_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'s2231_evtcessao_visualizar' %}
+                {% if perms.esocial.can_view_s2231evtCessao %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 's2231_evtcessao_salvar' hash='{}'|json_return_page:'s2231_evtcessao_salvar'|json_return_hash:hash|json_id:s2231_evtcessao_id|json_print:0|base64_encode_me %}">
                     S-2231 - Cessão/Exercício em Outro Órgão</a>
@@ -58,14 +58,14 @@
                 {% if s2231_evtcessao_id %}
                     
                         
-                            {% if dict_permissoes|get_permissao:'s2231_inicessao_visualizar' %}
+                            {% if perms.esocial.can_view_s2231_inicessao %}
                                 <li {% if tab == 's2231_inicessao' %} class="active"{% endif %} >
                                     <a href="{% url 's2231_evtcessao_salvar' hash='{}'|json_id:s2231_evtcessao_id|json_print:0|json_tab:'s2231_inicessao'|base64_encode_me %}">
                                     Informações de início da cessão/exercício em outro órgão</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2231_fimcessao_visualizar' %}
+                            {% if perms.esocial.can_view_s2231_fimcessao %}
                                 <li {% if tab == 's2231_fimcessao' %} class="active"{% endif %} >
                                     <a href="{% url 's2231_evtcessao_salvar' hash='{}'|json_id:s2231_evtcessao_id|json_print:0|json_tab:'s2231_fimcessao'|base64_encode_me %}">
                                     Informações de término da cessão/exercício em outro órgão</a>
@@ -162,7 +162,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'s2231_evtcessao_editar' or dict_permissoes|get_permissao:'s2231_evtcessao_cadastrar' %}
+               {% if perms.esocial.change_s2231_evtcessao or perms.esocial.add_s2231_evtcessao %}
                {% if s2231_evtcessao_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s2231_evtcessao" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -184,8 +184,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if s2231_evtcessao_id %}
-                           {% if dict_permissoes|get_permissao:'s2231_evtcessao_cadastrar' %}<a href="{% url 's2231_evtcessao_verificar'  hash='{}'|json_id:s2231_evtcessao_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2231_evtcessao_cadastrar' %}
+                           {% if perms.esocial.add_s2231evtCessao %}<a href="{% url 's2231_evtcessao_verificar'  hash='{}'|json_id:s2231_evtcessao_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2231evtCessao %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -202,7 +202,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2231_evtcessao_cadastrar' %}
+                           {% if perms.esocial.add_s2231evtCessao %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -223,29 +223,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2231_evtcessao_cadastrar' %}<a href="{% url 's2231_evtcessao_xml'  hash='{}'|json_id:s2231_evtcessao_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2231evtCessao %}<a href="{% url 's2231_evtcessao_xml'  hash='{}'|json_id:s2231_evtcessao_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if s2231_evtcessao.status == STATUS_EVENTO_CADASTRADO or s2231_evtcessao.status == STATUS_EVENTO_IMPORTADO or s2231_evtcessao.status == STATUS_EVENTO_DUPLICADO or s2231_evtcessao.status == STATUS_EVENTO_GERADO or s2231_evtcessao.status == STATUS_EVENTO_ASSINADO or s2231_evtcessao.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'s2231_evtcessao_cadastrar' %}
+                           {% if perms.esocial.add_s2231evtCessao %}
                            <a href="{% url 's2231_evtcessao_validar_evento' hash='{}'|json_id:s2231_evtcessao_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'s2231_evtcessao_cadastrar' %}<a href="{% url 's2231_evtcessao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2231evtCessao %}<a href="{% url 's2231_evtcessao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2231_evtcessao_listar' or dict_permissoes|get_permissao:'s2231_evtcessao_listar' %}<a href="{% url 's2231_evtcessao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2231_evtcessao_visualizar' and s2231_evtcessao_id %}<a href="{% url 's2231_evtcessao_salvar'  hash='{}'|json_id:s2231_evtcessao_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2231_evtcessao_editar' or dict_permissoes|get_permissao:'s2231_evtcessao_cadastrar' %}
+                           {% if perms.esocial.can_view_s2231_evtcessao or perms.esocial.can_view_s2231_evtcessao %}<a href="{% url 's2231_evtcessao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.can_view_s2231_evtcessao and s2231_evtcessao_id %}<a href="{% url 's2231_evtcessao_salvar'  hash='{}'|json_id:s2231_evtcessao_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.change_s2231_evtcessao or perms.esocial.add_s2231_evtcessao %}
                            {% if s2231_evtcessao_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2231_evtcessao_apagar' and s2231_evtcessao_id %}<a href="{% url 's2231_evtcessao_apagar'  hash='{}'|json_id:s2231_evtcessao_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.delete_s2231_evtcessao and s2231_evtcessao_id %}<a href="{% url 's2231_evtcessao_apagar'  hash='{}'|json_id:s2231_evtcessao_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'s2231_evtcessao_editar' or dict_permissoes|get_permissao:'s2231_evtcessao_cadastrar' %}
+                  {% if perms.esocial.change_s2231_evtcessao or perms.esocial.add_s2231_evtcessao %}
                {% if s2231_evtcessao_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}
@@ -301,9 +301,9 @@
 
 {% if tab == 's2231_inicessao' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2231_inicessao_visualizar' %} 
+{% if perms.esocial.can_view_s2231_inicessao %} 
 
-{% if dict_permissoes|get_permissao:'s2231_inicessao_editar' or dict_permissoes|get_permissao:'s2231_inicessao_cadastrar' %}
+{% if perms.esocial.change_s2231_inicessao or perms.s2231.add_s2231iniCessao %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -329,7 +329,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de início da cessão/exercício em outro órgão</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2231_inicessao_editar' or dict_permissoes|get_permissao:'s2231_inicessao_cadastrar' %}
+          {% if perms.esocial.change_s2231_inicessao or perms.s2231.add_s2231iniCessao %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -338,7 +338,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2231_inicessao_cadastrar' %}            
+        {% if perms.s2231.add_s2231iniCessao %}            
 
 
 
@@ -396,9 +396,9 @@ function CadastroListagem() {
 
 {% if tab == 's2231_fimcessao' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2231_fimcessao_visualizar' %} 
+{% if perms.esocial.can_view_s2231_fimcessao %} 
 
-{% if dict_permissoes|get_permissao:'s2231_fimcessao_editar' or dict_permissoes|get_permissao:'s2231_fimcessao_cadastrar' %}
+{% if perms.esocial.change_s2231_fimcessao or perms.s2231.add_s2231fimCessao %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -424,7 +424,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de término da cessão/exercício em outro órgão</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2231_fimcessao_editar' or dict_permissoes|get_permissao:'s2231_fimcessao_cadastrar' %}
+          {% if perms.esocial.change_s2231_fimcessao or perms.s2231.add_s2231fimCessao %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -433,7 +433,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2231_fimcessao_cadastrar' %}            
+        {% if perms.s2231.add_s2231fimCessao %}            
 
 
 

@@ -64,39 +64,43 @@ from emensageriapro.s5003.forms import form_s5003_infodpsfgts
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s5003_evtbasesfgts_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except:
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s5003_evtbasesfgts')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     if s5003_evtbasesfgts_id:
-        s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS, id = s5003_evtbasesfgts_id)
-        
+    
+        s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS, id=s5003_evtbasesfgts_id)
+
         if s5003_evtbasesfgts.status != STATUS_EVENTO_CADASTRADO:
+        
+            dict_permissoes = {}
             dict_permissoes['s5003_evtbasesfgts_apagar'] = 0
             dict_permissoes['s5003_evtbasesfgts_editar'] = 0
-
-    if permissao.permite_visualizar:
-        mensagem = None
+            
+    if request.user.has_perm('esocial.can_view_s5003evtBasesFGTS'):
+    
         if s5003_evtbasesfgts_id:
+        
             s5003_evtbasesfgts_form = form_s5003_evtbasesfgts(request.POST or None, instance = s5003_evtbasesfgts, 
                                          initial={'excluido': False})
+                                         
         else:
+        
             s5003_evtbasesfgts_form = form_s5003_evtbasesfgts(request.POST or None, 
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
                                                   'status': STATUS_EVENTO_CADASTRADO, 
@@ -104,7 +108,9 @@ def salvar(request, hash):
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
                                                   'excluido': False})
+                                                  
         if request.method == 'POST':
+        
             if s5003_evtbasesfgts_form.is_valid():
             
                 dados = s5003_evtbasesfgts_form.cleaned_data
@@ -112,6 +118,7 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not s5003_evtbasesfgts_id:
+                
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
@@ -126,13 +133,15 @@ def salvar(request, hash):
                                  
                 if request.session['retorno_pagina'] not in ('s5003_evtbasesfgts_apagar', 's5003_evtbasesfgts_salvar', 's5003_evtbasesfgts'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if s5003_evtbasesfgts_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s5003_evtbasesfgts_salvar', hash=url_hash)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-        s5003_evtbasesfgts_form = disabled_form_fields(s5003_evtbasesfgts_form, permissao.permite_editar)
+                
+        s5003_evtbasesfgts_form = disabled_form_fields(s5003_evtbasesfgts_form, request.user.has_perm('esocial.change_s5003evtBasesFGTS'))
         
         if s5003_evtbasesfgts_id:
             if s5003_evtbasesfgts.status != 0:
@@ -141,6 +150,7 @@ def salvar(request, hash):
 
         for field in s5003_evtbasesfgts_form.fields.keys():
             s5003_evtbasesfgts_form.fields[field].widget.attrs['ng-model'] = 's5003_evtbasesfgts_'+field
+            
         if int(dict_hash['print']):
             s5003_evtbasesfgts_form = disabled_form_for_print(s5003_evtbasesfgts_form)
 
@@ -151,6 +161,7 @@ def salvar(request, hash):
         s5003_infodpsfgts_form = None 
         
         if s5003_evtbasesfgts_id:
+        
             s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS, id = s5003_evtbasesfgts_id)
             
             s5003_ideestablot_form = form_s5003_ideestablot(
@@ -166,9 +177,11 @@ def salvar(request, hash):
                 
         else:
             s5003_evtbasesfgts = None
+            
         #s5003_evtbasesfgts_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if 's5003_evtbasesfgts'[1] == '5':
             evento_totalizador = True
         else:
@@ -177,30 +190,25 @@ def salvar(request, hash):
         if dict_hash['tab'] or 's5003_evtbasesfgts' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's5003_evtbasesfgts_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=s5003_evtbasesfgts_id, tabela='s5003_evtbasesfgts').all()
+        
         context = {
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             's5003_evtbasesfgts': s5003_evtbasesfgts, 
             's5003_evtbasesfgts_form': s5003_evtbasesfgts_form, 
-            'mensagem': mensagem, 
             's5003_evtbasesfgts_id': int(s5003_evtbasesfgts_id),
             'usuario': usuario, 
-            
             'hash': hash, 
             
             's5003_ideestablot_form': s5003_ideestablot_form,
             's5003_ideestablot_lista': s5003_ideestablot_lista,
             's5003_infodpsfgts_form': s5003_infodpsfgts_form,
             's5003_infodpsfgts_lista': s5003_infodpsfgts_lista,
-
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['esocial', ],
+            'paginas': ['s5003_evtbasesfgts', ],
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -208,9 +216,11 @@ def salvar(request, hash):
         }
         
         if for_print in (0, 1):
+        
             return render(request, 's5003_evtbasesfgts_salvar.html', context)
             
         elif for_print == 2:
+        
             response = PDFTemplateResponse(
                 request=request,
                 template='s5003_evtbasesfgts_salvar.html',
@@ -229,24 +239,23 @@ def salvar(request, hash):
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True},
             )
+            
             return response
             
         elif for_print == 3:
+        
             response = render_to_response('s5003_evtbasesfgts_salvar.html', context)
             filename = "s5003_evtbasesfgts.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s5003_evtbasesfgts', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)

@@ -41,9 +41,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r1070_inclusao_infosusp_visualizar' %}
+                    {% if perms.r1070.can_view_r1070inclusaoinfoSusp %}
                         <a href="{% url 'r1070_inclusao_infosusp_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r1070_inclusao_infosusp_editar' or dict_permissoes|get_permissao:'r1070_inclusao_infosusp_cadastrar' %}
+                            {% if perms.r1070.add_r1070inclusaoinfoSusp or perms.r1070.change_r1070inclusaoinfoSusp %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -54,7 +54,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r1070_inclusao_infosusp_apagar' %}
+                    {% if perms.r1070.delete_r1070inclusaoinfoSusp %}
                         <a href="{% url 'r1070_inclusao_infosusp_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

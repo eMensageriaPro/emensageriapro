@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente (CPF + categoria).</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1200_infoperant_infocomplcont_cadastrar' %}
+                  {% if perms.s1200.add_s1200infoPerAntinfoComplCont %}
                   <a href="{% url 's1200_infoperant_infocomplcont_salvar' hash='{}'|json_return_page:'s1200_infoperant_infocomplcont_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

@@ -74,14 +74,6 @@ class s2210agenteCausador(SoftDeletionModel):
         return self.s2210_evtcat.evento()
     codagntcausador = models.IntegerField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -105,7 +97,8 @@ class s2210agenteCausador(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210_agentecausador", "Can view s2210_agentecausador"), )
+            ("can_view_s2210agenteCausador", "Can view S2210AGENTECAUSADOR"),
+            ("can_view_menu_s2210agenteCausador", "Can view menu S2210AGENTECAUSADOR"),)
             
         ordering = [
             's2210_evtcat',
@@ -152,14 +145,6 @@ class s2210atestado(SoftDeletionModel):
     nroc = models.CharField(max_length=14, null=True, )
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -192,7 +177,8 @@ class s2210atestado(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210_atestado", "Can view s2210_atestado"), )
+            ("can_view_s2210atestado", "Can view S2210ATESTADO"),
+            ("can_view_menu_s2210atestado", "Can view menu S2210ATESTADO"),)
             
         ordering = [
             's2210_evtcat',
@@ -235,14 +221,6 @@ class s2210catOrigem(SoftDeletionModel):
     dtcatorig = models.DateField(null=True, )
     nrreccatorig = models.CharField(max_length=40, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -267,7 +245,8 @@ class s2210catOrigem(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210_catorigem", "Can view s2210_catorigem"), )
+            ("can_view_s2210catOrigem", "Can view S2210CATORIGEM"),
+            ("can_view_menu_s2210catOrigem", "Can view menu S2210CATORIGEM"),)
             
         ordering = [
             's2210_evtcat',
@@ -302,14 +281,6 @@ class s2210ideLocalAcid(SoftDeletionModel):
     tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -334,7 +305,8 @@ class s2210ideLocalAcid(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210_idelocalacid", "Can view s2210_idelocalacid"), )
+            ("can_view_s2210ideLocalAcid", "Can view S2210IDELOCALACID"),
+            ("can_view_menu_s2210ideLocalAcid", "Can view menu S2210IDELOCALACID"),)
             
         ordering = [
             's2210_evtcat',
@@ -369,14 +341,6 @@ class s2210parteAtingida(SoftDeletionModel):
     codparteating = models.IntegerField(null=True, )
     lateralidade = models.IntegerField(choices=CHOICES_S2210_LATERALIDADE, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -401,7 +365,8 @@ class s2210parteAtingida(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2210_parteatingida", "Can view s2210_parteatingida"), )
+            ("can_view_s2210parteAtingida", "Can view S2210PARTEATINGIDA"),
+            ("can_view_menu_s2210parteAtingida", "Can view menu S2210PARTEATINGIDA"),)
             
         ordering = [
             's2210_evtcat',

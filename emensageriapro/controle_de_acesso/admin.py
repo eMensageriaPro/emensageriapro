@@ -4,13 +4,8 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 from django.contrib import admin
 from django.db import transaction
 from django.utils import timezone
-
-
-from emensageriapro.controle_de_acesso.models import ConfigModulos
-from emensageriapro.controle_de_acesso.models import ConfigPaginas
-from emensageriapro.controle_de_acesso.models import ConfigPerfis
-from emensageriapro.controle_de_acesso.models import ConfigPermissoes
 from emensageriapro.controle_de_acesso.models import Auditoria
+from emensageriapro.controle_de_acesso.models import ConfigPerfis
 
 
 class AuditoriaAdmin(admin.ModelAdmin):
@@ -21,59 +16,6 @@ class AuditoriaAdmin(admin.ModelAdmin):
         'modificado_por',
         'excluido',
     )
-    
-    
-
-
-
-class ConfigModulosAdmin(AuditoriaAdmin):
-
-    search_fields = (
-        'titulo',
-        'slug',
-    )
-    
-    list_filter = (
-        'titulo',
-        'slug',
-    )
-    
-    list_display = (
-        'titulo',
-        'slug',
-    )
-    
-    def queryset(self, request, queryset):
-        return queryset.filter(excluido=False)
-
-
-class ConfigPaginasAdmin(AuditoriaAdmin):
-
-    search_fields = (
-        'config_modulos',
-        'titulo',
-        'endereco',
-        'exibe_menu',
-        'tipo',
-    )
-    
-    list_filter = (
-        'config_modulos',
-        'titulo',
-        'endereco',
-        'exibe_menu',
-        'tipo',
-    )
-    
-    list_display = (
-        'config_modulos',
-        'titulo',
-        'endereco',
-        'exibe_menu',
-    )
-    
-    def queryset(self, request, queryset):
-        return queryset.filter(excluido=False)
 
 
 class ConfigPerfisAdmin(AuditoriaAdmin):
@@ -94,59 +36,8 @@ class ConfigPerfisAdmin(AuditoriaAdmin):
         return queryset.filter(excluido=False)
 
 
-class ConfigPermissoesAdmin(AuditoriaAdmin):
 
-    search_fields = (
-        'config_perfis',
-        'config_paginas',
-    )
-    
-    list_filter = (
-        'config_perfis',
-        'config_paginas',
-    )
-    
-    list_display = (
-        'config_perfis',
-        'config_paginas',
-    )
-    
-    def queryset(self, request, queryset):
-        return queryset.filter(excluido=False)
-
-
-class AuditoriaAdmin(AuditoriaAdmin):
-
-    search_fields = (
-        'tabela',
-        'identidade',
-    )
-    
-    list_filter = (
-        'tabela',
-        'identidade',
-    )
-    
-    list_display = (
-        'tabela',
-        'identidade',
-        'situacao_anterior',
-        'situacao_posterior',
-        'operador',
-        'data_hora',
-        'tipo',
-    )
-    
-    def queryset(self, request, queryset):
-        return queryset.filter(excluido=False)
-
-
-
-admin.site.register(ConfigModulos, ConfigModulosAdmin)
-admin.site.register(ConfigPaginas, ConfigPaginasAdmin)
 admin.site.register(ConfigPerfis, ConfigPerfisAdmin)
-admin.site.register(ConfigPermissoes, ConfigPermissoesAdmin)
-admin.site.register(Auditoria, AuditoriaAdmin)
 
 
 from emensageriapro.controle_de_acesso.models import Usuarios
@@ -182,3 +73,52 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
+
+
+class AuditoriaAdmin(AuditoriaAdmin):
+
+    search_fields = (
+        'tabela',
+        'identidade',
+    )
+    
+    list_filter = (
+        'tabela',
+        'identidade',
+    )
+    
+    list_display = (
+        'tabela',
+        'identidade',
+        'situacao_anterior',
+        'situacao_posterior',
+        'operador',
+        'data_hora',
+        'tipo',
+    )
+
+    readonly_fields = (
+        'tabela',
+        'identidade',
+        'situacao_anterior',
+        'situacao_posterior',
+        'operador',
+        'data_hora',
+        'tipo',
+        'criado_em',
+        'criado_por',
+        'modificado_em',
+        'modificado_por',
+        'excluido',
+    )
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+    
+    def queryset(self, request, queryset):
+        return queryset.filter(excluido=False)
+
+admin.site.register(Auditoria, AuditoriaAdmin)

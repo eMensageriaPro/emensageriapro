@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Detalhamento das Deduções</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r2070_detdeducao_cadastrar' %}
+                  {% if perms.r2070.add_r2070detDeducao %}
                   <a href="{% url 'r2070_detdeducao_salvar' hash='{}'|json_return_page:'r2070_detdeducao_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

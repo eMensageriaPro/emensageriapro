@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s2399_detplano_visualizar' %}
+                    {% if perms.s2399.can_view_s2399detPlano %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's2399_detplano_salvar' hash='{}'|json_return_page:'s2399_detplano_salvar'|json_return_hash:hash|json_id:s2399_detplano_id|json_print:0|base64_encode_me %}">
                             Informações do dependente do plano privado de saúde.
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s2399_detplano_editar' or dict_permissoes|get_permissao:'s2399_detplano_cadastrar' %}
+            {% if perms.s2399.change_s2399_detplano or perms.s2399.add_s2399_detplano %}
                 <form action="#" id="id_form_s2399_detplano" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s2399_detplano_id %}
 
-                                {% if dict_permissoes|get_permissao:'s2399_detplano_cadastrar' %}
+                                {% if perms.s2399.add_s2399detPlano %}
                                     <a href="{% url 's2399_detplano_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2399_detplano_listar' or dict_permissoes|get_permissao:'s2399_detplano_listar' %}
+                            {% if perms.s2399.can_view_s2399_detplano or perms.s2399.can_view_s2399_detplano %}
                                 <a href="{% url 's2399_detplano'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2399_detplano_visualizar' and s2399_detplano_id %}
+                            {% if perms.s2399.can_view_s2399_detplano and s2399_detplano_id %}
                                 <a href="{% url 's2399_detplano_salvar' hash='{}'|json_id:s2399_detplano_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s2399_detplano_visualizar' and s2399_detplano_id %}
+                            {% if perms.s2399.can_view_s2399_detplano and s2399_detplano_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2399_detplano_editar' or dict_permissoes|get_permissao:'s2399_detplano_cadastrar' %}
+                            {% if perms.s2399.change_s2399_detplano or perms.s2399.add_s2399_detplano %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2399_detplano_apagar' and s2399_detplano_id %}
+                            {% if perms.s2399.delete_s2399_detplano and s2399_detplano_id %}
 
                             <a href="{% url 's2399_detplano_apagar' hash='{}'|json_id:s2399_detplano_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s2399_detplano_editar' or dict_permissoes|get_permissao:'s2399_detplano_cadastrar' %}
+                    {% if perms.s2399.change_s2399_detplano or perms.s2399.add_s2399_detplano %}
                         </form>
                     {% endif %}
 

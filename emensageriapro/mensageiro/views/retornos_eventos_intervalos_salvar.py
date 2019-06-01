@@ -62,6 +62,7 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, hash):
     
     try: 
+    
         usuario_id = request.user.id  
         dict_hash = get_hash_url( hash )
         retornos_eventos_intervalos_id = int(dict_hash['id'])
@@ -70,21 +71,17 @@ def salvar(request, hash):
         for_print = int(dict_hash['print'])
         
     except: 
+    
         usuario_id = False
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id=usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='retornos_eventos_intervalos')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
     
     if retornos_eventos_intervalos_id:
+    
         retornos_eventos_intervalos = get_object_or_404(RetornosEventosIntervalos, id=retornos_eventos_intervalos_id)
         
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_visualizar:
+    if request.user.has_perm('mensageiro.can_view_RetornosEventosIntervalos'):
         
         if retornos_eventos_intervalos_id:
             retornos_eventos_intervalos_form = form_retornos_eventos_intervalos(request.POST or None, instance=retornos_eventos_intervalos)
@@ -101,32 +98,41 @@ def salvar(request, hash):
                 
                 if request.session['retorno_pagina'] not in ('retornos_eventos_intervalos_apagar', 'retornos_eventos_intervalos_salvar', 'retornos_eventos_intervalos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if retornos_eventos_intervalos_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('retornos_eventos_intervalos_salvar', hash=url_hash)
+                    
             else:
                 messages.error(request, 'Erro ao salvar!')
-        retornos_eventos_intervalos_form = disabled_form_fields(retornos_eventos_intervalos_form, permissao.permite_editar)
+                
+        retornos_eventos_intervalos_form = disabled_form_fields(retornos_eventos_intervalos_form, request.user.has_perm('mensageiro.change_RetornosEventosIntervalos'))
         #retornos_eventos_intervalos_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             retornos_eventos_intervalos_form = disabled_form_for_print(retornos_eventos_intervalos_form)
         
         
         
         if retornos_eventos_intervalos_id:
+        
             retornos_eventos_intervalos = get_object_or_404(RetornosEventosIntervalos, id = retornos_eventos_intervalos_id)
             
                 
         else:
+        
             retornos_eventos_intervalos = None
             
         #retornos_eventos_intervalos_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'retornos_eventos_intervalos' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'retornos_eventos_intervalos_salvar'
+            
         context = {
             'retornos_eventos_intervalos': retornos_eventos_intervalos, 
             'retornos_eventos_intervalos_form': retornos_eventos_intervalos_form, 
@@ -134,12 +140,9 @@ def salvar(request, hash):
             'usuario': usuario, 
             'hash': hash, 
             
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['retornos_eventos_intervalos', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -186,12 +189,12 @@ def salvar(request, hash):
     
         context = {
             'usuario': usuario, 
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['retornos_eventos_intervalos', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         
-        return render(request, 'permissao_negada.html', context)
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

@@ -76,14 +76,6 @@ class r5011RCPRB(SoftDeletionModel):
     vlrcrcprb = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -108,7 +100,8 @@ class r5011RCPRB(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011_rcprb", "Can view r5011_rcprb"), )
+            ("can_view_r5011RCPRB", "Can view R5011RCPRB"),
+            ("can_view_menu_r5011RCPRB", "Can view menu R5011RCPRB"),)
             
         ordering = [
             'r5011_infototalcontrib',
@@ -144,14 +137,6 @@ class r5011RComl(SoftDeletionModel):
     vlrcrcoml = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrcomlsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -176,7 +161,8 @@ class r5011RComl(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011_rcoml", "Can view r5011_rcoml"), )
+            ("can_view_r5011RComl", "Can view R5011RCOML"),
+            ("can_view_menu_r5011RComl", "Can view menu R5011RCOML"),)
             
         ordering = [
             'r5011_infototalcontrib',
@@ -216,14 +202,6 @@ class r5011RPrest(SoftDeletionModel):
     vlrtotalnretprinc = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrtotalnretadic = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -250,7 +228,8 @@ class r5011RPrest(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011_rprest", "Can view r5011_rprest"), )
+            ("can_view_r5011RPrest", "Can view R5011RPREST"),
+            ("can_view_menu_r5011RPrest", "Can view menu R5011RPREST"),)
             
         ordering = [
             'r5011_infototalcontrib',
@@ -290,14 +269,6 @@ class r5011RRecRepAD(SoftDeletionModel):
     vlrcrrecrepad = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrrecrepadsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -324,7 +295,8 @@ class r5011RRecRepAD(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011_rrecrepad", "Can view r5011_rrecrepad"), )
+            ("can_view_r5011RRecRepAD", "Can view R5011RRECREPAD"),
+            ("can_view_menu_r5011RRecRepAD", "Can view menu R5011RRECREPAD"),)
             
         ordering = [
             'r5011_infototalcontrib',
@@ -362,14 +334,6 @@ class r5011RTom(SoftDeletionModel):
     cno = models.CharField(max_length=12, blank=True, null=True, )
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -394,7 +358,8 @@ class r5011RTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011_rtom", "Can view r5011_rtom"), )
+            ("can_view_r5011RTom", "Can view R5011RTOM"),
+            ("can_view_menu_r5011RTom", "Can view menu R5011RTOM"),)
             
         ordering = [
             'r5011_infototalcontrib',
@@ -430,14 +395,6 @@ class r5011infoCRTom(SoftDeletionModel):
     vlrcrtom = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrtomsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -461,7 +418,8 @@ class r5011infoCRTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011_infocrtom", "Can view r5011_infocrtom"), )
+            ("can_view_r5011infoCRTom", "Can view R5011INFOCRTOM"),
+            ("can_view_menu_r5011infoCRTom", "Can view menu R5011INFOCRTOM"),)
             
         ordering = [
             'r5011_rtom',
@@ -495,14 +453,6 @@ class r5011infoTotalContrib(SoftDeletionModel):
     nrrecarqbase = models.CharField(max_length=52, blank=True, null=True, )
     indexistinfo = models.IntegerField(choices=CHOICES_R5011_INDEXISTINFO, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -526,7 +476,8 @@ class r5011infoTotalContrib(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011_infototalcontrib", "Can view r5011_infototalcontrib"), )
+            ("can_view_r5011infoTotalContrib", "Can view R5011INFOTOTALCONTRIB"),
+            ("can_view_menu_r5011infoTotalContrib", "Can view menu R5011INFOTOTALCONTRIB"),)
             
         ordering = [
             'r5011_evttotalcontrib',
@@ -562,14 +513,6 @@ class r5011regOcorrs(SoftDeletionModel):
     codresp = models.CharField(max_length=6, null=True, )
     dscresp = models.CharField(max_length=999, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -596,7 +539,8 @@ class r5011regOcorrs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011_regocorrs", "Can view r5011_regocorrs"), )
+            ("can_view_r5011regOcorrs", "Can view R5011REGOCORRS"),
+            ("can_view_menu_r5011regOcorrs", "Can view menu R5011REGOCORRS"),)
             
         ordering = [
             'r5011_evttotalcontrib',

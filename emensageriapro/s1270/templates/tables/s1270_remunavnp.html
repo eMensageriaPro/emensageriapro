@@ -83,9 +83,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s1270_remunavnp_visualizar' %}
+                    {% if perms.s1270.can_view_s1270remunAvNP %}
                         <a href="{% url 's1270_remunavnp_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s1270_remunavnp_editar' or dict_permissoes|get_permissao:'s1270_remunavnp_cadastrar' %}
+                            {% if perms.s1270.add_s1270remunAvNP or perms.s1270.change_s1270remunAvNP %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -96,7 +96,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s1270_remunavnp_apagar' %}
+                    {% if perms.s1270.delete_s1270remunAvNP %}
                         <a href="{% url 's1270_remunavnp_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

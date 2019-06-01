@@ -74,15 +74,12 @@ def listar(request, hash):
         usuario_id = False
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='usuarios')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
+    if request.user.has_perm('controle_de_acesso.can_view_Usuarios'):
+    
         filtrar = False
+        
         dict_fields = {}
         show_fields = { 
             'show_foto': 0,
@@ -97,60 +94,74 @@ def listar(request, hash):
             'show_last_login': 0,
             'show_date_joined': 0,
             'show_config_perfis': 1, }
+            
         post = False
         #ANTES-POST-LISTAGEM
+        
         if request.method == 'POST':
+        
             post = True
+            
             dict_fields = { 
                 'username__icontains': 'username__icontains',
                 'first_name__icontains': 'first_name__icontains',
                 'last_name__icontains': 'last_name__icontains',
                 'email__icontains': 'email__icontains',
                 'config_perfis__icontains': 'config_perfis__icontains', }
+                
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
+                
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
+                
             if request.method == 'POST':
+            
                 dict_fields = { 
                     'username__icontains': 'username__icontains',
                     'first_name__icontains': 'first_name__icontains',
                     'last_name__icontains': 'last_name__icontains',
                     'email__icontains': 'email__icontains',
                     'config_perfis__icontains': 'config_perfis__icontains', }
+                    
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
+                    
         dict_qs = clear_dict_fields(dict_fields)
-        usuarios_lista = Usuarios.objects.filter(**dict_qs).filter().exclude(id=0).all()
+        
+        usuarios_lista = Usuarios.objects.filter(**dict_qs).exclude(id=0).all()
+        
         if not post and len(usuarios_lista) > 100:
+        
             filtrar = True
             usuarios_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #usuarios_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'usuarios'
+        
         context = {
             'usuarios_lista': usuarios_lista, 
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['controle_de_acesso', ],
+            'paginas': ['usuarios', ],
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'show_fields': show_fields,
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
+        
         if for_print in (0,1):
+        
             return render(request, 'usuarios_listar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -171,30 +182,33 @@ def listar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('usuarios_listar.html', context)
             filename = "usuarios.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
         elif for_print == 4:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('csv/usuarios.csv', context)
             filename = "usuarios.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
+            
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['controle_de_acesso', ],
+            'paginas': ['usuarios', ],
         }
-        return render(request, 'permissao_negada.html', context)
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

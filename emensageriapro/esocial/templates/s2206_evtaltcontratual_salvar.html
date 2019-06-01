@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' %}
+                {% if perms.esocial.can_view_s2206evtAltContratual %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_return_page:'s2206_evtaltcontratual_salvar'|json_return_hash:hash|json_id:s2206_evtaltcontratual_id|json_print:0|base64_encode_me %}">
                     S-2206 - Alteração de Contrato de Trabalho</a>
@@ -58,63 +58,63 @@
                 {% if s2206_evtaltcontratual_id %}
                     
                         
-                            {% if dict_permissoes|get_permissao:'s2206_infoceletista_visualizar' %}
+                            {% if perms.esocial.can_view_s2206_infoceletista %}
                                 <li {% if tab == 's2206_infoceletista' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|json_tab:'s2206_infoceletista'|base64_encode_me %}">
                                     Informações de Trabalhador Celetista</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2206_infoestatutario_visualizar' %}
+                            {% if perms.esocial.can_view_s2206_infoestatutario %}
                                 <li {% if tab == 's2206_infoestatutario' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|json_tab:'s2206_infoestatutario'|base64_encode_me %}">
                                     Informações de Trabalhador Estatutário</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2206_localtrabgeral_visualizar' %}
+                            {% if perms.esocial.can_view_s2206_localtrabgeral %}
                                 <li {% if tab == 's2206_localtrabgeral' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|json_tab:'s2206_localtrabgeral'|base64_encode_me %}">
                                     Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %}
+                            {% if perms.esocial.can_view_s2206_localtrabdom %}
                                 <li {% if tab == 's2206_localtrabdom' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|json_tab:'s2206_localtrabdom'|base64_encode_me %}">
                                     Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2206_horcontratual_visualizar' %}
+                            {% if perms.esocial.can_view_s2206_horcontratual %}
                                 <li {% if tab == 's2206_horcontratual' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|json_tab:'s2206_horcontratual'|base64_encode_me %}">
                                     Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2206_filiacaosindical_visualizar' %}
+                            {% if perms.esocial.can_view_s2206_filiacaosindical %}
                                 <li {% if tab == 's2206_filiacaosindical' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|json_tab:'s2206_filiacaosindical'|base64_encode_me %}">
                                     Filiação Sindical do Trabalhador</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2206_alvarajudicial_visualizar' %}
+                            {% if perms.esocial.can_view_s2206_alvarajudicial %}
                                 <li {% if tab == 's2206_alvarajudicial' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|json_tab:'s2206_alvarajudicial'|base64_encode_me %}">
                                     Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2206_observacoes_visualizar' %}
+                            {% if perms.esocial.can_view_s2206_observacoes %}
                                 <li {% if tab == 's2206_observacoes' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|json_tab:'s2206_observacoes'|base64_encode_me %}">
                                     Observações do contrato de trabalho</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2206_servpubl_visualizar' %}
+                            {% if perms.esocial.can_view_s2206_servpubl %}
                                 <li {% if tab == 's2206_servpubl' %} class="active"{% endif %} >
                                     <a href="{% url 's2206_evtaltcontratual_salvar' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|json_tab:'s2206_servpubl'|base64_encode_me %}">
                                     Alterações inerentes ao servidor público</a>
@@ -211,7 +211,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_editar' or dict_permissoes|get_permissao:'s2206_evtaltcontratual_cadastrar' %}
+               {% if perms.esocial.change_s2206_evtaltcontratual or perms.esocial.add_s2206_evtaltcontratual %}
                {% if s2206_evtaltcontratual_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s2206_evtaltcontratual" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -233,8 +233,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if s2206_evtaltcontratual_id %}
-                           {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_cadastrar' %}<a href="{% url 's2206_evtaltcontratual_verificar'  hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_cadastrar' %}
+                           {% if perms.esocial.add_s2206evtAltContratual %}<a href="{% url 's2206_evtaltcontratual_verificar'  hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2206evtAltContratual %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -251,7 +251,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_cadastrar' %}
+                           {% if perms.esocial.add_s2206evtAltContratual %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -272,29 +272,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_cadastrar' %}<a href="{% url 's2206_evtaltcontratual_xml'  hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2206evtAltContratual %}<a href="{% url 's2206_evtaltcontratual_xml'  hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if s2206_evtaltcontratual.status == STATUS_EVENTO_CADASTRADO or s2206_evtaltcontratual.status == STATUS_EVENTO_IMPORTADO or s2206_evtaltcontratual.status == STATUS_EVENTO_DUPLICADO or s2206_evtaltcontratual.status == STATUS_EVENTO_GERADO or s2206_evtaltcontratual.status == STATUS_EVENTO_ASSINADO or s2206_evtaltcontratual.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_cadastrar' %}
+                           {% if perms.esocial.add_s2206evtAltContratual %}
                            <a href="{% url 's2206_evtaltcontratual_validar_evento' hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_cadastrar' %}<a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2206evtAltContratual %}<a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_listar' or dict_permissoes|get_permissao:'s2206_evtaltcontratual_listar' %}<a href="{% url 's2206_evtaltcontratual'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_visualizar' and s2206_evtaltcontratual_id %}<a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_editar' or dict_permissoes|get_permissao:'s2206_evtaltcontratual_cadastrar' %}
+                           {% if perms.esocial.can_view_s2206_evtaltcontratual or perms.esocial.can_view_s2206_evtaltcontratual %}<a href="{% url 's2206_evtaltcontratual'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.can_view_s2206_evtaltcontratual and s2206_evtaltcontratual_id %}<a href="{% url 's2206_evtaltcontratual_salvar'  hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.change_s2206_evtaltcontratual or perms.esocial.add_s2206_evtaltcontratual %}
                            {% if s2206_evtaltcontratual_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_apagar' and s2206_evtaltcontratual_id %}<a href="{% url 's2206_evtaltcontratual_apagar'  hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.delete_s2206_evtaltcontratual and s2206_evtaltcontratual_id %}<a href="{% url 's2206_evtaltcontratual_apagar'  hash='{}'|json_id:s2206_evtaltcontratual_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'s2206_evtaltcontratual_editar' or dict_permissoes|get_permissao:'s2206_evtaltcontratual_cadastrar' %}
+                  {% if perms.esocial.change_s2206_evtaltcontratual or perms.esocial.add_s2206_evtaltcontratual %}
                {% if s2206_evtaltcontratual_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}
@@ -350,9 +350,9 @@
 
 {% if tab == 's2206_infoceletista' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2206_infoceletista_visualizar' %} 
+{% if perms.esocial.can_view_s2206_infoceletista %} 
 
-{% if dict_permissoes|get_permissao:'s2206_infoceletista_editar' or dict_permissoes|get_permissao:'s2206_infoceletista_cadastrar' %}
+{% if perms.esocial.change_s2206_infoceletista or perms.s2206.add_s2206infoCeletista %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -378,7 +378,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de Trabalhador Celetista</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2206_infoceletista_editar' or dict_permissoes|get_permissao:'s2206_infoceletista_cadastrar' %}
+          {% if perms.esocial.change_s2206_infoceletista or perms.s2206.add_s2206infoCeletista %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -387,7 +387,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2206_infoceletista_cadastrar' %}            
+        {% if perms.s2206.add_s2206infoCeletista %}            
 
 
 
@@ -445,9 +445,9 @@ function CadastroListagem() {
 
 {% if tab == 's2206_infoestatutario' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2206_infoestatutario_visualizar' %} 
+{% if perms.esocial.can_view_s2206_infoestatutario %} 
 
-{% if dict_permissoes|get_permissao:'s2206_infoestatutario_editar' or dict_permissoes|get_permissao:'s2206_infoestatutario_cadastrar' %}
+{% if perms.esocial.change_s2206_infoestatutario or perms.s2206.add_s2206infoEstatutario %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -473,7 +473,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de Trabalhador Estatutário</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2206_infoestatutario_editar' or dict_permissoes|get_permissao:'s2206_infoestatutario_cadastrar' %}
+          {% if perms.esocial.change_s2206_infoestatutario or perms.s2206.add_s2206infoEstatutario %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -482,7 +482,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2206_infoestatutario_cadastrar' %}            
+        {% if perms.s2206.add_s2206infoEstatutario %}            
 
 
 
@@ -540,9 +540,9 @@ function CadastroListagem() {
 
 {% if tab == 's2206_localtrabgeral' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2206_localtrabgeral_visualizar' %} 
+{% if perms.esocial.can_view_s2206_localtrabgeral %} 
 
-{% if dict_permissoes|get_permissao:'s2206_localtrabgeral_editar' or dict_permissoes|get_permissao:'s2206_localtrabgeral_cadastrar' %}
+{% if perms.esocial.change_s2206_localtrabgeral or perms.s2206.add_s2206localTrabGeral %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -568,7 +568,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2206_localtrabgeral_editar' or dict_permissoes|get_permissao:'s2206_localtrabgeral_cadastrar' %}
+          {% if perms.esocial.change_s2206_localtrabgeral or perms.s2206.add_s2206localTrabGeral %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -577,7 +577,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2206_localtrabgeral_cadastrar' %}            
+        {% if perms.s2206.add_s2206localTrabGeral %}            
 
 
 
@@ -635,9 +635,9 @@ function CadastroListagem() {
 
 {% if tab == 's2206_localtrabdom' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %} 
+{% if perms.esocial.can_view_s2206_localtrabdom %} 
 
-{% if dict_permissoes|get_permissao:'s2206_localtrabdom_editar' or dict_permissoes|get_permissao:'s2206_localtrabdom_cadastrar' %}
+{% if perms.esocial.change_s2206_localtrabdom or perms.s2206.add_s2206localTrabDom %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -663,7 +663,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2206_localtrabdom_editar' or dict_permissoes|get_permissao:'s2206_localtrabdom_cadastrar' %}
+          {% if perms.esocial.change_s2206_localtrabdom or perms.s2206.add_s2206localTrabDom %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -672,7 +672,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2206_localtrabdom_cadastrar' %}            
+        {% if perms.s2206.add_s2206localTrabDom %}            
 
 
 
@@ -730,9 +730,9 @@ function CadastroListagem() {
 
 {% if tab == 's2206_horcontratual' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2206_horcontratual_visualizar' %} 
+{% if perms.esocial.can_view_s2206_horcontratual %} 
 
-{% if dict_permissoes|get_permissao:'s2206_horcontratual_editar' or dict_permissoes|get_permissao:'s2206_horcontratual_cadastrar' %}
+{% if perms.esocial.change_s2206_horcontratual or perms.s2206.add_s2206horContratual %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -758,7 +758,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2206_horcontratual_editar' or dict_permissoes|get_permissao:'s2206_horcontratual_cadastrar' %}
+          {% if perms.esocial.change_s2206_horcontratual or perms.s2206.add_s2206horContratual %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -767,7 +767,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2206_horcontratual_cadastrar' %}            
+        {% if perms.s2206.add_s2206horContratual %}            
 
 
 
@@ -825,9 +825,9 @@ function CadastroListagem() {
 
 {% if tab == 's2206_filiacaosindical' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2206_filiacaosindical_visualizar' %} 
+{% if perms.esocial.can_view_s2206_filiacaosindical %} 
 
-{% if dict_permissoes|get_permissao:'s2206_filiacaosindical_editar' or dict_permissoes|get_permissao:'s2206_filiacaosindical_cadastrar' %}
+{% if perms.esocial.change_s2206_filiacaosindical or perms.s2206.add_s2206filiacaoSindical %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -853,7 +853,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Filiação Sindical do Trabalhador</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2206_filiacaosindical_editar' or dict_permissoes|get_permissao:'s2206_filiacaosindical_cadastrar' %}
+          {% if perms.esocial.change_s2206_filiacaosindical or perms.s2206.add_s2206filiacaoSindical %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -862,7 +862,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2206_filiacaosindical_cadastrar' %}            
+        {% if perms.s2206.add_s2206filiacaoSindical %}            
 
 
 
@@ -920,9 +920,9 @@ function CadastroListagem() {
 
 {% if tab == 's2206_alvarajudicial' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2206_alvarajudicial_visualizar' %} 
+{% if perms.esocial.can_view_s2206_alvarajudicial %} 
 
-{% if dict_permissoes|get_permissao:'s2206_alvarajudicial_editar' or dict_permissoes|get_permissao:'s2206_alvarajudicial_cadastrar' %}
+{% if perms.esocial.change_s2206_alvarajudicial or perms.s2206.add_s2206alvaraJudicial %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -948,7 +948,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2206_alvarajudicial_editar' or dict_permissoes|get_permissao:'s2206_alvarajudicial_cadastrar' %}
+          {% if perms.esocial.change_s2206_alvarajudicial or perms.s2206.add_s2206alvaraJudicial %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -957,7 +957,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2206_alvarajudicial_cadastrar' %}            
+        {% if perms.s2206.add_s2206alvaraJudicial %}            
 
 
 
@@ -1015,9 +1015,9 @@ function CadastroListagem() {
 
 {% if tab == 's2206_observacoes' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2206_observacoes_visualizar' %} 
+{% if perms.esocial.can_view_s2206_observacoes %} 
 
-{% if dict_permissoes|get_permissao:'s2206_observacoes_editar' or dict_permissoes|get_permissao:'s2206_observacoes_cadastrar' %}
+{% if perms.esocial.change_s2206_observacoes or perms.s2206.add_s2206observacoes %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1043,7 +1043,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Observações do contrato de trabalho</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2206_observacoes_editar' or dict_permissoes|get_permissao:'s2206_observacoes_cadastrar' %}
+          {% if perms.esocial.change_s2206_observacoes or perms.s2206.add_s2206observacoes %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1052,7 +1052,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2206_observacoes_cadastrar' %}            
+        {% if perms.s2206.add_s2206observacoes %}            
 
 
 
@@ -1110,9 +1110,9 @@ function CadastroListagem() {
 
 {% if tab == 's2206_servpubl' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2206_servpubl_visualizar' %} 
+{% if perms.esocial.can_view_s2206_servpubl %} 
 
-{% if dict_permissoes|get_permissao:'s2206_servpubl_editar' or dict_permissoes|get_permissao:'s2206_servpubl_cadastrar' %}
+{% if perms.esocial.change_s2206_servpubl or perms.s2206.add_s2206servPubl %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1138,7 +1138,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Alterações inerentes ao servidor público</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2206_servpubl_editar' or dict_permissoes|get_permissao:'s2206_servpubl_cadastrar' %}
+          {% if perms.esocial.change_s2206_servpubl or perms.s2206.add_s2206servPubl %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1147,7 +1147,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2206_servpubl_cadastrar' %}            
+        {% if perms.s2206.add_s2206servPubl %}            
 
 
 

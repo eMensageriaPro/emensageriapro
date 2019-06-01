@@ -64,7 +64,7 @@ def validacoes_r5001_evttotal(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideContri.tpInsc', 
                                                   ideContri.tpInsc.cdata, 
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2')
             
             if 'nrInsc' in dir(ideContri):
                 validacoes_lista = validar_campo( validacoes_lista,
@@ -166,7 +166,7 @@ def validacoes_r5001_evttotal(arquivo):
                         validacoes_lista = validar_campo( validacoes_lista,
                                                           'ideEstab.tpInsc', 
                                                           ideEstab.tpInsc.cdata, 
-                                                          1, u'1, 2, 3, 4, 5')
+                                                          1, u'1, 4')
                     
                     if 'nrInsc' in dir(ideEstab):
                         validacoes_lista = validar_campo( validacoes_lista,

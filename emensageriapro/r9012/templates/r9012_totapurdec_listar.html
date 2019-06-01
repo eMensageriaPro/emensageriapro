@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r9012_totapurdec_cadastrar' %}
+                  {% if perms.r9012.add_r9012totApurDec %}
                   <a href="{% url 'r9012_totapurdec_salvar' hash='{}'|json_return_page:'r9012_totapurdec_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

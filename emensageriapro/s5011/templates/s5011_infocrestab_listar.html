@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, consolidadas por estabelecimento e por código de Receita - CR.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s5011_infocrestab_cadastrar' %}
+                  {% if perms.s5011.add_s5011infoCREstab %}
                   <a href="{% url 's5011_infocrestab_salvar' hash='{}'|json_return_page:'s5011_infocrestab_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

@@ -35,9 +35,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s5011_ideestab_visualizar' %}
+                    {% if perms.s5011.can_view_s5011ideEstab %}
                         <a href="{% url 's5011_ideestab_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s5011_ideestab_editar' or dict_permissoes|get_permissao:'s5011_ideestab_cadastrar' %}
+                            {% if perms.s5011.add_s5011ideEstab or perms.s5011.change_s5011ideEstab %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -48,7 +48,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s5011_ideestab_apagar' %}
+                    {% if perms.s5011.delete_s5011ideEstab %}
                         <a href="{% url 's5011_ideestab_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

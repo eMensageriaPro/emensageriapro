@@ -41,9 +41,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r2070_inforra_ideadvogado_visualizar' %}
+                    {% if perms.r2070.can_view_r2070infoRRAideAdvogado %}
                         <a href="{% url 'r2070_inforra_ideadvogado_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r2070_inforra_ideadvogado_editar' or dict_permissoes|get_permissao:'r2070_inforra_ideadvogado_cadastrar' %}
+                            {% if perms.r2070.add_r2070infoRRAideAdvogado or perms.r2070.change_r2070infoRRAideAdvogado %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -54,7 +54,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r2070_inforra_ideadvogado_apagar' %}
+                    {% if perms.r2070.delete_r2070infoRRAideAdvogado %}
                         <a href="{% url 'r2070_inforra_ideadvogado_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

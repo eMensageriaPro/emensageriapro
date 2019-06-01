@@ -61,43 +61,48 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         s2245_ideprofresp_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2245_ideprofresp')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if s2245_ideprofresp_id:
-        s2245_ideprofresp = get_object_or_404(s2245ideProfResp, id = s2245_ideprofresp_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if s2245_ideprofresp_id:
+    
+        s2245_ideprofresp = get_object_or_404(s2245ideProfResp, id=s2245_ideprofresp_id)
         dados_evento = s2245_ideprofresp.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s2245_ideprofresp_apagar'] = 0
-            dict_permissoes['s2245_ideprofresp_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('s2245.can_view_s2245ideProfResp'):
+        
         if s2245_ideprofresp_id:
-            s2245_ideprofresp_form = form_s2245_ideprofresp(request.POST or None, instance = s2245_ideprofresp,  
-                                         initial={'excluido': False})
+        
+            s2245_ideprofresp_form = form_s2245_ideprofresp(request.POST or None, 
+                                                          instance=s2245_ideprofresp,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             s2245_ideprofresp_form = form_s2245_ideprofresp(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if s2245_ideprofresp_form.is_valid():
             
                 dados = s2245_ideprofresp_form.cleaned_data
@@ -105,9 +110,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not s2245_ideprofresp_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  's2245_ideprofresp', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s2245_ideprofresp), indent=4, sort_keys=True, default=str),
@@ -115,69 +122,82 @@ def salvar(request, hash):
                                      's2245_ideprofresp', s2245_ideprofresp_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('s2245_ideprofresp_apagar', 's2245_ideprofresp_salvar', 's2245_ideprofresp'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if s2245_ideprofresp_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s2245_ideprofresp_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        s2245_ideprofresp_form = disabled_form_fields(s2245_ideprofresp_form, permissao.permite_editar)
+               
+        s2245_ideprofresp_form = disabled_form_fields(s2245_ideprofresp_form, request.user.has_perm('s2245.change_s2245ideProfResp'))
         
         if s2245_ideprofresp_id:
+        
             if dados_evento['status'] != 0:
+            
                 s2245_ideprofresp_form = disabled_form_fields(s2245_ideprofresp_form, 0)
                 
         #s2245_ideprofresp_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             s2245_ideprofresp_form = disabled_form_for_print(s2245_ideprofresp_form)
             
         
         
         if s2245_ideprofresp_id:
-            s2245_ideprofresp = get_object_or_404(s2245ideProfResp, id = s2245_ideprofresp_id)
+        
+            s2245_ideprofresp = get_object_or_404(s2245ideProfResp, id=s2245_ideprofresp_id)
             
                 
         else:
+        
             s2245_ideprofresp = None
             
         #s2245_ideprofresp_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 's2245_ideprofresp' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2245_ideprofresp_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=s2245_ideprofresp_id, tabela='s2245_ideprofresp').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             's2245_ideprofresp': s2245_ideprofresp, 
             's2245_ideprofresp_form': s2245_ideprofresp_form, 
-            'mensagem': mensagem, 
             's2245_ideprofresp_id': int(s2245_ideprofresp_id),
             'usuario': usuario, 
-            
+            'modulos': ['s2245', ],
+            'paginas': ['s2245_ideprofresp', ],
             'hash': hash, 
             
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #s2245_ideprofresp_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 's2245_ideprofresp_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -198,7 +218,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('s2245_ideprofresp_salvar.html', context)
             filename = "s2245_ideprofresp.xls"
@@ -207,15 +229,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['s2245', ],
+            'paginas': ['s2245_ideprofresp', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

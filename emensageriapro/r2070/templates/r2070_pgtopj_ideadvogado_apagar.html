@@ -41,7 +41,7 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        {% if dict_permissoes|get_permissao:'r2070_pgtopj_ideadvogado_apagar' %}
+                        {% if perms.r2070.delete_r2070pgtoPJideAdvogado %}
                         <form action="#" method="POST">
                             {% csrf_token %}
                             <div class="form-group col-md-8">

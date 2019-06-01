@@ -60,37 +60,38 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    
     try: 
+    
         usuario_id = request.user.id 
         dict_hash = get_hash_url( hash )
         s1005_alteracao_procadmjudrat_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s1005_alteracao_procadmjudrat')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s1005_alteracao_procadmjudrat = get_object_or_404(s1005alteracaoprocAdmJudRat, id = s1005_alteracao_procadmjudrat_id)
+    s1005_alteracao_procadmjudrat = get_object_or_404(s1005alteracaoprocAdmJudRat, id=s1005_alteracao_procadmjudrat_id)
+    
     dados_evento = {}
+    
     if s1005_alteracao_procadmjudrat_id:
+    
         dados_evento = s1005_alteracao_procadmjudrat.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s1005_alteracao_procadmjudrat_apagar'] = 0
-            dict_permissoes['s1005_alteracao_procadmjudrat_editar'] = 0
+            
     if request.method == 'POST':
+    
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(s1005_alteracao_procadmjudrat), indent=4, sort_keys=True, default=str)
             obj = s1005alteracaoprocAdmJudRat.objects.get(id = s1005_alteracao_procadmjudrat_id)
             obj.delete(request=request)
@@ -100,23 +101,28 @@ def apagar(request, hash):
             gravar_auditoria(situacao_anterior,
                              '', 
                              's1005_alteracao_procadmjudrat', s1005_alteracao_procadmjudrat_id, usuario_id, 3)
+                             
         else:
+        
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 's1005_alteracao_procadmjudrat_salvar':
-            return redirect('s1005_alteracao_procadmjudrat', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('s1005_alteracao_procadmjudrat', hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            
+    context = {
+        'dados_evento': dados_evento, 
+        'modulos': ['s1005', ],
+        'paginas': ['s1005_alteracao_procadmjudrat', ],
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
         'hash': hash,
     }
-    return render(request, 's1005_alteracao_procadmjudrat_apagar.html', context)
+    
+    return render(request, 
+                  's1005_alteracao_procadmjudrat_apagar.html', 
+                  context)

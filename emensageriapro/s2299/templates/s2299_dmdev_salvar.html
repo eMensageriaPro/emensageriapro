@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s2299_dmdev_visualizar' %}
+                    {% if perms.s2299.can_view_s2299dmDev %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's2299_dmdev_salvar' hash='{}'|json_return_page:'s2299_dmdev_salvar'|json_return_hash:hash|json_id:s2299_dmdev_id|json_print:0|base64_encode_me %}">
                             Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF
@@ -62,21 +62,21 @@
                     {% endif %}
                     {% if s2299_dmdev_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s2299_infoperapur_visualizar' %}
+                            {% if perms.s2299.can_view_s2299_infoperapur %}
                                 <li {% if tab == 's2299_infoperapur' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_dmdev_salvar' hash='{}'|json_id:s2299_dmdev_id|json_print:0|json_tab:'s2299_infoperapur'|base64_encode_me %}">
                                     Remuneração no período de apuração</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2299_infoperant_visualizar' %}
+                            {% if perms.s2299.can_view_s2299_infoperant %}
                                 <li {% if tab == 's2299_infoperant' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_dmdev_salvar' hash='{}'|json_id:s2299_dmdev_id|json_print:0|json_tab:'s2299_infoperant'|base64_encode_me %}">
                                     Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2299_infotrabinterm_visualizar' %}
+                            {% if perms.s2299.can_view_s2299_infotrabinterm %}
                                 <li {% if tab == 's2299_infotrabinterm' %} class="active"{% endif %} >
                                     <a href="{% url 's2299_dmdev_salvar' hash='{}'|json_id:s2299_dmdev_id|json_print:0|json_tab:'s2299_infotrabinterm'|base64_encode_me %}">
                                     Informações da(s) convocação(ões) de trabalho intermitente</a>
@@ -195,7 +195,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s2299_dmdev_editar' or dict_permissoes|get_permissao:'s2299_dmdev_cadastrar' %}
+            {% if perms.s2299.change_s2299_dmdev or perms.s2299.add_s2299_dmdev %}
                 <form action="#" id="id_form_s2299_dmdev" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -222,7 +222,7 @@
                             <!-- botões especiais -->
                             {% if s2299_dmdev_id %}
 
-                                {% if dict_permissoes|get_permissao:'s2299_dmdev_cadastrar' %}
+                                {% if perms.s2299.add_s2299dmDev %}
                                     <a href="{% url 's2299_dmdev_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -234,7 +234,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2299_dmdev_listar' or dict_permissoes|get_permissao:'s2299_dmdev_listar' %}
+                            {% if perms.s2299.can_view_s2299_dmdev or perms.s2299.can_view_s2299_dmdev %}
                                 <a href="{% url 's2299_dmdev'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -243,7 +243,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2299_dmdev_visualizar' and s2299_dmdev_id %}
+                            {% if perms.s2299.can_view_s2299_dmdev and s2299_dmdev_id %}
                                 <a href="{% url 's2299_dmdev_salvar' hash='{}'|json_id:s2299_dmdev_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -252,7 +252,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s2299_dmdev_visualizar' and s2299_dmdev_id %}
+                            {% if perms.s2299.can_view_s2299_dmdev and s2299_dmdev_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -279,7 +279,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2299_dmdev_editar' or dict_permissoes|get_permissao:'s2299_dmdev_cadastrar' %}
+                            {% if perms.s2299.change_s2299_dmdev or perms.s2299.add_s2299_dmdev %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -288,7 +288,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2299_dmdev_apagar' and s2299_dmdev_id %}
+                            {% if perms.s2299.delete_s2299_dmdev and s2299_dmdev_id %}
 
                             <a href="{% url 's2299_dmdev_apagar' hash='{}'|json_id:s2299_dmdev_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -310,7 +310,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s2299_dmdev_editar' or dict_permissoes|get_permissao:'s2299_dmdev_cadastrar' %}
+                    {% if perms.s2299.change_s2299_dmdev or perms.s2299.add_s2299_dmdev %}
                         </form>
                     {% endif %}
 
@@ -336,9 +336,9 @@
 
             {% if tab == 's2299_infoperapur' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2299_infoperapur_visualizar' %} 
+                {% if perms.s2299.can_view_s2299_infoperapur %} 
 
-                    {% if dict_permissoes|get_permissao:'s2299_infoperapur_editar' or dict_permissoes|get_permissao:'s2299_infoperapur_cadastrar' %}
+                    {% if perms.s2299.change_s2299_infoperapur or perms.s2299.add_s2299infoPerApur %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -365,7 +365,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Remuneração no período de apuração</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2299_infoperapur_editar' or dict_permissoes|get_permissao:'s2299_infoperapur_cadastrar' %}
+                                        {% if perms.s2299.change_s2299_infoperapur or perms.s2299.add_s2299infoPerApur %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -380,7 +380,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2299_infoperapur_cadastrar' %}            
+                                    {% if perms.s2299.add_s2299infoPerApur %}            
                                     <!-- begin_form_s2299_infoperapur --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2299_infoperapur" action="{% url 's2299_infoperapur_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -433,9 +433,9 @@
 
             {% if tab == 's2299_infoperant' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2299_infoperant_visualizar' %} 
+                {% if perms.s2299.can_view_s2299_infoperant %} 
 
-                    {% if dict_permissoes|get_permissao:'s2299_infoperant_editar' or dict_permissoes|get_permissao:'s2299_infoperant_cadastrar' %}
+                    {% if perms.s2299.change_s2299_infoperant or perms.s2299.add_s2299infoPerAnt %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -462,7 +462,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2299_infoperant_editar' or dict_permissoes|get_permissao:'s2299_infoperant_cadastrar' %}
+                                        {% if perms.s2299.change_s2299_infoperant or perms.s2299.add_s2299infoPerAnt %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -477,7 +477,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2299_infoperant_cadastrar' %}            
+                                    {% if perms.s2299.add_s2299infoPerAnt %}            
                                     <!-- begin_form_s2299_infoperant --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2299_infoperant" action="{% url 's2299_infoperant_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -530,9 +530,9 @@
 
             {% if tab == 's2299_infotrabinterm' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2299_infotrabinterm_visualizar' %} 
+                {% if perms.s2299.can_view_s2299_infotrabinterm %} 
 
-                    {% if dict_permissoes|get_permissao:'s2299_infotrabinterm_editar' or dict_permissoes|get_permissao:'s2299_infotrabinterm_cadastrar' %}
+                    {% if perms.s2299.change_s2299_infotrabinterm or perms.s2299.add_s2299infoTrabInterm %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -559,7 +559,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações da(s) convocação(ões) de trabalho intermitente</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2299_infotrabinterm_editar' or dict_permissoes|get_permissao:'s2299_infotrabinterm_cadastrar' %}
+                                        {% if perms.s2299.change_s2299_infotrabinterm or perms.s2299.add_s2299infoTrabInterm %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -574,7 +574,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2299_infotrabinterm_cadastrar' %}            
+                                    {% if perms.s2299.add_s2299infoTrabInterm %}            
                                     <!-- begin_form_s2299_infotrabinterm --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2299_infotrabinterm" action="{% url 's2299_infotrabinterm_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.s5001.models import *
 from emensageriapro.s5001.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -81,32 +81,41 @@ def criar_exclusao(request, hash):
 
     dict_hash = get_hash_url(hash)
     s5001_evtbasestrab_id = int(dict_hash['id'])
+    
+    if request.user.has_perm('esocial.can_create_delete_event_s5001evtBasesTrab'):
 
-    if s5001_evtbasestrab_id:
-
-        s5001_evtbasestrab = get_object_or_404(
-            s5001evtBasesTrab,
-            excluido=False,
-            id=s5001_evtbasestrab_id)
-
-        texto = gerar_xml_s5001(s5001_evtbasestrab_id, versao="|")
-        texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
-        texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_s5001_evtbasestrab_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s5001_evtbasestrab)
-
-        s5001evtBasesTrab.objects.filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}',
-            u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s5001_evtbasestrab.identidade),
-            's5001_evtbasestrab', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento de exclusão criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('s5001_evtbasestrab_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao criar evento de exclusão!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        if s5001_evtbasestrab_id:
+    
+            s5001_evtbasestrab = get_object_or_404(
+                s5001evtBasesTrab,
+                excluido=False,
+                id=s5001_evtbasestrab_id)
+    
+            texto = gerar_xml_s5001(s5001_evtbasestrab_id, versao="|")
+            texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
+            texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
+            dados = read_s5001_evtbasestrab_string({}, texto.encode('utf-8'), 0)
+            nova_identidade = identidade_evento(s5001_evtbasestrab)
+    
+            s5001evtBasesTrab.objects.filter(id=dados['id']).\
+                update(status=STATUS_EVENTO_CADASTRADO,
+                       arquivo_original=0,
+                       arquivo='')
+    
+            gravar_auditoria(u'{}',
+                u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s5001_evtbasestrab.identidade),
+                's5001_evtbasestrab', dados['id'], request.user.id, 1)
+    
+            messages.success(request, u'Evento de exclusão criado com sucesso!')
+            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
+            return redirect('s5001_evtbasestrab_salvar', hash=url_hash)
+    
+        messages.error(request, 'Erro ao criar evento de exclusão!')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+    else:
+    
+        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
+                                    Entre em contato com o administrador do sistema!''')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        

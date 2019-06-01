@@ -35,9 +35,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2206_aprend_visualizar' %}
+                    {% if perms.s2206.can_view_s2206aprend %}
                         <a href="{% url 's2206_aprend_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2206_aprend_editar' or dict_permissoes|get_permissao:'s2206_aprend_cadastrar' %}
+                            {% if perms.s2206.add_s2206aprend or perms.s2206.change_s2206aprend %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -48,7 +48,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2206_aprend_apagar' %}
+                    {% if perms.s2206.delete_s2206aprend %}
                         <a href="{% url 's2206_aprend_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

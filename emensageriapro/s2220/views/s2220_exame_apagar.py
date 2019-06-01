@@ -60,37 +60,38 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    
     try: 
+    
         usuario_id = request.user.id 
         dict_hash = get_hash_url( hash )
         s2220_exame_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2220_exame')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s2220_exame = get_object_or_404(s2220exame, id = s2220_exame_id)
+    s2220_exame = get_object_or_404(s2220exame, id=s2220_exame_id)
+    
     dados_evento = {}
+    
     if s2220_exame_id:
+    
         dados_evento = s2220_exame.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s2220_exame_apagar'] = 0
-            dict_permissoes['s2220_exame_editar'] = 0
+            
     if request.method == 'POST':
+    
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(s2220_exame), indent=4, sort_keys=True, default=str)
             obj = s2220exame.objects.get(id = s2220_exame_id)
             obj.delete(request=request)
@@ -100,23 +101,28 @@ def apagar(request, hash):
             gravar_auditoria(situacao_anterior,
                              '', 
                              's2220_exame', s2220_exame_id, usuario_id, 3)
+                             
         else:
+        
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 's2220_exame_salvar':
-            return redirect('s2220_exame', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('s2220_exame', hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            
+    context = {
+        'dados_evento': dados_evento, 
+        'modulos': ['s2220', ],
+        'paginas': ['s2220_exame', ],
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
         'hash': hash,
     }
-    return render(request, 's2220_exame_apagar.html', context)
+    
+    return render(request, 
+                  's2220_exame_apagar.html', 
+                  context)

@@ -178,17 +178,7 @@ def validar(request, hash=None):
         except:
             return redirect('login')
 
-        usuario = get_object_or_404(Usuarios,
-                                    id=usuario_id)
-
-        pagina = ConfigPaginas.objects.get(endereco='mapa_efdreinf')
-
-        permissao = ConfigPermissoes.objects.get(config_paginas=pagina,
-                                                 config_perfis=usuario.config_perfis)
-
-        dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-        paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-        modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        usuario = get_object_or_404(Usuarios, id=usuario_id)
 
     from django.apps import apps
 
@@ -225,6 +215,8 @@ def validar(request, hash=None):
 def enviar(request, hash=None):
 
     from emensageriapro.mensageiro.views.transmissor_lote_efdreinf_comunicacao import send_xml
+    from django.apps import apps
+    from emensageriapro.mensageiro.models import TransmissorLote, TransmissorLoteEfdreinf, TransmissorEventosEfdreinf
 
     texto = ''
 
@@ -238,23 +230,7 @@ def enviar(request, hash=None):
         except:
             return redirect('login')
 
-
-        usuario = get_object_or_404(Usuarios.objects,
-                                    excluido=False,
-                                    id=usuario_id)
-        pagina = ConfigPaginas.objects.get(excluido=False,
-                                                          endereco='mapa_efdreinf')
-
-        permissao = ConfigPermissoes.objects.get(excluido=False,
-                                                                config_paginas=pagina,
-                                                                config_perfis=usuario.config_perfis)
-
-        dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-        paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-        modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    from django.apps import apps
-    from emensageriapro.mensageiro.models import TransmissorLote, TransmissorLoteEfdreinf, TransmissorEventosEfdreinf
+        usuario = get_object_or_404(Usuarios, id=usuario_id)
 
     app_models = apps.get_app_config('efdreinf').get_models()
 
@@ -330,17 +306,7 @@ def consultar(request, hash=None):
         except:
             return redirect('login')
 
-        usuario = get_object_or_404(Usuarios,
-                                    id=usuario_id)
-
-        pagina = ConfigPaginas.objects.get(endereco='mapa_efdreinf')
-
-        permissao = ConfigPermissoes.objects.get(config_paginas=pagina,
-                                                config_perfis=usuario.config_perfis)
-
-        dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-        paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-        modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        usuario = get_object_or_404(Usuarios, id=usuario_id)
 
     lista_transmissores = TransmissorLoteEfdreinf.objects.filter(status=1).all()
 

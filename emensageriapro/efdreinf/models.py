@@ -107,14 +107,6 @@ class r1000evtInfoContri(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
     operacao = models.IntegerField(choices=OPERACOES, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -151,7 +143,17 @@ class r1000evtInfoContri(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1000_evtinfocontri", "Can view r1000_evtinfocontri"), )
+            ("can_view_r1000evtInfoContri", u"Pode visualizar o conteúdo do evento R1000EVTINFOCONTRI"),
+            ("can_view_menu_r1000evtInfoContri", u"Pode visualizar no menu o evento R1000EVTINFOCONTRI"),
+            ("can_open_event_r1000evtInfoContri", u"Pode abrir o evento R1000EVTINFOCONTRI para edição"),
+            ("can_duplicate_event_r1000evtInfoContri", u"Pode duplicar o evento R1000EVTINFOCONTRI"),
+            ("can_create_change_event_r1000evtInfoContri", u"Pode criar evento de alteração do evento R1000EVTINFOCONTRI com base em evento existente"),
+            ("can_create_delete_event_r1000evtInfoContri", u"Pode criar evento de exclusão do evento R1000EVTINFOCONTRI com base em evento existente"), 
+            ("can_validate_event_r1000evtInfoContri", u"Pode validar o evento R1000EVTINFOCONTRI"),
+            ("can_print_event_r1000evtInfoContri", u"Pode imprimir recibo do evento R1000EVTINFOCONTRI"),
+            ("can_change_identity_event_r1000evtInfoContri", u"Pode alterar identidade do evento R1000EVTINFOCONTRI"),
+            ("can_view_layout_event_r1000evtInfoContri", u"Pode ver layout do evento R1000EVTINFOCONTRI"),
+            ("can_view_xml_event_r1000evtInfoContri", u"Pode ver xml do evento R1000EVTINFOCONTRI"),)
             
         ordering = [
             'identidade',
@@ -213,14 +215,6 @@ class r1070evtTabProcesso(SoftDeletionModel):
     dhprocess = models.DateTimeField(blank=True, null=True, )
     operacao = models.IntegerField(choices=OPERACOES, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -257,7 +251,17 @@ class r1070evtTabProcesso(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070_evttabprocesso", "Can view r1070_evttabprocesso"), )
+            ("can_view_r1070evtTabProcesso", u"Pode visualizar o conteúdo do evento R1070EVTTABPROCESSO"),
+            ("can_view_menu_r1070evtTabProcesso", u"Pode visualizar no menu o evento R1070EVTTABPROCESSO"),
+            ("can_open_event_r1070evtTabProcesso", u"Pode abrir o evento R1070EVTTABPROCESSO para edição"),
+            ("can_duplicate_event_r1070evtTabProcesso", u"Pode duplicar o evento R1070EVTTABPROCESSO"),
+            ("can_create_change_event_r1070evtTabProcesso", u"Pode criar evento de alteração do evento R1070EVTTABPROCESSO com base em evento existente"),
+            ("can_create_delete_event_r1070evtTabProcesso", u"Pode criar evento de exclusão do evento R1070EVTTABPROCESSO com base em evento existente"), 
+            ("can_validate_event_r1070evtTabProcesso", u"Pode validar o evento R1070EVTTABPROCESSO"),
+            ("can_print_event_r1070evtTabProcesso", u"Pode imprimir recibo do evento R1070EVTTABPROCESSO"),
+            ("can_change_identity_event_r1070evtTabProcesso", u"Pode alterar identidade do evento R1070EVTTABPROCESSO"),
+            ("can_view_layout_event_r1070evtTabProcesso", u"Pode ver layout do evento R1070EVTTABPROCESSO"),
+            ("can_view_xml_event_r1070evtTabProcesso", u"Pode ver xml do evento R1070EVTTABPROCESSO"),)
             
         ordering = [
             'identidade',
@@ -332,14 +336,6 @@ class r2010evtServTom(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -386,7 +382,15 @@ class r2010evtServTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2010_evtservtom", "Can view r2010_evtservtom"), )
+            ("can_view_r2010evtServTom", u"Pode visualizar o conteúdo do evento R2010EVTSERVTOM"),
+            ("can_view_menu_r2010evtServTom", u"Pode visualizar no menu o evento R2010EVTSERVTOM"),
+            ("can_open_event_r2010evtServTom", u"Pode abrir o evento R2010EVTSERVTOM para edição"),
+            ("can_duplicate_event_r2010evtServTom", u"Pode duplicar o evento R2010EVTSERVTOM"),
+            ("can_validate_event_r2010evtServTom", u"Pode validar o evento R2010EVTSERVTOM"),
+            ("can_print_event_r2010evtServTom", u"Pode imprimir recibo do evento R2010EVTSERVTOM"),
+            ("can_change_identity_event_r2010evtServTom", u"Pode alterar identidade do evento R2010EVTSERVTOM"),
+            ("can_view_layout_event_r2010evtServTom", u"Pode ver layout do evento R2010EVTSERVTOM"),
+            ("can_view_xml_event_r2010evtServTom", u"Pode ver xml do evento R2010EVTSERVTOM"),)
             
         ordering = [
             'identidade',
@@ -471,14 +475,6 @@ class r2020evtServPrest(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -525,7 +521,15 @@ class r2020evtServPrest(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2020_evtservprest", "Can view r2020_evtservprest"), )
+            ("can_view_r2020evtServPrest", u"Pode visualizar o conteúdo do evento R2020EVTSERVPREST"),
+            ("can_view_menu_r2020evtServPrest", u"Pode visualizar no menu o evento R2020EVTSERVPREST"),
+            ("can_open_event_r2020evtServPrest", u"Pode abrir o evento R2020EVTSERVPREST para edição"),
+            ("can_duplicate_event_r2020evtServPrest", u"Pode duplicar o evento R2020EVTSERVPREST"),
+            ("can_validate_event_r2020evtServPrest", u"Pode validar o evento R2020EVTSERVPREST"),
+            ("can_print_event_r2020evtServPrest", u"Pode imprimir recibo do evento R2020EVTSERVPREST"),
+            ("can_change_identity_event_r2020evtServPrest", u"Pode alterar identidade do evento R2020EVTSERVPREST"),
+            ("can_view_layout_event_r2020evtServPrest", u"Pode ver layout do evento R2020EVTSERVPREST"),
+            ("can_view_xml_event_r2020evtServPrest", u"Pode ver xml do evento R2020EVTSERVPREST"),)
             
         ordering = [
             'identidade',
@@ -601,14 +605,6 @@ class r2030evtAssocDespRec(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -649,7 +645,15 @@ class r2030evtAssocDespRec(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2030_evtassocdesprec", "Can view r2030_evtassocdesprec"), )
+            ("can_view_r2030evtAssocDespRec", u"Pode visualizar o conteúdo do evento R2030EVTASSOCDESPREC"),
+            ("can_view_menu_r2030evtAssocDespRec", u"Pode visualizar no menu o evento R2030EVTASSOCDESPREC"),
+            ("can_open_event_r2030evtAssocDespRec", u"Pode abrir o evento R2030EVTASSOCDESPREC para edição"),
+            ("can_duplicate_event_r2030evtAssocDespRec", u"Pode duplicar o evento R2030EVTASSOCDESPREC"),
+            ("can_validate_event_r2030evtAssocDespRec", u"Pode validar o evento R2030EVTASSOCDESPREC"),
+            ("can_print_event_r2030evtAssocDespRec", u"Pode imprimir recibo do evento R2030EVTASSOCDESPREC"),
+            ("can_change_identity_event_r2030evtAssocDespRec", u"Pode alterar identidade do evento R2030EVTASSOCDESPREC"),
+            ("can_view_layout_event_r2030evtAssocDespRec", u"Pode ver layout do evento R2030EVTASSOCDESPREC"),
+            ("can_view_xml_event_r2030evtAssocDespRec", u"Pode ver xml do evento R2030EVTASSOCDESPREC"),)
             
         ordering = [
             'identidade',
@@ -719,14 +723,6 @@ class r2040evtAssocDespRep(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -767,7 +763,15 @@ class r2040evtAssocDespRep(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2040_evtassocdesprep", "Can view r2040_evtassocdesprep"), )
+            ("can_view_r2040evtAssocDespRep", u"Pode visualizar o conteúdo do evento R2040EVTASSOCDESPREP"),
+            ("can_view_menu_r2040evtAssocDespRep", u"Pode visualizar no menu o evento R2040EVTASSOCDESPREP"),
+            ("can_open_event_r2040evtAssocDespRep", u"Pode abrir o evento R2040EVTASSOCDESPREP para edição"),
+            ("can_duplicate_event_r2040evtAssocDespRep", u"Pode duplicar o evento R2040EVTASSOCDESPREP"),
+            ("can_validate_event_r2040evtAssocDespRep", u"Pode validar o evento R2040EVTASSOCDESPREP"),
+            ("can_print_event_r2040evtAssocDespRep", u"Pode imprimir recibo do evento R2040EVTASSOCDESPREP"),
+            ("can_change_identity_event_r2040evtAssocDespRep", u"Pode alterar identidade do evento R2040EVTASSOCDESPREP"),
+            ("can_view_layout_event_r2040evtAssocDespRep", u"Pode ver layout do evento R2040EVTASSOCDESPREP"),
+            ("can_view_xml_event_r2040evtAssocDespRep", u"Pode ver xml do evento R2040EVTASSOCDESPREP"),)
             
         ordering = [
             'identidade',
@@ -844,14 +848,6 @@ class r2050evtComProd(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -896,7 +892,15 @@ class r2050evtComProd(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2050_evtcomprod", "Can view r2050_evtcomprod"), )
+            ("can_view_r2050evtComProd", u"Pode visualizar o conteúdo do evento R2050EVTCOMPROD"),
+            ("can_view_menu_r2050evtComProd", u"Pode visualizar no menu o evento R2050EVTCOMPROD"),
+            ("can_open_event_r2050evtComProd", u"Pode abrir o evento R2050EVTCOMPROD para edição"),
+            ("can_duplicate_event_r2050evtComProd", u"Pode duplicar o evento R2050EVTCOMPROD"),
+            ("can_validate_event_r2050evtComProd", u"Pode validar o evento R2050EVTCOMPROD"),
+            ("can_print_event_r2050evtComProd", u"Pode imprimir recibo do evento R2050EVTCOMPROD"),
+            ("can_change_identity_event_r2050evtComProd", u"Pode alterar identidade do evento R2050EVTCOMPROD"),
+            ("can_view_layout_event_r2050evtComProd", u"Pode ver layout do evento R2050EVTCOMPROD"),
+            ("can_view_xml_event_r2050evtComProd", u"Pode ver xml do evento R2050EVTCOMPROD"),)
             
         ordering = [
             'identidade',
@@ -973,14 +977,6 @@ class r2060evtCPRB(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1023,7 +1019,15 @@ class r2060evtCPRB(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2060_evtcprb", "Can view r2060_evtcprb"), )
+            ("can_view_r2060evtCPRB", u"Pode visualizar o conteúdo do evento R2060EVTCPRB"),
+            ("can_view_menu_r2060evtCPRB", u"Pode visualizar no menu o evento R2060EVTCPRB"),
+            ("can_open_event_r2060evtCPRB", u"Pode abrir o evento R2060EVTCPRB para edição"),
+            ("can_duplicate_event_r2060evtCPRB", u"Pode duplicar o evento R2060EVTCPRB"),
+            ("can_validate_event_r2060evtCPRB", u"Pode validar o evento R2060EVTCPRB"),
+            ("can_print_event_r2060evtCPRB", u"Pode imprimir recibo do evento R2060EVTCPRB"),
+            ("can_change_identity_event_r2060evtCPRB", u"Pode alterar identidade do evento R2060EVTCPRB"),
+            ("can_view_layout_event_r2060evtCPRB", u"Pode ver layout do evento R2060EVTCPRB"),
+            ("can_view_xml_event_r2060evtCPRB", u"Pode ver xml do evento R2060EVTCPRB"),)
             
         ordering = [
             'identidade',
@@ -1097,14 +1101,6 @@ class r2070evtPgtosDivs(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1145,7 +1141,15 @@ class r2070evtPgtosDivs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_evtpgtosdivs", "Can view r2070_evtpgtosdivs"), )
+            ("can_view_r2070evtPgtosDivs", u"Pode visualizar o conteúdo do evento R2070EVTPGTOSDIVS"),
+            ("can_view_menu_r2070evtPgtosDivs", u"Pode visualizar no menu o evento R2070EVTPGTOSDIVS"),
+            ("can_open_event_r2070evtPgtosDivs", u"Pode abrir o evento R2070EVTPGTOSDIVS para edição"),
+            ("can_duplicate_event_r2070evtPgtosDivs", u"Pode duplicar o evento R2070EVTPGTOSDIVS"),
+            ("can_validate_event_r2070evtPgtosDivs", u"Pode validar o evento R2070EVTPGTOSDIVS"),
+            ("can_print_event_r2070evtPgtosDivs", u"Pode imprimir recibo do evento R2070EVTPGTOSDIVS"),
+            ("can_change_identity_event_r2070evtPgtosDivs", u"Pode alterar identidade do evento R2070EVTPGTOSDIVS"),
+            ("can_view_layout_event_r2070evtPgtosDivs", u"Pode ver layout do evento R2070EVTPGTOSDIVS"),
+            ("can_view_xml_event_r2070evtPgtosDivs", u"Pode ver xml do evento R2070EVTPGTOSDIVS"),)
             
         ordering = [
             'identidade',
@@ -1211,14 +1215,6 @@ class r2098evtReabreEvPer(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1256,7 +1252,15 @@ class r2098evtReabreEvPer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2098_evtreabreevper", "Can view r2098_evtreabreevper"), )
+            ("can_view_r2098evtReabreEvPer", u"Pode visualizar o conteúdo do evento R2098EVTREABREEVPER"),
+            ("can_view_menu_r2098evtReabreEvPer", u"Pode visualizar no menu o evento R2098EVTREABREEVPER"),
+            ("can_open_event_r2098evtReabreEvPer", u"Pode abrir o evento R2098EVTREABREEVPER para edição"),
+            ("can_duplicate_event_r2098evtReabreEvPer", u"Pode duplicar o evento R2098EVTREABREEVPER"),
+            ("can_validate_event_r2098evtReabreEvPer", u"Pode validar o evento R2098EVTREABREEVPER"),
+            ("can_print_event_r2098evtReabreEvPer", u"Pode imprimir recibo do evento R2098EVTREABREEVPER"),
+            ("can_change_identity_event_r2098evtReabreEvPer", u"Pode alterar identidade do evento R2098EVTREABREEVPER"),
+            ("can_view_layout_event_r2098evtReabreEvPer", u"Pode ver layout do evento R2098EVTREABREEVPER"),
+            ("can_view_xml_event_r2098evtReabreEvPer", u"Pode ver xml do evento R2098EVTREABREEVPER"),)
             
         ordering = [
             'identidade',
@@ -1327,14 +1331,6 @@ class r2099evtFechaEvPer(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1378,7 +1374,15 @@ class r2099evtFechaEvPer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2099_evtfechaevper", "Can view r2099_evtfechaevper"), )
+            ("can_view_r2099evtFechaEvPer", u"Pode visualizar o conteúdo do evento R2099EVTFECHAEVPER"),
+            ("can_view_menu_r2099evtFechaEvPer", u"Pode visualizar no menu o evento R2099EVTFECHAEVPER"),
+            ("can_open_event_r2099evtFechaEvPer", u"Pode abrir o evento R2099EVTFECHAEVPER para edição"),
+            ("can_duplicate_event_r2099evtFechaEvPer", u"Pode duplicar o evento R2099EVTFECHAEVPER"),
+            ("can_validate_event_r2099evtFechaEvPer", u"Pode validar o evento R2099EVTFECHAEVPER"),
+            ("can_print_event_r2099evtFechaEvPer", u"Pode imprimir recibo do evento R2099EVTFECHAEVPER"),
+            ("can_change_identity_event_r2099evtFechaEvPer", u"Pode alterar identidade do evento R2099EVTFECHAEVPER"),
+            ("can_view_layout_event_r2099evtFechaEvPer", u"Pode ver layout do evento R2099EVTFECHAEVPER"),
+            ("can_view_xml_event_r2099evtFechaEvPer", u"Pode ver xml do evento R2099EVTFECHAEVPER"),)
             
         ordering = [
             'identidade',
@@ -1456,14 +1460,6 @@ class r3010evtEspDesportivo(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1508,7 +1504,15 @@ class r3010evtEspDesportivo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r3010_evtespdesportivo", "Can view r3010_evtespdesportivo"), )
+            ("can_view_r3010evtEspDesportivo", u"Pode visualizar o conteúdo do evento R3010EVTESPDESPORTIVO"),
+            ("can_view_menu_r3010evtEspDesportivo", u"Pode visualizar no menu o evento R3010EVTESPDESPORTIVO"),
+            ("can_open_event_r3010evtEspDesportivo", u"Pode abrir o evento R3010EVTESPDESPORTIVO para edição"),
+            ("can_duplicate_event_r3010evtEspDesportivo", u"Pode duplicar o evento R3010EVTESPDESPORTIVO"),
+            ("can_validate_event_r3010evtEspDesportivo", u"Pode validar o evento R3010EVTESPDESPORTIVO"),
+            ("can_print_event_r3010evtEspDesportivo", u"Pode imprimir recibo do evento R3010EVTESPDESPORTIVO"),
+            ("can_change_identity_event_r3010evtEspDesportivo", u"Pode alterar identidade do evento R3010EVTESPDESPORTIVO"),
+            ("can_view_layout_event_r3010evtEspDesportivo", u"Pode ver layout do evento R3010EVTESPDESPORTIVO"),
+            ("can_view_xml_event_r3010evtEspDesportivo", u"Pode ver xml do evento R3010EVTESPDESPORTIVO"),)
             
         ordering = [
             'identidade',
@@ -1584,14 +1588,6 @@ class r4010evtRetPF(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1632,7 +1628,15 @@ class r4010evtRetPF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4010_evtretpf", "Can view r4010_evtretpf"), )
+            ("can_view_r4010evtRetPF", u"Pode visualizar o conteúdo do evento R4010EVTRETPF"),
+            ("can_view_menu_r4010evtRetPF", u"Pode visualizar no menu o evento R4010EVTRETPF"),
+            ("can_open_event_r4010evtRetPF", u"Pode abrir o evento R4010EVTRETPF para edição"),
+            ("can_duplicate_event_r4010evtRetPF", u"Pode duplicar o evento R4010EVTRETPF"),
+            ("can_validate_event_r4010evtRetPF", u"Pode validar o evento R4010EVTRETPF"),
+            ("can_print_event_r4010evtRetPF", u"Pode imprimir recibo do evento R4010EVTRETPF"),
+            ("can_change_identity_event_r4010evtRetPF", u"Pode alterar identidade do evento R4010EVTRETPF"),
+            ("can_view_layout_event_r4010evtRetPF", u"Pode ver layout do evento R4010EVTRETPF"),
+            ("can_view_xml_event_r4010evtRetPF", u"Pode ver xml do evento R4010EVTRETPF"),)
             
         ordering = [
             'identidade',
@@ -1705,14 +1709,6 @@ class r4020evtRetPJ(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1754,7 +1750,15 @@ class r4020evtRetPJ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_evtretpj", "Can view r4020_evtretpj"), )
+            ("can_view_r4020evtRetPJ", u"Pode visualizar o conteúdo do evento R4020EVTRETPJ"),
+            ("can_view_menu_r4020evtRetPJ", u"Pode visualizar no menu o evento R4020EVTRETPJ"),
+            ("can_open_event_r4020evtRetPJ", u"Pode abrir o evento R4020EVTRETPJ para edição"),
+            ("can_duplicate_event_r4020evtRetPJ", u"Pode duplicar o evento R4020EVTRETPJ"),
+            ("can_validate_event_r4020evtRetPJ", u"Pode validar o evento R4020EVTRETPJ"),
+            ("can_print_event_r4020evtRetPJ", u"Pode imprimir recibo do evento R4020EVTRETPJ"),
+            ("can_change_identity_event_r4020evtRetPJ", u"Pode alterar identidade do evento R4020EVTRETPJ"),
+            ("can_view_layout_event_r4020evtRetPJ", u"Pode ver layout do evento R4020EVTRETPJ"),
+            ("can_view_xml_event_r4020evtRetPJ", u"Pode ver xml do evento R4020EVTRETPJ"),)
             
         ordering = [
             'identidade',
@@ -1825,14 +1829,6 @@ class r4040evtBenefNId(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1873,7 +1869,15 @@ class r4040evtBenefNId(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4040_evtbenefnid", "Can view r4040_evtbenefnid"), )
+            ("can_view_r4040evtBenefNId", u"Pode visualizar o conteúdo do evento R4040EVTBENEFNID"),
+            ("can_view_menu_r4040evtBenefNId", u"Pode visualizar no menu o evento R4040EVTBENEFNID"),
+            ("can_open_event_r4040evtBenefNId", u"Pode abrir o evento R4040EVTBENEFNID para edição"),
+            ("can_duplicate_event_r4040evtBenefNId", u"Pode duplicar o evento R4040EVTBENEFNID"),
+            ("can_validate_event_r4040evtBenefNId", u"Pode validar o evento R4040EVTBENEFNID"),
+            ("can_print_event_r4040evtBenefNId", u"Pode imprimir recibo do evento R4040EVTBENEFNID"),
+            ("can_change_identity_event_r4040evtBenefNId", u"Pode alterar identidade do evento R4040EVTBENEFNID"),
+            ("can_view_layout_event_r4040evtBenefNId", u"Pode ver layout do evento R4040EVTBENEFNID"),
+            ("can_view_xml_event_r4040evtBenefNId", u"Pode ver xml do evento R4040EVTBENEFNID"),)
             
         ordering = [
             'identidade',
@@ -1939,14 +1943,6 @@ class r4098evtReab(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1984,7 +1980,15 @@ class r4098evtReab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4098_evtreab", "Can view r4098_evtreab"), )
+            ("can_view_r4098evtReab", u"Pode visualizar o conteúdo do evento R4098EVTREAB"),
+            ("can_view_menu_r4098evtReab", u"Pode visualizar no menu o evento R4098EVTREAB"),
+            ("can_open_event_r4098evtReab", u"Pode abrir o evento R4098EVTREAB para edição"),
+            ("can_duplicate_event_r4098evtReab", u"Pode duplicar o evento R4098EVTREAB"),
+            ("can_validate_event_r4098evtReab", u"Pode validar o evento R4098EVTREAB"),
+            ("can_print_event_r4098evtReab", u"Pode imprimir recibo do evento R4098EVTREAB"),
+            ("can_change_identity_event_r4098evtReab", u"Pode alterar identidade do evento R4098EVTREAB"),
+            ("can_view_layout_event_r4098evtReab", u"Pode ver layout do evento R4098EVTREAB"),
+            ("can_view_xml_event_r4098evtReab", u"Pode ver xml do evento R4098EVTREAB"),)
             
         ordering = [
             'identidade',
@@ -2050,14 +2054,6 @@ class r4099evtFech(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -2095,7 +2091,15 @@ class r4099evtFech(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4099_evtfech", "Can view r4099_evtfech"), )
+            ("can_view_r4099evtFech", u"Pode visualizar o conteúdo do evento R4099EVTFECH"),
+            ("can_view_menu_r4099evtFech", u"Pode visualizar no menu o evento R4099EVTFECH"),
+            ("can_open_event_r4099evtFech", u"Pode abrir o evento R4099EVTFECH para edição"),
+            ("can_duplicate_event_r4099evtFech", u"Pode duplicar o evento R4099EVTFECH"),
+            ("can_validate_event_r4099evtFech", u"Pode validar o evento R4099EVTFECH"),
+            ("can_print_event_r4099evtFech", u"Pode imprimir recibo do evento R4099EVTFECH"),
+            ("can_change_identity_event_r4099evtFech", u"Pode alterar identidade do evento R4099EVTFECH"),
+            ("can_view_layout_event_r4099evtFech", u"Pode ver layout do evento R4099EVTFECH"),
+            ("can_view_xml_event_r4099evtFech", u"Pode ver xml do evento R4099EVTFECH"),)
             
         ordering = [
             'identidade',
@@ -2162,14 +2166,6 @@ class r5001evtTotal(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -2210,7 +2206,15 @@ class r5001evtTotal(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5001_evttotal", "Can view r5001_evttotal"), )
+            ("can_view_r5001evtTotal", u"Pode visualizar o conteúdo do evento R5001EVTTOTAL"),
+            ("can_view_menu_r5001evtTotal", u"Pode visualizar no menu o evento R5001EVTTOTAL"),
+            ("can_open_event_r5001evtTotal", u"Pode abrir o evento R5001EVTTOTAL para edição"),
+            ("can_duplicate_event_r5001evtTotal", u"Pode duplicar o evento R5001EVTTOTAL"),
+            ("can_validate_event_r5001evtTotal", u"Pode validar o evento R5001EVTTOTAL"),
+            ("can_print_event_r5001evtTotal", u"Pode imprimir recibo do evento R5001EVTTOTAL"),
+            ("can_change_identity_event_r5001evtTotal", u"Pode alterar identidade do evento R5001EVTTOTAL"),
+            ("can_view_layout_event_r5001evtTotal", u"Pode ver layout do evento R5001EVTTOTAL"),
+            ("can_view_xml_event_r5001evtTotal", u"Pode ver xml do evento R5001EVTTOTAL"),)
             
         ordering = [
             'identidade',
@@ -2280,14 +2284,6 @@ class r5011evtTotalContrib(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -2329,7 +2325,15 @@ class r5011evtTotalContrib(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r5011_evttotalcontrib", "Can view r5011_evttotalcontrib"), )
+            ("can_view_r5011evtTotalContrib", u"Pode visualizar o conteúdo do evento R5011EVTTOTALCONTRIB"),
+            ("can_view_menu_r5011evtTotalContrib", u"Pode visualizar no menu o evento R5011EVTTOTALCONTRIB"),
+            ("can_open_event_r5011evtTotalContrib", u"Pode abrir o evento R5011EVTTOTALCONTRIB para edição"),
+            ("can_duplicate_event_r5011evtTotalContrib", u"Pode duplicar o evento R5011EVTTOTALCONTRIB"),
+            ("can_validate_event_r5011evtTotalContrib", u"Pode validar o evento R5011EVTTOTALCONTRIB"),
+            ("can_print_event_r5011evtTotalContrib", u"Pode imprimir recibo do evento R5011EVTTOTALCONTRIB"),
+            ("can_change_identity_event_r5011evtTotalContrib", u"Pode alterar identidade do evento R5011EVTTOTALCONTRIB"),
+            ("can_view_layout_event_r5011evtTotalContrib", u"Pode ver layout do evento R5011EVTTOTALCONTRIB"),
+            ("can_view_xml_event_r5011evtTotalContrib", u"Pode ver xml do evento R5011EVTTOTALCONTRIB"),)
             
         ordering = [
             'identidade',
@@ -2398,14 +2402,6 @@ class r9000evtExclusao(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -2445,7 +2441,15 @@ class r9000evtExclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9000_evtexclusao", "Can view r9000_evtexclusao"), )
+            ("can_view_r9000evtExclusao", u"Pode visualizar o conteúdo do evento R9000EVTEXCLUSAO"),
+            ("can_view_menu_r9000evtExclusao", u"Pode visualizar no menu o evento R9000EVTEXCLUSAO"),
+            ("can_open_event_r9000evtExclusao", u"Pode abrir o evento R9000EVTEXCLUSAO para edição"),
+            ("can_duplicate_event_r9000evtExclusao", u"Pode duplicar o evento R9000EVTEXCLUSAO"),
+            ("can_validate_event_r9000evtExclusao", u"Pode validar o evento R9000EVTEXCLUSAO"),
+            ("can_print_event_r9000evtExclusao", u"Pode imprimir recibo do evento R9000EVTEXCLUSAO"),
+            ("can_change_identity_event_r9000evtExclusao", u"Pode alterar identidade do evento R9000EVTEXCLUSAO"),
+            ("can_view_layout_event_r9000evtExclusao", u"Pode ver layout do evento R9000EVTEXCLUSAO"),
+            ("can_view_xml_event_r9000evtExclusao", u"Pode ver xml do evento R9000EVTEXCLUSAO"),)
             
         ordering = [
             'identidade',
@@ -2514,14 +2518,6 @@ class r9001evtTotal(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -2562,7 +2558,15 @@ class r9001evtTotal(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001_evttotal", "Can view r9001_evttotal"), )
+            ("can_view_r9001evtTotal", u"Pode visualizar o conteúdo do evento R9001EVTTOTAL"),
+            ("can_view_menu_r9001evtTotal", u"Pode visualizar no menu o evento R9001EVTTOTAL"),
+            ("can_open_event_r9001evtTotal", u"Pode abrir o evento R9001EVTTOTAL para edição"),
+            ("can_duplicate_event_r9001evtTotal", u"Pode duplicar o evento R9001EVTTOTAL"),
+            ("can_validate_event_r9001evtTotal", u"Pode validar o evento R9001EVTTOTAL"),
+            ("can_print_event_r9001evtTotal", u"Pode imprimir recibo do evento R9001EVTTOTAL"),
+            ("can_change_identity_event_r9001evtTotal", u"Pode alterar identidade do evento R9001EVTTOTAL"),
+            ("can_view_layout_event_r9001evtTotal", u"Pode ver layout do evento R9001EVTTOTAL"),
+            ("can_view_xml_event_r9001evtTotal", u"Pode ver xml do evento R9001EVTTOTAL"),)
             
         ordering = [
             'identidade',
@@ -2632,14 +2636,6 @@ class r9002evtRet(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -2680,7 +2676,15 @@ class r9002evtRet(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002_evtret", "Can view r9002_evtret"), )
+            ("can_view_r9002evtRet", u"Pode visualizar o conteúdo do evento R9002EVTRET"),
+            ("can_view_menu_r9002evtRet", u"Pode visualizar no menu o evento R9002EVTRET"),
+            ("can_open_event_r9002evtRet", u"Pode abrir o evento R9002EVTRET para edição"),
+            ("can_duplicate_event_r9002evtRet", u"Pode duplicar o evento R9002EVTRET"),
+            ("can_validate_event_r9002evtRet", u"Pode validar o evento R9002EVTRET"),
+            ("can_print_event_r9002evtRet", u"Pode imprimir recibo do evento R9002EVTRET"),
+            ("can_change_identity_event_r9002evtRet", u"Pode alterar identidade do evento R9002EVTRET"),
+            ("can_view_layout_event_r9002evtRet", u"Pode ver layout do evento R9002EVTRET"),
+            ("can_view_xml_event_r9002evtRet", u"Pode ver xml do evento R9002EVTRET"),)
             
         ordering = [
             'identidade',
@@ -2750,14 +2754,6 @@ class r9011evtTotalContrib(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -2799,7 +2795,15 @@ class r9011evtTotalContrib(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9011_evttotalcontrib", "Can view r9011_evttotalcontrib"), )
+            ("can_view_r9011evtTotalContrib", u"Pode visualizar o conteúdo do evento R9011EVTTOTALCONTRIB"),
+            ("can_view_menu_r9011evtTotalContrib", u"Pode visualizar no menu o evento R9011EVTTOTALCONTRIB"),
+            ("can_open_event_r9011evtTotalContrib", u"Pode abrir o evento R9011EVTTOTALCONTRIB para edição"),
+            ("can_duplicate_event_r9011evtTotalContrib", u"Pode duplicar o evento R9011EVTTOTALCONTRIB"),
+            ("can_validate_event_r9011evtTotalContrib", u"Pode validar o evento R9011EVTTOTALCONTRIB"),
+            ("can_print_event_r9011evtTotalContrib", u"Pode imprimir recibo do evento R9011EVTTOTALCONTRIB"),
+            ("can_change_identity_event_r9011evtTotalContrib", u"Pode alterar identidade do evento R9011EVTTOTALCONTRIB"),
+            ("can_view_layout_event_r9011evtTotalContrib", u"Pode ver layout do evento R9011EVTTOTALCONTRIB"),
+            ("can_view_xml_event_r9011evtTotalContrib", u"Pode ver xml do evento R9011EVTTOTALCONTRIB"),)
             
         ordering = [
             'identidade',
@@ -2870,14 +2874,6 @@ class r9012evtRetCons(SoftDeletionModel):
     descretorno = models.CharField(max_length=255, blank=True, null=True, )
     dhprocess = models.DateTimeField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -2919,7 +2915,15 @@ class r9012evtRetCons(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9012_evtretcons", "Can view r9012_evtretcons"), )
+            ("can_view_r9012evtRetCons", u"Pode visualizar o conteúdo do evento R9012EVTRETCONS"),
+            ("can_view_menu_r9012evtRetCons", u"Pode visualizar no menu o evento R9012EVTRETCONS"),
+            ("can_open_event_r9012evtRetCons", u"Pode abrir o evento R9012EVTRETCONS para edição"),
+            ("can_duplicate_event_r9012evtRetCons", u"Pode duplicar o evento R9012EVTRETCONS"),
+            ("can_validate_event_r9012evtRetCons", u"Pode validar o evento R9012EVTRETCONS"),
+            ("can_print_event_r9012evtRetCons", u"Pode imprimir recibo do evento R9012EVTRETCONS"),
+            ("can_change_identity_event_r9012evtRetCons", u"Pode alterar identidade do evento R9012EVTRETCONS"),
+            ("can_view_layout_event_r9012evtRetCons", u"Pode ver layout do evento R9012EVTRETCONS"),
+            ("can_view_xml_event_r9012evtRetCons", u"Pode ver xml do evento R9012EVTRETCONS"),)
             
         ordering = [
             'identidade',

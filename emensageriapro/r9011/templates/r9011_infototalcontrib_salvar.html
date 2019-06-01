@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'r9011_infototalcontrib_visualizar' %}
+                    {% if perms.r9011.can_view_r9011infoTotalContrib %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 'r9011_infototalcontrib_salvar' hash='{}'|json_return_page:'r9011_infototalcontrib_salvar'|json_return_hash:hash|json_id:r9011_infototalcontrib_id|json_print:0|base64_encode_me %}">
                             Informações consolidadas por contribuinte relativas a totalizadores de bases e tributos
@@ -62,35 +62,35 @@
                     {% endif %}
                     {% if r9011_infototalcontrib_id %}
                         
-                            {% if dict_permissoes|get_permissao:'r9011_rtom_visualizar' %}
+                            {% if perms.r9011.can_view_r9011_rtom %}
                                 <li {% if tab == 'r9011_rtom' %} class="active"{% endif %} >
                                     <a href="{% url 'r9011_infototalcontrib_salvar' hash='{}'|json_id:r9011_infototalcontrib_id|json_print:0|json_tab:'r9011_rtom'|base64_encode_me %}">
                                     Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9011_rprest_visualizar' %}
+                            {% if perms.r9011.can_view_r9011_rprest %}
                                 <li {% if tab == 'r9011_rprest' %} class="active"{% endif %} >
                                     <a href="{% url 'r9011_infototalcontrib_salvar' hash='{}'|json_id:r9011_infototalcontrib_id|json_print:0|json_tab:'r9011_rprest'|base64_encode_me %}">
                                     Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9011_rrecrepad_visualizar' %}
+                            {% if perms.r9011.can_view_r9011_rrecrepad %}
                                 <li {% if tab == 'r9011_rrecrepad' %} class="active"{% endif %} >
                                     <a href="{% url 'r9011_infototalcontrib_salvar' hash='{}'|json_id:r9011_infototalcontrib_id|json_print:0|json_tab:'r9011_rrecrepad'|base64_encode_me %}">
                                     Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9011_rcoml_visualizar' %}
+                            {% if perms.r9011.can_view_r9011_rcoml %}
                                 <li {% if tab == 'r9011_rcoml' %} class="active"{% endif %} >
                                     <a href="{% url 'r9011_infototalcontrib_salvar' hash='{}'|json_id:r9011_infototalcontrib_id|json_print:0|json_tab:'r9011_rcoml'|base64_encode_me %}">
                                     Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9011_rcprb_visualizar' %}
+                            {% if perms.r9011.can_view_r9011_rcprb %}
                                 <li {% if tab == 'r9011_rcprb' %} class="active"{% endif %} >
                                     <a href="{% url 'r9011_infototalcontrib_salvar' hash='{}'|json_id:r9011_infototalcontrib_id|json_print:0|json_tab:'r9011_rcprb'|base64_encode_me %}">
                                     Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060</a>
@@ -209,7 +209,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'r9011_infototalcontrib_editar' or dict_permissoes|get_permissao:'r9011_infototalcontrib_cadastrar' %}
+            {% if perms.r9011.change_r9011_infototalcontrib or perms.r9011.add_r9011_infototalcontrib %}
                 <form action="#" id="id_form_r9011_infototalcontrib" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -236,7 +236,7 @@
                             <!-- botões especiais -->
                             {% if r9011_infototalcontrib_id %}
 
-                                {% if dict_permissoes|get_permissao:'r9011_infototalcontrib_cadastrar' %}
+                                {% if perms.r9011.add_r9011infoTotalContrib %}
                                     <a href="{% url 'r9011_infototalcontrib_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -248,7 +248,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r9011_infototalcontrib_listar' or dict_permissoes|get_permissao:'r9011_infototalcontrib_listar' %}
+                            {% if perms.r9011.can_view_r9011_infototalcontrib or perms.r9011.can_view_r9011_infototalcontrib %}
                                 <a href="{% url 'r9011_infototalcontrib'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -257,7 +257,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r9011_infototalcontrib_visualizar' and r9011_infototalcontrib_id %}
+                            {% if perms.r9011.can_view_r9011_infototalcontrib and r9011_infototalcontrib_id %}
                                 <a href="{% url 'r9011_infototalcontrib_salvar' hash='{}'|json_id:r9011_infototalcontrib_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -266,7 +266,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'r9011_infototalcontrib_visualizar' and r9011_infototalcontrib_id %}
+                            {% if perms.r9011.can_view_r9011_infototalcontrib and r9011_infototalcontrib_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -293,7 +293,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r9011_infototalcontrib_editar' or dict_permissoes|get_permissao:'r9011_infototalcontrib_cadastrar' %}
+                            {% if perms.r9011.change_r9011_infototalcontrib or perms.r9011.add_r9011_infototalcontrib %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -302,7 +302,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r9011_infototalcontrib_apagar' and r9011_infototalcontrib_id %}
+                            {% if perms.r9011.delete_r9011_infototalcontrib and r9011_infototalcontrib_id %}
 
                             <a href="{% url 'r9011_infototalcontrib_apagar' hash='{}'|json_id:r9011_infototalcontrib_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -324,7 +324,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'r9011_infototalcontrib_editar' or dict_permissoes|get_permissao:'r9011_infototalcontrib_cadastrar' %}
+                    {% if perms.r9011.change_r9011_infototalcontrib or perms.r9011.add_r9011_infototalcontrib %}
                         </form>
                     {% endif %}
 
@@ -350,9 +350,9 @@
 
             {% if tab == 'r9011_rtom' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r9011_rtom_visualizar' %} 
+                {% if perms.r9011.can_view_r9011_rtom %} 
 
-                    {% if dict_permissoes|get_permissao:'r9011_rtom_editar' or dict_permissoes|get_permissao:'r9011_rtom_cadastrar' %}
+                    {% if perms.r9011.change_r9011_rtom or perms.r9011.add_r9011RTom %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -379,7 +379,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das retenções de contribuição previdenciária sobre serviços tomados, apuradas no evento R-2010</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r9011_rtom_editar' or dict_permissoes|get_permissao:'r9011_rtom_cadastrar' %}
+                                        {% if perms.r9011.change_r9011_rtom or perms.r9011.add_r9011RTom %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -394,7 +394,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r9011_rtom_cadastrar' %}            
+                                    {% if perms.r9011.add_r9011RTom %}            
                                     <!-- begin_form_r9011_rtom --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r9011_rtom" action="{% url 'r9011_rtom_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -447,9 +447,9 @@
 
             {% if tab == 'r9011_rprest' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r9011_rprest_visualizar' %} 
+                {% if perms.r9011.can_view_r9011_rprest %} 
 
-                    {% if dict_permissoes|get_permissao:'r9011_rprest_editar' or dict_permissoes|get_permissao:'r9011_rprest_cadastrar' %}
+                    {% if perms.r9011.change_r9011_rprest or perms.r9011.add_r9011RPrest %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -476,7 +476,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre serviços prestados, apuradas no evento R-2020</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r9011_rprest_editar' or dict_permissoes|get_permissao:'r9011_rprest_cadastrar' %}
+                                        {% if perms.r9011.change_r9011_rprest or perms.r9011.add_r9011RPrest %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -491,7 +491,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r9011_rprest_cadastrar' %}            
+                                    {% if perms.r9011.add_r9011RPrest %}            
                                     <!-- begin_form_r9011_rprest --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r9011_rprest" action="{% url 'r9011_rprest_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -544,9 +544,9 @@
 
             {% if tab == 'r9011_rrecrepad' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r9011_rrecrepad_visualizar' %} 
+                {% if perms.r9011.can_view_r9011_rrecrepad %} 
 
-                    {% if dict_permissoes|get_permissao:'r9011_rrecrepad_editar' or dict_permissoes|get_permissao:'r9011_rrecrepad_cadastrar' %}
+                    {% if perms.r9011.change_r9011_rrecrepad or perms.r9011.add_r9011RRecRepAD %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -573,7 +573,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r9011_rrecrepad_editar' or dict_permissoes|get_permissao:'r9011_rrecrepad_cadastrar' %}
+                                        {% if perms.r9011.change_r9011_rrecrepad or perms.r9011.add_r9011RRecRepAD %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -588,7 +588,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r9011_rrecrepad_cadastrar' %}            
+                                    {% if perms.r9011.add_r9011RRecRepAD %}            
                                     <!-- begin_form_r9011_rrecrepad --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r9011_rrecrepad" action="{% url 'r9011_rrecrepad_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -641,9 +641,9 @@
 
             {% if tab == 'r9011_rcoml' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r9011_rcoml_visualizar' %} 
+                {% if perms.r9011.can_view_r9011_rcoml %} 
 
-                    {% if dict_permissoes|get_permissao:'r9011_rcoml_editar' or dict_permissoes|get_permissao:'r9011_rcoml_cadastrar' %}
+                    {% if perms.r9011.change_r9011_rcoml or perms.r9011.add_r9011RComl %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -670,7 +670,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r9011_rcoml_editar' or dict_permissoes|get_permissao:'r9011_rcoml_cadastrar' %}
+                                        {% if perms.r9011.change_r9011_rcoml or perms.r9011.add_r9011RComl %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -685,7 +685,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r9011_rcoml_cadastrar' %}            
+                                    {% if perms.r9011.add_r9011RComl %}            
                                     <!-- begin_form_r9011_rcoml --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r9011_rcoml" action="{% url 'r9011_rcoml_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -738,9 +738,9 @@
 
             {% if tab == 'r9011_rcprb' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r9011_rcprb_visualizar' %} 
+                {% if perms.r9011.can_view_r9011_rcprb %} 
 
-                    {% if dict_permissoes|get_permissao:'r9011_rcprb_editar' or dict_permissoes|get_permissao:'r9011_rcprb_cadastrar' %}
+                    {% if perms.r9011.change_r9011_rcprb or perms.r9011.add_r9011RCPRB %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -767,7 +767,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Totalizador da contribuição previdenciária sobre a Receita Bruta - CPRB, apuradas no evento R-2060</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r9011_rcprb_editar' or dict_permissoes|get_permissao:'r9011_rcprb_cadastrar' %}
+                                        {% if perms.r9011.change_r9011_rcprb or perms.r9011.add_r9011RCPRB %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -782,7 +782,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r9011_rcprb_cadastrar' %}            
+                                    {% if perms.r9011.add_r9011RCPRB %}            
                                     <!-- begin_form_r9011_rcprb --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r9011_rcprb" action="{% url 'r9011_rcprb_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

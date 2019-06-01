@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1200_infocomplem_cadastrar' %}
+                  {% if perms.s1200.add_s1200infoComplem %}
                   <a href="{% url 's1200_infocomplem_salvar' hash='{}'|json_return_page:'s1200_infocomplem_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

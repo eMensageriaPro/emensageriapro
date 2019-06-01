@@ -24,7 +24,7 @@
             <td>{{ a.s2210_evtcat }}</td>
             {% endif %}
             {% if show_fields.show_codparteating or 1 %}
-            <td>{{ a.get_codparteating_display }}</td>
+            <td>{{ a.codparteating|valor }}</td>
             {% endif %}
             {% if show_fields.show_lateralidade or 1 %}
             <td>{{ a.get_lateralidade_display }}</td>
@@ -35,9 +35,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2210_parteatingida_visualizar' %}
+                    {% if perms.s2210.can_view_s2210parteAtingida %}
                         <a href="{% url 's2210_parteatingida_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2210_parteatingida_editar' or dict_permissoes|get_permissao:'s2210_parteatingida_cadastrar' %}
+                            {% if perms.s2210.add_s2210parteAtingida or perms.s2210.change_s2210parteAtingida %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -48,7 +48,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2210_parteatingida_apagar' %}
+                    {% if perms.s2210.delete_s2210parteAtingida %}
                         <a href="{% url 's2210_parteatingida_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

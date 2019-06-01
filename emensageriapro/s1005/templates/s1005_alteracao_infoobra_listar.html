@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_cadastrar' %}
+                  {% if perms.s1005.add_s1005alteracaoinfoObra %}
                   <a href="{% url 's1005_alteracao_infoobra_salvar' hash='{}'|json_return_page:'s1005_alteracao_infoobra_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

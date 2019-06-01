@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro destinado ao registro de: a) remuneração relativa a diferenças salariais provenientes de acordos coletivos, convenção coletiva e dissídio; b) remuneração relativa a diferenças de vencimento provenientes de disposições legais (órgãos públicos); c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho. d) verbas de natureza salarial ou não salarial devidas após o desligamento</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1202_infoperant_cadastrar' %}
+                  {% if perms.s1202.add_s1202infoPerAnt %}
                   <a href="{% url 's1202_infoperant_salvar' hash='{}'|json_return_page:'s1202_infoperant_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

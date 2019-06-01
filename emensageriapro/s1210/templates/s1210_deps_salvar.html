@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1210_deps_visualizar' %}
+                    {% if perms.s1210.can_view_s1210deps %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1210_deps_salvar' hash='{}'|json_return_page:'s1210_deps_salvar'|json_return_hash:hash|json_id:s1210_deps_id|json_print:0|base64_encode_me %}">
                             Informações de dependentes do beneficiário do pagamento
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1210_deps_editar' or dict_permissoes|get_permissao:'s1210_deps_cadastrar' %}
+            {% if perms.s1210.change_s1210_deps or perms.s1210.add_s1210_deps %}
                 <form action="#" id="id_form_s1210_deps" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s1210_deps_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1210_deps_cadastrar' %}
+                                {% if perms.s1210.add_s1210deps %}
                                     <a href="{% url 's1210_deps_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1210_deps_listar' or dict_permissoes|get_permissao:'s1210_deps_listar' %}
+                            {% if perms.s1210.can_view_s1210_deps or perms.s1210.can_view_s1210_deps %}
                                 <a href="{% url 's1210_deps'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1210_deps_visualizar' and s1210_deps_id %}
+                            {% if perms.s1210.can_view_s1210_deps and s1210_deps_id %}
                                 <a href="{% url 's1210_deps_salvar' hash='{}'|json_id:s1210_deps_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1210_deps_visualizar' and s1210_deps_id %}
+                            {% if perms.s1210.can_view_s1210_deps and s1210_deps_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1210_deps_editar' or dict_permissoes|get_permissao:'s1210_deps_cadastrar' %}
+                            {% if perms.s1210.change_s1210_deps or perms.s1210.add_s1210_deps %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1210_deps_apagar' and s1210_deps_id %}
+                            {% if perms.s1210.delete_s1210_deps and s1210_deps_id %}
 
                             <a href="{% url 's1210_deps_apagar' hash='{}'|json_id:s1210_deps_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1210_deps_editar' or dict_permissoes|get_permissao:'s1210_deps_cadastrar' %}
+                    {% if perms.s1210.change_s1210_deps or perms.s1210.add_s1210_deps %}
                         </form>
                     {% endif %}
 

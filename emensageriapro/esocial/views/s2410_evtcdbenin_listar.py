@@ -65,17 +65,14 @@ def listar(request, hash):
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         for_print = int(dict_hash['print'])
+        
     except:
         return redirect('login')
     
     usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2410_evtcdbenin')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
-    if permissao.permite_listar:
+    if request.user.has_perm('esocial.can_view_s2410evtCdBenIn'):
+    
         filtrar = False
         dict_fields = {}
         show_fields = { 
@@ -115,8 +112,11 @@ def listar(request, hash):
             'show_arquivo_original': 0,
             'show_arquivo': 0,
             'show_status': 1, }
+            
         post = False
+        
         if request.method == 'POST':
+        
             post = True
             dict_fields = { 
                 'esocial': 'esocial',
@@ -149,10 +149,13 @@ def listar(request, hash):
                 'versao__icontains': 'versao__icontains',
                 'transmissor_lote_esocial__icontains': 'transmissor_lote_esocial__icontains',
                 'status__icontains': 'status__icontains', }
+                
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
+                
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
+                
             if request.method == 'POST':
                 dict_fields = { 
                     'esocial': 'esocial',
@@ -187,28 +190,29 @@ def listar(request, hash):
                     'status__icontains': 'status__icontains', }
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
+                    
         dict_qs = clear_dict_fields(dict_fields)
         s2410_evtcdbenin_lista = s2410evtCdBenIn.objects.filter(**dict_qs).filter().exclude(id=0).all()
+        
         if not post and len(s2410_evtcdbenin_lista) > 100:
             filtrar = True
             s2410_evtcdbenin_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2410_evtcdbenin_listar_custom
+        
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2410_evtcdbenin'
+        
         context = {
             's2410_evtcdbenin_lista': s2410_evtcdbenin_lista, 
             
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['esocial', ],
+            'paginas': ['s2410_evtcdbenin', ],
             'show_fields': show_fields,
             'for_print': for_print,
             'hash': hash,
@@ -217,9 +221,11 @@ def listar(request, hash):
         }
         
         if for_print in (0,1):
+        
             return render(request, 's2410_evtcdbenin_listar.html', context)
             
         elif for_print == 2:
+        
             from emensageriapro.functions import render_to_pdf
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
@@ -243,6 +249,7 @@ def listar(request, hash):
             return response
             
         elif for_print == 3:
+        
             response = render_to_response('s2410_evtcdbenin_listar.html', context)
             filename = "s2410_evtcdbenin.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -250,6 +257,7 @@ def listar(request, hash):
             return response
             
         elif for_print == 4:
+        
             response = render_to_response('csv/s2410_evtcdbenin.csv', context)
             filename = "s2410_evtcdbenin.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -257,15 +265,11 @@ def listar(request, hash):
             return response
             
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['esocial', ],
+            'paginas': ['s2410_evtcdbenin', ],
         }
         return render(request, 'permissao_negada.html', context)

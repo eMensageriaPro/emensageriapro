@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">R-2030 - Recursos Recebidos por Associação Desportiva</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}
+                  {% if perms.efdreinf.add_r2030evtAssocDespRec %}
                   <a href="{% url 'r2030_evtassocdesprec_salvar' hash='{}'|json_return_page:'r2030_evtassocdesprec_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

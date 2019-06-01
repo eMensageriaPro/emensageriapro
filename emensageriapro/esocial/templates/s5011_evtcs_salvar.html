@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'s5011_evtcs_visualizar' %}
+                {% if perms.esocial.can_view_s5011evtCS %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 's5011_evtcs_salvar' hash='{}'|json_return_page:'s5011_evtcs_salvar'|json_return_hash:hash|json_id:s5011_evtcs_id|json_print:0|base64_encode_me %}">
                     S-5011 - Informações das contribuições sociais consolidadas por contribuinte</a>
@@ -58,28 +58,28 @@
                 {% if s5011_evtcs_id %}
                     
                         
-                            {% if dict_permissoes|get_permissao:'s5011_infocpseg_visualizar' %}
+                            {% if perms.esocial.can_view_s5011_infocpseg %}
                                 <li {% if tab == 's5011_infocpseg' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_evtcs_salvar' hash='{}'|json_id:s5011_evtcs_id|json_print:0|json_tab:'s5011_infocpseg'|base64_encode_me %}">
                                     Informações de contribuição previdenciária do Segurado</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s5011_infopj_visualizar' %}
+                            {% if perms.esocial.can_view_s5011_infopj %}
                                 <li {% if tab == 's5011_infopj' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_evtcs_salvar' hash='{}'|json_id:s5011_evtcs_id|json_print:0|json_tab:'s5011_infopj'|base64_encode_me %}">
                                     Informações complementares, exclusivas da Pessoa Jurídica.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s5011_ideestab_visualizar' %}
+                            {% if perms.esocial.can_view_s5011_ideestab %}
                                 <li {% if tab == 's5011_ideestab' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_evtcs_salvar' hash='{}'|json_id:s5011_evtcs_id|json_print:0|json_tab:'s5011_ideestab'|base64_encode_me %}">
                                     Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s5011_infocrcontrib_visualizar' %}
+                            {% if perms.esocial.can_view_s5011_infocrcontrib %}
                                 <li {% if tab == 's5011_infocrcontrib' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_evtcs_salvar' hash='{}'|json_id:s5011_evtcs_id|json_print:0|json_tab:'s5011_infocrcontrib'|base64_encode_me %}">
                                     Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.</a>
@@ -176,7 +176,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'s5011_evtcs_editar' or dict_permissoes|get_permissao:'s5011_evtcs_cadastrar' %}
+               {% if perms.esocial.change_s5011_evtcs or perms.esocial.add_s5011_evtcs %}
                {% if s5011_evtcs_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s5011_evtcs" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -198,8 +198,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if s5011_evtcs_id %}
-                           {% if dict_permissoes|get_permissao:'s5011_evtcs_cadastrar' %}<a href="{% url 's5011_evtcs_verificar'  hash='{}'|json_id:s5011_evtcs_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s5011_evtcs_cadastrar' %}
+                           {% if perms.esocial.add_s5011evtCS %}<a href="{% url 's5011_evtcs_verificar'  hash='{}'|json_id:s5011_evtcs_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s5011evtCS %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -216,7 +216,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s5011_evtcs_cadastrar' %}
+                           {% if perms.esocial.add_s5011evtCS %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -237,29 +237,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s5011_evtcs_cadastrar' %}<a href="{% url 's5011_evtcs_xml'  hash='{}'|json_id:s5011_evtcs_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s5011evtCS %}<a href="{% url 's5011_evtcs_xml'  hash='{}'|json_id:s5011_evtcs_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if s5011_evtcs.status == STATUS_EVENTO_CADASTRADO or s5011_evtcs.status == STATUS_EVENTO_IMPORTADO or s5011_evtcs.status == STATUS_EVENTO_DUPLICADO or s5011_evtcs.status == STATUS_EVENTO_GERADO or s5011_evtcs.status == STATUS_EVENTO_ASSINADO or s5011_evtcs.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'s5011_evtcs_cadastrar' %}
+                           {% if perms.esocial.add_s5011evtCS %}
                            <a href="{% url 's5011_evtcs_validar_evento' hash='{}'|json_id:s5011_evtcs_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'s5011_evtcs_cadastrar' %}<a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s5011evtCS %}<a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s5011_evtcs_listar' or dict_permissoes|get_permissao:'s5011_evtcs_listar' %}<a href="{% url 's5011_evtcs'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s5011_evtcs_visualizar' and s5011_evtcs_id %}<a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:s5011_evtcs_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s5011_evtcs_editar' or dict_permissoes|get_permissao:'s5011_evtcs_cadastrar' %}
+                           {% if perms.esocial.can_view_s5011_evtcs or perms.esocial.can_view_s5011_evtcs %}<a href="{% url 's5011_evtcs'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.can_view_s5011_evtcs and s5011_evtcs_id %}<a href="{% url 's5011_evtcs_salvar'  hash='{}'|json_id:s5011_evtcs_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.change_s5011_evtcs or perms.esocial.add_s5011_evtcs %}
                            {% if s5011_evtcs_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s5011_evtcs_apagar' and s5011_evtcs_id %}<a href="{% url 's5011_evtcs_apagar'  hash='{}'|json_id:s5011_evtcs_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.delete_s5011_evtcs and s5011_evtcs_id %}<a href="{% url 's5011_evtcs_apagar'  hash='{}'|json_id:s5011_evtcs_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'s5011_evtcs_editar' or dict_permissoes|get_permissao:'s5011_evtcs_cadastrar' %}
+                  {% if perms.esocial.change_s5011_evtcs or perms.esocial.add_s5011_evtcs %}
                {% if s5011_evtcs_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}
@@ -315,9 +315,9 @@
 
 {% if tab == 's5011_infocpseg' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s5011_infocpseg_visualizar' %} 
+{% if perms.esocial.can_view_s5011_infocpseg %} 
 
-{% if dict_permissoes|get_permissao:'s5011_infocpseg_editar' or dict_permissoes|get_permissao:'s5011_infocpseg_cadastrar' %}
+{% if perms.esocial.change_s5011_infocpseg or perms.s5011.add_s5011infoCPSeg %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -343,7 +343,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de contribuição previdenciária do Segurado</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s5011_infocpseg_editar' or dict_permissoes|get_permissao:'s5011_infocpseg_cadastrar' %}
+          {% if perms.esocial.change_s5011_infocpseg or perms.s5011.add_s5011infoCPSeg %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -352,7 +352,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s5011_infocpseg_cadastrar' %}            
+        {% if perms.s5011.add_s5011infoCPSeg %}            
 
 
 
@@ -410,9 +410,9 @@ function CadastroListagem() {
 
 {% if tab == 's5011_infopj' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s5011_infopj_visualizar' %} 
+{% if perms.esocial.can_view_s5011_infopj %} 
 
-{% if dict_permissoes|get_permissao:'s5011_infopj_editar' or dict_permissoes|get_permissao:'s5011_infopj_cadastrar' %}
+{% if perms.esocial.change_s5011_infopj or perms.s5011.add_s5011infoPJ %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -438,7 +438,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações complementares, exclusivas da Pessoa Jurídica.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s5011_infopj_editar' or dict_permissoes|get_permissao:'s5011_infopj_cadastrar' %}
+          {% if perms.esocial.change_s5011_infopj or perms.s5011.add_s5011infoPJ %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -447,7 +447,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s5011_infopj_cadastrar' %}            
+        {% if perms.s5011.add_s5011infoPJ %}            
 
 
 
@@ -505,9 +505,9 @@ function CadastroListagem() {
 
 {% if tab == 's5011_ideestab' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s5011_ideestab_visualizar' %} 
+{% if perms.esocial.can_view_s5011_ideestab %} 
 
-{% if dict_permissoes|get_permissao:'s5011_ideestab_editar' or dict_permissoes|get_permissao:'s5011_ideestab_cadastrar' %}
+{% if perms.esocial.change_s5011_ideestab or perms.s5011.add_s5011ideEstab %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -533,7 +533,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de identificação do estabelecimento, obra ou órgão público e período de validade das informações que estão sendo incluídas</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s5011_ideestab_editar' or dict_permissoes|get_permissao:'s5011_ideestab_cadastrar' %}
+          {% if perms.esocial.change_s5011_ideestab or perms.s5011.add_s5011ideEstab %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -542,7 +542,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s5011_ideestab_cadastrar' %}            
+        {% if perms.s5011.add_s5011ideEstab %}            
 
 
 
@@ -600,9 +600,9 @@ function CadastroListagem() {
 
 {% if tab == 's5011_infocrcontrib' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s5011_infocrcontrib_visualizar' %} 
+{% if perms.esocial.can_view_s5011_infocrcontrib %} 
 
-{% if dict_permissoes|get_permissao:'s5011_infocrcontrib_editar' or dict_permissoes|get_permissao:'s5011_infocrcontrib_cadastrar' %}
+{% if perms.esocial.change_s5011_infocrcontrib or perms.s5011.add_s5011infoCRContrib %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -628,7 +628,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações consolidadas das contribuições sociais devidas à Previdência Social e Outras Entidades e Fundos, por código de Receita - CR.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s5011_infocrcontrib_editar' or dict_permissoes|get_permissao:'s5011_infocrcontrib_cadastrar' %}
+          {% if perms.esocial.change_s5011_infocrcontrib or perms.s5011.add_s5011infoCRContrib %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -637,7 +637,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s5011_infocrcontrib_cadastrar' %}            
+        {% if perms.s5011.add_s5011infoCRContrib %}            
 
 
 

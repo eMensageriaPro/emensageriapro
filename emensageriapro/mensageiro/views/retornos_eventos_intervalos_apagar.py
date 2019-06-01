@@ -61,45 +61,50 @@ from emensageriapro.controle_de_acesso.models import *
 @login_required
 def apagar(request, hash):
     
-    
     try: 
+    
         usuario_id = request.user.id   
         dict_hash = get_hash_url( hash )
         retornos_eventos_intervalos_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='retornos_eventos_intervalos')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    retornos_eventos_intervalos = get_object_or_404(RetornosEventosIntervalos, id = retornos_eventos_intervalos_id)
+    retornos_eventos_intervalos = get_object_or_404(RetornosEventosIntervalos, id=retornos_eventos_intervalos_id)
+    
     if request.method == 'POST':
-        obj = RetornosEventosIntervalos.objects.get(id = retornos_eventos_intervalos_id)
+    
+        obj = RetornosEventosIntervalos.objects.get(id=retornos_eventos_intervalos_id)
         obj.delete(request=request)
         #retornos_eventos_intervalos_apagar_custom
         #retornos_eventos_intervalos_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'retornos_eventos_intervalos_salvar':
-            return redirect('retornos_eventos_intervalos', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+        if request.session['retorno_pagina'] == 'retornos_eventos_intervalos_salvar':
+        
+            return redirect('retornos_eventos_intervalos', 
+                            hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], 
+                            hash=request.session['retorno_hash'])
+            
+    context = {
+    
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
+        'modulos': ['mensageiro', ],
+        'paginas': ['retornos_eventos_intervalos', ],
         'hash': hash,
+        
     }
-    return render(request, 'retornos_eventos_intervalos_apagar.html', context)
+    
+    return render(request, 
+                  'retornos_eventos_intervalos_apagar.html', 
+                  context)

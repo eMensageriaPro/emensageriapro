@@ -35,9 +35,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s5012_infocrcontrib_visualizar' %}
+                    {% if perms.s5012.can_view_s5012infoCRContrib %}
                         <a href="{% url 's5012_infocrcontrib_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s5012_infocrcontrib_editar' or dict_permissoes|get_permissao:'s5012_infocrcontrib_cadastrar' %}
+                            {% if perms.s5012.add_s5012infoCRContrib or perms.s5012.change_s5012infoCRContrib %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -48,7 +48,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s5012_infocrcontrib_apagar' %}
+                    {% if perms.s5012.delete_s5012infoCRContrib %}
                         <a href="{% url 's5012_infocrcontrib_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

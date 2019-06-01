@@ -60,28 +60,26 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def listar(request, hash):
+
     for_print = 0
     
     try: 
+    
         usuario_id = request.user.id   
         dict_hash = get_hash_url( hash )
-        #retorno_pagina = dict_hash['retorno_pagina']
-        #retorno_hash = dict_hash['retorno_hash']
-        #s2405_dependente_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2405_dependente')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
+    if request.user.has_perm('s2405.can_view_s2405dependente'):
+    
         filtrar = False
+        
         dict_fields = {}
         show_fields = { 
             'show_s2405_evtcdbenefalt': 1,
@@ -93,8 +91,11 @@ def listar(request, hash):
             'show_depirrf': 1,
             'show_incfismen': 1,
             'show_depfinsprev': 1, }
+            
         post = False
+        
         if request.method == 'POST':
+        
             post = True
             dict_fields = { 
                 's2405_evtcdbenefalt__icontains': 's2405_evtcdbenefalt__icontains',
@@ -106,11 +107,17 @@ def listar(request, hash):
                 'depirrf__icontains': 'depirrf__icontains',
                 'incfismen__icontains': 'incfismen__icontains',
                 'depfinsprev__icontains': 'depfinsprev__icontains', }
+                
             for a in dict_fields:
+            
                 dict_fields[a] = request.POST.get(a or None)
+                
             for a in show_fields:
+            
                 show_fields[a] = request.POST.get(a or None)
+                
             if request.method == 'POST':
+            
                 dict_fields = { 
                     's2405_evtcdbenefalt__icontains': 's2405_evtcdbenefalt__icontains',
                     'tpdep__icontains': 'tpdep__icontains',
@@ -121,40 +128,45 @@ def listar(request, hash):
                     'depirrf__icontains': 'depirrf__icontains',
                     'incfismen__icontains': 'incfismen__icontains',
                     'depfinsprev__icontains': 'depfinsprev__icontains', }
+                    
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
+                    
         dict_qs = clear_dict_fields(dict_fields)
         s2405_dependente_lista = s2405dependente.objects.filter(**dict_qs).filter().exclude(id=0).all()
+        
         if not post and len(s2405_dependente_lista) > 100:
+        
             filtrar = True
             s2405_dependente_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2405_dependente_listar_custom
+        
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2405_dependente'
+        
         context = {
             's2405_dependente_lista': s2405_dependente_lista, 
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['s2405', ],
+            'paginas': ['s2405_dependente', ],
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'show_fields': show_fields,
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
+        
         if for_print in (0,1):
+        
             return render(request, 's2405_dependente_listar.html', context)
+            
         elif for_print == 2:
-            #return render_to_pdf('tables/s2405_dependente_pdf_xls.html', context)
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -175,30 +187,34 @@ def listar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('s2405_dependente_listar.html', context)
             filename = "s2405_dependente.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
         elif for_print == 4:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s2405_dependente.csv', context)
             filename = "s2405_dependente.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-    else:
-        context = {
-            'usuario': usuario, 
             
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+    else:
+    
+        context = {
+            'usuario': usuario,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['s2405', ],
+            'paginas': ['s2405_dependente', ],
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

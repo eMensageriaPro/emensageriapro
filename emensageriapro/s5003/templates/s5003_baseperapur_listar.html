@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações sobre bases de cálculo do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-1200, S-2299 ou S-2399.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s5003_baseperapur_cadastrar' %}
+                  {% if perms.s5003.add_s5003basePerApur %}
                   <a href="{% url 's5003_baseperapur_salvar' hash='{}'|json_return_page:'s5003_baseperapur_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

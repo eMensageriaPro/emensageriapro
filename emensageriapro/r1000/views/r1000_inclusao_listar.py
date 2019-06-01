@@ -60,28 +60,26 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def listar(request, hash):
+
     for_print = 0
     
     try: 
+    
         usuario_id = request.user.id   
         dict_hash = get_hash_url( hash )
-        #retorno_pagina = dict_hash['retorno_pagina']
-        #retorno_hash = dict_hash['retorno_hash']
-        #r1000_inclusao_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r1000_inclusao')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
+    if request.user.has_perm('r1000.can_view_r1000inclusao'):
+    
         filtrar = False
+        
         dict_fields = {}
         show_fields = { 
             'show_r1000_evtinfocontri': 1,
@@ -100,8 +98,11 @@ def listar(request, hash):
             'show_fonefixo': 0,
             'show_fonecel': 0,
             'show_email': 0, }
+            
         post = False
+        
         if request.method == 'POST':
+        
             post = True
             dict_fields = { 
                 'r1000_evtinfocontri__icontains': 'r1000_evtinfocontri__icontains',
@@ -120,11 +121,17 @@ def listar(request, hash):
                 'fonefixo__icontains': 'fonefixo__icontains',
                 'fonecel__icontains': 'fonecel__icontains',
                 'email__icontains': 'email__icontains', }
+                
             for a in dict_fields:
+            
                 dict_fields[a] = request.POST.get(a or None)
+                
             for a in show_fields:
+            
                 show_fields[a] = request.POST.get(a or None)
+                
             if request.method == 'POST':
+            
                 dict_fields = { 
                     'r1000_evtinfocontri__icontains': 'r1000_evtinfocontri__icontains',
                     'ideperiodo': 'ideperiodo',
@@ -142,40 +149,45 @@ def listar(request, hash):
                     'fonefixo__icontains': 'fonefixo__icontains',
                     'fonecel__icontains': 'fonecel__icontains',
                     'email__icontains': 'email__icontains', }
+                    
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
+                    
         dict_qs = clear_dict_fields(dict_fields)
         r1000_inclusao_lista = r1000inclusao.objects.filter(**dict_qs).filter().exclude(id=0).all()
+        
         if not post and len(r1000_inclusao_lista) > 100:
+        
             filtrar = True
             r1000_inclusao_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r1000_inclusao_listar_custom
+        
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r1000_inclusao'
+        
         context = {
             'r1000_inclusao_lista': r1000_inclusao_lista, 
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['r1000', ],
+            'paginas': ['r1000_inclusao', ],
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'show_fields': show_fields,
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
+        
         if for_print in (0,1):
+        
             return render(request, 'r1000_inclusao_listar.html', context)
+            
         elif for_print == 2:
-            #return render_to_pdf('tables/r1000_inclusao_pdf_xls.html', context)
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -196,30 +208,34 @@ def listar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('r1000_inclusao_listar.html', context)
             filename = "r1000_inclusao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
         elif for_print == 4:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('csv/r1000_inclusao.csv', context)
             filename = "r1000_inclusao.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-    else:
-        context = {
-            'usuario': usuario, 
             
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+    else:
+    
+        context = {
+            'usuario': usuario,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['r1000', ],
+            'paginas': ['r1000_inclusao', ],
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

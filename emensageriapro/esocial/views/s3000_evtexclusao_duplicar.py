@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.s3000.models import *
 from emensageriapro.s3000.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -81,28 +81,37 @@ def duplicar(request, hash):
 
     dict_hash = get_hash_url(hash)
     s3000_evtexclusao_id = int(dict_hash['id'])
+    
+    if request.user.has_perm('esocial.can_duplicate_event_s3000evtExclusao'):
 
-    if s3000_evtexclusao_id:
-
-        s3000_evtexclusao = get_object_or_404(
-            s3000evtExclusao,
-            id=s3000_evtexclusao_id)
-
-        texto = gerar_xml_s3000(s3000_evtexclusao_id, versao="|")
-        dados = read_s3000_evtexclusao_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s3000_evtexclusao)
-
-        s3000evtExclusao.objects.filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s3000_evtexclusao.identidade),
-            's3000_evtexclusao', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('s3000_evtexclusao_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao duplicar evento!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        if s3000_evtexclusao_id:
+    
+            s3000_evtexclusao = get_object_or_404(
+                s3000evtExclusao,
+                id=s3000_evtexclusao_id)
+    
+            texto = gerar_xml_s3000(s3000_evtexclusao_id, versao="|")
+            dados = read_s3000_evtexclusao_string({}, texto.encode('utf-8'), 0)
+            nova_identidade = identidade_evento(s3000_evtexclusao)
+    
+            s3000evtExclusao.objects.filter(id=dados['id']).\
+                update(status=STATUS_EVENTO_CADASTRADO,
+                       arquivo_original=0,
+                       arquivo='')
+    
+            gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s3000_evtexclusao.identidade),
+                's3000_evtexclusao', dados['id'], request.user.id, 1)
+    
+            messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
+            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
+            return redirect('s3000_evtexclusao_salvar', hash=url_hash)
+    
+        messages.error(request, 'Erro ao duplicar evento!')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+    else:
+    
+        messages.error(request, u'''Você não possui permissão para duplicar o evento. 
+                                    Entre em contato com o administrador do sistema!''')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        

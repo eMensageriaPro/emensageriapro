@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Identificação do(s) trabalhador(es) substituído(s)</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2200_idetrabsubstituido_cadastrar' %}
+                  {% if perms.s2200.add_s2200ideTrabSubstituido %}
                   <a href="{% url 's2200_idetrabsubstituido_salvar' hash='{}'|json_return_page:'s2200_idetrabsubstituido_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

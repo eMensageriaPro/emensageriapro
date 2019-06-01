@@ -74,14 +74,6 @@ class r4040ideNat(SoftDeletionModel):
         return self.r4040_evtbenefnid.evento()
     natrendim = models.IntegerField(choices=CHOICES_R4040_NATRENDIM, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -105,7 +97,8 @@ class r4040ideNat(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4040_idenat", "Can view r4040_idenat"), )
+            ("can_view_r4040ideNat", "Can view R4040IDENAT"),
+            ("can_view_menu_r4040ideNat", "Can view menu R4040IDENAT"),)
             
         ordering = [
             'r4040_evtbenefnid',
@@ -142,14 +135,6 @@ class r4040infoPgto(SoftDeletionModel):
     vlrir = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     descr = models.CharField(max_length=200, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -177,7 +162,8 @@ class r4040infoPgto(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4040_infopgto", "Can view r4040_infopgto"), )
+            ("can_view_r4040infoPgto", "Can view R4040INFOPGTO"),
+            ("can_view_menu_r4040infoPgto", "Can view menu R4040INFOPGTO"),)
             
         ordering = [
             'r4040_idenat',

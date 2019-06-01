@@ -78,14 +78,6 @@ class r1070alteracao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     indautoria = models.IntegerField(choices=CHOICES_R1070_INDAUTORIA_ALTERACAO, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -112,7 +104,8 @@ class r1070alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070_alteracao", "Can view r1070_alteracao"), )
+            ("can_view_r1070alteracao", "Can view R1070ALTERACAO"),
+            ("can_view_menu_r1070alteracao", "Can view menu R1070ALTERACAO"),)
             
         ordering = [
             'r1070_evttabprocesso',
@@ -150,14 +143,6 @@ class r1070alteracaodadosProcJud(SoftDeletionModel):
     codmunic = models.TextField(null=True, )
     idvara = models.CharField(max_length=4, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -183,7 +168,8 @@ class r1070alteracaodadosProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070_alteracao_dadosprocjud", "Can view r1070_alteracao_dadosprocjud"), )
+            ("can_view_r1070alteracaodadosProcJud", "Can view R1070ALTERACAODADOSPROCJUD"),
+            ("can_view_menu_r1070alteracaodadosProcJud", "Can view menu R1070ALTERACAODADOSPROCJUD"),)
             
         ordering = [
             'r1070_alteracao',
@@ -221,14 +207,6 @@ class r1070alteracaoinfoSusp(SoftDeletionModel):
     dtdecisao = models.DateField(null=True, )
     inddeposito = models.CharField(choices=CHOICES_R1070_INDDEPOSITO_ALTERACAO, max_length=1, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -254,7 +232,8 @@ class r1070alteracaoinfoSusp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070_alteracao_infosusp", "Can view r1070_alteracao_infosusp"), )
+            ("can_view_r1070alteracaoinfoSusp", "Can view R1070ALTERACAOINFOSUSP"),
+            ("can_view_menu_r1070alteracaoinfoSusp", "Can view menu R1070ALTERACAOINFOSUSP"),)
             
         ordering = [
             'r1070_alteracao',
@@ -290,14 +269,6 @@ class r1070alteracaonovaValidade(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -321,7 +292,8 @@ class r1070alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070_alteracao_novavalidade", "Can view r1070_alteracao_novavalidade"), )
+            ("can_view_r1070alteracaonovaValidade", "Can view R1070ALTERACAONOVAVALIDADE"),
+            ("can_view_menu_r1070alteracaonovaValidade", "Can view menu R1070ALTERACAONOVAVALIDADE"),)
             
         ordering = [
             'r1070_alteracao',
@@ -357,14 +329,6 @@ class r1070exclusao(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -390,7 +354,8 @@ class r1070exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070_exclusao", "Can view r1070_exclusao"), )
+            ("can_view_r1070exclusao", "Can view R1070EXCLUSAO"),
+            ("can_view_menu_r1070exclusao", "Can view menu R1070EXCLUSAO"),)
             
         ordering = [
             'r1070_evttabprocesso',
@@ -429,14 +394,6 @@ class r1070inclusao(SoftDeletionModel):
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     indautoria = models.IntegerField(choices=CHOICES_R1070_INDAUTORIA_INCLUSAO, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -463,7 +420,8 @@ class r1070inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070_inclusao", "Can view r1070_inclusao"), )
+            ("can_view_r1070inclusao", "Can view R1070INCLUSAO"),
+            ("can_view_menu_r1070inclusao", "Can view menu R1070INCLUSAO"),)
             
         ordering = [
             'r1070_evttabprocesso',
@@ -501,14 +459,6 @@ class r1070inclusaodadosProcJud(SoftDeletionModel):
     codmunic = models.TextField(null=True, )
     idvara = models.CharField(max_length=4, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -534,7 +484,8 @@ class r1070inclusaodadosProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070_inclusao_dadosprocjud", "Can view r1070_inclusao_dadosprocjud"), )
+            ("can_view_r1070inclusaodadosProcJud", "Can view R1070INCLUSAODADOSPROCJUD"),
+            ("can_view_menu_r1070inclusaodadosProcJud", "Can view menu R1070INCLUSAODADOSPROCJUD"),)
             
         ordering = [
             'r1070_inclusao',
@@ -572,14 +523,6 @@ class r1070inclusaoinfoSusp(SoftDeletionModel):
     dtdecisao = models.DateField(null=True, )
     inddeposito = models.CharField(choices=CHOICES_R1070_INDDEPOSITO_INCLUSAO, max_length=1, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -605,7 +548,8 @@ class r1070inclusaoinfoSusp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r1070_inclusao_infosusp", "Can view r1070_inclusao_infosusp"), )
+            ("can_view_r1070inclusaoinfoSusp", "Can view R1070INCLUSAOINFOSUSP"),
+            ("can_view_menu_r1070inclusaoinfoSusp", "Can view menu R1070INCLUSAOINFOSUSP"),)
             
         ordering = [
             'r1070_inclusao',

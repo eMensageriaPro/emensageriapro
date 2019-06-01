@@ -17,9 +17,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'login_recuperar_senha_visualizar' %}
+                    {% if perms.controle_de_acesso.can_view_RecuperarSenha %}
                         <a href="{% url 'login_recuperar_senha_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'login_recuperar_senha_editar' or dict_permissoes|get_permissao:'login_recuperar_senha_cadastrar' %}
+                            {% if perms.controle_de_acesso.add_RecuperarSenha or perms.controle_de_acesso.change_RecuperarSenha %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -30,7 +30,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'login_recuperar_senha_apagar' %}
+                    {% if perms.controle_de_acesso.delete_RecuperarSenha %}
                         <a href="{% url 'login_recuperar_senha_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

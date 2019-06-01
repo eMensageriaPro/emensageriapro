@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' %}
+                    {% if perms.s5011.can_view_s5011ideLotacao %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_return_page:'s5011_idelotacao_salvar'|json_return_hash:hash|json_id:s5011_idelotacao_id|json_print:0|base64_encode_me %}">
                             Informações de identificação da lotação e validade das informações que estão sendo incluídas
@@ -62,42 +62,42 @@
                     {% endif %}
                     {% if s5011_idelotacao_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s5011_infotercsusp_visualizar' %}
+                            {% if perms.s5011.can_view_s5011_infotercsusp %}
                                 <li {% if tab == 's5011_infotercsusp' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_infotercsusp'|base64_encode_me %}">
                                     Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_visualizar' %}
+                            {% if perms.s5011.can_view_s5011_infoemprparcial %}
                                 <li {% if tab == 's5011_infoemprparcial' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_infoemprparcial'|base64_encode_me %}">
                                     Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s5011_dadosopport_visualizar' %}
+                            {% if perms.s5011.can_view_s5011_dadosopport %}
                                 <li {% if tab == 's5011_dadosopport' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_dadosopport'|base64_encode_me %}">
                                     Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %}
+                            {% if perms.s5011.can_view_s5011_basesremun %}
                                 <li {% if tab == 's5011_basesremun' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_basesremun'|base64_encode_me %}">
                                     Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %}
+                            {% if perms.s5011.can_view_s5011_basesavnport %}
                                 <li {% if tab == 's5011_basesavnport' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_basesavnport'|base64_encode_me %}">
                                     Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_visualizar' %}
+                            {% if perms.s5011.can_view_s5011_infosubstpatropport %}
                                 <li {% if tab == 's5011_infosubstpatropport' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|json_tab:'s5011_infosubstpatropport'|base64_encode_me %}">
                                     Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</a>
@@ -216,7 +216,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s5011_idelotacao_editar' or dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}
+            {% if perms.s5011.change_s5011_idelotacao or perms.s5011.add_s5011_idelotacao %}
                 <form action="#" id="id_form_s5011_idelotacao" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -243,7 +243,7 @@
                             <!-- botões especiais -->
                             {% if s5011_idelotacao_id %}
 
-                                {% if dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}
+                                {% if perms.s5011.add_s5011ideLotacao %}
                                     <a href="{% url 's5011_idelotacao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -255,7 +255,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_listar' or dict_permissoes|get_permissao:'s5011_idelotacao_listar' %}
+                            {% if perms.s5011.can_view_s5011_idelotacao or perms.s5011.can_view_s5011_idelotacao %}
                                 <a href="{% url 's5011_idelotacao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -264,7 +264,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' and s5011_idelotacao_id %}
+                            {% if perms.s5011.can_view_s5011_idelotacao and s5011_idelotacao_id %}
                                 <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:s5011_idelotacao_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -273,7 +273,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' and s5011_idelotacao_id %}
+                            {% if perms.s5011.can_view_s5011_idelotacao and s5011_idelotacao_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -300,7 +300,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_editar' or dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}
+                            {% if perms.s5011.change_s5011_idelotacao or perms.s5011.add_s5011_idelotacao %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -309,7 +309,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_apagar' and s5011_idelotacao_id %}
+                            {% if perms.s5011.delete_s5011_idelotacao and s5011_idelotacao_id %}
 
                             <a href="{% url 's5011_idelotacao_apagar' hash='{}'|json_id:s5011_idelotacao_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -331,7 +331,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s5011_idelotacao_editar' or dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}
+                    {% if perms.s5011.change_s5011_idelotacao or perms.s5011.add_s5011_idelotacao %}
                         </form>
                     {% endif %}
 
@@ -357,9 +357,9 @@
 
             {% if tab == 's5011_infotercsusp' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s5011_infotercsusp_visualizar' %} 
+                {% if perms.s5011.can_view_s5011_infotercsusp %} 
 
-                    {% if dict_permissoes|get_permissao:'s5011_infotercsusp_editar' or dict_permissoes|get_permissao:'s5011_infotercsusp_cadastrar' %}
+                    {% if perms.s5011.change_s5011_infotercsusp or perms.s5011.add_s5011infoTercSusp %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -386,7 +386,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de suspensão de contribuições destinadas a Outras Entidades e Fundos (Terceiros).</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s5011_infotercsusp_editar' or dict_permissoes|get_permissao:'s5011_infotercsusp_cadastrar' %}
+                                        {% if perms.s5011.change_s5011_infotercsusp or perms.s5011.add_s5011infoTercSusp %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -401,7 +401,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s5011_infotercsusp_cadastrar' %}            
+                                    {% if perms.s5011.add_s5011infoTercSusp %}            
                                     <!-- begin_form_s5011_infotercsusp --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s5011_infotercsusp" action="{% url 's5011_infotercsusp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -454,9 +454,9 @@
 
             {% if tab == 's5011_infoemprparcial' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_visualizar' %} 
+                {% if perms.s5011.can_view_s5011_infoemprparcial %} 
 
-                    {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_editar' or dict_permissoes|get_permissao:'s5011_infoemprparcial_cadastrar' %}
+                    {% if perms.s5011.change_s5011_infoemprparcial or perms.s5011.add_s5011infoEmprParcial %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -483,7 +483,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_editar' or dict_permissoes|get_permissao:'s5011_infoemprparcial_cadastrar' %}
+                                        {% if perms.s5011.change_s5011_infoemprparcial or perms.s5011.add_s5011infoEmprParcial %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -498,7 +498,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s5011_infoemprparcial_cadastrar' %}            
+                                    {% if perms.s5011.add_s5011infoEmprParcial %}            
                                     <!-- begin_form_s5011_infoemprparcial --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s5011_infoemprparcial" action="{% url 's5011_infoemprparcial_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -551,9 +551,9 @@
 
             {% if tab == 's5011_dadosopport' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s5011_dadosopport_visualizar' %} 
+                {% if perms.s5011.can_view_s5011_dadosopport %} 
 
-                    {% if dict_permissoes|get_permissao:'s5011_dadosopport_editar' or dict_permissoes|get_permissao:'s5011_dadosopport_cadastrar' %}
+                    {% if perms.s5011.change_s5011_dadosopport or perms.s5011.add_s5011dadosOpPort %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -580,7 +580,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s5011_dadosopport_editar' or dict_permissoes|get_permissao:'s5011_dadosopport_cadastrar' %}
+                                        {% if perms.s5011.change_s5011_dadosopport or perms.s5011.add_s5011dadosOpPort %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -595,7 +595,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s5011_dadosopport_cadastrar' %}            
+                                    {% if perms.s5011.add_s5011dadosOpPort %}            
                                     <!-- begin_form_s5011_dadosopport --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s5011_dadosopport" action="{% url 's5011_dadosopport_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -648,9 +648,9 @@
 
             {% if tab == 's5011_basesremun' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s5011_basesremun_visualizar' %} 
+                {% if perms.s5011.can_view_s5011_basesremun %} 
 
-                    {% if dict_permissoes|get_permissao:'s5011_basesremun_editar' or dict_permissoes|get_permissao:'s5011_basesremun_cadastrar' %}
+                    {% if perms.s5011.change_s5011_basesremun or perms.s5011.add_s5011basesRemun %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -677,7 +677,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Bases de cálculo da contribuição previdenciária incidente sobre remunerações, por categoria.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s5011_basesremun_editar' or dict_permissoes|get_permissao:'s5011_basesremun_cadastrar' %}
+                                        {% if perms.s5011.change_s5011_basesremun or perms.s5011.add_s5011basesRemun %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -692,7 +692,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s5011_basesremun_cadastrar' %}            
+                                    {% if perms.s5011.add_s5011basesRemun %}            
                                     <!-- begin_form_s5011_basesremun --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s5011_basesremun" action="{% url 's5011_basesremun_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -745,9 +745,9 @@
 
             {% if tab == 's5011_basesavnport' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s5011_basesavnport_visualizar' %} 
+                {% if perms.s5011.can_view_s5011_basesavnport %} 
 
-                    {% if dict_permissoes|get_permissao:'s5011_basesavnport_editar' or dict_permissoes|get_permissao:'s5011_basesavnport_cadastrar' %}
+                    {% if perms.s5011.change_s5011_basesavnport or perms.s5011.add_s5011basesAvNPort %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -774,7 +774,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de bases de cálculo relativas à contratação de trabalhadores avulsos não portuários</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s5011_basesavnport_editar' or dict_permissoes|get_permissao:'s5011_basesavnport_cadastrar' %}
+                                        {% if perms.s5011.change_s5011_basesavnport or perms.s5011.add_s5011basesAvNPort %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -789,7 +789,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s5011_basesavnport_cadastrar' %}            
+                                    {% if perms.s5011.add_s5011basesAvNPort %}            
                                     <!-- begin_form_s5011_basesavnport --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s5011_basesavnport" action="{% url 's5011_basesavnport_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -842,9 +842,9 @@
 
             {% if tab == 's5011_infosubstpatropport' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_visualizar' %} 
+                {% if perms.s5011.can_view_s5011_infosubstpatropport %} 
 
-                    {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_editar' or dict_permissoes|get_permissao:'s5011_infosubstpatropport_cadastrar' %}
+                    {% if perms.s5011.change_s5011_infosubstpatropport or perms.s5011.add_s5011infoSubstPatrOpPort %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -871,7 +871,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_editar' or dict_permissoes|get_permissao:'s5011_infosubstpatropport_cadastrar' %}
+                                        {% if perms.s5011.change_s5011_infosubstpatropport or perms.s5011.add_s5011infoSubstPatrOpPort %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -886,7 +886,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s5011_infosubstpatropport_cadastrar' %}            
+                                    {% if perms.s5011.add_s5011infoSubstPatrOpPort %}            
                                     <!-- begin_form_s5011_infosubstpatropport --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s5011_infosubstpatropport" action="{% url 's5011_infosubstpatropport_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

@@ -76,14 +76,6 @@ class s1300contribSind(SoftDeletionModel):
     tpcontribsind = models.IntegerField(choices=CHOICES_S1300_TPCONTRIBSIND, null=True, )
     vlrcontribsind = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -109,7 +101,8 @@ class s1300contribSind(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1300_contribsind", "Can view s1300_contribsind"), )
+            ("can_view_s1300contribSind", "Can view S1300CONTRIBSIND"),
+            ("can_view_menu_s1300contribSind", "Can view menu S1300CONTRIBSIND"),)
             
         ordering = [
             's1300_evtcontrsindpatr',

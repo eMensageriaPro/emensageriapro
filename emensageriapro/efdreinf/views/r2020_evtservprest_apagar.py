@@ -64,33 +64,28 @@ from emensageriapro.s1000.forms import form_s1000_exclusao
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         r2020_evtservprest_id = int(dict_hash['id'])
+        
     except:
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r2020_evtservprest')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
     
-    r2020_evtservprest = get_object_or_404(r2020evtServPrest, id = r2020_evtservprest_id)
+    r2020_evtservprest = get_object_or_404(r2020evtServPrest, id=r2020_evtservprest_id)
     
-    if r2020_evtservprest_id:
-        if r2020_evtservprest.status != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r2020_evtservprest_apagar'] = 0
-            dict_permissoes['r2020_evtservprest_editar'] = 0
-
     if request.method == 'POST':
+    
         if r2020_evtservprest.status == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(r2020_evtservprest), indent=4, sort_keys=True, default=str)
             obj = r2020evtServPrest.objects.get(id = r2020_evtservprest_id)
             obj.delete(request=request)
@@ -104,19 +99,22 @@ def apagar(request, hash):
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 'r2020_evtservprest_salvar':
-            return redirect('r2020_evtservprest', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('r2020_evtservprest', 
+                            hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], 
+                            hash=request.session['retorno_hash'])
+            
+    context = {
+        'r2020_evtservprest': r2020_evtservprest, 
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
+        'modulos': ['efdreinf', ],
+        'paginas': ['r2020_evtservprest', ],
         'hash': hash,
     }
+    
     return render(request, 'r2020_evtservprest_apagar.html', context)

@@ -64,6 +64,7 @@ from emensageriapro.mensageiro.forms import form_importacao_arquivos_eventos
 def salvar(request, hash):
     
     try: 
+    
         usuario_id = request.user.id  
         dict_hash = get_hash_url( hash )
         importacao_arquivos_id = int(dict_hash['id'])
@@ -72,21 +73,17 @@ def salvar(request, hash):
         for_print = int(dict_hash['print'])
         
     except: 
+    
         usuario_id = False
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id=usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='importacao_arquivos')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
     
     if importacao_arquivos_id:
+    
         importacao_arquivos = get_object_or_404(ImportacaoArquivos, id=importacao_arquivos_id)
         
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_visualizar:
+    if request.user.has_perm('mensageiro.can_view_ImportacaoArquivos'):
         
         if importacao_arquivos_id:
             importacao_arquivos_form = form_importacao_arquivos(request.POST or None, instance=importacao_arquivos)
@@ -103,15 +100,19 @@ def salvar(request, hash):
                 
                 if request.session['retorno_pagina'] not in ('importacao_arquivos_apagar', 'importacao_arquivos_salvar', 'importacao_arquivos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if importacao_arquivos_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('importacao_arquivos_salvar', hash=url_hash)
+                    
             else:
                 messages.error(request, 'Erro ao salvar!')
-        importacao_arquivos_form = disabled_form_fields(importacao_arquivos_form, permissao.permite_editar)
+                
+        importacao_arquivos_form = disabled_form_fields(importacao_arquivos_form, request.user.has_perm('mensageiro.change_ImportacaoArquivos'))
         #importacao_arquivos_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             importacao_arquivos_form = disabled_form_for_print(importacao_arquivos_form)
         
         
@@ -119,6 +120,7 @@ def salvar(request, hash):
         importacao_arquivos_eventos_form = None 
         
         if importacao_arquivos_id:
+        
             importacao_arquivos = get_object_or_404(ImportacaoArquivos, id = importacao_arquivos_id)
             
             importacao_arquivos_eventos_form = form_importacao_arquivos_eventos(
@@ -128,14 +130,18 @@ def salvar(request, hash):
                 filter(importacao_arquivos_id=importacao_arquivos.id).all()
                 
         else:
+        
             importacao_arquivos = None
             
         #importacao_arquivos_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'importacao_arquivos' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'importacao_arquivos_salvar'
+            
         context = {
             'importacao_arquivos': importacao_arquivos, 
             'importacao_arquivos_form': importacao_arquivos_form, 
@@ -145,12 +151,9 @@ def salvar(request, hash):
             
             'importacao_arquivos_eventos_form': importacao_arquivos_eventos_form,
             'importacao_arquivos_eventos_lista': importacao_arquivos_eventos_lista,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['importacao_arquivos', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -197,12 +200,12 @@ def salvar(request, hash):
     
         context = {
             'usuario': usuario, 
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['importacao_arquivos', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         
-        return render(request, 'permissao_negada.html', context)
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

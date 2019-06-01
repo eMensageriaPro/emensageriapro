@@ -79,14 +79,6 @@ class s1080alteracao(SoftDeletionModel):
     fap = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -114,7 +106,8 @@ class s1080alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1080_alteracao", "Can view s1080_alteracao"), )
+            ("can_view_s1080alteracao", "Can view S1080ALTERACAO"),
+            ("can_view_menu_s1080alteracao", "Can view menu S1080ALTERACAO"),)
             
         ordering = [
             's1080_evttaboperport',
@@ -152,14 +145,6 @@ class s1080alteracaonovaValidade(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -183,7 +168,8 @@ class s1080alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1080_alteracao_novavalidade", "Can view s1080_alteracao_novavalidade"), )
+            ("can_view_s1080alteracaonovaValidade", "Can view S1080ALTERACAONOVAVALIDADE"),
+            ("can_view_menu_s1080alteracaonovaValidade", "Can view menu S1080ALTERACAONOVAVALIDADE"),)
             
         ordering = [
             's1080_alteracao',
@@ -218,14 +204,6 @@ class s1080exclusao(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -250,7 +228,8 @@ class s1080exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1080_exclusao", "Can view s1080_exclusao"), )
+            ("can_view_s1080exclusao", "Can view S1080EXCLUSAO"),
+            ("can_view_menu_s1080exclusao", "Can view menu S1080EXCLUSAO"),)
             
         ordering = [
             's1080_evttaboperport',
@@ -289,14 +268,6 @@ class s1080inclusao(SoftDeletionModel):
     fap = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     aliqratajust = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -324,7 +295,8 @@ class s1080inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1080_inclusao", "Can view s1080_inclusao"), )
+            ("can_view_s1080inclusao", "Can view S1080INCLUSAO"),
+            ("can_view_menu_s1080inclusao", "Can view menu S1080INCLUSAO"),)
             
         ordering = [
             's1080_evttaboperport',

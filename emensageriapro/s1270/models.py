@@ -83,14 +83,6 @@ class s1270remunAvNP(SoftDeletionModel):
     vrbcfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrdesccp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -123,7 +115,8 @@ class s1270remunAvNP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1270_remunavnp", "Can view s1270_remunavnp"), )
+            ("can_view_s1270remunAvNP", "Can view S1270REMUNAVNP"),
+            ("can_view_menu_s1270remunAvNP", "Can view menu S1270REMUNAVNP"),)
             
         ordering = [
             's1270_evtcontratavnp',

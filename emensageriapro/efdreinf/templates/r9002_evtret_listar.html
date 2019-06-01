@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">R-9002 - Informações de bases e tributos por evento - Retenções na fonte</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}
+                  {% if perms.efdreinf.add_r9002evtRet %}
                   <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_return_page:'r9002_evtret_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

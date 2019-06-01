@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Totalizador das bases de cálculo e das retenções de contribuição previdenciária sobre recursos repassados a Associações Desportivas que mantenham equipe de futebol profissional, apuradas no evento R-2040</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r9011_rrecrepad_cadastrar' %}
+                  {% if perms.r9011.add_r9011RRecRepAD %}
                   <a href="{% url 'r9011_rrecrepad_salvar' hash='{}'|json_return_page:'r9011_rrecrepad_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

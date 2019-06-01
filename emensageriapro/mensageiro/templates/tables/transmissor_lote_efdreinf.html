@@ -57,9 +57,9 @@
     {% if a.status == 1 or a.status == 3 or a.status == 4 %}<a href="{% url 'transmissor_lote_efdreinf_consultar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span class="btn btn-primary" title="Consultar Lote"><i class="fa fa-fw fa-search"></i></span></a>&nbsp;{% endif %}
     {% if a.status == 2 or a.status == 3 or a.status == 4 %}<a href="{% url 'transmissor_lote_efdreinf_recibo' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary" title="Imprimir Recibo do Lote"><i class="fa fa-fw fa-print"></i></span></a>{% endif %}
 {% comment %}</div>{% endcomment %}
-                    {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_visualizar' %}
+                    {% if perms.mensageiro.can_view_TransmissorLoteEfdreinf %}
                         <a href="{% url 'transmissor_lote_efdreinf_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_editar' or dict_permissoes|get_permissao:'transmissor_lote_efdreinf_cadastrar' %}
+                            {% if perms.mensageiro.add_TransmissorLoteEfdreinf or perms.mensageiro.change_TransmissorLoteEfdreinf %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -70,7 +70,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'transmissor_lote_efdreinf_apagar' %}
+                    {% if perms.mensageiro.delete_TransmissorLoteEfdreinf %}
                         <a href="{% url 'transmissor_lote_efdreinf_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

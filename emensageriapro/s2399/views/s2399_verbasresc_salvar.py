@@ -67,43 +67,48 @@ from emensageriapro.s2399.forms import form_s2399_infomv
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         s2399_verbasresc_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2399_verbasresc')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if s2399_verbasresc_id:
-        s2399_verbasresc = get_object_or_404(s2399verbasResc, id = s2399_verbasresc_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if s2399_verbasresc_id:
+    
+        s2399_verbasresc = get_object_or_404(s2399verbasResc, id=s2399_verbasresc_id)
         dados_evento = s2399_verbasresc.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s2399_verbasresc_apagar'] = 0
-            dict_permissoes['s2399_verbasresc_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('s2399.can_view_s2399verbasResc'):
+        
         if s2399_verbasresc_id:
-            s2399_verbasresc_form = form_s2399_verbasresc(request.POST or None, instance = s2399_verbasresc,  
-                                         initial={'excluido': False})
+        
+            s2399_verbasresc_form = form_s2399_verbasresc(request.POST or None, 
+                                                          instance=s2399_verbasresc,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             s2399_verbasresc_form = form_s2399_verbasresc(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if s2399_verbasresc_form.is_valid():
             
                 dados = s2399_verbasresc_form.cleaned_data
@@ -111,9 +116,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not s2399_verbasresc_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  's2399_verbasresc', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s2399_verbasresc), indent=4, sort_keys=True, default=str),
@@ -121,21 +128,30 @@ def salvar(request, hash):
                                      's2399_verbasresc', s2399_verbasresc_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('s2399_verbasresc_apagar', 's2399_verbasresc_salvar', 's2399_verbasresc'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if s2399_verbasresc_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s2399_verbasresc_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        s2399_verbasresc_form = disabled_form_fields(s2399_verbasresc_form, permissao.permite_editar)
+               
+        s2399_verbasresc_form = disabled_form_fields(s2399_verbasresc_form, request.user.has_perm('s2399.change_s2399verbasResc'))
         
         if s2399_verbasresc_id:
+        
             if dados_evento['status'] != 0:
+            
                 s2399_verbasresc_form = disabled_form_fields(s2399_verbasresc_form, 0)
                 
         #s2399_verbasresc_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             s2399_verbasresc_form = disabled_form_for_print(s2399_verbasresc_form)
             
         
@@ -147,7 +163,8 @@ def salvar(request, hash):
         s2399_infomv_form = None 
         
         if s2399_verbasresc_id:
-            s2399_verbasresc = get_object_or_404(s2399verbasResc, id = s2399_verbasresc_id)
+        
+            s2399_verbasresc = get_object_or_404(s2399verbasResc, id=s2399_verbasresc_id)
             
             s2399_dmdev_form = form_s2399_dmdev(
                 initial={ 's2399_verbasresc': s2399_verbasresc })
@@ -166,27 +183,33 @@ def salvar(request, hash):
                 filter(s2399_verbasresc_id=s2399_verbasresc.id).all()
                 
         else:
+        
             s2399_verbasresc = None
             
         #s2399_verbasresc_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 's2399_verbasresc' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2399_verbasresc_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=s2399_verbasresc_id, tabela='s2399_verbasresc').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             's2399_verbasresc': s2399_verbasresc, 
             's2399_verbasresc_form': s2399_verbasresc_form, 
-            'mensagem': mensagem, 
             's2399_verbasresc_id': int(s2399_verbasresc_id),
             'usuario': usuario, 
-            
+            'modulos': ['s2399', ],
+            'paginas': ['s2399_verbasresc', ],
             'hash': hash, 
             
             's2399_dmdev_form': s2399_dmdev_form,
@@ -195,22 +218,19 @@ def salvar(request, hash):
             's2399_procjudtrab_lista': s2399_procjudtrab_lista,
             's2399_infomv_form': s2399_infomv_form,
             's2399_infomv_lista': s2399_infomv_lista,
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #s2399_verbasresc_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 's2399_verbasresc_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -231,7 +251,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('s2399_verbasresc_salvar.html', context)
             filename = "s2399_verbasresc.xls"
@@ -240,15 +262,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['s2399', ],
+            'paginas': ['s2399_verbasresc', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

@@ -108,15 +108,6 @@ from emensageriapro.mensageiro.views import retornos_eventos_intervalos_api as r
 
 urlpatterns = [
 
-
-    url(r'^scripts/enviar-lote-esocial/(?P<chave>.*)/(?P<transmissor_lote_esocial_id>\d+)/$',
-        transmissor_lote_esocial_comunicacao_views.scripts_enviar_lote,
-        name='scripts_enviar_esocial_lote'),
-
-    url(r'^scripts/consultar-lote-esocial/(?P<chave>.*)/(?P<transmissor_lote_esocial_id>\d+)/$',
-        transmissor_lote_esocial_comunicacao_views.scripts_consultar_lote,
-        name='scripts_consultar_esocial_lote'),
-
     url(r'^transmissor-lote-esocial/enviar/(?P<hash>.*)/$',
         transmissor_lote_esocial_comunicacao_views.enviar,
         name='transmissor_lote_esocial_enviar'),
@@ -156,14 +147,6 @@ urlpatterns = [
     url(r'^transmissor-eventos-efdreinf/desvincular/(?P<hash>.+)/$',
         transmissor_efdreinf_views.desvincular_eventos_efdreinf,
         name='desvincular_eventos_efdreinf'),
-
-    url(r'^scripts/enviar-lote-efdreinf/(?P<chave>.*)/(?P<transmissor_lote_efdreinf_id>\d+)/$',
-        transmissor_lote_efdreinf_comunicacao_views.scripts_enviar_lote,
-        name='scripts_enviar_efdreinf_lote'),
-
-    url(r'^scripts/consultar-lote-efdreinf/(?P<chave>.*)/(?P<transmissor_lote_efdreinf_id>\d+)/$',
-        transmissor_lote_efdreinf_comunicacao_views.scripts_consultar_lote,
-        name='scripts_consultar_efdreinf_lote'),
 
     url(r'^transmissor-lote-efdreinf/enviar/(?P<hash>.*)/$',
         transmissor_lote_efdreinf_comunicacao_views.enviar,

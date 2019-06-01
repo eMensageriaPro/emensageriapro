@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.s2220.models import *
 from emensageriapro.s2220.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -72,25 +72,24 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 @login_required
 def verificar(request, hash):
+
     for_print = 0
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2220_evtmonit_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except:
+    
         return redirect('login')
 
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='s2220_evtmonit')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
-        s2220_evtmonit = get_object_or_404(s2220evtMonit, id = s2220_evtmonit_id)
+    if request.user.has_perm('esocial.can_view_s2220evtMonit'):
+        s2220_evtmonit = get_object_or_404(s2220evtMonit, id=s2220_evtmonit_id)
         s2220_evtmonit_lista = s2220evtMonit.objects.filter(id=s2220_evtmonit_id).all()
 
         
@@ -106,22 +105,19 @@ def verificar(request, hash):
             
             
             's2220_exame_lista': s2220_exame_lista,
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s2220_evtmonit', ],
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': for_print,
             'hash': hash,
 
             
 
         }
+        
         if for_print == 2:
+        
             response = PDFTemplateResponse(request=request,
                                            template='s2220_evtmonit_verificar.html',
                                            filename="s2220_evtmonit.pdf",
@@ -140,6 +136,7 @@ def verificar(request, hash):
             return response
 
         elif for_print == 3:
+        
             response =  render_to_response('s2220_evtmonit_verificar.html', context)
             filename = "%s.xls" % s2220_evtmonit.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -147,6 +144,7 @@ def verificar(request, hash):
             return response
 
         elif for_print == 4:
+        
             response =  render_to_response('s2220_evtmonit_verificar.html', context)
             filename = "%s.csv" % s2220_evtmonit.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -154,18 +152,16 @@ def verificar(request, hash):
             return response
 
         else:
+        
             return render(request, 's2220_evtmonit_verificar.html', context)
 
     else:
 
         context = {
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s2220_evtmonit', ],
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
 
         return render(request, 'permissao_negada.html', context)

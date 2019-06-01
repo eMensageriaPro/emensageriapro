@@ -76,14 +76,6 @@ class s1260ideAdquir(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, null=True, )
     vrcomerc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -109,7 +101,8 @@ class s1260ideAdquir(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1260_ideadquir", "Can view s1260_ideadquir"), )
+            ("can_view_s1260ideAdquir", "Can view S1260IDEADQUIR"),
+            ("can_view_menu_s1260ideAdquir", "Can view menu S1260IDEADQUIR"),)
             
         ordering = [
             's1260_tpcomerc',
@@ -149,14 +142,6 @@ class s1260infoProcJud(SoftDeletionModel):
     vrratsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -182,7 +167,8 @@ class s1260infoProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1260_infoprocjud", "Can view s1260_infoprocjud"), )
+            ("can_view_s1260infoProcJud", "Can view S1260INFOPROCJUD"),
+            ("can_view_menu_s1260infoProcJud", "Can view menu S1260INFOPROCJUD"),)
             
         ordering = [
             's1260_tpcomerc',
@@ -223,14 +209,6 @@ class s1260nfs(SoftDeletionModel):
     vrratdescpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -259,7 +237,8 @@ class s1260nfs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1260_nfs", "Can view s1260_nfs"), )
+            ("can_view_s1260nfs", "Can view S1260NFS"),
+            ("can_view_menu_s1260nfs", "Can view menu S1260NFS"),)
             
         ordering = [
             's1260_ideadquir',
@@ -298,14 +277,6 @@ class s1260tpComerc(SoftDeletionModel):
     indcomerc = models.IntegerField(choices=CHOICES_S1260_INDCOMERC, null=True, )
     vrtotcom = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -330,7 +301,8 @@ class s1260tpComerc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1260_tpcomerc", "Can view s1260_tpcomerc"), )
+            ("can_view_s1260tpComerc", "Can view S1260TPCOMERC"),
+            ("can_view_menu_s1260tpComerc", "Can view menu S1260TPCOMERC"),)
             
         ordering = [
             's1260_evtcomprod',

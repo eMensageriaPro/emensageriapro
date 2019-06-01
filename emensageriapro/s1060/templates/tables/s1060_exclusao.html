@@ -35,9 +35,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s1060_exclusao_visualizar' %}
+                    {% if perms.s1060.can_view_s1060exclusao %}
                         <a href="{% url 's1060_exclusao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s1060_exclusao_editar' or dict_permissoes|get_permissao:'s1060_exclusao_cadastrar' %}
+                            {% if perms.s1060.add_s1060exclusao or perms.s1060.change_s1060exclusao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -48,7 +48,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s1060_exclusao_apagar' %}
+                    {% if perms.s1060.delete_s1060exclusao %}
                         <a href="{% url 's1060_exclusao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

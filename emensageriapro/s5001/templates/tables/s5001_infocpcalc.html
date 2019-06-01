@@ -41,9 +41,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s5001_infocpcalc_visualizar' %}
+                    {% if perms.s5001.can_view_s5001infoCpCalc %}
                         <a href="{% url 's5001_infocpcalc_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s5001_infocpcalc_editar' or dict_permissoes|get_permissao:'s5001_infocpcalc_cadastrar' %}
+                            {% if perms.s5001.add_s5001infoCpCalc or perms.s5001.change_s5001infoCpCalc %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -54,7 +54,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s5001_infocpcalc_apagar' %}
+                    {% if perms.s5001.delete_s5001infoCpCalc %}
                         <a href="{% url 's5001_infocpcalc_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

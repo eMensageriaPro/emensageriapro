@@ -26,9 +26,9 @@
 <a href="{% url 'relatorios_imprimir' hash='{}'|json_id:a.id|json_print:2|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-file-pdf-o"></i></span></a>
 <a href="{% url 'relatorios_imprimir' hash='{}'|json_id:a.id|json_print:3|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-file-excel-o"></i></span></a>
 <a href="{% url 'relatorios_imprimir' hash='{}'|json_id:a.id|json_print:4|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-file-text-o"></i></span></a>
-                    {% if dict_permissoes|get_permissao:'relatorios_visualizar' %}
+                    {% if perms.mensageiro.can_view_Relatorios %}
                         <a href="{% url 'relatorios_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'relatorios_editar' or dict_permissoes|get_permissao:'relatorios_cadastrar' %}
+                            {% if perms.mensageiro.add_Relatorios or perms.mensageiro.change_Relatorios %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -39,7 +39,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'relatorios_apagar' %}
+                    {% if perms.mensageiro.delete_Relatorios %}
                         <a href="{% url 'relatorios_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

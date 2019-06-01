@@ -23,9 +23,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2400_endereco_visualizar' %}
+                    {% if perms.s2400.can_view_s2400endereco %}
                         <a href="{% url 's2400_endereco_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2400_endereco_editar' or dict_permissoes|get_permissao:'s2400_endereco_cadastrar' %}
+                            {% if perms.s2400.add_s2400endereco or perms.s2400.change_s2400endereco %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -36,7 +36,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2400_endereco_apagar' %}
+                    {% if perms.s2400.delete_s2400endereco %}
                         <a href="{% url 's2400_endereco_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

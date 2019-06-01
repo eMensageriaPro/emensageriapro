@@ -42,7 +42,7 @@
             <td>{{ a.email }}</td>
             {% endif %}
             {% if show_fields.show_is_active or 1 %}
-            <td>{{ a.is_active }}</td>
+            <td>{% if a.is_active %}Sim{% else %}Não{% endif %}</td>
             {% endif %}
             {% if show_fields.show_config_perfis or 1 %}
             <td>{{ a.config_perfis }}</td>
@@ -53,9 +53,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'usuarios_visualizar' %}
+                    {% if perms.controle_de_acesso.can_view_Usuarios %}
                         <a href="{% url 'usuarios_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'usuarios_editar' or dict_permissoes|get_permissao:'usuarios_cadastrar' %}
+                            {% if perms.controle_de_acesso.add_Usuarios or perms.controle_de_acesso.change_Usuarios %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -66,7 +66,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'usuarios_apagar' %}
+                    {% if perms.controle_de_acesso.delete_Usuarios %}
                         <a href="{% url 'usuarios_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

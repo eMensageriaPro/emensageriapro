@@ -64,33 +64,28 @@ from emensageriapro.s1000.forms import form_s1000_exclusao
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2220_evtmonit_id = int(dict_hash['id'])
+        
     except:
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2220_evtmonit')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
     
-    s2220_evtmonit = get_object_or_404(s2220evtMonit, id = s2220_evtmonit_id)
+    s2220_evtmonit = get_object_or_404(s2220evtMonit, id=s2220_evtmonit_id)
     
-    if s2220_evtmonit_id:
-        if s2220_evtmonit.status != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s2220_evtmonit_apagar'] = 0
-            dict_permissoes['s2220_evtmonit_editar'] = 0
-
     if request.method == 'POST':
+    
         if s2220_evtmonit.status == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(s2220_evtmonit), indent=4, sort_keys=True, default=str)
             obj = s2220evtMonit.objects.get(id = s2220_evtmonit_id)
             obj.delete(request=request)
@@ -104,19 +99,22 @@ def apagar(request, hash):
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 's2220_evtmonit_salvar':
-            return redirect('s2220_evtmonit', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('s2220_evtmonit', 
+                            hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], 
+                            hash=request.session['retorno_hash'])
+            
+    context = {
+        's2220_evtmonit': s2220_evtmonit, 
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
+        'modulos': ['esocial', ],
+        'paginas': ['s2220_evtmonit', ],
         'hash': hash,
     }
+    
     return render(request, 's2220_evtmonit_apagar.html', context)

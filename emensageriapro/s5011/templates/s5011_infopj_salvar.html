@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s5011_infopj_visualizar' %}
+                    {% if perms.s5011.can_view_s5011infoPJ %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's5011_infopj_salvar' hash='{}'|json_return_page:'s5011_infopj_salvar'|json_return_hash:hash|json_id:s5011_infopj_id|json_print:0|base64_encode_me %}">
                             Informações complementares, exclusivas da Pessoa Jurídica.
@@ -62,7 +62,7 @@
                     {% endif %}
                     {% if s5011_infopj_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s5011_infoatconc_visualizar' %}
+                            {% if perms.s5011.can_view_s5011_infoatconc %}
                                 <li {% if tab == 's5011_infoatconc' %} class="active"{% endif %} >
                                     <a href="{% url 's5011_infopj_salvar' hash='{}'|json_id:s5011_infopj_id|json_print:0|json_tab:'s5011_infoatconc'|base64_encode_me %}">
                                     Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.</a>
@@ -181,7 +181,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s5011_infopj_editar' or dict_permissoes|get_permissao:'s5011_infopj_cadastrar' %}
+            {% if perms.s5011.change_s5011_infopj or perms.s5011.add_s5011_infopj %}
                 <form action="#" id="id_form_s5011_infopj" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -208,7 +208,7 @@
                             <!-- botões especiais -->
                             {% if s5011_infopj_id %}
 
-                                {% if dict_permissoes|get_permissao:'s5011_infopj_cadastrar' %}
+                                {% if perms.s5011.add_s5011infoPJ %}
                                     <a href="{% url 's5011_infopj_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -220,7 +220,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5011_infopj_listar' or dict_permissoes|get_permissao:'s5011_infopj_listar' %}
+                            {% if perms.s5011.can_view_s5011_infopj or perms.s5011.can_view_s5011_infopj %}
                                 <a href="{% url 's5011_infopj'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -229,7 +229,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5011_infopj_visualizar' and s5011_infopj_id %}
+                            {% if perms.s5011.can_view_s5011_infopj and s5011_infopj_id %}
                                 <a href="{% url 's5011_infopj_salvar' hash='{}'|json_id:s5011_infopj_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -238,7 +238,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s5011_infopj_visualizar' and s5011_infopj_id %}
+                            {% if perms.s5011.can_view_s5011_infopj and s5011_infopj_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -265,7 +265,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5011_infopj_editar' or dict_permissoes|get_permissao:'s5011_infopj_cadastrar' %}
+                            {% if perms.s5011.change_s5011_infopj or perms.s5011.add_s5011_infopj %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -274,7 +274,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5011_infopj_apagar' and s5011_infopj_id %}
+                            {% if perms.s5011.delete_s5011_infopj and s5011_infopj_id %}
 
                             <a href="{% url 's5011_infopj_apagar' hash='{}'|json_id:s5011_infopj_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -296,7 +296,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s5011_infopj_editar' or dict_permissoes|get_permissao:'s5011_infopj_cadastrar' %}
+                    {% if perms.s5011.change_s5011_infopj or perms.s5011.add_s5011_infopj %}
                         </form>
                     {% endif %}
 
@@ -322,9 +322,9 @@
 
             {% if tab == 's5011_infoatconc' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s5011_infoatconc_visualizar' %} 
+                {% if perms.s5011.can_view_s5011_infoatconc %} 
 
-                    {% if dict_permissoes|get_permissao:'s5011_infoatconc_editar' or dict_permissoes|get_permissao:'s5011_infoatconc_cadastrar' %}
+                    {% if perms.s5011.change_s5011_infoatconc or perms.s5011.add_s5011infoAtConc %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -351,7 +351,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações prestadas por empresa enquadrada no Regime de Tributação Simples Nacional com tributação previdenciária substituída e não substituída.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s5011_infoatconc_editar' or dict_permissoes|get_permissao:'s5011_infoatconc_cadastrar' %}
+                                        {% if perms.s5011.change_s5011_infoatconc or perms.s5011.add_s5011infoAtConc %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -366,7 +366,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s5011_infoatconc_cadastrar' %}            
+                                    {% if perms.s5011.add_s5011infoAtConc %}            
                                     <!-- begin_form_s5011_infoatconc --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s5011_infoatconc" action="{% url 's5011_infoatconc_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

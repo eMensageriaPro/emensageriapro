@@ -64,39 +64,43 @@ from emensageriapro.r3010.forms import form_r3010_infoproc
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF, TP_AMB
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         r3010_evtespdesportivo_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except:
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r3010_evtespdesportivo')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     if r3010_evtespdesportivo_id:
-        r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id = r3010_evtespdesportivo_id)
-        
+    
+        r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id=r3010_evtespdesportivo_id)
+
         if r3010_evtespdesportivo.status != STATUS_EVENTO_CADASTRADO:
+        
+            dict_permissoes = {}
             dict_permissoes['r3010_evtespdesportivo_apagar'] = 0
             dict_permissoes['r3010_evtespdesportivo_editar'] = 0
-
-    if permissao.permite_visualizar:
-        mensagem = None
+            
+    if request.user.has_perm('efdreinf.can_view_r3010evtEspDesportivo'):
+    
         if r3010_evtespdesportivo_id:
+        
             r3010_evtespdesportivo_form = form_r3010_evtespdesportivo(request.POST or None, instance = r3010_evtespdesportivo, 
                                          initial={'excluido': False})
+                                         
         else:
+        
             r3010_evtespdesportivo_form = form_r3010_evtespdesportivo(request.POST or None, 
                                          initial={'versao': VERSAO_LAYOUT_EFDREINF, 
                                                   'status': STATUS_EVENTO_CADASTRADO, 
@@ -104,7 +108,9 @@ def salvar(request, hash):
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
                                                   'excluido': False})
+                                                  
         if request.method == 'POST':
+        
             if r3010_evtespdesportivo_form.is_valid():
             
                 dados = r3010_evtespdesportivo_form.cleaned_data
@@ -112,6 +118,7 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not r3010_evtespdesportivo_id:
+                
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
@@ -126,13 +133,15 @@ def salvar(request, hash):
                                  
                 if request.session['retorno_pagina'] not in ('r3010_evtespdesportivo_apagar', 'r3010_evtespdesportivo_salvar', 'r3010_evtespdesportivo'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if r3010_evtespdesportivo_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('r3010_evtespdesportivo_salvar', hash=url_hash)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-        r3010_evtespdesportivo_form = disabled_form_fields(r3010_evtespdesportivo_form, permissao.permite_editar)
+                
+        r3010_evtespdesportivo_form = disabled_form_fields(r3010_evtespdesportivo_form, request.user.has_perm('efdreinf.change_r3010evtEspDesportivo'))
         
         if r3010_evtespdesportivo_id:
             if r3010_evtespdesportivo.status != 0:
@@ -141,6 +150,7 @@ def salvar(request, hash):
 
         for field in r3010_evtespdesportivo_form.fields.keys():
             r3010_evtespdesportivo_form.fields[field].widget.attrs['ng-model'] = 'r3010_evtespdesportivo_'+field
+            
         if int(dict_hash['print']):
             r3010_evtespdesportivo_form = disabled_form_for_print(r3010_evtespdesportivo_form)
 
@@ -151,6 +161,7 @@ def salvar(request, hash):
         r3010_infoproc_form = None 
         
         if r3010_evtespdesportivo_id:
+        
             r3010_evtespdesportivo = get_object_or_404(r3010evtEspDesportivo, id = r3010_evtespdesportivo_id)
             
             r3010_boletim_form = form_r3010_boletim(
@@ -166,9 +177,11 @@ def salvar(request, hash):
                 
         else:
             r3010_evtespdesportivo = None
+            
         #r3010_evtespdesportivo_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if 'r3010_evtespdesportivo'[1] == '5':
             evento_totalizador = True
         else:
@@ -177,30 +190,25 @@ def salvar(request, hash):
         if dict_hash['tab'] or 'r3010_evtespdesportivo' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r3010_evtespdesportivo_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=r3010_evtespdesportivo_id, tabela='r3010_evtespdesportivo').all()
+        
         context = {
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             'r3010_evtespdesportivo': r3010_evtespdesportivo, 
             'r3010_evtespdesportivo_form': r3010_evtespdesportivo_form, 
-            'mensagem': mensagem, 
             'r3010_evtespdesportivo_id': int(r3010_evtespdesportivo_id),
             'usuario': usuario, 
-            
             'hash': hash, 
             
             'r3010_boletim_form': r3010_boletim_form,
             'r3010_boletim_lista': r3010_boletim_lista,
             'r3010_infoproc_form': r3010_infoproc_form,
             'r3010_infoproc_lista': r3010_infoproc_lista,
-
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['efdreinf', ],
+            'paginas': ['r3010_evtespdesportivo', ],
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -208,9 +216,11 @@ def salvar(request, hash):
         }
         
         if for_print in (0, 1):
+        
             return render(request, 'r3010_evtespdesportivo_salvar.html', context)
             
         elif for_print == 2:
+        
             response = PDFTemplateResponse(
                 request=request,
                 template='r3010_evtespdesportivo_salvar.html',
@@ -229,24 +239,23 @@ def salvar(request, hash):
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True},
             )
+            
             return response
             
         elif for_print == 3:
+        
             response = render_to_response('r3010_evtespdesportivo_salvar.html', context)
             filename = "r3010_evtespdesportivo.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['efdreinf', ],
+            'paginas': ['r3010_evtespdesportivo', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)

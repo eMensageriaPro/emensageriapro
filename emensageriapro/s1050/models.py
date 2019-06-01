@@ -80,14 +80,6 @@ class s1050alteracao(SoftDeletionModel):
     durjornada = models.IntegerField(null=True, )
     perhorflexivel = models.CharField(choices=CHOICES_S1050_PERHORFLEXIVEL_ALTERACAO, max_length=1, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -116,7 +108,8 @@ class s1050alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050_alteracao", "Can view s1050_alteracao"), )
+            ("can_view_s1050alteracao", "Can view S1050ALTERACAO"),
+            ("can_view_menu_s1050alteracao", "Can view menu S1050ALTERACAO"),)
             
         ordering = [
             's1050_evttabhortur',
@@ -157,14 +150,6 @@ class s1050alteracaohorarioIntervalo(SoftDeletionModel):
     iniinterv = models.CharField(max_length=4, blank=True, null=True, )
     terminterv = models.CharField(max_length=4, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -189,7 +174,8 @@ class s1050alteracaohorarioIntervalo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050_alteracao_horariointervalo", "Can view s1050_alteracao_horariointervalo"), )
+            ("can_view_s1050alteracaohorarioIntervalo", "Can view S1050ALTERACAOHORARIOINTERVALO"),
+            ("can_view_menu_s1050alteracaohorarioIntervalo", "Can view menu S1050ALTERACAOHORARIOINTERVALO"),)
             
         ordering = [
             's1050_alteracao',
@@ -224,14 +210,6 @@ class s1050alteracaonovaValidade(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -255,7 +233,8 @@ class s1050alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050_alteracao_novavalidade", "Can view s1050_alteracao_novavalidade"), )
+            ("can_view_s1050alteracaonovaValidade", "Can view S1050ALTERACAONOVAVALIDADE"),
+            ("can_view_menu_s1050alteracaonovaValidade", "Can view menu S1050ALTERACAONOVAVALIDADE"),)
             
         ordering = [
             's1050_alteracao',
@@ -290,14 +269,6 @@ class s1050exclusao(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -322,7 +293,8 @@ class s1050exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050_exclusao", "Can view s1050_exclusao"), )
+            ("can_view_s1050exclusao", "Can view S1050EXCLUSAO"),
+            ("can_view_menu_s1050exclusao", "Can view menu S1050EXCLUSAO"),)
             
         ordering = [
             's1050_evttabhortur',
@@ -362,14 +334,6 @@ class s1050inclusao(SoftDeletionModel):
     durjornada = models.IntegerField(null=True, )
     perhorflexivel = models.CharField(choices=CHOICES_S1050_PERHORFLEXIVEL_INCLUSAO, max_length=1, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -398,7 +362,8 @@ class s1050inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050_inclusao", "Can view s1050_inclusao"), )
+            ("can_view_s1050inclusao", "Can view S1050INCLUSAO"),
+            ("can_view_menu_s1050inclusao", "Can view menu S1050INCLUSAO"),)
             
         ordering = [
             's1050_evttabhortur',
@@ -439,14 +404,6 @@ class s1050inclusaohorarioIntervalo(SoftDeletionModel):
     iniinterv = models.CharField(max_length=4, blank=True, null=True, )
     terminterv = models.CharField(max_length=4, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -471,7 +428,8 @@ class s1050inclusaohorarioIntervalo(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1050_inclusao_horariointervalo", "Can view s1050_inclusao_horariointervalo"), )
+            ("can_view_s1050inclusaohorarioIntervalo", "Can view S1050INCLUSAOHORARIOINTERVALO"),
+            ("can_view_menu_s1050inclusaohorarioIntervalo", "Can view menu S1050INCLUSAOHORARIOINTERVALO"),)
             
         ordering = [
             's1050_inclusao',

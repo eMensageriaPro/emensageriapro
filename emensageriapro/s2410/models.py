@@ -75,14 +75,6 @@ class s2410homologTC(SoftDeletionModel):
     dthomol = models.DateField(null=True, )
     nratolegal = models.CharField(max_length=20, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -107,7 +99,8 @@ class s2410homologTC(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2410_homologtc", "Can view s2410_homologtc"), )
+            ("can_view_s2410homologTC", "Can view S2410HOMOLOGTC"),
+            ("can_view_menu_s2410homologTC", "Can view menu S2410HOMOLOGTC"),)
             
         ordering = [
             's2410_evtcdbenin',
@@ -141,14 +134,6 @@ class s2410infoPenMorte(SoftDeletionModel):
         return self.s2410_evtcdbenin.evento()
     tppenmorte = models.IntegerField(choices=CHOICES_S2410_TPPENMORTE, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -172,7 +157,8 @@ class s2410infoPenMorte(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2410_infopenmorte", "Can view s2410_infopenmorte"), )
+            ("can_view_s2410infoPenMorte", "Can view S2410INFOPENMORTE"),
+            ("can_view_menu_s2410infoPenMorte", "Can view menu S2410INFOPENMORTE"),)
             
         ordering = [
             's2410_evtcdbenin',
@@ -207,14 +193,6 @@ class s2410instPenMorte(SoftDeletionModel):
     dtinst = models.DateField(null=True, )
     intaposentado = models.CharField(choices=CHOICES_S2410_INTAPOSENTADO, max_length=1, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -240,7 +218,8 @@ class s2410instPenMorte(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2410_instpenmorte", "Can view s2410_instpenmorte"), )
+            ("can_view_s2410instPenMorte", "Can view S2410INSTPENMORTE"),
+            ("can_view_menu_s2410instPenMorte", "Can view menu S2410INSTPENMORTE"),)
             
         ordering = [
             's2410_infopenmorte',

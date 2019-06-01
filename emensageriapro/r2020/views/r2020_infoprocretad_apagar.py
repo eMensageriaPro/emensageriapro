@@ -60,37 +60,38 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    
     try: 
+    
         usuario_id = request.user.id 
         dict_hash = get_hash_url( hash )
         r2020_infoprocretad_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r2020_infoprocretad')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    r2020_infoprocretad = get_object_or_404(r2020infoProcRetAd, id = r2020_infoprocretad_id)
+    r2020_infoprocretad = get_object_or_404(r2020infoProcRetAd, id=r2020_infoprocretad_id)
+    
     dados_evento = {}
+    
     if r2020_infoprocretad_id:
+    
         dados_evento = r2020_infoprocretad.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r2020_infoprocretad_apagar'] = 0
-            dict_permissoes['r2020_infoprocretad_editar'] = 0
+            
     if request.method == 'POST':
+    
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(r2020_infoprocretad), indent=4, sort_keys=True, default=str)
             obj = r2020infoProcRetAd.objects.get(id = r2020_infoprocretad_id)
             obj.delete(request=request)
@@ -100,23 +101,28 @@ def apagar(request, hash):
             gravar_auditoria(situacao_anterior,
                              '', 
                              'r2020_infoprocretad', r2020_infoprocretad_id, usuario_id, 3)
+                             
         else:
+        
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 'r2020_infoprocretad_salvar':
-            return redirect('r2020_infoprocretad', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('r2020_infoprocretad', hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            
+    context = {
+        'dados_evento': dados_evento, 
+        'modulos': ['r2020', ],
+        'paginas': ['r2020_infoprocretad', ],
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
         'hash': hash,
     }
-    return render(request, 'r2020_infoprocretad_apagar.html', context)
+    
+    return render(request, 
+                  'r2020_infoprocretad_apagar.html', 
+                  context)

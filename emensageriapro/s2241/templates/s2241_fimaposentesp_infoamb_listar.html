@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações relativas ao ambiente de trabalho</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2241_fimaposentesp_infoamb_cadastrar' %}
+                  {% if perms.s2241.add_s2241fimAposentEspinfoAmb %}
                   <a href="{% url 's2241_fimaposentesp_infoamb_salvar' hash='{}'|json_return_page:'s2241_fimaposentesp_infoamb_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

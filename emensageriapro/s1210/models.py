@@ -74,14 +74,6 @@ class s1210deps(SoftDeletionModel):
         return self.s1210_evtpgtos.evento()
     vrdeddep = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -105,7 +97,8 @@ class s1210deps(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_deps", "Can view s1210_deps"), )
+            ("can_view_s1210deps", "Can view S1210DEPS"),
+            ("can_view_menu_s1210deps", "Can view menu S1210DEPS"),)
             
         ordering = [
             's1210_evtpgtos',
@@ -138,14 +131,6 @@ class s1210detPgtoAnt(SoftDeletionModel):
         return self.s1210_infopgto.evento()
     codcateg = models.IntegerField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -169,7 +154,8 @@ class s1210detPgtoAnt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtoant", "Can view s1210_detpgtoant"), )
+            ("can_view_s1210detPgtoAnt", "Can view S1210DETPGTOANT"),
+            ("can_view_menu_s1210detPgtoAnt", "Can view menu S1210DETPGTOANT"),)
             
         ordering = [
             's1210_infopgto',
@@ -203,14 +189,6 @@ class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
     tpbcirrf = models.TextField(null=True, )
     vrbcirrf = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -235,7 +213,8 @@ class s1210detPgtoAntinfoPgtoAnt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtoant_infopgtoant", "Can view s1210_detpgtoant_infopgtoant"), )
+            ("can_view_s1210detPgtoAntinfoPgtoAnt", "Can view S1210DETPGTOANTINFOPGTOANT"),
+            ("can_view_menu_s1210detPgtoAntinfoPgtoAnt", "Can view menu S1210DETPGTOANTINFOPGTOANT"),)
             
         ordering = [
             's1210_detpgtoant',
@@ -272,14 +251,6 @@ class s1210detPgtoBenPr(SoftDeletionModel):
     indpgtott = models.CharField(choices=CHOICES_S1210_INDPGTOTT_DETPGTOBENPR, max_length=1, null=True, )
     vrliq = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -306,7 +277,8 @@ class s1210detPgtoBenPr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtobenpr", "Can view s1210_detpgtobenpr"), )
+            ("can_view_s1210detPgtoBenPr", "Can view S1210DETPGTOBENPR"),
+            ("can_view_menu_s1210detPgtoBenPr", "Can view menu S1210DETPGTOBENPR"),)
             
         ordering = [
             's1210_infopgto',
@@ -347,14 +319,6 @@ class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -380,7 +344,8 @@ class s1210detPgtoBenPrinfoPgtoParc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtobenpr_infopgtoparc", "Can view s1210_detpgtobenpr_infopgtoparc"), )
+            ("can_view_s1210detPgtoBenPrinfoPgtoParc", "Can view S1210DETPGTOBENPRINFOPGTOPARC"),
+            ("can_view_menu_s1210detPgtoBenPrinfoPgtoParc", "Can view menu S1210DETPGTOBENPRINFOPGTOPARC"),)
             
         ordering = [
             's1210_detpgtobenpr',
@@ -420,14 +385,6 @@ class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -453,7 +410,8 @@ class s1210detPgtoBenPrretPgtoTot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtobenpr_retpgtotot", "Can view s1210_detpgtobenpr_retpgtotot"), )
+            ("can_view_s1210detPgtoBenPrretPgtoTot", "Can view S1210DETPGTOBENPRRETPGTOTOT"),
+            ("can_view_menu_s1210detPgtoBenPrretPgtoTot", "Can view menu S1210DETPGTOBENPRRETPGTOTOT"),)
             
         ordering = [
             's1210_detpgtobenpr',
@@ -492,14 +450,6 @@ class s1210detPgtoFer(SoftDeletionModel):
     qtdias = models.IntegerField(null=True, )
     vrliq = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -526,7 +476,8 @@ class s1210detPgtoFer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtofer", "Can view s1210_detpgtofer"), )
+            ("can_view_s1210detPgtoFer", "Can view S1210DETPGTOFER"),
+            ("can_view_menu_s1210detPgtoFer", "Can view menu S1210DETPGTOFER"),)
             
         ordering = [
             's1210_infopgto',
@@ -567,14 +518,6 @@ class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -600,7 +543,8 @@ class s1210detPgtoFerdetRubrFer(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtofer_detrubrfer", "Can view s1210_detpgtofer_detrubrfer"), )
+            ("can_view_s1210detPgtoFerdetRubrFer", "Can view S1210DETPGTOFERDETRUBRFER"),
+            ("can_view_menu_s1210detPgtoFerdetRubrFer", "Can view menu S1210DETPGTOFERDETRUBRFER"),)
             
         ordering = [
             's1210_detpgtofer',
@@ -638,14 +582,6 @@ class s1210detPgtoFerpenAlim(SoftDeletionModel):
     nmbenefic = models.CharField(max_length=70, null=True, )
     vlrpensao = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -671,7 +607,8 @@ class s1210detPgtoFerpenAlim(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtofer_penalim", "Can view s1210_detpgtofer_penalim"), )
+            ("can_view_s1210detPgtoFerpenAlim", "Can view S1210DETPGTOFERPENALIM"),
+            ("can_view_menu_s1210detPgtoFerpenAlim", "Can view menu S1210DETPGTOFERPENALIM"),)
             
         ordering = [
             's1210_detpgtofer_detrubrfer',
@@ -710,14 +647,6 @@ class s1210detPgtoFl(SoftDeletionModel):
     vrliq = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     nrrecarq = models.CharField(max_length=40, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -743,7 +672,8 @@ class s1210detPgtoFl(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtofl", "Can view s1210_detpgtofl"), )
+            ("can_view_s1210detPgtoFl", "Can view S1210DETPGTOFL"),
+            ("can_view_menu_s1210detPgtoFl", "Can view menu S1210DETPGTOFL"),)
             
         ordering = [
             's1210_infopgto',
@@ -784,14 +714,6 @@ class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -817,7 +739,8 @@ class s1210detPgtoFlinfoPgtoParc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtofl_infopgtoparc", "Can view s1210_detpgtofl_infopgtoparc"), )
+            ("can_view_s1210detPgtoFlinfoPgtoParc", "Can view S1210DETPGTOFLINFOPGTOPARC"),
+            ("can_view_menu_s1210detPgtoFlinfoPgtoParc", "Can view menu S1210DETPGTOFLINFOPGTOPARC"),)
             
         ordering = [
             's1210_detpgtofl',
@@ -855,14 +778,6 @@ class s1210detPgtoFlpenAlim(SoftDeletionModel):
     nmbenefic = models.CharField(max_length=70, null=True, )
     vlrpensao = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -888,7 +803,8 @@ class s1210detPgtoFlpenAlim(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtofl_penalim", "Can view s1210_detpgtofl_penalim"), )
+            ("can_view_s1210detPgtoFlpenAlim", "Can view S1210DETPGTOFLPENALIM"),
+            ("can_view_menu_s1210detPgtoFlpenAlim", "Can view menu S1210DETPGTOFLPENALIM"),)
             
         ordering = [
             's1210_detpgtofl_retpgtotot',
@@ -928,14 +844,6 @@ class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
     vrunit = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vrrubr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -961,7 +869,8 @@ class s1210detPgtoFlretPgtoTot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_detpgtofl_retpgtotot", "Can view s1210_detpgtofl_retpgtotot"), )
+            ("can_view_s1210detPgtoFlretPgtoTot", "Can view S1210DETPGTOFLRETPGTOTOT"),
+            ("can_view_menu_s1210detPgtoFlretPgtoTot", "Can view menu S1210DETPGTOFLRETPGTOTOT"),)
             
         ordering = [
             's1210_detpgtofl',
@@ -1004,14 +913,6 @@ class s1210idePgtoExt(SoftDeletionModel):
     nmcid = models.CharField(max_length=50, null=True, )
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1038,7 +939,8 @@ class s1210idePgtoExt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_idepgtoext", "Can view s1210_idepgtoext"), )
+            ("can_view_s1210idePgtoExt", "Can view S1210IDEPGTOEXT"),
+            ("can_view_menu_s1210idePgtoExt", "Can view menu S1210IDEPGTOEXT"),)
             
         ordering = [
             's1210_infopgto',
@@ -1076,14 +978,6 @@ class s1210infoPgto(SoftDeletionModel):
     tppgto = models.IntegerField(choices=CHOICES_S1210_TPPGTO, null=True, )
     indresbr = models.CharField(choices=CHOICES_S1210_INDRESBR, max_length=1, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1109,7 +1003,8 @@ class s1210infoPgto(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1210_infopgto", "Can view s1210_infopgto"), )
+            ("can_view_s1210infoPgto", "Can view S1210INFOPGTO"),
+            ("can_view_menu_s1210infoPgto", "Can view menu S1210INFOPGTO"),)
             
         ordering = [
             's1210_evtpgtos',

@@ -35,9 +35,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r5011_rcprb_visualizar' %}
+                    {% if perms.r5011.can_view_r5011RCPRB %}
                         <a href="{% url 'r5011_rcprb_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r5011_rcprb_editar' or dict_permissoes|get_permissao:'r5011_rcprb_cadastrar' %}
+                            {% if perms.r5011.add_r5011RCPRB or perms.r5011.change_r5011RCPRB %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -48,7 +48,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r5011_rcprb_apagar' %}
+                    {% if perms.r5011.delete_r5011RCPRB %}
                         <a href="{% url 'r5011_rcprb_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

@@ -23,9 +23,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r2070_depjudicial_visualizar' %}
+                    {% if perms.r2070.can_view_r2070depJudicial %}
                         <a href="{% url 'r2070_depjudicial_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r2070_depjudicial_editar' or dict_permissoes|get_permissao:'r2070_depjudicial_cadastrar' %}
+                            {% if perms.r2070.add_r2070depJudicial or perms.r2070.change_r2070depJudicial %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -36,7 +36,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r2070_depjudicial_apagar' %}
+                    {% if perms.r2070.delete_r2070depJudicial %}
                         <a href="{% url 'r2070_depjudicial_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

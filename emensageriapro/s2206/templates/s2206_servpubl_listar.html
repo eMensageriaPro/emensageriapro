@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Alterações inerentes ao servidor público</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2206_servpubl_cadastrar' %}
+                  {% if perms.s2206.add_s2206servPubl %}
                   <a href="{% url 's2206_servpubl_salvar' hash='{}'|json_return_page:'s2206_servpubl_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

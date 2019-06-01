@@ -35,9 +35,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s1260_tpcomerc_visualizar' %}
+                    {% if perms.s1260.can_view_s1260tpComerc %}
                         <a href="{% url 's1260_tpcomerc_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s1260_tpcomerc_editar' or dict_permissoes|get_permissao:'s1260_tpcomerc_cadastrar' %}
+                            {% if perms.s1260.add_s1260tpComerc or perms.s1260.change_s1260tpComerc %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -48,7 +48,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s1260_tpcomerc_apagar' %}
+                    {% if perms.s1260.delete_s1260tpComerc %}
                         <a href="{% url 's1260_tpcomerc_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

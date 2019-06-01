@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.s2220.models import *
 from emensageriapro.s2220.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -79,53 +79,63 @@ def abrir_evento_para_edicao(request, hash):
 
     dict_hash = get_hash_url(hash)
     s2220_evtmonit_id = int(dict_hash['id'])
+    
+    if request.user.has_perm('esocial.can_open_event_s2220evtMonit'):
 
-    if s2220_evtmonit_id:
-        s2220_evtmonit = get_object_or_404(s2220evtMonit, excluido=False, id=s2220_evtmonit_id)
-
-        status_list = [
-            STATUS_EVENTO_CADASTRADO,
-            STATUS_EVENTO_IMPORTADO,
-            STATUS_EVENTO_DUPLICADO,
-            STATUS_EVENTO_GERADO,
-            STATUS_EVENTO_GERADO_ERRO,
-            STATUS_EVENTO_ASSINADO,
-            STATUS_EVENTO_ASSINADO_ERRO,
-            STATUS_EVENTO_VALIDADO,
-            STATUS_EVENTO_VALIDADO_ERRO,
-            STATUS_EVENTO_AGUARD_PRECEDENCIA,
-            STATUS_EVENTO_AGUARD_ENVIO,
-            STATUS_EVENTO_ENVIADO_ERRO
-        ]
-
-        if s2220_evtmonit.status in status_list:
-            s2220evtMonit.objects.filter(id=s2220_evtmonit_id).update(status=STATUS_EVENTO_CADASTRADO,
-                                                                          arquivo_original=0)
-            arquivo = 'arquivos/Eventos/s2220_evtmonit/%s.xml' % (s2220_evtmonit.identidade)
-
-            if os.path.exists(BASE_DIR + '/' + arquivo):
-
-                data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
-                dad = (BASE_DIR, s2220_evtmonit.identidade, BASE_DIR, s2220_evtmonit.identidade, data_hora_atual)
-                os.system('mv %s/arquivos/Eventos/s2220_evtmonit/%s.xml %s/arquivos/Eventos/s2220_evtmonit/%s_backup_%s.xml' % dad)
-                gravar_nome_arquivo('/arquivos/Eventos/s2220_evtmonit/%s_backup_%s.xml' % (s2220_evtmonit.identidade, data_hora_atual),
-                    1)
-
-            messages.success(request, 'Evento aberto para edição!')
-            usuario_id = request.user.id
-            gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
-                's2220_evtmonit', s2220_evtmonit_id, usuario_id, 1)
-
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2220_evtmonit_id )
-            return redirect('s2220_evtmonit_salvar', hash=url_hash)
-        else:
-            messages.error(request, u'''
-            Não foi possível abrir o evento para edição! Somente é possível
-            abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
-            "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
-             ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
-             "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-    messages.error(request, 'Erro ao abrir evento para edição!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        if s2220_evtmonit_id:
+            s2220_evtmonit = get_object_or_404(s2220evtMonit, excluido=False, id=s2220_evtmonit_id)
+    
+            status_list = [
+                STATUS_EVENTO_CADASTRADO,
+                STATUS_EVENTO_IMPORTADO,
+                STATUS_EVENTO_DUPLICADO,
+                STATUS_EVENTO_GERADO,
+                STATUS_EVENTO_GERADO_ERRO,
+                STATUS_EVENTO_ASSINADO,
+                STATUS_EVENTO_ASSINADO_ERRO,
+                STATUS_EVENTO_VALIDADO,
+                STATUS_EVENTO_VALIDADO_ERRO,
+                STATUS_EVENTO_AGUARD_PRECEDENCIA,
+                STATUS_EVENTO_AGUARD_ENVIO,
+                STATUS_EVENTO_ENVIADO_ERRO
+            ]
+    
+            if s2220_evtmonit.status in status_list:
+                s2220evtMonit.objects.filter(id=s2220_evtmonit_id).update(status=STATUS_EVENTO_CADASTRADO,
+                                                                              arquivo_original=0)
+                arquivo = 'arquivos/Eventos/s2220_evtmonit/%s.xml' % (s2220_evtmonit.identidade)
+    
+                if os.path.exists(BASE_DIR + '/' + arquivo):
+    
+                    data_hora_atual = str(datetime.now()).replace(':','_').replace(' ','_').replace('.','_')
+                    dad = (BASE_DIR, s2220_evtmonit.identidade, BASE_DIR, s2220_evtmonit.identidade, data_hora_atual)
+                    os.system('mv %s/arquivos/Eventos/s2220_evtmonit/%s.xml %s/arquivos/Eventos/s2220_evtmonit/%s_backup_%s.xml' % dad)
+                    gravar_nome_arquivo('/arquivos/Eventos/s2220_evtmonit/%s_backup_%s.xml' % (s2220_evtmonit.identidade, data_hora_atual),
+                        1)
+    
+                messages.success(request, 'Evento aberto para edição!')
+                usuario_id = request.user.id
+                gravar_auditoria(u'{}', u'{"funcao": "Evento aberto para edição"}',
+                    's2220_evtmonit', s2220_evtmonit_id, usuario_id, 1)
+    
+                url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s2220_evtmonit_id )
+                return redirect('s2220_evtmonit_salvar', hash=url_hash)
+                
+            else:
+            
+                messages.error(request, u'''
+                    Não foi possível abrir o evento para edição! Somente é possível
+                    abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
+                    "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
+                     ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
+                     "401 - Lote Incorreto - Erro preenchimento" ou "402 - Lote Incorreto - schema Inválido"!''')
+                return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    
+        messages.error(request, 'Erro ao abrir evento para edição!')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+    else:
+    
+        messages.error(request, u'''Você não possui permissão para abrir evento para edição. 
+                                    Entre em contato com o administrador do sistema!''')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])

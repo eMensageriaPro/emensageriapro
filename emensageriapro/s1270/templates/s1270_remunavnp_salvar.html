@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1270_remunavnp_visualizar' %}
+                    {% if perms.s1270.can_view_s1270remunAvNP %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1270_remunavnp_salvar' hash='{}'|json_return_page:'s1270_remunavnp_salvar'|json_return_hash:hash|json_id:s1270_remunavnp_id|json_print:0|base64_encode_me %}">
                             Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1270_remunavnp_editar' or dict_permissoes|get_permissao:'s1270_remunavnp_cadastrar' %}
+            {% if perms.s1270.change_s1270_remunavnp or perms.s1270.add_s1270_remunavnp %}
                 <form action="#" id="id_form_s1270_remunavnp" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s1270_remunavnp_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1270_remunavnp_cadastrar' %}
+                                {% if perms.s1270.add_s1270remunAvNP %}
                                     <a href="{% url 's1270_remunavnp_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1270_remunavnp_listar' or dict_permissoes|get_permissao:'s1270_remunavnp_listar' %}
+                            {% if perms.s1270.can_view_s1270_remunavnp or perms.s1270.can_view_s1270_remunavnp %}
                                 <a href="{% url 's1270_remunavnp'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1270_remunavnp_visualizar' and s1270_remunavnp_id %}
+                            {% if perms.s1270.can_view_s1270_remunavnp and s1270_remunavnp_id %}
                                 <a href="{% url 's1270_remunavnp_salvar' hash='{}'|json_id:s1270_remunavnp_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1270_remunavnp_visualizar' and s1270_remunavnp_id %}
+                            {% if perms.s1270.can_view_s1270_remunavnp and s1270_remunavnp_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1270_remunavnp_editar' or dict_permissoes|get_permissao:'s1270_remunavnp_cadastrar' %}
+                            {% if perms.s1270.change_s1270_remunavnp or perms.s1270.add_s1270_remunavnp %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1270_remunavnp_apagar' and s1270_remunavnp_id %}
+                            {% if perms.s1270.delete_s1270_remunavnp and s1270_remunavnp_id %}
 
                             <a href="{% url 's1270_remunavnp_apagar' hash='{}'|json_id:s1270_remunavnp_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1270_remunavnp_editar' or dict_permissoes|get_permissao:'s1270_remunavnp_cadastrar' %}
+                    {% if perms.s1270.change_s1270_remunavnp or perms.s1270.add_s1270_remunavnp %}
                         </form>
                     {% endif %}
 

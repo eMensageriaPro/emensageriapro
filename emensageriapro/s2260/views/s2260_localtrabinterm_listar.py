@@ -60,28 +60,26 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def listar(request, hash):
+
     for_print = 0
     
     try: 
+    
         usuario_id = request.user.id   
         dict_hash = get_hash_url( hash )
-        #retorno_pagina = dict_hash['retorno_pagina']
-        #retorno_hash = dict_hash['retorno_hash']
-        #s2260_localtrabinterm_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2260_localtrabinterm')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
+    if request.user.has_perm('s2260.can_view_s2260localTrabInterm'):
+    
         filtrar = False
+        
         dict_fields = {}
         show_fields = { 
             'show_s2260_evtconvinterm': 1,
@@ -93,8 +91,11 @@ def listar(request, hash):
             'show_cep': 1,
             'show_codmunic': 1,
             'show_uf': 1, }
+            
         post = False
+        
         if request.method == 'POST':
+        
             post = True
             dict_fields = { 
                 's2260_evtconvinterm__icontains': 's2260_evtconvinterm__icontains',
@@ -106,11 +107,17 @@ def listar(request, hash):
                 'cep__icontains': 'cep__icontains',
                 'codmunic__icontains': 'codmunic__icontains',
                 'uf__icontains': 'uf__icontains', }
+                
             for a in dict_fields:
+            
                 dict_fields[a] = request.POST.get(a or None)
+                
             for a in show_fields:
+            
                 show_fields[a] = request.POST.get(a or None)
+                
             if request.method == 'POST':
+            
                 dict_fields = { 
                     's2260_evtconvinterm__icontains': 's2260_evtconvinterm__icontains',
                     'tplograd__icontains': 'tplograd__icontains',
@@ -121,40 +128,45 @@ def listar(request, hash):
                     'cep__icontains': 'cep__icontains',
                     'codmunic__icontains': 'codmunic__icontains',
                     'uf__icontains': 'uf__icontains', }
+                    
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
+                    
         dict_qs = clear_dict_fields(dict_fields)
         s2260_localtrabinterm_lista = s2260localTrabInterm.objects.filter(**dict_qs).filter().exclude(id=0).all()
+        
         if not post and len(s2260_localtrabinterm_lista) > 100:
+        
             filtrar = True
             s2260_localtrabinterm_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s2260_localtrabinterm_listar_custom
+        
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's2260_localtrabinterm'
+        
         context = {
             's2260_localtrabinterm_lista': s2260_localtrabinterm_lista, 
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['s2260', ],
+            'paginas': ['s2260_localtrabinterm', ],
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'show_fields': show_fields,
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
+        
         if for_print in (0,1):
+        
             return render(request, 's2260_localtrabinterm_listar.html', context)
+            
         elif for_print == 2:
-            #return render_to_pdf('tables/s2260_localtrabinterm_pdf_xls.html', context)
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -175,30 +187,34 @@ def listar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('s2260_localtrabinterm_listar.html', context)
             filename = "s2260_localtrabinterm.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
         elif for_print == 4:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s2260_localtrabinterm.csv', context)
             filename = "s2260_localtrabinterm.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-    else:
-        context = {
-            'usuario': usuario, 
             
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+    else:
+    
+        context = {
+            'usuario': usuario,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['s2260', ],
+            'paginas': ['s2260_localtrabinterm', ],
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

@@ -74,14 +74,6 @@ class s2206alvaraJudicial(SoftDeletionModel):
         return self.s2206_evtaltcontratual.evento()
     nrprocjud = models.CharField(max_length=20, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -105,7 +97,8 @@ class s2206alvaraJudicial(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_alvarajudicial", "Can view s2206_alvarajudicial"), )
+            ("can_view_s2206alvaraJudicial", "Can view S2206ALVARAJUDICIAL"),
+            ("can_view_menu_s2206alvaraJudicial", "Can view menu S2206ALVARAJUDICIAL"),)
             
         ordering = [
             's2206_evtaltcontratual',
@@ -139,14 +132,6 @@ class s2206aprend(SoftDeletionModel):
     tpinsc = models.IntegerField(choices=CHOICES_ESOCIALINSCRICOESTIPOS, null=True, )
     nrinsc = models.CharField(max_length=15, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -171,7 +156,8 @@ class s2206aprend(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_aprend", "Can view s2206_aprend"), )
+            ("can_view_s2206aprend", "Can view S2206APREND"),
+            ("can_view_menu_s2206aprend", "Can view menu S2206APREND"),)
             
         ordering = [
             's2206_infoceletista',
@@ -205,14 +191,6 @@ class s2206filiacaoSindical(SoftDeletionModel):
         return self.s2206_evtaltcontratual.evento()
     cnpjsindtrab = models.CharField(max_length=14, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -236,7 +214,8 @@ class s2206filiacaoSindical(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_filiacaosindical", "Can view s2206_filiacaosindical"), )
+            ("can_view_s2206filiacaoSindical", "Can view S2206FILIACAOSINDICAL"),
+            ("can_view_menu_s2206filiacaoSindical", "Can view menu S2206FILIACAOSINDICAL"),)
             
         ordering = [
             's2206_evtaltcontratual',
@@ -272,14 +251,6 @@ class s2206horContratual(SoftDeletionModel):
     dsctpjorn = models.CharField(max_length=100, blank=True, null=True, )
     tmpparc = models.IntegerField(choices=CHOICES_S2206_TMPPARC, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -304,7 +275,8 @@ class s2206horContratual(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_horcontratual", "Can view s2206_horcontratual"), )
+            ("can_view_s2206horContratual", "Can view S2206HORCONTRATUAL"),
+            ("can_view_menu_s2206horContratual", "Can view menu S2206HORCONTRATUAL"),)
             
         ordering = [
             's2206_evtaltcontratual',
@@ -339,14 +311,6 @@ class s2206horario(SoftDeletionModel):
     dia = models.IntegerField(choices=CHOICES_S2206_DIA, null=True, )
     codhorcontrat = models.CharField(max_length=30, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -371,7 +335,8 @@ class s2206horario(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_horario", "Can view s2206_horario"), )
+            ("can_view_s2206horario", "Can view S2206HORARIO"),
+            ("can_view_menu_s2206horario", "Can view menu S2206HORARIO"),)
             
         ordering = [
             's2206_horcontratual',
@@ -408,14 +373,6 @@ class s2206infoCeletista(SoftDeletionModel):
     dtbase = models.IntegerField(blank=True, null=True, )
     cnpjsindcategprof = models.CharField(max_length=14, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -441,7 +398,8 @@ class s2206infoCeletista(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_infoceletista", "Can view s2206_infoceletista"), )
+            ("can_view_s2206infoCeletista", "Can view S2206INFOCELETISTA"),
+            ("can_view_menu_s2206infoCeletista", "Can view menu S2206INFOCELETISTA"),)
             
         ordering = [
             's2206_evtaltcontratual',
@@ -479,14 +437,6 @@ class s2206infoEstatutario(SoftDeletionModel):
     indabonoperm = models.CharField(choices=CHOICES_S2206_INDABONOPERM, max_length=1, blank=True, null=True, )
     indparcremun = models.CharField(choices=CHOICES_S2206_INDPARCREMUN, max_length=1, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -510,7 +460,8 @@ class s2206infoEstatutario(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_infoestatutario", "Can view s2206_infoestatutario"), )
+            ("can_view_s2206infoEstatutario", "Can view S2206INFOESTATUTARIO"),
+            ("can_view_menu_s2206infoEstatutario", "Can view menu S2206INFOESTATUTARIO"),)
             
         ordering = [
             's2206_evtaltcontratual',
@@ -550,14 +501,6 @@ class s2206localTrabDom(SoftDeletionModel):
     codmunic = models.TextField(null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -586,7 +529,8 @@ class s2206localTrabDom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_localtrabdom", "Can view s2206_localtrabdom"), )
+            ("can_view_s2206localTrabDom", "Can view S2206LOCALTRABDOM"),
+            ("can_view_menu_s2206localTrabDom", "Can view menu S2206LOCALTRABDOM"),)
             
         ordering = [
             's2206_evtaltcontratual',
@@ -626,14 +570,6 @@ class s2206localTrabGeral(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, null=True, )
     desccomp = models.CharField(max_length=80, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -658,7 +594,8 @@ class s2206localTrabGeral(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_localtrabgeral", "Can view s2206_localtrabgeral"), )
+            ("can_view_s2206localTrabGeral", "Can view S2206LOCALTRABGERAL"),
+            ("can_view_menu_s2206localTrabGeral", "Can view menu S2206LOCALTRABGERAL"),)
             
         ordering = [
             's2206_evtaltcontratual',
@@ -692,14 +629,6 @@ class s2206observacoes(SoftDeletionModel):
         return self.s2206_evtaltcontratual.evento()
     observacao = models.CharField(max_length=255, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -723,7 +652,8 @@ class s2206observacoes(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_observacoes", "Can view s2206_observacoes"), )
+            ("can_view_s2206observacoes", "Can view S2206OBSERVACOES"),
+            ("can_view_menu_s2206observacoes", "Can view menu S2206OBSERVACOES"),)
             
         ordering = [
             's2206_evtaltcontratual',
@@ -756,14 +686,6 @@ class s2206servPubl(SoftDeletionModel):
         return self.s2206_evtaltcontratual.evento()
     mtvalter = models.IntegerField(choices=CHOICES_S2206_MTVALTER, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -787,7 +709,8 @@ class s2206servPubl(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_servpubl", "Can view s2206_servpubl"), )
+            ("can_view_s2206servPubl", "Can view S2206SERVPUBL"),
+            ("can_view_menu_s2206servPubl", "Can view menu S2206SERVPUBL"),)
             
         ordering = [
             's2206_evtaltcontratual',
@@ -820,14 +743,6 @@ class s2206trabTemp(SoftDeletionModel):
         return self.s2206_infoceletista.evento()
     justprorr = models.CharField(max_length=999, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -851,7 +766,8 @@ class s2206trabTemp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2206_trabtemp", "Can view s2206_trabtemp"), )
+            ("can_view_s2206trabTemp", "Can view S2206TRABTEMP"),
+            ("can_view_menu_s2206trabTemp", "Can view menu S2206TRABTEMP"),)
             
         ordering = [
             's2206_infoceletista',

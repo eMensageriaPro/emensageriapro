@@ -63,43 +63,48 @@ from emensageriapro.r4010.forms import form_r4010_benefpen
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         r4010_detded_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r4010_detded')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if r4010_detded_id:
-        r4010_detded = get_object_or_404(r4010detDed, id = r4010_detded_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if r4010_detded_id:
+    
+        r4010_detded = get_object_or_404(r4010detDed, id=r4010_detded_id)
         dados_evento = r4010_detded.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r4010_detded_apagar'] = 0
-            dict_permissoes['r4010_detded_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('r4010.can_view_r4010detDed'):
+        
         if r4010_detded_id:
-            r4010_detded_form = form_r4010_detded(request.POST or None, instance = r4010_detded,  
-                                         initial={'excluido': False})
+        
+            r4010_detded_form = form_r4010_detded(request.POST or None, 
+                                                          instance=r4010_detded,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             r4010_detded_form = form_r4010_detded(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if r4010_detded_form.is_valid():
             
                 dados = r4010_detded_form.cleaned_data
@@ -107,9 +112,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not r4010_detded_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  'r4010_detded', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r4010_detded), indent=4, sort_keys=True, default=str),
@@ -117,21 +124,30 @@ def salvar(request, hash):
                                      'r4010_detded', r4010_detded_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('r4010_detded_apagar', 'r4010_detded_salvar', 'r4010_detded'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if r4010_detded_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('r4010_detded_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        r4010_detded_form = disabled_form_fields(r4010_detded_form, permissao.permite_editar)
+               
+        r4010_detded_form = disabled_form_fields(r4010_detded_form, request.user.has_perm('r4010.change_r4010detDed'))
         
         if r4010_detded_id:
+        
             if dados_evento['status'] != 0:
+            
                 r4010_detded_form = disabled_form_fields(r4010_detded_form, 0)
                 
         #r4010_detded_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             r4010_detded_form = disabled_form_for_print(r4010_detded_form)
             
         
@@ -139,7 +155,8 @@ def salvar(request, hash):
         r4010_benefpen_form = None 
         
         if r4010_detded_id:
-            r4010_detded = get_object_or_404(r4010detDed, id = r4010_detded_id)
+        
+            r4010_detded = get_object_or_404(r4010detDed, id=r4010_detded_id)
             
             r4010_benefpen_form = form_r4010_benefpen(
                 initial={ 'r4010_detded': r4010_detded })
@@ -148,47 +165,50 @@ def salvar(request, hash):
                 filter(r4010_detded_id=r4010_detded.id).all()
                 
         else:
+        
             r4010_detded = None
             
         #r4010_detded_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'r4010_detded' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r4010_detded_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=r4010_detded_id, tabela='r4010_detded').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             'r4010_detded': r4010_detded, 
             'r4010_detded_form': r4010_detded_form, 
-            'mensagem': mensagem, 
             'r4010_detded_id': int(r4010_detded_id),
             'usuario': usuario, 
-            
+            'modulos': ['r4010', ],
+            'paginas': ['r4010_detded', ],
             'hash': hash, 
             
             'r4010_benefpen_form': r4010_benefpen_form,
             'r4010_benefpen_lista': r4010_benefpen_lista,
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #r4010_detded_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 'r4010_detded_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -209,7 +229,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('r4010_detded_salvar.html', context)
             filename = "r4010_detded.xls"
@@ -218,15 +240,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['r4010', ],
+            'paginas': ['r4010_detded', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

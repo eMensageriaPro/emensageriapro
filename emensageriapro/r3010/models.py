@@ -86,14 +86,6 @@ class r3010boletim(SoftDeletionModel):
     qtdepagantes = models.IntegerField(null=True, )
     qtdenaopagantes = models.IntegerField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -126,7 +118,8 @@ class r3010boletim(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r3010_boletim", "Can view r3010_boletim"), )
+            ("can_view_r3010boletim", "Can view R3010BOLETIM"),
+            ("can_view_menu_r3010boletim", "Can view menu R3010BOLETIM"),)
             
         ordering = [
             'r3010_evtespdesportivo',
@@ -171,14 +164,6 @@ class r3010infoProc(SoftDeletionModel):
     codsusp = models.IntegerField(blank=True, null=True, )
     vlrcpsusp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -204,7 +189,8 @@ class r3010infoProc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r3010_infoproc", "Can view r3010_infoproc"), )
+            ("can_view_r3010infoProc", "Can view R3010INFOPROC"),
+            ("can_view_menu_r3010infoProc", "Can view menu R3010INFOPROC"),)
             
         ordering = [
             'r3010_evtespdesportivo',
@@ -241,14 +227,6 @@ class r3010outrasReceitas(SoftDeletionModel):
     vlrreceita = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     descreceita = models.CharField(max_length=20, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -274,7 +252,8 @@ class r3010outrasReceitas(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r3010_outrasreceitas", "Can view r3010_outrasreceitas"), )
+            ("can_view_r3010outrasReceitas", "Can view R3010OUTRASRECEITAS"),
+            ("can_view_menu_r3010outrasReceitas", "Can view menu R3010OUTRASRECEITAS"),)
             
         ordering = [
             'r3010_boletim',
@@ -315,14 +294,6 @@ class r3010receitaIngressos(SoftDeletionModel):
     precoindiv = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotal = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -352,7 +323,8 @@ class r3010receitaIngressos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r3010_receitaingressos", "Can view r3010_receitaingressos"), )
+            ("can_view_r3010receitaIngressos", "Can view R3010RECEITAINGRESSOS"),
+            ("can_view_menu_r3010receitaIngressos", "Can view menu R3010RECEITAINGRESSOS"),)
             
         ordering = [
             'r3010_boletim',

@@ -63,43 +63,48 @@ from emensageriapro.r4040.forms import form_r4040_infopgto
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         r4040_idenat_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r4040_idenat')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if r4040_idenat_id:
-        r4040_idenat = get_object_or_404(r4040ideNat, id = r4040_idenat_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if r4040_idenat_id:
+    
+        r4040_idenat = get_object_or_404(r4040ideNat, id=r4040_idenat_id)
         dados_evento = r4040_idenat.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r4040_idenat_apagar'] = 0
-            dict_permissoes['r4040_idenat_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('r4040.can_view_r4040ideNat'):
+        
         if r4040_idenat_id:
-            r4040_idenat_form = form_r4040_idenat(request.POST or None, instance = r4040_idenat,  
-                                         initial={'excluido': False})
+        
+            r4040_idenat_form = form_r4040_idenat(request.POST or None, 
+                                                          instance=r4040_idenat,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             r4040_idenat_form = form_r4040_idenat(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if r4040_idenat_form.is_valid():
             
                 dados = r4040_idenat_form.cleaned_data
@@ -107,9 +112,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not r4040_idenat_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  'r4040_idenat', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r4040_idenat), indent=4, sort_keys=True, default=str),
@@ -117,21 +124,30 @@ def salvar(request, hash):
                                      'r4040_idenat', r4040_idenat_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('r4040_idenat_apagar', 'r4040_idenat_salvar', 'r4040_idenat'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if r4040_idenat_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('r4040_idenat_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        r4040_idenat_form = disabled_form_fields(r4040_idenat_form, permissao.permite_editar)
+               
+        r4040_idenat_form = disabled_form_fields(r4040_idenat_form, request.user.has_perm('r4040.change_r4040ideNat'))
         
         if r4040_idenat_id:
+        
             if dados_evento['status'] != 0:
+            
                 r4040_idenat_form = disabled_form_fields(r4040_idenat_form, 0)
                 
         #r4040_idenat_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             r4040_idenat_form = disabled_form_for_print(r4040_idenat_form)
             
         
@@ -139,7 +155,8 @@ def salvar(request, hash):
         r4040_infopgto_form = None 
         
         if r4040_idenat_id:
-            r4040_idenat = get_object_or_404(r4040ideNat, id = r4040_idenat_id)
+        
+            r4040_idenat = get_object_or_404(r4040ideNat, id=r4040_idenat_id)
             
             r4040_infopgto_form = form_r4040_infopgto(
                 initial={ 'r4040_idenat': r4040_idenat })
@@ -148,47 +165,50 @@ def salvar(request, hash):
                 filter(r4040_idenat_id=r4040_idenat.id).all()
                 
         else:
+        
             r4040_idenat = None
             
         #r4040_idenat_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'r4040_idenat' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r4040_idenat_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=r4040_idenat_id, tabela='r4040_idenat').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             'r4040_idenat': r4040_idenat, 
             'r4040_idenat_form': r4040_idenat_form, 
-            'mensagem': mensagem, 
             'r4040_idenat_id': int(r4040_idenat_id),
             'usuario': usuario, 
-            
+            'modulos': ['r4040', ],
+            'paginas': ['r4040_idenat', ],
             'hash': hash, 
             
             'r4040_infopgto_form': r4040_infopgto_form,
             'r4040_infopgto_lista': r4040_infopgto_lista,
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #r4040_idenat_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 'r4040_idenat_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -209,7 +229,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('r4040_idenat_salvar.html', context)
             filename = "r4040_idenat.xls"
@@ -218,15 +240,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['r4040', ],
+            'paginas': ['r4040_idenat', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

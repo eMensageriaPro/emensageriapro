@@ -41,9 +41,9 @@
             <td>
                 <div>
                     <a href="{% url 'processar_arquivos_imprimir' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}"><span class="btn btn-primary" title="Imprimir"><i class="fa fa-fw fa-print"></i></span></a>
-                    {% if dict_permissoes|get_permissao:'importacao_arquivos_visualizar' %}
+                    {% if perms.mensageiro.can_view_ImportacaoArquivos %}
                         <a href="{% url 'importacao_arquivos_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'importacao_arquivos_editar' or dict_permissoes|get_permissao:'importacao_arquivos_cadastrar' %}
+                            {% if perms.mensageiro.add_ImportacaoArquivos or perms.mensageiro.change_ImportacaoArquivos %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -54,7 +54,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'importacao_arquivos_apagar' %}
+                    {% if perms.mensageiro.delete_ImportacaoArquivos %}
                         <a href="{% url 'importacao_arquivos_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

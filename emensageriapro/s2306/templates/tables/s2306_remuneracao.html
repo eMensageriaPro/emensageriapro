@@ -35,9 +35,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2306_remuneracao_visualizar' %}
+                    {% if perms.s2306.can_view_s2306remuneracao %}
                         <a href="{% url 's2306_remuneracao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2306_remuneracao_editar' or dict_permissoes|get_permissao:'s2306_remuneracao_cadastrar' %}
+                            {% if perms.s2306.add_s2306remuneracao or perms.s2306.change_s2306remuneracao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -48,7 +48,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2306_remuneracao_apagar' %}
+                    {% if perms.s2306.delete_s2306remuneracao %}
                         <a href="{% url 's2306_remuneracao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
+                    {% if perms.s1020.can_view_s1020alteracao %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1020_alteracao_salvar' hash='{}'|json_return_page:'s1020_alteracao_salvar'|json_return_hash:hash|json_id:s1020_alteracao_id|json_print:0|base64_encode_me %}">
                             Alteração das informações
@@ -62,21 +62,21 @@
                     {% endif %}
                     {% if s1020_alteracao_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s1020_alteracao_infoprocjudterceiros_visualizar' %}
+                            {% if perms.s1020.can_view_s1020_alteracao_infoprocjudterceiros %}
                                 <li {% if tab == 's1020_alteracao_infoprocjudterceiros' %} class="active"{% endif %} >
                                     <a href="{% url 's1020_alteracao_salvar' hash='{}'|json_id:s1020_alteracao_id|json_print:0|json_tab:'s1020_alteracao_infoprocjudterceiros'|base64_encode_me %}">
                                     Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_visualizar' %}
+                            {% if perms.s1020.can_view_s1020_alteracao_infoemprparcial %}
                                 <li {% if tab == 's1020_alteracao_infoemprparcial' %} class="active"{% endif %} >
                                     <a href="{% url 's1020_alteracao_salvar' hash='{}'|json_id:s1020_alteracao_id|json_print:0|json_tab:'s1020_alteracao_infoemprparcial'|base64_encode_me %}">
                                     Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1020_alteracao_novavalidade_visualizar' %}
+                            {% if perms.s1020.can_view_s1020_alteracao_novavalidade %}
                                 <li {% if tab == 's1020_alteracao_novavalidade' %} class="active"{% endif %} >
                                     <a href="{% url 's1020_alteracao_salvar' hash='{}'|json_id:s1020_alteracao_id|json_print:0|json_tab:'s1020_alteracao_novavalidade'|base64_encode_me %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
@@ -195,7 +195,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1020_alteracao_editar' or dict_permissoes|get_permissao:'s1020_alteracao_cadastrar' %}
+            {% if perms.s1020.change_s1020_alteracao or perms.s1020.add_s1020_alteracao %}
                 <form action="#" id="id_form_s1020_alteracao" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -222,7 +222,7 @@
                             <!-- botões especiais -->
                             {% if s1020_alteracao_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1020_alteracao_cadastrar' %}
+                                {% if perms.s1020.add_s1020alteracao %}
                                     <a href="{% url 's1020_alteracao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -234,7 +234,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1020_alteracao_listar' or dict_permissoes|get_permissao:'s1020_alteracao_listar' %}
+                            {% if perms.s1020.can_view_s1020_alteracao or perms.s1020.can_view_s1020_alteracao %}
                                 <a href="{% url 's1020_alteracao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -243,7 +243,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' and s1020_alteracao_id %}
+                            {% if perms.s1020.can_view_s1020_alteracao and s1020_alteracao_id %}
                                 <a href="{% url 's1020_alteracao_salvar' hash='{}'|json_id:s1020_alteracao_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -252,7 +252,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' and s1020_alteracao_id %}
+                            {% if perms.s1020.can_view_s1020_alteracao and s1020_alteracao_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -279,7 +279,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1020_alteracao_editar' or dict_permissoes|get_permissao:'s1020_alteracao_cadastrar' %}
+                            {% if perms.s1020.change_s1020_alteracao or perms.s1020.add_s1020_alteracao %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -288,7 +288,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1020_alteracao_apagar' and s1020_alteracao_id %}
+                            {% if perms.s1020.delete_s1020_alteracao and s1020_alteracao_id %}
 
                             <a href="{% url 's1020_alteracao_apagar' hash='{}'|json_id:s1020_alteracao_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -310,7 +310,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1020_alteracao_editar' or dict_permissoes|get_permissao:'s1020_alteracao_cadastrar' %}
+                    {% if perms.s1020.change_s1020_alteracao or perms.s1020.add_s1020_alteracao %}
                         </form>
                     {% endif %}
 
@@ -336,9 +336,9 @@
 
             {% if tab == 's1020_alteracao_infoprocjudterceiros' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_infoprocjudterceiros_visualizar' %} 
+                {% if perms.s1020.can_view_s1020_alteracao_infoprocjudterceiros %} 
 
-                    {% if dict_permissoes|get_permissao:'s1020_alteracao_infoprocjudterceiros_editar' or dict_permissoes|get_permissao:'s1020_alteracao_infoprocjudterceiros_cadastrar' %}
+                    {% if perms.s1020.change_s1020_alteracao_infoprocjudterceiros or perms.s1020.add_s1020alteracaoinfoProcJudTerceiros %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -365,7 +365,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1020_alteracao_infoprocjudterceiros_editar' or dict_permissoes|get_permissao:'s1020_alteracao_infoprocjudterceiros_cadastrar' %}
+                                        {% if perms.s1020.change_s1020_alteracao_infoprocjudterceiros or perms.s1020.add_s1020alteracaoinfoProcJudTerceiros %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -380,7 +380,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1020_alteracao_infoprocjudterceiros_cadastrar' %}            
+                                    {% if perms.s1020.add_s1020alteracaoinfoProcJudTerceiros %}            
                                     <!-- begin_form_s1020_alteracao_infoprocjudterceiros --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1020_alteracao_infoprocjudterceiros" action="{% url 's1020_alteracao_infoprocjudterceiros_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -433,9 +433,9 @@
 
             {% if tab == 's1020_alteracao_infoemprparcial' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_visualizar' %} 
+                {% if perms.s1020.can_view_s1020_alteracao_infoemprparcial %} 
 
-                    {% if dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_editar' or dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_cadastrar' %}
+                    {% if perms.s1020.change_s1020_alteracao_infoemprparcial or perms.s1020.add_s1020alteracaoinfoEmprParcial %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -462,7 +462,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informação complementar que apresenta identificação do contratante e do proprietário de obra de construção civil contratada sob regime de empreitada parcial ou subempreitada</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_editar' or dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_cadastrar' %}
+                                        {% if perms.s1020.change_s1020_alteracao_infoemprparcial or perms.s1020.add_s1020alteracaoinfoEmprParcial %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -477,7 +477,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1020_alteracao_infoemprparcial_cadastrar' %}            
+                                    {% if perms.s1020.add_s1020alteracaoinfoEmprParcial %}            
                                     <!-- begin_form_s1020_alteracao_infoemprparcial --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1020_alteracao_infoemprparcial" action="{% url 's1020_alteracao_infoemprparcial_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -530,9 +530,9 @@
 
             {% if tab == 's1020_alteracao_novavalidade' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1020_alteracao_novavalidade_visualizar' %} 
+                {% if perms.s1020.can_view_s1020_alteracao_novavalidade %} 
 
-                    {% if dict_permissoes|get_permissao:'s1020_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1020_alteracao_novavalidade_cadastrar' %}
+                    {% if perms.s1020.change_s1020_alteracao_novavalidade or perms.s1020.add_s1020alteracaonovaValidade %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -559,7 +559,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1020_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1020_alteracao_novavalidade_cadastrar' %}
+                                        {% if perms.s1020.change_s1020_alteracao_novavalidade or perms.s1020.add_s1020alteracaonovaValidade %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -574,7 +574,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1020_alteracao_novavalidade_cadastrar' %}            
+                                    {% if perms.s1020.add_s1020alteracaonovaValidade %}            
                                     <!-- begin_form_s1020_alteracao_novavalidade --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1020_alteracao_novavalidade" action="{% url 's1020_alteracao_novavalidade_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

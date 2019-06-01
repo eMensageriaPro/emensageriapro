@@ -41,7 +41,7 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        {% if dict_permissoes|get_permissao:'s1270_evtcontratavnp_apagar' %}
+                        {% if perms.esocial.delete_s1270evtContratAvNP %}
                         <form action="#" method="POST">
                             {% csrf_token %}
                             <div class="form-group col-md-8">

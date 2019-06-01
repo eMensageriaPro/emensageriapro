@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Pessoa com Deficiência</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2200_infodeficiencia_cadastrar' %}
+                  {% if perms.s2200.add_s2200infoDeficiencia %}
                   <a href="{% url 's2200_infodeficiencia_salvar' hash='{}'|json_return_page:'s2200_infodeficiencia_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

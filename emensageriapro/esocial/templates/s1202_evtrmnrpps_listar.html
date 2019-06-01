@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-1202 - Remuneração de servidor vinculado a Regime Próprio de Previd. Social</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1202_evtrmnrpps_cadastrar' %}
+                  {% if perms.esocial.add_s1202evtRmnRPPS %}
                   <a href="{% url 's1202_evtrmnrpps_salvar' hash='{}'|json_return_page:'s1202_evtrmnrpps_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

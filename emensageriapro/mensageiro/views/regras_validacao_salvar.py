@@ -62,6 +62,7 @@ from emensageriapro.controle_de_acesso.models import *
 def salvar(request, hash):
     
     try: 
+    
         usuario_id = request.user.id  
         dict_hash = get_hash_url( hash )
         regras_validacao_id = int(dict_hash['id'])
@@ -70,21 +71,17 @@ def salvar(request, hash):
         for_print = int(dict_hash['print'])
         
     except: 
+    
         usuario_id = False
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id=usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='regras_validacao')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
     
     if regras_validacao_id:
+    
         regras_validacao = get_object_or_404(RegrasDeValidacao, id=regras_validacao_id)
         
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_visualizar:
+    if request.user.has_perm('mensageiro.can_view_RegrasDeValidacao'):
         
         if regras_validacao_id:
             regras_validacao_form = form_regras_validacao(request.POST or None, instance=regras_validacao)
@@ -101,32 +98,41 @@ def salvar(request, hash):
                 
                 if request.session['retorno_pagina'] not in ('regras_validacao_apagar', 'regras_validacao_salvar', 'regras_validacao'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if regras_validacao_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('regras_validacao_salvar', hash=url_hash)
+                    
             else:
                 messages.error(request, 'Erro ao salvar!')
-        regras_validacao_form = disabled_form_fields(regras_validacao_form, permissao.permite_editar)
+                
+        regras_validacao_form = disabled_form_fields(regras_validacao_form, request.user.has_perm('mensageiro.change_RegrasDeValidacao'))
         #regras_validacao_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             regras_validacao_form = disabled_form_for_print(regras_validacao_form)
         
         
         
         if regras_validacao_id:
+        
             regras_validacao = get_object_or_404(RegrasDeValidacao, id = regras_validacao_id)
             
                 
         else:
+        
             regras_validacao = None
             
         #regras_validacao_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'regras_validacao' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'regras_validacao_salvar'
+            
         context = {
             'regras_validacao': regras_validacao, 
             'regras_validacao_form': regras_validacao_form, 
@@ -134,12 +140,9 @@ def salvar(request, hash):
             'usuario': usuario, 
             'hash': hash, 
             
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['regras_validacao', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -186,12 +189,12 @@ def salvar(request, hash):
     
         context = {
             'usuario': usuario, 
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['regras_validacao', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         
-        return render(request, 'permissao_negada.html', context)
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

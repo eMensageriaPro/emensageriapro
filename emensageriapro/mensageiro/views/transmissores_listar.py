@@ -74,15 +74,12 @@ def listar(request, hash):
         usuario_id = False
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='transmissores')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
+    if request.user.has_perm('mensageiro.can_view_TransmissorLote'):
+    
         filtrar = False
+        
         dict_fields = {}
         show_fields = { 
             'show_transmissor_dados': 0,
@@ -116,10 +113,14 @@ def listar(request, hash):
             'show_efdreinf_tempo_prox_envio': 0,
             'show_efdreinf_certificado': 0,
             'show_efdreinf_pasta': 0, }
+            
         post = False
         #ANTES-POST-LISTAGEM
+        
         if request.method == 'POST':
+        
             post = True
+            
             dict_fields = { 
                 'transmissor_dados': 'transmissor_dados',
                 'transmissor_tpinsc__icontains': 'transmissor_tpinsc__icontains',
@@ -130,11 +131,15 @@ def listar(request, hash):
                 'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
                 'contribuinte_nrinsc__icontains': 'contribuinte_nrinsc__icontains',
                 'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains', }
+                
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
+                
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
+                
             if request.method == 'POST':
+            
                 dict_fields = { 
                     'transmissor_dados': 'transmissor_dados',
                     'transmissor_tpinsc__icontains': 'transmissor_tpinsc__icontains',
@@ -145,39 +150,45 @@ def listar(request, hash):
                     'empregador_tpinsc__icontains': 'empregador_tpinsc__icontains',
                     'contribuinte_nrinsc__icontains': 'contribuinte_nrinsc__icontains',
                     'contribuinte_tpinsc__icontains': 'contribuinte_tpinsc__icontains', }
+                    
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
+                    
         dict_qs = clear_dict_fields(dict_fields)
-        transmissores_lista = TransmissorLote.objects.filter(**dict_qs).filter().exclude(id=0).all()
+        
+        transmissores_lista = TransmissorLote.objects.filter(**dict_qs).exclude(id=0).all()
+        
         if not post and len(transmissores_lista) > 100:
+        
             filtrar = True
             transmissores_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #transmissores_listar_custom
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'transmissores'
+        
         context = {
             'transmissores_lista': transmissores_lista, 
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['transmissores', ],
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'show_fields': show_fields,
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
+        
         if for_print in (0,1):
+        
             return render(request, 'transmissores_listar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -198,30 +209,33 @@ def listar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('transmissores_listar.html', context)
             filename = "transmissores.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
         elif for_print == 4:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('csv/transmissores.csv', context)
             filename = "transmissores.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
+            
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['mensageiro', ],
+            'paginas': ['transmissores', ],
         }
-        return render(request, 'permissao_negada.html', context)
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

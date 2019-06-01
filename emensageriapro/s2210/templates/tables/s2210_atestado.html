@@ -63,7 +63,7 @@
             <td>{{ a.get_indafast_display }}</td>
             {% endif %}
             {% if show_fields.show_dsclesao or 1 %}
-            <td>{{ a.get_dsclesao_display }}</td>
+            <td>{{ a.dsclesao|valor }}</td>
             {% endif %}
             {% if show_fields.show_codcid or 1 %}
             <td>{{ a.codcid }}</td>
@@ -83,9 +83,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2210_atestado_visualizar' %}
+                    {% if perms.s2210.can_view_s2210atestado %}
                         <a href="{% url 's2210_atestado_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2210_atestado_editar' or dict_permissoes|get_permissao:'s2210_atestado_cadastrar' %}
+                            {% if perms.s2210.add_s2210atestado or perms.s2210.change_s2210atestado %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -96,7 +96,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2210_atestado_apagar' %}
+                    {% if perms.s2210.delete_s2210atestado %}
                         <a href="{% url 's2210_atestado_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

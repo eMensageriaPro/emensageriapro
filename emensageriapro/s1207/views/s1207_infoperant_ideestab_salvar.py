@@ -63,43 +63,48 @@ from emensageriapro.s1207.forms import form_s1207_infoperant_remunperant
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         s1207_infoperant_ideestab_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s1207_infoperant_ideestab')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if s1207_infoperant_ideestab_id:
-        s1207_infoperant_ideestab = get_object_or_404(s1207infoPerAntideEstab, id = s1207_infoperant_ideestab_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if s1207_infoperant_ideestab_id:
+    
+        s1207_infoperant_ideestab = get_object_or_404(s1207infoPerAntideEstab, id=s1207_infoperant_ideestab_id)
         dados_evento = s1207_infoperant_ideestab.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s1207_infoperant_ideestab_apagar'] = 0
-            dict_permissoes['s1207_infoperant_ideestab_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('s1207.can_view_s1207infoPerAntideEstab'):
+        
         if s1207_infoperant_ideestab_id:
-            s1207_infoperant_ideestab_form = form_s1207_infoperant_ideestab(request.POST or None, instance = s1207_infoperant_ideestab,  
-                                         initial={'excluido': False})
+        
+            s1207_infoperant_ideestab_form = form_s1207_infoperant_ideestab(request.POST or None, 
+                                                          instance=s1207_infoperant_ideestab,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             s1207_infoperant_ideestab_form = form_s1207_infoperant_ideestab(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if s1207_infoperant_ideestab_form.is_valid():
             
                 dados = s1207_infoperant_ideestab_form.cleaned_data
@@ -107,9 +112,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not s1207_infoperant_ideestab_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  's1207_infoperant_ideestab', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s1207_infoperant_ideestab), indent=4, sort_keys=True, default=str),
@@ -117,21 +124,30 @@ def salvar(request, hash):
                                      's1207_infoperant_ideestab', s1207_infoperant_ideestab_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('s1207_infoperant_ideestab_apagar', 's1207_infoperant_ideestab_salvar', 's1207_infoperant_ideestab'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if s1207_infoperant_ideestab_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s1207_infoperant_ideestab_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        s1207_infoperant_ideestab_form = disabled_form_fields(s1207_infoperant_ideestab_form, permissao.permite_editar)
+               
+        s1207_infoperant_ideestab_form = disabled_form_fields(s1207_infoperant_ideestab_form, request.user.has_perm('s1207.change_s1207infoPerAntideEstab'))
         
         if s1207_infoperant_ideestab_id:
+        
             if dados_evento['status'] != 0:
+            
                 s1207_infoperant_ideestab_form = disabled_form_fields(s1207_infoperant_ideestab_form, 0)
                 
         #s1207_infoperant_ideestab_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             s1207_infoperant_ideestab_form = disabled_form_for_print(s1207_infoperant_ideestab_form)
             
         
@@ -139,7 +155,8 @@ def salvar(request, hash):
         s1207_infoperant_remunperant_form = None 
         
         if s1207_infoperant_ideestab_id:
-            s1207_infoperant_ideestab = get_object_or_404(s1207infoPerAntideEstab, id = s1207_infoperant_ideestab_id)
+        
+            s1207_infoperant_ideestab = get_object_or_404(s1207infoPerAntideEstab, id=s1207_infoperant_ideestab_id)
             
             s1207_infoperant_remunperant_form = form_s1207_infoperant_remunperant(
                 initial={ 's1207_infoperant_ideestab': s1207_infoperant_ideestab })
@@ -148,47 +165,50 @@ def salvar(request, hash):
                 filter(s1207_infoperant_ideestab_id=s1207_infoperant_ideestab.id).all()
                 
         else:
+        
             s1207_infoperant_ideestab = None
             
         #s1207_infoperant_ideestab_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 's1207_infoperant_ideestab' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's1207_infoperant_ideestab_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=s1207_infoperant_ideestab_id, tabela='s1207_infoperant_ideestab').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             's1207_infoperant_ideestab': s1207_infoperant_ideestab, 
             's1207_infoperant_ideestab_form': s1207_infoperant_ideestab_form, 
-            'mensagem': mensagem, 
             's1207_infoperant_ideestab_id': int(s1207_infoperant_ideestab_id),
             'usuario': usuario, 
-            
+            'modulos': ['s1207', ],
+            'paginas': ['s1207_infoperant_ideestab', ],
             'hash': hash, 
             
             's1207_infoperant_remunperant_form': s1207_infoperant_remunperant_form,
             's1207_infoperant_remunperant_lista': s1207_infoperant_remunperant_lista,
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #s1207_infoperant_ideestab_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 's1207_infoperant_ideestab_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -209,7 +229,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('s1207_infoperant_ideestab_salvar.html', context)
             filename = "s1207_infoperant_ideestab.xls"
@@ -218,15 +240,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['s1207', ],
+            'paginas': ['s1207_infoperant_ideestab', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

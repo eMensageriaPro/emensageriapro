@@ -69,7 +69,7 @@
             <td>{{ a.cpftrab }}</td>
             {% endif %}
             {% if show_fields.show_codcateg or 1 %}
-            <td>{{ a.codcateg }}</td>
+            <td>{{ a.codcateg|valor }}</td>
             {% endif %}
             {% if show_fields.show_dtalteracao or 1 %}
             <td><span style="display:none">{{ a.dtalteracao|date:"Y-m-d" }}</span>{{ a.dtalteracao|date:"d/m/Y" }}</td>
@@ -83,9 +83,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2306_evttsvaltcontr_visualizar' %}
+                    {% if perms.esocial.can_view_s2306evtTSVAltContr %}
                         <a href="{% url 's2306_evttsvaltcontr_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2306_evttsvaltcontr_editar' or dict_permissoes|get_permissao:'s2306_evttsvaltcontr_cadastrar' %}
+                            {% if perms.esocial.add_s2306evtTSVAltContr or perms.esocial.change_s2306evtTSVAltContr %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -96,7 +96,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2306_evttsvaltcontr_apagar' %}
+                    {% if perms.esocial.delete_s2306evtTSVAltContr %}
                         <a href="{% url 's2306_evttsvaltcontr_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

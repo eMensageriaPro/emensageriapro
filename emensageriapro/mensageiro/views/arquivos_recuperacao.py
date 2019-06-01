@@ -9,13 +9,14 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.mensageiro.forms import *
 from emensageriapro.mensageiro.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 import base64
 from emensageriapro.padrao import executar_sql
 
 
 
 def atualizar_versao():
+    
     executar_sql("""
     UPDATE s1000_evtinfoempregador SET versao='v02_04_02' WHERE status in (0,1,2);
     UPDATE s1005_evttabestab SET versao='v02_04_02' WHERE status in (0,1,2);
@@ -83,36 +84,45 @@ def atualizar_versao():
 
 @login_required
 def arquivos_recuperacao(request, hash):
-    db_slug = 'default'
+    
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         arquivos_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+    
     except:
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='arquivos')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
+    
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
+    arquivos = get_object_or_404(Arquivos, id=arquivos_id)
 
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    arquivos = get_object_or_404(Arquivos.objects.using( db_slug ), excluido = False, id = arquivos_id)
     from emensageriapro.settings import BASE_DIR
     from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo
+
     if arquivos.permite_recuperacao:
+
         dados = importar_arquivo(arquivos.arquivo, request, 0)
+
         if dados:
+
             messages.warning(request, 'Arquivo recuperado com sucesso! Por gentileza confira todo o conteúdo do mesmo, pois este processo não passou por validação')
+
         else:
+
             messages.error(request, 'Arquivo não pode ser recuperado pois já existe um arquivo com a mesma identidade cadastrado!')
+
     else:
+
         messages.error(request,
                        'Este arquivo não permite ser recuperado!')
+
     atualizar_versao()
+
     return redirect('arquivos', hash=request.session['retorno_hash'])
 
 
@@ -120,81 +130,97 @@ def arquivos_recuperacao(request, hash):
 
 @login_required
 def arquivos_reprocessar(request, hash):
+
     import os
-    db_slug = 'default'
+    from emensageriapro.settings import BASE_DIR
+    from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo
+
     try:
+
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         arquivos_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+
     except:
+
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='arquivos')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
 
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    arquivos = get_object_or_404(Arquivos.objects.using( db_slug ), excluido = False, id = arquivos_id)
-    from emensageriapro.settings import BASE_DIR
-    from emensageriapro.mensageiro.functions.funcoes_importacao import importar_arquivo
-    import os
+    arquivos = get_object_or_404(Arquivos, id=arquivos_id)
+
     texto = ''
+
     if not os.path.isfile(BASE_DIR + '/' + arquivos.arquivo):
         texto = ler_arquivo(arquivos.arquivo)
         return redirect('arquivos', hash=request.session['retorno_hash'])
+
     a = arquivos.arquivo.split('/')
     b = a[len(a)-1].split('.')
     transmissor_id = int(b[0])
+
     if 'eSocial' in texto:
+
         if 'WsEnviarLoteEventos' in arquivos.arquivo:
             from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_envioLoteEventos
             read_envioLoteEventos(arquivos.arquivo, transmissor_id)
+
         elif 'WsConsultarLoteEventos' in arquivos.arquivo:
             from emensageriapro.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos
             read_consultaLoteEventos(arquivos.arquivo, transmissor_id)
+
         messages.success(request, 'Arquivo processado com sucesso!')
+
     elif 'Reinf' in texto:
+
         if 'RecepcaoLoteReinf' in arquivos.arquivo:
             from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_envioLoteEventos
             read_envioLoteEventos(arquivos.arquivo, transmissor_id)
+
         elif 'ConsultasReinf' in arquivos.arquivo:
             from emensageriapro.mensageiro.functions.funcoes_efdreinf_comunicacao import read_consultaLoteEventos
             read_consultaLoteEventos(arquivos.arquivo, transmissor_id)
+
         messages.success(request, 'Arquivo processado com sucesso!')
+
     else:
+
         messages.error(request,
                        'Não foi possível reprocessar o arquivo!')
+
     return redirect('arquivos', hash=request.session['retorno_hash'])
 
 
 
 @login_required
 def arquivos_visualizacao(request, hash):
-    db_slug = 'default'
+
+    from emensageriapro.settings import BASE_DIR
+    import os
+
     try:
+
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         arquivos_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+
     except:
+
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios.objects.using( db_slug ), excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.using( db_slug ).get(excluido = False, endereco='arquivos')
-    permissao = ConfigPermissoes.objects.using( db_slug ).get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    arquivos = get_object_or_404(Arquivos.objects.using( db_slug ), excluido = False, id = arquivos_id)
-    from emensageriapro.settings import BASE_DIR
-    import os
+
+    usuario = get_object_or_404(Usuarios,  id=usuario_id)
+
+    arquivos = get_object_or_404(Arquivos,  id=arquivos_id)
+
     if not os.path.isfile(BASE_DIR + '/' + arquivos.arquivo):
         messages.error(request, 'Arquivo não encontrado!')
         return redirect('arquivos', hash=request.session['retorno_hash'])
+
     xml = ler_arquivo(arquivos.arquivo)
     atualizar_versao()
+
     return HttpResponse(xml, content_type='text/xml')

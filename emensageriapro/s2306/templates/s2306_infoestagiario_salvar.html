@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s2306_infoestagiario_visualizar' %}
+                    {% if perms.s2306.can_view_s2306infoEstagiario %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's2306_infoestagiario_salvar' hash='{}'|json_return_page:'s2306_infoestagiario_salvar'|json_return_hash:hash|json_id:s2306_infoestagiario_id|json_print:0|base64_encode_me %}">
                             Informações relativas ao estagiário
@@ -62,14 +62,14 @@
                     {% endif %}
                     {% if s2306_infoestagiario_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s2306_ageintegracao_visualizar' %}
+                            {% if perms.s2306.can_view_s2306_ageintegracao %}
                                 <li {% if tab == 's2306_ageintegracao' %} class="active"{% endif %} >
                                     <a href="{% url 's2306_infoestagiario_salvar' hash='{}'|json_id:s2306_infoestagiario_id|json_print:0|json_tab:'s2306_ageintegracao'|base64_encode_me %}">
                                     Agente de Integração</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2306_supervisorestagio_visualizar' %}
+                            {% if perms.s2306.can_view_s2306_supervisorestagio %}
                                 <li {% if tab == 's2306_supervisorestagio' %} class="active"{% endif %} >
                                     <a href="{% url 's2306_infoestagiario_salvar' hash='{}'|json_id:s2306_infoestagiario_id|json_print:0|json_tab:'s2306_supervisorestagio'|base64_encode_me %}">
                                     Supervisor do Estágio</a>
@@ -188,7 +188,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s2306_infoestagiario_editar' or dict_permissoes|get_permissao:'s2306_infoestagiario_cadastrar' %}
+            {% if perms.s2306.change_s2306_infoestagiario or perms.s2306.add_s2306_infoestagiario %}
                 <form action="#" id="id_form_s2306_infoestagiario" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -215,7 +215,7 @@
                             <!-- botões especiais -->
                             {% if s2306_infoestagiario_id %}
 
-                                {% if dict_permissoes|get_permissao:'s2306_infoestagiario_cadastrar' %}
+                                {% if perms.s2306.add_s2306infoEstagiario %}
                                     <a href="{% url 's2306_infoestagiario_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -227,7 +227,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2306_infoestagiario_listar' or dict_permissoes|get_permissao:'s2306_infoestagiario_listar' %}
+                            {% if perms.s2306.can_view_s2306_infoestagiario or perms.s2306.can_view_s2306_infoestagiario %}
                                 <a href="{% url 's2306_infoestagiario'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -236,7 +236,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2306_infoestagiario_visualizar' and s2306_infoestagiario_id %}
+                            {% if perms.s2306.can_view_s2306_infoestagiario and s2306_infoestagiario_id %}
                                 <a href="{% url 's2306_infoestagiario_salvar' hash='{}'|json_id:s2306_infoestagiario_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -245,7 +245,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s2306_infoestagiario_visualizar' and s2306_infoestagiario_id %}
+                            {% if perms.s2306.can_view_s2306_infoestagiario and s2306_infoestagiario_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -272,7 +272,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2306_infoestagiario_editar' or dict_permissoes|get_permissao:'s2306_infoestagiario_cadastrar' %}
+                            {% if perms.s2306.change_s2306_infoestagiario or perms.s2306.add_s2306_infoestagiario %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -281,7 +281,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2306_infoestagiario_apagar' and s2306_infoestagiario_id %}
+                            {% if perms.s2306.delete_s2306_infoestagiario and s2306_infoestagiario_id %}
 
                             <a href="{% url 's2306_infoestagiario_apagar' hash='{}'|json_id:s2306_infoestagiario_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -303,7 +303,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s2306_infoestagiario_editar' or dict_permissoes|get_permissao:'s2306_infoestagiario_cadastrar' %}
+                    {% if perms.s2306.change_s2306_infoestagiario or perms.s2306.add_s2306_infoestagiario %}
                         </form>
                     {% endif %}
 
@@ -329,9 +329,9 @@
 
             {% if tab == 's2306_ageintegracao' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2306_ageintegracao_visualizar' %} 
+                {% if perms.s2306.can_view_s2306_ageintegracao %} 
 
-                    {% if dict_permissoes|get_permissao:'s2306_ageintegracao_editar' or dict_permissoes|get_permissao:'s2306_ageintegracao_cadastrar' %}
+                    {% if perms.s2306.change_s2306_ageintegracao or perms.s2306.add_s2306ageIntegracao %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -358,7 +358,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Agente de Integração</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2306_ageintegracao_editar' or dict_permissoes|get_permissao:'s2306_ageintegracao_cadastrar' %}
+                                        {% if perms.s2306.change_s2306_ageintegracao or perms.s2306.add_s2306ageIntegracao %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -373,7 +373,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2306_ageintegracao_cadastrar' %}            
+                                    {% if perms.s2306.add_s2306ageIntegracao %}            
                                     <!-- begin_form_s2306_ageintegracao --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2306_ageintegracao" action="{% url 's2306_ageintegracao_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -426,9 +426,9 @@
 
             {% if tab == 's2306_supervisorestagio' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2306_supervisorestagio_visualizar' %} 
+                {% if perms.s2306.can_view_s2306_supervisorestagio %} 
 
-                    {% if dict_permissoes|get_permissao:'s2306_supervisorestagio_editar' or dict_permissoes|get_permissao:'s2306_supervisorestagio_cadastrar' %}
+                    {% if perms.s2306.change_s2306_supervisorestagio or perms.s2306.add_s2306supervisorEstagio %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -455,7 +455,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Supervisor do Estágio</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2306_supervisorestagio_editar' or dict_permissoes|get_permissao:'s2306_supervisorestagio_cadastrar' %}
+                                        {% if perms.s2306.change_s2306_supervisorestagio or perms.s2306.add_s2306supervisorEstagio %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -470,7 +470,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2306_supervisorestagio_cadastrar' %}            
+                                    {% if perms.s2306.add_s2306supervisorEstagio %}            
                                     <!-- begin_form_s2306_supervisorestagio --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2306_supervisorestagio" action="{% url 's2306_supervisorestagio_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

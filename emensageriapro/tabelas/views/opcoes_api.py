@@ -86,13 +86,17 @@ def json_search(request, opcoes_id, search):
     search = urllib.unquote(search)
     lista = search.split(" ")
     dicionario = {}
+    
     if search.strip():
+    
         try:
             query = reduce(operator.and_, ((Q(titulo__icontains=item) | Q(codigo__icontains=item)) for item in lista))
             lista = Opcoes.objects.filter(opcoes_id=opcoes_id).filter(query).all()
+            
         except:
             query = reduce(operator.and_, ((Q(descricao__icontains=item) | Q(codigo__icontains=item)) for item in lista))
             lista = Opcoes.objects.filter(opcoes_id=opcoes_id).filter(query).all()
+            
     else:
         lista = Opcoes.objects.filter(opcoes_id=opcoes_id).all()
 
@@ -104,4 +108,3 @@ def json_search(request, opcoes_id, search):
         lista_opcoes.append(dic)
     dicionario['opcoes'] = lista_opcoes
     return JsonResponse(dicionario)
-

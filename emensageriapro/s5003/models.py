@@ -75,14 +75,6 @@ class s5003basePerAntE(SoftDeletionModel):
     tpvalore = models.IntegerField(choices=CHOICES_S5003_TPVALORE, null=True, )
     remfgtse = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -107,7 +99,8 @@ class s5003basePerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_baseperante", "Can view s5003_baseperante"), )
+            ("can_view_s5003basePerAntE", "Can view S5003BASEPERANTE"),
+            ("can_view_menu_s5003basePerAntE", "Can view menu S5003BASEPERANTE"),)
             
         ordering = [
             's5003_infobaseperante',
@@ -142,14 +135,6 @@ class s5003basePerApur(SoftDeletionModel):
     tpvalor = models.IntegerField(null=True, )
     remfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -174,7 +159,8 @@ class s5003basePerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_baseperapur", "Can view s5003_baseperapur"), )
+            ("can_view_s5003basePerApur", "Can view S5003BASEPERAPUR"),
+            ("can_view_menu_s5003basePerApur", "Can view menu S5003BASEPERAPUR"),)
             
         ordering = [
             's5003_infobasefgts',
@@ -209,14 +195,6 @@ class s5003dpsPerAntE(SoftDeletionModel):
     tpdpse = models.IntegerField(choices=CHOICES_S5003_TPDPSE, null=True, )
     dpsfgtse = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -241,7 +219,8 @@ class s5003dpsPerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_dpsperante", "Can view s5003_dpsperante"), )
+            ("can_view_s5003dpsPerAntE", "Can view S5003DPSPERANTE"),
+            ("can_view_menu_s5003dpsPerAntE", "Can view menu S5003DPSPERANTE"),)
             
         ordering = [
             's5003_infodpsperante',
@@ -276,14 +255,6 @@ class s5003dpsPerApur(SoftDeletionModel):
     tpdps = models.IntegerField(choices=CHOICES_S5003_TPDPS, null=True, )
     dpsfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -308,7 +279,8 @@ class s5003dpsPerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_dpsperapur", "Can view s5003_dpsperapur"), )
+            ("can_view_s5003dpsPerApur", "Can view S5003DPSPERAPUR"),
+            ("can_view_menu_s5003dpsPerApur", "Can view menu S5003DPSPERAPUR"),)
             
         ordering = [
             's5003_infotrabdps',
@@ -344,14 +316,6 @@ class s5003ideEstabLot(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, null=True, )
     codlotacao = models.CharField(max_length=30, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -377,7 +341,8 @@ class s5003ideEstabLot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_ideestablot", "Can view s5003_ideestablot"), )
+            ("can_view_s5003ideEstabLot", "Can view S5003IDEESTABLOT"),
+            ("can_view_menu_s5003ideEstabLot", "Can view menu S5003IDEESTABLOT"),)
             
         ordering = [
             's5003_evtbasesfgts',
@@ -411,14 +376,6 @@ class s5003infoBaseFGTS(SoftDeletionModel):
     def evento(self): 
         return self.s5003_infotrabfgts.evento()
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -441,7 +398,8 @@ class s5003infoBaseFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_infobasefgts", "Can view s5003_infobasefgts"), )
+            ("can_view_s5003infoBaseFGTS", "Can view S5003INFOBASEFGTS"),
+            ("can_view_menu_s5003infoBaseFGTS", "Can view menu S5003INFOBASEFGTS"),)
             
         ordering = [
             's5003_infotrabfgts',]
@@ -473,14 +431,6 @@ class s5003infoBasePerAntE(SoftDeletionModel):
         return self.s5003_infobasefgts.evento()
     perref = models.CharField(max_length=7, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -504,7 +454,8 @@ class s5003infoBasePerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_infobaseperante", "Can view s5003_infobaseperante"), )
+            ("can_view_s5003infoBasePerAntE", "Can view S5003INFOBASEPERANTE"),
+            ("can_view_menu_s5003infoBasePerAntE", "Can view menu S5003INFOBASEPERANTE"),)
             
         ordering = [
             's5003_infobasefgts',
@@ -536,14 +487,6 @@ class s5003infoDpsFGTS(SoftDeletionModel):
     def evento(self): 
         return self.s5003_evtbasesfgts.evento()
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -566,7 +509,8 @@ class s5003infoDpsFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_infodpsfgts", "Can view s5003_infodpsfgts"), )
+            ("can_view_s5003infoDpsFGTS", "Can view S5003INFODPSFGTS"),
+            ("can_view_menu_s5003infoDpsFGTS", "Can view menu S5003INFODPSFGTS"),)
             
         ordering = [
             's5003_evtbasesfgts',]
@@ -598,14 +542,6 @@ class s5003infoDpsPerAntE(SoftDeletionModel):
         return self.s5003_infotrabdps.evento()
     perref = models.CharField(max_length=7, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -629,7 +565,8 @@ class s5003infoDpsPerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_infodpsperante", "Can view s5003_infodpsperante"), )
+            ("can_view_s5003infoDpsPerAntE", "Can view S5003INFODPSPERANTE"),
+            ("can_view_menu_s5003infoDpsPerAntE", "Can view menu S5003INFODPSPERANTE"),)
             
         ordering = [
             's5003_infotrabdps',
@@ -663,14 +600,6 @@ class s5003infoTrabDps(SoftDeletionModel):
     matricula = models.CharField(max_length=30, blank=True, null=True, )
     codcateg = models.IntegerField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -694,7 +623,8 @@ class s5003infoTrabDps(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_infotrabdps", "Can view s5003_infotrabdps"), )
+            ("can_view_s5003infoTrabDps", "Can view S5003INFOTRABDPS"),
+            ("can_view_menu_s5003infoTrabDps", "Can view menu S5003INFOTRABDPS"),)
             
         ordering = [
             's5003_infodpsfgts',
@@ -734,14 +664,6 @@ class s5003infoTrabFGTS(SoftDeletionModel):
     dtterm = models.DateField(blank=True, null=True, )
     mtvdesligtsv = models.CharField(choices=CHOICES_S5003_MTVDESLIGTSV, max_length=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -765,7 +687,8 @@ class s5003infoTrabFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5003_infotrabfgts", "Can view s5003_infotrabfgts"), )
+            ("can_view_s5003infoTrabFGTS", "Can view S5003INFOTRABFGTS"),
+            ("can_view_menu_s5003infoTrabFGTS", "Can view menu S5003INFOTRABFGTS"),)
             
         ordering = [
             's5003_ideestablot',

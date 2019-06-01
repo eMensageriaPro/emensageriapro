@@ -60,37 +60,38 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    
     try: 
+    
         usuario_id = request.user.id 
         dict_hash = get_hash_url( hash )
         s2231_fimcessao_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2231_fimcessao')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s2231_fimcessao = get_object_or_404(s2231fimCessao, id = s2231_fimcessao_id)
+    s2231_fimcessao = get_object_or_404(s2231fimCessao, id=s2231_fimcessao_id)
+    
     dados_evento = {}
+    
     if s2231_fimcessao_id:
+    
         dados_evento = s2231_fimcessao.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s2231_fimcessao_apagar'] = 0
-            dict_permissoes['s2231_fimcessao_editar'] = 0
+            
     if request.method == 'POST':
+    
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(s2231_fimcessao), indent=4, sort_keys=True, default=str)
             obj = s2231fimCessao.objects.get(id = s2231_fimcessao_id)
             obj.delete(request=request)
@@ -100,23 +101,28 @@ def apagar(request, hash):
             gravar_auditoria(situacao_anterior,
                              '', 
                              's2231_fimcessao', s2231_fimcessao_id, usuario_id, 3)
+                             
         else:
+        
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 's2231_fimcessao_salvar':
-            return redirect('s2231_fimcessao', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('s2231_fimcessao', hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            
+    context = {
+        'dados_evento': dados_evento, 
+        'modulos': ['s2231', ],
+        'paginas': ['s2231_fimcessao', ],
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
         'hash': hash,
     }
-    return render(request, 's2231_fimcessao_apagar.html', context)
+    
+    return render(request, 
+                  's2231_fimcessao_apagar.html', 
+                  context)

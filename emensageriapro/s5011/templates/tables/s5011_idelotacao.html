@@ -30,10 +30,10 @@
             <td>{{ a.codlotacao }}</td>
             {% endif %}
             {% if show_fields.show_fpas or 1 %}
-            <td>{{ a.get_fpas_display }}</td>
+            <td>{{ a.fpas|valor }}</td>
             {% endif %}
             {% if show_fields.show_codtercs or 1 %}
-            <td>{{ a.get_codtercs_display }}</td>
+            <td>{{ a.codtercs }}</td>
             {% endif %}
             
             <!-- colunas especiais -->
@@ -41,9 +41,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s5011_idelotacao_visualizar' %}
+                    {% if perms.s5011.can_view_s5011ideLotacao %}
                         <a href="{% url 's5011_idelotacao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s5011_idelotacao_editar' or dict_permissoes|get_permissao:'s5011_idelotacao_cadastrar' %}
+                            {% if perms.s5011.add_s5011ideLotacao or perms.s5011.change_s5011ideLotacao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -54,7 +54,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s5011_idelotacao_apagar' %}
+                    {% if perms.s5011.delete_s5011ideLotacao %}
                         <a href="{% url 's5011_idelotacao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

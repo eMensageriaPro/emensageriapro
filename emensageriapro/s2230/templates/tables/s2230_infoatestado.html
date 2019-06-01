@@ -29,9 +29,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2230_infoatestado_visualizar' %}
+                    {% if perms.s2230.can_view_s2230infoAtestado %}
                         <a href="{% url 's2230_infoatestado_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2230_infoatestado_editar' or dict_permissoes|get_permissao:'s2230_infoatestado_cadastrar' %}
+                            {% if perms.s2230.add_s2230infoAtestado or perms.s2230.change_s2230infoAtestado %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -42,7 +42,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2230_infoatestado_apagar' %}
+                    {% if perms.s2230.delete_s2230infoAtestado %}
                         <a href="{% url 's2230_infoatestado_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

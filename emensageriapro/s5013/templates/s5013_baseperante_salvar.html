@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s5013_baseperante_visualizar' %}
+                    {% if perms.s5013.can_view_s5013basePerAntE %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's5013_baseperante_salvar' hash='{}'|json_return_page:'s5013_baseperante_salvar'|json_return_hash:hash|json_id:s5013_baseperante_id|json_print:0|base64_encode_me %}">
                             Informações sobre bases de cálculo do FGTS referentes à remuneração de períodos anteriores quando {tpAcConv} = [E]. Origem: S-1200 ou S-2299.
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s5013_baseperante_editar' or dict_permissoes|get_permissao:'s5013_baseperante_cadastrar' %}
+            {% if perms.s5013.change_s5013_baseperante or perms.s5013.add_s5013_baseperante %}
                 <form action="#" id="id_form_s5013_baseperante" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s5013_baseperante_id %}
 
-                                {% if dict_permissoes|get_permissao:'s5013_baseperante_cadastrar' %}
+                                {% if perms.s5013.add_s5013basePerAntE %}
                                     <a href="{% url 's5013_baseperante_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5013_baseperante_listar' or dict_permissoes|get_permissao:'s5013_baseperante_listar' %}
+                            {% if perms.s5013.can_view_s5013_baseperante or perms.s5013.can_view_s5013_baseperante %}
                                 <a href="{% url 's5013_baseperante'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5013_baseperante_visualizar' and s5013_baseperante_id %}
+                            {% if perms.s5013.can_view_s5013_baseperante and s5013_baseperante_id %}
                                 <a href="{% url 's5013_baseperante_salvar' hash='{}'|json_id:s5013_baseperante_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s5013_baseperante_visualizar' and s5013_baseperante_id %}
+                            {% if perms.s5013.can_view_s5013_baseperante and s5013_baseperante_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5013_baseperante_editar' or dict_permissoes|get_permissao:'s5013_baseperante_cadastrar' %}
+                            {% if perms.s5013.change_s5013_baseperante or perms.s5013.add_s5013_baseperante %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5013_baseperante_apagar' and s5013_baseperante_id %}
+                            {% if perms.s5013.delete_s5013_baseperante and s5013_baseperante_id %}
 
                             <a href="{% url 's5013_baseperante_apagar' hash='{}'|json_id:s5013_baseperante_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s5013_baseperante_editar' or dict_permissoes|get_permissao:'s5013_baseperante_cadastrar' %}
+                    {% if perms.s5013.change_s5013_baseperante or perms.s5013.add_s5013_baseperante %}
                         </form>
                     {% endif %}
 

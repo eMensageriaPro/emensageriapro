@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">R-9012 - Informações consolidadas de bases e tributos - Retenções na fonte</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r9012_evtretcons_cadastrar' %}
+                  {% if perms.efdreinf.add_r9012evtRetCons %}
                   <a href="{% url 'r9012_evtretcons_salvar' hash='{}'|json_return_page:'r9012_evtretcons_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

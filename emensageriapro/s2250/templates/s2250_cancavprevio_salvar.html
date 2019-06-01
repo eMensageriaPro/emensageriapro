@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s2250_cancavprevio_visualizar' %}
+                    {% if perms.s2250.can_view_s2250cancAvPrevio %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's2250_cancavprevio_salvar' hash='{}'|json_return_page:'s2250_cancavprevio_salvar'|json_return_hash:hash|json_id:s2250_cancavprevio_id|json_print:0|base64_encode_me %}">
                             Cancelamento do Aviso Prévio
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s2250_cancavprevio_editar' or dict_permissoes|get_permissao:'s2250_cancavprevio_cadastrar' %}
+            {% if perms.s2250.change_s2250_cancavprevio or perms.s2250.add_s2250_cancavprevio %}
                 <form action="#" id="id_form_s2250_cancavprevio" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s2250_cancavprevio_id %}
 
-                                {% if dict_permissoes|get_permissao:'s2250_cancavprevio_cadastrar' %}
+                                {% if perms.s2250.add_s2250cancAvPrevio %}
                                     <a href="{% url 's2250_cancavprevio_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2250_cancavprevio_listar' or dict_permissoes|get_permissao:'s2250_cancavprevio_listar' %}
+                            {% if perms.s2250.can_view_s2250_cancavprevio or perms.s2250.can_view_s2250_cancavprevio %}
                                 <a href="{% url 's2250_cancavprevio'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2250_cancavprevio_visualizar' and s2250_cancavprevio_id %}
+                            {% if perms.s2250.can_view_s2250_cancavprevio and s2250_cancavprevio_id %}
                                 <a href="{% url 's2250_cancavprevio_salvar' hash='{}'|json_id:s2250_cancavprevio_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s2250_cancavprevio_visualizar' and s2250_cancavprevio_id %}
+                            {% if perms.s2250.can_view_s2250_cancavprevio and s2250_cancavprevio_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2250_cancavprevio_editar' or dict_permissoes|get_permissao:'s2250_cancavprevio_cadastrar' %}
+                            {% if perms.s2250.change_s2250_cancavprevio or perms.s2250.add_s2250_cancavprevio %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2250_cancavprevio_apagar' and s2250_cancavprevio_id %}
+                            {% if perms.s2250.delete_s2250_cancavprevio and s2250_cancavprevio_id %}
 
                             <a href="{% url 's2250_cancavprevio_apagar' hash='{}'|json_id:s2250_cancavprevio_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s2250_cancavprevio_editar' or dict_permissoes|get_permissao:'s2250_cancavprevio_cadastrar' %}
+                    {% if perms.s2250.change_s2250_cancavprevio or perms.s2250.add_s2250_cancavprevio %}
                         </form>
                     {% endif %}
 

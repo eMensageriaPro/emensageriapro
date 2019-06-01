@@ -81,14 +81,6 @@ class s2220exame(SoftDeletionModel):
     dtfimmonit = models.DateField(blank=True, null=True, )
     indresult = models.IntegerField(choices=CHOICES_S2220_INDRESULT, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -116,7 +108,8 @@ class s2220exame(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2220_exame", "Can view s2220_exame"), )
+            ("can_view_s2220exame", "Can view S2220EXAME"),
+            ("can_view_menu_s2220exame", "Can view menu S2220EXAME"),)
             
         ordering = [
             's2220_evtmonit',

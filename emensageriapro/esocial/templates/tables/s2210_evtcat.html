@@ -102,7 +102,7 @@
             <td><span style="display:none">{{ a.dtacid|date:"Y-m-d" }}</span>{{ a.dtacid|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_tpacid or 1 %}
-            <td>{{ a.get_tpacid_display }}</td>
+            <td>{{ a.tpacid }}</td>
             {% endif %}
             {% if show_fields.show_hrstrabantesacid or 1 %}
             <td>{{ a.hrstrabantesacid }}</td>
@@ -117,7 +117,7 @@
             <td>{{ a.get_indcomunpolicia_display }}</td>
             {% endif %}
             {% if show_fields.show_codsitgeradora or 1 %}
-            <td>{{ a.get_codsitgeradora_display }}</td>
+            <td>{{ a.codsitgeradora|valor }}</td>
             {% endif %}
             {% if show_fields.show_iniciatcat or 1 %}
             <td>{{ a.get_iniciatcat_display }}</td>
@@ -143,9 +143,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2210_evtcat_visualizar' %}
+                    {% if perms.esocial.can_view_s2210evtCAT %}
                         <a href="{% url 's2210_evtcat_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2210_evtcat_editar' or dict_permissoes|get_permissao:'s2210_evtcat_cadastrar' %}
+                            {% if perms.esocial.add_s2210evtCAT or perms.esocial.change_s2210evtCAT %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -156,7 +156,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2210_evtcat_apagar' %}
+                    {% if perms.esocial.delete_s2210evtCAT %}
                         <a href="{% url 's2210_evtcat_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

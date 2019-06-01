@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações dos dependentes</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2405_dependente_cadastrar' %}
+                  {% if perms.s2405.add_s2405dependente %}
                   <a href="{% url 's2405_dependente_salvar' hash='{}'|json_return_page:'s2405_dependente_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

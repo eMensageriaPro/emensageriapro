@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Fator de risco ao qual o trabalhador está exposto na atividade exercida no ambiente</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2240_iniexprisco_fatrisco_cadastrar' %}
+                  {% if perms.s2240.add_s2240iniExpRiscofatRisco %}
                   <a href="{% url 's2240_iniexprisco_fatrisco_salvar' hash='{}'|json_return_page:'s2240_iniexprisco_fatrisco_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

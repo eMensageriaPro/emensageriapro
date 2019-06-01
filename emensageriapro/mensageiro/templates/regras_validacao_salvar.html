@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'regras_validacao_visualizar' %}
+                    {% if perms.mensageiro.can_view_RegrasDeValidacao %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 'regras_validacao_salvar' hash='{}'|json_return_page:'regras_validacao_salvar'|json_return_hash:hash|json_id:regras_validacao_id|json_print:0|base64_encode_me %}">
                             Regras de Validação
@@ -129,7 +129,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'regras_validacao_editar' or dict_permissoes|get_permissao:'regras_validacao_cadastrar' %}
+            {% if perms.mensageiro.change_regras_validacao or perms.mensageiro.add_regras_validacao %}
                 <form action="#" id="id_form_regras_validacao" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -156,7 +156,7 @@
                             <!-- botões especiais -->
                             {% if regras_validacao_id %}
 
-                                {% if dict_permissoes|get_permissao:'regras_validacao_cadastrar' %}
+                                {% if perms.mensageiro.add_RegrasDeValidacao %}
                                     <a href="{% url 'regras_validacao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -168,7 +168,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'regras_validacao_listar' or dict_permissoes|get_permissao:'regras_validacao_listar' %}
+                            {% if perms.mensageiro.can_view_regras_validacao or perms.mensageiro.can_view_regras_validacao %}
                                 <a href="{% url 'regras_validacao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -177,7 +177,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'regras_validacao_visualizar' and regras_validacao_id %}
+                            {% if perms.mensageiro.can_view_regras_validacao and regras_validacao_id %}
                                 <a href="{% url 'regras_validacao_salvar' hash='{}'|json_id:regras_validacao_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -186,7 +186,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'regras_validacao_visualizar' and regras_validacao_id %}
+                            {% if perms.mensageiro.can_view_regras_validacao and regras_validacao_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -213,7 +213,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'regras_validacao_editar' or dict_permissoes|get_permissao:'regras_validacao_cadastrar' %}
+                            {% if perms.mensageiro.change_regras_validacao or perms.mensageiro.add_regras_validacao %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -222,7 +222,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'regras_validacao_apagar' and regras_validacao_id %}
+                            {% if perms.mensageiro.delete_regras_validacao and regras_validacao_id %}
 
                             <a href="{% url 'regras_validacao_apagar' hash='{}'|json_id:regras_validacao_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -244,7 +244,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'regras_validacao_editar' or dict_permissoes|get_permissao:'regras_validacao_cadastrar' %}
+                    {% if perms.mensageiro.change_regras_validacao or perms.mensageiro.add_regras_validacao %}
                         </form>
                     {% endif %}
 

@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2299_infotrabinterm_infomv_cadastrar' %}
+                  {% if perms.s2299.add_s2299infoTrabInterminfoMV %}
                   <a href="{% url 's2299_infotrabinterm_infomv_salvar' hash='{}'|json_return_page:'s2299_infotrabinterm_infomv_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

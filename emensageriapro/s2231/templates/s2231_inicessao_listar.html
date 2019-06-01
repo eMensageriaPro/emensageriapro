@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações de início da cessão/exercício em outro órgão</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2231_inicessao_cadastrar' %}
+                  {% if perms.s2231.add_s2231iniCessao %}
                   <a href="{% url 's2231_inicessao_salvar' hash='{}'|json_return_page:'s2231_inicessao_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

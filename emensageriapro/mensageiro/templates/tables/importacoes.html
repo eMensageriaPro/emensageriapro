@@ -17,9 +17,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'importacoes_visualizar' %}
+                    {% if perms.mensageiro.can_view_Importacoes %}
                         <a href="{% url 'importacoes_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'importacoes_editar' or dict_permissoes|get_permissao:'importacoes_cadastrar' %}
+                            {% if perms.mensageiro.add_Importacoes or perms.mensageiro.change_Importacoes %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -30,7 +30,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'importacoes_apagar' %}
+                    {% if perms.mensageiro.delete_Importacoes %}
                         <a href="{% url 'importacoes_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

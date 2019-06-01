@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' %}
+                    {% if perms.r3010.can_view_r3010boletim %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 'r3010_boletim_salvar' hash='{}'|json_return_page:'r3010_boletim_salvar'|json_return_hash:hash|json_id:r3010_boletim_id|json_print:0|base64_encode_me %}">
                             Boletim do Espetáculo Desportivo
@@ -62,14 +62,14 @@
                     {% endif %}
                     {% if r3010_boletim_id %}
                         
-                            {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %}
+                            {% if perms.r3010.can_view_r3010_receitaingressos %}
                                 <li {% if tab == 'r3010_receitaingressos' %} class="active"{% endif %} >
                                     <a href="{% url 'r3010_boletim_salvar' hash='{}'|json_id:r3010_boletim_id|json_print:0|json_tab:'r3010_receitaingressos'|base64_encode_me %}">
                                     Receita da Venda de Ingressos</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r3010_outrasreceitas_visualizar' %}
+                            {% if perms.r3010.can_view_r3010_outrasreceitas %}
                                 <li {% if tab == 'r3010_outrasreceitas' %} class="active"{% endif %} >
                                     <a href="{% url 'r3010_boletim_salvar' hash='{}'|json_id:r3010_boletim_id|json_print:0|json_tab:'r3010_outrasreceitas'|base64_encode_me %}">
                                     Outras receitas do espetáculo</a>
@@ -188,7 +188,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'r3010_boletim_editar' or dict_permissoes|get_permissao:'r3010_boletim_cadastrar' %}
+            {% if perms.r3010.change_r3010_boletim or perms.r3010.add_r3010_boletim %}
                 <form action="#" id="id_form_r3010_boletim" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -215,7 +215,7 @@
                             <!-- botões especiais -->
                             {% if r3010_boletim_id %}
 
-                                {% if dict_permissoes|get_permissao:'r3010_boletim_cadastrar' %}
+                                {% if perms.r3010.add_r3010boletim %}
                                     <a href="{% url 'r3010_boletim_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -227,7 +227,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r3010_boletim_listar' or dict_permissoes|get_permissao:'r3010_boletim_listar' %}
+                            {% if perms.r3010.can_view_r3010_boletim or perms.r3010.can_view_r3010_boletim %}
                                 <a href="{% url 'r3010_boletim'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -236,7 +236,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' and r3010_boletim_id %}
+                            {% if perms.r3010.can_view_r3010_boletim and r3010_boletim_id %}
                                 <a href="{% url 'r3010_boletim_salvar' hash='{}'|json_id:r3010_boletim_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -245,7 +245,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'r3010_boletim_visualizar' and r3010_boletim_id %}
+                            {% if perms.r3010.can_view_r3010_boletim and r3010_boletim_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -272,7 +272,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r3010_boletim_editar' or dict_permissoes|get_permissao:'r3010_boletim_cadastrar' %}
+                            {% if perms.r3010.change_r3010_boletim or perms.r3010.add_r3010_boletim %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -281,7 +281,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r3010_boletim_apagar' and r3010_boletim_id %}
+                            {% if perms.r3010.delete_r3010_boletim and r3010_boletim_id %}
 
                             <a href="{% url 'r3010_boletim_apagar' hash='{}'|json_id:r3010_boletim_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -303,7 +303,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'r3010_boletim_editar' or dict_permissoes|get_permissao:'r3010_boletim_cadastrar' %}
+                    {% if perms.r3010.change_r3010_boletim or perms.r3010.add_r3010_boletim %}
                         </form>
                     {% endif %}
 
@@ -329,9 +329,9 @@
 
             {% if tab == 'r3010_receitaingressos' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %} 
+                {% if perms.r3010.can_view_r3010_receitaingressos %} 
 
-                    {% if dict_permissoes|get_permissao:'r3010_receitaingressos_editar' or dict_permissoes|get_permissao:'r3010_receitaingressos_cadastrar' %}
+                    {% if perms.r3010.change_r3010_receitaingressos or perms.r3010.add_r3010receitaIngressos %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -358,7 +358,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Receita da Venda de Ingressos</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r3010_receitaingressos_editar' or dict_permissoes|get_permissao:'r3010_receitaingressos_cadastrar' %}
+                                        {% if perms.r3010.change_r3010_receitaingressos or perms.r3010.add_r3010receitaIngressos %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -373,7 +373,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r3010_receitaingressos_cadastrar' %}            
+                                    {% if perms.r3010.add_r3010receitaIngressos %}            
                                     <!-- begin_form_r3010_receitaingressos --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r3010_receitaingressos" action="{% url 'r3010_receitaingressos_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -426,9 +426,9 @@
 
             {% if tab == 'r3010_outrasreceitas' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r3010_outrasreceitas_visualizar' %} 
+                {% if perms.r3010.can_view_r3010_outrasreceitas %} 
 
-                    {% if dict_permissoes|get_permissao:'r3010_outrasreceitas_editar' or dict_permissoes|get_permissao:'r3010_outrasreceitas_cadastrar' %}
+                    {% if perms.r3010.change_r3010_outrasreceitas or perms.r3010.add_r3010outrasReceitas %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -455,7 +455,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Outras receitas do espetáculo</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r3010_outrasreceitas_editar' or dict_permissoes|get_permissao:'r3010_outrasreceitas_cadastrar' %}
+                                        {% if perms.r3010.change_r3010_outrasreceitas or perms.r3010.add_r3010outrasReceitas %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -470,7 +470,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r3010_outrasreceitas_cadastrar' %}            
+                                    {% if perms.r3010.add_r3010outrasReceitas %}            
                                     <!-- begin_form_r3010_outrasreceitas --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r3010_outrasreceitas" action="{% url 'r3010_outrasreceitas_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

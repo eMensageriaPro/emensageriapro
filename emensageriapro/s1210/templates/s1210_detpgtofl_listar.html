@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1210_detpgtofl_cadastrar' %}
+                  {% if perms.s1210.add_s1210detPgtoFl %}
                   <a href="{% url 's1210_detpgtofl_salvar' hash='{}'|json_return_page:'s1210_detpgtofl_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

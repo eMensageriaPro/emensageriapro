@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1207_procjudtrab_cadastrar' %}
+                  {% if perms.s1207.add_s1207procJudTrab %}
                   <a href="{% url 's1207_procjudtrab_salvar' hash='{}'|json_return_page:'s1207_procjudtrab_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

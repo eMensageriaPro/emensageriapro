@@ -81,7 +81,7 @@ def listar(request, hash):
     paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
     modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
-    if permissao.permite_listar:
+    if True:
         filtrar = False
         dict_fields = {}
         show_fields = { 

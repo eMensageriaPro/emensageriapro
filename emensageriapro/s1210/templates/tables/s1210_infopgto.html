@@ -41,9 +41,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s1210_infopgto_visualizar' %}
+                    {% if perms.s1210.can_view_s1210infoPgto %}
                         <a href="{% url 's1210_infopgto_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s1210_infopgto_editar' or dict_permissoes|get_permissao:'s1210_infopgto_cadastrar' %}
+                            {% if perms.s1210.add_s1210infoPgto or perms.s1210.change_s1210infoPgto %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -54,7 +54,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s1210_infopgto_apagar' %}
+                    {% if perms.s1210.delete_s1210infoPgto %}
                         <a href="{% url 's1210_infopgto_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

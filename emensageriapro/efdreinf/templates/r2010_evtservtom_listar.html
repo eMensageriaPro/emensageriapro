@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r2010_evtservtom_cadastrar' %}
+                  {% if perms.efdreinf.add_r2010evtServTom %}
                   <a href="{% url 'r2010_evtservtom_salvar' hash='{}'|json_return_page:'r2010_evtservtom_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

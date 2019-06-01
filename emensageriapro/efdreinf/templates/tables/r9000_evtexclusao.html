@@ -57,13 +57,13 @@
             <td>{{ a.verproc }}</td>
             {% endif %}
             {% if show_fields.show_tpinsc or 1 %}
-            <td>{{ a.get_tpinsc_display }}</td>
+            <td>{{ a.tpinsc }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
             {% endif %}
             {% if show_fields.show_tpevento or 1 %}
-            <td>{{ a.get_tpevento_display }}</td>
+            <td>{{ a.tpevento }}</td>
             {% endif %}
             {% if show_fields.show_nrrecevt or 1 %}
             <td>{{ a.nrrecevt }}</td>
@@ -83,9 +83,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %}
+                    {% if perms.efdreinf.can_view_r9000evtExclusao %}
                         <a href="{% url 'r9000_evtexclusao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r9000_evtexclusao_editar' or dict_permissoes|get_permissao:'r9000_evtexclusao_cadastrar' %}
+                            {% if perms.efdreinf.add_r9000evtExclusao or perms.efdreinf.change_r9000evtExclusao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -96,7 +96,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r9000_evtexclusao_apagar' %}
+                    {% if perms.efdreinf.delete_r9000evtExclusao %}
                         <a href="{% url 'r9000_evtexclusao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_visualizar' %}
+                    {% if perms.s1200.can_view_s1200infoPerAntidePeriodo %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1200_infoperant_ideperiodo_salvar' hash='{}'|json_return_page:'s1200_infoperant_ideperiodo_salvar'|json_return_hash:hash|json_id:s1200_infoperant_ideperiodo_id|json_print:0|base64_encode_me %}">
                             Período de validade das informações incluídas
@@ -62,7 +62,7 @@
                     {% endif %}
                     {% if s1200_infoperant_ideperiodo_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_ideestablot_visualizar' %}
+                            {% if perms.s1200.can_view_s1200_infoperant_ideestablot %}
                                 <li {% if tab == 's1200_infoperant_ideestablot' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_infoperant_ideperiodo_salvar' hash='{}'|json_id:s1200_infoperant_ideperiodo_id|json_print:0|json_tab:'s1200_infoperant_ideestablot'|base64_encode_me %}">
                                     Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</a>
@@ -181,7 +181,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_editar' or dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_cadastrar' %}
+            {% if perms.s1200.change_s1200_infoperant_ideperiodo or perms.s1200.add_s1200_infoperant_ideperiodo %}
                 <form action="#" id="id_form_s1200_infoperant_ideperiodo" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -208,7 +208,7 @@
                             <!-- botões especiais -->
                             {% if s1200_infoperant_ideperiodo_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_cadastrar' %}
+                                {% if perms.s1200.add_s1200infoPerAntidePeriodo %}
                                     <a href="{% url 's1200_infoperant_ideperiodo_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -220,7 +220,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_listar' or dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_listar' %}
+                            {% if perms.s1200.can_view_s1200_infoperant_ideperiodo or perms.s1200.can_view_s1200_infoperant_ideperiodo %}
                                 <a href="{% url 's1200_infoperant_ideperiodo'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -229,7 +229,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_visualizar' and s1200_infoperant_ideperiodo_id %}
+                            {% if perms.s1200.can_view_s1200_infoperant_ideperiodo and s1200_infoperant_ideperiodo_id %}
                                 <a href="{% url 's1200_infoperant_ideperiodo_salvar' hash='{}'|json_id:s1200_infoperant_ideperiodo_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -238,7 +238,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_visualizar' and s1200_infoperant_ideperiodo_id %}
+                            {% if perms.s1200.can_view_s1200_infoperant_ideperiodo and s1200_infoperant_ideperiodo_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -265,7 +265,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_editar' or dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_cadastrar' %}
+                            {% if perms.s1200.change_s1200_infoperant_ideperiodo or perms.s1200.add_s1200_infoperant_ideperiodo %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -274,7 +274,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_apagar' and s1200_infoperant_ideperiodo_id %}
+                            {% if perms.s1200.delete_s1200_infoperant_ideperiodo and s1200_infoperant_ideperiodo_id %}
 
                             <a href="{% url 's1200_infoperant_ideperiodo_apagar' hash='{}'|json_id:s1200_infoperant_ideperiodo_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -296,7 +296,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_editar' or dict_permissoes|get_permissao:'s1200_infoperant_ideperiodo_cadastrar' %}
+                    {% if perms.s1200.change_s1200_infoperant_ideperiodo or perms.s1200.add_s1200_infoperant_ideperiodo %}
                         </form>
                     {% endif %}
 
@@ -322,9 +322,9 @@
 
             {% if tab == 's1200_infoperant_ideestablot' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1200_infoperant_ideestablot_visualizar' %} 
+                {% if perms.s1200.can_view_s1200_infoperant_ideestablot %} 
 
-                    {% if dict_permissoes|get_permissao:'s1200_infoperant_ideestablot_editar' or dict_permissoes|get_permissao:'s1200_infoperant_ideestablot_cadastrar' %}
+                    {% if perms.s1200.change_s1200_infoperant_ideestablot or perms.s1200.add_s1200infoPerAntideEstabLot %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -351,7 +351,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1200_infoperant_ideestablot_editar' or dict_permissoes|get_permissao:'s1200_infoperant_ideestablot_cadastrar' %}
+                                        {% if perms.s1200.change_s1200_infoperant_ideestablot or perms.s1200.add_s1200infoPerAntideEstabLot %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -366,7 +366,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1200_infoperant_ideestablot_cadastrar' %}            
+                                    {% if perms.s1200.add_s1200infoPerAntideEstabLot %}            
                                     <!-- begin_form_s1200_infoperant_ideestablot --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1200_infoperant_ideestablot" action="{% url 's1200_infoperant_ideestablot_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

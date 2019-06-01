@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.s1280.models import *
 from emensageriapro.s1280.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -72,25 +72,24 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 @login_required
 def verificar(request, hash):
+
     for_print = 0
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s1280_evtinfocomplper_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except:
+    
         return redirect('login')
 
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='s1280_evtinfocomplper')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
-        s1280_evtinfocomplper = get_object_or_404(s1280evtInfoComplPer, id = s1280_evtinfocomplper_id)
+    if request.user.has_perm('esocial.can_view_s1280evtInfoComplPer'):
+        s1280_evtinfocomplper = get_object_or_404(s1280evtInfoComplPer, id=s1280_evtinfocomplper_id)
         s1280_evtinfocomplper_lista = s1280evtInfoComplPer.objects.filter(id=s1280_evtinfocomplper_id).all()
 
         
@@ -110,22 +109,19 @@ def verificar(request, hash):
             's1280_infosubstpatr_lista': s1280_infosubstpatr_lista,
             's1280_infosubstpatropport_lista': s1280_infosubstpatropport_lista,
             's1280_infoativconcom_lista': s1280_infoativconcom_lista,
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s1280_evtinfocomplper', ],
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': for_print,
             'hash': hash,
 
             
 
         }
+        
         if for_print == 2:
+        
             response = PDFTemplateResponse(request=request,
                                            template='s1280_evtinfocomplper_verificar.html',
                                            filename="s1280_evtinfocomplper.pdf",
@@ -144,6 +140,7 @@ def verificar(request, hash):
             return response
 
         elif for_print == 3:
+        
             response =  render_to_response('s1280_evtinfocomplper_verificar.html', context)
             filename = "%s.xls" % s1280_evtinfocomplper.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -151,6 +148,7 @@ def verificar(request, hash):
             return response
 
         elif for_print == 4:
+        
             response =  render_to_response('s1280_evtinfocomplper_verificar.html', context)
             filename = "%s.csv" % s1280_evtinfocomplper.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -158,18 +156,16 @@ def verificar(request, hash):
             return response
 
         else:
+        
             return render(request, 's1280_evtinfocomplper_verificar.html', context)
 
     else:
 
         context = {
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s1280_evtinfocomplper', ],
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
 
         return render(request, 'permissao_negada.html', context)

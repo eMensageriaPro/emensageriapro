@@ -76,7 +76,7 @@ def validacoes_r9000_evtexclusao(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'ideContri.tpInsc', 
                                                   ideContri.tpInsc.cdata, 
-                                                  1, u'1, 2, 3, 4, 5')
+                                                  1, u'1, 2')
             
             if 'nrInsc' in dir(ideContri):
                 validacoes_lista = validar_campo( validacoes_lista,

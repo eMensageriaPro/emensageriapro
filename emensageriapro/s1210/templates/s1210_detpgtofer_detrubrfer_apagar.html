@@ -41,7 +41,7 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        {% if dict_permissoes|get_permissao:'s1210_detpgtofer_detrubrfer_apagar' %}
+                        {% if perms.s1210.delete_s1210detPgtoFerdetRubrFer %}
                         <form action="#" method="POST">
                             {% csrf_token %}
                             <div class="form-group col-md-8">

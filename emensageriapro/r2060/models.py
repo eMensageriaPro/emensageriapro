@@ -77,14 +77,6 @@ class r2060infoProc(SoftDeletionModel):
     codsusp = models.IntegerField(blank=True, null=True, )
     vlrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -110,7 +102,8 @@ class r2060infoProc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2060_infoproc", "Can view r2060_infoproc"), )
+            ("can_view_r2060infoProc", "Can view R2060INFOPROC"),
+            ("can_view_menu_r2060infoProc", "Can view menu R2060INFOPROC"),)
             
         ordering = [
             'r2060_tipocod',
@@ -149,14 +142,6 @@ class r2060tipoAjuste(SoftDeletionModel):
     descajuste = models.CharField(max_length=20, null=True, )
     dtajuste = models.CharField(max_length=7, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -184,7 +169,8 @@ class r2060tipoAjuste(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2060_tipoajuste", "Can view r2060_tipoajuste"), )
+            ("can_view_r2060tipoAjuste", "Can view R2060TIPOAJUSTE"),
+            ("can_view_menu_r2060tipoAjuste", "Can view menu R2060TIPOAJUSTE"),)
             
         ordering = [
             'r2060_tipocod',
@@ -227,14 +213,6 @@ class r2060tipoCod(SoftDeletionModel):
     vlrcprbapur = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     observ = models.CharField(max_length=200, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -262,7 +240,8 @@ class r2060tipoCod(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2060_tipocod", "Can view r2060_tipocod"), )
+            ("can_view_r2060tipoCod", "Can view R2060TIPOCOD"),
+            ("can_view_menu_r2060tipoCod", "Can view menu R2060TIPOCOD"),)
             
         ordering = [
             'r2060_evtcprb',

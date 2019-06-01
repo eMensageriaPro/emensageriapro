@@ -29,9 +29,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s1200_infoperant_infocomplcont_visualizar' %}
+                    {% if perms.s1200.can_view_s1200infoPerAntinfoComplCont %}
                         <a href="{% url 's1200_infoperant_infocomplcont_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_infocomplcont_editar' or dict_permissoes|get_permissao:'s1200_infoperant_infocomplcont_cadastrar' %}
+                            {% if perms.s1200.add_s1200infoPerAntinfoComplCont or perms.s1200.change_s1200infoPerAntinfoComplCont %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -42,7 +42,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s1200_infoperant_infocomplcont_apagar' %}
+                    {% if perms.s1200.delete_s1200infoPerAntinfoComplCont %}
                         <a href="{% url 's1200_infoperant_infocomplcont_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

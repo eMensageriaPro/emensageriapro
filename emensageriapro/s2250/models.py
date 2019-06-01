@@ -76,14 +76,6 @@ class s2250cancAvPrevio(SoftDeletionModel):
     observacao = models.CharField(max_length=255, blank=True, null=True, )
     mtvcancavprevio = models.IntegerField(choices=CHOICES_S2250_MTVCANCAVPREVIO, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -108,7 +100,8 @@ class s2250cancAvPrevio(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2250_cancavprevio", "Can view s2250_cancavprevio"), )
+            ("can_view_s2250cancAvPrevio", "Can view S2250CANCAVPREVIO"),
+            ("can_view_menu_s2250cancAvPrevio", "Can view menu S2250CANCAVPREVIO"),)
             
         ordering = [
             's2250_evtavprevio',
@@ -145,14 +138,6 @@ class s2250detAvPrevio(SoftDeletionModel):
     tpavprevio = models.IntegerField(choices=CHOICES_S2250_TPAVPREVIO, null=True, )
     observacao = models.CharField(max_length=255, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -178,7 +163,8 @@ class s2250detAvPrevio(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2250_detavprevio", "Can view s2250_detavprevio"), )
+            ("can_view_s2250detAvPrevio", "Can view S2250DETAVPREVIO"),
+            ("can_view_menu_s2250detAvPrevio", "Can view menu S2250DETAVPREVIO"),)
             
         ordering = [
             's2250_evtavprevio',

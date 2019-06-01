@@ -42,10 +42,10 @@
             <td>{{ a.get_tplotacao_display }}</td>
             {% endif %}
             {% if show_fields.show_fpas or 1 %}
-            <td>{{ a.get_fpas_display }}</td>
+            <td>{{ a.fpas|valor }}</td>
             {% endif %}
             {% if show_fields.show_codtercs or 1 %}
-            <td>{{ a.get_codtercs_display }}</td>
+            <td>{{ a.codtercs }}</td>
             {% endif %}
             
             <!-- colunas especiais -->
@@ -53,9 +53,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s1020_alteracao_visualizar' %}
+                    {% if perms.s1020.can_view_s1020alteracao %}
                         <a href="{% url 's1020_alteracao_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s1020_alteracao_editar' or dict_permissoes|get_permissao:'s1020_alteracao_cadastrar' %}
+                            {% if perms.s1020.add_s1020alteracao or perms.s1020.change_s1020alteracao %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -66,7 +66,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s1020_alteracao_apagar' %}
+                    {% if perms.s1020.delete_s1020alteracao %}
                         <a href="{% url 's1020_alteracao_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

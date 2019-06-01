@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'r4040_idenat_visualizar' %}
+                    {% if perms.r4040.can_view_r4040ideNat %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 'r4040_idenat_salvar' hash='{}'|json_return_page:'r4040_idenat_salvar'|json_return_hash:hash|json_id:r4040_idenat_id|json_print:0|base64_encode_me %}">
                             Identificação da natureza do rendimento
@@ -62,7 +62,7 @@
                     {% endif %}
                     {% if r4040_idenat_id %}
                         
-                            {% if dict_permissoes|get_permissao:'r4040_infopgto_visualizar' %}
+                            {% if perms.r4040.can_view_r4040_infopgto %}
                                 <li {% if tab == 'r4040_infopgto' %} class="active"{% endif %} >
                                     <a href="{% url 'r4040_idenat_salvar' hash='{}'|json_id:r4040_idenat_id|json_print:0|json_tab:'r4040_infopgto'|base64_encode_me %}">
                                     Informações do Pagamento</a>
@@ -181,7 +181,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'r4040_idenat_editar' or dict_permissoes|get_permissao:'r4040_idenat_cadastrar' %}
+            {% if perms.r4040.change_r4040_idenat or perms.r4040.add_r4040_idenat %}
                 <form action="#" id="id_form_r4040_idenat" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -208,7 +208,7 @@
                             <!-- botões especiais -->
                             {% if r4040_idenat_id %}
 
-                                {% if dict_permissoes|get_permissao:'r4040_idenat_cadastrar' %}
+                                {% if perms.r4040.add_r4040ideNat %}
                                     <a href="{% url 'r4040_idenat_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -220,7 +220,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r4040_idenat_listar' or dict_permissoes|get_permissao:'r4040_idenat_listar' %}
+                            {% if perms.r4040.can_view_r4040_idenat or perms.r4040.can_view_r4040_idenat %}
                                 <a href="{% url 'r4040_idenat'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -229,7 +229,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r4040_idenat_visualizar' and r4040_idenat_id %}
+                            {% if perms.r4040.can_view_r4040_idenat and r4040_idenat_id %}
                                 <a href="{% url 'r4040_idenat_salvar' hash='{}'|json_id:r4040_idenat_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -238,7 +238,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'r4040_idenat_visualizar' and r4040_idenat_id %}
+                            {% if perms.r4040.can_view_r4040_idenat and r4040_idenat_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -265,7 +265,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r4040_idenat_editar' or dict_permissoes|get_permissao:'r4040_idenat_cadastrar' %}
+                            {% if perms.r4040.change_r4040_idenat or perms.r4040.add_r4040_idenat %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -274,7 +274,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r4040_idenat_apagar' and r4040_idenat_id %}
+                            {% if perms.r4040.delete_r4040_idenat and r4040_idenat_id %}
 
                             <a href="{% url 'r4040_idenat_apagar' hash='{}'|json_id:r4040_idenat_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -296,7 +296,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'r4040_idenat_editar' or dict_permissoes|get_permissao:'r4040_idenat_cadastrar' %}
+                    {% if perms.r4040.change_r4040_idenat or perms.r4040.add_r4040_idenat %}
                         </form>
                     {% endif %}
 
@@ -322,9 +322,9 @@
 
             {% if tab == 'r4040_infopgto' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r4040_infopgto_visualizar' %} 
+                {% if perms.r4040.can_view_r4040_infopgto %} 
 
-                    {% if dict_permissoes|get_permissao:'r4040_infopgto_editar' or dict_permissoes|get_permissao:'r4040_infopgto_cadastrar' %}
+                    {% if perms.r4040.change_r4040_infopgto or perms.r4040.add_r4040infoPgto %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -351,7 +351,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações do Pagamento</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r4040_infopgto_editar' or dict_permissoes|get_permissao:'r4040_infopgto_cadastrar' %}
+                                        {% if perms.r4040.change_r4040_infopgto or perms.r4040.add_r4040infoPgto %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -366,7 +366,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r4040_infopgto_cadastrar' %}            
+                                    {% if perms.r4040.add_r4040infoPgto %}            
                                     <!-- begin_form_r4040_infopgto --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r4040_infopgto" action="{% url 'r4040_infopgto_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

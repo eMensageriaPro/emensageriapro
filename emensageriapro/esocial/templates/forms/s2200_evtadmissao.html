@@ -379,7 +379,7 @@
 </div>
 <!-- fim__s2200_evtadmissao__dtnascto -->
 <!-- inicio__s2200_evtadmissao__codmunic -->
-{% if permissao.permite_editar or permissao.permite_cadastrar %}
+{% if perms..add_ or perms..change_ %}
   <div class="col-md-12" id="s2200_evtadmissao__codmunic__div">
     <div class="form-group">
       <label id="s2200_evtadmissao__codmunic__label">Código do Município</label>
@@ -464,7 +464,7 @@
 </div>
 <!-- fim__s2200_evtadmissao__uf -->
 <!-- inicio__s2200_evtadmissao__paisnascto -->
-{% if permissao.permite_editar or permissao.permite_cadastrar %}
+{% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2200_evtadmissao__paisnascto__div">
     <div class="form-group">
       <label id="s2200_evtadmissao__paisnascto__label">País de nascimento*</label>
@@ -528,7 +528,7 @@
 {% endif %}
 <!-- fim__s2200_evtadmissao__paisnascto -->
 <!-- inicio__s2200_evtadmissao__paisnac -->
-{% if permissao.permite_editar or permissao.permite_cadastrar %}
+{% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2200_evtadmissao__paisnac__div">
     <div class="form-group">
       <label id="s2200_evtadmissao__paisnac__label">País de nacionalidade*</label>
@@ -789,7 +789,7 @@
 </div>
 <!-- fim__s2200_evtadmissao__codfuncao -->
 <!-- inicio__s2200_evtadmissao__codcateg -->
-{% if permissao.permite_editar or permissao.permite_cadastrar %}
+{% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2200_evtadmissao__codcateg__div">
     <div class="form-group">
       <label id="s2200_evtadmissao__codcateg__label">Código da Categoria*</label>

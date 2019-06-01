@@ -90,7 +90,7 @@
             <td><span style="display:none">{{ a.dtaltbeneficio|date:"Y-m-d" }}</span>{{ a.dtaltbeneficio|date:"d/m/Y" }}</td>
             {% endif %}
             {% if show_fields.show_tpbeneficio or 1 %}
-            <td>{{ a.get_tpbeneficio_display }}</td>
+            <td>{{ a.tpbeneficio }}</td>
             {% endif %}
             {% if show_fields.show_tpplanrp or 1 %}
             <td>{{ a.get_tpplanrp_display }}</td>
@@ -113,9 +113,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2416_evtcdbenalt_visualizar' %}
+                    {% if perms.esocial.can_view_s2416evtCdBenAlt %}
                         <a href="{% url 's2416_evtcdbenalt_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2416_evtcdbenalt_editar' or dict_permissoes|get_permissao:'s2416_evtcdbenalt_cadastrar' %}
+                            {% if perms.esocial.add_s2416evtCdBenAlt or perms.esocial.change_s2416evtCdBenAlt %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -126,7 +126,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2416_evtcdbenalt_apagar' %}
+                    {% if perms.esocial.delete_s2416evtCdBenAlt %}
                         <a href="{% url 's2416_evtcdbenalt_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

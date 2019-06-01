@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro que detalha os exames complementares porventura realizados pelo trabalhador em virtude do determinado no Quadro II da NR 07 do MTE, além de outros solicitados pelo médico e os referentes ao ASO</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2220_exame_cadastrar' %}
+                  {% if perms.s2220.add_s2220exame %}
                   <a href="{% url 's2220_exame_salvar' hash='{}'|json_return_page:'s2220_exame_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

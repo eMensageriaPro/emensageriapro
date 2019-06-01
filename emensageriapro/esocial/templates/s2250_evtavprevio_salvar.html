@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'s2250_evtavprevio_visualizar' %}
+                {% if perms.esocial.can_view_s2250evtAvPrevio %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 's2250_evtavprevio_salvar' hash='{}'|json_return_page:'s2250_evtavprevio_salvar'|json_return_hash:hash|json_id:s2250_evtavprevio_id|json_print:0|base64_encode_me %}">
                     S-2250 - Aviso Prévio</a>
@@ -58,14 +58,14 @@
                 {% if s2250_evtavprevio_id %}
                     
                         
-                            {% if dict_permissoes|get_permissao:'s2250_detavprevio_visualizar' %}
+                            {% if perms.esocial.can_view_s2250_detavprevio %}
                                 <li {% if tab == 's2250_detavprevio' %} class="active"{% endif %} >
                                     <a href="{% url 's2250_evtavprevio_salvar' hash='{}'|json_id:s2250_evtavprevio_id|json_print:0|json_tab:'s2250_detavprevio'|base64_encode_me %}">
                                     Detalha as informações do evento trabalhista</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2250_cancavprevio_visualizar' %}
+                            {% if perms.esocial.can_view_s2250_cancavprevio %}
                                 <li {% if tab == 's2250_cancavprevio' %} class="active"{% endif %} >
                                     <a href="{% url 's2250_evtavprevio_salvar' hash='{}'|json_id:s2250_evtavprevio_id|json_print:0|json_tab:'s2250_cancavprevio'|base64_encode_me %}">
                                     Cancelamento do Aviso Prévio</a>
@@ -162,7 +162,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'s2250_evtavprevio_editar' or dict_permissoes|get_permissao:'s2250_evtavprevio_cadastrar' %}
+               {% if perms.esocial.change_s2250_evtavprevio or perms.esocial.add_s2250_evtavprevio %}
                {% if s2250_evtavprevio_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s2250_evtavprevio" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -184,8 +184,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if s2250_evtavprevio_id %}
-                           {% if dict_permissoes|get_permissao:'s2250_evtavprevio_cadastrar' %}<a href="{% url 's2250_evtavprevio_verificar'  hash='{}'|json_id:s2250_evtavprevio_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2250_evtavprevio_cadastrar' %}
+                           {% if perms.esocial.add_s2250evtAvPrevio %}<a href="{% url 's2250_evtavprevio_verificar'  hash='{}'|json_id:s2250_evtavprevio_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2250evtAvPrevio %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -202,7 +202,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2250_evtavprevio_cadastrar' %}
+                           {% if perms.esocial.add_s2250evtAvPrevio %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -223,29 +223,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2250_evtavprevio_cadastrar' %}<a href="{% url 's2250_evtavprevio_xml'  hash='{}'|json_id:s2250_evtavprevio_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2250evtAvPrevio %}<a href="{% url 's2250_evtavprevio_xml'  hash='{}'|json_id:s2250_evtavprevio_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if s2250_evtavprevio.status == STATUS_EVENTO_CADASTRADO or s2250_evtavprevio.status == STATUS_EVENTO_IMPORTADO or s2250_evtavprevio.status == STATUS_EVENTO_DUPLICADO or s2250_evtavprevio.status == STATUS_EVENTO_GERADO or s2250_evtavprevio.status == STATUS_EVENTO_ASSINADO or s2250_evtavprevio.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'s2250_evtavprevio_cadastrar' %}
+                           {% if perms.esocial.add_s2250evtAvPrevio %}
                            <a href="{% url 's2250_evtavprevio_validar_evento' hash='{}'|json_id:s2250_evtavprevio_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'s2250_evtavprevio_cadastrar' %}<a href="{% url 's2250_evtavprevio_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2250evtAvPrevio %}<a href="{% url 's2250_evtavprevio_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2250_evtavprevio_listar' or dict_permissoes|get_permissao:'s2250_evtavprevio_listar' %}<a href="{% url 's2250_evtavprevio'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2250_evtavprevio_visualizar' and s2250_evtavprevio_id %}<a href="{% url 's2250_evtavprevio_salvar'  hash='{}'|json_id:s2250_evtavprevio_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2250_evtavprevio_editar' or dict_permissoes|get_permissao:'s2250_evtavprevio_cadastrar' %}
+                           {% if perms.esocial.can_view_s2250_evtavprevio or perms.esocial.can_view_s2250_evtavprevio %}<a href="{% url 's2250_evtavprevio'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.can_view_s2250_evtavprevio and s2250_evtavprevio_id %}<a href="{% url 's2250_evtavprevio_salvar'  hash='{}'|json_id:s2250_evtavprevio_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.change_s2250_evtavprevio or perms.esocial.add_s2250_evtavprevio %}
                            {% if s2250_evtavprevio_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2250_evtavprevio_apagar' and s2250_evtavprevio_id %}<a href="{% url 's2250_evtavprevio_apagar'  hash='{}'|json_id:s2250_evtavprevio_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.delete_s2250_evtavprevio and s2250_evtavprevio_id %}<a href="{% url 's2250_evtavprevio_apagar'  hash='{}'|json_id:s2250_evtavprevio_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'s2250_evtavprevio_editar' or dict_permissoes|get_permissao:'s2250_evtavprevio_cadastrar' %}
+                  {% if perms.esocial.change_s2250_evtavprevio or perms.esocial.add_s2250_evtavprevio %}
                {% if s2250_evtavprevio_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}
@@ -301,9 +301,9 @@
 
 {% if tab == 's2250_detavprevio' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2250_detavprevio_visualizar' %} 
+{% if perms.esocial.can_view_s2250_detavprevio %} 
 
-{% if dict_permissoes|get_permissao:'s2250_detavprevio_editar' or dict_permissoes|get_permissao:'s2250_detavprevio_cadastrar' %}
+{% if perms.esocial.change_s2250_detavprevio or perms.s2250.add_s2250detAvPrevio %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -329,7 +329,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Detalha as informações do evento trabalhista</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2250_detavprevio_editar' or dict_permissoes|get_permissao:'s2250_detavprevio_cadastrar' %}
+          {% if perms.esocial.change_s2250_detavprevio or perms.s2250.add_s2250detAvPrevio %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -338,7 +338,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2250_detavprevio_cadastrar' %}            
+        {% if perms.s2250.add_s2250detAvPrevio %}            
 
 
 
@@ -396,9 +396,9 @@ function CadastroListagem() {
 
 {% if tab == 's2250_cancavprevio' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2250_cancavprevio_visualizar' %} 
+{% if perms.esocial.can_view_s2250_cancavprevio %} 
 
-{% if dict_permissoes|get_permissao:'s2250_cancavprevio_editar' or dict_permissoes|get_permissao:'s2250_cancavprevio_cadastrar' %}
+{% if perms.esocial.change_s2250_cancavprevio or perms.s2250.add_s2250cancAvPrevio %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -424,7 +424,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Cancelamento do Aviso Prévio</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2250_cancavprevio_editar' or dict_permissoes|get_permissao:'s2250_cancavprevio_cadastrar' %}
+          {% if perms.esocial.change_s2250_cancavprevio or perms.s2250.add_s2250cancAvPrevio %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -433,7 +433,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2250_cancavprevio_cadastrar' %}            
+        {% if perms.s2250.add_s2250cancAvPrevio %}            
 
 
 

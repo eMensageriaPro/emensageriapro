@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações de bases de cálculo relativas à comercialização da produção rural da Pessoa Física. Informações desse grupo conforme informado pelo contribuinte em S-1260.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s5011_basescomerc_cadastrar' %}
+                  {% if perms.s5011.add_s5011basesComerc %}
                   <a href="{% url 's5011_basescomerc_salvar' hash='{}'|json_return_page:'s5011_basescomerc_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

@@ -76,14 +76,6 @@ class s5001calcTerc(SoftDeletionModel):
     vrcssegterc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrdescterc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -109,7 +101,8 @@ class s5001calcTerc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001_calcterc", "Can view s5001_calcterc"), )
+            ("can_view_s5001calcTerc", "Can view S5001CALCTERC"),
+            ("can_view_menu_s5001calcTerc", "Can view menu S5001CALCTERC"),)
             
         ordering = [
             's5001_infocategincid',
@@ -146,14 +139,6 @@ class s5001ideEstabLot(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, null=True, )
     codlotacao = models.CharField(max_length=30, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -179,7 +164,8 @@ class s5001ideEstabLot(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001_ideestablot", "Can view s5001_ideestablot"), )
+            ("can_view_s5001ideEstabLot", "Can view S5001IDEESTABLOT"),
+            ("can_view_menu_s5001ideEstabLot", "Can view menu S5001IDEESTABLOT"),)
             
         ordering = [
             's5001_infocp',
@@ -216,14 +202,6 @@ class s5001infoBaseCS(SoftDeletionModel):
     tpvalor = models.IntegerField(null=True, )
     valor = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -249,7 +227,8 @@ class s5001infoBaseCS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001_infobasecs", "Can view s5001_infobasecs"), )
+            ("can_view_s5001infoBaseCS", "Can view S5001INFOBASECS"),
+            ("can_view_menu_s5001infoBaseCS", "Can view menu S5001INFOBASECS"),)
             
         ordering = [
             's5001_infocategincid',
@@ -286,14 +265,6 @@ class s5001infoCategIncid(SoftDeletionModel):
     codcateg = models.IntegerField(null=True, )
     indsimples = models.IntegerField(choices=CHOICES_S5001_INDSIMPLES, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -317,7 +288,8 @@ class s5001infoCategIncid(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001_infocategincid", "Can view s5001_infocategincid"), )
+            ("can_view_s5001infoCategIncid", "Can view S5001INFOCATEGINCID"),
+            ("can_view_menu_s5001infoCategIncid", "Can view menu S5001INFOCATEGINCID"),)
             
         ordering = [
             's5001_ideestablot',
@@ -349,14 +321,6 @@ class s5001infoCp(SoftDeletionModel):
     def evento(self): 
         return self.s5001_evtbasestrab.evento()
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -379,7 +343,8 @@ class s5001infoCp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001_infocp", "Can view s5001_infocp"), )
+            ("can_view_s5001infoCp", "Can view S5001INFOCP"),
+            ("can_view_menu_s5001infoCp", "Can view menu S5001INFOCP"),)
             
         ordering = [
             's5001_evtbasestrab',]
@@ -413,14 +378,6 @@ class s5001infoCpCalc(SoftDeletionModel):
     vrcpseg = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrdescseg = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -446,7 +403,8 @@ class s5001infoCpCalc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001_infocpcalc", "Can view s5001_infocpcalc"), )
+            ("can_view_s5001infoCpCalc", "Can view S5001INFOCPCALC"),
+            ("can_view_menu_s5001infoCpCalc", "Can view menu S5001INFOCPCALC"),)
             
         ordering = [
             's5001_evtbasestrab',
@@ -482,14 +440,6 @@ class s5001procJudTrab(SoftDeletionModel):
     nrprocjud = models.CharField(max_length=20, null=True, )
     codsusp = models.IntegerField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -514,7 +464,8 @@ class s5001procJudTrab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5001_procjudtrab", "Can view s5001_procjudtrab"), )
+            ("can_view_s5001procJudTrab", "Can view S5001PROCJUDTRAB"),
+            ("can_view_menu_s5001procJudTrab", "Can view menu S5001PROCJUDTRAB"),)
             
         ordering = [
             's5001_evtbasestrab',

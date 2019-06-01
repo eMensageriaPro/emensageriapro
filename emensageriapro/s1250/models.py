@@ -80,14 +80,6 @@ class s1250ideProdutor(SoftDeletionModel):
     vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     indopccp = models.IntegerField(choices=CHOICES_S1250_INDOPCCP, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -117,7 +109,8 @@ class s1250ideProdutor(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250_ideprodutor", "Can view s1250_ideprodutor"), )
+            ("can_view_s1250ideProdutor", "Can view S1250IDEPRODUTOR"),
+            ("can_view_menu_s1250ideProdutor", "Can view menu S1250IDEPRODUTOR"),)
             
         ordering = [
             's1250_tpaquis',
@@ -160,14 +153,6 @@ class s1250infoProcJ(SoftDeletionModel):
     vrratnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsenarnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -195,7 +180,8 @@ class s1250infoProcJ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250_infoprocj", "Can view s1250_infoprocj"), )
+            ("can_view_s1250infoProcJ", "Can view S1250INFOPROCJ"),
+            ("can_view_menu_s1250infoProcJ", "Can view menu S1250INFOPROCJ"),)
             
         ordering = [
             's1250_tpaquis',
@@ -236,14 +222,6 @@ class s1250infoProcJud(SoftDeletionModel):
     vrratnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsenarnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -271,7 +249,8 @@ class s1250infoProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250_infoprocjud", "Can view s1250_infoprocjud"), )
+            ("can_view_s1250infoProcJud", "Can view S1250INFOPROCJUD"),
+            ("can_view_menu_s1250infoProcJud", "Can view menu S1250INFOPROCJUD"),)
             
         ordering = [
             's1250_ideprodutor',
@@ -314,14 +293,6 @@ class s1250nfs(SoftDeletionModel):
     vrratdescpr = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vrsenardesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -350,7 +321,8 @@ class s1250nfs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250_nfs", "Can view s1250_nfs"), )
+            ("can_view_s1250nfs", "Can view S1250NFS"),
+            ("can_view_menu_s1250nfs", "Can view menu S1250NFS"),)
             
         ordering = [
             's1250_ideprodutor',
@@ -389,14 +361,6 @@ class s1250tpAquis(SoftDeletionModel):
     indaquis = models.IntegerField(choices=CHOICES_S1250_INDAQUIS, null=True, )
     vlrtotaquis = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -421,7 +385,8 @@ class s1250tpAquis(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1250_tpaquis", "Can view s1250_tpaquis"), )
+            ("can_view_s1250tpAquis", "Can view S1250TPAQUIS"),
+            ("can_view_menu_s1250tpAquis", "Can view menu S1250TPAQUIS"),)
             
         ordering = [
             's1250_evtaqprod',

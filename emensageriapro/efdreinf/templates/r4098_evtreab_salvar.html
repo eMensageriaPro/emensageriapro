@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'r4098_evtreab_visualizar' %}
+                {% if perms.efdreinf.can_view_r4098evtReab %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 'r4098_evtreab_salvar' hash='{}'|json_return_page:'r4098_evtreab_salvar'|json_return_hash:hash|json_id:r4098_evtreab_id|json_print:0|base64_encode_me %}">
                     R-4098 - Reabertura dos Eventos Periódicos Série R-4000</a>
@@ -148,7 +148,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'r4098_evtreab_editar' or dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}
+               {% if perms.efdreinf.change_r4098_evtreab or perms.efdreinf.add_r4098_evtreab %}
                {% if r4098_evtreab_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_r4098_evtreab" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -170,8 +170,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if r4098_evtreab_id %}
-                           {% if dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}<a href="{% url 'r4098_evtreab_verificar'  hash='{}'|json_id:r4098_evtreab_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}
+                           {% if perms.efdreinf.add_r4098evtReab %}<a href="{% url 'r4098_evtreab_verificar'  hash='{}'|json_id:r4098_evtreab_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r4098evtReab %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -188,7 +188,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}
+                           {% if perms.efdreinf.add_r4098evtReab %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -209,29 +209,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}<a href="{% url 'r4098_evtreab_xml'  hash='{}'|json_id:r4098_evtreab_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r4098evtReab %}<a href="{% url 'r4098_evtreab_xml'  hash='{}'|json_id:r4098_evtreab_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if r4098_evtreab.status == STATUS_EVENTO_CADASTRADO or r4098_evtreab.status == STATUS_EVENTO_IMPORTADO or r4098_evtreab.status == STATUS_EVENTO_DUPLICADO or r4098_evtreab.status == STATUS_EVENTO_GERADO or r4098_evtreab.status == STATUS_EVENTO_ASSINADO or r4098_evtreab.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}
+                           {% if perms.efdreinf.add_r4098evtReab %}
                            <a href="{% url 'r4098_evtreab_validar_evento' hash='{}'|json_id:r4098_evtreab_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}<a href="{% url 'r4098_evtreab_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r4098evtReab %}<a href="{% url 'r4098_evtreab_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r4098_evtreab_listar' or dict_permissoes|get_permissao:'r4098_evtreab_listar' %}<a href="{% url 'r4098_evtreab'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r4098_evtreab_visualizar' and r4098_evtreab_id %}<a href="{% url 'r4098_evtreab_salvar'  hash='{}'|json_id:r4098_evtreab_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r4098_evtreab_editar' or dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}
+                           {% if perms.efdreinf.can_view_r4098_evtreab or perms.efdreinf.can_view_r4098_evtreab %}<a href="{% url 'r4098_evtreab'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.can_view_r4098_evtreab and r4098_evtreab_id %}<a href="{% url 'r4098_evtreab_salvar'  hash='{}'|json_id:r4098_evtreab_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.change_r4098_evtreab or perms.efdreinf.add_r4098_evtreab %}
                            {% if r4098_evtreab_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r4098_evtreab_apagar' and r4098_evtreab_id %}<a href="{% url 'r4098_evtreab_apagar'  hash='{}'|json_id:r4098_evtreab_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.delete_r4098_evtreab and r4098_evtreab_id %}<a href="{% url 'r4098_evtreab_apagar'  hash='{}'|json_id:r4098_evtreab_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'r4098_evtreab_editar' or dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}
+                  {% if perms.efdreinf.change_r4098_evtreab or perms.efdreinf.add_r4098_evtreab %}
                {% if r4098_evtreab_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}

@@ -29,9 +29,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2241_fimaposentesp_visualizar' %}
+                    {% if perms.s2241.can_view_s2241fimAposentEsp %}
                         <a href="{% url 's2241_fimaposentesp_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2241_fimaposentesp_editar' or dict_permissoes|get_permissao:'s2241_fimaposentesp_cadastrar' %}
+                            {% if perms.s2241.add_s2241fimAposentEsp or perms.s2241.change_s2241fimAposentEsp %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -42,7 +42,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2241_fimaposentesp_apagar' %}
+                    {% if perms.s2241.delete_s2241fimAposentEsp %}
                         <a href="{% url 's2241_fimaposentesp_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

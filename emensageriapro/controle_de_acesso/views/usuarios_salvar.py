@@ -64,6 +64,7 @@ from emensageriapro.mensageiro.forms import form_importacao_arquivos
 def salvar(request, hash):
     
     try: 
+    
         usuario_id = request.user.id  
         dict_hash = get_hash_url( hash )
         usuarios_id = int(dict_hash['id'])
@@ -72,22 +73,18 @@ def salvar(request, hash):
         for_print = int(dict_hash['print'])
         
     except: 
+    
         usuario_id = False
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id=usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='usuarios')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
     
     if usuarios_id:
+    
         usuarios = get_object_or_404(Usuarios, id=usuarios_id)
         user = get_object_or_404(User, id=usuarios.user_id)
         
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_visualizar:
+    if request.user.has_perm('controle_de_acesso.can_view_Usuarios'):
         
         if usuarios_id:
             users_form = form_users(request.POST or None, instance=user)
@@ -134,15 +131,19 @@ def salvar(request, hash):
                 
                 if request.session['retorno_pagina'] not in ('usuarios_apagar', 'usuarios_salvar', 'usuarios'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if usuarios_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('usuarios_salvar', hash=url_hash)
+                    
             else:
                 messages.error(request, 'Erro ao salvar!')
-        usuarios_form = disabled_form_fields(usuarios_form, permissao.permite_editar)
+                
+        usuarios_form = disabled_form_fields(usuarios_form, request.user.has_perm('controle_de_acesso.change_Usuarios'))
         #usuarios_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             usuarios_form = disabled_form_for_print(usuarios_form)
         
         
@@ -150,13 +151,9 @@ def salvar(request, hash):
         importacao_arquivos_form = None 
         
         if usuarios_id:
+        
             usuarios = get_object_or_404(Usuarios, id = usuarios_id)
             
-            auditoria_form = form_auditoria(
-                initial={ 'operador': usuarios })
-            auditoria_form.fields['operador'].widget.attrs['readonly'] = True
-            auditoria_lista = Auditoria.objects.\
-                filter(operador_id=usuarios.id).all()
             importacao_arquivos_form = form_importacao_arquivos(
                 initial={ 'importado_por': usuarios })
             importacao_arquivos_form.fields['importado_por'].widget.attrs['readonly'] = True
@@ -164,14 +161,18 @@ def salvar(request, hash):
                 filter(importado_por_id=usuarios.id).all()
                 
         else:
+        
             usuarios = None
             
         #usuarios_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'usuarios' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'usuarios_salvar'
+            
         context = {
             'usuarios': usuarios, 
             'usuarios_form': usuarios_form,
@@ -182,12 +183,9 @@ def salvar(request, hash):
             
             'importacao_arquivos_form': importacao_arquivos_form,
             'importacao_arquivos_lista': importacao_arquivos_lista,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['controle_de_acesso', ],
+            'paginas': ['usuarios', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -234,12 +232,12 @@ def salvar(request, hash):
     
         context = {
             'usuario': usuario, 
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['controle_de_acesso', ],
+            'paginas': ['usuarios', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         
-        return render(request, 'permissao_negada.html', context)
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

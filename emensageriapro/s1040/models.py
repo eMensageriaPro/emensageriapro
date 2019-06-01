@@ -78,14 +78,6 @@ class s1040alteracao(SoftDeletionModel):
     dscfuncao = models.CharField(max_length=100, null=True, )
     codcbo = models.CharField(max_length=6, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -112,7 +104,8 @@ class s1040alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1040_alteracao", "Can view s1040_alteracao"), )
+            ("can_view_s1040alteracao", "Can view S1040ALTERACAO"),
+            ("can_view_menu_s1040alteracao", "Can view menu S1040ALTERACAO"),)
             
         ordering = [
             's1040_evttabfuncao',
@@ -149,14 +142,6 @@ class s1040alteracaonovaValidade(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -180,7 +165,8 @@ class s1040alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1040_alteracao_novavalidade", "Can view s1040_alteracao_novavalidade"), )
+            ("can_view_s1040alteracaonovaValidade", "Can view S1040ALTERACAONOVAVALIDADE"),
+            ("can_view_menu_s1040alteracaonovaValidade", "Can view menu S1040ALTERACAONOVAVALIDADE"),)
             
         ordering = [
             's1040_alteracao',
@@ -215,14 +201,6 @@ class s1040exclusao(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -247,7 +225,8 @@ class s1040exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1040_exclusao", "Can view s1040_exclusao"), )
+            ("can_view_s1040exclusao", "Can view S1040EXCLUSAO"),
+            ("can_view_menu_s1040exclusao", "Can view menu S1040EXCLUSAO"),)
             
         ordering = [
             's1040_evttabfuncao',
@@ -285,14 +264,6 @@ class s1040inclusao(SoftDeletionModel):
     dscfuncao = models.CharField(max_length=100, null=True, )
     codcbo = models.CharField(max_length=6, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -319,7 +290,8 @@ class s1040inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1040_inclusao", "Can view s1040_inclusao"), )
+            ("can_view_s1040inclusao", "Can view S1040INCLUSAO"),
+            ("can_view_menu_s1040inclusao", "Can view menu S1040INCLUSAO"),)
             
         ordering = [
             's1040_evttabfuncao',

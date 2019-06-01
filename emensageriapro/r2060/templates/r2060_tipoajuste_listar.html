@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r2060_tipoajuste_cadastrar' %}
+                  {% if perms.r2060.add_r2060tipoAjuste %}
                   <a href="{% url 'r2060_tipoajuste_salvar' hash='{}'|json_return_page:'r2060_tipoajuste_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

@@ -100,7 +100,8 @@ class Arquivos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_arquivos", "Can view arquivos"),)
+            ("can_view_Arquivos", "Can view ARQUIVOS"),
+            ("can_view_menu_Arquivos", "Can view menu ARQUIVOS"),)
             
         ordering = []
 
@@ -227,7 +228,8 @@ class ImportacaoArquivos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_importacao_arquivos", "Can view importacao_arquivos"),)
+            ("can_view_ImportacaoArquivos", "Can view IMPORTACAOARQUIVOS"),
+            ("can_view_menu_ImportacaoArquivos", "Can view menu IMPORTACAOARQUIVOS"),)
             
         ordering = [
             'arquivo',]
@@ -298,7 +300,8 @@ class ImportacaoArquivosEventos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_importacao_arquivos_eventos", "Can view importacao_arquivos_eventos"),)
+            ("can_view_ImportacaoArquivosEventos", "Can view IMPORTACAOARQUIVOSEVENTOS"),
+            ("can_view_menu_ImportacaoArquivosEventos", "Can view menu IMPORTACAOARQUIVOSEVENTOS"),)
             
         ordering = [
             'importacao_arquivos',
@@ -379,7 +382,8 @@ class RegrasDeValidacao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_regras_validacao", "Can view regras_validacao"),)
+            ("can_view_RegrasDeValidacao", "Can view REGRASDEVALIDACAO"),
+            ("can_view_menu_RegrasDeValidacao", "Can view menu REGRASDEVALIDACAO"),)
             
         ordering = []
 
@@ -436,7 +440,8 @@ class Relatorios(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_relatorios", "Can view relatorios"),)
+            ("can_view_Relatorios", "Can view RELATORIOS"),
+            ("can_view_menu_Relatorios", "Can view menu RELATORIOS"),)
             
         ordering = []
 
@@ -540,7 +545,8 @@ class RetornosEventos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_retornos_eventos", "Can view retornos_eventos"),)
+            ("can_view_RetornosEventos", "Can view RETORNOSEVENTOS"),
+            ("can_view_menu_RetornosEventos", "Can view menu RETORNOSEVENTOS"),)
             
         ordering = [
             'transmissor_lote_esocial',
@@ -604,7 +610,8 @@ class RetornosEventosHorarios(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_retornos_eventos_horarios", "Can view retornos_eventos_horarios"),)
+            ("can_view_RetornosEventosHorarios", "Can view RETORNOSEVENTOSHORARIOS"),
+            ("can_view_menu_RetornosEventosHorarios", "Can view menu RETORNOSEVENTOSHORARIOS"),)
             
         ordering = []
 
@@ -664,7 +671,8 @@ class RetornosEventosIntervalos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_retornos_eventos_intervalos", "Can view retornos_eventos_intervalos"),)
+            ("can_view_RetornosEventosIntervalos", "Can view RETORNOSEVENTOSINTERVALOS"),
+            ("can_view_menu_RetornosEventosIntervalos", "Can view menu RETORNOSEVENTOSINTERVALOS"),)
             
         ordering = []
 
@@ -724,7 +732,8 @@ class RetornosEventosOcorrencias(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_retornos_eventos_ocorrencias", "Can view retornos_eventos_ocorrencias"),)
+            ("can_view_RetornosEventosOcorrencias", "Can view RETORNOSEVENTOSOCORRENCIAS"),
+            ("can_view_menu_RetornosEventosOcorrencias", "Can view menu RETORNOSEVENTOSOCORRENCIAS"),)
             
         ordering = []
 
@@ -812,7 +821,8 @@ class TransmissorLote(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_transmissores", "Can view transmissores"),)
+            ("can_view_TransmissorLote", "Can view TRANSMISSORLOTE"),
+            ("can_view_menu_TransmissorLote", "Can view menu TRANSMISSORLOTE"),)
             
         ordering = []
 
@@ -890,7 +900,8 @@ class TransmissorLoteEfdreinf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_transmissor_lote_efdreinf", "Can view transmissor_lote_efdreinf"),)
+            ("can_view_TransmissorLoteEfdreinf", "Can view TRANSMISSORLOTEEFDREINF"),
+            ("can_view_menu_TransmissorLoteEfdreinf", "Can view menu TRANSMISSORLOTEEFDREINF"),)
             
         ordering = []
 
@@ -950,7 +961,8 @@ class TransmissorLoteEfdreinfOcorrencias(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_transmissor_lote_efdreinf_ocorrencias", "Can view transmissor_lote_efdreinf_ocorrencias"),)
+            ("can_view_TransmissorLoteEfdreinfOcorrencias", "Can view TRANSMISSORLOTEEFDREINFOCORRENCIAS"),
+            ("can_view_menu_TransmissorLoteEfdreinfOcorrencias", "Can view menu TRANSMISSORLOTEEFDREINFOCORRENCIAS"),)
             
         ordering = []
 
@@ -1025,7 +1037,8 @@ class TransmissorLoteEsocial(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_transmissor_lote_esocial", "Can view transmissor_lote_esocial"),)
+            ("can_view_TransmissorLoteEsocial", "Can view TRANSMISSORLOTEESOCIAL"),
+            ("can_view_menu_TransmissorLoteEsocial", "Can view menu TRANSMISSORLOTEESOCIAL"),)
             
         ordering = []
 
@@ -1085,7 +1098,8 @@ class TransmissorLoteEsocialOcorrencias(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_transmissor_lote_esocial_ocorrencias", "Can view transmissor_lote_esocial_ocorrencias"),)
+            ("can_view_TransmissorLoteEsocialOcorrencias", "Can view TRANSMISSORLOTEESOCIALOCORRENCIAS"),
+            ("can_view_menu_TransmissorLoteEsocialOcorrencias", "Can view menu TRANSMISSORLOTEESOCIALOCORRENCIAS"),)
             
         ordering = []
 

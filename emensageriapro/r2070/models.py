@@ -75,14 +75,6 @@ class r2070compJud(SoftDeletionModel):
     vlrcompanocalend = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcompanoant = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -105,7 +97,8 @@ class r2070compJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_compjud", "Can view r2070_compjud"), )
+            ("can_view_r2070compJud", "Can view R2070COMPJUD"),
+            ("can_view_menu_r2070compJud", "Can view menu R2070COMPJUD"),)
             
         ordering = [
             'r2070_pgtopf',]
@@ -137,14 +130,6 @@ class r2070depJudicial(SoftDeletionModel):
         return self.r2070_pgtopf.evento()
     vlrdepjudicial = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -167,7 +152,8 @@ class r2070depJudicial(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_depjudicial", "Can view r2070_depjudicial"), )
+            ("can_view_r2070depJudicial", "Can view R2070DEPJUDICIAL"),
+            ("can_view_menu_r2070depJudicial", "Can view menu R2070DEPJUDICIAL"),)
             
         ordering = [
             'r2070_pgtopf',]
@@ -201,14 +187,6 @@ class r2070detCompet(SoftDeletionModel):
     perrefpagto = models.CharField(max_length=7, null=True, )
     vlrrendtributavel = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -234,7 +212,8 @@ class r2070detCompet(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_detcompet", "Can view r2070_detcompet"), )
+            ("can_view_r2070detCompet", "Can view R2070DETCOMPET"),
+            ("can_view_menu_r2070detCompet", "Can view menu R2070DETCOMPET"),)
             
         ordering = [
             'r2070_pgtopf',
@@ -270,14 +249,6 @@ class r2070detDeducao(SoftDeletionModel):
     indtpdeducao = models.IntegerField(choices=CHOICES_R2070_INDTPDEDUCAO, null=True, )
     vlrdeducao = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -302,7 +273,8 @@ class r2070detDeducao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_detdeducao", "Can view r2070_detdeducao"), )
+            ("can_view_r2070detDeducao", "Can view R2070DETDEDUCAO"),
+            ("can_view_menu_r2070detDeducao", "Can view menu R2070DETDEDUCAO"),)
             
         ordering = [
             'r2070_pgtopf',
@@ -337,14 +309,6 @@ class r2070ideEstab(SoftDeletionModel):
     tpinsc = models.IntegerField(null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -369,7 +333,8 @@ class r2070ideEstab(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_ideestab", "Can view r2070_ideestab"), )
+            ("can_view_r2070ideEstab", "Can view R2070IDEESTAB"),
+            ("can_view_menu_r2070ideEstab", "Can view menu R2070IDEESTAB"),)
             
         ordering = [
             'r2070_evtpgtosdivs',
@@ -403,14 +368,6 @@ class r2070infoMolestia(SoftDeletionModel):
         return self.r2070_evtpgtosdivs.evento()
     dtlaudo = models.DateField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -434,7 +391,8 @@ class r2070infoMolestia(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_infomolestia", "Can view r2070_infomolestia"), )
+            ("can_view_r2070infoMolestia", "Can view R2070INFOMOLESTIA"),
+            ("can_view_menu_r2070infoMolestia", "Can view menu R2070INFOMOLESTIA"),)
             
         ordering = [
             'r2070_evtpgtosdivs',
@@ -469,14 +427,6 @@ class r2070infoProcJud(SoftDeletionModel):
     codsusp = models.IntegerField(blank=True, null=True, )
     indorigemrecursos = models.IntegerField(choices=CHOICES_R2070_INDORIGEMRECURSOS_INFOPROCJUD, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -501,7 +451,8 @@ class r2070infoProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_infoprocjud", "Can view r2070_infoprocjud"), )
+            ("can_view_r2070infoProcJud", "Can view R2070INFOPROCJUD"),
+            ("can_view_menu_r2070infoProcJud", "Can view menu R2070INFOPROCJUD"),)
             
         ordering = [
             'r2070_pgtopf',
@@ -536,14 +487,6 @@ class r2070infoProcJuddespProcJud(SoftDeletionModel):
     vlrdespcustas = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -568,7 +511,8 @@ class r2070infoProcJuddespProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_infoprocjud_despprocjud", "Can view r2070_infoprocjud_despprocjud"), )
+            ("can_view_r2070infoProcJuddespProcJud", "Can view R2070INFOPROCJUDDESPPROCJUD"),
+            ("can_view_menu_r2070infoProcJuddespProcJud", "Can view menu R2070INFOPROCJUDDESPPROCJUD"),)
             
         ordering = [
             'r2070_infoprocjud',
@@ -604,14 +548,6 @@ class r2070infoProcJudideAdvogado(SoftDeletionModel):
     nrinscadvogado = models.CharField(max_length=14, null=True, )
     vlradvogado = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -637,7 +573,8 @@ class r2070infoProcJudideAdvogado(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_infoprocjud_ideadvogado", "Can view r2070_infoprocjud_ideadvogado"), )
+            ("can_view_r2070infoProcJudideAdvogado", "Can view R2070INFOPROCJUDIDEADVOGADO"),
+            ("can_view_menu_r2070infoProcJudideAdvogado", "Can view menu R2070INFOPROCJUDIDEADVOGADO"),)
             
         ordering = [
             'r2070_infoprocjud_despprocjud',
@@ -672,14 +609,6 @@ class r2070infoProcJudorigemRecursos(SoftDeletionModel):
         return self.r2070_infoprocjud.evento()
     cnpjorigemrecursos = models.CharField(max_length=14, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -703,7 +632,8 @@ class r2070infoProcJudorigemRecursos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_infoprocjud_origemrecursos", "Can view r2070_infoprocjud_origemrecursos"), )
+            ("can_view_r2070infoProcJudorigemRecursos", "Can view R2070INFOPROCJUDORIGEMRECURSOS"),
+            ("can_view_menu_r2070infoProcJudorigemRecursos", "Can view menu R2070INFOPROCJUDORIGEMRECURSOS"),)
             
         ordering = [
             'r2070_infoprocjud',
@@ -740,14 +670,6 @@ class r2070infoRRA(SoftDeletionModel):
     natrra = models.CharField(max_length=50, blank=True, null=True, )
     qtdmesesrra = models.IntegerField(blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -770,7 +692,8 @@ class r2070infoRRA(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_inforra", "Can view r2070_inforra"), )
+            ("can_view_r2070infoRRA", "Can view R2070INFORRA"),
+            ("can_view_menu_r2070infoRRA", "Can view menu R2070INFORRA"),)
             
         ordering = [
             'r2070_pgtopf',]
@@ -803,14 +726,6 @@ class r2070infoRRAdespProcJud(SoftDeletionModel):
     vlrdespcustas = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -835,7 +750,8 @@ class r2070infoRRAdespProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_inforra_despprocjud", "Can view r2070_inforra_despprocjud"), )
+            ("can_view_r2070infoRRAdespProcJud", "Can view R2070INFORRADESPPROCJUD"),
+            ("can_view_menu_r2070infoRRAdespProcJud", "Can view menu R2070INFORRADESPPROCJUD"),)
             
         ordering = [
             'r2070_inforra',
@@ -871,14 +787,6 @@ class r2070infoRRAideAdvogado(SoftDeletionModel):
     nrinscadvogado = models.CharField(max_length=14, null=True, )
     vlradvogado = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -904,7 +812,8 @@ class r2070infoRRAideAdvogado(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_inforra_ideadvogado", "Can view r2070_inforra_ideadvogado"), )
+            ("can_view_r2070infoRRAideAdvogado", "Can view R2070INFORRAIDEADVOGADO"),
+            ("can_view_menu_r2070infoRRAideAdvogado", "Can view menu R2070INFORRAIDEADVOGADO"),)
             
         ordering = [
             'r2070_inforra_despprocjud',
@@ -948,14 +857,6 @@ class r2070infoResidExt(SoftDeletionModel):
     nifbenef = models.CharField(max_length=20, blank=True, null=True, )
     relfontepagad = models.CharField(choices=CHOICES_EFDREINFINFORMACOESBENEFICIARIOSEXTERIOR, max_length=3, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -981,7 +882,8 @@ class r2070infoResidExt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_inforesidext", "Can view r2070_inforesidext"), )
+            ("can_view_r2070infoResidExt", "Can view R2070INFORESIDEXT"),
+            ("can_view_menu_r2070infoResidExt", "Can view menu R2070INFORESIDEXT"),)
             
         ordering = [
             'r2070_evtpgtosdivs',
@@ -1020,14 +922,6 @@ class r2070pgtoPF(SoftDeletionModel):
     vlrrendtributavel = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrirrf = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1055,7 +949,8 @@ class r2070pgtoPF(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_pgtopf", "Can view r2070_pgtopf"), )
+            ("can_view_r2070pgtoPF", "Can view R2070PGTOPF"),
+            ("can_view_menu_r2070pgtoPF", "Can view menu R2070PGTOPF"),)
             
         ordering = [
             'r2070_pgtoresidbr',
@@ -1094,14 +989,6 @@ class r2070pgtoPJ(SoftDeletionModel):
     vlrrendtributavel = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1127,7 +1014,8 @@ class r2070pgtoPJ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_pgtopj", "Can view r2070_pgtopj"), )
+            ("can_view_r2070pgtoPJ", "Can view R2070PGTOPJ"),
+            ("can_view_menu_r2070pgtoPJ", "Can view menu R2070PGTOPJ"),)
             
         ordering = [
             'r2070_pgtoresidbr',
@@ -1163,14 +1051,6 @@ class r2070pgtoPJdespProcJud(SoftDeletionModel):
     vlrdespcustas = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1195,7 +1075,8 @@ class r2070pgtoPJdespProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_pgtopj_despprocjud", "Can view r2070_pgtopj_despprocjud"), )
+            ("can_view_r2070pgtoPJdespProcJud", "Can view R2070PGTOPJDESPPROCJUD"),
+            ("can_view_menu_r2070pgtoPJdespProcJud", "Can view menu R2070PGTOPJDESPPROCJUD"),)
             
         ordering = [
             'r2070_pgtopj_infoprocjud',
@@ -1231,14 +1112,6 @@ class r2070pgtoPJideAdvogado(SoftDeletionModel):
     nrinscadvogado = models.CharField(max_length=14, null=True, )
     vlradvogado = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1264,7 +1137,8 @@ class r2070pgtoPJideAdvogado(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_pgtopj_ideadvogado", "Can view r2070_pgtopj_ideadvogado"), )
+            ("can_view_r2070pgtoPJideAdvogado", "Can view R2070PGTOPJIDEADVOGADO"),
+            ("can_view_menu_r2070pgtoPJideAdvogado", "Can view menu R2070PGTOPJIDEADVOGADO"),)
             
         ordering = [
             'r2070_pgtopj_despprocjud',
@@ -1301,14 +1175,6 @@ class r2070pgtoPJinfoProcJud(SoftDeletionModel):
     codsusp = models.IntegerField(blank=True, null=True, )
     indorigemrecursos = models.IntegerField(choices=CHOICES_R2070_INDORIGEMRECURSOS_PGTOPJ, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1333,7 +1199,8 @@ class r2070pgtoPJinfoProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_pgtopj_infoprocjud", "Can view r2070_pgtopj_infoprocjud"), )
+            ("can_view_r2070pgtoPJinfoProcJud", "Can view R2070PGTOPJINFOPROCJUD"),
+            ("can_view_menu_r2070pgtoPJinfoProcJud", "Can view menu R2070PGTOPJINFOPROCJUD"),)
             
         ordering = [
             'r2070_pgtopj',
@@ -1367,14 +1234,6 @@ class r2070pgtoPJorigemRecursos(SoftDeletionModel):
         return self.r2070_pgtopj_infoprocjud.evento()
     cnpjorigemrecursos = models.CharField(max_length=14, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1398,7 +1257,8 @@ class r2070pgtoPJorigemRecursos(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_pgtopj_origemrecursos", "Can view r2070_pgtopj_origemrecursos"), )
+            ("can_view_r2070pgtoPJorigemRecursos", "Can view R2070PGTOPJORIGEMRECURSOS"),
+            ("can_view_menu_r2070pgtoPJorigemRecursos", "Can view menu R2070PGTOPJORIGEMRECURSOS"),)
             
         ordering = [
             'r2070_pgtopj_infoprocjud',
@@ -1430,14 +1290,6 @@ class r2070pgtoResidBR(SoftDeletionModel):
     def evento(self): 
         return self.r2070_ideestab.evento()
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1460,7 +1312,8 @@ class r2070pgtoResidBR(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_pgtoresidbr", "Can view r2070_pgtoresidbr"), )
+            ("can_view_r2070pgtoResidBR", "Can view R2070PGTORESIDBR"),
+            ("can_view_menu_r2070pgtoResidBR", "Can view menu R2070PGTORESIDBR"),)
             
         ordering = [
             'r2070_ideestab',]
@@ -1496,14 +1349,6 @@ class r2070pgtoResidExt(SoftDeletionModel):
     vlrpgto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1531,7 +1376,8 @@ class r2070pgtoResidExt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_pgtoresidext", "Can view r2070_pgtoresidext"), )
+            ("can_view_r2070pgtoResidExt", "Can view R2070PGTORESIDEXT"),
+            ("can_view_menu_r2070pgtoResidExt", "Can view menu R2070PGTORESIDEXT"),)
             
         ordering = [
             'r2070_ideestab',
@@ -1570,14 +1416,6 @@ class r2070rendIsento(SoftDeletionModel):
     vlrisento = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     descrendimento = models.CharField(max_length=100, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1602,7 +1440,8 @@ class r2070rendIsento(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2070_rendisento", "Can view r2070_rendisento"), )
+            ("can_view_r2070rendIsento", "Can view R2070RENDISENTO"),
+            ("can_view_menu_r2070rendIsento", "Can view menu R2070RENDISENTO"),)
             
         ordering = [
             'r2070_pgtopf',

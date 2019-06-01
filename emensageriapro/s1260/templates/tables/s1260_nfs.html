@@ -59,9 +59,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s1260_nfs_visualizar' %}
+                    {% if perms.s1260.can_view_s1260nfs %}
                         <a href="{% url 's1260_nfs_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s1260_nfs_editar' or dict_permissoes|get_permissao:'s1260_nfs_cadastrar' %}
+                            {% if perms.s1260.add_s1260nfs or perms.s1260.change_s1260nfs %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -72,7 +72,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s1260_nfs_apagar' %}
+                    {% if perms.s1260.delete_s1260nfs %}
                         <a href="{% url 's1260_nfs_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

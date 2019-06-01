@@ -81,14 +81,6 @@ class s2405brasil(SoftDeletionModel):
     codmunic = models.TextField(null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -117,7 +109,8 @@ class s2405brasil(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2405_brasil", "Can view s2405_brasil"), )
+            ("can_view_s2405brasil", "Can view S2405BRASIL"),
+            ("can_view_menu_s2405brasil", "Can view menu S2405BRASIL"),)
             
         ordering = [
             's2405_endereco',
@@ -162,14 +155,6 @@ class s2405dependente(SoftDeletionModel):
     incfismen = models.CharField(choices=CHOICES_S2405_INCFISMEN, max_length=1, null=True, )
     depfinsprev = models.CharField(choices=CHOICES_S2405_DEPFINSPREV, max_length=1, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -199,7 +184,8 @@ class s2405dependente(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2405_dependente", "Can view s2405_dependente"), )
+            ("can_view_s2405dependente", "Can view S2405DEPENDENTE"),
+            ("can_view_menu_s2405dependente", "Can view menu S2405DEPENDENTE"),)
             
         ordering = [
             's2405_evtcdbenefalt',
@@ -237,14 +223,6 @@ class s2405endereco(SoftDeletionModel):
     def evento(self): 
         return self.s2405_evtcdbenefalt.evento()
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -267,7 +245,8 @@ class s2405endereco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2405_endereco", "Can view s2405_endereco"), )
+            ("can_view_s2405endereco", "Can view S2405ENDERECO"),
+            ("can_view_menu_s2405endereco", "Can view menu S2405ENDERECO"),)
             
         ordering = [
             's2405_evtcdbenefalt',]
@@ -305,14 +284,6 @@ class s2405exterior(SoftDeletionModel):
     nmcid = models.CharField(max_length=50, null=True, )
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -339,7 +310,8 @@ class s2405exterior(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2405_exterior", "Can view s2405_exterior"), )
+            ("can_view_s2405exterior", "Can view S2405EXTERIOR"),
+            ("can_view_menu_s2405exterior", "Can view menu S2405EXTERIOR"),)
             
         ordering = [
             's2405_endereco',

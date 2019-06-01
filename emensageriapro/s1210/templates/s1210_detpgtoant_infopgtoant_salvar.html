@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_visualizar' %}
+                    {% if perms.s1210.can_view_s1210detPgtoAntinfoPgtoAnt %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1210_detpgtoant_infopgtoant_salvar' hash='{}'|json_return_page:'s1210_detpgtoant_infopgtoant_salvar'|json_return_hash:hash|json_id:s1210_detpgtoant_infopgtoant_id|json_print:0|base64_encode_me %}">
                             Detalhamento do pagamento
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_editar' or dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_cadastrar' %}
+            {% if perms.s1210.change_s1210_detpgtoant_infopgtoant or perms.s1210.add_s1210_detpgtoant_infopgtoant %}
                 <form action="#" id="id_form_s1210_detpgtoant_infopgtoant" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s1210_detpgtoant_infopgtoant_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_cadastrar' %}
+                                {% if perms.s1210.add_s1210detPgtoAntinfoPgtoAnt %}
                                     <a href="{% url 's1210_detpgtoant_infopgtoant_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_listar' or dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_listar' %}
+                            {% if perms.s1210.can_view_s1210_detpgtoant_infopgtoant or perms.s1210.can_view_s1210_detpgtoant_infopgtoant %}
                                 <a href="{% url 's1210_detpgtoant_infopgtoant'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_visualizar' and s1210_detpgtoant_infopgtoant_id %}
+                            {% if perms.s1210.can_view_s1210_detpgtoant_infopgtoant and s1210_detpgtoant_infopgtoant_id %}
                                 <a href="{% url 's1210_detpgtoant_infopgtoant_salvar' hash='{}'|json_id:s1210_detpgtoant_infopgtoant_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_visualizar' and s1210_detpgtoant_infopgtoant_id %}
+                            {% if perms.s1210.can_view_s1210_detpgtoant_infopgtoant and s1210_detpgtoant_infopgtoant_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_editar' or dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_cadastrar' %}
+                            {% if perms.s1210.change_s1210_detpgtoant_infopgtoant or perms.s1210.add_s1210_detpgtoant_infopgtoant %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_apagar' and s1210_detpgtoant_infopgtoant_id %}
+                            {% if perms.s1210.delete_s1210_detpgtoant_infopgtoant and s1210_detpgtoant_infopgtoant_id %}
 
                             <a href="{% url 's1210_detpgtoant_infopgtoant_apagar' hash='{}'|json_id:s1210_detpgtoant_infopgtoant_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_editar' or dict_permissoes|get_permissao:'s1210_detpgtoant_infopgtoant_cadastrar' %}
+                    {% if perms.s1210.change_s1210_detpgtoant_infopgtoant or perms.s1210.add_s1210_detpgtoant_infopgtoant %}
                         </form>
                     {% endif %}
 

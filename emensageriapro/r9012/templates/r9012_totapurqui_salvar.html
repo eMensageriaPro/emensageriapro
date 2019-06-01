@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'r9012_totapurqui_visualizar' %}
+                    {% if perms.r9012.can_view_r9012totApurQui %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 'r9012_totapurqui_salvar' hash='{}'|json_return_page:'r9012_totapurqui_salvar'|json_return_hash:hash|json_id:r9012_totapurqui_id|json_print:0|base64_encode_me %}">
                             Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'r9012_totapurqui_editar' or dict_permissoes|get_permissao:'r9012_totapurqui_cadastrar' %}
+            {% if perms.r9012.change_r9012_totapurqui or perms.r9012.add_r9012_totapurqui %}
                 <form action="#" id="id_form_r9012_totapurqui" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if r9012_totapurqui_id %}
 
-                                {% if dict_permissoes|get_permissao:'r9012_totapurqui_cadastrar' %}
+                                {% if perms.r9012.add_r9012totApurQui %}
                                     <a href="{% url 'r9012_totapurqui_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r9012_totapurqui_listar' or dict_permissoes|get_permissao:'r9012_totapurqui_listar' %}
+                            {% if perms.r9012.can_view_r9012_totapurqui or perms.r9012.can_view_r9012_totapurqui %}
                                 <a href="{% url 'r9012_totapurqui'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r9012_totapurqui_visualizar' and r9012_totapurqui_id %}
+                            {% if perms.r9012.can_view_r9012_totapurqui and r9012_totapurqui_id %}
                                 <a href="{% url 'r9012_totapurqui_salvar' hash='{}'|json_id:r9012_totapurqui_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'r9012_totapurqui_visualizar' and r9012_totapurqui_id %}
+                            {% if perms.r9012.can_view_r9012_totapurqui and r9012_totapurqui_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r9012_totapurqui_editar' or dict_permissoes|get_permissao:'r9012_totapurqui_cadastrar' %}
+                            {% if perms.r9012.change_r9012_totapurqui or perms.r9012.add_r9012_totapurqui %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r9012_totapurqui_apagar' and r9012_totapurqui_id %}
+                            {% if perms.r9012.delete_r9012_totapurqui and r9012_totapurqui_id %}
 
                             <a href="{% url 'r9012_totapurqui_apagar' hash='{}'|json_id:r9012_totapurqui_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'r9012_totapurqui_editar' or dict_permissoes|get_permissao:'r9012_totapurqui_cadastrar' %}
+                    {% if perms.r9012.change_r9012_totapurqui or perms.r9012.add_r9012_totapurqui %}
                         </form>
                     {% endif %}
 

@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1250_tpaquis_visualizar' %}
+                    {% if perms.s1250.can_view_s1250tpAquis %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1250_tpaquis_salvar' hash='{}'|json_return_page:'s1250_tpaquis_salvar'|json_return_hash:hash|json_id:s1250_tpaquis_id|json_print:0|base64_encode_me %}">
                             Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física
@@ -62,14 +62,14 @@
                     {% endif %}
                     {% if s1250_tpaquis_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s1250_ideprodutor_visualizar' %}
+                            {% if perms.s1250.can_view_s1250_ideprodutor %}
                                 <li {% if tab == 's1250_ideprodutor' %} class="active"{% endif %} >
                                     <a href="{% url 's1250_tpaquis_salvar' hash='{}'|json_id:s1250_tpaquis_id|json_print:0|json_tab:'s1250_ideprodutor'|base64_encode_me %}">
                                     Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1250_infoprocj_visualizar' %}
+                            {% if perms.s1250.can_view_s1250_infoprocj %}
                                 <li {% if tab == 's1250_infoprocj' %} class="active"{% endif %} >
                                     <a href="{% url 's1250_tpaquis_salvar' hash='{}'|json_id:s1250_tpaquis_id|json_print:0|json_tab:'s1250_infoprocj'|base64_encode_me %}">
                                     Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</a>
@@ -188,7 +188,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1250_tpaquis_editar' or dict_permissoes|get_permissao:'s1250_tpaquis_cadastrar' %}
+            {% if perms.s1250.change_s1250_tpaquis or perms.s1250.add_s1250_tpaquis %}
                 <form action="#" id="id_form_s1250_tpaquis" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -215,7 +215,7 @@
                             <!-- botões especiais -->
                             {% if s1250_tpaquis_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1250_tpaquis_cadastrar' %}
+                                {% if perms.s1250.add_s1250tpAquis %}
                                     <a href="{% url 's1250_tpaquis_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -227,7 +227,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1250_tpaquis_listar' or dict_permissoes|get_permissao:'s1250_tpaquis_listar' %}
+                            {% if perms.s1250.can_view_s1250_tpaquis or perms.s1250.can_view_s1250_tpaquis %}
                                 <a href="{% url 's1250_tpaquis'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -236,7 +236,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1250_tpaquis_visualizar' and s1250_tpaquis_id %}
+                            {% if perms.s1250.can_view_s1250_tpaquis and s1250_tpaquis_id %}
                                 <a href="{% url 's1250_tpaquis_salvar' hash='{}'|json_id:s1250_tpaquis_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -245,7 +245,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1250_tpaquis_visualizar' and s1250_tpaquis_id %}
+                            {% if perms.s1250.can_view_s1250_tpaquis and s1250_tpaquis_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -272,7 +272,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1250_tpaquis_editar' or dict_permissoes|get_permissao:'s1250_tpaquis_cadastrar' %}
+                            {% if perms.s1250.change_s1250_tpaquis or perms.s1250.add_s1250_tpaquis %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -281,7 +281,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1250_tpaquis_apagar' and s1250_tpaquis_id %}
+                            {% if perms.s1250.delete_s1250_tpaquis and s1250_tpaquis_id %}
 
                             <a href="{% url 's1250_tpaquis_apagar' hash='{}'|json_id:s1250_tpaquis_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -303,7 +303,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1250_tpaquis_editar' or dict_permissoes|get_permissao:'s1250_tpaquis_cadastrar' %}
+                    {% if perms.s1250.change_s1250_tpaquis or perms.s1250.add_s1250_tpaquis %}
                         </form>
                     {% endif %}
 
@@ -329,9 +329,9 @@
 
             {% if tab == 's1250_ideprodutor' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1250_ideprodutor_visualizar' %} 
+                {% if perms.s1250.can_view_s1250_ideprodutor %} 
 
-                    {% if dict_permissoes|get_permissao:'s1250_ideprodutor_editar' or dict_permissoes|get_permissao:'s1250_ideprodutor_cadastrar' %}
+                    {% if perms.s1250.change_s1250_ideprodutor or perms.s1250.add_s1250ideProdutor %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -358,7 +358,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que identifica os produtores rurais dos quais foi efetuada aquisição da produção pelo contribuinte declarante.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1250_ideprodutor_editar' or dict_permissoes|get_permissao:'s1250_ideprodutor_cadastrar' %}
+                                        {% if perms.s1250.change_s1250_ideprodutor or perms.s1250.add_s1250ideProdutor %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -373,7 +373,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1250_ideprodutor_cadastrar' %}            
+                                    {% if perms.s1250.add_s1250ideProdutor %}            
                                     <!-- begin_form_s1250_ideprodutor --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1250_ideprodutor" action="{% url 's1250_ideprodutor_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -426,9 +426,9 @@
 
             {% if tab == 's1250_infoprocj' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1250_infoprocj_visualizar' %} 
+                {% if perms.s1250.can_view_s1250_infoprocj %} 
 
-                    {% if dict_permissoes|get_permissao:'s1250_infoprocj_editar' or dict_permissoes|get_permissao:'s1250_infoprocj_cadastrar' %}
+                    {% if perms.s1250.change_s1250_infoprocj or perms.s1250.add_s1250infoProcJ %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -455,7 +455,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido quando houver processo judicial do adquirente ou de terceiros e que abranja a totalidade dos produtores identificados em {ideProdutor} com decisão/sentença determinando a não retenção pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1250_infoprocj_editar' or dict_permissoes|get_permissao:'s1250_infoprocj_cadastrar' %}
+                                        {% if perms.s1250.change_s1250_infoprocj or perms.s1250.add_s1250infoProcJ %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -470,7 +470,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1250_infoprocj_cadastrar' %}            
+                                    {% if perms.s1250.add_s1250infoProcJ %}            
                                     <!-- begin_form_s1250_infoprocj --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1250_infoprocj" action="{% url 's1250_infoprocj_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

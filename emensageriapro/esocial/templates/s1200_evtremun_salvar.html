@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'s1200_evtremun_visualizar' %}
+                {% if perms.esocial.can_view_s1200evtRemun %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_return_page:'s1200_evtremun_salvar'|json_return_hash:hash|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}">
                     S-1200 - Remuneração de trabalhador vinculado ao Regime Geral de Previd. Social</a>
@@ -58,35 +58,35 @@
                 {% if s1200_evtremun_id %}
                     
                         
-                            {% if dict_permissoes|get_permissao:'s1200_infomv_visualizar' %}
+                            {% if perms.esocial.can_view_s1200_infomv %}
                                 <li {% if tab == 's1200_infomv' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|json_tab:'s1200_infomv'|base64_encode_me %}">
                                     Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1200_infocomplem_visualizar' %}
+                            {% if perms.esocial.can_view_s1200_infocomplem %}
                                 <li {% if tab == 's1200_infocomplem' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|json_tab:'s1200_infocomplem'|base64_encode_me %}">
                                     Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1200_procjudtrab_visualizar' %}
+                            {% if perms.esocial.can_view_s1200_procjudtrab %}
                                 <li {% if tab == 's1200_procjudtrab' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|json_tab:'s1200_procjudtrab'|base64_encode_me %}">
                                     Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1200_infointerm_visualizar' %}
+                            {% if perms.esocial.can_view_s1200_infointerm %}
                                 <li {% if tab == 's1200_infointerm' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|json_tab:'s1200_infointerm'|base64_encode_me %}">
                                     Informações relativas ao trabalho intermitente</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1200_dmdev_visualizar' %}
+                            {% if perms.esocial.can_view_s1200_dmdev %}
                                 <li {% if tab == 's1200_dmdev' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_evtremun_salvar' hash='{}'|json_id:s1200_evtremun_id|json_print:0|json_tab:'s1200_dmdev'|base64_encode_me %}">
                                     Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
@@ -183,7 +183,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'s1200_evtremun_editar' or dict_permissoes|get_permissao:'s1200_evtremun_cadastrar' %}
+               {% if perms.esocial.change_s1200_evtremun or perms.esocial.add_s1200_evtremun %}
                {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s1200_evtremun" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -205,8 +205,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if s1200_evtremun_id %}
-                           {% if dict_permissoes|get_permissao:'s1200_evtremun_cadastrar' %}<a href="{% url 's1200_evtremun_verificar'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s1200_evtremun_cadastrar' %}
+                           {% if perms.esocial.add_s1200evtRemun %}<a href="{% url 's1200_evtremun_verificar'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s1200evtRemun %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -223,7 +223,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1200_evtremun_cadastrar' %}
+                           {% if perms.esocial.add_s1200evtRemun %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -244,29 +244,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1200_evtremun_cadastrar' %}<a href="{% url 's1200_evtremun_xml'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s1200evtRemun %}<a href="{% url 's1200_evtremun_xml'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if s1200_evtremun.status == STATUS_EVENTO_CADASTRADO or s1200_evtremun.status == STATUS_EVENTO_IMPORTADO or s1200_evtremun.status == STATUS_EVENTO_DUPLICADO or s1200_evtremun.status == STATUS_EVENTO_GERADO or s1200_evtremun.status == STATUS_EVENTO_ASSINADO or s1200_evtremun.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'s1200_evtremun_cadastrar' %}
+                           {% if perms.esocial.add_s1200evtRemun %}
                            <a href="{% url 's1200_evtremun_validar_evento' hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'s1200_evtremun_cadastrar' %}<a href="{% url 's1200_evtremun_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s1200evtRemun %}<a href="{% url 's1200_evtremun_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1200_evtremun_listar' or dict_permissoes|get_permissao:'s1200_evtremun_listar' %}<a href="{% url 's1200_evtremun'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s1200_evtremun_visualizar' and s1200_evtremun_id %}<a href="{% url 's1200_evtremun_salvar'  hash='{}'|json_id:s1200_evtremun_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s1200_evtremun_editar' or dict_permissoes|get_permissao:'s1200_evtremun_cadastrar' %}
+                           {% if perms.esocial.can_view_s1200_evtremun or perms.esocial.can_view_s1200_evtremun %}<a href="{% url 's1200_evtremun'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.can_view_s1200_evtremun and s1200_evtremun_id %}<a href="{% url 's1200_evtremun_salvar'  hash='{}'|json_id:s1200_evtremun_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.change_s1200_evtremun or perms.esocial.add_s1200_evtremun %}
                            {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1200_evtremun_apagar' and s1200_evtremun_id %}<a href="{% url 's1200_evtremun_apagar'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.delete_s1200_evtremun and s1200_evtremun_id %}<a href="{% url 's1200_evtremun_apagar'  hash='{}'|json_id:s1200_evtremun_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'s1200_evtremun_editar' or dict_permissoes|get_permissao:'s1200_evtremun_cadastrar' %}
+                  {% if perms.esocial.change_s1200_evtremun or perms.esocial.add_s1200_evtremun %}
                {% if s1200_evtremun_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}
@@ -322,9 +322,9 @@
 
 {% if tab == 's1200_infomv' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s1200_infomv_visualizar' %} 
+{% if perms.esocial.can_view_s1200_infomv %} 
 
-{% if dict_permissoes|get_permissao:'s1200_infomv_editar' or dict_permissoes|get_permissao:'s1200_infomv_cadastrar' %}
+{% if perms.esocial.change_s1200_infomv or perms.s1200.add_s1200infoMV %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -350,7 +350,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s1200_infomv_editar' or dict_permissoes|get_permissao:'s1200_infomv_cadastrar' %}
+          {% if perms.esocial.change_s1200_infomv or perms.s1200.add_s1200infoMV %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -359,7 +359,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s1200_infomv_cadastrar' %}            
+        {% if perms.s1200.add_s1200infoMV %}            
 
 
 
@@ -417,9 +417,9 @@ function CadastroListagem() {
 
 {% if tab == 's1200_infocomplem' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s1200_infocomplem_visualizar' %} 
+{% if perms.esocial.can_view_s1200_infocomplem %} 
 
-{% if dict_permissoes|get_permissao:'s1200_infocomplem_editar' or dict_permissoes|get_permissao:'s1200_infocomplem_cadastrar' %}
+{% if perms.esocial.change_s1200_infocomplem or perms.s1200.add_s1200infoComplem %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -445,7 +445,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Registro preenchido exclusivamente quando o evento de remuneração referir- se a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento de início de 'trabalhador sem vínculo'</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s1200_infocomplem_editar' or dict_permissoes|get_permissao:'s1200_infocomplem_cadastrar' %}
+          {% if perms.esocial.change_s1200_infocomplem or perms.s1200.add_s1200infoComplem %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -454,7 +454,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s1200_infocomplem_cadastrar' %}            
+        {% if perms.s1200.add_s1200infoComplem %}            
 
 
 
@@ -512,9 +512,9 @@ function CadastroListagem() {
 
 {% if tab == 's1200_procjudtrab' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s1200_procjudtrab_visualizar' %} 
+{% if perms.esocial.can_view_s1200_procjudtrab %} 
 
-{% if dict_permissoes|get_permissao:'s1200_procjudtrab_editar' or dict_permissoes|get_permissao:'s1200_procjudtrab_cadastrar' %}
+{% if perms.esocial.change_s1200_procjudtrab or perms.s1200.add_s1200procJudTrab %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -540,7 +540,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s1200_procjudtrab_editar' or dict_permissoes|get_permissao:'s1200_procjudtrab_cadastrar' %}
+          {% if perms.esocial.change_s1200_procjudtrab or perms.s1200.add_s1200procJudTrab %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -549,7 +549,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s1200_procjudtrab_cadastrar' %}            
+        {% if perms.s1200.add_s1200procJudTrab %}            
 
 
 
@@ -607,9 +607,9 @@ function CadastroListagem() {
 
 {% if tab == 's1200_infointerm' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s1200_infointerm_visualizar' %} 
+{% if perms.esocial.can_view_s1200_infointerm %} 
 
-{% if dict_permissoes|get_permissao:'s1200_infointerm_editar' or dict_permissoes|get_permissao:'s1200_infointerm_cadastrar' %}
+{% if perms.esocial.change_s1200_infointerm or perms.s1200.add_s1200infoInterm %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -635,7 +635,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações relativas ao trabalho intermitente</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s1200_infointerm_editar' or dict_permissoes|get_permissao:'s1200_infointerm_cadastrar' %}
+          {% if perms.esocial.change_s1200_infointerm or perms.s1200.add_s1200infoInterm %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -644,7 +644,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s1200_infointerm_cadastrar' %}            
+        {% if perms.s1200.add_s1200infoInterm %}            
 
 
 
@@ -702,9 +702,9 @@ function CadastroListagem() {
 
 {% if tab == 's1200_dmdev' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s1200_dmdev_visualizar' %} 
+{% if perms.esocial.can_view_s1200_dmdev %} 
 
-{% if dict_permissoes|get_permissao:'s1200_dmdev_editar' or dict_permissoes|get_permissao:'s1200_dmdev_cadastrar' %}
+{% if perms.esocial.change_s1200_dmdev or perms.s1200.add_s1200dmDev %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -730,7 +730,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s1200_dmdev_editar' or dict_permissoes|get_permissao:'s1200_dmdev_cadastrar' %}
+          {% if perms.esocial.change_s1200_dmdev or perms.s1200.add_s1200dmDev %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -739,7 +739,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s1200_dmdev_cadastrar' %}            
+        {% if perms.s1200.add_s1200dmDev %}            
 
 
 

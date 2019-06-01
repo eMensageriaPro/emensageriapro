@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.db.models.query import QuerySet
 from django.apps import apps
+from django.contrib.auth.models import User
 from datetime import datetime
 
 get_model = apps.get_model
@@ -43,6 +44,15 @@ class SoftDeletionQuerySet(QuerySet):
 
 
 class SoftDeletionModel(models.Model):
+
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
+                                   related_name='%(class)s_criado_por',
+                                   blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
+                                       related_name='%(class)s_modificado_por',
+                                       blank=True, null=True)
     excluido = models.NullBooleanField(blank=True, default=False)
 
     objects = SoftDeletionManager()

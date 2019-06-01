@@ -90,7 +90,7 @@
             <td>{{ a.matricula }}</td>
             {% endif %}
             {% if show_fields.show_mtvdeslig or 1 %}
-            <td>{{ a.get_mtvdeslig_display }}</td>
+            <td>{{ a.mtvdeslig }}</td>
             {% endif %}
             {% if show_fields.show_dtdeslig or 1 %}
             <td><span style="display:none">{{ a.dtdeslig|date:"Y-m-d" }}</span>{{ a.dtdeslig|date:"d/m/Y" }}</td>
@@ -113,9 +113,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2299_evtdeslig_visualizar' %}
+                    {% if perms.esocial.can_view_s2299evtDeslig %}
                         <a href="{% url 's2299_evtdeslig_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2299_evtdeslig_editar' or dict_permissoes|get_permissao:'s2299_evtdeslig_cadastrar' %}
+                            {% if perms.esocial.add_s2299evtDeslig or perms.esocial.change_s2299evtDeslig %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -126,7 +126,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2299_evtdeslig_apagar' %}
+                    {% if perms.esocial.delete_s2299evtDeslig %}
                         <a href="{% url 's2299_evtdeslig_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

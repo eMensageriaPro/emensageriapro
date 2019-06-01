@@ -104,39 +104,43 @@ from emensageriapro.s2200.forms import form_s2200_cessao
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2200_evtadmissao_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except:
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2200_evtadmissao')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     if s2200_evtadmissao_id:
-        s2200_evtadmissao = get_object_or_404(s2200evtAdmissao, id = s2200_evtadmissao_id)
-        
+    
+        s2200_evtadmissao = get_object_or_404(s2200evtAdmissao, id=s2200_evtadmissao_id)
+
         if s2200_evtadmissao.status != STATUS_EVENTO_CADASTRADO:
+        
+            dict_permissoes = {}
             dict_permissoes['s2200_evtadmissao_apagar'] = 0
             dict_permissoes['s2200_evtadmissao_editar'] = 0
-
-    if permissao.permite_visualizar:
-        mensagem = None
+            
+    if request.user.has_perm('esocial.can_view_s2200evtAdmissao'):
+    
         if s2200_evtadmissao_id:
+        
             s2200_evtadmissao_form = form_s2200_evtadmissao(request.POST or None, instance = s2200_evtadmissao, 
                                          initial={'excluido': False})
+                                         
         else:
+        
             s2200_evtadmissao_form = form_s2200_evtadmissao(request.POST or None, 
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
                                                   'status': STATUS_EVENTO_CADASTRADO, 
@@ -144,7 +148,9 @@ def salvar(request, hash):
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
                                                   'excluido': False})
+                                                  
         if request.method == 'POST':
+        
             if s2200_evtadmissao_form.is_valid():
             
                 dados = s2200_evtadmissao_form.cleaned_data
@@ -152,6 +158,7 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not s2200_evtadmissao_id:
+                
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
@@ -166,13 +173,15 @@ def salvar(request, hash):
                                  
                 if request.session['retorno_pagina'] not in ('s2200_evtadmissao_apagar', 's2200_evtadmissao_salvar', 's2200_evtadmissao'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if s2200_evtadmissao_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s2200_evtadmissao_salvar', hash=url_hash)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-        s2200_evtadmissao_form = disabled_form_fields(s2200_evtadmissao_form, permissao.permite_editar)
+                
+        s2200_evtadmissao_form = disabled_form_fields(s2200_evtadmissao_form, request.user.has_perm('esocial.change_s2200evtAdmissao'))
         
         if s2200_evtadmissao_id:
             if s2200_evtadmissao.status != 0:
@@ -181,6 +190,7 @@ def salvar(request, hash):
 
         for field in s2200_evtadmissao_form.fields.keys():
             s2200_evtadmissao_form.fields[field].widget.attrs['ng-model'] = 's2200_evtadmissao_'+field
+            
         if int(dict_hash['print']):
             s2200_evtadmissao_form = disabled_form_for_print(s2200_evtadmissao_form)
 
@@ -231,6 +241,7 @@ def salvar(request, hash):
         s2200_cessao_form = None 
         
         if s2200_evtadmissao_id:
+        
             s2200_evtadmissao = get_object_or_404(s2200evtAdmissao, id = s2200_evtadmissao_id)
             
             s2200_documentos_form = form_s2200_documentos(
@@ -346,9 +357,11 @@ def salvar(request, hash):
                 
         else:
             s2200_evtadmissao = None
+            
         #s2200_evtadmissao_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if 's2200_evtadmissao'[1] == '5':
             evento_totalizador = True
         else:
@@ -357,16 +370,16 @@ def salvar(request, hash):
         if dict_hash['tab'] or 's2200_evtadmissao' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2200_evtadmissao_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=s2200_evtadmissao_id, tabela='s2200_evtadmissao').all()
+        
         context = {
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             's2200_evtadmissao': s2200_evtadmissao, 
             's2200_evtadmissao_form': s2200_evtadmissao_form, 
-            'mensagem': mensagem, 
             's2200_evtadmissao_id': int(s2200_evtadmissao_id),
             'usuario': usuario, 
-            
             'hash': hash, 
             
             's2200_documentos_form': s2200_documentos_form,
@@ -413,14 +426,9 @@ def salvar(request, hash):
             's2200_desligamento_lista': s2200_desligamento_lista,
             's2200_cessao_form': s2200_cessao_form,
             's2200_cessao_lista': s2200_cessao_lista,
-
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['esocial', ],
+            'paginas': ['s2200_evtadmissao', ],
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -428,9 +436,11 @@ def salvar(request, hash):
         }
         
         if for_print in (0, 1):
+        
             return render(request, 's2200_evtadmissao_salvar.html', context)
             
         elif for_print == 2:
+        
             response = PDFTemplateResponse(
                 request=request,
                 template='s2200_evtadmissao_salvar.html',
@@ -449,24 +459,23 @@ def salvar(request, hash):
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True},
             )
+            
             return response
             
         elif for_print == 3:
+        
             response = render_to_response('s2200_evtadmissao_salvar.html', context)
             filename = "s2200_evtadmissao.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s2200_evtadmissao', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)

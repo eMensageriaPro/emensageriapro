@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' %}
+                    {% if perms.r1000.can_view_r1000alteracao %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 'r1000_alteracao_salvar' hash='{}'|json_return_page:'r1000_alteracao_salvar'|json_return_hash:hash|json_id:r1000_alteracao_id|json_print:0|base64_encode_me %}">
                             Alteração das informações
@@ -62,21 +62,21 @@
                     {% endif %}
                     {% if r1000_alteracao_id %}
                         
-                            {% if dict_permissoes|get_permissao:'r1000_alteracao_softhouse_visualizar' %}
+                            {% if perms.r1000.can_view_r1000_alteracao_softhouse %}
                                 <li {% if tab == 'r1000_alteracao_softhouse' %} class="active"{% endif %} >
                                     <a href="{% url 'r1000_alteracao_salvar' hash='{}'|json_id:r1000_alteracao_id|json_print:0|json_tab:'r1000_alteracao_softhouse'|base64_encode_me %}">
                                     Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r1000_alteracao_infoefr_visualizar' %}
+                            {% if perms.r1000.can_view_r1000_alteracao_infoefr %}
                                 <li {% if tab == 'r1000_alteracao_infoefr' %} class="active"{% endif %} >
                                     <a href="{% url 'r1000_alteracao_salvar' hash='{}'|json_id:r1000_alteracao_id|json_print:0|json_tab:'r1000_alteracao_infoefr'|base64_encode_me %}">
                                     Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r1000_alteracao_novavalidade_visualizar' %}
+                            {% if perms.r1000.can_view_r1000_alteracao_novavalidade %}
                                 <li {% if tab == 'r1000_alteracao_novavalidade' %} class="active"{% endif %} >
                                     <a href="{% url 'r1000_alteracao_salvar' hash='{}'|json_id:r1000_alteracao_id|json_print:0|json_tab:'r1000_alteracao_novavalidade'|base64_encode_me %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade</a>
@@ -195,7 +195,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'r1000_alteracao_editar' or dict_permissoes|get_permissao:'r1000_alteracao_cadastrar' %}
+            {% if perms.r1000.change_r1000_alteracao or perms.r1000.add_r1000_alteracao %}
                 <form action="#" id="id_form_r1000_alteracao" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -222,7 +222,7 @@
                             <!-- botões especiais -->
                             {% if r1000_alteracao_id %}
 
-                                {% if dict_permissoes|get_permissao:'r1000_alteracao_cadastrar' %}
+                                {% if perms.r1000.add_r1000alteracao %}
                                     <a href="{% url 'r1000_alteracao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -234,7 +234,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r1000_alteracao_listar' or dict_permissoes|get_permissao:'r1000_alteracao_listar' %}
+                            {% if perms.r1000.can_view_r1000_alteracao or perms.r1000.can_view_r1000_alteracao %}
                                 <a href="{% url 'r1000_alteracao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -243,7 +243,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' and r1000_alteracao_id %}
+                            {% if perms.r1000.can_view_r1000_alteracao and r1000_alteracao_id %}
                                 <a href="{% url 'r1000_alteracao_salvar' hash='{}'|json_id:r1000_alteracao_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -252,7 +252,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'r1000_alteracao_visualizar' and r1000_alteracao_id %}
+                            {% if perms.r1000.can_view_r1000_alteracao and r1000_alteracao_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -279,7 +279,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r1000_alteracao_editar' or dict_permissoes|get_permissao:'r1000_alteracao_cadastrar' %}
+                            {% if perms.r1000.change_r1000_alteracao or perms.r1000.add_r1000_alteracao %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -288,7 +288,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r1000_alteracao_apagar' and r1000_alteracao_id %}
+                            {% if perms.r1000.delete_r1000_alteracao and r1000_alteracao_id %}
 
                             <a href="{% url 'r1000_alteracao_apagar' hash='{}'|json_id:r1000_alteracao_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -310,7 +310,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'r1000_alteracao_editar' or dict_permissoes|get_permissao:'r1000_alteracao_cadastrar' %}
+                    {% if perms.r1000.change_r1000_alteracao or perms.r1000.add_r1000_alteracao %}
                         </form>
                     {% endif %}
 
@@ -336,9 +336,9 @@
 
             {% if tab == 'r1000_alteracao_softhouse' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_softhouse_visualizar' %} 
+                {% if perms.r1000.can_view_r1000_alteracao_softhouse %} 
 
-                    {% if dict_permissoes|get_permissao:'r1000_alteracao_softhouse_editar' or dict_permissoes|get_permissao:'r1000_alteracao_softhouse_cadastrar' %}
+                    {% if perms.r1000.change_r1000_alteracao_softhouse or perms.r1000.add_r1000alteracaosoftHouse %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -365,7 +365,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações da(s) empresa(s) desenvolvedora(s) da(s) aplicação(ões) que gera(m) os arquivos transmitidos para o ambiente nacional da EFD-Reinf.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r1000_alteracao_softhouse_editar' or dict_permissoes|get_permissao:'r1000_alteracao_softhouse_cadastrar' %}
+                                        {% if perms.r1000.change_r1000_alteracao_softhouse or perms.r1000.add_r1000alteracaosoftHouse %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -380,7 +380,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r1000_alteracao_softhouse_cadastrar' %}            
+                                    {% if perms.r1000.add_r1000alteracaosoftHouse %}            
                                     <!-- begin_form_r1000_alteracao_softhouse --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r1000_alteracao_softhouse" action="{% url 'r1000_alteracao_softhouse_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -433,9 +433,9 @@
 
             {% if tab == 'r1000_alteracao_infoefr' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_infoefr_visualizar' %} 
+                {% if perms.r1000.can_view_r1000_alteracao_infoefr %} 
 
-                    {% if dict_permissoes|get_permissao:'r1000_alteracao_infoefr_editar' or dict_permissoes|get_permissao:'r1000_alteracao_infoefr_cadastrar' %}
+                    {% if perms.r1000.change_r1000_alteracao_infoefr or perms.r1000.add_r1000alteracaoinfoEFR %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -462,7 +462,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações de órgãos públicos estaduais e municipais relativas a Ente Federativo Responsável - EFR</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r1000_alteracao_infoefr_editar' or dict_permissoes|get_permissao:'r1000_alteracao_infoefr_cadastrar' %}
+                                        {% if perms.r1000.change_r1000_alteracao_infoefr or perms.r1000.add_r1000alteracaoinfoEFR %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -477,7 +477,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r1000_alteracao_infoefr_cadastrar' %}            
+                                    {% if perms.r1000.add_r1000alteracaoinfoEFR %}            
                                     <!-- begin_form_r1000_alteracao_infoefr --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r1000_alteracao_infoefr" action="{% url 'r1000_alteracao_infoefr_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -530,9 +530,9 @@
 
             {% if tab == 'r1000_alteracao_novavalidade' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'r1000_alteracao_novavalidade_visualizar' %} 
+                {% if perms.r1000.can_view_r1000_alteracao_novavalidade %} 
 
-                    {% if dict_permissoes|get_permissao:'r1000_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'r1000_alteracao_novavalidade_cadastrar' %}
+                    {% if perms.r1000.change_r1000_alteracao_novavalidade or perms.r1000.add_r1000alteracaonovaValidade %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -559,7 +559,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'r1000_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'r1000_alteracao_novavalidade_cadastrar' %}
+                                        {% if perms.r1000.change_r1000_alteracao_novavalidade or perms.r1000.add_r1000alteracaonovaValidade %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -574,7 +574,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'r1000_alteracao_novavalidade_cadastrar' %}            
+                                    {% if perms.r1000.add_r1000alteracaonovaValidade %}            
                                     <!-- begin_form_r1000_alteracao_novavalidade --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_r1000_alteracao_novavalidade" action="{% url 'r1000_alteracao_novavalidade_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

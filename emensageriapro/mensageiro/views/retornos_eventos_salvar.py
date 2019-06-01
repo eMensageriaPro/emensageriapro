@@ -170,6 +170,7 @@ from emensageriapro.esocial.forms import form_s5013_evtfgts
 def salvar(request, hash):
     
     try: 
+    
         usuario_id = request.user.id  
         dict_hash = get_hash_url( hash )
         retornos_eventos_id = int(dict_hash['id'])
@@ -178,21 +179,17 @@ def salvar(request, hash):
         for_print = int(dict_hash['print'])
         
     except: 
+    
         usuario_id = False
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id=usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='retornos_eventos')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
     
     if retornos_eventos_id:
+    
         retornos_eventos = get_object_or_404(RetornosEventos, id=retornos_eventos_id)
         
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_visualizar:
+    if request.user.has_perm('mensageiro.can_view_RetornosEventos'):
         
         if retornos_eventos_id:
             retornos_eventos_form = form_retornos_eventos(request.POST or None, instance=retornos_eventos)
@@ -209,15 +206,19 @@ def salvar(request, hash):
                 
                 if request.session['retorno_pagina'] not in ('retornos_eventos_apagar', 'retornos_eventos_salvar', 'retornos_eventos'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if retornos_eventos_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('retornos_eventos_salvar', hash=url_hash)
+                    
             else:
                 messages.error(request, 'Erro ao salvar!')
-        retornos_eventos_form = disabled_form_fields(retornos_eventos_form, permissao.permite_editar)
+                
+        retornos_eventos_form = disabled_form_fields(retornos_eventos_form, request.user.has_perm('mensageiro.change_RetornosEventos'))
         #retornos_eventos_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             retornos_eventos_form = disabled_form_for_print(retornos_eventos_form)
         
         
@@ -331,18 +332,9 @@ def salvar(request, hash):
         s5013_evtfgts_form = None 
         
         if retornos_eventos_id:
+        
             retornos_eventos = get_object_or_404(RetornosEventos, id = retornos_eventos_id)
             
-            retornos_eventos_ocorrencias_form = form_retornos_eventos_ocorrencias(
-                initial={ 'retornos_eventos': retornos_eventos })
-            retornos_eventos_ocorrencias_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
-            retornos_eventos_ocorrencias_lista = RetornosEventosOcorrencias.objects.\
-                filter(retornos_eventos_id=retornos_eventos.id).all()
-            retornos_eventos_horarios_form = form_retornos_eventos_horarios(
-                initial={ 'retornos_eventos': retornos_eventos })
-            retornos_eventos_horarios_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
-            retornos_eventos_horarios_lista = RetornosEventosHorarios.objects.\
-                filter(retornos_eventos_id=retornos_eventos.id).all()
             s1000_evtinfoempregador_form = form_s1000_evtinfoempregador(
                 initial={ 'retornos_eventos': retornos_eventos })
             s1000_evtinfoempregador_form.fields['retornos_eventos'].widget.attrs['readonly'] = True
@@ -615,14 +607,18 @@ def salvar(request, hash):
                 filter(retornos_eventos_id=retornos_eventos.id).all()
                 
         else:
+        
             retornos_eventos = None
             
         #retornos_eventos_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'retornos_eventos' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'retornos_eventos_salvar'
+            
         context = {
             'retornos_eventos': retornos_eventos, 
             'retornos_eventos_form': retornos_eventos_form, 
@@ -738,12 +734,9 @@ def salvar(request, hash):
             's5012_evtirrf_lista': s5012_evtirrf_lista,
             's5013_evtfgts_form': s5013_evtfgts_form,
             's5013_evtfgts_lista': s5013_evtfgts_lista,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['retornos_eventos', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -790,12 +783,12 @@ def salvar(request, hash):
     
         context = {
             'usuario': usuario, 
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['retornos_eventos', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         
-        return render(request, 'permissao_negada.html', context)
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

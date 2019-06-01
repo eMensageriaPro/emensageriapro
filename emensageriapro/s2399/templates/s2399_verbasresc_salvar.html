@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s2399_verbasresc_visualizar' %}
+                    {% if perms.s2399.can_view_s2399verbasResc %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's2399_verbasresc_salvar' hash='{}'|json_return_page:'s2399_verbasresc_salvar'|json_return_hash:hash|json_id:s2399_verbasresc_id|json_print:0|base64_encode_me %}">
                             Registro onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.
@@ -62,21 +62,21 @@
                     {% endif %}
                     {% if s2399_verbasresc_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s2399_dmdev_visualizar' %}
+                            {% if perms.s2399.can_view_s2399_dmdev %}
                                 <li {% if tab == 's2399_dmdev' %} class="active"{% endif %} >
                                     <a href="{% url 's2399_verbasresc_salvar' hash='{}'|json_id:s2399_verbasresc_id|json_print:0|json_tab:'s2399_dmdev'|base64_encode_me %}">
                                     Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2399_procjudtrab_visualizar' %}
+                            {% if perms.s2399.can_view_s2399_procjudtrab %}
                                 <li {% if tab == 's2399_procjudtrab' %} class="active"{% endif %} >
                                     <a href="{% url 's2399_verbasresc_salvar' hash='{}'|json_id:s2399_verbasresc_id|json_print:0|json_tab:'s2399_procjudtrab'|base64_encode_me %}">
                                     Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2399_infomv_visualizar' %}
+                            {% if perms.s2399.can_view_s2399_infomv %}
                                 <li {% if tab == 's2399_infomv' %} class="active"{% endif %} >
                                     <a href="{% url 's2399_verbasresc_salvar' hash='{}'|json_id:s2399_verbasresc_id|json_print:0|json_tab:'s2399_infomv'|base64_encode_me %}">
                                     Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</a>
@@ -195,7 +195,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s2399_verbasresc_editar' or dict_permissoes|get_permissao:'s2399_verbasresc_cadastrar' %}
+            {% if perms.s2399.change_s2399_verbasresc or perms.s2399.add_s2399_verbasresc %}
                 <form action="#" id="id_form_s2399_verbasresc" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -222,7 +222,7 @@
                             <!-- botões especiais -->
                             {% if s2399_verbasresc_id %}
 
-                                {% if dict_permissoes|get_permissao:'s2399_verbasresc_cadastrar' %}
+                                {% if perms.s2399.add_s2399verbasResc %}
                                     <a href="{% url 's2399_verbasresc_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -234,7 +234,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2399_verbasresc_listar' or dict_permissoes|get_permissao:'s2399_verbasresc_listar' %}
+                            {% if perms.s2399.can_view_s2399_verbasresc or perms.s2399.can_view_s2399_verbasresc %}
                                 <a href="{% url 's2399_verbasresc'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -243,7 +243,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2399_verbasresc_visualizar' and s2399_verbasresc_id %}
+                            {% if perms.s2399.can_view_s2399_verbasresc and s2399_verbasresc_id %}
                                 <a href="{% url 's2399_verbasresc_salvar' hash='{}'|json_id:s2399_verbasresc_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -252,7 +252,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s2399_verbasresc_visualizar' and s2399_verbasresc_id %}
+                            {% if perms.s2399.can_view_s2399_verbasresc and s2399_verbasresc_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -279,7 +279,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2399_verbasresc_editar' or dict_permissoes|get_permissao:'s2399_verbasresc_cadastrar' %}
+                            {% if perms.s2399.change_s2399_verbasresc or perms.s2399.add_s2399_verbasresc %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -288,7 +288,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2399_verbasresc_apagar' and s2399_verbasresc_id %}
+                            {% if perms.s2399.delete_s2399_verbasresc and s2399_verbasresc_id %}
 
                             <a href="{% url 's2399_verbasresc_apagar' hash='{}'|json_id:s2399_verbasresc_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -310,7 +310,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s2399_verbasresc_editar' or dict_permissoes|get_permissao:'s2399_verbasresc_cadastrar' %}
+                    {% if perms.s2399.change_s2399_verbasresc or perms.s2399.add_s2399_verbasresc %}
                         </form>
                     {% endif %}
 
@@ -336,9 +336,9 @@
 
             {% if tab == 's2399_dmdev' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2399_dmdev_visualizar' %} 
+                {% if perms.s2399.can_view_s2399_dmdev %} 
 
-                    {% if dict_permissoes|get_permissao:'s2399_dmdev_editar' or dict_permissoes|get_permissao:'s2399_dmdev_cadastrar' %}
+                    {% if perms.s2399.change_s2399_dmdev or perms.s2399.add_s2399dmDev %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -365,7 +365,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Identificação de cada um dos demonstrativos de valores devidos ao trabalhador antes das retenções de pensão alimentícia e IRRF</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2399_dmdev_editar' or dict_permissoes|get_permissao:'s2399_dmdev_cadastrar' %}
+                                        {% if perms.s2399.change_s2399_dmdev or perms.s2399.add_s2399dmDev %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -380,7 +380,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2399_dmdev_cadastrar' %}            
+                                    {% if perms.s2399.add_s2399dmDev %}            
                                     <!-- begin_form_s2399_dmdev --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2399_dmdev" action="{% url 's2399_dmdev_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -433,9 +433,9 @@
 
             {% if tab == 's2399_procjudtrab' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2399_procjudtrab_visualizar' %} 
+                {% if perms.s2399.can_view_s2399_procjudtrab %} 
 
-                    {% if dict_permissoes|get_permissao:'s2399_procjudtrab_editar' or dict_permissoes|get_permissao:'s2399_procjudtrab_cadastrar' %}
+                    {% if perms.s2399.change_s2399_procjudtrab or perms.s2399.add_s2399procJudTrab %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -462,7 +462,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações sobre a existência de processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuições sociais e/ou Imposto de Renda sobre as rubricas apresentadas nos subregistros de {dmDev}.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2399_procjudtrab_editar' or dict_permissoes|get_permissao:'s2399_procjudtrab_cadastrar' %}
+                                        {% if perms.s2399.change_s2399_procjudtrab or perms.s2399.add_s2399procJudTrab %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -477,7 +477,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2399_procjudtrab_cadastrar' %}            
+                                    {% if perms.s2399.add_s2399procJudTrab %}            
                                     <!-- begin_form_s2399_procjudtrab --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2399_procjudtrab" action="{% url 's2399_procjudtrab_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -530,9 +530,9 @@
 
             {% if tab == 's2399_infomv' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2399_infomv_visualizar' %} 
+                {% if perms.s2399.can_view_s2399_infomv %} 
 
-                    {% if dict_permissoes|get_permissao:'s2399_infomv_editar' or dict_permissoes|get_permissao:'s2399_infomv_cadastrar' %}
+                    {% if perms.s2399.change_s2399_infomv or perms.s2399.add_s2399infoMV %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -559,7 +559,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador que possua outros vínculos/atividades para definição do limite do salário-de-contribuição e da alíquota a ser aplicada no desconto da contribuição previdenciária.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2399_infomv_editar' or dict_permissoes|get_permissao:'s2399_infomv_cadastrar' %}
+                                        {% if perms.s2399.change_s2399_infomv or perms.s2399.add_s2399infoMV %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -574,7 +574,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2399_infomv_cadastrar' %}            
+                                    {% if perms.s2399.add_s2399infoMV %}            
                                     <!-- begin_form_s2399_infomv --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2399_infomv" action="{% url 's2399_infomv_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

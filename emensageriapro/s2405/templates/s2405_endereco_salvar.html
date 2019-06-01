@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s2405_endereco_visualizar' %}
+                    {% if perms.s2405.can_view_s2405endereco %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's2405_endereco_salvar' hash='{}'|json_return_page:'s2405_endereco_salvar'|json_return_hash:hash|json_id:s2405_endereco_id|json_print:0|base64_encode_me %}">
                             Grupo de informações do endereço do Trabalhador
@@ -62,14 +62,14 @@
                     {% endif %}
                     {% if s2405_endereco_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s2405_brasil_visualizar' %}
+                            {% if perms.s2405.can_view_s2405_brasil %}
                                 <li {% if tab == 's2405_brasil' %} class="active"{% endif %} >
                                     <a href="{% url 's2405_endereco_salvar' hash='{}'|json_id:s2405_endereco_id|json_print:0|json_tab:'s2405_brasil'|base64_encode_me %}">
                                     Preenchimento obrigatório para trabalhador residente no Brasil.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2405_exterior_visualizar' %}
+                            {% if perms.s2405.can_view_s2405_exterior %}
                                 <li {% if tab == 's2405_exterior' %} class="active"{% endif %} >
                                     <a href="{% url 's2405_endereco_salvar' hash='{}'|json_id:s2405_endereco_id|json_print:0|json_tab:'s2405_exterior'|base64_encode_me %}">
                                     Preenchido em caso de trabalhador residente no exterior.</a>
@@ -188,7 +188,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s2405_endereco_editar' or dict_permissoes|get_permissao:'s2405_endereco_cadastrar' %}
+            {% if perms.s2405.change_s2405_endereco or perms.s2405.add_s2405_endereco %}
                 <form action="#" id="id_form_s2405_endereco" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -215,7 +215,7 @@
                             <!-- botões especiais -->
                             {% if s2405_endereco_id %}
 
-                                {% if dict_permissoes|get_permissao:'s2405_endereco_cadastrar' %}
+                                {% if perms.s2405.add_s2405endereco %}
                                     <a href="{% url 's2405_endereco_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -227,7 +227,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2405_endereco_listar' or dict_permissoes|get_permissao:'s2405_endereco_listar' %}
+                            {% if perms.s2405.can_view_s2405_endereco or perms.s2405.can_view_s2405_endereco %}
                                 <a href="{% url 's2405_endereco'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -236,7 +236,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2405_endereco_visualizar' and s2405_endereco_id %}
+                            {% if perms.s2405.can_view_s2405_endereco and s2405_endereco_id %}
                                 <a href="{% url 's2405_endereco_salvar' hash='{}'|json_id:s2405_endereco_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -245,7 +245,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s2405_endereco_visualizar' and s2405_endereco_id %}
+                            {% if perms.s2405.can_view_s2405_endereco and s2405_endereco_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -272,7 +272,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2405_endereco_editar' or dict_permissoes|get_permissao:'s2405_endereco_cadastrar' %}
+                            {% if perms.s2405.change_s2405_endereco or perms.s2405.add_s2405_endereco %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -281,7 +281,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2405_endereco_apagar' and s2405_endereco_id %}
+                            {% if perms.s2405.delete_s2405_endereco and s2405_endereco_id %}
 
                             <a href="{% url 's2405_endereco_apagar' hash='{}'|json_id:s2405_endereco_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -303,7 +303,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s2405_endereco_editar' or dict_permissoes|get_permissao:'s2405_endereco_cadastrar' %}
+                    {% if perms.s2405.change_s2405_endereco or perms.s2405.add_s2405_endereco %}
                         </form>
                     {% endif %}
 
@@ -329,9 +329,9 @@
 
             {% if tab == 's2405_brasil' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2405_brasil_visualizar' %} 
+                {% if perms.s2405.can_view_s2405_brasil %} 
 
-                    {% if dict_permissoes|get_permissao:'s2405_brasil_editar' or dict_permissoes|get_permissao:'s2405_brasil_cadastrar' %}
+                    {% if perms.s2405.change_s2405_brasil or perms.s2405.add_s2405brasil %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -358,7 +358,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2405_brasil_editar' or dict_permissoes|get_permissao:'s2405_brasil_cadastrar' %}
+                                        {% if perms.s2405.change_s2405_brasil or perms.s2405.add_s2405brasil %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -373,7 +373,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2405_brasil_cadastrar' %}            
+                                    {% if perms.s2405.add_s2405brasil %}            
                                     <!-- begin_form_s2405_brasil --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2405_brasil" action="{% url 's2405_brasil_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -426,9 +426,9 @@
 
             {% if tab == 's2405_exterior' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2405_exterior_visualizar' %} 
+                {% if perms.s2405.can_view_s2405_exterior %} 
 
-                    {% if dict_permissoes|get_permissao:'s2405_exterior_editar' or dict_permissoes|get_permissao:'s2405_exterior_cadastrar' %}
+                    {% if perms.s2405.change_s2405_exterior or perms.s2405.add_s2405exterior %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -455,7 +455,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2405_exterior_editar' or dict_permissoes|get_permissao:'s2405_exterior_cadastrar' %}
+                                        {% if perms.s2405.change_s2405_exterior or perms.s2405.add_s2405exterior %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -470,7 +470,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2405_exterior_cadastrar' %}            
+                                    {% if perms.s2405.add_s2405exterior %}            
                                     <!-- begin_form_s2405_exterior --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2405_exterior" action="{% url 's2405_exterior_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

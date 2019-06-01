@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações da contribuição sindical patronal</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1300_contribsind_cadastrar' %}
+                  {% if perms.s1300.add_s1300contribSind %}
                   <a href="{% url 's1300_contribsind_salvar' hash='{}'|json_return_page:'s1300_contribsind_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

@@ -78,14 +78,6 @@ class r4020CSLL(SoftDeletionModel):
     vlrncsll = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrdepcsll = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -110,7 +102,8 @@ class r4020CSLL(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_csll", "Can view r4020_csll"), )
+            ("can_view_r4020CSLL", "Can view R4020CSLL"),
+            ("can_view_menu_r4020CSLL", "Can view menu R4020CSLL"),)
             
         ordering = [
             'r4020_infopgto',
@@ -148,14 +141,6 @@ class r4020Cofins(SoftDeletionModel):
     vlrncofins = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrdepcofins = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -180,7 +165,8 @@ class r4020Cofins(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_cofins", "Can view r4020_cofins"), )
+            ("can_view_r4020Cofins", "Can view R4020COFINS"),
+            ("can_view_menu_r4020Cofins", "Can view menu R4020COFINS"),)
             
         ordering = [
             'r4020_infopgto',
@@ -214,14 +200,6 @@ class r4020FCI(SoftDeletionModel):
         return self.r4020_infopgto.evento()
     nrinscfci = models.CharField(max_length=14, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -245,7 +223,8 @@ class r4020FCI(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_fci", "Can view r4020_fci"), )
+            ("can_view_r4020FCI", "Can view R4020FCI"),
+            ("can_view_menu_r4020FCI", "Can view menu R4020FCI"),)
             
         ordering = [
             'r4020_infopgto',
@@ -282,14 +261,6 @@ class r4020IR(SoftDeletionModel):
     vlrnir = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrdepir = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -314,7 +285,8 @@ class r4020IR(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_ir", "Can view r4020_ir"), )
+            ("can_view_r4020IR", "Can view R4020IR"),
+            ("can_view_menu_r4020IR", "Can view menu R4020IR"),)
             
         ordering = [
             'r4020_infopgto',
@@ -352,14 +324,6 @@ class r4020PP(SoftDeletionModel):
     vlrnpp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrdeppp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -384,7 +348,8 @@ class r4020PP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_pp", "Can view r4020_pp"), )
+            ("can_view_r4020PP", "Can view R4020PP"),
+            ("can_view_menu_r4020PP", "Can view menu R4020PP"),)
             
         ordering = [
             'r4020_infopgto',
@@ -419,14 +384,6 @@ class r4020SCP(SoftDeletionModel):
     nrinscscp = models.CharField(max_length=14, null=True, )
     percscp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -451,7 +408,8 @@ class r4020SCP(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_scp", "Can view r4020_scp"), )
+            ("can_view_r4020SCP", "Can view R4020SCP"),
+            ("can_view_menu_r4020SCP", "Can view menu R4020SCP"),)
             
         ordering = [
             'r4020_infopgto',
@@ -486,14 +444,6 @@ class r4020despProcJud(SoftDeletionModel):
     vlrdespcustas = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrdespadvogados = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -518,7 +468,8 @@ class r4020despProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_despprocjud", "Can view r4020_despprocjud"), )
+            ("can_view_r4020despProcJud", "Can view R4020DESPPROCJUD"),
+            ("can_view_menu_r4020despProcJud", "Can view menu R4020DESPPROCJUD"),)
             
         ordering = [
             'r4020_infoprocjud',
@@ -554,14 +505,6 @@ class r4020ideAdv(SoftDeletionModel):
     nrinscadv = models.CharField(max_length=14, null=True, )
     vlradv = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -587,7 +530,8 @@ class r4020ideAdv(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_ideadv", "Can view r4020_ideadv"), )
+            ("can_view_r4020ideAdv", "Can view R4020IDEADV"),
+            ("can_view_menu_r4020ideAdv", "Can view menu R4020IDEADV"),)
             
         ordering = [
             'r4020_despprocjud',
@@ -624,14 +568,6 @@ class r4020idePgto(SoftDeletionModel):
     paisresid = models.TextField(null=True, )
     observ = models.CharField(max_length=200, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -656,7 +592,8 @@ class r4020idePgto(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_idepgto", "Can view r4020_idepgto"), )
+            ("can_view_r4020idePgto", "Can view R4020IDEPGTO"),
+            ("can_view_menu_r4020idePgto", "Can view menu R4020IDEPGTO"),)
             
         ordering = [
             'r4020_evtretpj',
@@ -692,14 +629,6 @@ class r4020infoPgto(SoftDeletionModel):
     vlrtotalpag = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotalcred = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -725,7 +654,8 @@ class r4020infoPgto(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_infopgto", "Can view r4020_infopgto"), )
+            ("can_view_r4020infoPgto", "Can view R4020INFOPGTO"),
+            ("can_view_menu_r4020infoPgto", "Can view menu R4020INFOPGTO"),)
             
         ordering = [
             'r4020_idepgto',
@@ -771,14 +701,6 @@ class r4020infoPgtoExt(SoftDeletionModel):
     relfontpg = models.IntegerField(choices=CHOICES_EFDREINFINFORMACOESBENEFICIARIOSEXTERIOR, null=True, )
     frmtribut = models.CharField(choices=CHOICES_EFDREINFRENDIMENTOSBENEFICIARIOSEXTERIORTRIBUTACAO, max_length=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -805,7 +727,8 @@ class r4020infoPgtoExt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_infopgtoext", "Can view r4020_infopgtoext"), )
+            ("can_view_r4020infoPgtoExt", "Can view R4020INFOPGTOEXT"),
+            ("can_view_menu_r4020infoPgtoExt", "Can view menu R4020INFOPGTOEXT"),)
             
         ordering = [
             'r4020_idepgto',
@@ -843,14 +766,6 @@ class r4020infoProcJud(SoftDeletionModel):
     indorigemrecursos = models.IntegerField(choices=CHOICES_R4020_INDORIGEMRECURSOS, null=True, )
     desc = models.CharField(max_length=50, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -875,7 +790,8 @@ class r4020infoProcJud(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_infoprocjud", "Can view r4020_infoprocjud"), )
+            ("can_view_r4020infoProcJud", "Can view R4020INFOPROCJUD"),
+            ("can_view_menu_r4020infoProcJud", "Can view menu R4020INFOPROCJUD"),)
             
         ordering = [
             'r4020_infopgto',
@@ -919,14 +835,6 @@ class r4020infoProcRet(SoftDeletionModel):
     npp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     deppp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -951,7 +859,8 @@ class r4020infoProcRet(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_infoprocret", "Can view r4020_infoprocret"), )
+            ("can_view_r4020infoProcRet", "Can view R4020INFOPROCRET"),
+            ("can_view_menu_r4020infoProcRet", "Can view menu R4020INFOPROCRET"),)
             
         ordering = [
             'r4020_infopgto',
@@ -985,14 +894,6 @@ class r4020origemRec(SoftDeletionModel):
         return self.r4020_infoprocjud.evento()
     cnpjorigrecurso = models.CharField(max_length=14, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1016,7 +917,8 @@ class r4020origemRec(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r4020_origemrec", "Can view r4020_origemrec"), )
+            ("can_view_r4020origemRec", "Can view R4020ORIGEMREC"),
+            ("can_view_menu_r4020origemRec", "Can view menu R4020ORIGEMREC"),)
             
         ordering = [
             'r4020_infoprocjud',

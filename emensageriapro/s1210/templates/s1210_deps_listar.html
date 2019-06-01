@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações de dependentes do beneficiário do pagamento</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1210_deps_cadastrar' %}
+                  {% if perms.s1210.add_s1210deps %}
                   <a href="{% url 's1210_deps_salvar' hash='{}'|json_return_page:'s1210_deps_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

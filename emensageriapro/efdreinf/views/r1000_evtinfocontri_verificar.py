@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.r1000.models import *
 from emensageriapro.r1000.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -72,25 +72,24 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 @login_required
 def verificar(request, hash):
+
     for_print = 0
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         r1000_evtinfocontri_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except:
+    
         return redirect('login')
 
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='r1000_evtinfocontri')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
-        r1000_evtinfocontri = get_object_or_404(r1000evtInfoContri, id = r1000_evtinfocontri_id)
+    if request.user.has_perm('efdreinf.can_view_r1000evtInfoContri'):
+        r1000_evtinfocontri = get_object_or_404(r1000evtInfoContri, id=r1000_evtinfocontri_id)
         r1000_evtinfocontri_lista = r1000evtInfoContri.objects.filter(id=r1000_evtinfocontri_id).all()
 
         
@@ -120,22 +119,19 @@ def verificar(request, hash):
             'r1000_alteracao_infoefr_lista': r1000_alteracao_infoefr_lista,
             'r1000_alteracao_novavalidade_lista': r1000_alteracao_novavalidade_lista,
             'r1000_exclusao_lista': r1000_exclusao_lista,
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
+            'modulos': ['efdreinf', ],
+            'paginas': ['r1000_evtinfocontri', ],
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': for_print,
             'hash': hash,
 
             
 
         }
+        
         if for_print == 2:
+        
             response = PDFTemplateResponse(request=request,
                                            template='r1000_evtinfocontri_verificar.html',
                                            filename="r1000_evtinfocontri.pdf",
@@ -154,6 +150,7 @@ def verificar(request, hash):
             return response
 
         elif for_print == 3:
+        
             response =  render_to_response('r1000_evtinfocontri_verificar.html', context)
             filename = "%s.xls" % r1000_evtinfocontri.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -161,6 +158,7 @@ def verificar(request, hash):
             return response
 
         elif for_print == 4:
+        
             response =  render_to_response('r1000_evtinfocontri_verificar.html', context)
             filename = "%s.csv" % r1000_evtinfocontri.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -168,18 +166,16 @@ def verificar(request, hash):
             return response
 
         else:
+        
             return render(request, 'r1000_evtinfocontri_verificar.html', context)
 
     else:
 
         context = {
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['efdreinf', ],
+            'paginas': ['r1000_evtinfocontri', ],
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
 
         return render(request, 'permissao_negada.html', context)

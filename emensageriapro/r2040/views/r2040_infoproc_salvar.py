@@ -61,43 +61,48 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         r2040_infoproc_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r2040_infoproc')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if r2040_infoproc_id:
-        r2040_infoproc = get_object_or_404(r2040infoProc, id = r2040_infoproc_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if r2040_infoproc_id:
+    
+        r2040_infoproc = get_object_or_404(r2040infoProc, id=r2040_infoproc_id)
         dados_evento = r2040_infoproc.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r2040_infoproc_apagar'] = 0
-            dict_permissoes['r2040_infoproc_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('r2040.can_view_r2040infoProc'):
+        
         if r2040_infoproc_id:
-            r2040_infoproc_form = form_r2040_infoproc(request.POST or None, instance = r2040_infoproc,  
-                                         initial={'excluido': False})
+        
+            r2040_infoproc_form = form_r2040_infoproc(request.POST or None, 
+                                                          instance=r2040_infoproc,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             r2040_infoproc_form = form_r2040_infoproc(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if r2040_infoproc_form.is_valid():
             
                 dados = r2040_infoproc_form.cleaned_data
@@ -105,9 +110,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not r2040_infoproc_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  'r2040_infoproc', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r2040_infoproc), indent=4, sort_keys=True, default=str),
@@ -115,69 +122,82 @@ def salvar(request, hash):
                                      'r2040_infoproc', r2040_infoproc_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('r2040_infoproc_apagar', 'r2040_infoproc_salvar', 'r2040_infoproc'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if r2040_infoproc_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('r2040_infoproc_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        r2040_infoproc_form = disabled_form_fields(r2040_infoproc_form, permissao.permite_editar)
+               
+        r2040_infoproc_form = disabled_form_fields(r2040_infoproc_form, request.user.has_perm('r2040.change_r2040infoProc'))
         
         if r2040_infoproc_id:
+        
             if dados_evento['status'] != 0:
+            
                 r2040_infoproc_form = disabled_form_fields(r2040_infoproc_form, 0)
                 
         #r2040_infoproc_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             r2040_infoproc_form = disabled_form_for_print(r2040_infoproc_form)
             
         
         
         if r2040_infoproc_id:
-            r2040_infoproc = get_object_or_404(r2040infoProc, id = r2040_infoproc_id)
+        
+            r2040_infoproc = get_object_or_404(r2040infoProc, id=r2040_infoproc_id)
             
                 
         else:
+        
             r2040_infoproc = None
             
         #r2040_infoproc_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'r2040_infoproc' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r2040_infoproc_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=r2040_infoproc_id, tabela='r2040_infoproc').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             'r2040_infoproc': r2040_infoproc, 
             'r2040_infoproc_form': r2040_infoproc_form, 
-            'mensagem': mensagem, 
             'r2040_infoproc_id': int(r2040_infoproc_id),
             'usuario': usuario, 
-            
+            'modulos': ['r2040', ],
+            'paginas': ['r2040_infoproc', ],
             'hash': hash, 
             
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #r2040_infoproc_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 'r2040_infoproc_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -198,7 +218,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('r2040_infoproc_salvar.html', context)
             filename = "r2040_infoproc.xls"
@@ -207,15 +229,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['r2040', ],
+            'paginas': ['r2040_infoproc', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

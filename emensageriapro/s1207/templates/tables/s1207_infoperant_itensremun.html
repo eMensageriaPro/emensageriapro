@@ -41,9 +41,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s1207_infoperant_itensremun_visualizar' %}
+                    {% if perms.s1207.can_view_s1207infoPerAntitensRemun %}
                         <a href="{% url 's1207_infoperant_itensremun_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s1207_infoperant_itensremun_editar' or dict_permissoes|get_permissao:'s1207_infoperant_itensremun_cadastrar' %}
+                            {% if perms.s1207.add_s1207infoPerAntitensRemun or perms.s1207.change_s1207infoPerAntitensRemun %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -54,7 +54,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s1207_infoperant_itensremun_apagar' %}
+                    {% if perms.s1207.delete_s1207infoPerAntitensRemun %}
                         <a href="{% url 's1207_infoperant_itensremun_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

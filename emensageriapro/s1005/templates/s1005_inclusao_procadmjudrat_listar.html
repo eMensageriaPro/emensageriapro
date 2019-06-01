@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1005_inclusao_procadmjudrat_cadastrar' %}
+                  {% if perms.s1005.add_s1005inclusaoprocAdmJudRat %}
                   <a href="{% url 's1005_inclusao_procadmjudrat_salvar' hash='{}'|json_return_page:'s1005_inclusao_procadmjudrat_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

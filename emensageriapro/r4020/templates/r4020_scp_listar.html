@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r4020_scp_cadastrar' %}
+                  {% if perms.r4020.add_r4020SCP %}
                   <a href="{% url 'r4020_scp_salvar' hash='{}'|json_return_page:'r4020_scp_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

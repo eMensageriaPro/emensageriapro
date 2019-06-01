@@ -77,14 +77,6 @@ class s1299ideRespInf(SoftDeletionModel):
     telefone = models.CharField(max_length=13, null=True, )
     email = models.CharField(max_length=60, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -110,7 +102,8 @@ class s1299ideRespInf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1299_iderespinf", "Can view s1299_iderespinf"), )
+            ("can_view_s1299ideRespInf", "Can view S1299IDERESPINF"),
+            ("can_view_menu_s1299ideRespInf", "Can view menu S1299IDERESPINF"),)
             
         ordering = [
             's1299_evtfechaevper',

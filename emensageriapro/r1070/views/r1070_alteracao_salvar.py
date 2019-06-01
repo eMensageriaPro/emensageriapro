@@ -67,43 +67,48 @@ from emensageriapro.r1070.forms import form_r1070_alteracao_novavalidade
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         r1070_alteracao_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r1070_alteracao')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if r1070_alteracao_id:
-        r1070_alteracao = get_object_or_404(r1070alteracao, id = r1070_alteracao_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if r1070_alteracao_id:
+    
+        r1070_alteracao = get_object_or_404(r1070alteracao, id=r1070_alteracao_id)
         dados_evento = r1070_alteracao.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r1070_alteracao_apagar'] = 0
-            dict_permissoes['r1070_alteracao_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('r1070.can_view_r1070alteracao'):
+        
         if r1070_alteracao_id:
-            r1070_alteracao_form = form_r1070_alteracao(request.POST or None, instance = r1070_alteracao,  
-                                         initial={'excluido': False})
+        
+            r1070_alteracao_form = form_r1070_alteracao(request.POST or None, 
+                                                          instance=r1070_alteracao,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             r1070_alteracao_form = form_r1070_alteracao(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if r1070_alteracao_form.is_valid():
             
                 dados = r1070_alteracao_form.cleaned_data
@@ -111,9 +116,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not r1070_alteracao_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  'r1070_alteracao', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r1070_alteracao), indent=4, sort_keys=True, default=str),
@@ -121,21 +128,30 @@ def salvar(request, hash):
                                      'r1070_alteracao', r1070_alteracao_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('r1070_alteracao_apagar', 'r1070_alteracao_salvar', 'r1070_alteracao'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if r1070_alteracao_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('r1070_alteracao_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        r1070_alteracao_form = disabled_form_fields(r1070_alteracao_form, permissao.permite_editar)
+               
+        r1070_alteracao_form = disabled_form_fields(r1070_alteracao_form, request.user.has_perm('r1070.change_r1070alteracao'))
         
         if r1070_alteracao_id:
+        
             if dados_evento['status'] != 0:
+            
                 r1070_alteracao_form = disabled_form_fields(r1070_alteracao_form, 0)
                 
         #r1070_alteracao_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             r1070_alteracao_form = disabled_form_for_print(r1070_alteracao_form)
             
         
@@ -147,7 +163,8 @@ def salvar(request, hash):
         r1070_alteracao_novavalidade_form = None 
         
         if r1070_alteracao_id:
-            r1070_alteracao = get_object_or_404(r1070alteracao, id = r1070_alteracao_id)
+        
+            r1070_alteracao = get_object_or_404(r1070alteracao, id=r1070_alteracao_id)
             
             r1070_alteracao_infosusp_form = form_r1070_alteracao_infosusp(
                 initial={ 'r1070_alteracao': r1070_alteracao })
@@ -166,27 +183,33 @@ def salvar(request, hash):
                 filter(r1070_alteracao_id=r1070_alteracao.id).all()
                 
         else:
+        
             r1070_alteracao = None
             
         #r1070_alteracao_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'r1070_alteracao' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r1070_alteracao_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=r1070_alteracao_id, tabela='r1070_alteracao').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             'r1070_alteracao': r1070_alteracao, 
             'r1070_alteracao_form': r1070_alteracao_form, 
-            'mensagem': mensagem, 
             'r1070_alteracao_id': int(r1070_alteracao_id),
             'usuario': usuario, 
-            
+            'modulos': ['r1070', ],
+            'paginas': ['r1070_alteracao', ],
             'hash': hash, 
             
             'r1070_alteracao_infosusp_form': r1070_alteracao_infosusp_form,
@@ -195,22 +218,19 @@ def salvar(request, hash):
             'r1070_alteracao_dadosprocjud_lista': r1070_alteracao_dadosprocjud_lista,
             'r1070_alteracao_novavalidade_form': r1070_alteracao_novavalidade_form,
             'r1070_alteracao_novavalidade_lista': r1070_alteracao_novavalidade_lista,
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #r1070_alteracao_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 'r1070_alteracao_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -231,7 +251,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('r1070_alteracao_salvar.html', context)
             filename = "r1070_alteracao.xls"
@@ -240,15 +262,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['r1070', ],
+            'paginas': ['r1070_alteracao', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

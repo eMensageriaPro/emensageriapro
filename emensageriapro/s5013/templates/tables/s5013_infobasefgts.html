@@ -23,9 +23,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s5013_infobasefgts_visualizar' %}
+                    {% if perms.s5013.can_view_s5013infoBaseFGTS %}
                         <a href="{% url 's5013_infobasefgts_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s5013_infobasefgts_editar' or dict_permissoes|get_permissao:'s5013_infobasefgts_cadastrar' %}
+                            {% if perms.s5013.add_s5013infoBaseFGTS or perms.s5013.change_s5013infoBaseFGTS %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -36,7 +36,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s5013_infobasefgts_apagar' %}
+                    {% if perms.s5013.delete_s5013infoBaseFGTS %}
                         <a href="{% url 's5013_infobasefgts_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

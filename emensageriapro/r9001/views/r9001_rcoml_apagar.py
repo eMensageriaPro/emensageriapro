@@ -60,37 +60,38 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
-    
     try: 
+    
         usuario_id = request.user.id 
         dict_hash = get_hash_url( hash )
         r9001_rcoml_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r9001_rcoml')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    r9001_rcoml = get_object_or_404(r9001RComl, id = r9001_rcoml_id)
+    r9001_rcoml = get_object_or_404(r9001RComl, id=r9001_rcoml_id)
+    
     dados_evento = {}
+    
     if r9001_rcoml_id:
+    
         dados_evento = r9001_rcoml.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r9001_rcoml_apagar'] = 0
-            dict_permissoes['r9001_rcoml_editar'] = 0
+            
     if request.method == 'POST':
+    
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(r9001_rcoml), indent=4, sort_keys=True, default=str)
             obj = r9001RComl.objects.get(id = r9001_rcoml_id)
             obj.delete(request=request)
@@ -100,23 +101,28 @@ def apagar(request, hash):
             gravar_auditoria(situacao_anterior,
                              '', 
                              'r9001_rcoml', r9001_rcoml_id, usuario_id, 3)
+                             
         else:
+        
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 'r9001_rcoml_salvar':
-            return redirect('r9001_rcoml', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('r9001_rcoml', hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            
+    context = {
+        'dados_evento': dados_evento, 
+        'modulos': ['r9001', ],
+        'paginas': ['r9001_rcoml', ],
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
         'hash': hash,
     }
-    return render(request, 'r9001_rcoml_apagar.html', context)
+    
+    return render(request, 
+                  'r9001_rcoml_apagar.html', 
+                  context)

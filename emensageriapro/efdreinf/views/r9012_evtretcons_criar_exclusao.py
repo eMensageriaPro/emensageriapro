@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.r9012.models import *
 from emensageriapro.r9012.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -81,32 +81,41 @@ def criar_exclusao(request, hash):
 
     dict_hash = get_hash_url(hash)
     r9012_evtretcons_id = int(dict_hash['id'])
+    
+    if request.user.has_perm('efdreinf.can_create_delete_event_r9012evtRetCons'):
 
-    if r9012_evtretcons_id:
-
-        r9012_evtretcons = get_object_or_404(
-            r9012evtRetCons,
-            excluido=False,
-            id=r9012_evtretcons_id)
-
-        texto = gerar_xml_r9012(r9012_evtretcons_id, versao="|")
-        texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
-        texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
-        dados = read_r9012_evtretcons_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r9012_evtretcons)
-
-        r9012evtRetCons.objects.filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}',
-            u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r9012_evtretcons.identidade),
-            'r9012_evtretcons', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento de exclusão criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('r9012_evtretcons_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao criar evento de exclusão!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        if r9012_evtretcons_id:
+    
+            r9012_evtretcons = get_object_or_404(
+                r9012evtRetCons,
+                excluido=False,
+                id=r9012_evtretcons_id)
+    
+            texto = gerar_xml_r9012(r9012_evtretcons_id, versao="|")
+            texto = texto.replace('<inclusao>','<exclusao>').replace('</inclusao>','</exclusao>')
+            texto = texto.replace('<alteracao>','<exclusao>').replace('</alteracao>','</exclusao>')
+            dados = read_r9012_evtretcons_string({}, texto.encode('utf-8'), 0)
+            nova_identidade = identidade_evento(r9012_evtretcons)
+    
+            r9012evtRetCons.objects.filter(id=dados['id']).\
+                update(status=STATUS_EVENTO_CADASTRADO,
+                       arquivo_original=0,
+                       arquivo='')
+    
+            gravar_auditoria(u'{}',
+                u'{"funcao": "Evento de exclusão de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r9012_evtretcons.identidade),
+                'r9012_evtretcons', dados['id'], request.user.id, 1)
+    
+            messages.success(request, u'Evento de exclusão criado com sucesso!')
+            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
+            return redirect('r9012_evtretcons_salvar', hash=url_hash)
+    
+        messages.error(request, 'Erro ao criar evento de exclusão!')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+    else:
+    
+        messages.error(request, u'''Você não possui permissão para criar evento de exclusão a partir de evento existente. 
+                                    Entre em contato com o administrador do sistema!''')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        

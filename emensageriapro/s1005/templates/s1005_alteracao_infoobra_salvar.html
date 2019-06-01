@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_visualizar' %}
+                    {% if perms.s1005.can_view_s1005alteracaoinfoObra %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1005_alteracao_infoobra_salvar' hash='{}'|json_return_page:'s1005_alteracao_infoobra_salvar'|json_return_hash:hash|json_id:s1005_alteracao_infoobra_id|json_print:0|base64_encode_me %}">
                             Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infoobra_cadastrar' %}
+            {% if perms.s1005.change_s1005_alteracao_infoobra or perms.s1005.add_s1005_alteracao_infoobra %}
                 <form action="#" id="id_form_s1005_alteracao_infoobra" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s1005_alteracao_infoobra_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_cadastrar' %}
+                                {% if perms.s1005.add_s1005alteracaoinfoObra %}
                                     <a href="{% url 's1005_alteracao_infoobra_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_listar' or dict_permissoes|get_permissao:'s1005_alteracao_infoobra_listar' %}
+                            {% if perms.s1005.can_view_s1005_alteracao_infoobra or perms.s1005.can_view_s1005_alteracao_infoobra %}
                                 <a href="{% url 's1005_alteracao_infoobra'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_visualizar' and s1005_alteracao_infoobra_id %}
+                            {% if perms.s1005.can_view_s1005_alteracao_infoobra and s1005_alteracao_infoobra_id %}
                                 <a href="{% url 's1005_alteracao_infoobra_salvar' hash='{}'|json_id:s1005_alteracao_infoobra_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_visualizar' and s1005_alteracao_infoobra_id %}
+                            {% if perms.s1005.can_view_s1005_alteracao_infoobra and s1005_alteracao_infoobra_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infoobra_cadastrar' %}
+                            {% if perms.s1005.change_s1005_alteracao_infoobra or perms.s1005.add_s1005_alteracao_infoobra %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_apagar' and s1005_alteracao_infoobra_id %}
+                            {% if perms.s1005.delete_s1005_alteracao_infoobra and s1005_alteracao_infoobra_id %}
 
                             <a href="{% url 's1005_alteracao_infoobra_apagar' hash='{}'|json_id:s1005_alteracao_infoobra_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infoobra_cadastrar' %}
+                    {% if perms.s1005.change_s1005_alteracao_infoobra or perms.s1005.add_s1005_alteracao_infoobra %}
                         </form>
                     {% endif %}
 

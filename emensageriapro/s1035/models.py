@@ -80,14 +80,6 @@ class s1035alteracao(SoftDeletionModel):
     dtleicarr = models.DateField(null=True, )
     sitcarr = models.IntegerField(choices=CHOICES_S1035_SITCARR_ALTERACAO, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -115,7 +107,8 @@ class s1035alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1035_alteracao", "Can view s1035_alteracao"), )
+            ("can_view_s1035alteracao", "Can view S1035ALTERACAO"),
+            ("can_view_menu_s1035alteracao", "Can view menu S1035ALTERACAO"),)
             
         ordering = [
             's1035_evttabcarreira',
@@ -153,14 +146,6 @@ class s1035alteracaonovaValidade(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -184,7 +169,8 @@ class s1035alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1035_alteracao_novavalidade", "Can view s1035_alteracao_novavalidade"), )
+            ("can_view_s1035alteracaonovaValidade", "Can view S1035ALTERACAONOVAVALIDADE"),
+            ("can_view_menu_s1035alteracaonovaValidade", "Can view menu S1035ALTERACAONOVAVALIDADE"),)
             
         ordering = [
             's1035_alteracao',
@@ -219,14 +205,6 @@ class s1035exclusao(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -251,7 +229,8 @@ class s1035exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1035_exclusao", "Can view s1035_exclusao"), )
+            ("can_view_s1035exclusao", "Can view S1035EXCLUSAO"),
+            ("can_view_menu_s1035exclusao", "Can view menu S1035EXCLUSAO"),)
             
         ordering = [
             's1035_evttabcarreira',
@@ -291,14 +270,6 @@ class s1035inclusao(SoftDeletionModel):
     dtleicarr = models.DateField(null=True, )
     sitcarr = models.IntegerField(choices=CHOICES_S1035_SITCARR_INCLUSAO, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -326,7 +297,8 @@ class s1035inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1035_inclusao", "Can view s1035_inclusao"), )
+            ("can_view_s1035inclusao", "Can view S1035INCLUSAO"),
+            ("can_view_menu_s1035inclusao", "Can view menu S1035INCLUSAO"),)
             
         ordering = [
             's1035_evttabcarreira',

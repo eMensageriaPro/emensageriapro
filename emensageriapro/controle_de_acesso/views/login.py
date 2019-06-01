@@ -101,40 +101,14 @@ def ler_arquivo(arquivo):
 
 
 
-def criar_permissoes(db_slug):
-    from datetime import datetime
-    lista_paginas = ConfigPaginas.objects.all()
-    lista_perfis = ConfigPerfis.objects.all()
-    for per in lista_perfis:
-        for pag in lista_paginas:
-            lista = ConfigPermissoes.objects.filter(config_paginas=pag.id, config_perfis=per.id).all()
-            if not lista:
-                dados = {}
-                dados['config_paginas_id'] = pag.id
-                dados['config_perfis_id'] = per.id
-                dados['criado_em'] = datetime.now()
-                dados['excluido'] = False
-                dados['criado_por_id'] = 1
-                dados['permite_cadastrar'] = 0
-                dados['permite_listar'] = 0
-                dados['permite_visualizar'] = 0
-                dados['permite_editar'] = 0
-                dados['permite_apagar'] = 0
-                ConfigPermissoes(**dados).save(using=db_slug)
-    dados_admin = {}
-    dados_admin['permite_cadastrar'] = 1
-    dados_admin['permite_listar'] = 1
-    dados_admin['permite_visualizar'] = 1
-    dados_admin['permite_editar'] = 1
-    dados_admin['permite_apagar'] = 1
-    ConfigPermissoes.objects.filter(config_perfis=1).update(**dados_admin)
 
 
 def login(request):
-    db_slug = 'default'
+
     try:
         del request.session['usuario_id']
         messages.success(request, 'Logout realizado corretamente!')
+
     except:
         pass
     try:
@@ -145,13 +119,17 @@ def login(request):
         del request.session['nome_usuario']
     except:
         pass
+
     if request.POST:
+
         nome_usuario = request.POST.get('usuario')
         senha = request.POST.get('senha')
+
         try:
             usuario = Usuarios.objects.get(usuario=nome_usuario)
         except:
             usuario = False
+
         if nome_usuario and usuario:
             hash_senha = make_password(senha)
             senha_db = usuario.senha

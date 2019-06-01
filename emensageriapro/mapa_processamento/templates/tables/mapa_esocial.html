@@ -17,9 +17,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'mapa_esocial_visualizar' %}
+                    {% if perms.mapa_processamento.can_view_MapaEsocial %}
                         <a href="{% url 'mapa_esocial_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'mapa_esocial_editar' or dict_permissoes|get_permissao:'mapa_esocial_cadastrar' %}
+                            {% if perms.mapa_processamento.add_MapaEsocial or perms.mapa_processamento.change_MapaEsocial %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -30,7 +30,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'mapa_esocial_apagar' %}
+                    {% if perms.mapa_processamento.delete_MapaEsocial %}
                         <a href="{% url 'mapa_esocial_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

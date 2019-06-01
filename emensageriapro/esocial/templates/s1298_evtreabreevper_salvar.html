@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_visualizar' %}
+                {% if perms.esocial.can_view_s1298evtReabreEvPer %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 's1298_evtreabreevper_salvar' hash='{}'|json_return_page:'s1298_evtreabreevper_salvar'|json_return_hash:hash|json_id:s1298_evtreabreevper_id|json_print:0|base64_encode_me %}">
                     S-1298 - Reabertura dos Eventos Periódicos</a>
@@ -148,7 +148,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_editar' or dict_permissoes|get_permissao:'s1298_evtreabreevper_cadastrar' %}
+               {% if perms.esocial.change_s1298_evtreabreevper or perms.esocial.add_s1298_evtreabreevper %}
                {% if s1298_evtreabreevper_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s1298_evtreabreevper" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -170,8 +170,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if s1298_evtreabreevper_id %}
-                           {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_cadastrar' %}<a href="{% url 's1298_evtreabreevper_verificar'  hash='{}'|json_id:s1298_evtreabreevper_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_cadastrar' %}
+                           {% if perms.esocial.add_s1298evtReabreEvPer %}<a href="{% url 's1298_evtreabreevper_verificar'  hash='{}'|json_id:s1298_evtreabreevper_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s1298evtReabreEvPer %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -188,7 +188,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_cadastrar' %}
+                           {% if perms.esocial.add_s1298evtReabreEvPer %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -209,29 +209,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_cadastrar' %}<a href="{% url 's1298_evtreabreevper_xml'  hash='{}'|json_id:s1298_evtreabreevper_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s1298evtReabreEvPer %}<a href="{% url 's1298_evtreabreevper_xml'  hash='{}'|json_id:s1298_evtreabreevper_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if s1298_evtreabreevper.status == STATUS_EVENTO_CADASTRADO or s1298_evtreabreevper.status == STATUS_EVENTO_IMPORTADO or s1298_evtreabreevper.status == STATUS_EVENTO_DUPLICADO or s1298_evtreabreevper.status == STATUS_EVENTO_GERADO or s1298_evtreabreevper.status == STATUS_EVENTO_ASSINADO or s1298_evtreabreevper.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_cadastrar' %}
+                           {% if perms.esocial.add_s1298evtReabreEvPer %}
                            <a href="{% url 's1298_evtreabreevper_validar_evento' hash='{}'|json_id:s1298_evtreabreevper_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_cadastrar' %}<a href="{% url 's1298_evtreabreevper_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s1298evtReabreEvPer %}<a href="{% url 's1298_evtreabreevper_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_listar' or dict_permissoes|get_permissao:'s1298_evtreabreevper_listar' %}<a href="{% url 's1298_evtreabreevper'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_visualizar' and s1298_evtreabreevper_id %}<a href="{% url 's1298_evtreabreevper_salvar'  hash='{}'|json_id:s1298_evtreabreevper_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_editar' or dict_permissoes|get_permissao:'s1298_evtreabreevper_cadastrar' %}
+                           {% if perms.esocial.can_view_s1298_evtreabreevper or perms.esocial.can_view_s1298_evtreabreevper %}<a href="{% url 's1298_evtreabreevper'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.can_view_s1298_evtreabreevper and s1298_evtreabreevper_id %}<a href="{% url 's1298_evtreabreevper_salvar'  hash='{}'|json_id:s1298_evtreabreevper_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.change_s1298_evtreabreevper or perms.esocial.add_s1298_evtreabreevper %}
                            {% if s1298_evtreabreevper_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_apagar' and s1298_evtreabreevper_id %}<a href="{% url 's1298_evtreabreevper_apagar'  hash='{}'|json_id:s1298_evtreabreevper_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.delete_s1298_evtreabreevper and s1298_evtreabreevper_id %}<a href="{% url 's1298_evtreabreevper_apagar'  hash='{}'|json_id:s1298_evtreabreevper_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'s1298_evtreabreevper_editar' or dict_permissoes|get_permissao:'s1298_evtreabreevper_cadastrar' %}
+                  {% if perms.esocial.change_s1298_evtreabreevper or perms.esocial.add_s1298_evtreabreevper %}
                {% if s1298_evtreabreevper_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}

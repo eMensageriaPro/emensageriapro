@@ -60,86 +60,98 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def listar(request, hash):
+
     for_print = 0
     
     try: 
+    
         usuario_id = request.user.id   
         dict_hash = get_hash_url( hash )
-        #retorno_pagina = dict_hash['retorno_pagina']
-        #retorno_hash = dict_hash['retorno_hash']
-        #s5001_ideestablot_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s5001_ideestablot')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-    
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
+    if request.user.has_perm('s5001.can_view_s5001ideEstabLot'):
+    
         filtrar = False
+        
         dict_fields = {}
         show_fields = { 
             'show_s5001_infocp': 1,
             'show_tpinsc': 1,
             'show_nrinsc': 1,
             'show_codlotacao': 1, }
+            
         post = False
+        
         if request.method == 'POST':
+        
             post = True
             dict_fields = { 
                 's5001_infocp__icontains': 's5001_infocp__icontains',
                 'tpinsc__icontains': 'tpinsc__icontains',
                 'nrinsc__icontains': 'nrinsc__icontains',
                 'codlotacao__icontains': 'codlotacao__icontains', }
+                
             for a in dict_fields:
+            
                 dict_fields[a] = request.POST.get(a or None)
+                
             for a in show_fields:
+            
                 show_fields[a] = request.POST.get(a or None)
+                
             if request.method == 'POST':
+            
                 dict_fields = { 
                     's5001_infocp__icontains': 's5001_infocp__icontains',
                     'tpinsc__icontains': 'tpinsc__icontains',
                     'nrinsc__icontains': 'nrinsc__icontains',
                     'codlotacao__icontains': 'codlotacao__icontains', }
+                    
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
+                    
         dict_qs = clear_dict_fields(dict_fields)
         s5001_ideestablot_lista = s5001ideEstabLot.objects.filter(**dict_qs).filter().exclude(id=0).all()
+        
         if not post and len(s5001_ideestablot_lista) > 100:
+        
             filtrar = True
             s5001_ideestablot_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #s5001_ideestablot_listar_custom
+        
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 's5001_ideestablot'
+        
         context = {
             's5001_ideestablot_lista': s5001_ideestablot_lista, 
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['s5001', ],
+            'paginas': ['s5001_ideestablot', ],
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'show_fields': show_fields,
             'for_print': for_print,
             'hash': hash,
             'filtrar': filtrar,
             #[VARIAVEIS_FILTRO_RELATORIO]
         }
+        
         if for_print in (0,1):
+        
             return render(request, 's5001_ideestablot_listar.html', context)
+            
         elif for_print == 2:
-            #return render_to_pdf('tables/s5001_ideestablot_pdf_xls.html', context)
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -160,30 +172,34 @@ def listar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('s5001_ideestablot_listar.html', context)
             filename = "s5001_ideestablot.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
         elif for_print == 4:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('csv/s5001_ideestablot.csv', context)
             filename = "s5001_ideestablot.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'text/csv; charset=UTF-8'
             return response
-    else:
-        context = {
-            'usuario': usuario, 
             
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+    else:
+    
+        context = {
+            'usuario': usuario,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['s5001', ],
+            'paginas': ['s5001_ideestablot', ],
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

@@ -29,9 +29,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r4020_origemrec_visualizar' %}
+                    {% if perms.r4020.can_view_r4020origemRec %}
                         <a href="{% url 'r4020_origemrec_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r4020_origemrec_editar' or dict_permissoes|get_permissao:'r4020_origemrec_cadastrar' %}
+                            {% if perms.r4020.add_r4020origemRec or perms.r4020.change_r4020origemRec %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -42,7 +42,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r4020_origemrec_apagar' %}
+                    {% if perms.r4020.delete_r4020origemRec %}
                         <a href="{% url 'r4020_origemrec_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

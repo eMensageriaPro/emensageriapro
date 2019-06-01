@@ -78,14 +78,6 @@ class s1030alteracao(SoftDeletionModel):
     nmcargo = models.CharField(max_length=100, null=True, )
     codcbo = models.CharField(max_length=6, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -112,7 +104,8 @@ class s1030alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030_alteracao", "Can view s1030_alteracao"), )
+            ("can_view_s1030alteracao", "Can view S1030ALTERACAO"),
+            ("can_view_menu_s1030alteracao", "Can view menu S1030ALTERACAO"),)
             
         ordering = [
             's1030_evttabcargo',
@@ -154,14 +147,6 @@ class s1030alteracaocargoPublico(SoftDeletionModel):
     dtlei = models.DateField(null=True, )
     sitcargo = models.IntegerField(choices=CHOICES_S1030_SITCARGO_ALTERACAO, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -190,7 +175,8 @@ class s1030alteracaocargoPublico(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030_alteracao_cargopublico", "Can view s1030_alteracao_cargopublico"), )
+            ("can_view_s1030alteracaocargoPublico", "Can view S1030ALTERACAOCARGOPUBLICO"),
+            ("can_view_menu_s1030alteracaocargoPublico", "Can view menu S1030ALTERACAOCARGOPUBLICO"),)
             
         ordering = [
             's1030_alteracao',
@@ -229,14 +215,6 @@ class s1030alteracaonovaValidade(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -260,7 +238,8 @@ class s1030alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030_alteracao_novavalidade", "Can view s1030_alteracao_novavalidade"), )
+            ("can_view_s1030alteracaonovaValidade", "Can view S1030ALTERACAONOVAVALIDADE"),
+            ("can_view_menu_s1030alteracaonovaValidade", "Can view menu S1030ALTERACAONOVAVALIDADE"),)
             
         ordering = [
             's1030_alteracao',
@@ -295,14 +274,6 @@ class s1030exclusao(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -327,7 +298,8 @@ class s1030exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030_exclusao", "Can view s1030_exclusao"), )
+            ("can_view_s1030exclusao", "Can view S1030EXCLUSAO"),
+            ("can_view_menu_s1030exclusao", "Can view menu S1030EXCLUSAO"),)
             
         ordering = [
             's1030_evttabcargo',
@@ -365,14 +337,6 @@ class s1030inclusao(SoftDeletionModel):
     nmcargo = models.CharField(max_length=100, null=True, )
     codcbo = models.CharField(max_length=6, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -399,7 +363,8 @@ class s1030inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030_inclusao", "Can view s1030_inclusao"), )
+            ("can_view_s1030inclusao", "Can view S1030INCLUSAO"),
+            ("can_view_menu_s1030inclusao", "Can view menu S1030INCLUSAO"),)
             
         ordering = [
             's1030_evttabcargo',
@@ -441,14 +406,6 @@ class s1030inclusaocargoPublico(SoftDeletionModel):
     dtlei = models.DateField(null=True, )
     sitcargo = models.IntegerField(choices=CHOICES_S1030_SITCARGO_INCLUSAO, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -477,7 +434,8 @@ class s1030inclusaocargoPublico(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1030_inclusao_cargopublico", "Can view s1030_inclusao_cargopublico"), )
+            ("can_view_s1030inclusaocargoPublico", "Can view S1030INCLUSAOCARGOPUBLICO"),
+            ("can_view_menu_s1030inclusaocargoPublico", "Can view menu S1030INCLUSAOCARGOPUBLICO"),)
             
         ordering = [
             's1030_inclusao',

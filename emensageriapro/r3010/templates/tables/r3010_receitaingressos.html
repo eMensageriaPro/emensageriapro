@@ -65,9 +65,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r3010_receitaingressos_visualizar' %}
+                    {% if perms.r3010.can_view_r3010receitaIngressos %}
                         <a href="{% url 'r3010_receitaingressos_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r3010_receitaingressos_editar' or dict_permissoes|get_permissao:'r3010_receitaingressos_cadastrar' %}
+                            {% if perms.r3010.add_r3010receitaIngressos or perms.r3010.change_r3010receitaIngressos %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -78,7 +78,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r3010_receitaingressos_apagar' %}
+                    {% if perms.r3010.delete_r3010receitaIngressos %}
                         <a href="{% url 'r3010_receitaingressos_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

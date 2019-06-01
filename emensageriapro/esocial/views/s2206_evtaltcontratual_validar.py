@@ -247,7 +247,7 @@ def validacoes_s2206_evtaltcontratual(arquivo):
                         validacoes_lista = validar_campo( validacoes_lista,
                                                           'infoContrato.codCateg', 
                                                           infoContrato.codCateg.cdata, 
-                                                          1, u'None')
+                                                          1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
                     
                     if 'codCarreira' in dir(infoContrato):
                         validacoes_lista = validar_campo( validacoes_lista,
@@ -334,7 +334,7 @@ def validacoes_s2206_evtaltcontratual(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'localTrabDom.tpLograd', 
                                                                           localTrabDom.tpLograd.cdata, 
-                                                                          1, u'None')
+                                                                          1, u'A, AC, ACA, ACL, AD, AE, AER, AL, AMD, AME, AN, ANT, ART, AT, ATL, A V, AV, AVC, AVM, AVV, BAL, BC, BCO, BEL, BL, BLO, BLS, BLV, BSQ, BVD, BX, C, CAL, CAM, CAN, CH, CHA, CIC, CIR, CJ, CJM, CMP, COL, COM, CON, COND, COR, CPO, CRG, CTN, DSC, DSV, DT, EB, EIM, ENS, ENT, EQ, ESC, ESD, ESE, ESI, ESL, ESM, ESP, ESS, EST, ESV, ETA, ETC, ETD, ETN, ETP, ETT, EVA, EVD, EX, FAV, FAZ, FER, FNT, FRA, FTE, GAL, GJA, HAB, IA, IND, IOA, JD, JDE, LD, LGA, LGO, LOT, LRG, LT, MER, MNA, MOD, MRG, MRO, MTE, NUC, NUR, O, OUT, PAR, PAS, PAT, PC, PCE, PDA, PDO, PNT, PR, PRL, PRM, PRQ, PRR, PSA, PSG, PSP, PSS, PTE, PTO, Q, QTA, QTS, R, R I, R L, R P, R V, RAM, RCR, REC, RER, RES, RET, RLA, RMP, ROA, ROD, ROT, RPE, RPR, RTN, RTT, SEG, SIT, SRV, ST, SUB, TCH, TER, TR, TRV, TUN, TV, TVP, TVV, UNI, V, V C, V L, VAC, VAL, VCO, VD, V-E, VER, VEV, VL, VLA, VLE, VLT, VPE, VRT, ZIG')
                                     
                                     if 'dscLograd' in dir(localTrabDom):
                                         validacoes_lista = validar_campo( validacoes_lista,

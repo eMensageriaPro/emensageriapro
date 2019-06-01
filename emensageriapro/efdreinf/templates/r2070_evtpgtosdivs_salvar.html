@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_visualizar' %}
+                {% if perms.efdreinf.can_view_r2070evtPgtosDivs %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 'r2070_evtpgtosdivs_salvar' hash='{}'|json_return_page:'r2070_evtpgtosdivs_salvar'|json_return_hash:hash|json_id:r2070_evtpgtosdivs_id|json_print:0|base64_encode_me %}">
                     R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP</a>
@@ -58,21 +58,21 @@
                 {% if r2070_evtpgtosdivs_id %}
                     
                         
-                            {% if dict_permissoes|get_permissao:'r2070_inforesidext_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2070_inforesidext %}
                                 <li {% if tab == 'r2070_inforesidext' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_evtpgtosdivs_salvar' hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:0|json_tab:'r2070_inforesidext'|base64_encode_me %}">
                                     Informações complementares de beneficiário residente ou domiciliado no exterior</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2070_infomolestia_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2070_infomolestia %}
                                 <li {% if tab == 'r2070_infomolestia' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_evtpgtosdivs_salvar' hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:0|json_tab:'r2070_infomolestia'|base64_encode_me %}">
                                     Informações de Beneficiário portador de moléstia grave</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2070_ideestab_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2070_ideestab %}
                                 <li {% if tab == 'r2070_ideestab' %} class="active"{% endif %} >
                                     <a href="{% url 'r2070_evtpgtosdivs_salvar' hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:0|json_tab:'r2070_ideestab'|base64_encode_me %}">
                                     Identificação dos estabelecimentos da associação desportiva que receberam os recursos</a>
@@ -169,7 +169,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_editar' or dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}
+               {% if perms.efdreinf.change_r2070_evtpgtosdivs or perms.efdreinf.add_r2070_evtpgtosdivs %}
                {% if r2070_evtpgtosdivs_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_r2070_evtpgtosdivs" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -191,8 +191,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if r2070_evtpgtosdivs_id %}
-                           {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}<a href="{% url 'r2070_evtpgtosdivs_verificar'  hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}
+                           {% if perms.efdreinf.add_r2070evtPgtosDivs %}<a href="{% url 'r2070_evtpgtosdivs_verificar'  hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r2070evtPgtosDivs %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -209,7 +209,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}
+                           {% if perms.efdreinf.add_r2070evtPgtosDivs %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -230,29 +230,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}<a href="{% url 'r2070_evtpgtosdivs_xml'  hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r2070evtPgtosDivs %}<a href="{% url 'r2070_evtpgtosdivs_xml'  hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if r2070_evtpgtosdivs.status == STATUS_EVENTO_CADASTRADO or r2070_evtpgtosdivs.status == STATUS_EVENTO_IMPORTADO or r2070_evtpgtosdivs.status == STATUS_EVENTO_DUPLICADO or r2070_evtpgtosdivs.status == STATUS_EVENTO_GERADO or r2070_evtpgtosdivs.status == STATUS_EVENTO_ASSINADO or r2070_evtpgtosdivs.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}
+                           {% if perms.efdreinf.add_r2070evtPgtosDivs %}
                            <a href="{% url 'r2070_evtpgtosdivs_validar_evento' hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}<a href="{% url 'r2070_evtpgtosdivs_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r2070evtPgtosDivs %}<a href="{% url 'r2070_evtpgtosdivs_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_listar' or dict_permissoes|get_permissao:'r2070_evtpgtosdivs_listar' %}<a href="{% url 'r2070_evtpgtosdivs'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_visualizar' and r2070_evtpgtosdivs_id %}<a href="{% url 'r2070_evtpgtosdivs_salvar'  hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_editar' or dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}
+                           {% if perms.efdreinf.can_view_r2070_evtpgtosdivs or perms.efdreinf.can_view_r2070_evtpgtosdivs %}<a href="{% url 'r2070_evtpgtosdivs'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.can_view_r2070_evtpgtosdivs and r2070_evtpgtosdivs_id %}<a href="{% url 'r2070_evtpgtosdivs_salvar'  hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.change_r2070_evtpgtosdivs or perms.efdreinf.add_r2070_evtpgtosdivs %}
                            {% if r2070_evtpgtosdivs_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_apagar' and r2070_evtpgtosdivs_id %}<a href="{% url 'r2070_evtpgtosdivs_apagar'  hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.delete_r2070_evtpgtosdivs and r2070_evtpgtosdivs_id %}<a href="{% url 'r2070_evtpgtosdivs_apagar'  hash='{}'|json_id:r2070_evtpgtosdivs_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_editar' or dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}
+                  {% if perms.efdreinf.change_r2070_evtpgtosdivs or perms.efdreinf.add_r2070_evtpgtosdivs %}
                {% if r2070_evtpgtosdivs_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}
@@ -308,9 +308,9 @@
 
 {% if tab == 'r2070_inforesidext' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2070_inforesidext_visualizar' %} 
+{% if perms.efdreinf.can_view_r2070_inforesidext %} 
 
-{% if dict_permissoes|get_permissao:'r2070_inforesidext_editar' or dict_permissoes|get_permissao:'r2070_inforesidext_cadastrar' %}
+{% if perms.efdreinf.change_r2070_inforesidext or perms.r2070.add_r2070infoResidExt %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -336,7 +336,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações complementares de beneficiário residente ou domiciliado no exterior</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2070_inforesidext_editar' or dict_permissoes|get_permissao:'r2070_inforesidext_cadastrar' %}
+          {% if perms.efdreinf.change_r2070_inforesidext or perms.r2070.add_r2070infoResidExt %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -345,7 +345,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2070_inforesidext_cadastrar' %}            
+        {% if perms.r2070.add_r2070infoResidExt %}            
 
 
 
@@ -403,9 +403,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2070_infomolestia' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2070_infomolestia_visualizar' %} 
+{% if perms.efdreinf.can_view_r2070_infomolestia %} 
 
-{% if dict_permissoes|get_permissao:'r2070_infomolestia_editar' or dict_permissoes|get_permissao:'r2070_infomolestia_cadastrar' %}
+{% if perms.efdreinf.change_r2070_infomolestia or perms.r2070.add_r2070infoMolestia %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -431,7 +431,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de Beneficiário portador de moléstia grave</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2070_infomolestia_editar' or dict_permissoes|get_permissao:'r2070_infomolestia_cadastrar' %}
+          {% if perms.efdreinf.change_r2070_infomolestia or perms.r2070.add_r2070infoMolestia %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -440,7 +440,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2070_infomolestia_cadastrar' %}            
+        {% if perms.r2070.add_r2070infoMolestia %}            
 
 
 
@@ -498,9 +498,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2070_ideestab' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2070_ideestab_visualizar' %} 
+{% if perms.efdreinf.can_view_r2070_ideestab %} 
 
-{% if dict_permissoes|get_permissao:'r2070_ideestab_editar' or dict_permissoes|get_permissao:'r2070_ideestab_cadastrar' %}
+{% if perms.efdreinf.change_r2070_ideestab or perms.r2070.add_r2070ideEstab %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -526,7 +526,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Identificação dos estabelecimentos da associação desportiva que receberam os recursos</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2070_ideestab_editar' or dict_permissoes|get_permissao:'r2070_ideestab_cadastrar' %}
+          {% if perms.efdreinf.change_r2070_ideestab or perms.r2070.add_r2070ideEstab %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -535,7 +535,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2070_ideestab_cadastrar' %}            
+        {% if perms.r2070.add_r2070ideEstab %}            
 
 
 

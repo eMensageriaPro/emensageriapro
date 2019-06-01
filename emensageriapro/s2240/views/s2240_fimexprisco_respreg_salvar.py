@@ -61,43 +61,48 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         s2240_fimexprisco_respreg_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2240_fimexprisco_respreg')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if s2240_fimexprisco_respreg_id:
-        s2240_fimexprisco_respreg = get_object_or_404(s2240fimExpRiscorespReg, id = s2240_fimexprisco_respreg_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if s2240_fimexprisco_respreg_id:
+    
+        s2240_fimexprisco_respreg = get_object_or_404(s2240fimExpRiscorespReg, id=s2240_fimexprisco_respreg_id)
         dados_evento = s2240_fimexprisco_respreg.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s2240_fimexprisco_respreg_apagar'] = 0
-            dict_permissoes['s2240_fimexprisco_respreg_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('s2240.can_view_s2240fimExpRiscorespReg'):
+        
         if s2240_fimexprisco_respreg_id:
-            s2240_fimexprisco_respreg_form = form_s2240_fimexprisco_respreg(request.POST or None, instance = s2240_fimexprisco_respreg,  
-                                         initial={'excluido': False})
+        
+            s2240_fimexprisco_respreg_form = form_s2240_fimexprisco_respreg(request.POST or None, 
+                                                          instance=s2240_fimexprisco_respreg,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             s2240_fimexprisco_respreg_form = form_s2240_fimexprisco_respreg(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if s2240_fimexprisco_respreg_form.is_valid():
             
                 dados = s2240_fimexprisco_respreg_form.cleaned_data
@@ -105,9 +110,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not s2240_fimexprisco_respreg_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  's2240_fimexprisco_respreg', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s2240_fimexprisco_respreg), indent=4, sort_keys=True, default=str),
@@ -115,69 +122,82 @@ def salvar(request, hash):
                                      's2240_fimexprisco_respreg', s2240_fimexprisco_respreg_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('s2240_fimexprisco_respreg_apagar', 's2240_fimexprisco_respreg_salvar', 's2240_fimexprisco_respreg'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if s2240_fimexprisco_respreg_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s2240_fimexprisco_respreg_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        s2240_fimexprisco_respreg_form = disabled_form_fields(s2240_fimexprisco_respreg_form, permissao.permite_editar)
+               
+        s2240_fimexprisco_respreg_form = disabled_form_fields(s2240_fimexprisco_respreg_form, request.user.has_perm('s2240.change_s2240fimExpRiscorespReg'))
         
         if s2240_fimexprisco_respreg_id:
+        
             if dados_evento['status'] != 0:
+            
                 s2240_fimexprisco_respreg_form = disabled_form_fields(s2240_fimexprisco_respreg_form, 0)
                 
         #s2240_fimexprisco_respreg_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             s2240_fimexprisco_respreg_form = disabled_form_for_print(s2240_fimexprisco_respreg_form)
             
         
         
         if s2240_fimexprisco_respreg_id:
-            s2240_fimexprisco_respreg = get_object_or_404(s2240fimExpRiscorespReg, id = s2240_fimexprisco_respreg_id)
+        
+            s2240_fimexprisco_respreg = get_object_or_404(s2240fimExpRiscorespReg, id=s2240_fimexprisco_respreg_id)
             
                 
         else:
+        
             s2240_fimexprisco_respreg = None
             
         #s2240_fimexprisco_respreg_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 's2240_fimexprisco_respreg' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2240_fimexprisco_respreg_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=s2240_fimexprisco_respreg_id, tabela='s2240_fimexprisco_respreg').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             's2240_fimexprisco_respreg': s2240_fimexprisco_respreg, 
             's2240_fimexprisco_respreg_form': s2240_fimexprisco_respreg_form, 
-            'mensagem': mensagem, 
             's2240_fimexprisco_respreg_id': int(s2240_fimexprisco_respreg_id),
             'usuario': usuario, 
-            
+            'modulos': ['s2240', ],
+            'paginas': ['s2240_fimexprisco_respreg', ],
             'hash': hash, 
             
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #s2240_fimexprisco_respreg_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 's2240_fimexprisco_respreg_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -198,7 +218,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('s2240_fimexprisco_respreg_salvar.html', context)
             filename = "s2240_fimexprisco_respreg.xls"
@@ -207,15 +229,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['s2240', ],
+            'paginas': ['s2240_fimexprisco_respreg', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

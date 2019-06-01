@@ -61,43 +61,48 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         s1280_infosubstpatr_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s1280_infosubstpatr')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if s1280_infosubstpatr_id:
-        s1280_infosubstpatr = get_object_or_404(s1280infoSubstPatr, id = s1280_infosubstpatr_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if s1280_infosubstpatr_id:
+    
+        s1280_infosubstpatr = get_object_or_404(s1280infoSubstPatr, id=s1280_infosubstpatr_id)
         dados_evento = s1280_infosubstpatr.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s1280_infosubstpatr_apagar'] = 0
-            dict_permissoes['s1280_infosubstpatr_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('s1280.can_view_s1280infoSubstPatr'):
+        
         if s1280_infosubstpatr_id:
-            s1280_infosubstpatr_form = form_s1280_infosubstpatr(request.POST or None, instance = s1280_infosubstpatr,  
-                                         initial={'excluido': False})
+        
+            s1280_infosubstpatr_form = form_s1280_infosubstpatr(request.POST or None, 
+                                                          instance=s1280_infosubstpatr,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             s1280_infosubstpatr_form = form_s1280_infosubstpatr(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if s1280_infosubstpatr_form.is_valid():
             
                 dados = s1280_infosubstpatr_form.cleaned_data
@@ -105,9 +110,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not s1280_infosubstpatr_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  's1280_infosubstpatr', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s1280_infosubstpatr), indent=4, sort_keys=True, default=str),
@@ -115,69 +122,82 @@ def salvar(request, hash):
                                      's1280_infosubstpatr', s1280_infosubstpatr_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('s1280_infosubstpatr_apagar', 's1280_infosubstpatr_salvar', 's1280_infosubstpatr'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if s1280_infosubstpatr_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s1280_infosubstpatr_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        s1280_infosubstpatr_form = disabled_form_fields(s1280_infosubstpatr_form, permissao.permite_editar)
+               
+        s1280_infosubstpatr_form = disabled_form_fields(s1280_infosubstpatr_form, request.user.has_perm('s1280.change_s1280infoSubstPatr'))
         
         if s1280_infosubstpatr_id:
+        
             if dados_evento['status'] != 0:
+            
                 s1280_infosubstpatr_form = disabled_form_fields(s1280_infosubstpatr_form, 0)
                 
         #s1280_infosubstpatr_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             s1280_infosubstpatr_form = disabled_form_for_print(s1280_infosubstpatr_form)
             
         
         
         if s1280_infosubstpatr_id:
-            s1280_infosubstpatr = get_object_or_404(s1280infoSubstPatr, id = s1280_infosubstpatr_id)
+        
+            s1280_infosubstpatr = get_object_or_404(s1280infoSubstPatr, id=s1280_infosubstpatr_id)
             
                 
         else:
+        
             s1280_infosubstpatr = None
             
         #s1280_infosubstpatr_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 's1280_infosubstpatr' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's1280_infosubstpatr_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=s1280_infosubstpatr_id, tabela='s1280_infosubstpatr').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             's1280_infosubstpatr': s1280_infosubstpatr, 
             's1280_infosubstpatr_form': s1280_infosubstpatr_form, 
-            'mensagem': mensagem, 
             's1280_infosubstpatr_id': int(s1280_infosubstpatr_id),
             'usuario': usuario, 
-            
+            'modulos': ['s1280', ],
+            'paginas': ['s1280_infosubstpatr', ],
             'hash': hash, 
             
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #s1280_infosubstpatr_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 's1280_infosubstpatr_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -198,7 +218,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('s1280_infosubstpatr_salvar.html', context)
             filename = "s1280_infosubstpatr.xls"
@@ -207,15 +229,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['s1280', ],
+            'paginas': ['s1280_infosubstpatr', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

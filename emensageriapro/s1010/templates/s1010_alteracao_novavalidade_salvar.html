@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_visualizar' %}
+                    {% if perms.s1010.can_view_s1010alteracaonovaValidade %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1010_alteracao_novavalidade_salvar' hash='{}'|json_return_page:'s1010_alteracao_novavalidade_salvar'|json_return_hash:hash|json_id:s1010_alteracao_novavalidade_id|json_print:0|base64_encode_me %}">
                             Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}
+            {% if perms.s1010.change_s1010_alteracao_novavalidade or perms.s1010.add_s1010_alteracao_novavalidade %}
                 <form action="#" id="id_form_s1010_alteracao_novavalidade" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s1010_alteracao_novavalidade_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}
+                                {% if perms.s1010.add_s1010alteracaonovaValidade %}
                                     <a href="{% url 's1010_alteracao_novavalidade_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_listar' or dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_listar' %}
+                            {% if perms.s1010.can_view_s1010_alteracao_novavalidade or perms.s1010.can_view_s1010_alteracao_novavalidade %}
                                 <a href="{% url 's1010_alteracao_novavalidade'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_visualizar' and s1010_alteracao_novavalidade_id %}
+                            {% if perms.s1010.can_view_s1010_alteracao_novavalidade and s1010_alteracao_novavalidade_id %}
                                 <a href="{% url 's1010_alteracao_novavalidade_salvar' hash='{}'|json_id:s1010_alteracao_novavalidade_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_visualizar' and s1010_alteracao_novavalidade_id %}
+                            {% if perms.s1010.can_view_s1010_alteracao_novavalidade and s1010_alteracao_novavalidade_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}
+                            {% if perms.s1010.change_s1010_alteracao_novavalidade or perms.s1010.add_s1010_alteracao_novavalidade %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_apagar' and s1010_alteracao_novavalidade_id %}
+                            {% if perms.s1010.delete_s1010_alteracao_novavalidade and s1010_alteracao_novavalidade_id %}
 
                             <a href="{% url 's1010_alteracao_novavalidade_apagar' hash='{}'|json_id:s1010_alteracao_novavalidade_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}
+                    {% if perms.s1010.change_s1010_alteracao_novavalidade or perms.s1010.add_s1010_alteracao_novavalidade %}
                         </form>
                     {% endif %}
 

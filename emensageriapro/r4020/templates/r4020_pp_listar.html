@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações relativas ao PIS/PASEP</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r4020_pp_cadastrar' %}
+                  {% if perms.r4020.add_r4020PP %}
                   <a href="{% url 'r4020_pp_salvar' hash='{}'|json_return_page:'r4020_pp_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

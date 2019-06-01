@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.r4010.models import *
 from emensageriapro.r4010.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml

@@ -82,14 +82,6 @@ class s1060alteracao(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, blank=True, null=True, )
     codlotacao = models.CharField(max_length=30, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -117,7 +109,8 @@ class s1060alteracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1060_alteracao", "Can view s1060_alteracao"), )
+            ("can_view_s1060alteracao", "Can view S1060ALTERACAO"),
+            ("can_view_menu_s1060alteracao", "Can view menu S1060ALTERACAO"),)
             
         ordering = [
             's1060_evttabambiente',
@@ -155,14 +148,6 @@ class s1060alteracaonovaValidade(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -186,7 +171,8 @@ class s1060alteracaonovaValidade(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1060_alteracao_novavalidade", "Can view s1060_alteracao_novavalidade"), )
+            ("can_view_s1060alteracaonovaValidade", "Can view S1060ALTERACAONOVAVALIDADE"),
+            ("can_view_menu_s1060alteracaonovaValidade", "Can view menu S1060ALTERACAONOVAVALIDADE"),)
             
         ordering = [
             's1060_alteracao',
@@ -221,14 +207,6 @@ class s1060exclusao(SoftDeletionModel):
     inivalid = models.CharField(choices=PERIODOS, max_length=7, null=True, )
     fimvalid = models.CharField(choices=PERIODOS, max_length=7, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -253,7 +231,8 @@ class s1060exclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1060_exclusao", "Can view s1060_exclusao"), )
+            ("can_view_s1060exclusao", "Can view S1060EXCLUSAO"),
+            ("can_view_menu_s1060exclusao", "Can view menu S1060EXCLUSAO"),)
             
         ordering = [
             's1060_evttabambiente',
@@ -295,14 +274,6 @@ class s1060inclusao(SoftDeletionModel):
     nrinsc = models.CharField(max_length=15, blank=True, null=True, )
     codlotacao = models.CharField(max_length=30, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -330,7 +301,8 @@ class s1060inclusao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1060_inclusao", "Can view s1060_inclusao"), )
+            ("can_view_s1060inclusao", "Can view S1060INCLUSAO"),
+            ("can_view_menu_s1060inclusao", "Can view menu S1060INCLUSAO"),)
             
         ordering = [
             's1060_evttabambiente',

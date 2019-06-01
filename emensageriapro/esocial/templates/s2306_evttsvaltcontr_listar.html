@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2306_evttsvaltcontr_cadastrar' %}
+                  {% if perms.esocial.add_s2306evtTSVAltContr %}
                   <a href="{% url 's2306_evttsvaltcontr_salvar' hash='{}'|json_return_page:'s2306_evttsvaltcontr_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

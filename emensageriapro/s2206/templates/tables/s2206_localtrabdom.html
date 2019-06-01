@@ -59,9 +59,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2206_localtrabdom_visualizar' %}
+                    {% if perms.s2206.can_view_s2206localTrabDom %}
                         <a href="{% url 's2206_localtrabdom_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2206_localtrabdom_editar' or dict_permissoes|get_permissao:'s2206_localtrabdom_cadastrar' %}
+                            {% if perms.s2206.add_s2206localTrabDom or perms.s2206.change_s2206localTrabDom %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -72,7 +72,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2206_localtrabdom_apagar' %}
+                    {% if perms.s2206.delete_s2206localTrabDom %}
                         <a href="{% url 's2206_localtrabdom_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

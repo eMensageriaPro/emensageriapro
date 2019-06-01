@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações sobre a existência de processos judiciais, com sentença/decisão favorável ao contribuinte, relativos às contribuições destinadas a outras Entidades e Fundos.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1020_alteracao_infoprocjudterceiros_cadastrar' %}
+                  {% if perms.s1020.add_s1020alteracaoinfoProcJudTerceiros %}
                   <a href="{% url 's1020_alteracao_infoprocjudterceiros_salvar' hash='{}'|json_return_page:'s1020_alteracao_infoprocjudterceiros_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

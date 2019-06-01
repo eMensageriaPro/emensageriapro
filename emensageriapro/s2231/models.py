@@ -74,14 +74,6 @@ class s2231fimCessao(SoftDeletionModel):
         return self.s2231_evtcessao.evento()
     dttermcessao = models.DateField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -105,7 +97,8 @@ class s2231fimCessao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2231_fimcessao", "Can view s2231_fimcessao"), )
+            ("can_view_s2231fimCessao", "Can view S2231FIMCESSAO"),
+            ("can_view_menu_s2231fimCessao", "Can view menu S2231FIMCESSAO"),)
             
         ordering = [
             's2231_evtcessao',
@@ -142,14 +135,6 @@ class s2231iniCessao(SoftDeletionModel):
     indcessao = models.IntegerField(choices=CHOICES_S2231_INDCESSAO, null=True, )
     dscsituacao = models.CharField(max_length=255, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -176,7 +161,8 @@ class s2231iniCessao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2231_inicessao", "Can view s2231_inicessao"), )
+            ("can_view_s2231iniCessao", "Can view S2231INICESSAO"),
+            ("can_view_menu_s2231iniCessao", "Can view menu S2231INICESSAO"),)
             
         ordering = [
             's2231_evtcessao',

@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s2241_insalperic_visualizar' %}
+                    {% if perms.s2241.can_view_s2241insalPeric %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_return_page:'s2241_insalperic_salvar'|json_return_hash:hash|json_id:s2241_insalperic_id|json_print:0|base64_encode_me %}">
                             Informações sobre o ambiente de trabalho insalubre/periculoso.
@@ -62,21 +62,21 @@
                     {% endif %}
                     {% if s2241_insalperic_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s2241_iniinsalperic_visualizar' %}
+                            {% if perms.s2241.can_view_s2241_iniinsalperic %}
                                 <li {% if tab == 's2241_iniinsalperic' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_id:s2241_insalperic_id|json_print:0|json_tab:'s2241_iniinsalperic'|base64_encode_me %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Início</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2241_altinsalperic_visualizar' %}
+                            {% if perms.s2241.can_view_s2241_altinsalperic %}
                                 <li {% if tab == 's2241_altinsalperic' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_id:s2241_insalperic_id|json_print:0|json_tab:'s2241_altinsalperic'|base64_encode_me %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Alteração</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2241_fiminsalperic_visualizar' %}
+                            {% if perms.s2241.can_view_s2241_fiminsalperic %}
                                 <li {% if tab == 's2241_fiminsalperic' %} class="active"{% endif %} >
                                     <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_id:s2241_insalperic_id|json_print:0|json_tab:'s2241_fiminsalperic'|base64_encode_me %}">
                                     Condições do ambiente de trabalho insalubre/periculoso - Fim</a>
@@ -195,7 +195,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s2241_insalperic_editar' or dict_permissoes|get_permissao:'s2241_insalperic_cadastrar' %}
+            {% if perms.s2241.change_s2241_insalperic or perms.s2241.add_s2241_insalperic %}
                 <form action="#" id="id_form_s2241_insalperic" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -222,7 +222,7 @@
                             <!-- botões especiais -->
                             {% if s2241_insalperic_id %}
 
-                                {% if dict_permissoes|get_permissao:'s2241_insalperic_cadastrar' %}
+                                {% if perms.s2241.add_s2241insalPeric %}
                                     <a href="{% url 's2241_insalperic_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -234,7 +234,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2241_insalperic_listar' or dict_permissoes|get_permissao:'s2241_insalperic_listar' %}
+                            {% if perms.s2241.can_view_s2241_insalperic or perms.s2241.can_view_s2241_insalperic %}
                                 <a href="{% url 's2241_insalperic'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -243,7 +243,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2241_insalperic_visualizar' and s2241_insalperic_id %}
+                            {% if perms.s2241.can_view_s2241_insalperic and s2241_insalperic_id %}
                                 <a href="{% url 's2241_insalperic_salvar' hash='{}'|json_id:s2241_insalperic_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -252,7 +252,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s2241_insalperic_visualizar' and s2241_insalperic_id %}
+                            {% if perms.s2241.can_view_s2241_insalperic and s2241_insalperic_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -279,7 +279,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2241_insalperic_editar' or dict_permissoes|get_permissao:'s2241_insalperic_cadastrar' %}
+                            {% if perms.s2241.change_s2241_insalperic or perms.s2241.add_s2241_insalperic %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -288,7 +288,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2241_insalperic_apagar' and s2241_insalperic_id %}
+                            {% if perms.s2241.delete_s2241_insalperic and s2241_insalperic_id %}
 
                             <a href="{% url 's2241_insalperic_apagar' hash='{}'|json_id:s2241_insalperic_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -310,7 +310,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s2241_insalperic_editar' or dict_permissoes|get_permissao:'s2241_insalperic_cadastrar' %}
+                    {% if perms.s2241.change_s2241_insalperic or perms.s2241.add_s2241_insalperic %}
                         </form>
                     {% endif %}
 
@@ -336,9 +336,9 @@
 
             {% if tab == 's2241_iniinsalperic' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2241_iniinsalperic_visualizar' %} 
+                {% if perms.s2241.can_view_s2241_iniinsalperic %} 
 
-                    {% if dict_permissoes|get_permissao:'s2241_iniinsalperic_editar' or dict_permissoes|get_permissao:'s2241_iniinsalperic_cadastrar' %}
+                    {% if perms.s2241.change_s2241_iniinsalperic or perms.s2241.add_s2241iniInsalPeric %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -365,7 +365,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Início</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2241_iniinsalperic_editar' or dict_permissoes|get_permissao:'s2241_iniinsalperic_cadastrar' %}
+                                        {% if perms.s2241.change_s2241_iniinsalperic or perms.s2241.add_s2241iniInsalPeric %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -380,7 +380,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2241_iniinsalperic_cadastrar' %}            
+                                    {% if perms.s2241.add_s2241iniInsalPeric %}            
                                     <!-- begin_form_s2241_iniinsalperic --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2241_iniinsalperic" action="{% url 's2241_iniinsalperic_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -433,9 +433,9 @@
 
             {% if tab == 's2241_altinsalperic' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2241_altinsalperic_visualizar' %} 
+                {% if perms.s2241.can_view_s2241_altinsalperic %} 
 
-                    {% if dict_permissoes|get_permissao:'s2241_altinsalperic_editar' or dict_permissoes|get_permissao:'s2241_altinsalperic_cadastrar' %}
+                    {% if perms.s2241.change_s2241_altinsalperic or perms.s2241.add_s2241altInsalPeric %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -462,7 +462,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Alteração</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2241_altinsalperic_editar' or dict_permissoes|get_permissao:'s2241_altinsalperic_cadastrar' %}
+                                        {% if perms.s2241.change_s2241_altinsalperic or perms.s2241.add_s2241altInsalPeric %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -477,7 +477,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2241_altinsalperic_cadastrar' %}            
+                                    {% if perms.s2241.add_s2241altInsalPeric %}            
                                     <!-- begin_form_s2241_altinsalperic --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2241_altinsalperic" action="{% url 's2241_altinsalperic_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -530,9 +530,9 @@
 
             {% if tab == 's2241_fiminsalperic' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2241_fiminsalperic_visualizar' %} 
+                {% if perms.s2241.can_view_s2241_fiminsalperic %} 
 
-                    {% if dict_permissoes|get_permissao:'s2241_fiminsalperic_editar' or dict_permissoes|get_permissao:'s2241_fiminsalperic_cadastrar' %}
+                    {% if perms.s2241.change_s2241_fiminsalperic or perms.s2241.add_s2241fimInsalPeric %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -559,7 +559,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Condições do ambiente de trabalho insalubre/periculoso - Fim</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2241_fiminsalperic_editar' or dict_permissoes|get_permissao:'s2241_fiminsalperic_cadastrar' %}
+                                        {% if perms.s2241.change_s2241_fiminsalperic or perms.s2241.add_s2241fimInsalPeric %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -574,7 +574,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2241_fiminsalperic_cadastrar' %}            
+                                    {% if perms.s2241.add_s2241fimInsalPeric %}            
                                     <!-- begin_form_s2241_fiminsalperic --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2241_fiminsalperic" action="{% url 's2241_fiminsalperic_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

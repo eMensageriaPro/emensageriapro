@@ -75,14 +75,6 @@ class s5002basesIrrf(SoftDeletionModel):
     tpvalor = models.IntegerField(null=True, )
     valor = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -107,7 +99,8 @@ class s5002basesIrrf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002_basesirrf", "Can view s5002_basesirrf"), )
+            ("can_view_s5002basesIrrf", "Can view S5002BASESIRRF"),
+            ("can_view_menu_s5002basesIrrf", "Can view menu S5002BASESIRRF"),)
             
         ordering = [
             's5002_infoirrf',
@@ -149,14 +142,6 @@ class s5002idePgtoExt(SoftDeletionModel):
     nmcid = models.CharField(max_length=50, null=True, )
     codpostal = models.CharField(max_length=12, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -183,7 +168,8 @@ class s5002idePgtoExt(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002_idepgtoext", "Can view s5002_idepgtoext"), )
+            ("can_view_s5002idePgtoExt", "Can view S5002IDEPGTOEXT"),
+            ("can_view_menu_s5002idePgtoExt", "Can view menu S5002IDEPGTOEXT"),)
             
         ordering = [
             's5002_infoirrf',
@@ -219,14 +205,6 @@ class s5002infoDep(SoftDeletionModel):
         return self.s5002_evtirrfbenef.evento()
     vrdeddep = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -250,7 +228,8 @@ class s5002infoDep(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002_infodep", "Can view s5002_infodep"), )
+            ("can_view_s5002infoDep", "Can view S5002INFODEP"),
+            ("can_view_menu_s5002infoDep", "Can view menu S5002INFODEP"),)
             
         ordering = [
             's5002_evtirrfbenef',
@@ -284,14 +263,6 @@ class s5002infoIrrf(SoftDeletionModel):
     codcateg = models.IntegerField(blank=True, null=True, )
     indresbr = models.CharField(choices=CHOICES_S5002_INDRESBR, max_length=1, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -315,7 +286,8 @@ class s5002infoIrrf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002_infoirrf", "Can view s5002_infoirrf"), )
+            ("can_view_s5002infoIrrf", "Can view S5002INFOIRRF"),
+            ("can_view_menu_s5002infoIrrf", "Can view menu S5002INFOIRRF"),)
             
         ordering = [
             's5002_evtirrfbenef',
@@ -349,14 +321,6 @@ class s5002irrf(SoftDeletionModel):
     tpcr = models.CharField(choices=CHOICES_S5002_TPCR, max_length=6, null=True, )
     vrirrfdesc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -381,7 +345,8 @@ class s5002irrf(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5002_irrf", "Can view s5002_irrf"), )
+            ("can_view_s5002irrf", "Can view S5002IRRF"),
+            ("can_view_menu_s5002irrf", "Can view menu S5002IRRF"),)
             
         ordering = [
             's5002_infoirrf',

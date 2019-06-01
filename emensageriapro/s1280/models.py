@@ -75,14 +75,6 @@ class s1280infoAtivConcom(SoftDeletionModel):
     fatormes = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     fator13 = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -107,7 +99,8 @@ class s1280infoAtivConcom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1280_infoativconcom", "Can view s1280_infoativconcom"), )
+            ("can_view_s1280infoAtivConcom", "Can view S1280INFOATIVCONCOM"),
+            ("can_view_menu_s1280infoAtivConcom", "Can view menu S1280INFOATIVCONCOM"),)
             
         ordering = [
             's1280_evtinfocomplper',
@@ -142,14 +135,6 @@ class s1280infoSubstPatr(SoftDeletionModel):
     indsubstpatr = models.IntegerField(choices=CHOICES_S1280_INDSUBSTPATR, null=True, )
     percredcontrib = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -174,7 +159,8 @@ class s1280infoSubstPatr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1280_infosubstpatr", "Can view s1280_infosubstpatr"), )
+            ("can_view_s1280infoSubstPatr", "Can view S1280INFOSUBSTPATR"),
+            ("can_view_menu_s1280infoSubstPatr", "Can view menu S1280INFOSUBSTPATR"),)
             
         ordering = [
             's1280_evtinfocomplper',
@@ -208,14 +194,6 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
         return self.s1280_evtinfocomplper.evento()
     cnpjopportuario = models.CharField(max_length=14, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -239,7 +217,8 @@ class s1280infoSubstPatrOpPort(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s1280_infosubstpatropport", "Can view s1280_infosubstpatropport"), )
+            ("can_view_s1280infoSubstPatrOpPort", "Can view S1280INFOSUBSTPATROPPORT"),
+            ("can_view_menu_s1280infoSubstPatrOpPort", "Can view menu S1280INFOSUBSTPATROPPORT"),)
             
         ordering = [
             's1280_evtinfocomplper',

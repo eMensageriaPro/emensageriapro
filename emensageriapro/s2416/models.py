@@ -74,14 +74,6 @@ class s2416homologTC(SoftDeletionModel):
         return self.s2416_evtcdbenalt.evento()
     nratolegal = models.CharField(max_length=20, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -105,7 +97,8 @@ class s2416homologTC(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2416_homologtc", "Can view s2416_homologtc"), )
+            ("can_view_s2416homologTC", "Can view S2416HOMOLOGTC"),
+            ("can_view_menu_s2416homologTC", "Can view menu S2416HOMOLOGTC"),)
             
         ordering = [
             's2416_evtcdbenalt',
@@ -138,14 +131,6 @@ class s2416infoPenMorte(SoftDeletionModel):
         return self.s2416_evtcdbenalt.evento()
     tppenmorte = models.IntegerField(choices=CHOICES_S2416_TPPENMORTE, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -169,7 +154,8 @@ class s2416infoPenMorte(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2416_infopenmorte", "Can view s2416_infopenmorte"), )
+            ("can_view_s2416infoPenMorte", "Can view S2416INFOPENMORTE"),
+            ("can_view_menu_s2416infoPenMorte", "Can view menu S2416INFOPENMORTE"),)
             
         ordering = [
             's2416_evtcdbenalt',
@@ -203,14 +189,6 @@ class s2416suspensao(SoftDeletionModel):
     mtvsuspensao = models.CharField(choices=CHOICES_S2416_MTVSUSPENSAO, max_length=2, null=True, )
     dscsuspensao = models.CharField(max_length=255, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -234,7 +212,8 @@ class s2416suspensao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2416_suspensao", "Can view s2416_suspensao"), )
+            ("can_view_s2416suspensao", "Can view S2416SUSPENSAO"),
+            ("can_view_menu_s2416suspensao", "Can view menu S2416SUSPENSAO"),)
             
         ordering = [
             's2416_evtcdbenalt',

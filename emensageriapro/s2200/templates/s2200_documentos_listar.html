@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2200_documentos_cadastrar' %}
+                  {% if perms.s2200.add_s2200documentos %}
                   <a href="{% url 's2200_documentos_salvar' hash='{}'|json_return_page:'s2200_documentos_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

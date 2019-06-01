@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1260_tpcomerc_visualizar' %}
+                    {% if perms.s1260.can_view_s1260tpComerc %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1260_tpcomerc_salvar' hash='{}'|json_return_page:'s1260_tpcomerc_salvar'|json_return_hash:hash|json_id:s1260_tpcomerc_id|json_print:0|base64_encode_me %}">
                             Registro que apresenta o valor total da comercialização por 'tipo' de comercialização
@@ -62,14 +62,14 @@
                     {% endif %}
                     {% if s1260_tpcomerc_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s1260_ideadquir_visualizar' %}
+                            {% if perms.s1260.can_view_s1260_ideadquir %}
                                 <li {% if tab == 's1260_ideadquir' %} class="active"{% endif %} >
                                     <a href="{% url 's1260_tpcomerc_salvar' hash='{}'|json_id:s1260_tpcomerc_id|json_print:0|json_tab:'s1260_ideadquir'|base64_encode_me %}">
                                     Identificação dos Adquirentes da Produção.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1260_infoprocjud_visualizar' %}
+                            {% if perms.s1260.can_view_s1260_infoprocjud %}
                                 <li {% if tab == 's1260_infoprocjud' %} class="active"{% endif %} >
                                     <a href="{% url 's1260_tpcomerc_salvar' hash='{}'|json_id:s1260_tpcomerc_id|json_print:0|json_tab:'s1260_infoprocjud'|base64_encode_me %}">
                                     Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</a>
@@ -188,7 +188,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1260_tpcomerc_editar' or dict_permissoes|get_permissao:'s1260_tpcomerc_cadastrar' %}
+            {% if perms.s1260.change_s1260_tpcomerc or perms.s1260.add_s1260_tpcomerc %}
                 <form action="#" id="id_form_s1260_tpcomerc" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -215,7 +215,7 @@
                             <!-- botões especiais -->
                             {% if s1260_tpcomerc_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1260_tpcomerc_cadastrar' %}
+                                {% if perms.s1260.add_s1260tpComerc %}
                                     <a href="{% url 's1260_tpcomerc_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -227,7 +227,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1260_tpcomerc_listar' or dict_permissoes|get_permissao:'s1260_tpcomerc_listar' %}
+                            {% if perms.s1260.can_view_s1260_tpcomerc or perms.s1260.can_view_s1260_tpcomerc %}
                                 <a href="{% url 's1260_tpcomerc'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -236,7 +236,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1260_tpcomerc_visualizar' and s1260_tpcomerc_id %}
+                            {% if perms.s1260.can_view_s1260_tpcomerc and s1260_tpcomerc_id %}
                                 <a href="{% url 's1260_tpcomerc_salvar' hash='{}'|json_id:s1260_tpcomerc_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -245,7 +245,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1260_tpcomerc_visualizar' and s1260_tpcomerc_id %}
+                            {% if perms.s1260.can_view_s1260_tpcomerc and s1260_tpcomerc_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -272,7 +272,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1260_tpcomerc_editar' or dict_permissoes|get_permissao:'s1260_tpcomerc_cadastrar' %}
+                            {% if perms.s1260.change_s1260_tpcomerc or perms.s1260.add_s1260_tpcomerc %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -281,7 +281,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1260_tpcomerc_apagar' and s1260_tpcomerc_id %}
+                            {% if perms.s1260.delete_s1260_tpcomerc and s1260_tpcomerc_id %}
 
                             <a href="{% url 's1260_tpcomerc_apagar' hash='{}'|json_id:s1260_tpcomerc_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -303,7 +303,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1260_tpcomerc_editar' or dict_permissoes|get_permissao:'s1260_tpcomerc_cadastrar' %}
+                    {% if perms.s1260.change_s1260_tpcomerc or perms.s1260.add_s1260_tpcomerc %}
                         </form>
                     {% endif %}
 
@@ -329,9 +329,9 @@
 
             {% if tab == 's1260_ideadquir' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1260_ideadquir_visualizar' %} 
+                {% if perms.s1260.can_view_s1260_ideadquir %} 
 
-                    {% if dict_permissoes|get_permissao:'s1260_ideadquir_editar' or dict_permissoes|get_permissao:'s1260_ideadquir_cadastrar' %}
+                    {% if perms.s1260.change_s1260_ideadquir or perms.s1260.add_s1260ideAdquir %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -358,7 +358,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Identificação dos Adquirentes da Produção.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1260_ideadquir_editar' or dict_permissoes|get_permissao:'s1260_ideadquir_cadastrar' %}
+                                        {% if perms.s1260.change_s1260_ideadquir or perms.s1260.add_s1260ideAdquir %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -373,7 +373,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1260_ideadquir_cadastrar' %}            
+                                    {% if perms.s1260.add_s1260ideAdquir %}            
                                     <!-- begin_form_s1260_ideadquir --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1260_ideadquir" action="{% url 's1260_ideadquir_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -426,9 +426,9 @@
 
             {% if tab == 's1260_infoprocjud' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1260_infoprocjud_visualizar' %} 
+                {% if perms.s1260.can_view_s1260_infoprocjud %} 
 
-                    {% if dict_permissoes|get_permissao:'s1260_infoprocjud_editar' or dict_permissoes|get_permissao:'s1260_infoprocjud_cadastrar' %}
+                    {% if perms.s1260.change_s1260_infoprocjud or perms.s1260.add_s1260infoProcJud %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -455,7 +455,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido quando o Produtor Rural (pessoa física ou segurado especial), identificado em {ideProdutor}, ou o próprio declarante, possuir processo judicial com decisão/sentença determinando a não retenção, pelo adquirente, das contribuições incidentes sobre a aquisição de produção.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1260_infoprocjud_editar' or dict_permissoes|get_permissao:'s1260_infoprocjud_cadastrar' %}
+                                        {% if perms.s1260.change_s1260_infoprocjud or perms.s1260.add_s1260infoProcJud %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -470,7 +470,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1260_infoprocjud_cadastrar' %}            
+                                    {% if perms.s1260.add_s1260infoProcJud %}            
                                     <!-- begin_form_s1260_infoprocjud --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1260_infoprocjud" action="{% url 's1260_infoprocjud_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

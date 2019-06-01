@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_visualizar' %}
+                {% if perms.efdreinf.can_view_r2030evtAssocDespRec %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 'r2030_evtassocdesprec_salvar' hash='{}'|json_return_page:'r2030_evtassocdesprec_salvar'|json_return_hash:hash|json_id:r2030_evtassocdesprec_id|json_print:0|base64_encode_me %}">
                     R-2030 - Recursos Recebidos por Associação Desportiva</a>
@@ -58,7 +58,7 @@
                 {% if r2030_evtassocdesprec_id %}
                     
                         
-                            {% if dict_permissoes|get_permissao:'r2030_recursosrec_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2030_recursosrec %}
                                 <li {% if tab == 'r2030_recursosrec' %} class="active"{% endif %} >
                                     <a href="{% url 'r2030_evtassocdesprec_salvar' hash='{}'|json_id:r2030_evtassocdesprec_id|json_print:0|json_tab:'r2030_recursosrec'|base64_encode_me %}">
                                     Registro preenchido exclusivamente por associação desportiva que mantenha equipe de futebol profissional, quando receber repasse de outras empresas a título de patrocínio, publicidade, licenciamento, etc</a>
@@ -155,7 +155,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_editar' or dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}
+               {% if perms.efdreinf.change_r2030_evtassocdesprec or perms.efdreinf.add_r2030_evtassocdesprec %}
                {% if r2030_evtassocdesprec_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_r2030_evtassocdesprec" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -177,8 +177,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if r2030_evtassocdesprec_id %}
-                           {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}<a href="{% url 'r2030_evtassocdesprec_verificar'  hash='{}'|json_id:r2030_evtassocdesprec_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}
+                           {% if perms.efdreinf.add_r2030evtAssocDespRec %}<a href="{% url 'r2030_evtassocdesprec_verificar'  hash='{}'|json_id:r2030_evtassocdesprec_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r2030evtAssocDespRec %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -195,7 +195,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}
+                           {% if perms.efdreinf.add_r2030evtAssocDespRec %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -216,29 +216,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}<a href="{% url 'r2030_evtassocdesprec_xml'  hash='{}'|json_id:r2030_evtassocdesprec_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r2030evtAssocDespRec %}<a href="{% url 'r2030_evtassocdesprec_xml'  hash='{}'|json_id:r2030_evtassocdesprec_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if r2030_evtassocdesprec.status == STATUS_EVENTO_CADASTRADO or r2030_evtassocdesprec.status == STATUS_EVENTO_IMPORTADO or r2030_evtassocdesprec.status == STATUS_EVENTO_DUPLICADO or r2030_evtassocdesprec.status == STATUS_EVENTO_GERADO or r2030_evtassocdesprec.status == STATUS_EVENTO_ASSINADO or r2030_evtassocdesprec.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}
+                           {% if perms.efdreinf.add_r2030evtAssocDespRec %}
                            <a href="{% url 'r2030_evtassocdesprec_validar_evento' hash='{}'|json_id:r2030_evtassocdesprec_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}<a href="{% url 'r2030_evtassocdesprec_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r2030evtAssocDespRec %}<a href="{% url 'r2030_evtassocdesprec_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_listar' or dict_permissoes|get_permissao:'r2030_evtassocdesprec_listar' %}<a href="{% url 'r2030_evtassocdesprec'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_visualizar' and r2030_evtassocdesprec_id %}<a href="{% url 'r2030_evtassocdesprec_salvar'  hash='{}'|json_id:r2030_evtassocdesprec_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_editar' or dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}
+                           {% if perms.efdreinf.can_view_r2030_evtassocdesprec or perms.efdreinf.can_view_r2030_evtassocdesprec %}<a href="{% url 'r2030_evtassocdesprec'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.can_view_r2030_evtassocdesprec and r2030_evtassocdesprec_id %}<a href="{% url 'r2030_evtassocdesprec_salvar'  hash='{}'|json_id:r2030_evtassocdesprec_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.change_r2030_evtassocdesprec or perms.efdreinf.add_r2030_evtassocdesprec %}
                            {% if r2030_evtassocdesprec_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_apagar' and r2030_evtassocdesprec_id %}<a href="{% url 'r2030_evtassocdesprec_apagar'  hash='{}'|json_id:r2030_evtassocdesprec_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.delete_r2030_evtassocdesprec and r2030_evtassocdesprec_id %}<a href="{% url 'r2030_evtassocdesprec_apagar'  hash='{}'|json_id:r2030_evtassocdesprec_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_editar' or dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}
+                  {% if perms.efdreinf.change_r2030_evtassocdesprec or perms.efdreinf.add_r2030_evtassocdesprec %}
                {% if r2030_evtassocdesprec_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}
@@ -294,9 +294,9 @@
 
 {% if tab == 'r2030_recursosrec' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2030_recursosrec_visualizar' %} 
+{% if perms.efdreinf.can_view_r2030_recursosrec %} 
 
-{% if dict_permissoes|get_permissao:'r2030_recursosrec_editar' or dict_permissoes|get_permissao:'r2030_recursosrec_cadastrar' %}
+{% if perms.efdreinf.change_r2030_recursosrec or perms.r2030.add_r2030recursosRec %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -322,7 +322,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Registro preenchido exclusivamente por associação desportiva que mantenha equipe de futebol profissional, quando receber repasse de outras empresas a título de patrocínio, publicidade, licenciamento, etc</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2030_recursosrec_editar' or dict_permissoes|get_permissao:'r2030_recursosrec_cadastrar' %}
+          {% if perms.efdreinf.change_r2030_recursosrec or perms.r2030.add_r2030recursosRec %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -331,7 +331,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2030_recursosrec_cadastrar' %}            
+        {% if perms.r2030.add_r2030recursosRec %}            
 
 
 

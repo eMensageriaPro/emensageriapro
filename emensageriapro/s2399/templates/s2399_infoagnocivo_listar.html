@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2399_infoagnocivo_cadastrar' %}
+                  {% if perms.s2399.add_s2399infoAgNocivo %}
                   <a href="{% url 's2399_infoagnocivo_salvar' hash='{}'|json_return_page:'s2399_infoagnocivo_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

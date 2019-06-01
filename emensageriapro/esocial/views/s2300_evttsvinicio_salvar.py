@@ -82,39 +82,43 @@ from emensageriapro.s2300.forms import form_s2300_termino
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL, TP_AMB
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2300_evttsvinicio_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except:
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2300_evttsvinicio')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     if s2300_evttsvinicio_id:
-        s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id = s2300_evttsvinicio_id)
-        
+    
+        s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id=s2300_evttsvinicio_id)
+
         if s2300_evttsvinicio.status != STATUS_EVENTO_CADASTRADO:
+        
+            dict_permissoes = {}
             dict_permissoes['s2300_evttsvinicio_apagar'] = 0
             dict_permissoes['s2300_evttsvinicio_editar'] = 0
-
-    if permissao.permite_visualizar:
-        mensagem = None
+            
+    if request.user.has_perm('esocial.can_view_s2300evtTSVInicio'):
+    
         if s2300_evttsvinicio_id:
+        
             s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, instance = s2300_evttsvinicio, 
                                          initial={'excluido': False})
+                                         
         else:
+        
             s2300_evttsvinicio_form = form_s2300_evttsvinicio(request.POST or None, 
                                          initial={'versao': VERSAO_LAYOUT_ESOCIAL, 
                                                   'status': STATUS_EVENTO_CADASTRADO, 
@@ -122,7 +126,9 @@ def salvar(request, hash):
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
                                                   'excluido': False})
+                                                  
         if request.method == 'POST':
+        
             if s2300_evttsvinicio_form.is_valid():
             
                 dados = s2300_evttsvinicio_form.cleaned_data
@@ -130,6 +136,7 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not s2300_evttsvinicio_id:
+                
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
@@ -144,13 +151,15 @@ def salvar(request, hash):
                                  
                 if request.session['retorno_pagina'] not in ('s2300_evttsvinicio_apagar', 's2300_evttsvinicio_salvar', 's2300_evttsvinicio'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if s2300_evttsvinicio_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s2300_evttsvinicio_salvar', hash=url_hash)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-        s2300_evttsvinicio_form = disabled_form_fields(s2300_evttsvinicio_form, permissao.permite_editar)
+                
+        s2300_evttsvinicio_form = disabled_form_fields(s2300_evttsvinicio_form, request.user.has_perm('esocial.change_s2300evtTSVInicio'))
         
         if s2300_evttsvinicio_id:
             if s2300_evttsvinicio.status != 0:
@@ -159,6 +168,7 @@ def salvar(request, hash):
 
         for field in s2300_evttsvinicio_form.fields.keys():
             s2300_evttsvinicio_form.fields[field].widget.attrs['ng-model'] = 's2300_evttsvinicio_'+field
+            
         if int(dict_hash['print']):
             s2300_evttsvinicio_form = disabled_form_for_print(s2300_evttsvinicio_form)
 
@@ -187,6 +197,7 @@ def salvar(request, hash):
         s2300_termino_form = None 
         
         if s2300_evttsvinicio_id:
+        
             s2300_evttsvinicio = get_object_or_404(s2300evtTSVInicio, id = s2300_evttsvinicio_id)
             
             s2300_documentos_form = form_s2300_documentos(
@@ -247,9 +258,11 @@ def salvar(request, hash):
                 
         else:
             s2300_evttsvinicio = None
+            
         #s2300_evttsvinicio_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if 's2300_evttsvinicio'[1] == '5':
             evento_totalizador = True
         else:
@@ -258,16 +271,16 @@ def salvar(request, hash):
         if dict_hash['tab'] or 's2300_evttsvinicio' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2300_evttsvinicio_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=s2300_evttsvinicio_id, tabela='s2300_evttsvinicio').all()
+        
         context = {
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             's2300_evttsvinicio': s2300_evttsvinicio, 
             's2300_evttsvinicio_form': s2300_evttsvinicio_form, 
-            'mensagem': mensagem, 
             's2300_evttsvinicio_id': int(s2300_evttsvinicio_id),
             'usuario': usuario, 
-            
             'hash': hash, 
             
             's2300_documentos_form': s2300_documentos_form,
@@ -292,14 +305,9 @@ def salvar(request, hash):
             's2300_afastamento_lista': s2300_afastamento_lista,
             's2300_termino_form': s2300_termino_form,
             's2300_termino_lista': s2300_termino_lista,
-
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['esocial', ],
+            'paginas': ['s2300_evttsvinicio', ],
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -307,9 +315,11 @@ def salvar(request, hash):
         }
         
         if for_print in (0, 1):
+        
             return render(request, 's2300_evttsvinicio_salvar.html', context)
             
         elif for_print == 2:
+        
             response = PDFTemplateResponse(
                 request=request,
                 template='s2300_evttsvinicio_salvar.html',
@@ -328,24 +338,23 @@ def salvar(request, hash):
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True},
             )
+            
             return response
             
         elif for_print == 3:
+        
             response = render_to_response('s2300_evttsvinicio_salvar.html', context)
             filename = "s2300_evttsvinicio.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s2300_evttsvinicio', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)

@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informação relativa a empresas enquadradas no Regime de Tributação Simples</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2299_infoperant_infosimples_cadastrar' %}
+                  {% if perms.s2299.add_s2299infoPerAntinfoSimples %}
                   <a href="{% url 's2299_infoperant_infosimples_salvar' hash='{}'|json_return_page:'s2299_infoperant_infosimples_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

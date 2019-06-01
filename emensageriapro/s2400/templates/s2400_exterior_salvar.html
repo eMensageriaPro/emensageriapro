@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s2400_exterior_visualizar' %}
+                    {% if perms.s2400.can_view_s2400exterior %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's2400_exterior_salvar' hash='{}'|json_return_page:'s2400_exterior_salvar'|json_return_hash:hash|json_id:s2400_exterior_id|json_print:0|base64_encode_me %}">
                             Preenchido em caso de trabalhador residente no exterior.
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s2400_exterior_editar' or dict_permissoes|get_permissao:'s2400_exterior_cadastrar' %}
+            {% if perms.s2400.change_s2400_exterior or perms.s2400.add_s2400_exterior %}
                 <form action="#" id="id_form_s2400_exterior" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s2400_exterior_id %}
 
-                                {% if dict_permissoes|get_permissao:'s2400_exterior_cadastrar' %}
+                                {% if perms.s2400.add_s2400exterior %}
                                     <a href="{% url 's2400_exterior_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2400_exterior_listar' or dict_permissoes|get_permissao:'s2400_exterior_listar' %}
+                            {% if perms.s2400.can_view_s2400_exterior or perms.s2400.can_view_s2400_exterior %}
                                 <a href="{% url 's2400_exterior'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2400_exterior_visualizar' and s2400_exterior_id %}
+                            {% if perms.s2400.can_view_s2400_exterior and s2400_exterior_id %}
                                 <a href="{% url 's2400_exterior_salvar' hash='{}'|json_id:s2400_exterior_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s2400_exterior_visualizar' and s2400_exterior_id %}
+                            {% if perms.s2400.can_view_s2400_exterior and s2400_exterior_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2400_exterior_editar' or dict_permissoes|get_permissao:'s2400_exterior_cadastrar' %}
+                            {% if perms.s2400.change_s2400_exterior or perms.s2400.add_s2400_exterior %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2400_exterior_apagar' and s2400_exterior_id %}
+                            {% if perms.s2400.delete_s2400_exterior and s2400_exterior_id %}
 
                             <a href="{% url 's2400_exterior_apagar' hash='{}'|json_id:s2400_exterior_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s2400_exterior_editar' or dict_permissoes|get_permissao:'s2400_exterior_cadastrar' %}
+                    {% if perms.s2400.change_s2400_exterior or perms.s2400.add_s2400_exterior %}
                         </form>
                     {% endif %}
 

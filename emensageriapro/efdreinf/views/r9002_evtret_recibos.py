@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.r9002.models import *
 from emensageriapro.r9002.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -73,44 +73,42 @@ from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO, STATUS_EVEN
 
 @login_required
 def recibo(request, hash, tipo):
+
+    from emensageriapro.mensageiro.models import RetornosEventos, RetornosEventosHorarios, \
+        RetornosEventosIntervalos, RetornosEventosOcorrencias
+            
     for_print = 0
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         r9002_evtret_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
 
     except:
+    
         return redirect('login')
 
-    usuario = get_object_or_404(Usuarios, excluido = False, id = usuario_id)
-    pagina = ConfigPaginas.objects.get(excluido = False, endereco='r9002_evtret')
-    permissao = ConfigPermissoes.objects.get(excluido = False, config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
+    if request.user.has_perm('efdreinf.can_view_r9002evtRet'):
 
         r9002_evtret = get_object_or_404(
             r9002evtRet,
-            excluido = False, id = r9002_evtret_id)
+            id=r9002_evtret_id)
 
-        from emensageriapro.mensageiro.models import RetornosEventos, RetornosEventosHorarios, \
-            RetornosEventosIntervalos, RetornosEventosOcorrencias
-
-        retorno = get_object_or_404( RetornosEventos,
-            id=r9002_evtret.retornos_eventos_id, excluido=False)
+        retorno = get_object_or_404(RetornosEventos,
+            id=r9002_evtret.retornos_eventos_id)
 
         retorno_horarios = RetornosEventosHorarios.objects.\
-            filter(retornos_eventos_id=retorno.id,excluido=False).all()
+            filter(retornos_eventos_id=retorno.id).all()
 
         retorno_intervalos = RetornosEventosIntervalos.objects.\
-            filter(retornos_eventos_horarios_id__in=listar_ids(retorno_horarios),excluido=False).all()
+            filter(retornos_eventos_horarios_id__in=listar_ids(retorno_horarios)).all()
 
         retorno_ocorrencias = RetornosEventosOcorrencias.objects.\
-            filter(retornos_eventos_id=retorno.id,excluido=False).all()
+            filter(retornos_eventos_id=retorno.id).all()
 
         context = {
             'r9002_evtret_id': r9002_evtret_id,
@@ -119,20 +117,14 @@ def recibo(request, hash, tipo):
             'retorno_horarios': retorno_horarios,
             'retorno_intervalos': retorno_intervalos,
             'retorno_ocorrencias': retorno_ocorrencias,
-  
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': for_print,
             'hash': hash,
         }
 
         if tipo == 'XLS':
+        
             response =  render_to_response('r9002_evtret_recibo_pdf.html', context)
             filename = "%s.xls" % r9002_evtret.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -140,6 +132,7 @@ def recibo(request, hash, tipo):
             return response
 
         elif tipo == 'CSV':
+        
             response =  render_to_response('r9002_evtret_recibo_csv.html', context)
             filename = "%s.csv" % r9002_evtret.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -147,17 +140,13 @@ def recibo(request, hash, tipo):
             return response
 
         else:
+        
             return render_to_pdf('r9002_evtret_recibo_pdf.html', context)
 
     else:
 
         context = {
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)

@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.s2240.models import *
 from emensageriapro.s2240.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -72,25 +72,24 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 @login_required
 def verificar(request, hash):
+
     for_print = 0
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s2240_evtexprisco_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except:
+    
         return redirect('login')
 
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='s2240_evtexprisco')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
-        s2240_evtexprisco = get_object_or_404(s2240evtExpRisco, id = s2240_evtexprisco_id)
+    if request.user.has_perm('esocial.can_view_s2240evtExpRisco'):
+        s2240_evtexprisco = get_object_or_404(s2240evtExpRisco, id=s2240_evtexprisco_id)
         s2240_evtexprisco_lista = s2240evtExpRisco.objects.filter(id=s2240_evtexprisco_id).all()
 
         
@@ -134,22 +133,19 @@ def verificar(request, hash):
             's2240_fimexprisco_lista': s2240_fimexprisco_lista,
             's2240_fimexprisco_infoamb_lista': s2240_fimexprisco_infoamb_lista,
             's2240_fimexprisco_respreg_lista': s2240_fimexprisco_respreg_lista,
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s2240_evtexprisco', ],
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': for_print,
             'hash': hash,
 
             
 
         }
+        
         if for_print == 2:
+        
             response = PDFTemplateResponse(request=request,
                                            template='s2240_evtexprisco_verificar.html',
                                            filename="s2240_evtexprisco.pdf",
@@ -168,6 +164,7 @@ def verificar(request, hash):
             return response
 
         elif for_print == 3:
+        
             response =  render_to_response('s2240_evtexprisco_verificar.html', context)
             filename = "%s.xls" % s2240_evtexprisco.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -175,6 +172,7 @@ def verificar(request, hash):
             return response
 
         elif for_print == 4:
+        
             response =  render_to_response('s2240_evtexprisco_verificar.html', context)
             filename = "%s.csv" % s2240_evtexprisco.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -182,18 +180,16 @@ def verificar(request, hash):
             return response
 
         else:
+        
             return render(request, 's2240_evtexprisco_verificar.html', context)
 
     else:
 
         context = {
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s2240_evtexprisco', ],
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
 
         return render(request, 'permissao_negada.html', context)

@@ -47,9 +47,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r9011_rprest_visualizar' %}
+                    {% if perms.r9011.can_view_r9011RPrest %}
                         <a href="{% url 'r9011_rprest_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r9011_rprest_editar' or dict_permissoes|get_permissao:'r9011_rprest_cadastrar' %}
+                            {% if perms.r9011.add_r9011RPrest or perms.r9011.change_r9011RPrest %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -60,7 +60,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r9011_rprest_apagar' %}
+                    {% if perms.r9011.delete_r9011RPrest %}
                         <a href="{% url 'r9011_rprest_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

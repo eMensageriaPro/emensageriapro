@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'retornos_eventos_horarios_visualizar' %}
+                    {% if perms.mensageiro.can_view_RetornosEventosHorarios %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 'retornos_eventos_horarios_salvar' hash='{}'|json_return_page:'retornos_eventos_horarios_salvar'|json_return_hash:hash|json_id:retornos_eventos_horarios_id|json_print:0|base64_encode_me %}">
                             Retornos dos Eventos - Horários
@@ -129,7 +129,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'retornos_eventos_horarios_editar' or dict_permissoes|get_permissao:'retornos_eventos_horarios_cadastrar' %}
+            {% if perms.mensageiro.change_retornos_eventos_horarios or perms.mensageiro.add_retornos_eventos_horarios %}
                 <form action="#" id="id_form_retornos_eventos_horarios" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -156,7 +156,7 @@
                             <!-- botões especiais -->
                             {% if retornos_eventos_horarios_id %}
 
-                                {% if dict_permissoes|get_permissao:'retornos_eventos_horarios_cadastrar' %}
+                                {% if perms.mensageiro.add_RetornosEventosHorarios %}
                                     <a href="{% url 'retornos_eventos_horarios_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -168,7 +168,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'retornos_eventos_horarios_listar' or dict_permissoes|get_permissao:'retornos_eventos_horarios_listar' %}
+                            {% if perms.mensageiro.can_view_retornos_eventos_horarios or perms.mensageiro.can_view_retornos_eventos_horarios %}
                                 <a href="{% url 'retornos_eventos_horarios'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -177,7 +177,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'retornos_eventos_horarios_visualizar' and retornos_eventos_horarios_id %}
+                            {% if perms.mensageiro.can_view_retornos_eventos_horarios and retornos_eventos_horarios_id %}
                                 <a href="{% url 'retornos_eventos_horarios_salvar' hash='{}'|json_id:retornos_eventos_horarios_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -186,7 +186,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'retornos_eventos_horarios_visualizar' and retornos_eventos_horarios_id %}
+                            {% if perms.mensageiro.can_view_retornos_eventos_horarios and retornos_eventos_horarios_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -213,7 +213,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'retornos_eventos_horarios_editar' or dict_permissoes|get_permissao:'retornos_eventos_horarios_cadastrar' %}
+                            {% if perms.mensageiro.change_retornos_eventos_horarios or perms.mensageiro.add_retornos_eventos_horarios %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -222,7 +222,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'retornos_eventos_horarios_apagar' and retornos_eventos_horarios_id %}
+                            {% if perms.mensageiro.delete_retornos_eventos_horarios and retornos_eventos_horarios_id %}
 
                             <a href="{% url 'retornos_eventos_horarios_apagar' hash='{}'|json_id:retornos_eventos_horarios_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -244,7 +244,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'retornos_eventos_horarios_editar' or dict_permissoes|get_permissao:'retornos_eventos_horarios_cadastrar' %}
+                    {% if perms.mensageiro.change_retornos_eventos_horarios or perms.mensageiro.add_retornos_eventos_horarios %}
                         </form>
                     {% endif %}
 

@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'s2200_evtadmissao_visualizar' %}
+                {% if perms.esocial.can_view_s2200evtAdmissao %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_return_page:'s2200_evtadmissao_salvar'|json_return_hash:hash|json_id:s2200_evtadmissao_id|json_print:0|base64_encode_me %}">
                     S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador</a>
@@ -58,154 +58,154 @@
                 {% if s2200_evtadmissao_id %}
                     
                         
-                            {% if dict_permissoes|get_permissao:'s2200_documentos_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_documentos %}
                                 <li {% if tab == 's2200_documentos' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_documentos'|base64_encode_me %}">
                                     Informações dos documentos pessoais do trabalhador</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_brasil_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_brasil %}
                                 <li {% if tab == 's2200_brasil' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_brasil'|base64_encode_me %}">
                                     Preenchimento obrigatório para trabalhador residente no Brasil.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_exterior_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_exterior %}
                                 <li {% if tab == 's2200_exterior' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_exterior'|base64_encode_me %}">
                                     Preenchido em caso de trabalhador residente no exterior.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_trabestrangeiro_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_trabestrangeiro %}
                                 <li {% if tab == 's2200_trabestrangeiro' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_trabestrangeiro'|base64_encode_me %}">
                                     Grupo de informações do Trabalhador Estrangeiro</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_infodeficiencia_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_infodeficiencia %}
                                 <li {% if tab == 's2200_infodeficiencia' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_infodeficiencia'|base64_encode_me %}">
                                     Pessoa com Deficiência</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_dependente_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_dependente %}
                                 <li {% if tab == 's2200_dependente' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_dependente'|base64_encode_me %}">
                                     Informações dos dependentes</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_aposentadoria_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_aposentadoria %}
                                 <li {% if tab == 's2200_aposentadoria' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_aposentadoria'|base64_encode_me %}">
                                     Informação de aposentadoria do trabalhador</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_contato_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_contato %}
                                 <li {% if tab == 's2200_contato' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_contato'|base64_encode_me %}">
                                     Informações de contato</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_infoceletista_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_infoceletista %}
                                 <li {% if tab == 's2200_infoceletista' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_infoceletista'|base64_encode_me %}">
                                     Informações de Trabalhador Celetista</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_infoestatutario_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_infoestatutario %}
                                 <li {% if tab == 's2200_infoestatutario' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_infoestatutario'|base64_encode_me %}">
                                     Informações de Trabalhador Estatutário</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_localtrabgeral_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_localtrabgeral %}
                                 <li {% if tab == 's2200_localtrabgeral' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_localtrabgeral'|base64_encode_me %}">
                                     Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_localtrabdom_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_localtrabdom %}
                                 <li {% if tab == 's2200_localtrabdom' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_localtrabdom'|base64_encode_me %}">
                                     Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_horcontratual_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_horcontratual %}
                                 <li {% if tab == 's2200_horcontratual' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_horcontratual'|base64_encode_me %}">
                                     Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_filiacaosindical_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_filiacaosindical %}
                                 <li {% if tab == 's2200_filiacaosindical' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_filiacaosindical'|base64_encode_me %}">
                                     Filiação Sindical do Trabalhador</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_alvarajudicial_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_alvarajudicial %}
                                 <li {% if tab == 's2200_alvarajudicial' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_alvarajudicial'|base64_encode_me %}">
                                     Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_observacoes_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_observacoes %}
                                 <li {% if tab == 's2200_observacoes' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_observacoes'|base64_encode_me %}">
                                     Observações do contrato de trabalho</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_sucessaovinc_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_sucessaovinc %}
                                 <li {% if tab == 's2200_sucessaovinc' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_sucessaovinc'|base64_encode_me %}">
                                     Grupo de informações da sucessão de vínculo trabalhista/estatutário</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_transfdom_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_transfdom %}
                                 <li {% if tab == 's2200_transfdom' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_transfdom'|base64_encode_me %}">
                                     Informações do empregado doméstico transferido de outro representante da mesma unidade familiar</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_mudancacpf_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_mudancacpf %}
                                 <li {% if tab == 's2200_mudancacpf' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_mudancacpf'|base64_encode_me %}">
                                     Informações de mudança de CPF do trabalhador.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_afastamento_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_afastamento %}
                                 <li {% if tab == 's2200_afastamento' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_afastamento'|base64_encode_me %}">
                                     Informações de afastamento do trabalhador</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_desligamento_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_desligamento %}
                                 <li {% if tab == 's2200_desligamento' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_desligamento'|base64_encode_me %}">
                                     Informações do desligamento do trabalhador</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_cessao_visualizar' %}
+                            {% if perms.esocial.can_view_s2200_cessao %}
                                 <li {% if tab == 's2200_cessao' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_evtadmissao_salvar' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|json_tab:'s2200_cessao'|base64_encode_me %}">
                                     Informações de cessão/exercício em outro órgão do trabalhador</a>
@@ -302,7 +302,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'s2200_evtadmissao_editar' or dict_permissoes|get_permissao:'s2200_evtadmissao_cadastrar' %}
+               {% if perms.esocial.change_s2200_evtadmissao or perms.esocial.add_s2200_evtadmissao %}
                {% if s2200_evtadmissao_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s2200_evtadmissao" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -324,8 +324,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if s2200_evtadmissao_id %}
-                           {% if dict_permissoes|get_permissao:'s2200_evtadmissao_cadastrar' %}<a href="{% url 's2200_evtadmissao_verificar'  hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2200_evtadmissao_cadastrar' %}
+                           {% if perms.esocial.add_s2200evtAdmissao %}<a href="{% url 's2200_evtadmissao_verificar'  hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2200evtAdmissao %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -342,7 +342,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2200_evtadmissao_cadastrar' %}
+                           {% if perms.esocial.add_s2200evtAdmissao %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -363,29 +363,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2200_evtadmissao_cadastrar' %}<a href="{% url 's2200_evtadmissao_xml'  hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2200evtAdmissao %}<a href="{% url 's2200_evtadmissao_xml'  hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if s2200_evtadmissao.status == STATUS_EVENTO_CADASTRADO or s2200_evtadmissao.status == STATUS_EVENTO_IMPORTADO or s2200_evtadmissao.status == STATUS_EVENTO_DUPLICADO or s2200_evtadmissao.status == STATUS_EVENTO_GERADO or s2200_evtadmissao.status == STATUS_EVENTO_ASSINADO or s2200_evtadmissao.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'s2200_evtadmissao_cadastrar' %}
+                           {% if perms.esocial.add_s2200evtAdmissao %}
                            <a href="{% url 's2200_evtadmissao_validar_evento' hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'s2200_evtadmissao_cadastrar' %}<a href="{% url 's2200_evtadmissao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s2200evtAdmissao %}<a href="{% url 's2200_evtadmissao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2200_evtadmissao_listar' or dict_permissoes|get_permissao:'s2200_evtadmissao_listar' %}<a href="{% url 's2200_evtadmissao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2200_evtadmissao_visualizar' and s2200_evtadmissao_id %}<a href="{% url 's2200_evtadmissao_salvar'  hash='{}'|json_id:s2200_evtadmissao_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s2200_evtadmissao_editar' or dict_permissoes|get_permissao:'s2200_evtadmissao_cadastrar' %}
+                           {% if perms.esocial.can_view_s2200_evtadmissao or perms.esocial.can_view_s2200_evtadmissao %}<a href="{% url 's2200_evtadmissao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.can_view_s2200_evtadmissao and s2200_evtadmissao_id %}<a href="{% url 's2200_evtadmissao_salvar'  hash='{}'|json_id:s2200_evtadmissao_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.change_s2200_evtadmissao or perms.esocial.add_s2200_evtadmissao %}
                            {% if s2200_evtadmissao_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s2200_evtadmissao_apagar' and s2200_evtadmissao_id %}<a href="{% url 's2200_evtadmissao_apagar'  hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.delete_s2200_evtadmissao and s2200_evtadmissao_id %}<a href="{% url 's2200_evtadmissao_apagar'  hash='{}'|json_id:s2200_evtadmissao_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'s2200_evtadmissao_editar' or dict_permissoes|get_permissao:'s2200_evtadmissao_cadastrar' %}
+                  {% if perms.esocial.change_s2200_evtadmissao or perms.esocial.add_s2200_evtadmissao %}
                {% if s2200_evtadmissao_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}
@@ -441,9 +441,9 @@
 
 {% if tab == 's2200_documentos' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_documentos_visualizar' %} 
+{% if perms.esocial.can_view_s2200_documentos %} 
 
-{% if dict_permissoes|get_permissao:'s2200_documentos_editar' or dict_permissoes|get_permissao:'s2200_documentos_cadastrar' %}
+{% if perms.esocial.change_s2200_documentos or perms.s2200.add_s2200documentos %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -469,7 +469,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações dos documentos pessoais do trabalhador</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_documentos_editar' or dict_permissoes|get_permissao:'s2200_documentos_cadastrar' %}
+          {% if perms.esocial.change_s2200_documentos or perms.s2200.add_s2200documentos %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -478,7 +478,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_documentos_cadastrar' %}            
+        {% if perms.s2200.add_s2200documentos %}            
 
 
 
@@ -536,9 +536,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_brasil' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_brasil_visualizar' %} 
+{% if perms.esocial.can_view_s2200_brasil %} 
 
-{% if dict_permissoes|get_permissao:'s2200_brasil_editar' or dict_permissoes|get_permissao:'s2200_brasil_cadastrar' %}
+{% if perms.esocial.change_s2200_brasil or perms.s2200.add_s2200brasil %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -564,7 +564,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Preenchimento obrigatório para trabalhador residente no Brasil.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_brasil_editar' or dict_permissoes|get_permissao:'s2200_brasil_cadastrar' %}
+          {% if perms.esocial.change_s2200_brasil or perms.s2200.add_s2200brasil %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -573,7 +573,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_brasil_cadastrar' %}            
+        {% if perms.s2200.add_s2200brasil %}            
 
 
 
@@ -631,9 +631,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_exterior' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_exterior_visualizar' %} 
+{% if perms.esocial.can_view_s2200_exterior %} 
 
-{% if dict_permissoes|get_permissao:'s2200_exterior_editar' or dict_permissoes|get_permissao:'s2200_exterior_cadastrar' %}
+{% if perms.esocial.change_s2200_exterior or perms.s2200.add_s2200exterior %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -659,7 +659,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Preenchido em caso de trabalhador residente no exterior.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_exterior_editar' or dict_permissoes|get_permissao:'s2200_exterior_cadastrar' %}
+          {% if perms.esocial.change_s2200_exterior or perms.s2200.add_s2200exterior %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -668,7 +668,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_exterior_cadastrar' %}            
+        {% if perms.s2200.add_s2200exterior %}            
 
 
 
@@ -726,9 +726,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_trabestrangeiro' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_trabestrangeiro_visualizar' %} 
+{% if perms.esocial.can_view_s2200_trabestrangeiro %} 
 
-{% if dict_permissoes|get_permissao:'s2200_trabestrangeiro_editar' or dict_permissoes|get_permissao:'s2200_trabestrangeiro_cadastrar' %}
+{% if perms.esocial.change_s2200_trabestrangeiro or perms.s2200.add_s2200trabEstrangeiro %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -754,7 +754,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Grupo de informações do Trabalhador Estrangeiro</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_trabestrangeiro_editar' or dict_permissoes|get_permissao:'s2200_trabestrangeiro_cadastrar' %}
+          {% if perms.esocial.change_s2200_trabestrangeiro or perms.s2200.add_s2200trabEstrangeiro %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -763,7 +763,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_trabestrangeiro_cadastrar' %}            
+        {% if perms.s2200.add_s2200trabEstrangeiro %}            
 
 
 
@@ -821,9 +821,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_infodeficiencia' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_infodeficiencia_visualizar' %} 
+{% if perms.esocial.can_view_s2200_infodeficiencia %} 
 
-{% if dict_permissoes|get_permissao:'s2200_infodeficiencia_editar' or dict_permissoes|get_permissao:'s2200_infodeficiencia_cadastrar' %}
+{% if perms.esocial.change_s2200_infodeficiencia or perms.s2200.add_s2200infoDeficiencia %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -849,7 +849,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Pessoa com Deficiência</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_infodeficiencia_editar' or dict_permissoes|get_permissao:'s2200_infodeficiencia_cadastrar' %}
+          {% if perms.esocial.change_s2200_infodeficiencia or perms.s2200.add_s2200infoDeficiencia %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -858,7 +858,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_infodeficiencia_cadastrar' %}            
+        {% if perms.s2200.add_s2200infoDeficiencia %}            
 
 
 
@@ -916,9 +916,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_dependente' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_dependente_visualizar' %} 
+{% if perms.esocial.can_view_s2200_dependente %} 
 
-{% if dict_permissoes|get_permissao:'s2200_dependente_editar' or dict_permissoes|get_permissao:'s2200_dependente_cadastrar' %}
+{% if perms.esocial.change_s2200_dependente or perms.s2200.add_s2200dependente %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -944,7 +944,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações dos dependentes</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_dependente_editar' or dict_permissoes|get_permissao:'s2200_dependente_cadastrar' %}
+          {% if perms.esocial.change_s2200_dependente or perms.s2200.add_s2200dependente %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -953,7 +953,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_dependente_cadastrar' %}            
+        {% if perms.s2200.add_s2200dependente %}            
 
 
 
@@ -1011,9 +1011,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_aposentadoria' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_aposentadoria_visualizar' %} 
+{% if perms.esocial.can_view_s2200_aposentadoria %} 
 
-{% if dict_permissoes|get_permissao:'s2200_aposentadoria_editar' or dict_permissoes|get_permissao:'s2200_aposentadoria_cadastrar' %}
+{% if perms.esocial.change_s2200_aposentadoria or perms.s2200.add_s2200aposentadoria %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1039,7 +1039,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informação de aposentadoria do trabalhador</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_aposentadoria_editar' or dict_permissoes|get_permissao:'s2200_aposentadoria_cadastrar' %}
+          {% if perms.esocial.change_s2200_aposentadoria or perms.s2200.add_s2200aposentadoria %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1048,7 +1048,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_aposentadoria_cadastrar' %}            
+        {% if perms.s2200.add_s2200aposentadoria %}            
 
 
 
@@ -1106,9 +1106,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_contato' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_contato_visualizar' %} 
+{% if perms.esocial.can_view_s2200_contato %} 
 
-{% if dict_permissoes|get_permissao:'s2200_contato_editar' or dict_permissoes|get_permissao:'s2200_contato_cadastrar' %}
+{% if perms.esocial.change_s2200_contato or perms.s2200.add_s2200contato %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1134,7 +1134,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de contato</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_contato_editar' or dict_permissoes|get_permissao:'s2200_contato_cadastrar' %}
+          {% if perms.esocial.change_s2200_contato or perms.s2200.add_s2200contato %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1143,7 +1143,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_contato_cadastrar' %}            
+        {% if perms.s2200.add_s2200contato %}            
 
 
 
@@ -1201,9 +1201,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_infoceletista' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_infoceletista_visualizar' %} 
+{% if perms.esocial.can_view_s2200_infoceletista %} 
 
-{% if dict_permissoes|get_permissao:'s2200_infoceletista_editar' or dict_permissoes|get_permissao:'s2200_infoceletista_cadastrar' %}
+{% if perms.esocial.change_s2200_infoceletista or perms.s2200.add_s2200infoCeletista %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1229,7 +1229,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de Trabalhador Celetista</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_infoceletista_editar' or dict_permissoes|get_permissao:'s2200_infoceletista_cadastrar' %}
+          {% if perms.esocial.change_s2200_infoceletista or perms.s2200.add_s2200infoCeletista %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1238,7 +1238,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_infoceletista_cadastrar' %}            
+        {% if perms.s2200.add_s2200infoCeletista %}            
 
 
 
@@ -1296,9 +1296,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_infoestatutario' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_infoestatutario_visualizar' %} 
+{% if perms.esocial.can_view_s2200_infoestatutario %} 
 
-{% if dict_permissoes|get_permissao:'s2200_infoestatutario_editar' or dict_permissoes|get_permissao:'s2200_infoestatutario_cadastrar' %}
+{% if perms.esocial.change_s2200_infoestatutario or perms.s2200.add_s2200infoEstatutario %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1324,7 +1324,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de Trabalhador Estatutário</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_infoestatutario_editar' or dict_permissoes|get_permissao:'s2200_infoestatutario_cadastrar' %}
+          {% if perms.esocial.change_s2200_infoestatutario or perms.s2200.add_s2200infoEstatutario %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1333,7 +1333,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_infoestatutario_cadastrar' %}            
+        {% if perms.s2200.add_s2200infoEstatutario %}            
 
 
 
@@ -1391,9 +1391,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_localtrabgeral' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_localtrabgeral_visualizar' %} 
+{% if perms.esocial.can_view_s2200_localtrabgeral %} 
 
-{% if dict_permissoes|get_permissao:'s2200_localtrabgeral_editar' or dict_permissoes|get_permissao:'s2200_localtrabgeral_cadastrar' %}
+{% if perms.esocial.change_s2200_localtrabgeral or perms.s2200.add_s2200localTrabGeral %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1419,7 +1419,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Estabelecimento (CNPJ, CNO, CAEPF) onde o trabalhador (exceto doméstico e temporário) exercerá suas atividades</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_localtrabgeral_editar' or dict_permissoes|get_permissao:'s2200_localtrabgeral_cadastrar' %}
+          {% if perms.esocial.change_s2200_localtrabgeral or perms.s2200.add_s2200localTrabGeral %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1428,7 +1428,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_localtrabgeral_cadastrar' %}            
+        {% if perms.s2200.add_s2200localTrabGeral %}            
 
 
 
@@ -1486,9 +1486,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_localtrabdom' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_localtrabdom_visualizar' %} 
+{% if perms.esocial.can_view_s2200_localtrabdom %} 
 
-{% if dict_permissoes|get_permissao:'s2200_localtrabdom_editar' or dict_permissoes|get_permissao:'s2200_localtrabdom_cadastrar' %}
+{% if perms.esocial.change_s2200_localtrabdom or perms.s2200.add_s2200localTrabDom %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1514,7 +1514,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Registro preenchido exclusivamente em caso de trabalhador doméstico e trabalhador temporário, indicando o endereço onde o trabalhador exerce suas atividades.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_localtrabdom_editar' or dict_permissoes|get_permissao:'s2200_localtrabdom_cadastrar' %}
+          {% if perms.esocial.change_s2200_localtrabdom or perms.s2200.add_s2200localTrabDom %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1523,7 +1523,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_localtrabdom_cadastrar' %}            
+        {% if perms.s2200.add_s2200localTrabDom %}            
 
 
 
@@ -1581,9 +1581,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_horcontratual' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_horcontratual_visualizar' %} 
+{% if perms.esocial.can_view_s2200_horcontratual %} 
 
-{% if dict_permissoes|get_permissao:'s2200_horcontratual_editar' or dict_permissoes|get_permissao:'s2200_horcontratual_cadastrar' %}
+{% if perms.esocial.change_s2200_horcontratual or perms.s2200.add_s2200horContratual %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1609,7 +1609,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações do Horário Contratual do Trabalhador. O preenchimento é obrigatório se {tpRegJor} = [1].</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_horcontratual_editar' or dict_permissoes|get_permissao:'s2200_horcontratual_cadastrar' %}
+          {% if perms.esocial.change_s2200_horcontratual or perms.s2200.add_s2200horContratual %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1618,7 +1618,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_horcontratual_cadastrar' %}            
+        {% if perms.s2200.add_s2200horContratual %}            
 
 
 
@@ -1676,9 +1676,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_filiacaosindical' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_filiacaosindical_visualizar' %} 
+{% if perms.esocial.can_view_s2200_filiacaosindical %} 
 
-{% if dict_permissoes|get_permissao:'s2200_filiacaosindical_editar' or dict_permissoes|get_permissao:'s2200_filiacaosindical_cadastrar' %}
+{% if perms.esocial.change_s2200_filiacaosindical or perms.s2200.add_s2200filiacaoSindical %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1704,7 +1704,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Filiação Sindical do Trabalhador</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_filiacaosindical_editar' or dict_permissoes|get_permissao:'s2200_filiacaosindical_cadastrar' %}
+          {% if perms.esocial.change_s2200_filiacaosindical or perms.s2200.add_s2200filiacaoSindical %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1713,7 +1713,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_filiacaosindical_cadastrar' %}            
+        {% if perms.s2200.add_s2200filiacaoSindical %}            
 
 
 
@@ -1771,9 +1771,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_alvarajudicial' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_alvarajudicial_visualizar' %} 
+{% if perms.esocial.can_view_s2200_alvarajudicial %} 
 
-{% if dict_permissoes|get_permissao:'s2200_alvarajudicial_editar' or dict_permissoes|get_permissao:'s2200_alvarajudicial_cadastrar' %}
+{% if perms.esocial.change_s2200_alvarajudicial or perms.s2200.add_s2200alvaraJudicial %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1799,7 +1799,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_alvarajudicial_editar' or dict_permissoes|get_permissao:'s2200_alvarajudicial_cadastrar' %}
+          {% if perms.esocial.change_s2200_alvarajudicial or perms.s2200.add_s2200alvaraJudicial %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1808,7 +1808,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_alvarajudicial_cadastrar' %}            
+        {% if perms.s2200.add_s2200alvaraJudicial %}            
 
 
 
@@ -1866,9 +1866,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_observacoes' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_observacoes_visualizar' %} 
+{% if perms.esocial.can_view_s2200_observacoes %} 
 
-{% if dict_permissoes|get_permissao:'s2200_observacoes_editar' or dict_permissoes|get_permissao:'s2200_observacoes_cadastrar' %}
+{% if perms.esocial.change_s2200_observacoes or perms.s2200.add_s2200observacoes %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1894,7 +1894,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Observações do contrato de trabalho</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_observacoes_editar' or dict_permissoes|get_permissao:'s2200_observacoes_cadastrar' %}
+          {% if perms.esocial.change_s2200_observacoes or perms.s2200.add_s2200observacoes %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1903,7 +1903,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_observacoes_cadastrar' %}            
+        {% if perms.s2200.add_s2200observacoes %}            
 
 
 
@@ -1961,9 +1961,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_sucessaovinc' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_sucessaovinc_visualizar' %} 
+{% if perms.esocial.can_view_s2200_sucessaovinc %} 
 
-{% if dict_permissoes|get_permissao:'s2200_sucessaovinc_editar' or dict_permissoes|get_permissao:'s2200_sucessaovinc_cadastrar' %}
+{% if perms.esocial.change_s2200_sucessaovinc or perms.s2200.add_s2200sucessaoVinc %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1989,7 +1989,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Grupo de informações da sucessão de vínculo trabalhista/estatutário</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_sucessaovinc_editar' or dict_permissoes|get_permissao:'s2200_sucessaovinc_cadastrar' %}
+          {% if perms.esocial.change_s2200_sucessaovinc or perms.s2200.add_s2200sucessaoVinc %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1998,7 +1998,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_sucessaovinc_cadastrar' %}            
+        {% if perms.s2200.add_s2200sucessaoVinc %}            
 
 
 
@@ -2056,9 +2056,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_transfdom' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_transfdom_visualizar' %} 
+{% if perms.esocial.can_view_s2200_transfdom %} 
 
-{% if dict_permissoes|get_permissao:'s2200_transfdom_editar' or dict_permissoes|get_permissao:'s2200_transfdom_cadastrar' %}
+{% if perms.esocial.change_s2200_transfdom or perms.s2200.add_s2200transfDom %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2084,7 +2084,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações do empregado doméstico transferido de outro representante da mesma unidade familiar</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_transfdom_editar' or dict_permissoes|get_permissao:'s2200_transfdom_cadastrar' %}
+          {% if perms.esocial.change_s2200_transfdom or perms.s2200.add_s2200transfDom %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2093,7 +2093,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_transfdom_cadastrar' %}            
+        {% if perms.s2200.add_s2200transfDom %}            
 
 
 
@@ -2151,9 +2151,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_mudancacpf' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_mudancacpf_visualizar' %} 
+{% if perms.esocial.can_view_s2200_mudancacpf %} 
 
-{% if dict_permissoes|get_permissao:'s2200_mudancacpf_editar' or dict_permissoes|get_permissao:'s2200_mudancacpf_cadastrar' %}
+{% if perms.esocial.change_s2200_mudancacpf or perms.s2200.add_s2200mudancaCPF %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2179,7 +2179,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de mudança de CPF do trabalhador.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_mudancacpf_editar' or dict_permissoes|get_permissao:'s2200_mudancacpf_cadastrar' %}
+          {% if perms.esocial.change_s2200_mudancacpf or perms.s2200.add_s2200mudancaCPF %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2188,7 +2188,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_mudancacpf_cadastrar' %}            
+        {% if perms.s2200.add_s2200mudancaCPF %}            
 
 
 
@@ -2246,9 +2246,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_afastamento' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_afastamento_visualizar' %} 
+{% if perms.esocial.can_view_s2200_afastamento %} 
 
-{% if dict_permissoes|get_permissao:'s2200_afastamento_editar' or dict_permissoes|get_permissao:'s2200_afastamento_cadastrar' %}
+{% if perms.esocial.change_s2200_afastamento or perms.s2200.add_s2200afastamento %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2274,7 +2274,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de afastamento do trabalhador</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_afastamento_editar' or dict_permissoes|get_permissao:'s2200_afastamento_cadastrar' %}
+          {% if perms.esocial.change_s2200_afastamento or perms.s2200.add_s2200afastamento %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2283,7 +2283,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_afastamento_cadastrar' %}            
+        {% if perms.s2200.add_s2200afastamento %}            
 
 
 
@@ -2341,9 +2341,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_desligamento' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_desligamento_visualizar' %} 
+{% if perms.esocial.can_view_s2200_desligamento %} 
 
-{% if dict_permissoes|get_permissao:'s2200_desligamento_editar' or dict_permissoes|get_permissao:'s2200_desligamento_cadastrar' %}
+{% if perms.esocial.change_s2200_desligamento or perms.s2200.add_s2200desligamento %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2369,7 +2369,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações do desligamento do trabalhador</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_desligamento_editar' or dict_permissoes|get_permissao:'s2200_desligamento_cadastrar' %}
+          {% if perms.esocial.change_s2200_desligamento or perms.s2200.add_s2200desligamento %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2378,7 +2378,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_desligamento_cadastrar' %}            
+        {% if perms.s2200.add_s2200desligamento %}            
 
 
 
@@ -2436,9 +2436,9 @@ function CadastroListagem() {
 
 {% if tab == 's2200_cessao' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s2200_cessao_visualizar' %} 
+{% if perms.esocial.can_view_s2200_cessao %} 
 
-{% if dict_permissoes|get_permissao:'s2200_cessao_editar' or dict_permissoes|get_permissao:'s2200_cessao_cadastrar' %}
+{% if perms.esocial.change_s2200_cessao or perms.s2200.add_s2200cessao %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2464,7 +2464,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de cessão/exercício em outro órgão do trabalhador</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s2200_cessao_editar' or dict_permissoes|get_permissao:'s2200_cessao_cadastrar' %}
+          {% if perms.esocial.change_s2200_cessao or perms.s2200.add_s2200cessao %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2473,7 +2473,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s2200_cessao_cadastrar' %}            
+        {% if perms.s2200.add_s2200cessao %}            
 
 
 

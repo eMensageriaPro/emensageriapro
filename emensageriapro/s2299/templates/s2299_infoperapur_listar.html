@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Remuneração no período de apuração</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2299_infoperapur_cadastrar' %}
+                  {% if perms.s2299.add_s2299infoPerApur %}
                   <a href="{% url 's2299_infoperapur_salvar' hash='{}'|json_return_page:'s2299_infoperapur_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

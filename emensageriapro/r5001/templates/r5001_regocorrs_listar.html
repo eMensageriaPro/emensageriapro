@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações de ocorrências registradas</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r5001_regocorrs_cadastrar' %}
+                  {% if perms.r5001.add_r5001regOcorrs %}
                   <a href="{% url 'r5001_regocorrs_salvar' hash='{}'|json_return_page:'r5001_regocorrs_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

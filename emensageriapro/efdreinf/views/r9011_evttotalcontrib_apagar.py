@@ -64,33 +64,28 @@ from emensageriapro.s1000.forms import form_s1000_exclusao
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         r9011_evttotalcontrib_id = int(dict_hash['id'])
+        
     except:
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r9011_evttotalcontrib')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
     
-    r9011_evttotalcontrib = get_object_or_404(r9011evtTotalContrib, id = r9011_evttotalcontrib_id)
+    r9011_evttotalcontrib = get_object_or_404(r9011evtTotalContrib, id=r9011_evttotalcontrib_id)
     
-    if r9011_evttotalcontrib_id:
-        if r9011_evttotalcontrib.status != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r9011_evttotalcontrib_apagar'] = 0
-            dict_permissoes['r9011_evttotalcontrib_editar'] = 0
-
     if request.method == 'POST':
+    
         if r9011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(r9011_evttotalcontrib), indent=4, sort_keys=True, default=str)
             obj = r9011evtTotalContrib.objects.get(id = r9011_evttotalcontrib_id)
             obj.delete(request=request)
@@ -104,19 +99,22 @@ def apagar(request, hash):
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 'r9011_evttotalcontrib_salvar':
-            return redirect('r9011_evttotalcontrib', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('r9011_evttotalcontrib', 
+                            hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], 
+                            hash=request.session['retorno_hash'])
+            
+    context = {
+        'r9011_evttotalcontrib': r9011_evttotalcontrib, 
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
+        'modulos': ['efdreinf', ],
+        'paginas': ['r9011_evttotalcontrib', ],
         'hash': hash,
     }
+    
     return render(request, 'r9011_evttotalcontrib_apagar.html', context)

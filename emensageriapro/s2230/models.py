@@ -77,14 +77,6 @@ class s2230emitente(SoftDeletionModel):
     nroc = models.CharField(max_length=14, null=True, )
     ufoc = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -110,7 +102,8 @@ class s2230emitente(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230_emitente", "Can view s2230_emitente"), )
+            ("can_view_s2230emitente", "Can view S2230EMITENTE"),
+            ("can_view_menu_s2230emitente", "Can view menu S2230EMITENTE"),)
             
         ordering = [
             's2230_infoatestado',
@@ -145,14 +138,6 @@ class s2230fimAfastamento(SoftDeletionModel):
         return self.s2230_evtafasttemp.evento()
     dttermafast = models.DateField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -176,7 +161,8 @@ class s2230fimAfastamento(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230_fimafastamento", "Can view s2230_fimafastamento"), )
+            ("can_view_s2230fimAfastamento", "Can view S2230FIMAFASTAMENTO"),
+            ("can_view_menu_s2230fimAfastamento", "Can view menu S2230FIMAFASTAMENTO"),)
             
         ordering = [
             's2230_evtafasttemp',
@@ -210,14 +196,6 @@ class s2230infoAtestado(SoftDeletionModel):
     codcid = models.CharField(max_length=4, blank=True, null=True, )
     qtddiasafast = models.IntegerField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -241,7 +219,8 @@ class s2230infoAtestado(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230_infoatestado", "Can view s2230_infoatestado"), )
+            ("can_view_s2230infoAtestado", "Can view S2230INFOATESTADO"),
+            ("can_view_menu_s2230infoAtestado", "Can view menu S2230INFOATESTADO"),)
             
         ordering = [
             's2230_iniafastamento',
@@ -275,14 +254,6 @@ class s2230infoCessao(SoftDeletionModel):
     cnpjcess = models.CharField(max_length=14, null=True, )
     infonus = models.IntegerField(choices=CHOICES_S2230_INFONUS, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -307,7 +278,8 @@ class s2230infoCessao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230_infocessao", "Can view s2230_infocessao"), )
+            ("can_view_s2230infoCessao", "Can view S2230INFOCESSAO"),
+            ("can_view_menu_s2230infoCessao", "Can view menu S2230INFOCESSAO"),)
             
         ordering = [
             's2230_iniafastamento',
@@ -342,14 +314,6 @@ class s2230infoMandSind(SoftDeletionModel):
     cnpjsind = models.CharField(max_length=14, null=True, )
     infonusremun = models.IntegerField(choices=CHOICES_S2230_INFONUSREMUN, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -374,7 +338,8 @@ class s2230infoMandSind(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230_infomandsind", "Can view s2230_infomandsind"), )
+            ("can_view_s2230infoMandSind", "Can view S2230INFOMANDSIND"),
+            ("can_view_menu_s2230infoMandSind", "Can view menu S2230INFOMANDSIND"),)
             
         ordering = [
             's2230_iniafastamento',
@@ -410,14 +375,6 @@ class s2230infoRetif(SoftDeletionModel):
     tpproc = models.IntegerField(choices=CHOICES_S2230_TPPROC, blank=True, null=True, )
     nrproc = models.CharField(max_length=21, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -441,7 +398,8 @@ class s2230infoRetif(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230_inforetif", "Can view s2230_inforetif"), )
+            ("can_view_s2230infoRetif", "Can view S2230INFORETIF"),
+            ("can_view_menu_s2230infoRetif", "Can view menu S2230INFORETIF"),)
             
         ordering = [
             's2230_evtafasttemp',
@@ -478,14 +436,6 @@ class s2230iniAfastamento(SoftDeletionModel):
     tpacidtransito = models.IntegerField(choices=CHOICES_S2230_TPACIDTRANSITO, blank=True, null=True, )
     observacao = models.CharField(max_length=255, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -510,7 +460,8 @@ class s2230iniAfastamento(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2230_iniafastamento", "Can view s2230_iniafastamento"), )
+            ("can_view_s2230iniAfastamento", "Can view S2230INIAFASTAMENTO"),
+            ("can_view_menu_s2230iniAfastamento", "Can view menu S2230INIAFASTAMENTO"),)
             
         ordering = [
             's2230_evtafasttemp',

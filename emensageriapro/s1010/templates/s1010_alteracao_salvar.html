@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1010_alteracao_visualizar' %}
+                    {% if perms.s1010.can_view_s1010alteracao %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_return_page:'s1010_alteracao_salvar'|json_return_hash:hash|json_id:s1010_alteracao_id|json_print:0|base64_encode_me %}">
                             Alteração das informações
@@ -62,42 +62,42 @@
                     {% endif %}
                     {% if s1010_alteracao_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_visualizar' %}
+                            {% if perms.s1010.can_view_s1010_alteracao_ideprocessocp %}
                                 <li {% if tab == 's1010_alteracao_ideprocessocp' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessocp'|base64_encode_me %}">
                                     Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_visualizar' %}
+                            {% if perms.s1010.can_view_s1010_alteracao_ideprocessoirrf %}
                                 <li {% if tab == 's1010_alteracao_ideprocessoirrf' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessoirrf'|base64_encode_me %}">
                                     Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_visualizar' %}
+                            {% if perms.s1010.can_view_s1010_alteracao_ideprocessofgts %}
                                 <li {% if tab == 's1010_alteracao_ideprocessofgts' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessofgts'|base64_encode_me %}">
                                     Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_visualizar' %}
+                            {% if perms.s1010.can_view_s1010_alteracao_ideprocessosind %}
                                 <li {% if tab == 's1010_alteracao_ideprocessosind' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessosind'|base64_encode_me %}">
                                     Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_visualizar' %}
+                            {% if perms.s1010.can_view_s1010_alteracao_ideprocessocprp %}
                                 <li {% if tab == 's1010_alteracao_ideprocessocprp' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_ideprocessocprp'|base64_encode_me %}">
                                     Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_visualizar' %}
+                            {% if perms.s1010.can_view_s1010_alteracao_novavalidade %}
                                 <li {% if tab == 's1010_alteracao_novavalidade' %} class="active"{% endif %} >
                                     <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|json_tab:'s1010_alteracao_novavalidade'|base64_encode_me %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
@@ -216,7 +216,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1010_alteracao_editar' or dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}
+            {% if perms.s1010.change_s1010_alteracao or perms.s1010.add_s1010_alteracao %}
                 <form action="#" id="id_form_s1010_alteracao" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -243,7 +243,7 @@
                             <!-- botões especiais -->
                             {% if s1010_alteracao_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}
+                                {% if perms.s1010.add_s1010alteracao %}
                                     <a href="{% url 's1010_alteracao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -255,7 +255,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_listar' or dict_permissoes|get_permissao:'s1010_alteracao_listar' %}
+                            {% if perms.s1010.can_view_s1010_alteracao or perms.s1010.can_view_s1010_alteracao %}
                                 <a href="{% url 's1010_alteracao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -264,7 +264,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_visualizar' and s1010_alteracao_id %}
+                            {% if perms.s1010.can_view_s1010_alteracao and s1010_alteracao_id %}
                                 <a href="{% url 's1010_alteracao_salvar' hash='{}'|json_id:s1010_alteracao_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -273,7 +273,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_visualizar' and s1010_alteracao_id %}
+                            {% if perms.s1010.can_view_s1010_alteracao and s1010_alteracao_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -300,7 +300,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_editar' or dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}
+                            {% if perms.s1010.change_s1010_alteracao or perms.s1010.add_s1010_alteracao %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -309,7 +309,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1010_alteracao_apagar' and s1010_alteracao_id %}
+                            {% if perms.s1010.delete_s1010_alteracao and s1010_alteracao_id %}
 
                             <a href="{% url 's1010_alteracao_apagar' hash='{}'|json_id:s1010_alteracao_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -331,7 +331,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1010_alteracao_editar' or dict_permissoes|get_permissao:'s1010_alteracao_cadastrar' %}
+                    {% if perms.s1010.change_s1010_alteracao or perms.s1010.add_s1010_alteracao %}
                         </form>
                     {% endif %}
 
@@ -357,9 +357,9 @@
 
             {% if tab == 's1010_alteracao_ideprocessocp' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_visualizar' %} 
+                {% if perms.s1010.can_view_s1010_alteracao_ideprocessocp %} 
 
-                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_cadastrar' %}
+                    {% if perms.s1010.change_s1010_alteracao_ideprocessocp or perms.s1010.add_s1010alteracaoideProcessoCP %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -386,7 +386,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_cadastrar' %}
+                                        {% if perms.s1010.change_s1010_alteracao_ideprocessocp or perms.s1010.add_s1010alteracaoideProcessoCP %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -401,7 +401,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocp_cadastrar' %}            
+                                    {% if perms.s1010.add_s1010alteracaoideProcessoCP %}            
                                     <!-- begin_form_s1010_alteracao_ideprocessocp --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1010_alteracao_ideprocessocp" action="{% url 's1010_alteracao_ideprocessocp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -454,9 +454,9 @@
 
             {% if tab == 's1010_alteracao_ideprocessoirrf' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_visualizar' %} 
+                {% if perms.s1010.can_view_s1010_alteracao_ideprocessoirrf %} 
 
-                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_cadastrar' %}
+                    {% if perms.s1010.change_s1010_alteracao_ideprocessoirrf or perms.s1010.add_s1010alteracaoideProcessoIRRF %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -483,7 +483,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_cadastrar' %}
+                                        {% if perms.s1010.change_s1010_alteracao_ideprocessoirrf or perms.s1010.add_s1010alteracaoideProcessoIRRF %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -498,7 +498,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessoirrf_cadastrar' %}            
+                                    {% if perms.s1010.add_s1010alteracaoideProcessoIRRF %}            
                                     <!-- begin_form_s1010_alteracao_ideprocessoirrf --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1010_alteracao_ideprocessoirrf" action="{% url 's1010_alteracao_ideprocessoirrf_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -551,9 +551,9 @@
 
             {% if tab == 's1010_alteracao_ideprocessofgts' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_visualizar' %} 
+                {% if perms.s1010.can_view_s1010_alteracao_ideprocessofgts %} 
 
-                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_cadastrar' %}
+                    {% if perms.s1010.change_s1010_alteracao_ideprocessofgts or perms.s1010.add_s1010alteracaoideProcessoFGTS %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -580,7 +580,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_cadastrar' %}
+                                        {% if perms.s1010.change_s1010_alteracao_ideprocessofgts or perms.s1010.add_s1010alteracaoideProcessoFGTS %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -595,7 +595,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessofgts_cadastrar' %}            
+                                    {% if perms.s1010.add_s1010alteracaoideProcessoFGTS %}            
                                     <!-- begin_form_s1010_alteracao_ideprocessofgts --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1010_alteracao_ideprocessofgts" action="{% url 's1010_alteracao_ideprocessofgts_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -648,9 +648,9 @@
 
             {% if tab == 's1010_alteracao_ideprocessosind' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_visualizar' %} 
+                {% if perms.s1010.can_view_s1010_alteracao_ideprocessosind %} 
 
-                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_cadastrar' %}
+                    {% if perms.s1010.change_s1010_alteracao_ideprocessosind or perms.s1010.add_s1010alteracaoideProcessoSIND %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -677,7 +677,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição sindical relativa a rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_cadastrar' %}
+                                        {% if perms.s1010.change_s1010_alteracao_ideprocessosind or perms.s1010.add_s1010alteracaoideProcessoSIND %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -692,7 +692,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessosind_cadastrar' %}            
+                                    {% if perms.s1010.add_s1010alteracaoideProcessoSIND %}            
                                     <!-- begin_form_s1010_alteracao_ideprocessosind --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1010_alteracao_ideprocessosind" action="{% url 's1010_alteracao_ideprocessosind_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -745,9 +745,9 @@
 
             {% if tab == 's1010_alteracao_ideprocessocprp' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_visualizar' %} 
+                {% if perms.s1010.can_view_s1010_alteracao_ideprocessocprp %} 
 
-                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_cadastrar' %}
+                    {% if perms.s1010.change_s1010_alteracao_ideprocessocprp or perms.s1010.add_s1010alteracaoideProcessoCPRP %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -774,7 +774,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Caso o órgão público possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição para RPPS/regime militar relativa à rubrica identificada no evento, as informações deverão ser incluídas neste registro, e o detalhamento do processo deverá ser efetuado através de evento específico na tabela de processos.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_editar' or dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_cadastrar' %}
+                                        {% if perms.s1010.change_s1010_alteracao_ideprocessocprp or perms.s1010.add_s1010alteracaoideProcessoCPRP %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -789,7 +789,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_ideprocessocprp_cadastrar' %}            
+                                    {% if perms.s1010.add_s1010alteracaoideProcessoCPRP %}            
                                     <!-- begin_form_s1010_alteracao_ideprocessocprp --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1010_alteracao_ideprocessocprp" action="{% url 's1010_alteracao_ideprocessocprp_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -842,9 +842,9 @@
 
             {% if tab == 's1010_alteracao_novavalidade' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_visualizar' %} 
+                {% if perms.s1010.can_view_s1010_alteracao_novavalidade %} 
 
-                    {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}
+                    {% if perms.s1010.change_s1010_alteracao_novavalidade or perms.s1010.add_s1010alteracaonovaValidade %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -871,7 +871,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}
+                                        {% if perms.s1010.change_s1010_alteracao_novavalidade or perms.s1010.add_s1010alteracaonovaValidade %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -886,7 +886,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1010_alteracao_novavalidade_cadastrar' %}            
+                                    {% if perms.s1010.add_s1010alteracaonovaValidade %}            
                                     <!-- begin_form_s1010_alteracao_novavalidade --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1010_alteracao_novavalidade" action="{% url 's1010_alteracao_novavalidade_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

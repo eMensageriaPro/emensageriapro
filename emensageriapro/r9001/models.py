@@ -76,14 +76,6 @@ class r9001RCPRB(SoftDeletionModel):
     vlrcrcprb = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrcprbsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -108,7 +100,8 @@ class r9001RCPRB(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001_rcprb", "Can view r9001_rcprb"), )
+            ("can_view_r9001RCPRB", "Can view R9001RCPRB"),
+            ("can_view_menu_r9001RCPRB", "Can view menu R9001RCPRB"),)
             
         ordering = [
             'r9001_infototal',
@@ -144,14 +137,6 @@ class r9001RComl(SoftDeletionModel):
     vlrcrcoml = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrcomlsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -176,7 +161,8 @@ class r9001RComl(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001_rcoml", "Can view r9001_rcoml"), )
+            ("can_view_r9001RComl", "Can view R9001RCOML"),
+            ("can_view_menu_r9001RComl", "Can view menu R9001RCOML"),)
             
         ordering = [
             'r9001_infototal',
@@ -216,14 +202,6 @@ class r9001RPrest(SoftDeletionModel):
     vlrtotalnretprinc = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrtotalnretadic = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -250,7 +228,8 @@ class r9001RPrest(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001_rprest", "Can view r9001_rprest"), )
+            ("can_view_r9001RPrest", "Can view R9001RPREST"),
+            ("can_view_menu_r9001RPrest", "Can view menu R9001RPREST"),)
             
         ordering = [
             'r9001_infototal',
@@ -289,14 +268,6 @@ class r9001RRecEspetDesp(SoftDeletionModel):
     vlrcrrecespetdesp = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrrecespetdespsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -322,7 +293,8 @@ class r9001RRecEspetDesp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001_rrecespetdesp", "Can view r9001_rrecespetdesp"), )
+            ("can_view_r9001RRecEspetDesp", "Can view R9001RRECESPETDESP"),
+            ("can_view_menu_r9001RRecEspetDesp", "Can view menu R9001RRECESPETDESP"),)
             
         ordering = [
             'r9001_infototal',
@@ -361,14 +333,6 @@ class r9001RRecRepAD(SoftDeletionModel):
     vlrcrrecrepad = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrcrrecrepadsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -395,7 +359,8 @@ class r9001RRecRepAD(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001_rrecrepad", "Can view r9001_rrecrepad"), )
+            ("can_view_r9001RRecRepAD", "Can view R9001RRECREPAD"),
+            ("can_view_menu_r9001RRecRepAD", "Can view menu R9001RRECREPAD"),)
             
         ordering = [
             'r9001_infototal',
@@ -433,14 +398,6 @@ class r9001RTom(SoftDeletionModel):
     cno = models.CharField(max_length=12, blank=True, null=True, )
     vlrtotalbaseret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -465,7 +422,8 @@ class r9001RTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001_rtom", "Can view r9001_rtom"), )
+            ("can_view_r9001RTom", "Can view R9001RTOM"),
+            ("can_view_menu_r9001RTom", "Can view menu R9001RTOM"),)
             
         ordering = [
             'r9001_infototal',
@@ -501,14 +459,6 @@ class r9001infoCRTom(SoftDeletionModel):
     vlrcrtom = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrtomsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -532,7 +482,8 @@ class r9001infoCRTom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001_infocrtom", "Can view r9001_infocrtom"), )
+            ("can_view_r9001infoCRTom", "Can view R9001INFOCRTOM"),
+            ("can_view_menu_r9001infoCRTom", "Can view menu R9001INFOCRTOM"),)
             
         ordering = [
             'r9001_rtom',
@@ -567,14 +518,6 @@ class r9001infoTotal(SoftDeletionModel):
     tpinsc = models.IntegerField(null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -599,7 +542,8 @@ class r9001infoTotal(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001_infototal", "Can view r9001_infototal"), )
+            ("can_view_r9001infoTotal", "Can view R9001INFOTOTAL"),
+            ("can_view_menu_r9001infoTotal", "Can view menu R9001INFOTOTAL"),)
             
         ordering = [
             'r9001_evttotal',
@@ -636,14 +580,6 @@ class r9001regOcorrs(SoftDeletionModel):
     codresp = models.CharField(max_length=6, null=True, )
     dscresp = models.CharField(max_length=999, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -670,7 +606,8 @@ class r9001regOcorrs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9001_regocorrs", "Can view r9001_regocorrs"), )
+            ("can_view_r9001regOcorrs", "Can view R9001REGOCORRS"),
+            ("can_view_menu_r9001regOcorrs", "Can view menu R9001REGOCORRS"),)
             
         ordering = [
             'r9001_evttotal',

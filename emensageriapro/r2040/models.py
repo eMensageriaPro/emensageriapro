@@ -77,14 +77,6 @@ class r2040infoProc(SoftDeletionModel):
     codsusp = models.IntegerField(blank=True, null=True, )
     vlrnret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -110,7 +102,8 @@ class r2040infoProc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2040_infoproc", "Can view r2040_infoproc"), )
+            ("can_view_r2040infoProc", "Can view R2040INFOPROC"),
+            ("can_view_menu_r2040infoProc", "Can view menu R2040INFOPROC"),)
             
         ordering = [
             'r2040_recursosrep',
@@ -148,14 +141,6 @@ class r2040infoRecurso(SoftDeletionModel):
     vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrretapur = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -182,7 +167,8 @@ class r2040infoRecurso(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2040_inforecurso", "Can view r2040_inforecurso"), )
+            ("can_view_r2040infoRecurso", "Can view R2040INFORECURSO"),
+            ("can_view_menu_r2040infoRecurso", "Can view menu R2040INFORECURSO"),)
             
         ordering = [
             'r2040_recursosrep',
@@ -221,14 +207,6 @@ class r2040recursosRep(SoftDeletionModel):
     vlrtotalret = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     vlrtotalnret = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -254,7 +232,8 @@ class r2040recursosRep(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2040_recursosrep", "Can view r2040_recursosrep"), )
+            ("can_view_r2040recursosRep", "Can view R2040RECURSOSREP"),
+            ("can_view_menu_r2040recursosRep", "Can view menu R2040RECURSOSREP"),)
             
         ordering = [
             'r2040_evtassocdesprep',

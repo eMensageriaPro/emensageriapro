@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s5001_infocategincid_cadastrar' %}
+                  {% if perms.s5001.add_s5001infoCategIncid %}
                   <a href="{% url 's5001_infocategincid_salvar' hash='{}'|json_return_page:'s5001_infocategincid_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

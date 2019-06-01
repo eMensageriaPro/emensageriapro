@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Detalhamento das informações do Operador Portuário que está sendo incluído (origem S-1080).</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s5011_dadosopport_cadastrar' %}
+                  {% if perms.s5011.add_s5011dadosOpPort %}
                   <a href="{% url 's5011_dadosopport_salvar' hash='{}'|json_return_page:'s5011_dadosopport_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

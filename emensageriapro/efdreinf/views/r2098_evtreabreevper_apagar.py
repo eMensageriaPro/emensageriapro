@@ -64,33 +64,28 @@ from emensageriapro.s1000.forms import form_s1000_exclusao
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         r2098_evtreabreevper_id = int(dict_hash['id'])
+        
     except:
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r2098_evtreabreevper')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
     
-    r2098_evtreabreevper = get_object_or_404(r2098evtReabreEvPer, id = r2098_evtreabreevper_id)
+    r2098_evtreabreevper = get_object_or_404(r2098evtReabreEvPer, id=r2098_evtreabreevper_id)
     
-    if r2098_evtreabreevper_id:
-        if r2098_evtreabreevper.status != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r2098_evtreabreevper_apagar'] = 0
-            dict_permissoes['r2098_evtreabreevper_editar'] = 0
-
     if request.method == 'POST':
+    
         if r2098_evtreabreevper.status == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(r2098_evtreabreevper), indent=4, sort_keys=True, default=str)
             obj = r2098evtReabreEvPer.objects.get(id = r2098_evtreabreevper_id)
             obj.delete(request=request)
@@ -104,19 +99,22 @@ def apagar(request, hash):
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 'r2098_evtreabreevper_salvar':
-            return redirect('r2098_evtreabreevper', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('r2098_evtreabreevper', 
+                            hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], 
+                            hash=request.session['retorno_hash'])
+            
+    context = {
+        'r2098_evtreabreevper': r2098_evtreabreevper, 
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
+        'modulos': ['efdreinf', ],
+        'paginas': ['r2098_evtreabreevper', ],
         'hash': hash,
     }
+    
     return render(request, 'r2098_evtreabreevper_apagar.html', context)

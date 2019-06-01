@@ -65,43 +65,48 @@ from emensageriapro.s5003.forms import form_s5003_infodpsperante
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         s5003_infotrabdps_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s5003_infotrabdps')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if s5003_infotrabdps_id:
-        s5003_infotrabdps = get_object_or_404(s5003infoTrabDps, id = s5003_infotrabdps_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if s5003_infotrabdps_id:
+    
+        s5003_infotrabdps = get_object_or_404(s5003infoTrabDps, id=s5003_infotrabdps_id)
         dados_evento = s5003_infotrabdps.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s5003_infotrabdps_apagar'] = 0
-            dict_permissoes['s5003_infotrabdps_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('s5003.can_view_s5003infoTrabDps'):
+        
         if s5003_infotrabdps_id:
-            s5003_infotrabdps_form = form_s5003_infotrabdps(request.POST or None, instance = s5003_infotrabdps,  
-                                         initial={'excluido': False})
+        
+            s5003_infotrabdps_form = form_s5003_infotrabdps(request.POST or None, 
+                                                          instance=s5003_infotrabdps,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             s5003_infotrabdps_form = form_s5003_infotrabdps(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if s5003_infotrabdps_form.is_valid():
             
                 dados = s5003_infotrabdps_form.cleaned_data
@@ -109,9 +114,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not s5003_infotrabdps_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  's5003_infotrabdps', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s5003_infotrabdps), indent=4, sort_keys=True, default=str),
@@ -119,21 +126,30 @@ def salvar(request, hash):
                                      's5003_infotrabdps', s5003_infotrabdps_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('s5003_infotrabdps_apagar', 's5003_infotrabdps_salvar', 's5003_infotrabdps'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if s5003_infotrabdps_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s5003_infotrabdps_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        s5003_infotrabdps_form = disabled_form_fields(s5003_infotrabdps_form, permissao.permite_editar)
+               
+        s5003_infotrabdps_form = disabled_form_fields(s5003_infotrabdps_form, request.user.has_perm('s5003.change_s5003infoTrabDps'))
         
         if s5003_infotrabdps_id:
+        
             if dados_evento['status'] != 0:
+            
                 s5003_infotrabdps_form = disabled_form_fields(s5003_infotrabdps_form, 0)
                 
         #s5003_infotrabdps_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             s5003_infotrabdps_form = disabled_form_for_print(s5003_infotrabdps_form)
             
         
@@ -143,7 +159,8 @@ def salvar(request, hash):
         s5003_infodpsperante_form = None 
         
         if s5003_infotrabdps_id:
-            s5003_infotrabdps = get_object_or_404(s5003infoTrabDps, id = s5003_infotrabdps_id)
+        
+            s5003_infotrabdps = get_object_or_404(s5003infoTrabDps, id=s5003_infotrabdps_id)
             
             s5003_dpsperapur_form = form_s5003_dpsperapur(
                 initial={ 's5003_infotrabdps': s5003_infotrabdps })
@@ -157,49 +174,52 @@ def salvar(request, hash):
                 filter(s5003_infotrabdps_id=s5003_infotrabdps.id).all()
                 
         else:
+        
             s5003_infotrabdps = None
             
         #s5003_infotrabdps_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 's5003_infotrabdps' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's5003_infotrabdps_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=s5003_infotrabdps_id, tabela='s5003_infotrabdps').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             's5003_infotrabdps': s5003_infotrabdps, 
             's5003_infotrabdps_form': s5003_infotrabdps_form, 
-            'mensagem': mensagem, 
             's5003_infotrabdps_id': int(s5003_infotrabdps_id),
             'usuario': usuario, 
-            
+            'modulos': ['s5003', ],
+            'paginas': ['s5003_infotrabdps', ],
             'hash': hash, 
             
             's5003_dpsperapur_form': s5003_dpsperapur_form,
             's5003_dpsperapur_lista': s5003_dpsperapur_lista,
             's5003_infodpsperante_form': s5003_infodpsperante_form,
             's5003_infodpsperante_lista': s5003_infodpsperante_lista,
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #s5003_infotrabdps_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 's5003_infotrabdps_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -220,7 +240,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('s5003_infotrabdps_salvar.html', context)
             filename = "s5003_infotrabdps.xls"
@@ -229,15 +251,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['s5003', ],
+            'paginas': ['s5003_infotrabdps', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

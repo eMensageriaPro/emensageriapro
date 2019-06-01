@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro preenchido por Pessoa Jurídica em geral, quando o estabelecimento identificado no registro superior efetuar aquisição de produtos rurais de pessoa física</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1250_tpaquis_cadastrar' %}
+                  {% if perms.s1250.add_s1250tpAquis %}
                   <a href="{% url 's1250_tpaquis_salvar' hash='{}'|json_return_page:'s1250_tpaquis_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

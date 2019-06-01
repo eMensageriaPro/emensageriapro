@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s2200_trabtemporario_visualizar' %}
+                    {% if perms.s2200.can_view_s2200trabTemporario %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's2200_trabtemporario_salvar' hash='{}'|json_return_page:'s2200_trabtemporario_salvar'|json_return_hash:hash|json_id:s2200_trabtemporario_id|json_print:0|base64_encode_me %}">
                             Dados sobre trabalho temporário. Preenchimento obrigatório na contratação de trabalhador temporário.
@@ -62,14 +62,14 @@
                     {% endif %}
                     {% if s2200_trabtemporario_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_ideestabvinc_visualizar' %}
+                            {% if perms.s2200.can_view_s2200_ideestabvinc %}
                                 <li {% if tab == 's2200_ideestabvinc' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_trabtemporario_salvar' hash='{}'|json_id:s2200_trabtemporario_id|json_print:0|json_tab:'s2200_ideestabvinc'|base64_encode_me %}">
                                     Identificação do estabelecimento ao qual o trabalhador temporário está vinculado</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s2200_idetrabsubstituido_visualizar' %}
+                            {% if perms.s2200.can_view_s2200_idetrabsubstituido %}
                                 <li {% if tab == 's2200_idetrabsubstituido' %} class="active"{% endif %} >
                                     <a href="{% url 's2200_trabtemporario_salvar' hash='{}'|json_id:s2200_trabtemporario_id|json_print:0|json_tab:'s2200_idetrabsubstituido'|base64_encode_me %}">
                                     Identificação do(s) trabalhador(es) substituído(s)</a>
@@ -188,7 +188,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s2200_trabtemporario_editar' or dict_permissoes|get_permissao:'s2200_trabtemporario_cadastrar' %}
+            {% if perms.s2200.change_s2200_trabtemporario or perms.s2200.add_s2200_trabtemporario %}
                 <form action="#" id="id_form_s2200_trabtemporario" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -215,7 +215,7 @@
                             <!-- botões especiais -->
                             {% if s2200_trabtemporario_id %}
 
-                                {% if dict_permissoes|get_permissao:'s2200_trabtemporario_cadastrar' %}
+                                {% if perms.s2200.add_s2200trabTemporario %}
                                     <a href="{% url 's2200_trabtemporario_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -227,7 +227,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2200_trabtemporario_listar' or dict_permissoes|get_permissao:'s2200_trabtemporario_listar' %}
+                            {% if perms.s2200.can_view_s2200_trabtemporario or perms.s2200.can_view_s2200_trabtemporario %}
                                 <a href="{% url 's2200_trabtemporario'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -236,7 +236,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2200_trabtemporario_visualizar' and s2200_trabtemporario_id %}
+                            {% if perms.s2200.can_view_s2200_trabtemporario and s2200_trabtemporario_id %}
                                 <a href="{% url 's2200_trabtemporario_salvar' hash='{}'|json_id:s2200_trabtemporario_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -245,7 +245,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s2200_trabtemporario_visualizar' and s2200_trabtemporario_id %}
+                            {% if perms.s2200.can_view_s2200_trabtemporario and s2200_trabtemporario_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -272,7 +272,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2200_trabtemporario_editar' or dict_permissoes|get_permissao:'s2200_trabtemporario_cadastrar' %}
+                            {% if perms.s2200.change_s2200_trabtemporario or perms.s2200.add_s2200_trabtemporario %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -281,7 +281,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s2200_trabtemporario_apagar' and s2200_trabtemporario_id %}
+                            {% if perms.s2200.delete_s2200_trabtemporario and s2200_trabtemporario_id %}
 
                             <a href="{% url 's2200_trabtemporario_apagar' hash='{}'|json_id:s2200_trabtemporario_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -303,7 +303,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s2200_trabtemporario_editar' or dict_permissoes|get_permissao:'s2200_trabtemporario_cadastrar' %}
+                    {% if perms.s2200.change_s2200_trabtemporario or perms.s2200.add_s2200_trabtemporario %}
                         </form>
                     {% endif %}
 
@@ -329,9 +329,9 @@
 
             {% if tab == 's2200_ideestabvinc' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2200_ideestabvinc_visualizar' %} 
+                {% if perms.s2200.can_view_s2200_ideestabvinc %} 
 
-                    {% if dict_permissoes|get_permissao:'s2200_ideestabvinc_editar' or dict_permissoes|get_permissao:'s2200_ideestabvinc_cadastrar' %}
+                    {% if perms.s2200.change_s2200_ideestabvinc or perms.s2200.add_s2200ideEstabVinc %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -358,7 +358,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Identificação do estabelecimento ao qual o trabalhador temporário está vinculado</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2200_ideestabvinc_editar' or dict_permissoes|get_permissao:'s2200_ideestabvinc_cadastrar' %}
+                                        {% if perms.s2200.change_s2200_ideestabvinc or perms.s2200.add_s2200ideEstabVinc %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -373,7 +373,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2200_ideestabvinc_cadastrar' %}            
+                                    {% if perms.s2200.add_s2200ideEstabVinc %}            
                                     <!-- begin_form_s2200_ideestabvinc --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2200_ideestabvinc" action="{% url 's2200_ideestabvinc_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -426,9 +426,9 @@
 
             {% if tab == 's2200_idetrabsubstituido' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s2200_idetrabsubstituido_visualizar' %} 
+                {% if perms.s2200.can_view_s2200_idetrabsubstituido %} 
 
-                    {% if dict_permissoes|get_permissao:'s2200_idetrabsubstituido_editar' or dict_permissoes|get_permissao:'s2200_idetrabsubstituido_cadastrar' %}
+                    {% if perms.s2200.change_s2200_idetrabsubstituido or perms.s2200.add_s2200ideTrabSubstituido %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -455,7 +455,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Identificação do(s) trabalhador(es) substituído(s)</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s2200_idetrabsubstituido_editar' or dict_permissoes|get_permissao:'s2200_idetrabsubstituido_cadastrar' %}
+                                        {% if perms.s2200.change_s2200_idetrabsubstituido or perms.s2200.add_s2200ideTrabSubstituido %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -470,7 +470,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s2200_idetrabsubstituido_cadastrar' %}            
+                                    {% if perms.s2200.add_s2200ideTrabSubstituido %}            
                                     <!-- begin_form_s2200_idetrabsubstituido --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s2200_idetrabsubstituido" action="{% url 's2200_idetrabsubstituido_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

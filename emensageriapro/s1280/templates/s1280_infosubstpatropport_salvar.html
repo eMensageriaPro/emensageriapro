@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_visualizar' %}
+                    {% if perms.s1280.can_view_s1280infoSubstPatrOpPort %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1280_infosubstpatropport_salvar' hash='{}'|json_return_page:'s1280_infosubstpatropport_salvar'|json_return_hash:hash|json_id:s1280_infosubstpatropport_id|json_print:0|base64_encode_me %}">
                             Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_editar' or dict_permissoes|get_permissao:'s1280_infosubstpatropport_cadastrar' %}
+            {% if perms.s1280.change_s1280_infosubstpatropport or perms.s1280.add_s1280_infosubstpatropport %}
                 <form action="#" id="id_form_s1280_infosubstpatropport" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s1280_infosubstpatropport_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_cadastrar' %}
+                                {% if perms.s1280.add_s1280infoSubstPatrOpPort %}
                                     <a href="{% url 's1280_infosubstpatropport_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_listar' or dict_permissoes|get_permissao:'s1280_infosubstpatropport_listar' %}
+                            {% if perms.s1280.can_view_s1280_infosubstpatropport or perms.s1280.can_view_s1280_infosubstpatropport %}
                                 <a href="{% url 's1280_infosubstpatropport'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_visualizar' and s1280_infosubstpatropport_id %}
+                            {% if perms.s1280.can_view_s1280_infosubstpatropport and s1280_infosubstpatropport_id %}
                                 <a href="{% url 's1280_infosubstpatropport_salvar' hash='{}'|json_id:s1280_infosubstpatropport_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_visualizar' and s1280_infosubstpatropport_id %}
+                            {% if perms.s1280.can_view_s1280_infosubstpatropport and s1280_infosubstpatropport_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_editar' or dict_permissoes|get_permissao:'s1280_infosubstpatropport_cadastrar' %}
+                            {% if perms.s1280.change_s1280_infosubstpatropport or perms.s1280.add_s1280_infosubstpatropport %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_apagar' and s1280_infosubstpatropport_id %}
+                            {% if perms.s1280.delete_s1280_infosubstpatropport and s1280_infosubstpatropport_id %}
 
                             <a href="{% url 's1280_infosubstpatropport_apagar' hash='{}'|json_id:s1280_infosubstpatropport_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_editar' or dict_permissoes|get_permissao:'s1280_infosubstpatropport_cadastrar' %}
+                    {% if perms.s1280.change_s1280_infosubstpatropport or perms.s1280.add_s1280_infosubstpatropport %}
                         </form>
                     {% endif %}
 

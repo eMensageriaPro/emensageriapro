@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
+                {% if perms.efdreinf.can_view_r9002evtRet %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_return_page:'r9002_evtret_salvar'|json_return_hash:hash|json_id:r9002_evtret_id|json_print:0|base64_encode_me %}">
                     R-9002 - Informações de bases e tributos por evento - Retenções na fonte</a>
@@ -58,182 +58,182 @@
                 {% if r9002_evtret_id %}
                     
                         
-                            {% if dict_permissoes|get_permissao:'r1000_evtinfocontri_visualizar' %}
+                            {% if perms.efdreinf.can_view_r1000_evtinfocontri %}
                                 <li {% if tab == 'r1000_evtinfocontri' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r1000_evtinfocontri'|base64_encode_me %}">
                                     R-1000 - Informações do Contribuinte</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r1070_evttabprocesso_visualizar' %}
+                            {% if perms.efdreinf.can_view_r1070_evttabprocesso %}
                                 <li {% if tab == 'r1070_evttabprocesso' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r1070_evttabprocesso'|base64_encode_me %}">
                                     R-1070 - Tabela de Processos Administrativos/Judiciais</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2010_evtservtom_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2010_evtservtom %}
                                 <li {% if tab == 'r2010_evtservtom' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r2010_evtservtom'|base64_encode_me %}">
                                     R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2020_evtservprest_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2020_evtservprest %}
                                 <li {% if tab == 'r2020_evtservprest' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r2020_evtservprest'|base64_encode_me %}">
                                     R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2030_evtassocdesprec %}
                                 <li {% if tab == 'r2030_evtassocdesprec' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r2030_evtassocdesprec'|base64_encode_me %}">
                                     R-2030 - Recursos Recebidos por Associação Desportiva</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2040_evtassocdesprep_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2040_evtassocdesprep %}
                                 <li {% if tab == 'r2040_evtassocdesprep' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r2040_evtassocdesprep'|base64_encode_me %}">
                                     R-2040 - Recursos Repassados para Associação Desportiva</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2050_evtcomprod_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2050_evtcomprod %}
                                 <li {% if tab == 'r2050_evtcomprod' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r2050_evtcomprod'|base64_encode_me %}">
                                     R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2060_evtcprb_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2060_evtcprb %}
                                 <li {% if tab == 'r2060_evtcprb' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r2060_evtcprb'|base64_encode_me %}">
                                     R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2070_evtpgtosdivs %}
                                 <li {% if tab == 'r2070_evtpgtosdivs' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r2070_evtpgtosdivs'|base64_encode_me %}">
                                     R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2098_evtreabreevper_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2098_evtreabreevper %}
                                 <li {% if tab == 'r2098_evtreabreevper' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r2098_evtreabreevper'|base64_encode_me %}">
                                     R-2098 - Reabertura dos Eventos Periódicos</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r2099_evtfechaevper_visualizar' %}
+                            {% if perms.efdreinf.can_view_r2099_evtfechaevper %}
                                 <li {% if tab == 'r2099_evtfechaevper' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r2099_evtfechaevper'|base64_encode_me %}">
                                     R-2099 - Fechamento dos Eventos Periódicos</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_visualizar' %}
+                            {% if perms.efdreinf.can_view_r3010_evtespdesportivo %}
                                 <li {% if tab == 'r3010_evtespdesportivo' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r3010_evtespdesportivo'|base64_encode_me %}">
                                     R-3010 - Receita de Espetáculo Desportivo</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %}
+                            {% if perms.efdreinf.can_view_r4010_evtretpf %}
                                 <li {% if tab == 'r4010_evtretpf' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r4010_evtretpf'|base64_encode_me %}">
                                     R-4010 - Retenções na Fonte - Pessoa Física</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r4020_evtretpj_visualizar' %}
+                            {% if perms.efdreinf.can_view_r4020_evtretpj %}
                                 <li {% if tab == 'r4020_evtretpj' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r4020_evtretpj'|base64_encode_me %}">
                                     R-4020 - Retenções na Fonte - Pessoa Jurídica</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %}
+                            {% if perms.efdreinf.can_view_r4040_evtbenefnid %}
                                 <li {% if tab == 'r4040_evtbenefnid' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r4040_evtbenefnid'|base64_encode_me %}">
                                     R-4040 - Retenções na Fonte - Beneficiários não identificados</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r4098_evtreab_visualizar' %}
+                            {% if perms.efdreinf.can_view_r4098_evtreab %}
                                 <li {% if tab == 'r4098_evtreab' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r4098_evtreab'|base64_encode_me %}">
                                     R-4098 - Reabertura dos Eventos Periódicos Série R-4000</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r4099_evtfech_visualizar' %}
+                            {% if perms.efdreinf.can_view_r4099_evtfech %}
                                 <li {% if tab == 'r4099_evtfech' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r4099_evtfech'|base64_encode_me %}">
                                     R-4099 - Fechamento dos Eventos Periódicos Série R-4000</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %}
+                            {% if perms.efdreinf.can_view_r5001_evttotal %}
                                 <li {% if tab == 'r5001_evttotal' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r5001_evttotal'|base64_encode_me %}">
                                     R-5001 - Informações de bases e tributos por evento</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %}
+                            {% if perms.efdreinf.can_view_r5011_evttotalcontrib %}
                                 <li {% if tab == 'r5011_evttotalcontrib' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r5011_evttotalcontrib'|base64_encode_me %}">
                                     R-5011 - Informações de bases e tributos consolidadas por período de apuração</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %}
+                            {% if perms.efdreinf.can_view_r9000_evtexclusao %}
                                 <li {% if tab == 'r9000_evtexclusao' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r9000_evtexclusao'|base64_encode_me %}">
                                     R-9000 - Exclusão de Eventos</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %}
+                            {% if perms.efdreinf.can_view_r9001_evttotal %}
                                 <li {% if tab == 'r9001_evttotal' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r9001_evttotal'|base64_encode_me %}">
                                     R-9001 - Informações de bases e tributos por evento - Contrib. Previdenc.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %}
+                            {% if perms.efdreinf.can_view_r9002_evtret %}
                                 <li {% if tab == 'r9002_evtret' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r9002_evtret'|base64_encode_me %}">
                                     R-9002 - Informações de bases e tributos por evento - Retenções na fonte</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9011_evttotalcontrib_visualizar' %}
+                            {% if perms.efdreinf.can_view_r9011_evttotalcontrib %}
                                 <li {% if tab == 'r9011_evttotalcontrib' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r9011_evttotalcontrib'|base64_encode_me %}">
                                     R-9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9012_evtretcons_visualizar' %}
+                            {% if perms.efdreinf.can_view_r9012_evtretcons %}
                                 <li {% if tab == 'r9012_evtretcons' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r9012_evtretcons'|base64_encode_me %}">
                                     R-9012 - Informações consolidadas de bases e tributos - Retenções na fonte</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9002_regocorrs_visualizar' %}
+                            {% if perms.efdreinf.can_view_r9002_regocorrs %}
                                 <li {% if tab == 'r9002_regocorrs' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r9002_regocorrs'|base64_encode_me %}">
                                     Informações de ocorrências registradas</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'r9002_infototal_visualizar' %}
+                            {% if perms.efdreinf.can_view_r9002_infototal %}
                                 <li {% if tab == 'r9002_infototal' %} class="active"{% endif %} >
                                     <a href="{% url 'r9002_evtret_salvar' hash='{}'|json_id:r9002_evtret_id|json_print:0|json_tab:'r9002_infototal'|base64_encode_me %}">
                                     Informações relativas a totalizadores de bases e tributos</a>
@@ -330,7 +330,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'r9002_evtret_editar' or dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}
+               {% if perms.efdreinf.change_r9002_evtret or perms.efdreinf.add_r9002_evtret %}
                {% if r9002_evtret_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_r9002_evtret" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -352,8 +352,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if r9002_evtret_id %}
-                           {% if dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}<a href="{% url 'r9002_evtret_verificar'  hash='{}'|json_id:r9002_evtret_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}
+                           {% if perms.efdreinf.add_r9002evtRet %}<a href="{% url 'r9002_evtret_verificar'  hash='{}'|json_id:r9002_evtret_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r9002evtRet %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -370,7 +370,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}
+                           {% if perms.efdreinf.add_r9002evtRet %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -391,29 +391,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}<a href="{% url 'r9002_evtret_xml'  hash='{}'|json_id:r9002_evtret_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r9002evtRet %}<a href="{% url 'r9002_evtret_xml'  hash='{}'|json_id:r9002_evtret_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if r9002_evtret.status == STATUS_EVENTO_CADASTRADO or r9002_evtret.status == STATUS_EVENTO_IMPORTADO or r9002_evtret.status == STATUS_EVENTO_DUPLICADO or r9002_evtret.status == STATUS_EVENTO_GERADO or r9002_evtret.status == STATUS_EVENTO_ASSINADO or r9002_evtret.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}
+                           {% if perms.efdreinf.add_r9002evtRet %}
                            <a href="{% url 'r9002_evtret_validar_evento' hash='{}'|json_id:r9002_evtret_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}<a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.add_r9002evtRet %}<a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r9002_evtret_listar' or dict_permissoes|get_permissao:'r9002_evtret_listar' %}<a href="{% url 'r9002_evtret'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' and r9002_evtret_id %}<a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'r9002_evtret_editar' or dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}
+                           {% if perms.efdreinf.can_view_r9002_evtret or perms.efdreinf.can_view_r9002_evtret %}<a href="{% url 'r9002_evtret'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.can_view_r9002_evtret and r9002_evtret_id %}<a href="{% url 'r9002_evtret_salvar'  hash='{}'|json_id:r9002_evtret_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.change_r9002_evtret or perms.efdreinf.add_r9002_evtret %}
                            {% if r9002_evtret_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'r9002_evtret_apagar' and r9002_evtret_id %}<a href="{% url 'r9002_evtret_apagar'  hash='{}'|json_id:r9002_evtret_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.efdreinf.delete_r9002_evtret and r9002_evtret_id %}<a href="{% url 'r9002_evtret_apagar'  hash='{}'|json_id:r9002_evtret_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'r9002_evtret_editar' or dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}
+                  {% if perms.efdreinf.change_r9002_evtret or perms.efdreinf.add_r9002_evtret %}
                {% if r9002_evtret_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}
@@ -469,9 +469,9 @@
 
 {% if tab == 'r1000_evtinfocontri' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r1000_evtinfocontri_visualizar' %} 
+{% if perms.efdreinf.can_view_r1000_evtinfocontri %} 
 
-{% if dict_permissoes|get_permissao:'r1000_evtinfocontri_editar' or dict_permissoes|get_permissao:'r1000_evtinfocontri_cadastrar' %}
+{% if perms.efdreinf.change_r1000_evtinfocontri or perms.efdreinf.add_r1000evtInfoContri %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -497,7 +497,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-1000 - Informações do Contribuinte</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r1000_evtinfocontri_editar' or dict_permissoes|get_permissao:'r1000_evtinfocontri_cadastrar' %}
+          {% if perms.efdreinf.change_r1000_evtinfocontri or perms.efdreinf.add_r1000evtInfoContri %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -506,7 +506,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r1000_evtinfocontri_cadastrar' %}            
+        {% if perms.efdreinf.add_r1000evtInfoContri %}            
 
 
 
@@ -564,9 +564,9 @@ function CadastroListagem() {
 
 {% if tab == 'r1070_evttabprocesso' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r1070_evttabprocesso_visualizar' %} 
+{% if perms.efdreinf.can_view_r1070_evttabprocesso %} 
 
-{% if dict_permissoes|get_permissao:'r1070_evttabprocesso_editar' or dict_permissoes|get_permissao:'r1070_evttabprocesso_cadastrar' %}
+{% if perms.efdreinf.change_r1070_evttabprocesso or perms.efdreinf.add_r1070evtTabProcesso %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -592,7 +592,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-1070 - Tabela de Processos Administrativos/Judiciais</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r1070_evttabprocesso_editar' or dict_permissoes|get_permissao:'r1070_evttabprocesso_cadastrar' %}
+          {% if perms.efdreinf.change_r1070_evttabprocesso or perms.efdreinf.add_r1070evtTabProcesso %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -601,7 +601,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r1070_evttabprocesso_cadastrar' %}            
+        {% if perms.efdreinf.add_r1070evtTabProcesso %}            
 
 
 
@@ -659,9 +659,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2010_evtservtom' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2010_evtservtom_visualizar' %} 
+{% if perms.efdreinf.can_view_r2010_evtservtom %} 
 
-{% if dict_permissoes|get_permissao:'r2010_evtservtom_editar' or dict_permissoes|get_permissao:'r2010_evtservtom_cadastrar' %}
+{% if perms.efdreinf.change_r2010_evtservtom or perms.efdreinf.add_r2010evtServTom %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -687,7 +687,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-2010 - Retenção Contribuição Previdenciária - Serviços Tomados</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2010_evtservtom_editar' or dict_permissoes|get_permissao:'r2010_evtservtom_cadastrar' %}
+          {% if perms.efdreinf.change_r2010_evtservtom or perms.efdreinf.add_r2010evtServTom %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -696,7 +696,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2010_evtservtom_cadastrar' %}            
+        {% if perms.efdreinf.add_r2010evtServTom %}            
 
 
 
@@ -754,9 +754,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2020_evtservprest' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2020_evtservprest_visualizar' %} 
+{% if perms.efdreinf.can_view_r2020_evtservprest %} 
 
-{% if dict_permissoes|get_permissao:'r2020_evtservprest_editar' or dict_permissoes|get_permissao:'r2020_evtservprest_cadastrar' %}
+{% if perms.efdreinf.change_r2020_evtservprest or perms.efdreinf.add_r2020evtServPrest %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -782,7 +782,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-2020 - Retenção Contribuição Previdenciária - Serviços Prestados</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2020_evtservprest_editar' or dict_permissoes|get_permissao:'r2020_evtservprest_cadastrar' %}
+          {% if perms.efdreinf.change_r2020_evtservprest or perms.efdreinf.add_r2020evtServPrest %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -791,7 +791,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2020_evtservprest_cadastrar' %}            
+        {% if perms.efdreinf.add_r2020evtServPrest %}            
 
 
 
@@ -849,9 +849,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2030_evtassocdesprec' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_visualizar' %} 
+{% if perms.efdreinf.can_view_r2030_evtassocdesprec %} 
 
-{% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_editar' or dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}
+{% if perms.efdreinf.change_r2030_evtassocdesprec or perms.efdreinf.add_r2030evtAssocDespRec %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -877,7 +877,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-2030 - Recursos Recebidos por Associação Desportiva</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_editar' or dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}
+          {% if perms.efdreinf.change_r2030_evtassocdesprec or perms.efdreinf.add_r2030evtAssocDespRec %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -886,7 +886,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2030_evtassocdesprec_cadastrar' %}            
+        {% if perms.efdreinf.add_r2030evtAssocDespRec %}            
 
 
 
@@ -944,9 +944,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2040_evtassocdesprep' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2040_evtassocdesprep_visualizar' %} 
+{% if perms.efdreinf.can_view_r2040_evtassocdesprep %} 
 
-{% if dict_permissoes|get_permissao:'r2040_evtassocdesprep_editar' or dict_permissoes|get_permissao:'r2040_evtassocdesprep_cadastrar' %}
+{% if perms.efdreinf.change_r2040_evtassocdesprep or perms.efdreinf.add_r2040evtAssocDespRep %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -972,7 +972,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-2040 - Recursos Repassados para Associação Desportiva</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2040_evtassocdesprep_editar' or dict_permissoes|get_permissao:'r2040_evtassocdesprep_cadastrar' %}
+          {% if perms.efdreinf.change_r2040_evtassocdesprep or perms.efdreinf.add_r2040evtAssocDespRep %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -981,7 +981,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2040_evtassocdesprep_cadastrar' %}            
+        {% if perms.efdreinf.add_r2040evtAssocDespRep %}            
 
 
 
@@ -1039,9 +1039,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2050_evtcomprod' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2050_evtcomprod_visualizar' %} 
+{% if perms.efdreinf.can_view_r2050_evtcomprod %} 
 
-{% if dict_permissoes|get_permissao:'r2050_evtcomprod_editar' or dict_permissoes|get_permissao:'r2050_evtcomprod_cadastrar' %}
+{% if perms.efdreinf.change_r2050_evtcomprod or perms.efdreinf.add_r2050evtComProd %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1067,7 +1067,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-2050 - Comercialização da Produção por Produtor Rural PJ/Agroindústria</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2050_evtcomprod_editar' or dict_permissoes|get_permissao:'r2050_evtcomprod_cadastrar' %}
+          {% if perms.efdreinf.change_r2050_evtcomprod or perms.efdreinf.add_r2050evtComProd %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1076,7 +1076,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2050_evtcomprod_cadastrar' %}            
+        {% if perms.efdreinf.add_r2050evtComProd %}            
 
 
 
@@ -1134,9 +1134,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2060_evtcprb' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2060_evtcprb_visualizar' %} 
+{% if perms.efdreinf.can_view_r2060_evtcprb %} 
 
-{% if dict_permissoes|get_permissao:'r2060_evtcprb_editar' or dict_permissoes|get_permissao:'r2060_evtcprb_cadastrar' %}
+{% if perms.efdreinf.change_r2060_evtcprb or perms.efdreinf.add_r2060evtCPRB %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1162,7 +1162,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-2060 - Contribuição Previdenciária sobre a Receita Bruta - CPRB</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2060_evtcprb_editar' or dict_permissoes|get_permissao:'r2060_evtcprb_cadastrar' %}
+          {% if perms.efdreinf.change_r2060_evtcprb or perms.efdreinf.add_r2060evtCPRB %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1171,7 +1171,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2060_evtcprb_cadastrar' %}            
+        {% if perms.efdreinf.add_r2060evtCPRB %}            
 
 
 
@@ -1229,9 +1229,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2070_evtpgtosdivs' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_visualizar' %} 
+{% if perms.efdreinf.can_view_r2070_evtpgtosdivs %} 
 
-{% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_editar' or dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}
+{% if perms.efdreinf.change_r2070_evtpgtosdivs or perms.efdreinf.add_r2070evtPgtosDivs %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1257,7 +1257,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-2070 - Retenções na Fonte - IR, CSLL, Cofins, PIS/PASEP</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_editar' or dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}
+          {% if perms.efdreinf.change_r2070_evtpgtosdivs or perms.efdreinf.add_r2070evtPgtosDivs %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1266,7 +1266,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2070_evtpgtosdivs_cadastrar' %}            
+        {% if perms.efdreinf.add_r2070evtPgtosDivs %}            
 
 
 
@@ -1324,9 +1324,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2098_evtreabreevper' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2098_evtreabreevper_visualizar' %} 
+{% if perms.efdreinf.can_view_r2098_evtreabreevper %} 
 
-{% if dict_permissoes|get_permissao:'r2098_evtreabreevper_editar' or dict_permissoes|get_permissao:'r2098_evtreabreevper_cadastrar' %}
+{% if perms.efdreinf.change_r2098_evtreabreevper or perms.efdreinf.add_r2098evtReabreEvPer %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1352,7 +1352,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-2098 - Reabertura dos Eventos Periódicos</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2098_evtreabreevper_editar' or dict_permissoes|get_permissao:'r2098_evtreabreevper_cadastrar' %}
+          {% if perms.efdreinf.change_r2098_evtreabreevper or perms.efdreinf.add_r2098evtReabreEvPer %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1361,7 +1361,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2098_evtreabreevper_cadastrar' %}            
+        {% if perms.efdreinf.add_r2098evtReabreEvPer %}            
 
 
 
@@ -1419,9 +1419,9 @@ function CadastroListagem() {
 
 {% if tab == 'r2099_evtfechaevper' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r2099_evtfechaevper_visualizar' %} 
+{% if perms.efdreinf.can_view_r2099_evtfechaevper %} 
 
-{% if dict_permissoes|get_permissao:'r2099_evtfechaevper_editar' or dict_permissoes|get_permissao:'r2099_evtfechaevper_cadastrar' %}
+{% if perms.efdreinf.change_r2099_evtfechaevper or perms.efdreinf.add_r2099evtFechaEvPer %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1447,7 +1447,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-2099 - Fechamento dos Eventos Periódicos</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r2099_evtfechaevper_editar' or dict_permissoes|get_permissao:'r2099_evtfechaevper_cadastrar' %}
+          {% if perms.efdreinf.change_r2099_evtfechaevper or perms.efdreinf.add_r2099evtFechaEvPer %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1456,7 +1456,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r2099_evtfechaevper_cadastrar' %}            
+        {% if perms.efdreinf.add_r2099evtFechaEvPer %}            
 
 
 
@@ -1514,9 +1514,9 @@ function CadastroListagem() {
 
 {% if tab == 'r3010_evtespdesportivo' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_visualizar' %} 
+{% if perms.efdreinf.can_view_r3010_evtespdesportivo %} 
 
-{% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_editar' or dict_permissoes|get_permissao:'r3010_evtespdesportivo_cadastrar' %}
+{% if perms.efdreinf.change_r3010_evtespdesportivo or perms.efdreinf.add_r3010evtEspDesportivo %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1542,7 +1542,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-3010 - Receita de Espetáculo Desportivo</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_editar' or dict_permissoes|get_permissao:'r3010_evtespdesportivo_cadastrar' %}
+          {% if perms.efdreinf.change_r3010_evtespdesportivo or perms.efdreinf.add_r3010evtEspDesportivo %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1551,7 +1551,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r3010_evtespdesportivo_cadastrar' %}            
+        {% if perms.efdreinf.add_r3010evtEspDesportivo %}            
 
 
 
@@ -1609,9 +1609,9 @@ function CadastroListagem() {
 
 {% if tab == 'r4010_evtretpf' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r4010_evtretpf_visualizar' %} 
+{% if perms.efdreinf.can_view_r4010_evtretpf %} 
 
-{% if dict_permissoes|get_permissao:'r4010_evtretpf_editar' or dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}
+{% if perms.efdreinf.change_r4010_evtretpf or perms.efdreinf.add_r4010evtRetPF %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1637,7 +1637,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-4010 - Retenções na Fonte - Pessoa Física</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r4010_evtretpf_editar' or dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}
+          {% if perms.efdreinf.change_r4010_evtretpf or perms.efdreinf.add_r4010evtRetPF %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1646,7 +1646,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r4010_evtretpf_cadastrar' %}            
+        {% if perms.efdreinf.add_r4010evtRetPF %}            
 
 
 
@@ -1704,9 +1704,9 @@ function CadastroListagem() {
 
 {% if tab == 'r4020_evtretpj' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r4020_evtretpj_visualizar' %} 
+{% if perms.efdreinf.can_view_r4020_evtretpj %} 
 
-{% if dict_permissoes|get_permissao:'r4020_evtretpj_editar' or dict_permissoes|get_permissao:'r4020_evtretpj_cadastrar' %}
+{% if perms.efdreinf.change_r4020_evtretpj or perms.efdreinf.add_r4020evtRetPJ %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1732,7 +1732,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-4020 - Retenções na Fonte - Pessoa Jurídica</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r4020_evtretpj_editar' or dict_permissoes|get_permissao:'r4020_evtretpj_cadastrar' %}
+          {% if perms.efdreinf.change_r4020_evtretpj or perms.efdreinf.add_r4020evtRetPJ %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1741,7 +1741,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r4020_evtretpj_cadastrar' %}            
+        {% if perms.efdreinf.add_r4020evtRetPJ %}            
 
 
 
@@ -1799,9 +1799,9 @@ function CadastroListagem() {
 
 {% if tab == 'r4040_evtbenefnid' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r4040_evtbenefnid_visualizar' %} 
+{% if perms.efdreinf.can_view_r4040_evtbenefnid %} 
 
-{% if dict_permissoes|get_permissao:'r4040_evtbenefnid_editar' or dict_permissoes|get_permissao:'r4040_evtbenefnid_cadastrar' %}
+{% if perms.efdreinf.change_r4040_evtbenefnid or perms.efdreinf.add_r4040evtBenefNId %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1827,7 +1827,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-4040 - Retenções na Fonte - Beneficiários não identificados</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_editar' or dict_permissoes|get_permissao:'r4040_evtbenefnid_cadastrar' %}
+          {% if perms.efdreinf.change_r4040_evtbenefnid or perms.efdreinf.add_r4040evtBenefNId %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1836,7 +1836,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r4040_evtbenefnid_cadastrar' %}            
+        {% if perms.efdreinf.add_r4040evtBenefNId %}            
 
 
 
@@ -1894,9 +1894,9 @@ function CadastroListagem() {
 
 {% if tab == 'r4098_evtreab' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r4098_evtreab_visualizar' %} 
+{% if perms.efdreinf.can_view_r4098_evtreab %} 
 
-{% if dict_permissoes|get_permissao:'r4098_evtreab_editar' or dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}
+{% if perms.efdreinf.change_r4098_evtreab or perms.efdreinf.add_r4098evtReab %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -1922,7 +1922,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-4098 - Reabertura dos Eventos Periódicos Série R-4000</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r4098_evtreab_editar' or dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}
+          {% if perms.efdreinf.change_r4098_evtreab or perms.efdreinf.add_r4098evtReab %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -1931,7 +1931,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r4098_evtreab_cadastrar' %}            
+        {% if perms.efdreinf.add_r4098evtReab %}            
 
 
 
@@ -1989,9 +1989,9 @@ function CadastroListagem() {
 
 {% if tab == 'r4099_evtfech' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r4099_evtfech_visualizar' %} 
+{% if perms.efdreinf.can_view_r4099_evtfech %} 
 
-{% if dict_permissoes|get_permissao:'r4099_evtfech_editar' or dict_permissoes|get_permissao:'r4099_evtfech_cadastrar' %}
+{% if perms.efdreinf.change_r4099_evtfech or perms.efdreinf.add_r4099evtFech %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2017,7 +2017,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-4099 - Fechamento dos Eventos Periódicos Série R-4000</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r4099_evtfech_editar' or dict_permissoes|get_permissao:'r4099_evtfech_cadastrar' %}
+          {% if perms.efdreinf.change_r4099_evtfech or perms.efdreinf.add_r4099evtFech %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2026,7 +2026,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r4099_evtfech_cadastrar' %}            
+        {% if perms.efdreinf.add_r4099evtFech %}            
 
 
 
@@ -2084,9 +2084,9 @@ function CadastroListagem() {
 
 {% if tab == 'r5001_evttotal' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r5001_evttotal_visualizar' %} 
+{% if perms.efdreinf.can_view_r5001_evttotal %} 
 
-{% if dict_permissoes|get_permissao:'r5001_evttotal_editar' or dict_permissoes|get_permissao:'r5001_evttotal_cadastrar' %}
+{% if perms.efdreinf.change_r5001_evttotal or perms.efdreinf.add_r5001evtTotal %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2112,7 +2112,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-5001 - Informações de bases e tributos por evento</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r5001_evttotal_editar' or dict_permissoes|get_permissao:'r5001_evttotal_cadastrar' %}
+          {% if perms.efdreinf.change_r5001_evttotal or perms.efdreinf.add_r5001evtTotal %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2121,7 +2121,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r5001_evttotal_cadastrar' %}            
+        {% if perms.efdreinf.add_r5001evtTotal %}            
 
 
 
@@ -2179,9 +2179,9 @@ function CadastroListagem() {
 
 {% if tab == 'r5011_evttotalcontrib' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_visualizar' %} 
+{% if perms.efdreinf.can_view_r5011_evttotalcontrib %} 
 
-{% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_editar' or dict_permissoes|get_permissao:'r5011_evttotalcontrib_cadastrar' %}
+{% if perms.efdreinf.change_r5011_evttotalcontrib or perms.efdreinf.add_r5011evtTotalContrib %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2207,7 +2207,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-5011 - Informações de bases e tributos consolidadas por período de apuração</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_editar' or dict_permissoes|get_permissao:'r5011_evttotalcontrib_cadastrar' %}
+          {% if perms.efdreinf.change_r5011_evttotalcontrib or perms.efdreinf.add_r5011evtTotalContrib %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2216,7 +2216,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r5011_evttotalcontrib_cadastrar' %}            
+        {% if perms.efdreinf.add_r5011evtTotalContrib %}            
 
 
 
@@ -2274,9 +2274,9 @@ function CadastroListagem() {
 
 {% if tab == 'r9000_evtexclusao' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r9000_evtexclusao_visualizar' %} 
+{% if perms.efdreinf.can_view_r9000_evtexclusao %} 
 
-{% if dict_permissoes|get_permissao:'r9000_evtexclusao_editar' or dict_permissoes|get_permissao:'r9000_evtexclusao_cadastrar' %}
+{% if perms.efdreinf.change_r9000_evtexclusao or perms.efdreinf.add_r9000evtExclusao %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2302,7 +2302,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-9000 - Exclusão de Eventos</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r9000_evtexclusao_editar' or dict_permissoes|get_permissao:'r9000_evtexclusao_cadastrar' %}
+          {% if perms.efdreinf.change_r9000_evtexclusao or perms.efdreinf.add_r9000evtExclusao %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2311,7 +2311,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r9000_evtexclusao_cadastrar' %}            
+        {% if perms.efdreinf.add_r9000evtExclusao %}            
 
 
 
@@ -2369,9 +2369,9 @@ function CadastroListagem() {
 
 {% if tab == 'r9001_evttotal' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r9001_evttotal_visualizar' %} 
+{% if perms.efdreinf.can_view_r9001_evttotal %} 
 
-{% if dict_permissoes|get_permissao:'r9001_evttotal_editar' or dict_permissoes|get_permissao:'r9001_evttotal_cadastrar' %}
+{% if perms.efdreinf.change_r9001_evttotal or perms.efdreinf.add_r9001evtTotal %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2397,7 +2397,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-9001 - Informações de bases e tributos por evento - Contrib. Previdenc.</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r9001_evttotal_editar' or dict_permissoes|get_permissao:'r9001_evttotal_cadastrar' %}
+          {% if perms.efdreinf.change_r9001_evttotal or perms.efdreinf.add_r9001evtTotal %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2406,7 +2406,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r9001_evttotal_cadastrar' %}            
+        {% if perms.efdreinf.add_r9001evtTotal %}            
 
 
 
@@ -2464,9 +2464,9 @@ function CadastroListagem() {
 
 {% if tab == 'r9002_evtret' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r9002_evtret_visualizar' %} 
+{% if perms.efdreinf.can_view_r9002_evtret %} 
 
-{% if dict_permissoes|get_permissao:'r9002_evtret_editar' or dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}
+{% if perms.efdreinf.change_r9002_evtret or perms.efdreinf.add_r9002evtRet %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2492,7 +2492,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-9002 - Informações de bases e tributos por evento - Retenções na fonte</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r9002_evtret_editar' or dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}
+          {% if perms.efdreinf.change_r9002_evtret or perms.efdreinf.add_r9002evtRet %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2501,7 +2501,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r9002_evtret_cadastrar' %}            
+        {% if perms.efdreinf.add_r9002evtRet %}            
 
 
 
@@ -2559,9 +2559,9 @@ function CadastroListagem() {
 
 {% if tab == 'r9011_evttotalcontrib' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r9011_evttotalcontrib_visualizar' %} 
+{% if perms.efdreinf.can_view_r9011_evttotalcontrib %} 
 
-{% if dict_permissoes|get_permissao:'r9011_evttotalcontrib_editar' or dict_permissoes|get_permissao:'r9011_evttotalcontrib_cadastrar' %}
+{% if perms.efdreinf.change_r9011_evttotalcontrib or perms.efdreinf.add_r9011evtTotalContrib %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2587,7 +2587,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-9011 - Informações consolidadas de bases e tributos - Contrib. Previdenciária</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r9011_evttotalcontrib_editar' or dict_permissoes|get_permissao:'r9011_evttotalcontrib_cadastrar' %}
+          {% if perms.efdreinf.change_r9011_evttotalcontrib or perms.efdreinf.add_r9011evtTotalContrib %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2596,7 +2596,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r9011_evttotalcontrib_cadastrar' %}            
+        {% if perms.efdreinf.add_r9011evtTotalContrib %}            
 
 
 
@@ -2654,9 +2654,9 @@ function CadastroListagem() {
 
 {% if tab == 'r9012_evtretcons' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r9012_evtretcons_visualizar' %} 
+{% if perms.efdreinf.can_view_r9012_evtretcons %} 
 
-{% if dict_permissoes|get_permissao:'r9012_evtretcons_editar' or dict_permissoes|get_permissao:'r9012_evtretcons_cadastrar' %}
+{% if perms.efdreinf.change_r9012_evtretcons or perms.efdreinf.add_r9012evtRetCons %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2682,7 +2682,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">R-9012 - Informações consolidadas de bases e tributos - Retenções na fonte</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r9012_evtretcons_editar' or dict_permissoes|get_permissao:'r9012_evtretcons_cadastrar' %}
+          {% if perms.efdreinf.change_r9012_evtretcons or perms.efdreinf.add_r9012evtRetCons %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2691,7 +2691,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r9012_evtretcons_cadastrar' %}            
+        {% if perms.efdreinf.add_r9012evtRetCons %}            
 
 
 
@@ -2749,9 +2749,9 @@ function CadastroListagem() {
 
 {% if tab == 'r9002_regocorrs' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r9002_regocorrs_visualizar' %} 
+{% if perms.efdreinf.can_view_r9002_regocorrs %} 
 
-{% if dict_permissoes|get_permissao:'r9002_regocorrs_editar' or dict_permissoes|get_permissao:'r9002_regocorrs_cadastrar' %}
+{% if perms.efdreinf.change_r9002_regocorrs or perms.r9002.add_r9002regOcorrs %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2777,7 +2777,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações de ocorrências registradas</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r9002_regocorrs_editar' or dict_permissoes|get_permissao:'r9002_regocorrs_cadastrar' %}
+          {% if perms.efdreinf.change_r9002_regocorrs or perms.r9002.add_r9002regOcorrs %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2786,7 +2786,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r9002_regocorrs_cadastrar' %}            
+        {% if perms.r9002.add_r9002regOcorrs %}            
 
 
 
@@ -2844,9 +2844,9 @@ function CadastroListagem() {
 
 {% if tab == 'r9002_infototal' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'r9002_infototal_visualizar' %} 
+{% if perms.efdreinf.can_view_r9002_infototal %} 
 
-{% if dict_permissoes|get_permissao:'r9002_infototal_editar' or dict_permissoes|get_permissao:'r9002_infototal_cadastrar' %}
+{% if perms.efdreinf.change_r9002_infototal or perms.r9002.add_r9002infoTotal %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -2872,7 +2872,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Informações relativas a totalizadores de bases e tributos</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'r9002_infototal_editar' or dict_permissoes|get_permissao:'r9002_infototal_cadastrar' %}
+          {% if perms.efdreinf.change_r9002_infototal or perms.r9002.add_r9002infoTotal %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -2881,7 +2881,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'r9002_infototal_cadastrar' %}            
+        {% if perms.r9002.add_r9002infoTotal %}            
 
 
 

@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">S-3000 - Exclusão de eventos</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s3000_evtexclusao_cadastrar' %}
+                  {% if perms.esocial.add_s3000evtExclusao %}
                   <a href="{% url 's3000_evtexclusao_salvar' hash='{}'|json_return_page:'s3000_evtexclusao_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.s1005.models import *
 from emensageriapro.s1005.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -78,30 +78,41 @@ def alterar_identidade(request, hash):
     
     dict_hash = get_hash_url(hash)
     s1005_evttabestab_id = int(dict_hash['id'])
+    
+    if request.user.has_perm('esocial.can_change_identity_event_s1005evtTabEstab'):
 
-    if s1005_evttabestab_id:
-
-        s1005_evttabestab = get_object_or_404(
-            s1005evtTabEstab,
-            excluido=False,
-            id=s1005_evttabestab_id)
-
-        if s1005_evttabestab.status == STATUS_EVENTO_CADASTRADO:
-
-            nova_identidade = identidade_evento(s1005_evttabestab)
-            messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1005_evttabestab_id )
-
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Identidade do evento foi alterada"}',
-                's1005_evttabestab', s1005_evttabestab_id, request.user.id, 1)
-
-            return redirect('s1005_evttabestab_salvar', hash=url_hash)
-
-        else:
-
-            messages.error(request, u'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-    messages.error(request, u'Erro ao alterar identidade do evento!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        if s1005_evttabestab_id:
+    
+            s1005_evttabestab = get_object_or_404(
+                s1005evtTabEstab,
+                excluido=False,
+                id=s1005_evttabestab_id)
+    
+            if s1005_evttabestab.status == STATUS_EVENTO_CADASTRADO:
+    
+                nova_identidade = identidade_evento(s1005_evttabestab)
+                messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
+                url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % s1005_evttabestab_id )
+    
+                gravar_auditoria(u'{}',
+                    u'{"funcao": "Identidade do evento foi alterada"}',
+                    's1005_evttabestab', s1005_evttabestab_id, request.user.id, 1)
+    
+                return redirect('s1005_evttabestab_salvar', hash=url_hash)
+    
+            else:
+    
+                messages.error(request, u'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
+                return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    
+        messages.error(request, u'Erro ao alterar identidade do evento!')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+    else:
+    
+        messages.error(request, u'''Você não possui permissão para alterar a identidade do evento.
+                                    Entre em contato com o administrador do sistema!''')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    
+        
+        

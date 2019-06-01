@@ -47,9 +47,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2300_exterior_visualizar' %}
+                    {% if perms.s2300.can_view_s2300exterior %}
                         <a href="{% url 's2300_exterior_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2300_exterior_editar' or dict_permissoes|get_permissao:'s2300_exterior_cadastrar' %}
+                            {% if perms.s2300.add_s2300exterior or perms.s2300.change_s2300exterior %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -60,7 +60,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2300_exterior_apagar' %}
+                    {% if perms.s2300.delete_s2300exterior %}
                         <a href="{% url 's2300_exterior_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

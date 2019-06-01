@@ -60,37 +60,38 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
-    
     try: 
+    
         usuario_id = request.user.id 
         dict_hash = get_hash_url( hash )
         s1202_infoperapur_infosaudecolet_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s1202_infoperapur_infosaudecolet')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    s1202_infoperapur_infosaudecolet = get_object_or_404(s1202infoPerApurinfoSaudeColet, id = s1202_infoperapur_infosaudecolet_id)
+    s1202_infoperapur_infosaudecolet = get_object_or_404(s1202infoPerApurinfoSaudeColet, id=s1202_infoperapur_infosaudecolet_id)
+    
     dados_evento = {}
+    
     if s1202_infoperapur_infosaudecolet_id:
+    
         dados_evento = s1202_infoperapur_infosaudecolet.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s1202_infoperapur_infosaudecolet_apagar'] = 0
-            dict_permissoes['s1202_infoperapur_infosaudecolet_editar'] = 0
+            
     if request.method == 'POST':
+    
         if dados_evento['status'] == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(s1202_infoperapur_infosaudecolet), indent=4, sort_keys=True, default=str)
             obj = s1202infoPerApurinfoSaudeColet.objects.get(id = s1202_infoperapur_infosaudecolet_id)
             obj.delete(request=request)
@@ -100,23 +101,28 @@ def apagar(request, hash):
             gravar_auditoria(situacao_anterior,
                              '', 
                              's1202_infoperapur_infosaudecolet', s1202_infoperapur_infosaudecolet_id, usuario_id, 3)
+                             
         else:
+        
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 's1202_infoperapur_infosaudecolet_salvar':
-            return redirect('s1202_infoperapur_infosaudecolet', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('s1202_infoperapur_infosaudecolet', hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+            
+    context = {
+        'dados_evento': dados_evento, 
+        'modulos': ['s1202', ],
+        'paginas': ['s1202_infoperapur_infosaudecolet', ],
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
         'hash': hash,
     }
-    return render(request, 's1202_infoperapur_infosaudecolet_apagar.html', context)
+    
+    return render(request, 
+                  's1202_infoperapur_infosaudecolet_apagar.html', 
+                  context)

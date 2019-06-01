@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'r4010_scp_visualizar' %}
+                    {% if perms.r4010.can_view_r4010SCP %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 'r4010_scp_salvar' hash='{}'|json_return_page:'r4010_scp_salvar'|json_return_hash:hash|json_id:r4010_scp_id|json_print:0|base64_encode_me %}">
                             Sociedade em conta de participação do qual o beneficiário faça parte e o declarante seja sócio ostensivo
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'r4010_scp_editar' or dict_permissoes|get_permissao:'r4010_scp_cadastrar' %}
+            {% if perms.r4010.change_r4010_scp or perms.r4010.add_r4010_scp %}
                 <form action="#" id="id_form_r4010_scp" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if r4010_scp_id %}
 
-                                {% if dict_permissoes|get_permissao:'r4010_scp_cadastrar' %}
+                                {% if perms.r4010.add_r4010SCP %}
                                     <a href="{% url 'r4010_scp_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r4010_scp_listar' or dict_permissoes|get_permissao:'r4010_scp_listar' %}
+                            {% if perms.r4010.can_view_r4010_scp or perms.r4010.can_view_r4010_scp %}
                                 <a href="{% url 'r4010_scp'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r4010_scp_visualizar' and r4010_scp_id %}
+                            {% if perms.r4010.can_view_r4010_scp and r4010_scp_id %}
                                 <a href="{% url 'r4010_scp_salvar' hash='{}'|json_id:r4010_scp_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'r4010_scp_visualizar' and r4010_scp_id %}
+                            {% if perms.r4010.can_view_r4010_scp and r4010_scp_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r4010_scp_editar' or dict_permissoes|get_permissao:'r4010_scp_cadastrar' %}
+                            {% if perms.r4010.change_r4010_scp or perms.r4010.add_r4010_scp %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r4010_scp_apagar' and r4010_scp_id %}
+                            {% if perms.r4010.delete_r4010_scp and r4010_scp_id %}
 
                             <a href="{% url 'r4010_scp_apagar' hash='{}'|json_id:r4010_scp_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'r4010_scp_editar' or dict_permissoes|get_permissao:'r4010_scp_cadastrar' %}
+                    {% if perms.r4010.change_r4010_scp or perms.r4010.add_r4010_scp %}
                         </form>
                     {% endif %}
 

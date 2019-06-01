@@ -81,14 +81,6 @@ class s2306ageIntegracao(SoftDeletionModel):
     codmunic = models.TextField(blank=True, null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -117,7 +109,8 @@ class s2306ageIntegracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306_ageintegracao", "Can view s2306_ageintegracao"), )
+            ("can_view_s2306ageIntegracao", "Can view S2306AGEINTEGRACAO"),
+            ("can_view_menu_s2306ageIntegracao", "Can view menu S2306AGEINTEGRACAO"),)
             
         ordering = [
             's2306_infoestagiario',
@@ -156,14 +149,6 @@ class s2306cargoFuncao(SoftDeletionModel):
     codcargo = models.CharField(max_length=30, null=True, )
     codfuncao = models.CharField(max_length=30, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -187,7 +172,8 @@ class s2306cargoFuncao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306_cargofuncao", "Can view s2306_cargofuncao"), )
+            ("can_view_s2306cargoFuncao", "Can view S2306CARGOFUNCAO"),
+            ("can_view_menu_s2306cargoFuncao", "Can view menu S2306CARGOFUNCAO"),)
             
         ordering = [
             's2306_infocomplementares',
@@ -219,14 +205,6 @@ class s2306infoComplementares(SoftDeletionModel):
     def evento(self): 
         return self.s2306_evttsvaltcontr.evento()
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -249,7 +227,8 @@ class s2306infoComplementares(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306_infocomplementares", "Can view s2306_infocomplementares"), )
+            ("can_view_s2306infoComplementares", "Can view S2306INFOCOMPLEMENTARES"),
+            ("can_view_menu_s2306infoComplementares", "Can view menu S2306INFOCOMPLEMENTARES"),)
             
         ordering = [
             's2306_evttsvaltcontr',]
@@ -294,14 +273,6 @@ class s2306infoEstagiario(SoftDeletionModel):
     codmunic = models.TextField(blank=True, null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -328,7 +299,8 @@ class s2306infoEstagiario(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306_infoestagiario", "Can view s2306_infoestagiario"), )
+            ("can_view_s2306infoEstagiario", "Can view S2306INFOESTAGIARIO"),
+            ("can_view_menu_s2306infoEstagiario", "Can view menu S2306INFOESTAGIARIO"),)
             
         ordering = [
             's2306_infocomplementares',
@@ -364,14 +336,6 @@ class s2306infoTrabCedido(SoftDeletionModel):
         return self.s2306_infocomplementares.evento()
     indremuncargo = models.CharField(choices=CHOICES_S2306_INDREMUNCARGO, max_length=1, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -395,7 +359,8 @@ class s2306infoTrabCedido(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306_infotrabcedido", "Can view s2306_infotrabcedido"), )
+            ("can_view_s2306infoTrabCedido", "Can view S2306INFOTRABCEDIDO"),
+            ("can_view_menu_s2306infoTrabCedido", "Can view menu S2306INFOTRABCEDIDO"),)
             
         ordering = [
             's2306_infocomplementares',
@@ -430,14 +395,6 @@ class s2306remuneracao(SoftDeletionModel):
     undsalfixo = models.IntegerField(choices=CHOICES_S2306_UNDSALFIXO, null=True, )
     dscsalvar = models.CharField(max_length=255, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -462,7 +419,8 @@ class s2306remuneracao(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306_remuneracao", "Can view s2306_remuneracao"), )
+            ("can_view_s2306remuneracao", "Can view S2306REMUNERACAO"),
+            ("can_view_menu_s2306remuneracao", "Can view menu S2306REMUNERACAO"),)
             
         ordering = [
             's2306_infocomplementares',
@@ -497,14 +455,6 @@ class s2306supervisorEstagio(SoftDeletionModel):
     cpfsupervisor = models.CharField(max_length=11, null=True, )
     nmsuperv = models.CharField(max_length=70, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -529,7 +479,8 @@ class s2306supervisorEstagio(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2306_supervisorestagio", "Can view s2306_supervisorestagio"), )
+            ("can_view_s2306supervisorEstagio", "Can view S2306SUPERVISORESTAGIO"),
+            ("can_view_menu_s2306supervisorEstagio", "Can view menu S2306SUPERVISORESTAGIO"),)
             
         ordering = [
             's2306_infoestagiario',

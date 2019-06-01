@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro que identifica a qual folha de pagamento pertence o evento que será excluído</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s3000_idefolhapagto_cadastrar' %}
+                  {% if perms.s3000.add_s3000ideFolhaPagto %}
                   <a href="{% url 's3000_idefolhapagto_salvar' hash='{}'|json_return_page:'s3000_idefolhapagto_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

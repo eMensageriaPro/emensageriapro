@@ -143,9 +143,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2220_evtmonit_visualizar' %}
+                    {% if perms.esocial.can_view_s2220evtMonit %}
                         <a href="{% url 's2220_evtmonit_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2220_evtmonit_editar' or dict_permissoes|get_permissao:'s2220_evtmonit_cadastrar' %}
+                            {% if perms.esocial.add_s2220evtMonit or perms.esocial.change_s2220evtMonit %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -156,7 +156,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2220_evtmonit_apagar' %}
+                    {% if perms.esocial.delete_s2220evtMonit %}
                         <a href="{% url 's2220_evtmonit_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

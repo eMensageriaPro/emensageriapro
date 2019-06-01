@@ -81,14 +81,6 @@ class s2260localTrabInterm(SoftDeletionModel):
     codmunic = models.TextField(null=True, )
     uf = models.CharField(choices=ESTADOS, max_length=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -117,7 +109,8 @@ class s2260localTrabInterm(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2260_localtrabinterm", "Can view s2260_localtrabinterm"), )
+            ("can_view_s2260localTrabInterm", "Can view S2260LOCALTRABINTERM"),
+            ("can_view_menu_s2260localTrabInterm", "Can view menu S2260LOCALTRABINTERM"),)
             
         ordering = [
             's2260_evtconvinterm',

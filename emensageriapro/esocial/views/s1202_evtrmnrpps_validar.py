@@ -163,7 +163,7 @@ def validacoes_s1202_evtrmnrpps(arquivo):
                 validacoes_lista = validar_campo( validacoes_lista,
                                                   'dmDev.codCateg', 
                                                   dmDev.codCateg.cdata, 
-                                                  1, u'None')
+                                                  1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
             
             if 'infoPerApur' in dir(dmDev.infoPerApur):
                 for infoPerApur in dmDev.infoPerApur:
@@ -196,7 +196,7 @@ def validacoes_s1202_evtrmnrpps(arquivo):
                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                           'remunPerApur.codCateg', 
                                                                           remunPerApur.codCateg.cdata, 
-                                                                          1, u'None')
+                                                                          1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
                                     
                                     if 'itensRemun' in dir(remunPerApur.itensRemun):
                                         for itensRemun in remunPerApur.itensRemun:
@@ -385,7 +385,7 @@ def validacoes_s1202_evtrmnrpps(arquivo):
                                                         validacoes_lista = validar_campo( validacoes_lista,
                                                                                           'remunPerAnt.codCateg', 
                                                                                           remunPerAnt.codCateg.cdata, 
-                                                                                          1, u'None')
+                                                                                          1, u'101, 102, 103, 104, 105, 106, 111, 201, 202, 301, 302, 303, 305, 306, 307, 308, 309, 401, 410, 701, 711, 712, 721, 722, 723, 731, 734, 738, 741, 751, 761, 771, 781, 901, 902, 903, 904, 905')
                                                     
                                                     if 'itensRemun' in dir(remunPerAnt.itensRemun):
                                                         for itensRemun in remunPerAnt.itensRemun:

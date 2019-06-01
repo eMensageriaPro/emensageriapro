@@ -30,7 +30,7 @@
 </div>
 <!-- fim__s2205_brasil__s2205_evtaltcadastral -->
 <!-- inicio__s2205_brasil__tplograd -->
-{% if permissao.permite_editar or permissao.permite_cadastrar %}
+{% if perms..add_ or perms..change_ %}
   <div class="col-md-6" id="s2205_brasil__tplograd__div">
     <div class="form-group">
       <label id="s2205_brasil__tplograd__label">Tipo de logradouro*</label>
@@ -169,7 +169,7 @@
 </div>
 <!-- fim__s2205_brasil__cep -->
 <!-- inicio__s2205_brasil__codmunic -->
-{% if permissao.permite_editar or permissao.permite_cadastrar %}
+{% if perms..add_ or perms..change_ %}
   <div class="col-md-12" id="s2205_brasil__codmunic__div">
     <div class="form-group">
       <label id="s2205_brasil__codmunic__label">Código do Município*</label>

@@ -77,14 +77,6 @@ class r2010infoProcRetAd(SoftDeletionModel):
     codsuspadic = models.IntegerField(blank=True, null=True, )
     valoradic = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -110,7 +102,8 @@ class r2010infoProcRetAd(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2010_infoprocretad", "Can view r2010_infoprocretad"), )
+            ("can_view_r2010infoProcRetAd", "Can view R2010INFOPROCRETAD"),
+            ("can_view_menu_r2010infoProcRetAd", "Can view menu R2010INFOPROCRETAD"),)
             
         ordering = [
             'r2010_evtservtom',
@@ -148,14 +141,6 @@ class r2010infoProcRetPr(SoftDeletionModel):
     codsuspprinc = models.IntegerField(blank=True, null=True, )
     valorprinc = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -181,7 +166,8 @@ class r2010infoProcRetPr(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2010_infoprocretpr", "Can view r2010_infoprocretpr"), )
+            ("can_view_r2010infoProcRetPr", "Can view R2010INFOPROCRETPR"),
+            ("can_view_menu_r2010infoProcRetPr", "Can view menu R2010INFOPROCRETPR"),)
             
         ordering = [
             'r2010_evtservtom',
@@ -225,14 +211,6 @@ class r2010infoTpServ(SoftDeletionModel):
     vlradicional = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrnretadic = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -258,7 +236,8 @@ class r2010infoTpServ(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2010_infotpserv", "Can view r2010_infotpserv"), )
+            ("can_view_r2010infoTpServ", "Can view R2010INFOTPSERV"),
+            ("can_view_menu_r2010infoTpServ", "Can view menu R2010INFOTPSERV"),)
             
         ordering = [
             'r2010_nfs',
@@ -297,14 +276,6 @@ class r2010nfs(SoftDeletionModel):
     vlrbruto = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     obs = models.CharField(max_length=250, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -331,7 +302,8 @@ class r2010nfs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2010_nfs", "Can view r2010_nfs"), )
+            ("can_view_r2010nfs", "Can view R2010NFS"),
+            ("can_view_menu_r2010nfs", "Can view menu R2010NFS"),)
             
         ordering = [
             'r2010_evtservtom',

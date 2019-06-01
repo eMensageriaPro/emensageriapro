@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Boletim do Espetáculo Desportivo</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r3010_boletim_cadastrar' %}
+                  {% if perms.r3010.add_r3010boletim %}
                   <a href="{% url 'r3010_boletim_salvar' hash='{}'|json_return_page:'r3010_boletim_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

@@ -41,9 +41,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2399_detverbas_visualizar' %}
+                    {% if perms.s2399.can_view_s2399detVerbas %}
                         <a href="{% url 's2399_detverbas_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2399_detverbas_editar' or dict_permissoes|get_permissao:'s2399_detverbas_cadastrar' %}
+                            {% if perms.s2399.add_s2399detVerbas or perms.s2399.change_s2399detVerbas %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -54,7 +54,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2399_detverbas_apagar' %}
+                    {% if perms.s2399.delete_s2399detVerbas %}
                         <a href="{% url 's2399_detverbas_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

@@ -59,9 +59,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'auditoria_visualizar' %}
+                    {% if perms.controle_de_acesso.can_view_Auditoria %}
                         <a href="{% url 'auditoria_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'auditoria_editar' or dict_permissoes|get_permissao:'auditoria_cadastrar' %}
+                            {% if perms.controle_de_acesso.add_Auditoria or perms.controle_de_acesso.change_Auditoria %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -72,7 +72,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'auditoria_apagar' %}
+                    {% if perms.controle_de_acesso.delete_Auditoria %}
                         <a href="{% url 'auditoria_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

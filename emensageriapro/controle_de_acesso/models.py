@@ -65,197 +65,6 @@ STATUS_EVENTO_PROCESSADO = 13
 
 
 
-class Auditoria(SoftDeletionModel):
-
-    tabela = models.CharField(max_length=200, blank=True, )
-    identidade = models.IntegerField(blank=True, )
-    situacao_anterior = models.TextField(blank=True, )
-    situacao_posterior = models.TextField(blank=True, )
-    operador = models.ForeignKey('controle_de_acesso.Usuarios',
-        related_name='%(class)s_operador', blank=True, )
-    data_hora = models.DateTimeField(blank=True, )
-    tipo = models.IntegerField(choices=AUDITORIA_TIPO, blank=True, )
-    
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
-    def __unicode__(self):
-        
-        lista = [
-            unicode(self.tabela),
-            unicode(self.identidade),
-            unicode(self.data_hora),
-            unicode(self.tipo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
-
-    class Meta:
-    
-        verbose_name = u'Auditoria'
-        db_table = r'auditoria'       
-        managed = True # auditoria #
-        
-        unique_together = ()
-            
-        index_together = ()
-        
-        permissions = (
-            ("can_view_auditoria", "Can view auditoria"), )
-        
-        ordering = [
-            'identidade',]
-            
-            
- 
-class AuditoriaSerializer(ModelSerializer):
-
-    class Meta:
-    
-        model = Auditoria
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
-
-
-class ConfigModulos(SoftDeletionModel):
-
-    titulo = models.CharField(max_length=200, )
-    slug = models.CharField(max_length=200, )
-    modulo_pai = models.ForeignKey('controle_de_acesso.ConfigModulos',
-        related_name='%(class)s_modulo_pai', blank=True, null=True, )
-    ordem = models.IntegerField()
-    
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
-    def __unicode__(self):
-        
-        lista = [
-            unicode(self.titulo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
-
-    class Meta:
-    
-        verbose_name = u'Módulos'
-        db_table = r'config_modulos'       
-        managed = True # config_modulos #
-        
-        unique_together = ()
-            
-        index_together = ()
-        
-        permissions = (
-            ("can_view_config_modulos", "Can view config_modulos"), )
-        
-        ordering = [
-            'titulo',]
-            
-            
- 
-class ConfigModulosSerializer(ModelSerializer):
-
-    class Meta:
-    
-        model = ConfigModulos
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
-
-
-class ConfigPaginas(SoftDeletionModel):
-
-    config_modulos = models.ForeignKey('controle_de_acesso.ConfigModulos',
-        related_name='%(class)s_config_modulos', )
-    titulo = models.CharField(max_length=2000, )
-    endereco = models.CharField(max_length=500, )
-    exibe_menu = models.IntegerField(choices=SIM_NAO, )
-    tipo = models.IntegerField()
-    ordem = models.IntegerField()
-    
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
-    def __unicode__(self):
-        
-        lista = [
-            unicode(self.titulo),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
-
-    class Meta:
-    
-        verbose_name = u'Páginas'
-        db_table = r'config_paginas'       
-        managed = True # config_paginas #
-        
-        unique_together = ()
-            
-        index_together = ()
-        
-        permissions = (
-            ("can_view_config_paginas", "Can view config_paginas"), )
-        
-        ordering = [
-            'titulo',]
-            
-            
- 
-class ConfigPaginasSerializer(ModelSerializer):
-
-    class Meta:
-    
-        model = ConfigPaginas
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
-
-
 class ConfigPerfis(SoftDeletionModel):
 
     titulo = models.CharField(max_length=25, )
@@ -306,73 +115,6 @@ class ConfigPerfisSerializer(ModelSerializer):
     class Meta:
     
         model = ConfigPerfis
-        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
-
-    def save(self):
-    
-        if not self.criado_por:
-            self.criado_por = CurrentUserDefault()
-            self.criado_em = timezone.now()
-        self.modificado_por = CurrentUserDefault()
-        self.modificado_em = timezone.now()
-
-
-class ConfigPermissoes(SoftDeletionModel):
-
-    config_perfis = models.ForeignKey('controle_de_acesso.ConfigPerfis',
-        related_name='%(class)s_config_perfis', )
-    config_paginas = models.ForeignKey('controle_de_acesso.ConfigPaginas',
-        related_name='%(class)s_config_paginas', )
-    permite_listar = models.IntegerField(choices=SIM_NAO, )
-    permite_cadastrar = models.IntegerField(choices=SIM_NAO, )
-    permite_editar = models.IntegerField(choices=SIM_NAO, )
-    permite_visualizar = models.IntegerField(choices=SIM_NAO, )
-    permite_apagar = models.IntegerField(choices=SIM_NAO, )
-    
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
-    def __unicode__(self):
-        
-        lista = [
-            unicode(self.config_perfis),
-            unicode(self.config_paginas),]
-            
-        if lista:
-            return ' - '.join(lista)
-            
-        else:
-            return self.id
-
-    class Meta:
-    
-        verbose_name = u'Permissões'
-        db_table = r'config_permissoes'       
-        managed = True # config_permissoes #
-        
-        unique_together = ()
-            
-        index_together = ()
-        
-        permissions = (
-            ("can_view_config_permissoes", "Can view config_permissoes"), )
-        
-        ordering = [
-            'config_perfis',
-            'config_paginas',]
-            
-            
- 
-class ConfigPermissoesSerializer(ModelSerializer):
-
-    class Meta:
-    
-        model = ConfigPermissoes
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
@@ -443,6 +185,73 @@ class UsuariosSerializer(ModelSerializer):
         exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
 
     def save(self):
+        if not self.criado_por:
+            self.criado_por = CurrentUserDefault()
+            self.criado_em = timezone.now()
+        self.modificado_por = CurrentUserDefault()
+        self.modificado_em = timezone.now()
+
+
+class Auditoria(SoftDeletionModel):
+
+    tabela = models.CharField(max_length=200, blank=True, )
+    identidade = models.IntegerField(blank=True, )
+    situacao_anterior = models.TextField(blank=True, )
+    situacao_posterior = models.TextField(blank=True, )
+    operador = models.ForeignKey('controle_de_acesso.Usuarios',
+        related_name='%(class)s_operador', blank=True, )
+    data_hora = models.DateTimeField(blank=True, )
+    tipo = models.IntegerField(choices=AUDITORIA_TIPO, blank=True, )
+    
+    criado_em = models.DateTimeField(blank=True, null=True)
+    criado_por = models.ForeignKey(User,
+        related_name='%(class)s_criado_por', blank=True, null=True)
+    modificado_em = models.DateTimeField(blank=True, null=True)
+    modificado_por = models.ForeignKey(User,
+        related_name='%(class)s_modificado_por', blank=True, null=True)
+    excluido = models.NullBooleanField(blank=True, null=True, default=False)
+    
+    def __unicode__(self):
+        
+        lista = [
+            unicode(self.tabela),
+            unicode(self.identidade),
+            unicode(self.data_hora),
+            unicode(self.tipo),]
+            
+        if lista:
+            return ' - '.join(lista)
+            
+        else:
+            return self.id
+
+    class Meta:
+    
+        verbose_name = u'Auditoria'
+        db_table = r'auditoria'       
+        managed = True # auditoria #
+        
+        unique_together = ()
+            
+        index_together = ()
+        
+        permissions = (
+            ("can_view_auditoria", "Can view auditoria"), )
+        
+        ordering = [
+            'identidade',]
+            
+            
+ 
+class AuditoriaSerializer(ModelSerializer):
+
+    class Meta:
+    
+        model = Auditoria
+        exclude = ('criado_em', 'criado_por', 'modificado_em', 'modificado_por', 'excluido')
+
+    def save(self):
+    
         if not self.criado_por:
             self.criado_por = CurrentUserDefault()
             self.criado_em = timezone.now()

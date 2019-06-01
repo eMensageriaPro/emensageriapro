@@ -76,14 +76,6 @@ class r9002infoTotal(SoftDeletionModel):
     tpinsc = models.IntegerField(null=True, )
     nrinsc = models.CharField(max_length=14, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -108,7 +100,8 @@ class r9002infoTotal(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002_infototal", "Can view r9002_infototal"), )
+            ("can_view_r9002infoTotal", "Can view R9002INFOTOTAL"),
+            ("can_view_menu_r9002infoTotal", "Can view menu R9002INFOTOTAL"),)
             
         ordering = [
             'r9002_evtret',
@@ -145,14 +138,6 @@ class r9002regOcorrs(SoftDeletionModel):
     codresp = models.CharField(max_length=6, null=True, )
     dscresp = models.CharField(max_length=999, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -179,7 +164,8 @@ class r9002regOcorrs(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002_regocorrs", "Can view r9002_regocorrs"), )
+            ("can_view_r9002regOcorrs", "Can view R9002REGOCORRS"),
+            ("can_view_menu_r9002regOcorrs", "Can view menu R9002REGOCORRS"),)
             
         ordering = [
             'r9002_evtret',
@@ -220,14 +206,6 @@ class r9002totApurDec(SoftDeletionModel):
     vlrbasecrdecsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrdecsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -254,7 +232,8 @@ class r9002totApurDec(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002_totapurdec", "Can view r9002_totapurdec"), )
+            ("can_view_r9002totApurDec", "Can view R9002TOTAPURDEC"),
+            ("can_view_menu_r9002totApurDec", "Can view menu R9002TOTAPURDEC"),)
             
         ordering = [
             'r9002_infototal',
@@ -295,14 +274,6 @@ class r9002totApurDia(SoftDeletionModel):
     vlrbasecrdiasusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrdiasusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -329,7 +300,8 @@ class r9002totApurDia(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002_totapurdia", "Can view r9002_totapurdia"), )
+            ("can_view_r9002totApurDia", "Can view R9002TOTAPURDIA"),
+            ("can_view_menu_r9002totApurDia", "Can view menu R9002TOTAPURDIA"),)
             
         ordering = [
             'r9002_infototal',
@@ -369,14 +341,6 @@ class r9002totApurMen(SoftDeletionModel):
     vlrbasecrmensusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrmensusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -402,7 +366,8 @@ class r9002totApurMen(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002_totapurmen", "Can view r9002_totapurmen"), )
+            ("can_view_r9002totApurMen", "Can view R9002TOTAPURMEN"),
+            ("can_view_menu_r9002totApurMen", "Can view menu R9002TOTAPURMEN"),)
             
         ordering = [
             'r9002_infototal',
@@ -442,14 +407,6 @@ class r9002totApurQui(SoftDeletionModel):
     vlrbasecrquisusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrquisusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -476,7 +433,8 @@ class r9002totApurQui(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002_totapurqui", "Can view r9002_totapurqui"), )
+            ("can_view_r9002totApurQui", "Can view R9002TOTAPURQUI"),
+            ("can_view_menu_r9002totApurQui", "Can view menu R9002TOTAPURQUI"),)
             
         ordering = [
             'r9002_infototal',
@@ -517,14 +475,6 @@ class r9002totApurSem(SoftDeletionModel):
     vlrbasecrsemsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrcrsemsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -551,7 +501,8 @@ class r9002totApurSem(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r9002_totapursem", "Can view r9002_totapursem"), )
+            ("can_view_r9002totApurSem", "Can view R9002TOTAPURSEM"),
+            ("can_view_menu_r9002totApurSem", "Can view menu R9002TOTAPURSEM"),)
             
         ordering = [
             'r9002_infototal',

@@ -49,7 +49,7 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_visualizar' %}
+                {% if perms.esocial.can_view_s1000evtInfoEmpregador %}
                 <li {% if not tab %}class="active"{% endif %} >
                     <a href="{% url 's1000_evtinfoempregador_salvar' hash='{}'|json_return_page:'s1000_evtinfoempregador_salvar'|json_return_hash:hash|json_id:s1000_evtinfoempregador_id|json_print:0|base64_encode_me %}">
                     S-1000 - Informações do Empregador/Contribuinte/Órgão Público</a>
@@ -58,21 +58,21 @@
                 {% if s1000_evtinfoempregador_id %}
                     
                     {% if s1000_evtinfoempregador.operacao == 1 %}
-                        {% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %}
+                        {% if perms.esocial.can_view_s1000inclusao %}
                             <li {% if tab == 's1000_inclusao' %} class="active"{% endif %} >
                                 <a href="{% url 's1000_evtinfoempregador_salvar' hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:0|json_tab:'s1000_inclusao'|base64_encode_me %}">
                                 Inclusão de novas informações</a>
                             </li>
                         {% endif %}
                     {% elif s1000_evtinfoempregador.operacao == 2 %}
-                        {% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %}
+                        {% if perms.esocial.can_view_s1000alteracao %}
                             <li {% if tab == 's1000_alteracao' %}class="active"{% endif %}>
                                 <a href="{% url 's1000_evtinfoempregador_salvar' hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:0|json_tab:'s1000_alteracao'|base64_encode_me %}">
                                 Alteração das informações</a>
                             </li>
                         {% endif %}
                     {% elif s1000_evtinfoempregador.operacao == 3 %}
-                        {% if dict_permissoes|get_permissao:'s1000_exclusao_visualizar' %}
+                        {% if perms.esocial.can_view_s1000exclusao %}
                             <li {% if tab == 's1000_exclusao' %}class="active"{% endif %} >
                                 <a href="{% url 's1000_evtinfoempregador_salvar' hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:0|json_tab:'s1000_exclusao'|base64_encode_me %}">
                                 Exclusão das informações</a>
@@ -169,7 +169,7 @@
             <div class="row">
                {% endif %}
                {% if not for_print %}
-               {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_editar' or dict_permissoes|get_permissao:'s1000_evtinfoempregador_cadastrar' %}
+               {% if perms.esocial.change_s1000_evtinfoempregador or perms.esocial.add_s1000_evtinfoempregador %}
                {% if s1000_evtinfoempregador_form.status.value == STATUS_EVENTO_CADASTRADO %}<form action="#" id="id_form_s1000_evtinfoempregador" method="POST" content="text/html; charset=UTF-8">{% endif %}
                   {% csrf_token %}
                   {% endif %}
@@ -191,8 +191,8 @@
                         <div class="box-footer text-right">
                            <!-- botões especiais -->
                            {% if s1000_evtinfoempregador_id %}
-                           {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_cadastrar' %}<a href="{% url 's1000_evtinfoempregador_verificar'  hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_cadastrar' %}
+                           {% if perms.esocial.add_s1000evtInfoEmpregador %}<a href="{% url 's1000_evtinfoempregador_verificar'  hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-check-square-o"></i>&nbsp;Verificar Layout</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s1000evtInfoEmpregador %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;Exportar Recibo</button>
@@ -209,7 +209,7 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_cadastrar' %}
+                           {% if perms.esocial.add_s1000evtInfoEmpregador %}
                            {% if not evento_totalizador %}
                            <div class="btn-group">
                               <button type="button" class="btn btn-primary"><i class="fa fa-cogs"></i>&nbsp;Ações</button>
@@ -230,29 +230,29 @@
                            &nbsp;
                            {% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_cadastrar' %}<a href="{% url 's1000_evtinfoempregador_xml'  hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s1000evtInfoEmpregador %}<a href="{% url 's1000_evtinfoempregador_xml'  hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:0|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-code"></i>&nbsp;Visualizar XML</span></a>&nbsp;{% endif %}
                            {% if s1000_evtinfoempregador.status == STATUS_EVENTO_CADASTRADO or s1000_evtinfoempregador.status == STATUS_EVENTO_IMPORTADO or s1000_evtinfoempregador.status == STATUS_EVENTO_DUPLICADO or s1000_evtinfoempregador.status == STATUS_EVENTO_GERADO or s1000_evtinfoempregador.status == STATUS_EVENTO_ASSINADO or s1000_evtinfoempregador.status == STATUS_EVENTO_VALIDADO_ERRO %}
-                           {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_cadastrar' %}
+                           {% if perms.esocial.add_s1000evtInfoEmpregador %}
                            <a href="{% url 's1000_evtinfoempregador_validar_evento' hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:0|base64_encode_me %}"
                               ><span class="btn btn-success"><i class="fa fa-thumbs-o-up"></i>&nbsp;Validar</span></a>
                            &nbsp;{% endif %}
                            {% endif %}
                            <br><br>
-                           {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_cadastrar' %}<a href="{% url 's1000_evtinfoempregador_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.add_s1000evtInfoEmpregador %}<a href="{% url 's1000_evtinfoempregador_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</span></a>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_listar' or dict_permissoes|get_permissao:'s1000_evtinfoempregador_listar' %}<a href="{% url 's1000_evtinfoempregador'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_visualizar' and s1000_evtinfoempregador_id %}<a href="{% url 's1000_evtinfoempregador_salvar'  hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
-                           {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_editar' or dict_permissoes|get_permissao:'s1000_evtinfoempregador_cadastrar' %}
+                           {% if perms.esocial.can_view_s1000_evtinfoempregador or perms.esocial.can_view_s1000_evtinfoempregador %}<a href="{% url 's1000_evtinfoempregador'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}"><span class="btn btn-primary"><i class="fa fa-list"></i>&nbsp;Listagem</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.can_view_s1000_evtinfoempregador and s1000_evtinfoempregador_id %}<a href="{% url 's1000_evtinfoempregador_salvar'  hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:1|base64_encode_me %}" target="_blank"><span class="btn btn-primary"><i class="fa fa-print"></i>&nbsp;Imprimir</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.change_s1000_evtinfoempregador or perms.esocial.add_s1000_evtinfoempregador %}
                            {% if s1000_evtinfoempregador_form.status.value == STATUS_EVENTO_CADASTRADO %}<button type="submit" class="btn btn-primary" ><i class="fa fa-save"></i>&nbsp;Salvar</button>&nbsp;{% endif %}
                            {% endif %}
-                           {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_apagar' and s1000_evtinfoempregador_id %}<a href="{% url 's1000_evtinfoempregador_apagar'  hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
+                           {% if perms.esocial.delete_s1000_evtinfoempregador and s1000_evtinfoempregador_id %}<a href="{% url 's1000_evtinfoempregador_apagar'  hash='{}'|json_id:s1000_evtinfoempregador_id|json_print:0|base64_encode_me %}"><span class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Apagar</span></a>&nbsp;{% endif %}
                            <a class="btn btn-default" href="#" onclick="history.go(-1)"><i class="fa fa-rotate-left"></i>&nbsp;Voltar</a>
                         </div>
                      </div>
                   </div>
                   {% endif %}
                   {% if not for_print %}
-                  {% if dict_permissoes|get_permissao:'s1000_evtinfoempregador_editar' or dict_permissoes|get_permissao:'s1000_evtinfoempregador_cadastrar' %}
+                  {% if perms.esocial.change_s1000_evtinfoempregador or perms.esocial.add_s1000_evtinfoempregador %}
                {% if s1000_evtinfoempregador_form.status.value == STATUS_EVENTO_CADASTRADO %}</form>{% endif %}
                {% endif %}
                {% endif %}
@@ -308,9 +308,9 @@
 
 {% if tab == 's1000_inclusao' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s1000_inclusao_visualizar' %} 
+{% if perms.esocial.can_view_s1000_inclusao %} 
 
-{% if dict_permissoes|get_permissao:'s1000_inclusao_editar' or dict_permissoes|get_permissao:'s1000_inclusao_cadastrar' %}
+{% if perms.esocial.change_s1000_inclusao or perms.s1000.add_s1000inclusao %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -336,7 +336,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Inclusão de novas informações</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s1000_inclusao_editar' or dict_permissoes|get_permissao:'s1000_inclusao_cadastrar' %}
+          {% if perms.esocial.change_s1000_inclusao or perms.s1000.add_s1000inclusao %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -345,7 +345,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s1000_inclusao_cadastrar' %}            
+        {% if perms.s1000.add_s1000inclusao %}            
 
 
 
@@ -403,9 +403,9 @@ function CadastroListagem() {
 
 {% if tab == 's1000_alteracao' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s1000_alteracao_visualizar' %} 
+{% if perms.esocial.can_view_s1000_alteracao %} 
 
-{% if dict_permissoes|get_permissao:'s1000_alteracao_editar' or dict_permissoes|get_permissao:'s1000_alteracao_cadastrar' %}
+{% if perms.esocial.change_s1000_alteracao or perms.s1000.add_s1000alteracao %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -431,7 +431,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Alteração das informações</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s1000_alteracao_editar' or dict_permissoes|get_permissao:'s1000_alteracao_cadastrar' %}
+          {% if perms.esocial.change_s1000_alteracao or perms.s1000.add_s1000alteracao %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -440,7 +440,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s1000_alteracao_cadastrar' %}            
+        {% if perms.s1000.add_s1000alteracao %}            
 
 
 
@@ -498,9 +498,9 @@ function CadastroListagem() {
 
 {% if tab == 's1000_exclusao' or for_print %} 
 
-{% if dict_permissoes|get_permissao:'s1000_exclusao_visualizar' %} 
+{% if perms.esocial.can_view_s1000_exclusao %} 
 
-{% if dict_permissoes|get_permissao:'s1000_exclusao_editar' or dict_permissoes|get_permissao:'s1000_exclusao_cadastrar' %}
+{% if perms.esocial.change_s1000_exclusao or perms.s1000.add_s1000exclusao %}
 <script type="text/javascript">
 function CadastroListagem() {
       var display = document.getElementById('cadastrar').style.display;
@@ -526,7 +526,7 @@ function CadastroListagem() {
       <div class="box-header with-border">
         <h3 class="box-title">Exclusão das informações</h3>   
         <div class="pull-right box-tools">
-          {% if dict_permissoes|get_permissao:'s1000_exclusao_editar' or dict_permissoes|get_permissao:'s1000_exclusao_cadastrar' %}
+          {% if perms.esocial.change_s1000_exclusao or perms.s1000.add_s1000exclusao %}
             <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                 <div id="CadastrarBotao"><i class="fa fa-plus-circle"></i> Cadastrar</div>
                 <div id="ListarBotao" style="display:none"><i class="fa fa-table"></i> Listar</div>
@@ -535,7 +535,7 @@ function CadastroListagem() {
         </div>   
       </div>
       <div class="box-body" >
-        {% if dict_permissoes|get_permissao:'s1000_exclusao_cadastrar' %}            
+        {% if perms.s1000.add_s1000exclusao %}            
 
 
 

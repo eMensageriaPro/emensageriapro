@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.r4040.models import *
 from emensageriapro.r4040.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -81,28 +81,37 @@ def duplicar(request, hash):
 
     dict_hash = get_hash_url(hash)
     r4040_evtbenefnid_id = int(dict_hash['id'])
+    
+    if request.user.has_perm('efdreinf.can_duplicate_event_r4040evtBenefNId'):
 
-    if r4040_evtbenefnid_id:
-
-        r4040_evtbenefnid = get_object_or_404(
-            r4040evtBenefNId,
-            id=r4040_evtbenefnid_id)
-
-        texto = gerar_xml_r4040(r4040_evtbenefnid_id, versao="|")
-        dados = read_r4040_evtbenefnid_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r4040_evtbenefnid)
-
-        r4040evtBenefNId.objects.filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r4040_evtbenefnid.identidade),
-            'r4040_evtbenefnid', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('r4040_evtbenefnid_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao duplicar evento!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        if r4040_evtbenefnid_id:
+    
+            r4040_evtbenefnid = get_object_or_404(
+                r4040evtBenefNId,
+                id=r4040_evtbenefnid_id)
+    
+            texto = gerar_xml_r4040(r4040_evtbenefnid_id, versao="|")
+            dados = read_r4040_evtbenefnid_string({}, texto.encode('utf-8'), 0)
+            nova_identidade = identidade_evento(r4040_evtbenefnid)
+    
+            r4040evtBenefNId.objects.filter(id=dados['id']).\
+                update(status=STATUS_EVENTO_CADASTRADO,
+                       arquivo_original=0,
+                       arquivo='')
+    
+            gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r4040_evtbenefnid.identidade),
+                'r4040_evtbenefnid', dados['id'], request.user.id, 1)
+    
+            messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
+            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
+            return redirect('r4040_evtbenefnid_salvar', hash=url_hash)
+    
+        messages.error(request, 'Erro ao duplicar evento!')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+    else:
+    
+        messages.error(request, u'''Você não possui permissão para duplicar o evento. 
+                                    Entre em contato com o administrador do sistema!''')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        

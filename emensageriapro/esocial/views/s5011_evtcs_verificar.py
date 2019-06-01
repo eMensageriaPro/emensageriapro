@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.s5011.models import *
 from emensageriapro.s5011.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -72,25 +72,24 @@ from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO, STATUS_EVENT
 
 @login_required
 def verificar(request, hash):
+
     for_print = 0
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s5011_evtcs_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except:
+    
         return redirect('login')
 
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='s5011_evtcs')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    if permissao.permite_listar:
-        s5011_evtcs = get_object_or_404(s5011evtCS, id = s5011_evtcs_id)
+    if request.user.has_perm('esocial.can_view_s5011evtCS'):
+        s5011_evtcs = get_object_or_404(s5011evtCS, id=s5011_evtcs_id)
         s5011_evtcs_lista = s5011evtCS.objects.filter(id=s5011_evtcs_id).all()
 
         
@@ -138,22 +137,19 @@ def verificar(request, hash):
             's5011_basescomerc_lista': s5011_basescomerc_lista,
             's5011_infocrestab_lista': s5011_infocrestab_lista,
             's5011_infocrcontrib_lista': s5011_infocrcontrib_lista,
-            
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-  
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s5011_evtcs', ],
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': for_print,
             'hash': hash,
 
             
 
         }
+        
         if for_print == 2:
+        
             response = PDFTemplateResponse(request=request,
                                            template='s5011_evtcs_verificar.html',
                                            filename="s5011_evtcs.pdf",
@@ -172,6 +168,7 @@ def verificar(request, hash):
             return response
 
         elif for_print == 3:
+        
             response =  render_to_response('s5011_evtcs_verificar.html', context)
             filename = "%s.xls" % s5011_evtcs.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -179,6 +176,7 @@ def verificar(request, hash):
             return response
 
         elif for_print == 4:
+        
             response =  render_to_response('s5011_evtcs_verificar.html', context)
             filename = "%s.csv" % s5011_evtcs.identidade
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -186,18 +184,16 @@ def verificar(request, hash):
             return response
 
         else:
+        
             return render(request, 's5011_evtcs_verificar.html', context)
 
     else:
 
         context = {
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['esocial', ],
+            'paginas': ['s5011_evtcs', ],
             'data': datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
 
         return render(request, 'permissao_negada.html', context)

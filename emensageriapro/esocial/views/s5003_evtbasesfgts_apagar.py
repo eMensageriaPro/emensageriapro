@@ -64,33 +64,28 @@ from emensageriapro.s1000.forms import form_s1000_exclusao
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         s5003_evtbasesfgts_id = int(dict_hash['id'])
+        
     except:
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s5003_evtbasesfgts')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
     
-    s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS, id = s5003_evtbasesfgts_id)
+    s5003_evtbasesfgts = get_object_or_404(s5003evtBasesFGTS, id=s5003_evtbasesfgts_id)
     
-    if s5003_evtbasesfgts_id:
-        if s5003_evtbasesfgts.status != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s5003_evtbasesfgts_apagar'] = 0
-            dict_permissoes['s5003_evtbasesfgts_editar'] = 0
-
     if request.method == 'POST':
+    
         if s5003_evtbasesfgts.status == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(s5003_evtbasesfgts), indent=4, sort_keys=True, default=str)
             obj = s5003evtBasesFGTS.objects.get(id = s5003_evtbasesfgts_id)
             obj.delete(request=request)
@@ -104,19 +99,22 @@ def apagar(request, hash):
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 's5003_evtbasesfgts_salvar':
-            return redirect('s5003_evtbasesfgts', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('s5003_evtbasesfgts', 
+                            hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], 
+                            hash=request.session['retorno_hash'])
+            
+    context = {
+        's5003_evtbasesfgts': s5003_evtbasesfgts, 
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
+        'modulos': ['esocial', ],
+        'paginas': ['s5003_evtbasesfgts', ],
         'hash': hash,
     }
+    
     return render(request, 's5003_evtbasesfgts_apagar.html', context)

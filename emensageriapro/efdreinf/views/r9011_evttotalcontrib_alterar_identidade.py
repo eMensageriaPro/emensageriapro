@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.r9011.models import *
 from emensageriapro.r9011.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -78,30 +78,41 @@ def alterar_identidade(request, hash):
     
     dict_hash = get_hash_url(hash)
     r9011_evttotalcontrib_id = int(dict_hash['id'])
+    
+    if request.user.has_perm('efdreinf.can_change_identity_event_r9011evtTotalContrib'):
 
-    if r9011_evttotalcontrib_id:
-
-        r9011_evttotalcontrib = get_object_or_404(
-            r9011evtTotalContrib,
-            excluido=False,
-            id=r9011_evttotalcontrib_id)
-
-        if r9011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO:
-
-            nova_identidade = identidade_evento(r9011_evttotalcontrib)
-            messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
-            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % r9011_evttotalcontrib_id )
-
-            gravar_auditoria(u'{}',
-                u'{"funcao": "Identidade do evento foi alterada"}',
-                'r9011_evttotalcontrib', r9011_evttotalcontrib_id, request.user.id, 1)
-
-            return redirect('r9011_evttotalcontrib_salvar', hash=url_hash)
-
-        else:
-
-            messages.error(request, u'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
-    messages.error(request, u'Erro ao alterar identidade do evento!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        if r9011_evttotalcontrib_id:
+    
+            r9011_evttotalcontrib = get_object_or_404(
+                r9011evtTotalContrib,
+                excluido=False,
+                id=r9011_evttotalcontrib_id)
+    
+            if r9011_evttotalcontrib.status == STATUS_EVENTO_CADASTRADO:
+    
+                nova_identidade = identidade_evento(r9011_evttotalcontrib)
+                messages.success(request, u'Identidade do evento alterada com sucesso! Nova identidade: %s' % nova_identidade)
+                url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % r9011_evttotalcontrib_id )
+    
+                gravar_auditoria(u'{}',
+                    u'{"funcao": "Identidade do evento foi alterada"}',
+                    'r9011_evttotalcontrib', r9011_evttotalcontrib_id, request.user.id, 1)
+    
+                return redirect('r9011_evttotalcontrib_salvar', hash=url_hash)
+    
+            else:
+    
+                messages.error(request, u'Não foi possível alterar a identidade do evento! Somente é possível alterar o status de eventos que estão abertos para edição (status: Cadastrado)!')
+                return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    
+        messages.error(request, u'Erro ao alterar identidade do evento!')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+    else:
+    
+        messages.error(request, u'''Você não possui permissão para alterar a identidade do evento.
+                                    Entre em contato com o administrador do sistema!''')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+    
+        
+        

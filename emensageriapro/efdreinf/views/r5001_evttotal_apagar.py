@@ -64,33 +64,28 @@ from emensageriapro.s1000.forms import form_s1000_exclusao
 
 @login_required
 def apagar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
     try:
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         r5001_evttotal_id = int(dict_hash['id'])
+        
     except:
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r5001_evttotal')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
     
-    r5001_evttotal = get_object_or_404(r5001evtTotal, id = r5001_evttotal_id)
+    r5001_evttotal = get_object_or_404(r5001evtTotal, id=r5001_evttotal_id)
     
-    if r5001_evttotal_id:
-        if r5001_evttotal.status != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r5001_evttotal_apagar'] = 0
-            dict_permissoes['r5001_evttotal_editar'] = 0
-
     if request.method == 'POST':
+    
         if r5001_evttotal.status == STATUS_EVENTO_CADASTRADO:
+        
             import json
             from django.forms.models import model_to_dict
+            
             situacao_anterior = json.dumps(model_to_dict(r5001_evttotal), indent=4, sort_keys=True, default=str)
             obj = r5001evtTotal.objects.get(id = r5001_evttotal_id)
             obj.delete(request=request)
@@ -104,19 +99,22 @@ def apagar(request, hash):
             messages.error(request, u'Não foi possivel apagar o evento, somente é possível apagar os eventos com status "Cadastrado"!')
             
         if request.session['retorno_pagina']== 'r5001_evttotal_salvar':
-            return redirect('r5001_evttotal', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+            return redirect('r5001_evttotal', 
+                            hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], 
+                            hash=request.session['retorno_hash'])
+            
+    context = {
+        'r5001_evttotal': r5001_evttotal, 
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
+        'modulos': ['efdreinf', ],
+        'paginas': ['r5001_evttotal', ],
         'hash': hash,
     }
+    
     return render(request, 'r5001_evttotal_apagar.html', context)

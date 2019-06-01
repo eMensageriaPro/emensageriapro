@@ -65,17 +65,14 @@ def listar(request, hash):
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         for_print = int(dict_hash['print'])
+        
     except:
         return redirect('login')
     
     usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r2098_evtreabreevper')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
 
-    if permissao.permite_listar:
+    if request.user.has_perm('efdreinf.can_view_r2098evtReabreEvPer'):
+    
         filtrar = False
         dict_fields = {}
         show_fields = { 
@@ -107,8 +104,11 @@ def listar(request, hash):
             'show_cdretorno': 1,
             'show_descretorno': 0,
             'show_dhprocess': 0, }
+            
         post = False
+        
         if request.method == 'POST':
+        
             post = True
             dict_fields = { 
                 'reinf': 'reinf',
@@ -126,10 +126,13 @@ def listar(request, hash):
                 'transmissor_lote_efdreinf__icontains': 'transmissor_lote_efdreinf__icontains',
                 'status__icontains': 'status__icontains',
                 'cdretorno__icontains': 'cdretorno__icontains', }
+                
             for a in dict_fields:
                 dict_fields[a] = request.POST.get(a or None)
+                
             for a in show_fields:
                 show_fields[a] = request.POST.get(a or None)
+                
             if request.method == 'POST':
                 dict_fields = { 
                     'reinf': 'reinf',
@@ -149,28 +152,29 @@ def listar(request, hash):
                     'cdretorno__icontains': 'cdretorno__icontains', }
                 for a in dict_fields:
                     dict_fields[a] = request.POST.get(dict_fields[a] or None)
+                    
         dict_qs = clear_dict_fields(dict_fields)
         r2098_evtreabreevper_lista = r2098evtReabreEvPer.objects.filter(**dict_qs).filter().exclude(id=0).all()
+        
         if not post and len(r2098_evtreabreevper_lista) > 100:
             filtrar = True
             r2098_evtreabreevper_lista = None
             messages.warning(request, u'Listagem com mais de 100 resultados! Filtre os resultados um melhor desempenho!')
+            
         #[VARIAVEIS_LISTA_FILTRO_RELATORIO]
         #r2098_evtreabreevper_listar_custom
+        
         request.session["retorno_hash"] = hash
         request.session["retorno_pagina"] = 'r2098_evtreabreevper'
+        
         context = {
             'r2098_evtreabreevper_lista': r2098_evtreabreevper_lista, 
             
             'usuario': usuario,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'dict_fields': dict_fields,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['efdreinf', ],
+            'paginas': ['r2098_evtreabreevper', ],
             'show_fields': show_fields,
             'for_print': for_print,
             'hash': hash,
@@ -179,9 +183,11 @@ def listar(request, hash):
         }
         
         if for_print in (0,1):
+        
             return render(request, 'r2098_evtreabreevper_listar.html', context)
             
         elif for_print == 2:
+        
             from emensageriapro.functions import render_to_pdf
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
@@ -205,6 +211,7 @@ def listar(request, hash):
             return response
             
         elif for_print == 3:
+        
             response = render_to_response('r2098_evtreabreevper_listar.html', context)
             filename = "r2098_evtreabreevper.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -212,6 +219,7 @@ def listar(request, hash):
             return response
             
         elif for_print == 4:
+        
             response = render_to_response('csv/r2098_evtreabreevper.csv', context)
             filename = "r2098_evtreabreevper.csv"
             response['Content-Disposition'] = 'attachment; filename=' + filename
@@ -219,15 +227,11 @@ def listar(request, hash):
             return response
             
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['efdreinf', ],
+            'paginas': ['r2098_evtreabreevper', ],
         }
         return render(request, 'permissao_negada.html', context)

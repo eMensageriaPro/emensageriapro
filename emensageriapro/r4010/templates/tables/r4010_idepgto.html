@@ -24,7 +24,7 @@
             <td>{{ a.r4010_evtretpf }}</td>
             {% endif %}
             {% if show_fields.show_natrend or 1 %}
-            <td>{{ a.get_natrend_display }}</td>
+            <td>{{ a.natrend }}</td>
             {% endif %}
             {% if show_fields.show_paisresid or 1 %}
             <td>{{ a.paisresid }}</td>
@@ -35,9 +35,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r4010_idepgto_visualizar' %}
+                    {% if perms.r4010.can_view_r4010idePgto %}
                         <a href="{% url 'r4010_idepgto_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r4010_idepgto_editar' or dict_permissoes|get_permissao:'r4010_idepgto_cadastrar' %}
+                            {% if perms.r4010.add_r4010idePgto or perms.r4010.change_r4010idePgto %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -48,7 +48,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r4010_idepgto_apagar' %}
+                    {% if perms.r4010.delete_r4010idePgto %}
                         <a href="{% url 'r4010_idepgto_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

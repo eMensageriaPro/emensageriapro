@@ -1,0 +1,88 @@
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            {% if show_fields.show_opcoes_slug or 1 %}
+            <th>Slug da Opção</th>
+            {% endif %}
+            {% if show_fields.show_opcoes_id or 1 %}
+            <th>Identificador da Opção</th>
+            {% endif %}
+            {% if show_fields.show_codigo or 1 %}
+            <th>Código</th>
+            {% endif %}
+            {% if show_fields.show_titulo or 1 %}
+            <th>Título</th>
+            {% endif %}
+            {% if show_fields.show_descricao or 1 %}
+            <th>Descrição</th>
+            {% endif %}
+            {% if show_fields.show_data_inicio or 1 %}
+            <th>Data de Início da Validade</th>
+            {% endif %}
+            {% if show_fields.show_data_termino or 1 %}
+            <th>Data de Término da Validade</th>
+            {% endif %}
+            <!-- cabeçalho de colunas especiais -->
+            {% if not for_print %}
+            <th width="90px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in opcoes_lista %}
+        <tr>
+            {% if show_fields.show_opcoes_slug or 1 %}
+            <td>{{ a.opcoes_slug }}</td>
+            {% endif %}
+            {% if show_fields.show_opcoes_id or 1 %}
+            <td>{{ a.opcoes_id }}</td>
+            {% endif %}
+            {% if show_fields.show_codigo or 1 %}
+            <td>{{ a.codigo }}</td>
+            {% endif %}
+            {% if show_fields.show_titulo or 1 %}
+            <td>{{ a.titulo }}</td>
+            {% endif %}
+            {% if show_fields.show_descricao or 1 %}
+            <td>{{ a.descricao }}</td>
+            {% endif %}
+            {% if show_fields.show_data_inicio or 1 %}
+            <td><span style="display:none">{{ a.data_inicio|date:"Y-m-d" }}</span>{{ a.data_inicio|date:"d/m/Y" }}</td>
+            {% endif %}
+            {% if show_fields.show_data_termino or 1 %}
+            <td><span style="display:none">{{ a.data_termino|date:"Y-m-d" }}</span>{{ a.data_termino|date:"d/m/Y" }}</td>
+            {% endif %}
+            
+            <!-- colunas especiais -->
+            {% if not for_print %}
+            <td>
+                <div>
+                    <!-- botões especiais -->
+                    {% if perms.tabelas.can_view_Opcoes %}
+                        <a href="{% url 'opcoes_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            {% if perms.tabelas.add_Opcoes or perms.tabelas.change_Opcoes %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% else %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                    {% if perms.tabelas.delete_Opcoes %}
+                        <a href="{% url 'opcoes_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

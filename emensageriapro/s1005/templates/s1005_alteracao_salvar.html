@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' %}
+                    {% if perms.s1005.can_view_s1005alteracao %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_return_page:'s1005_alteracao_salvar'|json_return_hash:hash|json_id:s1005_alteracao_id|json_print:0|base64_encode_me %}">
                             Alteração das informações
@@ -62,49 +62,49 @@
                     {% endif %}
                     {% if s1005_alteracao_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudrat_visualizar' %}
+                            {% if perms.s1005.can_view_s1005_alteracao_procadmjudrat %}
                                 <li {% if tab == 's1005_alteracao_procadmjudrat' %} class="active"{% endif %} >
                                     <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_procadmjudrat'|base64_encode_me %}">
                                     Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudfap_visualizar' %}
+                            {% if perms.s1005.can_view_s1005_alteracao_procadmjudfap %}
                                 <li {% if tab == 's1005_alteracao_procadmjudfap' %} class="active"{% endif %} >
                                     <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_procadmjudfap'|base64_encode_me %}">
                                     Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_infocaepf_visualizar' %}
+                            {% if perms.s1005.can_view_s1005_alteracao_infocaepf %}
                                 <li {% if tab == 's1005_alteracao_infocaepf' %} class="active"{% endif %} >
                                     <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_infocaepf'|base64_encode_me %}">
                                     Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_visualizar' %}
+                            {% if perms.s1005.can_view_s1005_alteracao_infoobra %}
                                 <li {% if tab == 's1005_alteracao_infoobra' %} class="active"{% endif %} >
                                     <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_infoobra'|base64_encode_me %}">
                                     Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_infoenteduc_visualizar' %}
+                            {% if perms.s1005.can_view_s1005_alteracao_infoenteduc %}
                                 <li {% if tab == 's1005_alteracao_infoenteduc' %} class="active"{% endif %} >
                                     <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_infoenteduc'|base64_encode_me %}">
                                     Identificação da(s) entidade(s) educativa(s) ou de prática desportiva</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_infopcd_visualizar' %}
+                            {% if perms.s1005.can_view_s1005_alteracao_infopcd %}
                                 <li {% if tab == 's1005_alteracao_infopcd' %} class="active"{% endif %} >
                                     <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_infopcd'|base64_encode_me %}">
                                     Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_novavalidade_visualizar' %}
+                            {% if perms.s1005.can_view_s1005_alteracao_novavalidade %}
                                 <li {% if tab == 's1005_alteracao_novavalidade' %} class="active"{% endif %} >
                                     <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|json_tab:'s1005_alteracao_novavalidade'|base64_encode_me %}">
                                     Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</a>
@@ -223,7 +223,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1005_alteracao_editar' or dict_permissoes|get_permissao:'s1005_alteracao_cadastrar' %}
+            {% if perms.s1005.change_s1005_alteracao or perms.s1005.add_s1005_alteracao %}
                 <form action="#" id="id_form_s1005_alteracao" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -250,7 +250,7 @@
                             <!-- botões especiais -->
                             {% if s1005_alteracao_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1005_alteracao_cadastrar' %}
+                                {% if perms.s1005.add_s1005alteracao %}
                                     <a href="{% url 's1005_alteracao_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -262,7 +262,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_listar' or dict_permissoes|get_permissao:'s1005_alteracao_listar' %}
+                            {% if perms.s1005.can_view_s1005_alteracao or perms.s1005.can_view_s1005_alteracao %}
                                 <a href="{% url 's1005_alteracao'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -271,7 +271,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' and s1005_alteracao_id %}
+                            {% if perms.s1005.can_view_s1005_alteracao and s1005_alteracao_id %}
                                 <a href="{% url 's1005_alteracao_salvar' hash='{}'|json_id:s1005_alteracao_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -280,7 +280,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_visualizar' and s1005_alteracao_id %}
+                            {% if perms.s1005.can_view_s1005_alteracao and s1005_alteracao_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -307,7 +307,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_editar' or dict_permissoes|get_permissao:'s1005_alteracao_cadastrar' %}
+                            {% if perms.s1005.change_s1005_alteracao or perms.s1005.add_s1005_alteracao %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -316,7 +316,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1005_alteracao_apagar' and s1005_alteracao_id %}
+                            {% if perms.s1005.delete_s1005_alteracao and s1005_alteracao_id %}
 
                             <a href="{% url 's1005_alteracao_apagar' hash='{}'|json_id:s1005_alteracao_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -338,7 +338,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_editar' or dict_permissoes|get_permissao:'s1005_alteracao_cadastrar' %}
+                    {% if perms.s1005.change_s1005_alteracao or perms.s1005.add_s1005_alteracao %}
                         </form>
                     {% endif %}
 
@@ -364,9 +364,9 @@
 
             {% if tab == 's1005_alteracao_procadmjudrat' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudrat_visualizar' %} 
+                {% if perms.s1005.can_view_s1005_alteracao_procadmjudrat %} 
 
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudrat_editar' or dict_permissoes|get_permissao:'s1005_alteracao_procadmjudrat_cadastrar' %}
+                    {% if perms.s1005.change_s1005_alteracao_procadmjudrat or perms.s1005.add_s1005alteracaoprocAdmJudRat %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -393,7 +393,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudrat_editar' or dict_permissoes|get_permissao:'s1005_alteracao_procadmjudrat_cadastrar' %}
+                                        {% if perms.s1005.change_s1005_alteracao_procadmjudrat or perms.s1005.add_s1005alteracaoprocAdmJudRat %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -408,7 +408,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudrat_cadastrar' %}            
+                                    {% if perms.s1005.add_s1005alteracaoprocAdmJudRat %}            
                                     <!-- begin_form_s1005_alteracao_procadmjudrat --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1005_alteracao_procadmjudrat" action="{% url 's1005_alteracao_procadmjudrat_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -461,9 +461,9 @@
 
             {% if tab == 's1005_alteracao_procadmjudfap' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudfap_visualizar' %} 
+                {% if perms.s1005.can_view_s1005_alteracao_procadmjudfap %} 
 
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudfap_editar' or dict_permissoes|get_permissao:'s1005_alteracao_procadmjudfap_cadastrar' %}
+                    {% if perms.s1005.change_s1005_alteracao_procadmjudfap or perms.s1005.add_s1005alteracaoprocAdmJudFap %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -490,7 +490,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudfap_editar' or dict_permissoes|get_permissao:'s1005_alteracao_procadmjudfap_cadastrar' %}
+                                        {% if perms.s1005.change_s1005_alteracao_procadmjudfap or perms.s1005.add_s1005alteracaoprocAdmJudFap %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -505,7 +505,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1005_alteracao_procadmjudfap_cadastrar' %}            
+                                    {% if perms.s1005.add_s1005alteracaoprocAdmJudFap %}            
                                     <!-- begin_form_s1005_alteracao_procadmjudfap --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1005_alteracao_procadmjudfap" action="{% url 's1005_alteracao_procadmjudfap_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -558,9 +558,9 @@
 
             {% if tab == 's1005_alteracao_infocaepf' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_infocaepf_visualizar' %} 
+                {% if perms.s1005.can_view_s1005_alteracao_infocaepf %} 
 
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_infocaepf_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infocaepf_cadastrar' %}
+                    {% if perms.s1005.change_s1005_alteracao_infocaepf or perms.s1005.add_s1005alteracaoinfoCaepf %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -587,7 +587,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações relativas ao Cadastro da Atividade Econômica da Pessoa Física - CAEPF.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1005_alteracao_infocaepf_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infocaepf_cadastrar' %}
+                                        {% if perms.s1005.change_s1005_alteracao_infocaepf or perms.s1005.add_s1005alteracaoinfoCaepf %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -602,7 +602,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1005_alteracao_infocaepf_cadastrar' %}            
+                                    {% if perms.s1005.add_s1005alteracaoinfoCaepf %}            
                                     <!-- begin_form_s1005_alteracao_infocaepf --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1005_alteracao_infocaepf" action="{% url 's1005_alteracao_infocaepf_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -655,9 +655,9 @@
 
             {% if tab == 's1005_alteracao_infoobra' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_visualizar' %} 
+                {% if perms.s1005.can_view_s1005_alteracao_infoobra %} 
 
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infoobra_cadastrar' %}
+                    {% if perms.s1005.change_s1005_alteracao_infoobra or perms.s1005.add_s1005alteracaoinfoObra %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -684,7 +684,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente por empresa construtora enquadrada nos Arts. 7 a 9 da Lei 12.546/2011, relacionando os estabelecimentos inscritos no CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infoobra_cadastrar' %}
+                                        {% if perms.s1005.change_s1005_alteracao_infoobra or perms.s1005.add_s1005alteracaoinfoObra %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -699,7 +699,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1005_alteracao_infoobra_cadastrar' %}            
+                                    {% if perms.s1005.add_s1005alteracaoinfoObra %}            
                                     <!-- begin_form_s1005_alteracao_infoobra --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1005_alteracao_infoobra" action="{% url 's1005_alteracao_infoobra_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -752,9 +752,9 @@
 
             {% if tab == 's1005_alteracao_infoenteduc' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_infoenteduc_visualizar' %} 
+                {% if perms.s1005.can_view_s1005_alteracao_infoenteduc %} 
 
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_infoenteduc_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infoenteduc_cadastrar' %}
+                    {% if perms.s1005.change_s1005_alteracao_infoenteduc or perms.s1005.add_s1005alteracaoinfoEntEduc %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -781,7 +781,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Identificação da(s) entidade(s) educativa(s) ou de prática desportiva</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1005_alteracao_infoenteduc_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infoenteduc_cadastrar' %}
+                                        {% if perms.s1005.change_s1005_alteracao_infoenteduc or perms.s1005.add_s1005alteracaoinfoEntEduc %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -796,7 +796,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1005_alteracao_infoenteduc_cadastrar' %}            
+                                    {% if perms.s1005.add_s1005alteracaoinfoEntEduc %}            
                                     <!-- begin_form_s1005_alteracao_infoenteduc --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1005_alteracao_infoenteduc" action="{% url 's1005_alteracao_infoenteduc_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -849,9 +849,9 @@
 
             {% if tab == 's1005_alteracao_infopcd' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_infopcd_visualizar' %} 
+                {% if perms.s1005.can_view_s1005_alteracao_infopcd %} 
 
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_infopcd_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infopcd_cadastrar' %}
+                    {% if perms.s1005.change_s1005_alteracao_infopcd or perms.s1005.add_s1005alteracaoinfoPCD %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -878,7 +878,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento 'Matriz'.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1005_alteracao_infopcd_editar' or dict_permissoes|get_permissao:'s1005_alteracao_infopcd_cadastrar' %}
+                                        {% if perms.s1005.change_s1005_alteracao_infopcd or perms.s1005.add_s1005alteracaoinfoPCD %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -893,7 +893,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1005_alteracao_infopcd_cadastrar' %}            
+                                    {% if perms.s1005.add_s1005alteracaoinfoPCD %}            
                                     <!-- begin_form_s1005_alteracao_infopcd --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1005_alteracao_infopcd" action="{% url 's1005_alteracao_infopcd_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -946,9 +946,9 @@
 
             {% if tab == 's1005_alteracao_novavalidade' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1005_alteracao_novavalidade_visualizar' %} 
+                {% if perms.s1005.can_view_s1005_alteracao_novavalidade %} 
 
-                    {% if dict_permissoes|get_permissao:'s1005_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1005_alteracao_novavalidade_cadastrar' %}
+                    {% if perms.s1005.change_s1005_alteracao_novavalidade or perms.s1005.add_s1005alteracaonovaValidade %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -975,7 +975,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informação preenchida exclusivamente em caso de alteração do período de validade das informações do registro identificado no evento, apresentando o novo período de validade.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1005_alteracao_novavalidade_editar' or dict_permissoes|get_permissao:'s1005_alteracao_novavalidade_cadastrar' %}
+                                        {% if perms.s1005.change_s1005_alteracao_novavalidade or perms.s1005.add_s1005alteracaonovaValidade %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -990,7 +990,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1005_alteracao_novavalidade_cadastrar' %}            
+                                    {% if perms.s1005.add_s1005alteracaonovaValidade %}            
                                     <!-- begin_form_s1005_alteracao_novavalidade --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1005_alteracao_novavalidade" action="{% url 's1005_alteracao_novavalidade_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

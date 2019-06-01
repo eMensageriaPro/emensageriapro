@@ -112,6 +112,7 @@ from emensageriapro.efdreinf.forms import form_r9012_evtretcons
 def salvar(request, hash):
     
     try: 
+    
         usuario_id = request.user.id  
         dict_hash = get_hash_url( hash )
         transmissor_lote_efdreinf_id = int(dict_hash['id'])
@@ -120,21 +121,17 @@ def salvar(request, hash):
         for_print = int(dict_hash['print'])
         
     except: 
+    
         usuario_id = False
         return redirect('login')
         
     usuario = get_object_or_404(Usuarios, id=usuario_id)
-    pagina = ConfigPaginas.objects.get(endereco='transmissor_lote_efdreinf')
-    permissao = ConfigPermissoes.objects.get(config_paginas=pagina, config_perfis=usuario.config_perfis)
     
     if transmissor_lote_efdreinf_id:
+    
         transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id=transmissor_lote_efdreinf_id)
         
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
-
-    if permissao.permite_visualizar:
+    if request.user.has_perm('mensageiro.can_view_TransmissorLoteEfdreinf'):
         
         if transmissor_lote_efdreinf_id:
             transmissor_lote_efdreinf_form = form_transmissor_lote_efdreinf(request.POST or None, instance=transmissor_lote_efdreinf)
@@ -151,15 +148,19 @@ def salvar(request, hash):
                 
                 if request.session['retorno_pagina'] not in ('transmissor_lote_efdreinf_apagar', 'transmissor_lote_efdreinf_salvar', 'transmissor_lote_efdreinf'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if transmissor_lote_efdreinf_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('transmissor_lote_efdreinf_salvar', hash=url_hash)
+                    
             else:
                 messages.error(request, 'Erro ao salvar!')
-        transmissor_lote_efdreinf_form = disabled_form_fields(transmissor_lote_efdreinf_form, permissao.permite_editar)
+                
+        transmissor_lote_efdreinf_form = disabled_form_fields(transmissor_lote_efdreinf_form, request.user.has_perm('mensageiro.change_TransmissorLoteEfdreinf'))
         #transmissor_lote_efdreinf_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             transmissor_lote_efdreinf_form = disabled_form_for_print(transmissor_lote_efdreinf_form)
         
         
@@ -215,6 +216,7 @@ def salvar(request, hash):
         r9012_evtretcons_form = None 
         
         if transmissor_lote_efdreinf_id:
+        
             transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf, id = transmissor_lote_efdreinf_id)
             
             transmissor_lote_efdreinf_ocorrencias_form = form_transmissor_lote_efdreinf_ocorrencias(
@@ -344,14 +346,18 @@ def salvar(request, hash):
                 filter(transmissor_lote_efdreinf_id=transmissor_lote_efdreinf.id).all()
                 
         else:
+        
             transmissor_lote_efdreinf = None
             
         #transmissor_lote_efdreinf_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'transmissor_lote_efdreinf' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'transmissor_lote_efdreinf_salvar'
+            
         context = {
             'transmissor_lote_efdreinf': transmissor_lote_efdreinf, 
             'transmissor_lote_efdreinf_form': transmissor_lote_efdreinf_form, 
@@ -409,12 +415,9 @@ def salvar(request, hash):
             'r9011_evttotalcontrib_lista': r9011_evttotalcontrib_lista,
             'r9012_evtretcons_form': r9012_evtretcons_form,
             'r9012_evtretcons_lista': r9012_evtretcons_lista,
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['transmissor_lote_efdreinf', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -461,12 +464,12 @@ def salvar(request, hash):
     
         context = {
             'usuario': usuario, 
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-            'permissao': permissao,
+            'modulos': ['mensageiro', ],
+            'paginas': ['transmissor_lote_efdreinf', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
             'dict_permissoes': dict_permissoes,
         }
         
-        return render(request, 'permissao_negada.html', context)
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

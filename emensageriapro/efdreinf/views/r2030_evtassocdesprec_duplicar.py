@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.r2030.models import *
 from emensageriapro.r2030.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -81,28 +81,37 @@ def duplicar(request, hash):
 
     dict_hash = get_hash_url(hash)
     r2030_evtassocdesprec_id = int(dict_hash['id'])
+    
+    if request.user.has_perm('efdreinf.can_duplicate_event_r2030evtAssocDespRec'):
 
-    if r2030_evtassocdesprec_id:
-
-        r2030_evtassocdesprec = get_object_or_404(
-            r2030evtAssocDespRec,
-            id=r2030_evtassocdesprec_id)
-
-        texto = gerar_xml_r2030(r2030_evtassocdesprec_id, versao="|")
-        dados = read_r2030_evtassocdesprec_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r2030_evtassocdesprec)
-
-        r2030evtAssocDespRec.objects.filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2030_evtassocdesprec.identidade),
-            'r2030_evtassocdesprec', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('r2030_evtassocdesprec_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao duplicar evento!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        if r2030_evtassocdesprec_id:
+    
+            r2030_evtassocdesprec = get_object_or_404(
+                r2030evtAssocDespRec,
+                id=r2030_evtassocdesprec_id)
+    
+            texto = gerar_xml_r2030(r2030_evtassocdesprec_id, versao="|")
+            dados = read_r2030_evtassocdesprec_string({}, texto.encode('utf-8'), 0)
+            nova_identidade = identidade_evento(r2030_evtassocdesprec)
+    
+            r2030evtAssocDespRec.objects.filter(id=dados['id']).\
+                update(status=STATUS_EVENTO_CADASTRADO,
+                       arquivo_original=0,
+                       arquivo='')
+    
+            gravar_auditoria(u'{}', u'{"funcao": "Evento de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r2030_evtassocdesprec.identidade),
+                'r2030_evtassocdesprec', dados['id'], request.user.id, 1)
+    
+            messages.success(request, u'Evento duplicado com sucesso! Foi criado uma nova identidade para este evento!')
+            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
+            return redirect('r2030_evtassocdesprec_salvar', hash=url_hash)
+    
+        messages.error(request, 'Erro ao duplicar evento!')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+    else:
+    
+        messages.error(request, u'''Você não possui permissão para duplicar o evento. 
+                                    Entre em contato com o administrador do sistema!''')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        

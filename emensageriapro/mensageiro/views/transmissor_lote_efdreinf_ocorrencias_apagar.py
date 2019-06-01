@@ -61,45 +61,50 @@ from emensageriapro.controle_de_acesso.models import *
 @login_required
 def apagar(request, hash):
     
-    
     try: 
+    
         usuario_id = request.user.id   
         dict_hash = get_hash_url( hash )
         transmissor_lote_efdreinf_ocorrencias_id = int(dict_hash['id'])
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='transmissor_lote_efdreinf_ocorrencias')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
 
-    transmissor_lote_efdreinf_ocorrencias = get_object_or_404(TransmissorLoteEfdreinfOcorrencias, id = transmissor_lote_efdreinf_ocorrencias_id)
+    transmissor_lote_efdreinf_ocorrencias = get_object_or_404(TransmissorLoteEfdreinfOcorrencias, id=transmissor_lote_efdreinf_ocorrencias_id)
+    
     if request.method == 'POST':
-        obj = TransmissorLoteEfdreinfOcorrencias.objects.get(id = transmissor_lote_efdreinf_ocorrencias_id)
+    
+        obj = TransmissorLoteEfdreinfOcorrencias.objects.get(id=transmissor_lote_efdreinf_ocorrencias_id)
         obj.delete(request=request)
         #transmissor_lote_efdreinf_ocorrencias_apagar_custom
         #transmissor_lote_efdreinf_ocorrencias_apagar_custom
         messages.success(request, u'Apagado com sucesso!')
-        if request.session['retorno_pagina']== 'transmissor_lote_efdreinf_ocorrencias_salvar':
-            return redirect('transmissor_lote_efdreinf_ocorrencias', hash=request.session['retorno_hash'])
-        else:
-            return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-    context = {
-        'usuario': usuario, 
         
-        'modulos_permitidos_lista': modulos_permitidos_lista,
-        'paginas_permitidas_lista': paginas_permitidas_lista,
-       
-        'permissao': permissao,
+        if request.session['retorno_pagina'] == 'transmissor_lote_efdreinf_ocorrencias_salvar':
+        
+            return redirect('transmissor_lote_efdreinf_ocorrencias', 
+                            hash=request.session['retorno_hash'])
+            
+        else:
+        
+            return redirect(request.session['retorno_pagina'], 
+                            hash=request.session['retorno_hash'])
+            
+    context = {
+    
+        'usuario': usuario, 
         'data': datetime.datetime.now(),
-        'pagina': pagina,
-        'dict_permissoes': dict_permissoes,
+        'modulos': ['mensageiro', ],
+        'paginas': ['transmissor_lote_efdreinf_ocorrencias', ],
         'hash': hash,
+        
     }
-    return render(request, 'transmissor_lote_efdreinf_ocorrencias_apagar.html', context)
+    
+    return render(request, 
+                  'transmissor_lote_efdreinf_ocorrencias_apagar.html', 
+                  context)

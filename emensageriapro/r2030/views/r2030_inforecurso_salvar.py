@@ -61,43 +61,48 @@ from emensageriapro.controle_de_acesso.models import *
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         r2030_inforecurso_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r2030_inforecurso')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if r2030_inforecurso_id:
-        r2030_inforecurso = get_object_or_404(r2030infoRecurso, id = r2030_inforecurso_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if r2030_inforecurso_id:
+    
+        r2030_inforecurso = get_object_or_404(r2030infoRecurso, id=r2030_inforecurso_id)
         dados_evento = r2030_inforecurso.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r2030_inforecurso_apagar'] = 0
-            dict_permissoes['r2030_inforecurso_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('r2030.can_view_r2030infoRecurso'):
+        
         if r2030_inforecurso_id:
-            r2030_inforecurso_form = form_r2030_inforecurso(request.POST or None, instance = r2030_inforecurso,  
-                                         initial={'excluido': False})
+        
+            r2030_inforecurso_form = form_r2030_inforecurso(request.POST or None, 
+                                                          instance=r2030_inforecurso,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             r2030_inforecurso_form = form_r2030_inforecurso(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if r2030_inforecurso_form.is_valid():
             
                 dados = r2030_inforecurso_form.cleaned_data
@@ -105,9 +110,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not r2030_inforecurso_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  'r2030_inforecurso', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r2030_inforecurso), indent=4, sort_keys=True, default=str),
@@ -115,69 +122,82 @@ def salvar(request, hash):
                                      'r2030_inforecurso', r2030_inforecurso_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('r2030_inforecurso_apagar', 'r2030_inforecurso_salvar', 'r2030_inforecurso'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if r2030_inforecurso_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('r2030_inforecurso_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        r2030_inforecurso_form = disabled_form_fields(r2030_inforecurso_form, permissao.permite_editar)
+               
+        r2030_inforecurso_form = disabled_form_fields(r2030_inforecurso_form, request.user.has_perm('r2030.change_r2030infoRecurso'))
         
         if r2030_inforecurso_id:
+        
             if dados_evento['status'] != 0:
+            
                 r2030_inforecurso_form = disabled_form_fields(r2030_inforecurso_form, 0)
                 
         #r2030_inforecurso_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             r2030_inforecurso_form = disabled_form_for_print(r2030_inforecurso_form)
             
         
         
         if r2030_inforecurso_id:
-            r2030_inforecurso = get_object_or_404(r2030infoRecurso, id = r2030_inforecurso_id)
+        
+            r2030_inforecurso = get_object_or_404(r2030infoRecurso, id=r2030_inforecurso_id)
             
                 
         else:
+        
             r2030_inforecurso = None
             
         #r2030_inforecurso_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'r2030_inforecurso' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r2030_inforecurso_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=r2030_inforecurso_id, tabela='r2030_inforecurso').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             'r2030_inforecurso': r2030_inforecurso, 
             'r2030_inforecurso_form': r2030_inforecurso_form, 
-            'mensagem': mensagem, 
             'r2030_inforecurso_id': int(r2030_inforecurso_id),
             'usuario': usuario, 
-            
+            'modulos': ['r2030', ],
+            'paginas': ['r2030_inforecurso', ],
             'hash': hash, 
             
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #r2030_inforecurso_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 'r2030_inforecurso_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -198,7 +218,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('r2030_inforecurso_salvar.html', context)
             filename = "r2030_inforecurso.xls"
@@ -207,15 +229,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['r2030', ],
+            'paginas': ['r2030_inforecurso', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

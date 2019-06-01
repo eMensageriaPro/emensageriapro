@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro que apresenta as informações de homologação do benefício pelo Tribunal de Contas</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2410_homologtc_cadastrar' %}
+                  {% if perms.s2410.add_s2410homologTC %}
                   <a href="{% url 's2410_homologtc_salvar' hash='{}'|json_return_page:'s2410_homologtc_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

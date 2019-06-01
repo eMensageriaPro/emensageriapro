@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'r5011_rcoml_visualizar' %}
+                    {% if perms.r5011.can_view_r5011RComl %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 'r5011_rcoml_salvar' hash='{}'|json_return_page:'r5011_rcoml_salvar'|json_return_hash:hash|json_id:r5011_rcoml_id|json_print:0|base64_encode_me %}">
                             Totalizador das contribuições sociais incidentes sobre a comercialização de produção por Produtor Rural Pessoa Jurídica e Agroindústria, apuradas no evento R-2050
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'r5011_rcoml_editar' or dict_permissoes|get_permissao:'r5011_rcoml_cadastrar' %}
+            {% if perms.r5011.change_r5011_rcoml or perms.r5011.add_r5011_rcoml %}
                 <form action="#" id="id_form_r5011_rcoml" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if r5011_rcoml_id %}
 
-                                {% if dict_permissoes|get_permissao:'r5011_rcoml_cadastrar' %}
+                                {% if perms.r5011.add_r5011RComl %}
                                     <a href="{% url 'r5011_rcoml_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r5011_rcoml_listar' or dict_permissoes|get_permissao:'r5011_rcoml_listar' %}
+                            {% if perms.r5011.can_view_r5011_rcoml or perms.r5011.can_view_r5011_rcoml %}
                                 <a href="{% url 'r5011_rcoml'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r5011_rcoml_visualizar' and r5011_rcoml_id %}
+                            {% if perms.r5011.can_view_r5011_rcoml and r5011_rcoml_id %}
                                 <a href="{% url 'r5011_rcoml_salvar' hash='{}'|json_id:r5011_rcoml_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'r5011_rcoml_visualizar' and r5011_rcoml_id %}
+                            {% if perms.r5011.can_view_r5011_rcoml and r5011_rcoml_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r5011_rcoml_editar' or dict_permissoes|get_permissao:'r5011_rcoml_cadastrar' %}
+                            {% if perms.r5011.change_r5011_rcoml or perms.r5011.add_r5011_rcoml %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'r5011_rcoml_apagar' and r5011_rcoml_id %}
+                            {% if perms.r5011.delete_r5011_rcoml and r5011_rcoml_id %}
 
                             <a href="{% url 'r5011_rcoml_apagar' hash='{}'|json_id:r5011_rcoml_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'r5011_rcoml_editar' or dict_permissoes|get_permissao:'r5011_rcoml_cadastrar' %}
+                    {% if perms.r5011.change_r5011_rcoml or perms.r5011.add_r5011_rcoml %}
                         </form>
                     {% endif %}
 

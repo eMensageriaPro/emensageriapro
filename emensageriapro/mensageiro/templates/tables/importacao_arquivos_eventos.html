@@ -47,9 +47,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_visualizar' %}
+                    {% if perms.mensageiro.can_view_ImportacaoArquivosEventos %}
                         <a href="{% url 'importacao_arquivos_eventos_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_editar' or dict_permissoes|get_permissao:'importacao_arquivos_eventos_cadastrar' %}
+                            {% if perms.mensageiro.add_ImportacaoArquivosEventos or perms.mensageiro.change_ImportacaoArquivosEventos %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -60,7 +60,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'importacao_arquivos_eventos_apagar' %}
+                    {% if perms.mensageiro.delete_ImportacaoArquivosEventos %}
                         <a href="{% url 'importacao_arquivos_eventos_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

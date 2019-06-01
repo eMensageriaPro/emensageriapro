@@ -69,7 +69,7 @@
             <td>{{ a.verproc }}</td>
             {% endif %}
             {% if show_fields.show_tpinsc or 1 %}
-            <td>{{ a.get_tpinsc_display }}</td>
+            <td>{{ a.tpinsc }}</td>
             {% endif %}
             {% if show_fields.show_nrinsc or 1 %}
             <td>{{ a.nrinsc }}</td>
@@ -95,9 +95,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r4020_evtretpj_visualizar' %}
+                    {% if perms.efdreinf.can_view_r4020evtRetPJ %}
                         <a href="{% url 'r4020_evtretpj_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r4020_evtretpj_editar' or dict_permissoes|get_permissao:'r4020_evtretpj_cadastrar' %}
+                            {% if perms.efdreinf.add_r4020evtRetPJ or perms.efdreinf.change_r4020evtRetPJ %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -108,7 +108,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r4020_evtretpj_apagar' %}
+                    {% if perms.efdreinf.delete_r4020evtRetPJ %}
                         <a href="{% url 'r4020_evtretpj_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

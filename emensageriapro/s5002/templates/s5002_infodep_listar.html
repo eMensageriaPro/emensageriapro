@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s5002_infodep_cadastrar' %}
+                  {% if perms.s5002.add_s5002infoDep %}
                   <a href="{% url 's5002_infodep_salvar' hash='{}'|json_return_page:'s5002_infodep_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

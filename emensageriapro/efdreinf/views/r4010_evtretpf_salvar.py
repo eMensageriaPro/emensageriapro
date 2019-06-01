@@ -64,39 +64,43 @@ from emensageriapro.r4010.forms import form_r4010_ideopsaude
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     from emensageriapro.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_EFDREINF, TP_AMB
     
     try:
+    
         usuario_id = request.user.id
         dict_hash = get_hash_url( hash )
         r4010_evtretpf_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys():
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except:
         return redirect('login')
         
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r4010_evtretpf')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
     
     if r4010_evtretpf_id:
-        r4010_evtretpf = get_object_or_404(r4010evtRetPF, id = r4010_evtretpf_id)
-        
+    
+        r4010_evtretpf = get_object_or_404(r4010evtRetPF, id=r4010_evtretpf_id)
+
         if r4010_evtretpf.status != STATUS_EVENTO_CADASTRADO:
+        
+            dict_permissoes = {}
             dict_permissoes['r4010_evtretpf_apagar'] = 0
             dict_permissoes['r4010_evtretpf_editar'] = 0
-
-    if permissao.permite_visualizar:
-        mensagem = None
+            
+    if request.user.has_perm('efdreinf.can_view_r4010evtRetPF'):
+    
         if r4010_evtretpf_id:
+        
             r4010_evtretpf_form = form_r4010_evtretpf(request.POST or None, instance = r4010_evtretpf, 
                                          initial={'excluido': False})
+                                         
         else:
+        
             r4010_evtretpf_form = form_r4010_evtretpf(request.POST or None, 
                                          initial={'versao': VERSAO_LAYOUT_EFDREINF, 
                                                   'status': STATUS_EVENTO_CADASTRADO, 
@@ -104,7 +108,9 @@ def salvar(request, hash):
                                                   'procemi': 1, 
                                                   'verproc': VERSAO_EMENSAGERIA, 
                                                   'excluido': False})
+                                                  
         if request.method == 'POST':
+        
             if r4010_evtretpf_form.is_valid():
             
                 dados = r4010_evtretpf_form.cleaned_data
@@ -112,6 +118,7 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not r4010_evtretpf_id:
+                
                     from emensageriapro.functions import identidade_evento
                     identidade_evento(obj)
                   
@@ -126,13 +133,15 @@ def salvar(request, hash):
                                  
                 if request.session['retorno_pagina'] not in ('r4010_evtretpf_apagar', 'r4010_evtretpf_salvar', 'r4010_evtretpf'):
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if r4010_evtretpf_id != obj.id:
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('r4010_evtretpf_salvar', hash=url_hash)
 
             else:
                 messages.error(request, u'Erro ao salvar!')
-        r4010_evtretpf_form = disabled_form_fields(r4010_evtretpf_form, permissao.permite_editar)
+                
+        r4010_evtretpf_form = disabled_form_fields(r4010_evtretpf_form, request.user.has_perm('efdreinf.change_r4010evtRetPF'))
         
         if r4010_evtretpf_id:
             if r4010_evtretpf.status != 0:
@@ -141,6 +150,7 @@ def salvar(request, hash):
 
         for field in r4010_evtretpf_form.fields.keys():
             r4010_evtretpf_form.fields[field].widget.attrs['ng-model'] = 'r4010_evtretpf_'+field
+            
         if int(dict_hash['print']):
             r4010_evtretpf_form = disabled_form_for_print(r4010_evtretpf_form)
 
@@ -151,6 +161,7 @@ def salvar(request, hash):
         r4010_ideopsaude_form = None 
         
         if r4010_evtretpf_id:
+        
             r4010_evtretpf = get_object_or_404(r4010evtRetPF, id = r4010_evtretpf_id)
             
             r4010_idepgto_form = form_r4010_idepgto(
@@ -166,9 +177,11 @@ def salvar(request, hash):
                 
         else:
             r4010_evtretpf = None
+            
         #r4010_evtretpf_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if 'r4010_evtretpf'[1] == '5':
             evento_totalizador = True
         else:
@@ -177,30 +190,25 @@ def salvar(request, hash):
         if dict_hash['tab'] or 'r4010_evtretpf' in request.session['retorno_pagina']:
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r4010_evtretpf_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=r4010_evtretpf_id, tabela='r4010_evtretpf').all()
+        
         context = {
             'evento_totalizador': evento_totalizador,
             'controle_alteracoes': controle_alteracoes,
             'r4010_evtretpf': r4010_evtretpf, 
             'r4010_evtretpf_form': r4010_evtretpf_form, 
-            'mensagem': mensagem, 
             'r4010_evtretpf_id': int(r4010_evtretpf_id),
             'usuario': usuario, 
-            
             'hash': hash, 
             
             'r4010_idepgto_form': r4010_idepgto_form,
             'r4010_idepgto_lista': r4010_idepgto_lista,
             'r4010_ideopsaude_form': r4010_ideopsaude_form,
             'r4010_ideopsaude_lista': r4010_ideopsaude_lista,
-
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
+            'modulos': ['efdreinf', ],
+            'paginas': ['r4010_evtretpf', ],
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
@@ -208,9 +216,11 @@ def salvar(request, hash):
         }
         
         if for_print in (0, 1):
+        
             return render(request, 'r4010_evtretpf_salvar.html', context)
             
         elif for_print == 2:
+        
             response = PDFTemplateResponse(
                 request=request,
                 template='r4010_evtretpf_salvar.html',
@@ -229,24 +239,23 @@ def salvar(request, hash):
                              'footer-center': '[page]/[topage]',
                              "no-stop-slow-scripts": True},
             )
+            
             return response
             
         elif for_print == 3:
+        
             response = render_to_response('r4010_evtretpf_salvar.html', context)
             filename = "r4010_evtretpf.xls"
             response['Content-Disposition'] = 'attachment; filename=' + filename
             response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
             return response
+            
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['efdreinf', ],
+            'paginas': ['r4010_evtretpf', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
         return render(request, 'permissao_negada.html', context)

@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações para identificação do empregador contratante de aprendiz</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2206_aprend_cadastrar' %}
+                  {% if perms.s2206.add_s2206aprend %}
                   <a href="{% url 's2206_aprend_salvar' hash='{}'|json_return_page:'s2206_aprend_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

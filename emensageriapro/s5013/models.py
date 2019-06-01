@@ -75,14 +75,6 @@ class s5013basePerAntE(SoftDeletionModel):
     tpvalore = models.IntegerField(choices=CHOICES_S5013_TPVALORE, null=True, )
     basefgtse = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -107,7 +99,8 @@ class s5013basePerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013_baseperante", "Can view s5013_baseperante"), )
+            ("can_view_s5013basePerAntE", "Can view S5013BASEPERANTE"),
+            ("can_view_menu_s5013basePerAntE", "Can view menu S5013BASEPERANTE"),)
             
         ordering = [
             's5013_infobaseperante',
@@ -142,14 +135,6 @@ class s5013basePerApur(SoftDeletionModel):
     tpvalor = models.IntegerField(null=True, )
     basefgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -174,7 +159,8 @@ class s5013basePerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013_baseperapur", "Can view s5013_baseperapur"), )
+            ("can_view_s5013basePerApur", "Can view S5013BASEPERAPUR"),
+            ("can_view_menu_s5013basePerApur", "Can view menu S5013BASEPERAPUR"),)
             
         ordering = [
             's5013_infobasefgts',
@@ -209,14 +195,6 @@ class s5013dpsPerAntE(SoftDeletionModel):
     tpdpse = models.IntegerField(choices=CHOICES_S5013_TPDPSE, null=True, )
     vrfgtse = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -241,7 +219,8 @@ class s5013dpsPerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013_dpsperante", "Can view s5013_dpsperante"), )
+            ("can_view_s5013dpsPerAntE", "Can view S5013DPSPERANTE"),
+            ("can_view_menu_s5013dpsPerAntE", "Can view menu S5013DPSPERANTE"),)
             
         ordering = [
             's5013_infodpsperante',
@@ -276,14 +255,6 @@ class s5013dpsPerApur(SoftDeletionModel):
     tpdps = models.IntegerField(choices=CHOICES_S5013_TPDPS, null=True, )
     vrfgts = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -308,7 +279,8 @@ class s5013dpsPerApur(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013_dpsperapur", "Can view s5013_dpsperapur"), )
+            ("can_view_s5013dpsPerApur", "Can view S5013DPSPERAPUR"),
+            ("can_view_menu_s5013dpsPerApur", "Can view menu S5013DPSPERAPUR"),)
             
         ordering = [
             's5013_infodpsfgts',
@@ -341,14 +313,6 @@ class s5013infoBaseFGTS(SoftDeletionModel):
     def evento(self): 
         return self.s5013_evtfgts.evento()
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -371,7 +335,8 @@ class s5013infoBaseFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013_infobasefgts", "Can view s5013_infobasefgts"), )
+            ("can_view_s5013infoBaseFGTS", "Can view S5013INFOBASEFGTS"),
+            ("can_view_menu_s5013infoBaseFGTS", "Can view menu S5013INFOBASEFGTS"),)
             
         ordering = [
             's5013_evtfgts',]
@@ -403,14 +368,6 @@ class s5013infoBasePerAntE(SoftDeletionModel):
         return self.s5013_infobasefgts.evento()
     perref = models.CharField(max_length=7, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -434,7 +391,8 @@ class s5013infoBasePerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013_infobaseperante", "Can view s5013_infobaseperante"), )
+            ("can_view_s5013infoBasePerAntE", "Can view S5013INFOBASEPERANTE"),
+            ("can_view_menu_s5013infoBasePerAntE", "Can view menu S5013INFOBASEPERANTE"),)
             
         ordering = [
             's5013_infobasefgts',
@@ -466,14 +424,6 @@ class s5013infoDpsFGTS(SoftDeletionModel):
     def evento(self): 
         return self.s5013_evtfgts.evento()
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -496,7 +446,8 @@ class s5013infoDpsFGTS(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013_infodpsfgts", "Can view s5013_infodpsfgts"), )
+            ("can_view_s5013infoDpsFGTS", "Can view S5013INFODPSFGTS"),
+            ("can_view_menu_s5013infoDpsFGTS", "Can view menu S5013INFODPSFGTS"),)
             
         ordering = [
             's5013_evtfgts',]
@@ -528,14 +479,6 @@ class s5013infoDpsPerAntE(SoftDeletionModel):
         return self.s5013_infodpsfgts.evento()
     perref = models.CharField(max_length=7, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -559,7 +502,8 @@ class s5013infoDpsPerAntE(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s5013_infodpsperante", "Can view s5013_infodpsperante"), )
+            ("can_view_s5013infoDpsPerAntE", "Can view S5013INFODPSPERANTE"),
+            ("can_view_menu_s5013infoDpsPerAntE", "Can view menu S5013INFODPSPERANTE"),)
             
         ordering = [
             's5013_infodpsfgts',

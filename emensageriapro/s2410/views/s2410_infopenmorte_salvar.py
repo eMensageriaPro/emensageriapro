@@ -63,43 +63,48 @@ from emensageriapro.s2410.forms import form_s2410_instpenmorte
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.esocial.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         s2410_infopenmorte_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='s2410_infopenmorte')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if s2410_infopenmorte_id:
-        s2410_infopenmorte = get_object_or_404(s2410infoPenMorte, id = s2410_infopenmorte_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if s2410_infopenmorte_id:
+    
+        s2410_infopenmorte = get_object_or_404(s2410infoPenMorte, id=s2410_infopenmorte_id)
         dados_evento = s2410_infopenmorte.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['s2410_infopenmorte_apagar'] = 0
-            dict_permissoes['s2410_infopenmorte_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('s2410.can_view_s2410infoPenMorte'):
+        
         if s2410_infopenmorte_id:
-            s2410_infopenmorte_form = form_s2410_infopenmorte(request.POST or None, instance = s2410_infopenmorte,  
-                                         initial={'excluido': False})
+        
+            s2410_infopenmorte_form = form_s2410_infopenmorte(request.POST or None, 
+                                                          instance=s2410_infopenmorte,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             s2410_infopenmorte_form = form_s2410_infopenmorte(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if s2410_infopenmorte_form.is_valid():
             
                 dados = s2410_infopenmorte_form.cleaned_data
@@ -107,9 +112,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not s2410_infopenmorte_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  's2410_infopenmorte', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(s2410_infopenmorte), indent=4, sort_keys=True, default=str),
@@ -117,21 +124,30 @@ def salvar(request, hash):
                                      's2410_infopenmorte', s2410_infopenmorte_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('s2410_infopenmorte_apagar', 's2410_infopenmorte_salvar', 's2410_infopenmorte'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if s2410_infopenmorte_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('s2410_infopenmorte_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        s2410_infopenmorte_form = disabled_form_fields(s2410_infopenmorte_form, permissao.permite_editar)
+               
+        s2410_infopenmorte_form = disabled_form_fields(s2410_infopenmorte_form, request.user.has_perm('s2410.change_s2410infoPenMorte'))
         
         if s2410_infopenmorte_id:
+        
             if dados_evento['status'] != 0:
+            
                 s2410_infopenmorte_form = disabled_form_fields(s2410_infopenmorte_form, 0)
                 
         #s2410_infopenmorte_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             s2410_infopenmorte_form = disabled_form_for_print(s2410_infopenmorte_form)
             
         
@@ -139,7 +155,8 @@ def salvar(request, hash):
         s2410_instpenmorte_form = None 
         
         if s2410_infopenmorte_id:
-            s2410_infopenmorte = get_object_or_404(s2410infoPenMorte, id = s2410_infopenmorte_id)
+        
+            s2410_infopenmorte = get_object_or_404(s2410infoPenMorte, id=s2410_infopenmorte_id)
             
             s2410_instpenmorte_form = form_s2410_instpenmorte(
                 initial={ 's2410_infopenmorte': s2410_infopenmorte })
@@ -148,47 +165,50 @@ def salvar(request, hash):
                 filter(s2410_infopenmorte_id=s2410_infopenmorte.id).all()
                 
         else:
+        
             s2410_infopenmorte = None
             
         #s2410_infopenmorte_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 's2410_infopenmorte' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 's2410_infopenmorte_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=s2410_infopenmorte_id, tabela='s2410_infopenmorte').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             's2410_infopenmorte': s2410_infopenmorte, 
             's2410_infopenmorte_form': s2410_infopenmorte_form, 
-            'mensagem': mensagem, 
             's2410_infopenmorte_id': int(s2410_infopenmorte_id),
             'usuario': usuario, 
-            
+            'modulos': ['s2410', ],
+            'paginas': ['s2410_infopenmorte', ],
             'hash': hash, 
             
             's2410_instpenmorte_form': s2410_instpenmorte_form,
             's2410_instpenmorte_lista': s2410_instpenmorte_lista,
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #s2410_infopenmorte_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 's2410_infopenmorte_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -209,7 +229,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('s2410_infopenmorte_salvar.html', context)
             filename = "s2410_infopenmorte.xls"
@@ -218,15 +240,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['s2410', ],
+            'paginas': ['s2410_infopenmorte', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

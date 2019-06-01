@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de 'Aprendiz'.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s2200_alvarajudicial_cadastrar' %}
+                  {% if perms.s2200.add_s2200alvaraJudicial %}
                   <a href="{% url 's2200_alvarajudicial_salvar' hash='{}'|json_return_page:'s2200_alvarajudicial_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

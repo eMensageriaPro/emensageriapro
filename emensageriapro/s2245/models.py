@@ -79,14 +79,6 @@ class s2245ideProfResp(SoftDeletionModel):
     codcbo = models.CharField(max_length=6, null=True, )
     nacprof = models.IntegerField(choices=CHOICES_S2245_NACPROF, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -114,7 +106,8 @@ class s2245ideProfResp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2245_ideprofresp", "Can view s2245_ideprofresp"), )
+            ("can_view_s2245ideProfResp", "Can view S2245IDEPROFRESP"),
+            ("can_view_menu_s2245ideProfResp", "Can view menu S2245IDEPROFRESP"),)
             
         ordering = [
             's2245_evttreicap',

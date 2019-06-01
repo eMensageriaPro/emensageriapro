@@ -79,14 +79,6 @@ class r2050infoProc(SoftDeletionModel):
     vlrratsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     vlrsenarsusp = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -111,7 +103,8 @@ class r2050infoProc(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2050_infoproc", "Can view r2050_infoproc"), )
+            ("can_view_r2050infoProc", "Can view R2050INFOPROC"),
+            ("can_view_menu_r2050infoProc", "Can view menu R2050INFOPROC"),)
             
         ordering = [
             'r2050_tipocom',
@@ -146,14 +139,6 @@ class r2050tipoCom(SoftDeletionModel):
     indcom = models.IntegerField(choices=CHOICES_R2050_INDCOM, null=True, )
     vlrrecbruta = models.DecimalField(max_digits=15, decimal_places=2, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -178,7 +163,8 @@ class r2050tipoCom(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_r2050_tipocom", "Can view r2050_tipocom"), )
+            ("can_view_r2050tipoCom", "Can view R2050TIPOCOM"),
+            ("can_view_menu_r2050tipoCom", "Can view menu R2050TIPOCOM"),)
             
         ordering = [
             'r2050_evtcomprod',

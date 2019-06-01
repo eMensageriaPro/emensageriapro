@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.efdreinf.forms import *
 from emensageriapro.efdreinf.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.r4020.models import *
 from emensageriapro.r4020.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -80,31 +80,38 @@ def criar_alteracao(request, hash):
 
     dict_hash = get_hash_url(hash)
     r4020_evtretpj_id = int(dict_hash['id'])
+    
+    if request.user.has_perm('efdreinf.can_create_change_event_r4020evtRetPJ'):
 
-    if r4020_evtretpj_id:
-
-        r4020_evtretpj = get_object_or_404(
-            r4020evtRetPJ,
-            id=r4020_evtretpj_id)
-
-        texto = gerar_xml_r4020(r4020_evtretpj_id, versao="|")
-        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_r4020_evtretpj_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(r4020_evtretpj)
-
-        r4020evtRetPJ.objects.filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}',
-            u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r4020_evtretpj.identidade),
-            'r4020_evtretpj', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('r4020_evtretpj_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao criar evento de alteração!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
+        if r4020_evtretpj_id:
+    
+            r4020_evtretpj = get_object_or_404(
+                r4020evtRetPJ,
+                id=r4020_evtretpj_id)
+    
+            texto = gerar_xml_r4020(r4020_evtretpj_id, versao="|")
+            texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
+            dados = read_r4020_evtretpj_string({}, texto.encode('utf-8'), 0)
+            nova_identidade = identidade_evento(r4020_evtretpj)
+    
+            r4020evtRetPJ.objects.filter(id=dados['id']).\
+                update(status=STATUS_EVENTO_CADASTRADO,
+                       arquivo_original=0,
+                       arquivo='')
+    
+            gravar_auditoria(u'{}',
+                u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, r4020_evtretpj.identidade),
+                'r4020_evtretpj', dados['id'], request.user.id, 1)
+    
+            messages.success(request, u'Evento de alteração criado com sucesso!')
+            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
+            return redirect('r4020_evtretpj_salvar', hash=url_hash)
+    
+        messages.error(request, 'Erro ao criar evento de alteração!')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+    else:
+    
+        messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente. 
+                                    Entre em contato com o administrador do sistema!''')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])

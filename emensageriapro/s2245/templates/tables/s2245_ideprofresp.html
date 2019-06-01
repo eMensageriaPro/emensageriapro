@@ -53,9 +53,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2245_ideprofresp_visualizar' %}
+                    {% if perms.s2245.can_view_s2245ideProfResp %}
                         <a href="{% url 's2245_ideprofresp_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2245_ideprofresp_editar' or dict_permissoes|get_permissao:'s2245_ideprofresp_cadastrar' %}
+                            {% if perms.s2245.add_s2245ideProfResp or perms.s2245.change_s2245ideProfResp %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -66,7 +66,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2245_ideprofresp_apagar' %}
+                    {% if perms.s2245.delete_s2245ideProfResp %}
                         <a href="{% url 's2245_ideprofresp_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

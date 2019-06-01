@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s1200_infoperant_remunperant_visualizar' %}
+                    {% if perms.s1200.can_view_s1200infoPerAntremunPerAnt %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's1200_infoperant_remunperant_salvar' hash='{}'|json_return_page:'s1200_infoperant_remunperant_salvar'|json_return_hash:hash|json_id:s1200_infoperant_remunperant_id|json_print:0|base64_encode_me %}">
                             Informações relativas a remuneração do trabalhador em períodos anteriores ao período de apuração
@@ -62,21 +62,21 @@
                     {% endif %}
                     {% if s1200_infoperant_remunperant_id %}
                         
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_itensremun_visualizar' %}
+                            {% if perms.s1200.can_view_s1200_infoperant_itensremun %}
                                 <li {% if tab == 's1200_infoperant_itensremun' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_infoperant_remunperant_salvar' hash='{}'|json_id:s1200_infoperant_remunperant_id|json_print:0|json_tab:'s1200_infoperant_itensremun'|base64_encode_me %}">
                                     Registro que relaciona as rubricas que compõem a remuneração do trabalhador.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_infoagnocivo_visualizar' %}
+                            {% if perms.s1200.can_view_s1200_infoperant_infoagnocivo %}
                                 <li {% if tab == 's1200_infoperant_infoagnocivo' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_infoperant_remunperant_salvar' hash='{}'|json_id:s1200_infoperant_remunperant_id|json_print:0|json_tab:'s1200_infoperant_infoagnocivo'|base64_encode_me %}">
                                     Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</a>
                                 </li>
                             {% endif %}
                         
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_infotrabinterm_visualizar' %}
+                            {% if perms.s1200.can_view_s1200_infoperant_infotrabinterm %}
                                 <li {% if tab == 's1200_infoperant_infotrabinterm' %} class="active"{% endif %} >
                                     <a href="{% url 's1200_infoperant_remunperant_salvar' hash='{}'|json_id:s1200_infoperant_remunperant_id|json_print:0|json_tab:'s1200_infoperant_infotrabinterm'|base64_encode_me %}">
                                     Informações da(s) convocação(ões) de trabalho intermitente</a>
@@ -195,7 +195,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s1200_infoperant_remunperant_editar' or dict_permissoes|get_permissao:'s1200_infoperant_remunperant_cadastrar' %}
+            {% if perms.s1200.change_s1200_infoperant_remunperant or perms.s1200.add_s1200_infoperant_remunperant %}
                 <form action="#" id="id_form_s1200_infoperant_remunperant" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -222,7 +222,7 @@
                             <!-- botões especiais -->
                             {% if s1200_infoperant_remunperant_id %}
 
-                                {% if dict_permissoes|get_permissao:'s1200_infoperant_remunperant_cadastrar' %}
+                                {% if perms.s1200.add_s1200infoPerAntremunPerAnt %}
                                     <a href="{% url 's1200_infoperant_remunperant_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -234,7 +234,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_remunperant_listar' or dict_permissoes|get_permissao:'s1200_infoperant_remunperant_listar' %}
+                            {% if perms.s1200.can_view_s1200_infoperant_remunperant or perms.s1200.can_view_s1200_infoperant_remunperant %}
                                 <a href="{% url 's1200_infoperant_remunperant'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -243,7 +243,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_remunperant_visualizar' and s1200_infoperant_remunperant_id %}
+                            {% if perms.s1200.can_view_s1200_infoperant_remunperant and s1200_infoperant_remunperant_id %}
                                 <a href="{% url 's1200_infoperant_remunperant_salvar' hash='{}'|json_id:s1200_infoperant_remunperant_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -252,7 +252,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_remunperant_visualizar' and s1200_infoperant_remunperant_id %}
+                            {% if perms.s1200.can_view_s1200_infoperant_remunperant and s1200_infoperant_remunperant_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -279,7 +279,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_remunperant_editar' or dict_permissoes|get_permissao:'s1200_infoperant_remunperant_cadastrar' %}
+                            {% if perms.s1200.change_s1200_infoperant_remunperant or perms.s1200.add_s1200_infoperant_remunperant %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -288,7 +288,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s1200_infoperant_remunperant_apagar' and s1200_infoperant_remunperant_id %}
+                            {% if perms.s1200.delete_s1200_infoperant_remunperant and s1200_infoperant_remunperant_id %}
 
                             <a href="{% url 's1200_infoperant_remunperant_apagar' hash='{}'|json_id:s1200_infoperant_remunperant_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -310,7 +310,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s1200_infoperant_remunperant_editar' or dict_permissoes|get_permissao:'s1200_infoperant_remunperant_cadastrar' %}
+                    {% if perms.s1200.change_s1200_infoperant_remunperant or perms.s1200.add_s1200_infoperant_remunperant %}
                         </form>
                     {% endif %}
 
@@ -336,9 +336,9 @@
 
             {% if tab == 's1200_infoperant_itensremun' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1200_infoperant_itensremun_visualizar' %} 
+                {% if perms.s1200.can_view_s1200_infoperant_itensremun %} 
 
-                    {% if dict_permissoes|get_permissao:'s1200_infoperant_itensremun_editar' or dict_permissoes|get_permissao:'s1200_infoperant_itensremun_cadastrar' %}
+                    {% if perms.s1200.change_s1200_infoperant_itensremun or perms.s1200.add_s1200infoPerAntitensRemun %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -365,7 +365,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro que relaciona as rubricas que compõem a remuneração do trabalhador.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1200_infoperant_itensremun_editar' or dict_permissoes|get_permissao:'s1200_infoperant_itensremun_cadastrar' %}
+                                        {% if perms.s1200.change_s1200_infoperant_itensremun or perms.s1200.add_s1200infoPerAntitensRemun %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -380,7 +380,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1200_infoperant_itensremun_cadastrar' %}            
+                                    {% if perms.s1200.add_s1200infoPerAntitensRemun %}            
                                     <!-- begin_form_s1200_infoperant_itensremun --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1200_infoperant_itensremun" action="{% url 's1200_infoperant_itensremun_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -433,9 +433,9 @@
 
             {% if tab == 's1200_infoperant_infoagnocivo' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1200_infoperant_infoagnocivo_visualizar' %} 
+                {% if perms.s1200.can_view_s1200_infoperant_infoagnocivo %} 
 
-                    {% if dict_permissoes|get_permissao:'s1200_infoperant_infoagnocivo_editar' or dict_permissoes|get_permissao:'s1200_infoperant_infoagnocivo_cadastrar' %}
+                    {% if perms.s1200.change_s1200_infoperant_infoagnocivo or perms.s1200.add_s1200infoPerAntinfoAgNocivo %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -462,7 +462,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Registro preenchido exclusivamente em relação a remuneração de trabalhador enquadrado em uma das categorias relativas a Empregado, Servidor Público, Avulso, ou na categoria de Cooperado filiado a cooperativa de produção [738] ou Cooperado filiado a cooperativa de trabalho que presta serviço a empresa [731, 734], permitindo o detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1200_infoperant_infoagnocivo_editar' or dict_permissoes|get_permissao:'s1200_infoperant_infoagnocivo_cadastrar' %}
+                                        {% if perms.s1200.change_s1200_infoperant_infoagnocivo or perms.s1200.add_s1200infoPerAntinfoAgNocivo %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -477,7 +477,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1200_infoperant_infoagnocivo_cadastrar' %}            
+                                    {% if perms.s1200.add_s1200infoPerAntinfoAgNocivo %}            
                                     <!-- begin_form_s1200_infoperant_infoagnocivo --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1200_infoperant_infoagnocivo" action="{% url 's1200_infoperant_infoagnocivo_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">
@@ -530,9 +530,9 @@
 
             {% if tab == 's1200_infoperant_infotrabinterm' or for_print %} 
 
-                {% if dict_permissoes|get_permissao:'s1200_infoperant_infotrabinterm_visualizar' %} 
+                {% if perms.s1200.can_view_s1200_infoperant_infotrabinterm %} 
 
-                    {% if dict_permissoes|get_permissao:'s1200_infoperant_infotrabinterm_editar' or dict_permissoes|get_permissao:'s1200_infoperant_infotrabinterm_cadastrar' %}
+                    {% if perms.s1200.change_s1200_infoperant_infotrabinterm or perms.s1200.add_s1200infoPerAntinfoTrabInterm %}
                         <script type="text/javascript">
                         function CadastroListagem() {
                             var display = document.getElementById('cadastrar').style.display;
@@ -559,7 +559,7 @@
                                 <div class="box-header with-border">
                                     <h3 class="box-title">Informações da(s) convocação(ões) de trabalho intermitente</h3>   
                                     <div class="pull-right box-tools">
-                                        {% if dict_permissoes|get_permissao:'s1200_infoperant_infotrabinterm_editar' or dict_permissoes|get_permissao:'s1200_infoperant_infotrabinterm_cadastrar' %}
+                                        {% if perms.s1200.change_s1200_infoperant_infotrabinterm or perms.s1200.add_s1200infoPerAntinfoTrabInterm %}
                                         <button class="btn btn-info pull-right" onclick="CadastroListagem()">
                                             <div id="CadastrarBotao">
                                                 <i class="fa fa-plus-circle"></i> 
@@ -574,7 +574,7 @@
                                     </div>   
                                 </div>
                                 <div class="box-body" >
-                                    {% if dict_permissoes|get_permissao:'s1200_infoperant_infotrabinterm_cadastrar' %}            
+                                    {% if perms.s1200.add_s1200infoPerAntinfoTrabInterm %}            
                                     <!-- begin_form_s1200_infoperant_infotrabinterm --> 
                                     <div id="cadastrar" style="display:none">
                                         <form id="id_form_s1200_infoperant_infotrabinterm" action="{% url 's1200_infoperant_infotrabinterm_salvar' hash='{}'|json_id:0|json_print:0|base64_encode_me %}" method="POST" enctype="multipart/form-data">

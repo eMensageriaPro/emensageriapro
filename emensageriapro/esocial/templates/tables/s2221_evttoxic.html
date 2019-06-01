@@ -83,9 +83,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'s2221_evttoxic_visualizar' %}
+                    {% if perms.esocial.can_view_s2221evtToxic %}
                         <a href="{% url 's2221_evttoxic_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'s2221_evttoxic_editar' or dict_permissoes|get_permissao:'s2221_evttoxic_cadastrar' %}
+                            {% if perms.esocial.add_s2221evtToxic or perms.esocial.change_s2221evtToxic %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -96,7 +96,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'s2221_evttoxic_apagar' %}
+                    {% if perms.esocial.delete_s2221evtToxic %}
                         <a href="{% url 's2221_evttoxic_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

@@ -100,7 +100,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Regras de Validação</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'regras_validacao_cadastrar' %}
+                  {% if perms.mensageiro.add_RegrasDeValidacao %}
                   <a href="{% url 'regras_validacao_salvar' hash='{}'|json_return_page:'regras_validacao_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

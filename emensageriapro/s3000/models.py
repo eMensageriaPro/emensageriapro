@@ -75,14 +75,6 @@ class s3000ideFolhaPagto(SoftDeletionModel):
     indapuracao = models.IntegerField(choices=CHOICES_S3000_INDAPURACAO, null=True, )
     perapur = models.CharField(max_length=7, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -107,7 +99,8 @@ class s3000ideFolhaPagto(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s3000_idefolhapagto", "Can view s3000_idefolhapagto"), )
+            ("can_view_s3000ideFolhaPagto", "Can view S3000IDEFOLHAPAGTO"),
+            ("can_view_menu_s3000ideFolhaPagto", "Can view menu S3000IDEFOLHAPAGTO"),)
             
         ordering = [
             's3000_evtexclusao',
@@ -142,14 +135,6 @@ class s3000ideTrabalhador(SoftDeletionModel):
     cpftrab = models.CharField(max_length=11, null=True, )
     nistrab = models.CharField(max_length=11, blank=True, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -173,7 +158,8 @@ class s3000ideTrabalhador(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s3000_idetrabalhador", "Can view s3000_idetrabalhador"), )
+            ("can_view_s3000ideTrabalhador", "Can view S3000IDETRABALHADOR"),
+            ("can_view_menu_s3000ideTrabalhador", "Can view menu S3000IDETRABALHADOR"),)
             
         ordering = [
             's3000_evtexclusao',

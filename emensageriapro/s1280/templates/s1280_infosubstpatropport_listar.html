@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro preenchido exclusivamente pelo OGMO ({classTrib}=[09]) listando apenas seus Operadores Portuários enquadrados nos artigos 7 a 9 da Lei 12.546/2011.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1280_infosubstpatropport_cadastrar' %}
+                  {% if perms.s1280.add_s1280infoSubstPatrOpPort %}
                   <a href="{% url 's1280_infosubstpatropport_salvar' hash='{}'|json_return_page:'s1280_infosubstpatropport_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

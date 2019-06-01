@@ -29,9 +29,9 @@
             <td>
                 <div>
                     <!-- botões especiais -->
-                    {% if dict_permissoes|get_permissao:'r4010_fci_visualizar' %}
+                    {% if perms.r4010.can_view_r4010FCI %}
                         <a href="{% url 'r4010_fci_salvar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
-                            {% if dict_permissoes|get_permissao:'r4010_fci_editar' or dict_permissoes|get_permissao:'r4010_fci_cadastrar' %}
+                            {% if perms.r4010.add_r4010FCI or perms.r4010.change_r4010FCI %}
                                 <span class="btn btn-primary" title="Editar">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </span>
@@ -42,7 +42,7 @@
                             {% endif %}
                         </a>
                     {% endif %}
-                    {% if dict_permissoes|get_permissao:'r4010_fci_apagar' %}
+                    {% if perms.r4010.delete_r4010FCI %}
                         <a href="{% url 'r4010_fci_apagar' hash='{}'|json_id:a.id|json_print:0|base64_encode_me %}">
                             <span class="btn btn-danger" title="Apagar">
                                 <i class="fa fa-fw fa-times"></i>

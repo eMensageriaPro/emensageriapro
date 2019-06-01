@@ -100,7 +100,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Retornos dos Eventos - Horários</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'retornos_eventos_horarios_cadastrar' %}
+                  {% if perms.mensageiro.add_RetornosEventosHorarios %}
                   <a href="{% url 'retornos_eventos_horarios_salvar' hash='{}'|json_return_page:'retornos_eventos_horarios_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

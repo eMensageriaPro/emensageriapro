@@ -74,14 +74,6 @@ class s2241altAposentEsp(SoftDeletionModel):
         return self.s2241_aposentesp.evento()
     dtaltcondicao = models.DateField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -105,7 +97,8 @@ class s2241altAposentEsp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_altaposentesp", "Can view s2241_altaposentesp"), )
+            ("can_view_s2241altAposentEsp", "Can view S2241ALTAPOSENTESP"),
+            ("can_view_menu_s2241altAposentEsp", "Can view menu S2241ALTAPOSENTESP"),)
             
         ordering = [
             's2241_aposentesp',
@@ -138,14 +131,6 @@ class s2241altAposentEspfatRisco(SoftDeletionModel):
         return self.s2241_altaposentesp_infoamb.evento()
     codfatris = models.TextField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -169,7 +154,8 @@ class s2241altAposentEspfatRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_altaposentesp_fatrisco", "Can view s2241_altaposentesp_fatrisco"), )
+            ("can_view_s2241altAposentEspfatRisco", "Can view S2241ALTAPOSENTESPFATRISCO"),
+            ("can_view_menu_s2241altAposentEspfatRisco", "Can view menu S2241ALTAPOSENTESPFATRISCO"),)
             
         ordering = [
             's2241_altaposentesp_infoamb',
@@ -202,14 +188,6 @@ class s2241altAposentEspinfoamb(SoftDeletionModel):
         return self.s2241_altaposentesp.evento()
     codamb = models.CharField(max_length=30, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -233,7 +211,8 @@ class s2241altAposentEspinfoamb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_altaposentesp_infoamb", "Can view s2241_altaposentesp_infoamb"), )
+            ("can_view_s2241altAposentEspinfoamb", "Can view S2241ALTAPOSENTESPINFOAMB"),
+            ("can_view_menu_s2241altAposentEspinfoamb", "Can view menu S2241ALTAPOSENTESPINFOAMB"),)
             
         ordering = [
             's2241_altaposentesp',
@@ -266,14 +245,6 @@ class s2241altInsalPeric(SoftDeletionModel):
         return self.s2241_insalperic.evento()
     dtaltcondicao = models.DateField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -297,7 +268,8 @@ class s2241altInsalPeric(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_altinsalperic", "Can view s2241_altinsalperic"), )
+            ("can_view_s2241altInsalPeric", "Can view S2241ALTINSALPERIC"),
+            ("can_view_menu_s2241altInsalPeric", "Can view menu S2241ALTINSALPERIC"),)
             
         ordering = [
             's2241_insalperic',
@@ -330,14 +302,6 @@ class s2241altInsalPericfatRisco(SoftDeletionModel):
         return self.s2241_altinsalperic_infoamb.evento()
     codfatris = models.TextField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -361,7 +325,8 @@ class s2241altInsalPericfatRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_altinsalperic_fatrisco", "Can view s2241_altinsalperic_fatrisco"), )
+            ("can_view_s2241altInsalPericfatRisco", "Can view S2241ALTINSALPERICFATRISCO"),
+            ("can_view_menu_s2241altInsalPericfatRisco", "Can view menu S2241ALTINSALPERICFATRISCO"),)
             
         ordering = [
             's2241_altinsalperic_infoamb',
@@ -394,14 +359,6 @@ class s2241altInsalPericinfoamb(SoftDeletionModel):
         return self.s2241_altinsalperic.evento()
     codamb = models.CharField(max_length=30, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -425,7 +382,8 @@ class s2241altInsalPericinfoamb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_altinsalperic_infoamb", "Can view s2241_altinsalperic_infoamb"), )
+            ("can_view_s2241altInsalPericinfoamb", "Can view S2241ALTINSALPERICINFOAMB"),
+            ("can_view_menu_s2241altInsalPericinfoamb", "Can view menu S2241ALTINSALPERICINFOAMB"),)
             
         ordering = [
             's2241_altinsalperic',
@@ -457,14 +415,6 @@ class s2241aposentEsp(SoftDeletionModel):
     def evento(self): 
         return self.s2241_evtinsapo.evento()
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -487,7 +437,8 @@ class s2241aposentEsp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_aposentesp", "Can view s2241_aposentesp"), )
+            ("can_view_s2241aposentEsp", "Can view S2241APOSENTESP"),
+            ("can_view_menu_s2241aposentEsp", "Can view menu S2241APOSENTESP"),)
             
         ordering = [
             's2241_evtinsapo',]
@@ -519,14 +470,6 @@ class s2241fimAposentEsp(SoftDeletionModel):
         return self.s2241_aposentesp.evento()
     dtfimcondicao = models.DateField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -550,7 +493,8 @@ class s2241fimAposentEsp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_fimaposentesp", "Can view s2241_fimaposentesp"), )
+            ("can_view_s2241fimAposentEsp", "Can view S2241FIMAPOSENTESP"),
+            ("can_view_menu_s2241fimAposentEsp", "Can view menu S2241FIMAPOSENTESP"),)
             
         ordering = [
             's2241_aposentesp',
@@ -583,14 +527,6 @@ class s2241fimAposentEspinfoAmb(SoftDeletionModel):
         return self.s2241_fimaposentesp.evento()
     codamb = models.CharField(max_length=30, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -614,7 +550,8 @@ class s2241fimAposentEspinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_fimaposentesp_infoamb", "Can view s2241_fimaposentesp_infoamb"), )
+            ("can_view_s2241fimAposentEspinfoAmb", "Can view S2241FIMAPOSENTESPINFOAMB"),
+            ("can_view_menu_s2241fimAposentEspinfoAmb", "Can view menu S2241FIMAPOSENTESPINFOAMB"),)
             
         ordering = [
             's2241_fimaposentesp',
@@ -647,14 +584,6 @@ class s2241fimInsalPeric(SoftDeletionModel):
         return self.s2241_insalperic.evento()
     dtfimcondicao = models.DateField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -678,7 +607,8 @@ class s2241fimInsalPeric(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_fiminsalperic", "Can view s2241_fiminsalperic"), )
+            ("can_view_s2241fimInsalPeric", "Can view S2241FIMINSALPERIC"),
+            ("can_view_menu_s2241fimInsalPeric", "Can view menu S2241FIMINSALPERIC"),)
             
         ordering = [
             's2241_insalperic',
@@ -711,14 +641,6 @@ class s2241fimInsalPericinfoAmb(SoftDeletionModel):
         return self.s2241_fiminsalperic.evento()
     codamb = models.CharField(max_length=30, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -742,7 +664,8 @@ class s2241fimInsalPericinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_fiminsalperic_infoamb", "Can view s2241_fiminsalperic_infoamb"), )
+            ("can_view_s2241fimInsalPericinfoAmb", "Can view S2241FIMINSALPERICINFOAMB"),
+            ("can_view_menu_s2241fimInsalPericinfoAmb", "Can view menu S2241FIMINSALPERICINFOAMB"),)
             
         ordering = [
             's2241_fiminsalperic',
@@ -775,14 +698,6 @@ class s2241iniAposentEsp(SoftDeletionModel):
         return self.s2241_aposentesp.evento()
     dtinicondicao = models.DateField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -806,7 +721,8 @@ class s2241iniAposentEsp(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_iniaposentesp", "Can view s2241_iniaposentesp"), )
+            ("can_view_s2241iniAposentEsp", "Can view S2241INIAPOSENTESP"),
+            ("can_view_menu_s2241iniAposentEsp", "Can view menu S2241INIAPOSENTESP"),)
             
         ordering = [
             's2241_aposentesp',
@@ -839,14 +755,6 @@ class s2241iniAposentEspfatRisco(SoftDeletionModel):
         return self.s2241_iniaposentesp_infoamb.evento()
     codfatris = models.TextField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -870,7 +778,8 @@ class s2241iniAposentEspfatRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_iniaposentesp_fatrisco", "Can view s2241_iniaposentesp_fatrisco"), )
+            ("can_view_s2241iniAposentEspfatRisco", "Can view S2241INIAPOSENTESPFATRISCO"),
+            ("can_view_menu_s2241iniAposentEspfatRisco", "Can view menu S2241INIAPOSENTESPFATRISCO"),)
             
         ordering = [
             's2241_iniaposentesp_infoamb',
@@ -903,14 +812,6 @@ class s2241iniAposentEspinfoAmb(SoftDeletionModel):
         return self.s2241_iniaposentesp.evento()
     codamb = models.CharField(max_length=30, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -934,7 +835,8 @@ class s2241iniAposentEspinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_iniaposentesp_infoamb", "Can view s2241_iniaposentesp_infoamb"), )
+            ("can_view_s2241iniAposentEspinfoAmb", "Can view S2241INIAPOSENTESPINFOAMB"),
+            ("can_view_menu_s2241iniAposentEspinfoAmb", "Can view menu S2241INIAPOSENTESPINFOAMB"),)
             
         ordering = [
             's2241_iniaposentesp',
@@ -967,14 +869,6 @@ class s2241iniInsalPeric(SoftDeletionModel):
         return self.s2241_insalperic.evento()
     dtinicondicao = models.DateField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -998,7 +892,8 @@ class s2241iniInsalPeric(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_iniinsalperic", "Can view s2241_iniinsalperic"), )
+            ("can_view_s2241iniInsalPeric", "Can view S2241INIINSALPERIC"),
+            ("can_view_menu_s2241iniInsalPeric", "Can view menu S2241INIINSALPERIC"),)
             
         ordering = [
             's2241_insalperic',
@@ -1031,14 +926,6 @@ class s2241iniInsalPericfatRisco(SoftDeletionModel):
         return self.s2241_iniinsalperic_infoamb.evento()
     codfatris = models.TextField(null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1062,7 +949,8 @@ class s2241iniInsalPericfatRisco(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_iniinsalperic_fatrisco", "Can view s2241_iniinsalperic_fatrisco"), )
+            ("can_view_s2241iniInsalPericfatRisco", "Can view S2241INIINSALPERICFATRISCO"),
+            ("can_view_menu_s2241iniInsalPericfatRisco", "Can view menu S2241INIINSALPERICFATRISCO"),)
             
         ordering = [
             's2241_iniinsalperic_infoamb',
@@ -1095,14 +983,6 @@ class s2241iniInsalPericinfoAmb(SoftDeletionModel):
         return self.s2241_iniinsalperic.evento()
     codamb = models.CharField(max_length=30, null=True, )
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1126,7 +1006,8 @@ class s2241iniInsalPericinfoAmb(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_iniinsalperic_infoamb", "Can view s2241_iniinsalperic_infoamb"), )
+            ("can_view_s2241iniInsalPericinfoAmb", "Can view S2241INIINSALPERICINFOAMB"),
+            ("can_view_menu_s2241iniInsalPericinfoAmb", "Can view menu S2241INIINSALPERICINFOAMB"),)
             
         ordering = [
             's2241_iniinsalperic',
@@ -1158,14 +1039,6 @@ class s2241insalPeric(SoftDeletionModel):
     def evento(self): 
         return self.s2241_evtinsapo.evento()
     
-    criado_em = models.DateTimeField(blank=True, null=True)
-    criado_por = models.ForeignKey(User,
-        related_name='%(class)s_criado_por', blank=True, null=True)
-    modificado_em = models.DateTimeField(blank=True, null=True)
-    modificado_por = models.ForeignKey(User,
-        related_name='%(class)s_modificado_por', blank=True, null=True)
-    excluido = models.NullBooleanField(blank=True, null=True, default=False)
-    
     def __unicode__(self):
         
         lista = [
@@ -1188,7 +1061,8 @@ class s2241insalPeric(SoftDeletionModel):
         index_together = ()
         
         permissions = (
-            ("can_view_s2241_insalperic", "Can view s2241_insalperic"), )
+            ("can_view_s2241insalPeric", "Can view S2241INSALPERIC"),
+            ("can_view_menu_s2241insalPeric", "Can view menu S2241INSALPERIC"),)
             
         ordering = [
             's2241_evtinsapo',]

@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro que identifica o Estabelecimento/Lotação no qual o trabalhador possui remuneração no período de apuração</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1200_infoperapur_ideestablot_cadastrar' %}
+                  {% if perms.s1200.add_s1200infoPerApurideEstabLot %}
                   <a href="{% url 's1200_infoperapur_ideestablot_salvar' hash='{}'|json_return_page:'s1200_infoperapur_ideestablot_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

@@ -51,7 +51,7 @@ from django.db.models import Count
 from emensageriapro.padrao import *
 from emensageriapro.esocial.forms import *
 from emensageriapro.esocial.models import *
-from emensageriapro.controle_de_acesso.models import Usuarios, ConfigPermissoes, ConfigPerfis, ConfigModulos, ConfigPaginas
+from emensageriapro.controle_de_acesso.models import Usuarios
 from emensageriapro.s1010.models import *
 from emensageriapro.s1010.forms import *
 from emensageriapro.functions import render_to_pdf, txt_xml
@@ -80,31 +80,38 @@ def criar_alteracao(request, hash):
 
     dict_hash = get_hash_url(hash)
     s1010_evttabrubrica_id = int(dict_hash['id'])
+    
+    if request.user.has_perm('esocial.can_create_change_event_s1010evtTabRubrica'):
 
-    if s1010_evttabrubrica_id:
-
-        s1010_evttabrubrica = get_object_or_404(
-            s1010evtTabRubrica,
-            id=s1010_evttabrubrica_id)
-
-        texto = gerar_xml_s1010(s1010_evttabrubrica_id, versao="|")
-        texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
-        dados = read_s1010_evttabrubrica_string({}, texto.encode('utf-8'), 0)
-        nova_identidade = identidade_evento(s1010_evttabrubrica)
-
-        s1010evtTabRubrica.objects.filter(id=dados['id']).\
-            update(status=STATUS_EVENTO_CADASTRADO,
-                   arquivo_original=0,
-                   arquivo='')
-
-        gravar_auditoria(u'{}',
-            u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1010_evttabrubrica.identidade),
-            's1010_evttabrubrica', dados['id'], request.user.id, 1)
-
-        messages.success(request, u'Evento de alteração criado com sucesso!')
-        url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
-        return redirect('s1010_evttabrubrica_salvar', hash=url_hash)
-
-    messages.error(request, 'Erro ao criar evento de alteração!')
-    return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
-
+        if s1010_evttabrubrica_id:
+    
+            s1010_evttabrubrica = get_object_or_404(
+                s1010evtTabRubrica,
+                id=s1010_evttabrubrica_id)
+    
+            texto = gerar_xml_s1010(s1010_evttabrubrica_id, versao="|")
+            texto = texto.replace('<inclusao>','<alteracao>').replace('</inclusao>','</alteracao>')
+            dados = read_s1010_evttabrubrica_string({}, texto.encode('utf-8'), 0)
+            nova_identidade = identidade_evento(s1010_evttabrubrica)
+    
+            s1010evtTabRubrica.objects.filter(id=dados['id']).\
+                update(status=STATUS_EVENTO_CADASTRADO,
+                       arquivo_original=0,
+                       arquivo='')
+    
+            gravar_auditoria(u'{}',
+                u'{"funcao": "Evento de de alteração de identidade %s criado a partir da duplicação do evento %s"}' % (nova_identidade, s1010_evttabrubrica.identidade),
+                's1010_evttabrubrica', dados['id'], request.user.id, 1)
+    
+            messages.success(request, u'Evento de alteração criado com sucesso!')
+            url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % dados['id'] )
+            return redirect('s1010_evttabrubrica_salvar', hash=url_hash)
+    
+        messages.error(request, 'Erro ao criar evento de alteração!')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+        
+    else:
+    
+        messages.error(request, u'''Você não possui permissão para criar evento de alteração a partir de evento existente. 
+                                    Entre em contato com o administrador do sistema!''')
+        return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])

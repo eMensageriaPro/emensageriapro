@@ -65,43 +65,48 @@ from emensageriapro.r2060.forms import form_r2060_infoproc
 
 @login_required
 def salvar(request, hash):
+
     from emensageriapro.efdreinf.models import STATUS_EVENTO_CADASTRADO
     
     try: 
+    
         usuario_id = request.user.id    
         dict_hash = get_hash_url( hash )
         r2060_tipocod_id = int(dict_hash['id'])
         if 'tab' not in dict_hash.keys(): 
             dict_hash['tab'] = ''
         for_print = int(dict_hash['print'])
+        
     except: 
+    
         usuario_id = False
         return redirect('login')
-    usuario = get_object_or_404(Usuarios, id = usuario_id)
-    pagina = ConfigPaginas.objects.get( endereco='r2060_tipocod')
-    permissao = ConfigPermissoes.objects.get( config_paginas=pagina, config_perfis=usuario.config_perfis)
-    if r2060_tipocod_id:
-        r2060_tipocod = get_object_or_404(r2060tipoCod, id = r2060_tipocod_id)
-    dict_permissoes = json_to_dict(usuario.config_perfis.permissoes)
-    paginas_permitidas_lista = usuario.config_perfis.paginas_permitidas
-    modulos_permitidos_lista = usuario.config_perfis.modulos_permitidos
+        
+    usuario = get_object_or_404(Usuarios, id=usuario_id)
+    
     dados_evento = {}
     dados_evento['status'] = STATUS_EVENTO_CADASTRADO
+    
     if r2060_tipocod_id:
+    
+        r2060_tipocod = get_object_or_404(r2060tipoCod, id=r2060_tipocod_id)
         dados_evento = r2060_tipocod.evento()
-        if dados_evento['status'] != STATUS_EVENTO_CADASTRADO:
-            dict_permissoes['r2060_tipocod_apagar'] = 0
-            dict_permissoes['r2060_tipocod_editar'] = 0
 
-    if permissao.permite_visualizar:
-        mensagem = None
+    if request.user.has_perm('r2060.can_view_r2060tipoCod'):
+        
         if r2060_tipocod_id:
-            r2060_tipocod_form = form_r2060_tipocod(request.POST or None, instance = r2060_tipocod,  
-                                         initial={'excluido': False})
+        
+            r2060_tipocod_form = form_r2060_tipocod(request.POST or None, 
+                                                          instance=r2060_tipocod,  
+                                                          initial={'excluido': False})
+                                         
         else:
+        
             r2060_tipocod_form = form_r2060_tipocod(request.POST or None, 
                                          initial={'excluido': False})
+                                         
         if request.method == 'POST':
+        
             if r2060_tipocod_form.is_valid():
             
                 dados = r2060_tipocod_form.cleaned_data
@@ -109,9 +114,11 @@ def salvar(request, hash):
                 messages.success(request, u'Salvo com sucesso!')
                 
                 if not r2060_tipocod_id:
+                
                     gravar_auditoria('{}',
                                  json.dumps(model_to_dict(obj), indent=4, sort_keys=True, default=str), 
                                  'r2060_tipocod', obj.id, usuario_id, 1)
+                                 
                 else:
                 
                     gravar_auditoria(json.dumps(model_to_dict(r2060_tipocod), indent=4, sort_keys=True, default=str),
@@ -119,21 +126,30 @@ def salvar(request, hash):
                                      'r2060_tipocod', r2060_tipocod_id, usuario_id, 2)
                                      
                 if request.session['retorno_pagina'] not in ('r2060_tipocod_apagar', 'r2060_tipocod_salvar', 'r2060_tipocod'):
+                    
                     return redirect(request.session['retorno_pagina'], hash=request.session['retorno_hash'])
+                    
                 if r2060_tipocod_id != obj.id:
+                
                     url_hash = base64.urlsafe_b64encode( '{"print": "0", "id": "%s"}' % (obj.id) )
                     return redirect('r2060_tipocod_salvar', hash=url_hash)
+                    
             else:
+            
                 messages.error(request, u'Erro ao salvar!')
-        r2060_tipocod_form = disabled_form_fields(r2060_tipocod_form, permissao.permite_editar)
+               
+        r2060_tipocod_form = disabled_form_fields(r2060_tipocod_form, request.user.has_perm('r2060.change_r2060tipoCod'))
         
         if r2060_tipocod_id:
+        
             if dados_evento['status'] != 0:
+            
                 r2060_tipocod_form = disabled_form_fields(r2060_tipocod_form, 0)
                 
         #r2060_tipocod_campos_multiple_passo3
         
         if int(dict_hash['print']):
+        
             r2060_tipocod_form = disabled_form_for_print(r2060_tipocod_form)
             
         
@@ -143,7 +159,8 @@ def salvar(request, hash):
         r2060_infoproc_form = None 
         
         if r2060_tipocod_id:
-            r2060_tipocod = get_object_or_404(r2060tipoCod, id = r2060_tipocod_id)
+        
+            r2060_tipocod = get_object_or_404(r2060tipoCod, id=r2060_tipocod_id)
             
             r2060_tipoajuste_form = form_r2060_tipoajuste(
                 initial={ 'r2060_tipocod': r2060_tipocod })
@@ -157,49 +174,52 @@ def salvar(request, hash):
                 filter(r2060_tipocod_id=r2060_tipocod.id).all()
                 
         else:
+        
             r2060_tipocod = None
             
         #r2060_tipocod_salvar_custom_variaveis#
         tabelas_secundarias = []
         #[FUNCOES_ESPECIAIS_SALVAR]
+        
         if dict_hash['tab'] or 'r2060_tipocod' in request.session['retorno_pagina']:
+        
             request.session["retorno_hash"] = hash
             request.session["retorno_pagina"] = 'r2060_tipocod_salvar'
+            
         controle_alteracoes = Auditoria.objects.filter(identidade=r2060_tipocod_id, tabela='r2060_tipocod').all()
+        
         context = {
             'ocorrencias': dados_evento['ocorrencias'], 
+            'dados_evento': dados_evento,
             'validacao_precedencia': dados_evento['validacao_precedencia'], 
             'validacoes': dados_evento['validacoes'],
             'status': dados_evento['status'], 
             'controle_alteracoes': controle_alteracoes, 
             'r2060_tipocod': r2060_tipocod, 
             'r2060_tipocod_form': r2060_tipocod_form, 
-            'mensagem': mensagem, 
             'r2060_tipocod_id': int(r2060_tipocod_id),
             'usuario': usuario, 
-            
+            'modulos': ['r2060', ],
+            'paginas': ['r2060_tipocod', ],
             'hash': hash, 
             
             'r2060_tipoajuste_form': r2060_tipoajuste_form,
             'r2060_tipoajuste_lista': r2060_tipoajuste_lista,
             'r2060_infoproc_form': r2060_infoproc_form,
             'r2060_infoproc_lista': r2060_infoproc_lista,
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
             'for_print': int(dict_hash['print']),
             'tabelas_secundarias': tabelas_secundarias,
             'tab': dict_hash['tab'],
             #r2060_tipocod_salvar_custom_variaveis_context#
         }
-        if for_print in (0,1 ):
+        
+        if for_print in (0, 1):
+        
             return render(request, 'r2060_tipocod_salvar.html', context)
+            
         elif for_print == 2:
+        
             from wkhtmltopdf.views import PDFTemplateResponse
             response = PDFTemplateResponse(
                 request=request,
@@ -220,7 +240,9 @@ def salvar(request, hash):
                              "no-stop-slow-scripts": True},
             )
             return response
+            
         elif for_print == 3:
+        
             from django.shortcuts import render_to_response
             response = render_to_response('r2060_tipocod_salvar.html', context)
             filename = "r2060_tipocod.xls"
@@ -229,15 +251,14 @@ def salvar(request, hash):
             return response
 
     else:
+    
         context = {
             'usuario': usuario, 
-            
-            'modulos_permitidos_lista': modulos_permitidos_lista,
-            'paginas_permitidas_lista': paginas_permitidas_lista,
-           
-            'permissao': permissao,
+            'modulos': ['r2060', ],
+            'paginas': ['r2060_tipocod', ],
             'data': datetime.datetime.now(),
-            'pagina': pagina,
-            'dict_permissoes': dict_permissoes,
         }
-        return render(request, 'permissao_negada.html', context)
+        
+        return render(request, 
+                      'permissao_negada.html', 
+                      context)

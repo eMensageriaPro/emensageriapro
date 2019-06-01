@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registro que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'s1270_remunavnp_cadastrar' %}
+                  {% if perms.s1270.add_s1270remunAvNP %}
                   <a href="{% url 's1270_remunavnp_salvar' hash='{}'|json_return_page:'s1270_remunavnp_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

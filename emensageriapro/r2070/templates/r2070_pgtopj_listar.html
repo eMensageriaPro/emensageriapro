@@ -98,7 +98,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Pagamento a Beneficiário Pessoa Jurídica - Domiciliado no Brasil</h3>
               <div class="text-right">
-                  {% if dict_permissoes|get_permissao:'r2070_pgtopj_cadastrar' %}
+                  {% if perms.r2070.add_r2070pgtoPJ %}
                   <a href="{% url 'r2070_pgtopj_salvar' hash='{}'|json_return_page:'r2070_pgtopj_salvar'|json_id:0|json_print:0|base64_encode_me %}">           
                     <button class="btn btn-info"><i class="fa fa-plus-circle"></i>&nbsp;Cadastrar</button>
                   </a>&nbsp;

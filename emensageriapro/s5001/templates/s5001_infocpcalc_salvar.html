@@ -53,7 +53,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    {% if dict_permissoes|get_permissao:'s5001_infocpcalc_visualizar' %}
+                    {% if perms.s5001.can_view_s5001infoCpCalc %}
                     <li {% if not tab %}class="active"{% endif %} >
                             <a href="{% url 's5001_infocpcalc_salvar' hash='{}'|json_return_page:'s5001_infocpcalc_salvar'|json_return_hash:hash|json_id:s5001_infocpcalc_id|json_print:0|base64_encode_me %}">
                             Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399.
@@ -174,7 +174,7 @@
 
 
         {% if not for_print %}
-            {% if dict_permissoes|get_permissao:'s5001_infocpcalc_editar' or dict_permissoes|get_permissao:'s5001_infocpcalc_cadastrar' %}
+            {% if perms.s5001.change_s5001_infocpcalc or perms.s5001.add_s5001_infocpcalc %}
                 <form action="#" id="id_form_s5001_infocpcalc" method="POST" content="text/html; charset=UTF-8">
                 {% csrf_token %}
             {% endif %}
@@ -201,7 +201,7 @@
                             <!-- botões especiais -->
                             {% if s5001_infocpcalc_id %}
 
-                                {% if dict_permissoes|get_permissao:'s5001_infocpcalc_cadastrar' %}
+                                {% if perms.s5001.add_s5001infoCpCalc %}
                                     <a href="{% url 's5001_infocpcalc_salvar'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                         <span class="btn btn-info">
                                             <i class="fa fa-plus-circle"></i>
@@ -213,7 +213,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5001_infocpcalc_listar' or dict_permissoes|get_permissao:'s5001_infocpcalc_listar' %}
+                            {% if perms.s5001.can_view_s5001_infocpcalc or perms.s5001.can_view_s5001_infocpcalc %}
                                 <a href="{% url 's5001_infocpcalc'  hash='{}'|json_id:0|json_print:0|base64_encode_me %}">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-list"></i>
@@ -222,7 +222,7 @@
                                 </a>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5001_infocpcalc_visualizar' and s5001_infocpcalc_id %}
+                            {% if perms.s5001.can_view_s5001_infocpcalc and s5001_infocpcalc_id %}
                                 <a href="{% url 's5001_infocpcalc_salvar' hash='{}'|json_id:s5001_infocpcalc_id|json_print:1|base64_encode_me %}" target="_blank">
                                     <span class="btn btn-primary">
                                         <i class="fa fa-print"></i>
@@ -231,7 +231,7 @@
                                 </a>&nbsp;
                             {% endif %}
                             
-                            {% if dict_permissoes|get_permissao:'s5001_infocpcalc_visualizar' and s5001_infocpcalc_id %}
+                            {% if perms.s5001.can_view_s5001_infocpcalc and s5001_infocpcalc_id %}
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">
                                         <i class="fa fa-download"></i>
@@ -258,7 +258,7 @@
                                 </div>&nbsp;
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5001_infocpcalc_editar' or dict_permissoes|get_permissao:'s5001_infocpcalc_cadastrar' %}
+                            {% if perms.s5001.change_s5001_infocpcalc or perms.s5001.add_s5001_infocpcalc %}
                             
                             <button type="submit" class="btn btn-primary" >
                                 <i class="fa fa-save"></i>
@@ -267,7 +267,7 @@
 
                             {% endif %}
 
-                            {% if dict_permissoes|get_permissao:'s5001_infocpcalc_apagar' and s5001_infocpcalc_id %}
+                            {% if perms.s5001.delete_s5001_infocpcalc and s5001_infocpcalc_id %}
 
                             <a href="{% url 's5001_infocpcalc_apagar' hash='{}'|json_id:s5001_infocpcalc_id|json_print:0|base64_encode_me %}">
                                 <span class="btn btn-danger">
@@ -289,7 +289,7 @@
 
                 {% if not for_print %}
 
-                    {% if dict_permissoes|get_permissao:'s5001_infocpcalc_editar' or dict_permissoes|get_permissao:'s5001_infocpcalc_cadastrar' %}
+                    {% if perms.s5001.change_s5001_infocpcalc or perms.s5001.add_s5001_infocpcalc %}
                         </form>
                     {% endif %}
 
