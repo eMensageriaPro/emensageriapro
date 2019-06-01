@@ -111,10 +111,10 @@ def recibo(request, hash):
         TransmissorLoteEsocial,
         id=transmissor_lote_esocial_id)
 
-    ocorrencias_lista = TransmissorLoteEsocialOcorrencias.\
+    ocorrencias_lista = TransmissorLoteEsocialOcorrencias.objects.\
         filter(transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
 
-    eventos_lista = TransmissorEventosEsocial.\
+    eventos_lista = TransmissorEventosEsocial.objects.\
         filter(transmissor_lote_esocial_id=transmissor_lote_esocial.id).all()
 
     context = {
@@ -131,34 +131,3 @@ def recibo(request, hash):
         #'transmissor_ocorrencias_lista': transmissor_ocorrencias_lista,
     }
     return render(request, 'transmissor_lote_esocial_recibo.html', context)
-
-
-#
-# def scripts_enviar_lote(request, chave, transmissor_lote_esocial_id):
-#     from emensageriapro.settings import PASS_SCRIPT
-#     if chave == PASS_SCRIPT:
-#         db_slug = 'default'
-#         transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=transmissor_lote_esocial_id)
-#         a = send_xml(transmissor_lote_esocial_id, 'WsEnviarLoteEventos', transmissor_lote_esocial.tipo)
-#         if 'HTTP/1.1 200 OK' in a:
-#             mensagem = 'Lote enviado com sucesso!'
-#         else:
-#             mensagem = 'Erro no envio do Lote de Eventos! %s' % a
-#     else:
-#         mensagem = 'Chave incorreta!'
-#     return HttpResponse(mensagem)
-#
-#
-# def scripts_consultar_lote(request, chave, transmissor_lote_esocial_id):
-#     from emensageriapro.settings import PASS_SCRIPT
-#     if chave == PASS_SCRIPT:
-#         db_slug = 'default'
-#         transmissor_lote_esocial = get_object_or_404(TransmissorLoteEsocial, id=transmissor_lote_esocial_id)
-#         a = send_xml(transmissor_lote_esocial_id, 'WsConsultarLoteEventos', transmissor_lote_esocial.tipo)
-#         if 'HTTP/1.1 200 OK' in a:
-#             mensagem = 'Lote consultado com sucesso!'
-#         else:
-#             mensagem = 'Erro na consulta do Lote de Eventos! %s' % a
-#     else:
-#         mensagem = 'Chave incorreta!'
-#     return HttpResponse(mensagem)

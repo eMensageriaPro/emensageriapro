@@ -138,33 +138,3 @@ def recibo(request, hash):
     }
     return render(request, 'transmissor_lote_efdreinf_recibo.html', context)
 
-
-
-# def scripts_enviar_lote(request, chave, transmissor_lote_efdreinf_id):
-#     from emensageriapro.settings import PASS_SCRIPT
-#     if chave == PASS_SCRIPT:
-#         db_slug = 'default'
-#         transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf.objects.using(db_slug), excluido=False, id=transmissor_lote_efdreinf_id)
-#         a = send_xml(transmissor_lote_efdreinf_id, 'WsEnviarLoteEventos', transmissor_lote_efdreinf.tipo)
-#         if 'HTTP/1.1 200 OK' in a:
-#             mensagem = 'Lote enviado com sucesso!'
-#         else:
-#             mensagem = 'Erro no envio do Lote de Eventos! %s' % a
-#     else:
-#         mensagem = 'Chave incorreta!'
-#     return HttpResponse(mensagem)
-#
-#
-# def scripts_consultar_lote(request, chave, transmissor_lote_efdreinf_id):
-#     from emensageriapro.settings import PASS_SCRIPT
-#     if chave == PASS_SCRIPT:
-#         db_slug = 'default'
-#         transmissor_lote_efdreinf = get_object_or_404(TransmissorLoteEfdreinf.objects.using(db_slug), excluido=False, id=transmissor_lote_efdreinf_id)
-#         a = send_xml(transmissor_lote_efdreinf_id, 'WsConsultarLoteEventos', transmissor_lote_efdreinf.tipo)
-#         if 'HTTP/1.1 200 OK' in a:
-#             mensagem = 'Lote consultado com sucesso!'
-#         else:
-#             mensagem = 'Erro na consulta do Lote de Eventos! %s' % a
-#     else:
-#         mensagem = 'Chave incorreta!'
-#     return HttpResponse(mensagem)
